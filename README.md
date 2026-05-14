@@ -124,27 +124,6 @@ notable-quote: [≤25 words, verbatim]
 
 ---
 
-## Key Texts (Acquisition Priority)
-
-For the initial corpus, prioritise these five:
-
-1. **N1/2007** — Hassabis et al., PNAS: *Patients with hippocampal amnesia cannot imagine new experiences.* Intellectual origin.
-2. **A9/2017** — Hassabis et al., Neuron: *Neuroscience-Inspired Artificial Intelligence.* Fullest theoretical statement.
-3. **A1/2015** — Mnih et al., Nature: *Human-Level Control through Deep Reinforcement Learning.* DQN. Field-defining.
-4. **A24/2021** — Jumper et al., Nature: *Highly accurate protein structure prediction with AlphaFold.* Most cited.
-5. **E3/2024** — Nobel Lecture: *Accelerating Scientific Discovery with AI.* Most recent primary statement.
-
----
-
-## Known Gaps
-
-**`gap--learnable-nature-paper`** — The conjecture stated in the 2024 Nobel
-Lecture ("any pattern found in nature can be efficiently discovered by a
-classical learning algorithm") has no peer-reviewed paper as of May 2026.
-This is the most significant current gap in the corpus.
-
----
-
 *Wiki scaffold version: 1.0*  
 *Upstream patterns: Karpathy LLM Wiki, Farzaa wiki-gen skill*  
 *Domain: Hassabis intellectual corpus*  
