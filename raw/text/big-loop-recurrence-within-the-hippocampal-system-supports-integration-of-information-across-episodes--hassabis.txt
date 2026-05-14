@@ -1,0 +1,1213 @@
+
+--- PAGE 1 ---
+Big-Loop Recurrence within the Hippocampal System supports Integration
+of Information across Episodes
+RaphaelKoster,1∗† MartinJ.Chadwick,1∗† YiChen,2,3∗ DavidBerron,2,3,4 AndreaBanino,1
+EmrahDüzel,2,3,5 DemisHassabis,1,6 DharshanKumaran1,5†
+1DeepMind,5NewStreetSquare,LondonEC4A3TW,UK
+2InstituteofCognitiveNeurologyandDementiaResearch,Otto-von-Guericke-UniversityMagdeburg,39120Magdeburg,Germany
+3GermanCenterforNeurodegenerativeDiseases(DZNE),SiteMagdeburg,39120Magdeburg,Germany
+4ClinicalMemoryResearchUnit,DepartmentofClinicalSciencesMalmö,LundUniversity,22362Lund,Sweden
+5InstituteofCognitiveNeuroscience,UniversityCollegeLondon,17QueenSquare,LondonWC1N3AR,UK
+6GatsbyComputationalNeuroscienceUnit,25HowlandStreet,LondonW1T4JG,UK
+∗Theseauthorscontributedequallytothework.
+†Correspondingauthors: rkoster,mjchadwick,dkumaran@google.com
+Summary
+Recentevidencechallengesthewidelyheldviewthatthehippocampusisspecializedforepisodicmemory,bydemon-
+stratingthatitalsounderpinstheintegrationofinformationacrossexperiences. Contemporarycomputationaltheories
+proposethatthesetwocontrastingfunctionscanbeaccomplishedbybig-looprecurrence,wherebytheoutputofthe
+systemisrecirculatedbackintothehippocampus. Weuseultra-highresolutionfMRItoprovidesupportforthishy-
+pothesis,byshowingthatretrievedinformationispresentedasanewinputonthesuperficialentorhinalcortex–driven
+byfunctionalconnectivitybetweenthedeepandsuperficialentorhinallayers. Further,themagnitudeofthislaminar
+connectivitycorrelatedwithinferentialperformance,demonstratingitsimportanceforbehavior. Ourfindingsoffera
+novelperspectiveoninformationprocessingwithinthehippocampus,andsupportaunifyingframeworkinwhichthe
+hippocampuscaptureshigher-orderstructureacrossexperiences,bycreatingadynamicmemoryspacefromseparate
+episodiccodesforindividualexperiences.
+1
+
+--- PAGE 2 ---
+Introduction
+The hippocampus is widely accepted to be critical to episodic memory, by creating orthogonalized representations
+thatminimizeinterferencebetweenexperiences(Marr,1971;McNaughtonandMorris,1987;TrevesandRolls,1992;
+O’ReillyandMcClelland,1994;McClellandetal.,1995;NormanandO’Reilly,2003;YassaandStark,2011;Favila
+etal.,2016). Emergingevidence,however,suggeststhatthehippocampusalsoplaysanimportantroleinintegrating
+information across episodes (Kumaran, 2012; Zeithamova et al., 2012; Shohamy and Turk-Browne, 2013; Collin et
+al., 2015; Milivojevic et al., 2015; Schlichting et al., 2015; Banino et al., 2016; Schlichting and Preston, 2017), a
+functionthatexposesafundamentaltensionwithitsroleinpatternseparation(KumaranandMcClelland,2012)–a
+computationthatinherentlydisregardsthecommonalitiesbetweenepisodes(McNaughtonandMorris,1987;O’Reilly
+andMcClelland,1994). Recentwork,therefore,presentsasubstantialchallengetotheoreticalframeworksthatview
+the hippocampus as being specialized for episodic memory (McClelland et al., 1995; Norman and O’Reilly, 2003),
+withthegradualextractionofstatisticalstructureacrossexperiencesrelyingontheneocortex(McClellandetal.,1995;
+Kumaranetal.,2016).
+Recently developed computational theories (Kumaran and McClelland, 2012; also see Schapiro et al., 2017) have
+positedanovelmechanismthatresolvesthetensionbetweenepisodicmemoryandintegrationacrossepisodes.Specif-
+ically,thehippocampalsystemisproposedtoactasabig-looprecurrentcircuit,wherebytheoutputofthesystemis
+recirculated as a new input – rather than constituting the endpoint of hippocampal processing (McClelland et al.,
+1995). Notably, the use of the term big-loop recurrence (Kumaran and McClelland, 2012; Schapiro et al., 2017) –
+which supports the appreciation of structure across episodes – serves to distinguish this mechanism from the well-
+establishedinternalrecurrencewithintheCA3regionofthehippocampus(TrevesandRolls,1992), whichsupports
+within episode pattern completion (Fig. S1). Anatomically, recirculation mediated by big-loop recurrence could be
+enabled by direct projections between the input and output layers of the entorhinal cortex – which have been docu-
+mented in rats (Dolorfo and Amaral, 1998; Chrobak et al., 2000; Kloosterman et al., 2004; Van Strien et al., 2009)
+andmonkeys(ChrobakandAmaral,2007)–orbyawidercircuitinvolvingadditionalneocorticalregions(Kumaran
+and McClelland, 2012). By this algorithmic account, the hippocampus represents related experiences (e.g. AB and
+2
+
+--- PAGE 3 ---
+BC in the paired associate inference (PAI) task; see Fig. 1A) through pattern separated codes: big-loop recurrence
+effectivelyallowstherecombinationofrelatedepisodesatthepointofretrieval–therebyallowingappreciationofthe
+commonalities and higher order structure present among the set of experiences (Fig. 1B, Kumaran and McClelland,
+2012;alsoseeSchapiroetal.,2017).
+Asaneverydayexampleofthedynamicinterplayofdistinctyetrelatedmemoriesmediatedbybig-looprecurrence,
+imagine meeting a work colleague (Alex), and suddenly remembering meeting them for the first time in a confer-
+ence in Paris the year before. This then triggers a strong memory of a romantic trip to Paris with a partner (Sam)
+manyyearspreviously,whichitselftriggersanothermemoryofaholidayspenttogetherinThailand. Inthisexample,
+thisprocesseffectsaformof"memorychaining"wherebyindividualelementsofepisodicmemoriescantriggerthe
+retrieval of other memories from completely different times of our life. The big-loop recurrence account proposes
+that the hippocampus represents related experiences (e.g. Alex-Paris and Paris-Sam in the example above) through
+patternseparatedcodes,andthatrecirculationofsharedcomponentsacrossexperiencesastheoutputbackintothehip-
+pocampus(i.e. Paris)allowstheretrievalofotherrelatedmemories(Paris-Sam;Sam-Thailand). Whilsttheexample
+aboveillustrateshowthealgorithmallowsmemoriestobechainedtogether,moregenerallyitmediatesasuccessive
+search through memory with subsequent retrieval conditioned on the products of previous retrieval resulting in an
+iterativeprocessconsistingofcyclesofmemoryretrievalandre-queryingofthehippocampus(Kumaran,2012;Ku-
+maranandMcClelland,2012). Thisprovidesapowerfulmechanismforgeneralizationandinference,asexemplified
+by the widely-studied PAI task (Fig. 1A), as it effectively allows the recombination of related episodes at the point
+of retrieval, thereby allowing appreciation of the commonalities and higher order structure present among the set of
+experiences(KumaranandMcClelland,2012;alsoseeSchapiroetal.,2017).
+Incontrasttoretrieval-basedbig-looprecurrentmodels,encoding-basedmodels(CohenandEichenbaum,1993;Gluck
+andMyers,1993;Eichenbaumetal.,1999;Howardetal.,2005;ShohamyandWagner,2008;SchlichtingandPreston,
+2017) implicitly de-emphasize the notion of pattern separation – a computation viewed to be critical to episodic
+memory (O’Reilly and McClelland, 1994; Norman and O’Reilly, 2003) – and instead suggest that it is the overlap
+of hippocampal neural codes for related experiences that is critical to inferential behavior (see Fig. S2 for details).
+3
+
+--- PAGE 4 ---
+This account is supported by several studies (Collin et al., 2015; Schlichting et al., 2015; Schlichting and Preston,
+2017),indicatingthatencoding-basedmechanismscansupportinferencewhenthestimulihavebeenrepeatedseveral
+times,givinganopportunityfortheintegratedrepresentationstobeformedwithinthehippocampus(consistentwith
+simulatedresultsfromSchapiroetal.,2017). Thus,whilethisencoding-basedcontributionhasbeenexperimentally
+established, theproposedbig-loopmechanismhasyettobeempiricallyvalidated. Therefore, theaimofthecurrent
+experimentwastotestthehypothesisthatthehippocampalsystemfunctionsasabig-looprecurrentcircuitthatenables
+the recirculation of information from the superficial (sEC) and deep (dEC) layers of the entorhinal cortex (See Fig.
+S1,KumaranandMcClelland,2012;alsoseeSchapiroetal.,2017). Toachievethisweemployedthepairedassociate
+inference task (Fig. 1A, Bunsey and Eichenbaum, 1996; Zeithamova et al., 2012) – a prototypical setting in which
+toexaminethemechanismsunderlyingtheabilitytointegrateinformationacrossepisodes–togetherwithultra-high
+resolutionmultivariatefMRItechniqueswhichallowedustodissociateneuralactivityintheinputandoutputlayers
+of the hippocampal system: the sEC and dEC layers of the entorhinal cortex (Maass et al., 2014), respectively (see
+Fig. S3andMethods).
+We focused on inference test trials (i.e. AC trials) where this circuit-level mechanism makes specific predictions
+(Fig.1B).Firstly,duringACtesttrialsrequiringtheintegrationofinformationacrossepisodes(e.g. ABandBC),we
+shouldseeevidenceofreactivationoftheunseenitem(i.e. B)ontheinputlayer(sEC)duetorecirculationfromthe
+output(dEC).Secondly,weshouldseeevidenceforfunctionalconnectivitybetweentheselayers,reflectingtheactive
+recirculationofinformation. Thirdly,themagnitudeofrecirculationthroughthispathwayconnectingtheoutputlayer
+(dEC)totheinputlayer(sEC)shouldpredictindividualvariationininferenceperformance. Critically, recirculation
+of the output of the hippocampal system as a new input can only exist in the presence of a big-loop mechanism,
+andthereforethepredictionsoutlinedabovecontrastwiththosemadebyencoding-basedmodels(e.g.Shohamyand
+Wagner,2008;SchlichtingandPreston,2017, alsoseeFig. S2). Specifically, encoding-basedmodelsareconsistent
+with reactivation in the dEC of the shared component across related memories (i.e. the B item, shared across AB
+andBCpairsinthePAItask)aspartofpatterncompletionofacomposite/blendedrepresentation(i.e. ABC;seeFig.
+S2). However,theydonotpredictrecirculationofthisinformationfromthedECtothesECmediatedbyconnectivity
+4
+
+--- PAGE 5 ---
+betweentheselayers,orthefunctionalrelevanceofthismechanismtobehavior.
+Results
+Taskandbehavioralresults
+Wescanned26subjectswhiletheyperformedaPAItask(Fig.1A).Duringencoding,subjectsviewedpairsofimages.
+For each pair (AB), each subject later saw another related pair (BC) which shared one image in common (B). This
+createsstimulustriadssuchthatAandCareindirectlyassociatedeventhoughtheyhaveneverbeenpresentedtogether.
+Directtesttrialstestwhetherasubjectremembersthecorrectimagesbeingpresentedtogether(hereafter‘AB/BCtest
+trials’),therebyassessingassociativememory. Bycontrast,indirecttesttrialsinvestigatewhetherthesubjectsareable
+toinfertheindirectassociationbetweenAandCimages(hereafter‘ACtesttrials’),whichdependsontheintegration
+of information across related episodes (i.e. AB, BC). The focus of this experiment was on the neural mechanisms
+presentduringtheseACtesttrials.
+Behaviorally,subjectshadthehighestaccuracyforABtesttrials(Fig.2A;significantdifferenceacrossallconditions:
+F(2,50)=69.88, p<0.0001; mean± standard error of the mean; 0.89±0.012, significantly larger than BC (per
+definitionthesecondpairobservedfromeachtriad): t(25)=2.41, p=0.021andAC:t(25)=10.21, p<0.0001),
+followedbyBC(0.88±0.016,significantlylargerthanAC:t(25)=8.07, p<0.0001)andwaslowestforAC(0.76±
+0.019).ThereactiontimesfollowedthispatterninverselywiththeABtesttrialsbeingthefastest(significantdifference
+acrossallconditions:F(2,50)=317.3, p<0.0001;2013±54,significantlyfasterthanBC:t(25)=6.62, p<0.0001
+and AC: t(25)=18.66, p<0.0001), followed by BC (2127±54.3, significantly faster than AC: t(25)=17.88,
+p<0.0001) and was slowest for AC (2935±47.4). Note that while incorrect trials had significantly longer RTs
+(F(1,25)=29.47, p<0.0001) the slowed response for AC trials was also observed when only considering correct
+trials(significantlyslowerthanAB:t(25)=19.83, p<0.0001;andBC:t(25)=18.53, p<0.0001). Thispatternof
+resultsmatchesthoseobservedinapreviousstudy,andarewellaccountedforbytheREMERGEbig-looprecurrent
+5
+
+--- PAGE 6 ---
+model(Baninoetal.,2016).
+ACtrialsreactivatecategoryinformationintheentorhinalcortex
+Inordertoinvestigatethefunctionalpropertiesoftheentorhinalcorticallayers,wefirstneededtoestablishthepres-
+enceofdetectablesceneandobjectsignalsinthefMRIdata.Weconsideredthewhole-brainScenesvs.Objects(SvO)
+univariatecontrastduringAB/BCtesttrials(seeFig.1)onthegrouplevel. Thesetrialswillcontainamixtureofboth
+retrievedandvisuallypresentedinformation,bothofwhichlikelycontributetoanyresultantsceneandobjectinforma-
+tion.Inawhole-brainanalysis,wefoundsignificantSvOactivationspanningtheentireposteriormedialtemporallobe
+(MTL)totheoccipitallobe(Fig.2B),consistentwiththeliteratureonscenerepresentation(Nasretal.,2011).Further,
+consistentwithpreviousstudiesofthemedialtemporalcortex(Litmanetal.,2009;Schröderetal.,2015;Berronet
+al.,2018),wefoundevidenceforasignificantposterior-anteriorgradientofscene-to-objectsignal(seeMethodsand
+Fig.2C;averager=0.81±0.013,sign-ranktestagainst0: z=4.46, p<0.0001,one-tailed).
+We next turned to the AC test trials (see Fig. 1). Given that no scene or object information was visually presented
+onthesetrials, thepresenceofanycategorysignalcanonlybedrivenbyreactivationofmemorycontentwithinthe
+medial temporal cortex. We also found evidence for a posterior-anterior gradient coding for scenes versus objects
+(average r=0.183±0.082, sign-rank test against 0: z=2.17, p=0.015, one-tailed) during AC test trials, thereby
+demonstratingthatthemedialtemporalcortexsignalreflectsmemoryreactivationatthetimeofinference. Werana
+further analysis specifically focusing on AC test trial reactivation within the EC. In order to do so we first selected
+the 100 voxels within the EC that displayed the strongest activation for Scenes over Objects (SvO) and vice versa
+(OvS)duringtheAB/BCtesttrialstouseastwofunctionalregionsofinterest. Foreachsubject,wethenextractedthe
+averaget-valueofthesetwosetsofvoxelsfromtheSvOcontrastintheACtesttrials. Adirectcomparisonrevealed
+a significant difference in relative Scene and Object reactivation between these two (SvO and OvS) sets of voxels
+(meandifference:3.13±0.86,sign-ranktestagainst0:z=2.98, p=0.0014,one-tailed,seeFig. S4forsinglesubject
+activationmaps).ThisshowsthatthesameECvoxelsthatdiscriminatescenesandobjectsduringpresentation(AB/BC
+6
+
+--- PAGE 7 ---
+testtrials)arealsoinvolvedinmemoryreactivation(ACtesttrials). Theseresultsestablishthattheexpectedsignals
+ofreactivationofthelinking(B)itemarepresentwithintheentorhinalcortex.
+EntorhinalcorticallayershaveseparableBOLDsignal
+WhileourpreviousanalysisprovidesevidenceforreactivationintheECasawhole,ourkeypredictionsdependonthe
+abilitytodetectlaminar-specificsignalsinthedeepandsuperficialEClayers. Detectingseparatesignalsindifferent
+corticallayerscanbechallengingduetopotentialcorrelationintheBOLDsignaldrivenbythevasculatureoflaminar
+cortex(Turner,2002;Lawrenceetal.,2017;Huberetal.,2017b;Stephanetal.,2017,alsoseeDiscussion). Inorderto
+investigatethestructureofthelaminarsignalinourdataset,andtoinvestigatethepresenceoflayer-specificsignals,we
+tookasubject-specific,task-independentapproach.Weusedanautomatedsegmentationmethod(seeMethodsandFig.
+S6)tosegmenttheentorhinalcortexofeachsubjectintothesuperficial(input)anddeep(output)layers,approximately
+correspondingtocorticallayersII/IIIandIV/Vrespectively(Maassetal.,2014). Segmentationswerebasedoneach
+subject’s native-space high-resolution T2 images, therefore creating a set of subject-specific laminar segmentations
+(Fig.3andS3).Foreachvoxelinboththesuperficialanddeepentorhinalcortex,weextractedtheevent-specificsignal
+for each trial across the entire experiment (including encoding trials, AB/BC, and AC test trials), thereby forming a
+temporal response profile. If there is detectable layer-specific signal, it should be possible to determine whether a
+voxel belongs to the superficial or deep layer based on its temporal responses. To directly test this question, we
+trainedamultivariateclassifiertodifferentiatesuperficialanddeepvoxelsbasedontheirtemporalresponseprofiles.
+The results were robustly significant (mean standard deviation: 85.9±0.7%; sign-rank test on z-scores obtained by
+permutation: z=4.46 p<0.001), demonstrating separable signal over the course of the experiment (Fig. 3B and
+Fig. S3B). To determine whether this was still the case when specifically focusing on the set of trials of interest to
+ourmainhypothesis(ACtesttrials),werepeatedtheanalysisbasedonlyonthetemporalresponsesderivedfromthe
+set of AC test trials. The classification result still remained robust (67.3±0.6%; z=4.46, p<0.001), validating
+that the signal present in each layer is separable during the set of AC test trials. Importantly, this difference cannot
+be attributed to mean differences across layers, but can only be based on the temporal responses, as the voxel time
+7
+
+--- PAGE 8 ---
+courseswerestandardizedpriortoclassification. Weadditionallydirectlycomparedthetemporalsignalandcontrast
+tonoiseratios(tSNRandCNR)acrossthelayers(WelvaertandRosseel,2013, alsoseeMethodsandFig. S6). We
+foundnosignificantdifferenceinCNR(basedonpicturepresentationsvs. fixations: mean±standarddeviation;sEC:
+0.054±0.12; dEC: 0.064±0.084; sign-rank test on difference: z=0.57, p=0.57, two-tailed), though there was
+a significantly stronger tSNR in the deep compared to superficial EC (mean±standard deviation; sEC: 7.32±0.73;
+dEC:8.41±0.92;sign-ranktestondifference: z=4.46, p<0.0001,two-tailed). Thislatterisconsistentwithsome
+degree of MTL signal dropout, which would influence the layers closer to the cortical surface (i.e. the superficial
+layers, Olman et al., 2009). Importantly, however, the successful layer classification described above demonstrates
+thatrobustdifferencesbetweentheEClayersarestillpresentdespitethisdropout. Further,italsoprovidesadditional
+validationoftheautomatedlaminarsegmentationprotocol,asseparablesignalcouldonlybepresentifthelayershave
+beenaccuratelysegmented.
+Reactivatedcategoryinformationispresentinthesuperficialentorhinalcortexatthetimeof
+inference
+Havingfoundevidencefordistinctlaminarsignalsintheentorhinalcortex,wenextturnedtoourfirstmainhypothesis.
+If episodic information is recirculated from the entorhinal output (deep) layers back to the input (superficial) layers
+duringACtesttrials,thencategoryinformation(sceneorobject)aboutthelinkingBitemshouldbepresentnotonly
+inthedeep(dEC),butalsothesuperficial(sEC)layeractivations(Fig.1B).Toinvestigatethisneural“reactivation”
+during AC test trials, we used multivariate voxel decoding to classify the stimulus category (object or scene) of the
+non-presentedlinkingitem(imageB).AsimagesAandCwerealwaysfaces,successfulclassificationcanonlybedue
+toreactivationofitemB.Alldecodinganalyseswerebasedonanatomicalmasksspecifictoeachsubject’sanatomy
+(Fig. 3 and S3) in native space, and all reported results are based on unsmoothed, bilateral data (results for each
+hemisphereseparatelyarereportedinTableS1andS2). First,consistentwithpreviousmultivariatestudiesinvolving
+the cued recall of objects and scenes (Liang and Preston, 2017), we found significant reactivation throughout the
+medialtemporalloberegions(MTL;Fig.3C;forindividualhippocampalsubfields,seeFig. S7). Crucially,however,
+8
+
+--- PAGE 9 ---
+we also detected significant reactivation within the sEC (1.7%±0.07, z=2.45, p=0.007, one-tailed; Fig. 3D),
+suggesting that information may be recirculated from the dEC back into the hippocampus via the sEC. As detailed
+earlier,therearepotentialhemodynamicconfoundsbetweenthecorticallayersdrivenbytheBOLDsensitivitytothe
+corticalvasculature(Turner,2002;Lawrenceetal.,2017;Stephanetal.,2017).Inordertoensurethattheclassification
+resultinthesECwasnotdrivenbyBOLDoriginatingsolelyfromdECactivations,wererantheclassificationanalysis
+after first removing the local dEC signal from each sEC voxel (See Methods and Fig. S5). This analysis ensures
+thatremainingsignalinthesECcannotbedrivenbyanylocalspatialcorrelationscausedbydrainingveinartefacts
+(for a conceptually similar approach, see Kok et al., 2016). The classification result in the sEC was still significant
+afterregressingoutthelocaldECsignal(1.8%±0.6, z=2.73, p=0.0032, one-tailed), therebyprovidingevidence
+that there is unique reactivation information present in the sEC that is unlikely to be attributed to local vasculature
+confoundssuchasdrainingveins(Turner,2002;Lawrenceetal.,2017;Stephanetal.,2017).
+MTL informational connectivity analyses: evidence for a functional connection between the
+entorhinallayers
+Wenexttestedfortheexistenceofthepredictedfunctionalconnectionbetweentheentorhinallayersusingamethod
+known as informational connectivity (IC). The method has similarity to well-established functional connectivity
+analysis, but allows inference based on multivoxel information rather than global BOLD signal (cf. Coutanche and
+Thompson-Schill,2013;AlyandTurk-Browne,2016). Thisapproachassessesthecovariationintrial-by-trialinfor-
+mation (decoding accuracy) between a pair of regions (Fig. 4B). If the two regions covary positively, this indicates
+that the regions are functionally connected, with information passing between the two (Fig. 4C). IC has previously
+been shown to accurately capture regional covariation in information content above and beyond univariate methods
+(CoutancheandThompson-Schill,2013;AlyandTurk-Browne,2016;HuffmanandStark,2017),andhereweapplied
+it to assess the flow of information during inference. We measured IC between the sEC and dEC, while partialling
+out the information contained in all other MTL regions, ensuring that any resulting connectivity was selective to
+this laminar connection, and was not mediated by any other MTL region. The laminar IC was significant (mean
+9
+
+--- PAGE 10 ---
+rho=0.11±0.01,z=4.46, p<0.0001),indicatingaselectivefunctionalconnectionbetweentheEClayers.
+TovalidatethatthislaminarICmeasurereflectsameaningfulfunctionalconnectionbetweentheEClayers,welever-
+agedthewell-establishedanatomicalconnectivityoftheMTLusingwhatwerefertoasan"MTLICdirect/indirect
+analysis".IfICisdetectingmeaningfulfunctionalconnections,weshouldfindthatICisstrongerbetweenregionsthat
+aredirectlyanatomicallyconnectedthanbetweenregionsthatareonlyindirectlyconnected(i.e. areonlyconnected
+viaotherregions,aspartofalargercircuit). Toaccomplishthis,wecalculatedtheICbetweeneverypairofregions
+in the MTL (see Methods). We then separated the IC measures into pairs of regions that are known to be directly
+anatomicallyconnected,andthosethatareonlyindirectlyconnected(AmaralandLavenex,2009;Libbyetal.,2012;
+ClarkandSquire,2013, seeFig.4D),leavingasidethelaminarconnection. ThesetwosetsofICswerethenaveraged
+persubjecttoprovideasummaryofthe’direct’and’indirectMTL’connectivitystrength. Bothshowedasignificant
+positive IC strength(direct: mean rho=0.096±0.002, z=4.46, p<0.0001; indirect: mean rho=0.065±0.003,
+z=4.46, p<0.0001,one-tailed),butcrucially,thedirectconnectivitywassignificantlystrongerthanindirectconnec-
+tivity(z=4.07,p<0.0001,one-tailed),showingthatthestrengthofICreflectstheunderlyingfunctionalconnectivity
+oftheregion(seeFig.4E).ThiscomparisonthereforeallowedustoinvestigatewhethertheselectiveICwefindbe-
+tweentheentorhinallayers, ismoresimilartoa’direct’MTLconnectionthanan’indirect’correction. Thelaminar
+ICwassignificantlyhigherthantheindirectMTLIC(z=2.96, p=0.0015,one-tailed;seeFig.4),distinguishingit
+from the baseline connectivity in the MTL. We further explored this connection by using a classification approach,
+which tested whether the laminar connection was more likely to reflect a ’direct’ or ’indirect’ anatomical connec-
+tion. Aclassifierwastrainedtodistinguish’direct’and’indirect’MTLconnectionsusingeachsubject’saverageIC
+strength as feature. This logistic ridge-regression was then applied to the laminar IC values for each subject, deter-
+miningwhetherthelaminarconnectionisclassifiedasdirectorindirectMTLconnection. Theresultingvalueofthe
+regression(classifierevidence)was0.62(rangingfrom0(‘indirectMTL’)to1(‘directMTL’); p<0.024basedona
+one-tailedpermutationtest). Puttogether,theseresultsprovideempiricalevidenceforselectiveconnectivitybetween
+the sEC and dEC consistent with a genuine functional connection between the layers – in keeping with the known
+anatomicalconnectionsbetweenthelayers(VanStrienetal.,2009).
+10
+
+--- PAGE 11 ---
+Werantwoadditionalanalysestoensurethatthisconnectivityresultcouldnotbeattributedtospuriouslocallaminar
+correlationsdrivenbythecorticalvasculature. Thefirstcontrolanalysisusedthesameprocedureoutlinedearlier(i.e.
+inrelationtothemultivariateclassificationanalysis),wherebythelocalBOLDsignalfromtheneighbouringdEClayer
+wasremovedfromthesEConavoxel-wisebasisandviceversa(seeMethods).LaminarICwasrecalculatedusingthis
+processeddata,andwasstillfoundtobesignificantlystrongerthantheindirectMTLconnectivity(z=2.37,p=0.009,
+one-sided;Fig. S5). ThesecondcontrolanalysisparcellatedtheEClayerseachintotwodistinctsections(medialand
+lateral,seeFig. S5),andICwasrecalculatedbetweenthelayersacrossthesedistinctsections. Thereareknowntobe
+long-rangeanatomicalconnectionsbetweenthelayers,suchthatinformationcouldstillintheorypassbetweenthese
+medialandlateralsections(DolorfoandAmaral,1998), butinthiscasetherecanbenocontributionfromanylocal
+vascular artefacts. Laminar IC across the medial and lateral sections (i.e. medial sEC with lateral dEC, and lateral
+sECwithmedialdEC)wassignificantlystrongerthantheindirectMTLconnections(z=2.07, p=0.019,one-sided,
+Fig. S5). Thesetwocontrolanalysesprovideevidencethatthereisagenuineselectivefunctionalconnectionbetween
+the EC layers (i.e. laminar connectivity) that cannot be accounted for by local hemodynamic contributions such as
+drainingveinartefacts.
+Individual variation in laminar connectivity predicts strength of input back into the hip-
+pocampus
+Having established that the sEC contains reactivated information at the time of inference, and that there is a selec-
+tive functional connectivity between the entorhinal layers, we next tested whether the sEC reactivation is driven by
+informationflowingthroughthis‘big-loop’pathway,inlinewithourhypothesis(Fig.1). Weleveragedtheindividual
+variationinreactivationandICstrengthinordertoaddressthisquestion.IfinformationflowsfromthedECtothesEC,
+thenwewouldexpecttoseeapositivecorrelationbetweenlaminarICstrengthandsECreactivationstrength. Further,
+big-loop recirculation predicts that the correlation between the magnitude of laminar IC and reactivation strength in
+theinputlayer(sEC)shouldbesignificantlystrongerthanwiththeoutputlayer(dEC).Thisisbecausethestrengthof
+sECreactivationshoulddependspecificallyonbig-looprecurrenceindexedthroughlaminarIC,whereasthestrength
+11
+
+--- PAGE 12 ---
+ofdECreactivationlikelyreflectsthemoreconventionalmechanismofsimpleassociativeretrieval–whereasubject
+retrieves the individual associate pairs AB or BC from the A and C items presented on the screen during AC test
+trials. Fig. S8 displays simulation results confirming that, when individual differences in these two processes are
+independent,weshouldfinddifferentialcorrelationsbetweenlaminarICandsECvs. dECreactivation.
+Aspredicted,wefoundasignificantpositivecorrelationbetweenthesECreactivationstrengthandlaminarIC(Fig.5,
+r=0.406, p=0.018;one-tailedpermutationtestsusedforallacross-subjectcorrelations). Bycontrast,thedECwas
+notsignificantlycorrelatedwithlaminarIC(r=−0.202, p=0.838),andadirectcomparisonofthetworevealedthat
+thesECwassignificantlymorehighlycorrelatedwithlaminarICthanthedEC(differenceinr=0.607, p=0.014).
+This provides evidence consistent with the hypothesis that selective laminar connectivity is indeed driving the sEC
+reactivation. Note that this difference can not be explained by a generic difference in signal intensity between the
+layers. ThereisnosignificantdifferenceinCNRbetweenthetwolayers,andtSNRisstrongerinthedECthaninthe
+sEC,whichwouldpredictabiasinsensitivityintheoppositedirectiontoourresults(seeFig.S6fordetails).Toensure
+that these correlations results were not influenced by the positive correlation between the sEC and dEC reactivation
+strengths(r=0.199, p=0.168),weranafurtherpartialcorrelationanalysiswhereforeachcorrelationwecontrolled
+forreactivationstrengthintheotherlayer.Thisanalysisrevealedthesamepatternofresult(sEC:r=0.464,p=0.009;
+dEC:r=−0.315, p=0.939;differenceinr=0.779, p=0.003),demonstratingthattherelationshipbetweenlaminar
+ICstrengthandsECreactivationcannotbeexplainedbyconfoundingcorrelationswiththedEC.Notably,thefinding
+ofacleardissociationbetweentheentorhinallayersresultprovidesadditionalstrongevidenceagainstthedatabeing
+driven by vasculature confounds, as an effect that is uniquely attributable to the sEC cannot be driven by spurious
+BOLDconfoundsderivingfromthedEC.
+Onefurtherpredictionofthebig-loophypothesisisthatinformationrecirculatedfromthedECtothesECshouldthen
+propagatebackintothehippocampus–specificallyintosubregionsviewedtoinstantiatepatternseparatedrepresenta-
+tionsforindividualexperiences(’episodespace’;seeFig. S2),namelythedentategyrus(DG)andCA3(seeFig. S1)
+–therebyallowingretrievedcontenttorequeryrelatedexperiencesstoredintheseregions(KumaranandMcClelland,
+2012). Wetestedthispredictionusingthesameindividualvariationdata,bycorrelatingthelaminarICstrengthwith
+12
+
+--- PAGE 13 ---
+theaverageICstrengthbetweenthesECandtheDG&CA3.Thisrevealedasignificantpositivecorrelation(r=0.391,
+p=0.026),furthersupportingthehypothesisthatthebig-looppathwaydrivesrecirculationofinformationbackinto
+the hippocampus. As each of these connections shares the sEC in common, they are not fully independent, which
+couldartificiallyinflatethecorrelation. WethereforeassessedabaselinecontrolcorrelationbetweenlaminarICand
+theaverageICstrengthbetweenthesECandCA1&SUB.Whilethesehippocampalsubfieldsdoshareananatomical
+connectionwiththesEC,theseconnectionsshouldnotformpartofthebig-looprecurrentpathway(Kumaran,2012;
+Kumaran and McClelland, 2012). Thus, if the sEC to DG&CA3 IC reflects the predicted operation of the big-loop
+pathway, the strength of this connection should be significantly greater than IC between the sEC and CA1&SUB.
+Notably,theselatterconnectionssharethesamestatisticaldependenceonthesEC,andthereforeprovideastringent
+baseline. Further, this comparison provides a strong test of the predicted pathway from the sEC back into the hip-
+pocampus. LaminarICdidnotsignificantlycorrelatewiththesEC/CA1&SUBICstrength(r=−0.214, p=0.82),
+and crucially, it was significantly weaker than the correlation between laminar IC and the sEC/DG&CA3 pathway
+(differenceinr=0.605, p=0.016). Theseresultsclearlysupportthehypothesisthatinformationisrecirculatedfrom
+thedECtothesECbackintothehippocampalsubfieldsCA3andDGduringperformanceofACinferencetesttrials.
+13
+
+--- PAGE 14 ---
+The results presented above point towards the conclusion that the laminar connectivity identified reflects a direct
+functional pathway between the dEC and sEC – rather than a larger pathway mediated by MTL regions such as the
+PHCorPRC.Toexaminethisfurtherinthecurrentcontextofrecirculationofinformationbackintothehippocampus,
+wealsoconsideredanalternativemodelofinformationflowincorporatingalongercorticalloopthroughtheperirhinal
+and parahippocampal cortex (PRC; PHC). Contrary to the predictions of this alternative model, we did not find a
+significantcorrelationbetweensECreactivationandsEC/PRCIC(r=−0.083, p=0.69)orsEC/PHCIC(r=0.06,
+p=0.776), norwasthereasignificantcorrelationbetweensEC/DG&CA3andsEC/PRC(r=0.207, p=0.306)or
+sEC/PHC (r=−0.078, p=0.713) IC. Thus, these results do not provide support for any longer cortical pathway,
+andareinsteadconsistentwithinformationflowingdirectlyfromthedECtothesEC.Further, weraneachanalysis
+outlinedabove,additionallypartiallingoutboththesEC/PRCandsEC/PHCIC.Evenwiththeseextracontrols,each
+analysiswasstillsignificant(TableS3)demonstratingthattheyarenotinfluencedbyanyextraneoussignalsarisingin
+PRCorPHC.
+Recirculationpredictsindividualvariationininferenceperformance
+Having established the existence of the predicted functional pathway, we next turned to the final prediction of our
+model–thatbig-looprecirculationshouldpredictbehavioralinferenceperformance. Totestthisprediction,weagain
+leveragedtheindividualvariationinourdata,andcorrelatedthestrengthoflaminarICwithaverageperformanceon
+theACtesttrials(Fig.5C).Thesevariablesweresignificantlypositivelycorrelated(r=0.378, p=0.028),indicating
+thatthedegreeofrecirculationhasanimpactoninferenceability. Bycontrast,dECreactivation–whichweuseasa
+proxyforthestrengthofconventionalassociativeretrievaloftheABandBCpairsthroughpatterncompletionelicited
+bythepresenceofAandCitemsonthescreenduringACtesttrials–didnotsignificantlycorrelatewithbehavioral
+AC inference performance (r=−0.197, p=0.833). Indeed, a direct comparison revealed that the correlation with
+ACtestperformancewassignificantlyhigherwithlaminarICcomparedtodECreactivation(differenceinr=0.574,
+p=0.021). Additionalcontrolanalysesdemonstratedthattheseresultscouldnotbeaccountedforbyanyconfound-
+ing correlations between the laminar IC and dEC reactivation (r=−0.133, p=0.736; Table S4), or by additional
+14
+
+--- PAGE 15 ---
+pathwaysrunningthroughthePHC/PRC(TableS4). Tofurtherassessthelaminar-specificcontributionstobehavior,
+wecorrelatedACinferenceperformancewithbothsECanddECreactivationstrength. IfACinferenceperformance
+is selectively driven by big-loop recurrence passing information to the sEC, we would expect to see a significantly
+higherbehavioralcorrelationwithsECthandECreactivation. Thiswasthecasebothwith(differenceinr=0.606,
+p=0.017)andwithout(differenceinr=0.481, p=0.045)partiallingoutthereactivationstrengthintheopposing
+layer. This difference was driven by a marginally positive relationship between AC inference performance and sEC
+reactivation(whilepartiallingoutdEC:r=0.337, p=0.05;withoutpartiallingoutdEC:r=0.284, p=0.079). By
+contrast, the dEC was not positively correlated with AC inference performance either with (r=−0.27, p=0.9) or
+without(r=−0.197,p=0.831)partialling.Thispatternofresultswasstillpresentevenwhenadditionallypartialling
+outtheICfromPRCandPHC(ACperformanceandsECreactivation: r=0.337, p=0.058; ACperformancewith
+dECreactivation:r=−0.27, p=0.895;difference:r=0.607, p=0.022).Theseresultssuggestthatinferenceisdis-
+sociablyrelatedtoinformationintheentorhinalinputlayers. Puttogether,theseresultsrevealadirectcorrespondence
+betweenthestrengthofbig-looprecirculationandoverallinferenceperformanceacrosssubjects,whichcouldnotbe
+accountedforbyvariationsingeneralretrievalstrength. Thisisstrikingevidenceinsupportoftheuniquefunctional
+roleofthebig-loopmechanisminepisodicinference.
+Discussion
+We set out to provide evidence for the existence of a big-loop recurrent circuit using ultra-high resolution fMRI
+and multivoxel pattern analysis, applied to the paired associative inference (PAI) task. Solving the inference trials
+of this task requires the integration of information across temporally distinct episodes. If such integration requires
+big-looprecurrence,weshouldseeevidenceofrecirculationofinformationfromtheoutput(dEC)backtotheinput
+(sEC).Aseriesoftargetedanalysesrevealedacoherentsetofresults,eachconsistentwiththepresenceofabig-loop
+mechanism. First,wefoundevidenceforreactivationoftheunseen’bridging’element(e.g. BiteminACtesttrial)
+required for successful inference not only in the region that receives the output of the hippocampus (dEC), but also
+15
+
+--- PAGE 16 ---
+in the layer processing the input (sEC). This reactivation is only expected if a recirculation mechanism is recruited.
+Second, we found that the layers of the entorhinal cortex displayed informational connectivity (IC) consistent with
+a selective connection between the two. Further, an analysis of the individual variation in layer reactivation and IC
+strengthprovidedevidenceforaflowofinformation,fromthedECbackintothesEC,consistentwiththeoperation
+ofabig-looppathway. Third, laminarICpredictedtheflowofinformationfromtheinputlayer(sEC)backintothe
+dentate gyrus and CA3, consistent with the hypothesis that big-loop recurrence allows retrieved content to requery
+relatedexperiencesstoredintheseregions. Finally, thestrengthofinformationflowthroughtheentorhinalbig-loop
+predicted individual variation in inference performance. Put together, our findings offer the first evidence in any
+speciesofthefunctionalimportanceofbig-looprecurrence–involvingrecirculationoftheoutputofthehippocampal
+system from the deep layer of the entorhinal cortex as a new input on the superficial layer – and establishes its link
+tosuccessfulperformanceinaclassictaskrequiringinferentialbehavior. Importantly,thedemonstrationofbig-loop
+recurrence bolsters theoretical frameworks that propose that the hippocampus is able to support two functions that
+placeseeminglyopposingdemandsonthesystem–episodicmemoryandtherapidintegrationofinformationacross
+episodes(KumaranandMcClelland,2012;alsoseeSchapiroetal.,2017).Whilsttheseaccountshavereceivedsupport
+fromcomputationalmodellingofbehavioralandneuraldata(KumaranandMcClelland,2012;Baninoetal.,2016),
+they have lacked the critical empirical evidence that we provide here concerning the core underlying circuit-level
+mechanism,namelybig-looprecurrence.
+Thesetofresultscriticallydependsontheabilitytomeaningfullydifferentiatethesignalpresentwithinthesuperficial
+anddeeplayersoftheentorhinalcortex,aswellastodetectameaningfulcovariancestructurebetweentheinformation
+contained within the layers. It is therefore crucial to carefully consider the known problems of laminar fMRI intro-
+ducedbythepotentialforlocalvasculatureconfounds. Specifically,BOLDissensitivetosignalsfromdrainingveins
+thatrunperpendiculartothecorticallayers,towardsthepialsurface,whichcanleadtospuriouscorrelationsbetween
+thelayers(Turner,2002;Lawrenceetal.,2017;Huberetal.,2017a;Stephanetal.,2017),makingitpotentiallydif-
+ficulttodetectlayer-specificsignalsorlaminarconnectivity. Whilealternativemethodsexistwhichprovidesuperior
+specificity,theycomeatthecostoflowersensitivityandacquisitionspeed(Huberetal.,2017a,b),whichcanbeprob-
+16
+
+--- PAGE 17 ---
+lematic in regions sensitive to signal dropout, such as the MTL. However, despite the lower specificity of BOLD, a
+growingnumberofstudieshavefoundrobustlaminar-specificactivationorinformationusingBOLDimaging(Olman
+etal.,2012;Maassetal.,2014;DeMartinoetal.,2015;Mucklietal.,2015;Fracassoetal.,2016;Koketal.,2016).
+Recentwork,therefore,providesevidencethatlaminar-specificsignalscanbedetectedusingBOLDfMRI.
+To ensure this was true of our own data, we used a task-independent analysis to determine the presence of laminar-
+specific signals within our data. Specifically, a classifier trained on the set of voxel temporal response profiles, was
+able to differentiate superficial from deep voxels (see Fig. 3B and S3B), clearly demonstrating that the entorhinal
+layerscontainseparableBOLDsignal. Further, foreachanalysis, wetookadditionalstepstoensurethattheresults
+could not be attributed to vasculature-driven laminar confounds. First, we demonstrated that sEC reactivation was
+stillpresentevenafterremovingthespatiallyproximaldECsignalfromeverysECvoxel(foraconceptuallysimilar
+approach, see Kok et al., 2016). This ensured that the sEC signals could not be driven by hemodynamic signals
+originatinginneighbouringdECvoxels,asmightoccurinthecaseofdrainingveinartefacts(Koketal.,2016;Huber
+etal.,2017a,b;Lawrenceetal.,2017). Second,weappliedthesamelocal-signalcorrectionpriortomeasuringtheIC
+betweenthesECanddEC,andstillfoundevidenceforasignificantselectivelaminarconnection. Wealsoapplieda
+secondcontrolanalysistoruleoutlocalvasculatureinfluencesonlaminarconnectivity,byexplicitlymeasuringonly
+non-local connectivity between the entorhinal layers. This was achieved by partitioning each layer into medial and
+lateralportions, andassessinglaminarICacrossdifferentportions. Despitethefactthatonlynon-localconnectivity
+could be detected using this method, we still found a significant effect – consistent with the known existence of
+non-localanatomicalconnections(DolorfoandAmaral,1998). Eachofthesecontrolanalysesremovesthepotential
+contribution of local vasculature confounds, and together they provide clear evidence for the presence of a genuine
+functional connection between the superficial and deep EC layers. In addition to these explicit control analyses,
+there are also some key results that cannot be explained by vasculature confounds. First, we found that individual
+variationinthestrengthoflaminarICcorrelatesselectivelywithsEC,andnotdECreactivation. IfthesECsignaland
+laminar IC were both influenced by hemodynamic artefacts originating in the dEC, it would not be possible to find
+anysuchlaminar-specificcorrelations,asthetwolayerswouldcovaryintheirreactivationstrength. Second,laminar
+17
+
+--- PAGE 18 ---
+ICcorrelatedwithACperformance, whiledECreactivationdidnot. Again, ifthesECreactivationandconnectivity
+signalswerespuriouslyinfluencedbysignalsfromthedEC,thisselectivecorrelationwithperformancewouldnotbe
+present. Puttogether,thesestringentcontrolanalyses,andlaminar-specificcorrelationresultsconvergeinproviding
+strongevidenceforthepredictedrecirculationsignalsthatcannotbeaccountedforbyanysignalsoriginatinginthe
+deepentorhinallayers.
+Weconsidertwofurtherpotentiallimitationsofourdata. First,whendealingwithsub-millimeterresolutionimaging
+and laminar separation, results are more prone to noise effects from imperfect motion correction or coregistration.
+Inordertoapplystringentqualitycontrol,allmasksweremanuallyinspectedandcorrectedwhennecessarypriorto
+analysis. TohighlightthequalityofthemaskswedisplaysinglesubjectlevelmasksforeverysubjectinEPIspacein
+thesupplementalmaterials(Fig. S3). Notably,successfuldifferentiationoftheBOLDsignaldependsonanaccurate
+segmentation of the layers, as well as coregistration with the EPI data. If any of these steps resulted in substantive
+misalignment,thedetectionoflayer-specificBOLDwouldnotbepossible. Further,anyseriousresidualheadmotion
+artefacts remaining after preprocessing would also reduce our ability to detect layer-specific BOLD. As described
+in the previous passage, we found that a classifier could successfully differentiate the BOLD signal in the two EC
+layers, which provides a robust quality control check to rule out any significant impact from preprocessing error or
+residual motion. Second, while the absolute classification accuracies in each region are low, they are comparable
+withotherdecodinganalyseswithintheregion(e.g.Chadwicketal.,2010;Bonnicietal.,2012). Further,thereisno
+straightforwardrelationshipbetweenclassificationaccuracyandtheunderlyingeffectsizeorbiologicalinterpretation
+(HebartandBaker,2017).Indeed,theoverallclassificationaccuracyisnottypicallythemeasureofinterest,asitisnot
+itselfastatisticaltest,andcannotbeinterpretedasameasureofeffectsize(Pereiraetal.,2009).Rather,itisthenature
+of the statistical significance test performed on the classification accuracy that is key for appropriate interpretation,
+whichinourcaseisatthegrouplevel. Itisworthnotingthat,despitethelowaveragedecodingaccuracywithinthe
+sEC,thevarianceindecodingacrossindividualscorrelatedwithlaminarconnectivityandinference,ineachcasewith
+a medium effect size (i.e. between 0.3 and 0.5). This indicates that the variance across a relatively narrow band of
+decodingaccuraciesisneverthelessmeaningfulwithrespecttootherneuralmetricsandbehavior.
+18
+
+--- PAGE 19 ---
+We identified selective functional connectivity – referred to as laminar connectivity – between the dEC and sEC
+through an IC analysis focused on the MTL. Results from a specifically designed MTL IC direct/indirect analysis
+were consistent with this laminar connectivity reflecting a direct connection between the dEC and sEC, rather than
+a longer pathway involving the PHC or PRC. Since the major neocortical inputs and outputs to/from the ERC pass
+throughthePRCandPHC(Libbyetal.,2012),controllingforinformationcontainedwithinthesetworegionsinthe
+MTL IC analysis – and additionally in an analysis linking the strength of sEC reactivation to laminar connectivity
+strength – also suggests that the laminar connection cannot be explained by additional regions that project through
+thePRC/PHC.Takentogether,aparsimoniousinterpretationoftheseresultsisthatthelaminarconnectivityidentified
+reflectsadirectfunctionalpathwaybetweenthedECandsEC–ratherthanalongerpathwaymediatedbyanadditional
+neocorticalregiontowhichtheERCprojects. However,therearetwomoresubtlealternativesthatouranalysescan-
+notconclusivelyruleout. First,laminarconnectivitycouldbemediatedbyapart(i.esubsection)ofanexistingMTL
+regionthatisnotadequatelycapturedbyourregionsofinterest. Second,thelaminarconnectivityidentifiedcouldin
+theorybemediatedbyaregionoutsidetheMTL,thattheERCprojectstoviaotherneocorticalorsubcorticalregions
+other than the PRC or PHC. Nevertheless, it is worth noting that the logic of our MTL IC direct/indirect analysis –
+specifically, that regions within the MTL that are directly connected have significantly greater connection strengths
+thanthosethatareconnectedindirectlyviaanadditionalMTLregion–maywellholdtrueforbrainstructuresoutside
+the MTL regions our analysis was focused on. Notably, however, this argument relies on an assumption, albeit a
+plausibleone: thattheconnectivity-relatedpropertiesoftheseextra-MTLstructuresarebroadlysimilartotheMTL
+regions examined – for example, the connection strengths to a region putatively mediating laminar connectivity are
+notsubstantiallyhigherthantheconnectionswithintheMTL.Hence,giventheinherentlimitationsoffMRIconnec-
+tivity analyses alluded to above, we cannot definitely rule out the possibility that the laminar connectivity observed
+does indeed involve additional regions (i.e. is indirect) – rather than being mediated by direct projections from the
+dEC to SEC. Importantly, the big-loop theory as originally proposed viewed the critical algorithmic component of
+recirculationbetweenthehippocampalsystemoutputlayer(dEC)andinputlayer(SEC)asbeinginstantiatedeither
+viadirectanatomicalconnectionswithintheERCknowntobepresent(VanStrienetal.,2009;DolorfoandAmaral,
+1998;Kloostermanetal.,2004;Chrobaketal.,2000,2007),orviaadditionalneocorticalregions(seeKumaranand
+19
+
+--- PAGE 20 ---
+McClelland,2012).
+Whilstourresultsprovidesupportthatbig-looprecurrenceatthepointofretrieval(i.e. duringperformanceofACtest
+trials) supports performance in the PAI task, it is important to note that empirical evidence suggests that encoding-
+basedmechanismsmayalsoplayarole(ZeithamovaandPreston,2010;Kumaran,2012;KumaranandMcClelland,
+2012;Zeithamovaetal.,2012;Collinetal.,2015;Milivojevicetal.,2015;Schlichtingetal.,2015;Baninoetal.,2016;
+SchlichtingandPreston,2017). Indeed,whilstourresultsareconsistentwithtwocomputationalmodelsthatincorpo-
+ratebig-looprecurrence(KumaranandMcClelland,2012;Schapiroetal.,2017),thesemodelshaveakeydifference:
+thelattermodeladditionallyincorporatesamechanismthatallowsthegradualencodingofoverlappingrepresentations
+thatstablycapturethestatisticsandcommonalitiesamongrelatedexperiences(Eichenbaumetal.,1999;Shohamyand
+Turk-Browne,2013;Schapiroetal.,2014,2017). Thisismediatedbyrelativelyslowlearningwithinapathwaydi-
+rectlyconnectingtheECtotheCA1regionofthehippocampus(termed,themonosynapticpathway;seeFig. S1). As
+such, the model by Schapiro et al. (2017) can be considered a hybrid model that incorporates the principles of big-
+looprecurrence(KumaranandMcClelland,2012)aswellasanencoding-basedmechanism. Giventheslowlearning
+natureoftheencodingbasedmechanism,big-looprecurrenceisviewedtobecriticaltorapidlyappreciatingthestruc-
+tureamongexperiencesinthePAIandrelatedtasksafterfewstimulusrepetitionsbeforetheMSPhashadachance
+tolearn–thatis,afterasingleexposureincomputationalsimulations(Schapiroetal.,2017),and2exposuresinour
+experiment. After more extended stimulus repetitions, the MSP is viewed to play a dominant role in capturing and
+exploitingthestructureamongrelatedexperiences,thoughbig-looprecurrenceisstillviewedtocontribute(Schapiro
+et al., 2017). Future work should aim to distinguish between these two big-loop recurrence models by isolating the
+specificoperationoftheMSPpathway. Moregenerally,itwillbeimportanttocharacterizetheconditionsthatfavour
+capturingthestructureofexperiencesontheflythroughbig-looprecurrentdynamics,asopposedtorepresentingthem
+through static neural codes – considering factors such as task parameters (e.g. the number of item repetitions), the
+rate of change of the environment (Gershman et al., 2017), and differences along the anterior-posterior axis of the
+hippocampus(Collinetal.,2015;Schlichtingetal.,2016).
+Recentcomputationalmodelshavebeenproposedthatmarrythecompetingfunctionsofthehippocampusinepisodic
+20
+
+--- PAGE 21 ---
+memoryandtheintegrationofinformationacrossepisodes(KumaranandMcClelland,2012;Schapiroetal.,2017).
+Critically,thesehaveincorporatedbig-looprecurrenceasakeycomponent,whichuntilnowhaslackedempiricalsup-
+port. Inprovidingthefirstempiricalevidenceforbig-looprecurrence,ourstudyencouragesarethinkingofclassical
+theoriesofinformationflowwithinthehippocampalsystem. Further, ourworkprovidesanovelalgorithmicframe-
+workwherebythehippocampuscanrapidlyrepresentasetofrelatedexperiencesthroughpatternseparatedcodes–
+therebypreservingmemoryforindividualexperiences–whilebig-looprecurrencecreatesadynamicmemoryspace
+atthepointofretrieval,therebyallowingtherapidappreciationoftheircommonalitiesandhigherorderstructure. In-
+terestingly,thealgorithmrealizedthroughbig-looprecurrence(KumaranandMcClelland,2012)hasstrikingparallels
+withcuttingedgemachinelearningneuralnetworkarchitecturesthatutilizeexternalmemorytosolveproblemsofreal
+worldrelevance,typicallyreferredtoas"questionanswering"–whereasetofsentencesmustberetainedoveraperiod
+timefollowingwhichquestionsareposed(seeFig. S9). Notably,thesetasksposeexactlythesamechallengethatwe
+highlighthere(e.g.Sukhbaataretal.,2015,seealsoGravesetal.,2016)–howtointegrateinformationacrossseparate
+episodeswhilstpreservingtheirindividualfeatures–andwouldbepredictedtobedifficultforencoding-basedmodels
+(e.g. Shohamy and Wagner, 2008; Schlichting and Preston, 2017) to solve (see Fig. S2). In the future, it will be
+importanttoestablishtherelativecontributionofbig-looprecurrence,ascomparedtoencoding-basedmechanisms,to
+combininginformationacrossmultiplerelatedexperiencesintheserviceofadaptivebehaviour.
+Author Contributions
+D.K.,R.K.,M.J.C.,D.H.,Y.C.,A.B.conceivedtheproject. R.K.andY.C.acquiredthedata. R.K.,M.J.C,Y.C.,D.B.,
+D.K., A.B. analyzed and interpreted the data. D.K., D.H., E.D. supervised the project. All authors contributed to
+writingthemanuscript.
+21
+
+--- PAGE 22 ---
+Acknowledgements
+We thank the Leibniz Institute for Neurobiology (LIN) for access to the 7T scanner and Caswell Barry, Matthew
+Botvinick,ZebKurth-Nelson,AdamSantoro,ChristopherSummerfieldandJaneX.Wangforhelpfuldiscussion. ED
+wassupportedbytheGermanResearchfoundation(SFB779A07).
+Declaration of Interest
+Theauthorsdeclarenoconflictofinterest.
+22
+
+--- PAGE 23 ---
+References
+AlyM,Turk-BrowneNB(2016) Attentionpromotesepisodicencodingbystabilizinghippocampalrepresentations.
+ProceedingsoftheNationalAcademyofSciences113:E420–E429.
+AmaralD,LavenexP(2009) HippocampalNeuroanatomy OxfordUniversityPress.
+AvantsB,EpsteinC,GrossmanM,GeeJ(2008) Symmetricdiffeomorphicimageregistrationwithcross-correlation:
+Evaluatingautomatedlabelingofelderlyandneurodegenerativebrain. MedicalImageAnalysis12:26–41.
+Avants BB, Tustison NJ, Song G, Cook PA, Klein A, Gee JC (2011) A reproducible evaluation of ants similarity
+metricperformanceinbrainimageregistration. Neuroimage54:2033–2044.
+BaninoA,KosterR,HassabisD,KumaranD(2016) Retrieval-basedmodelaccountsforstrikingprofileofepisodic
+memoryandgeneralization. ScientificReports6.
+Berron D, Vieweg P, Hochkeppler A, Pluta J, Ding SL, Maass A, Luther A, Xie L, Das S, Wolk D et al. (2017) A
+protocolformanualsegmentationofmedialtemporallobesubregionsin7teslamri. NeuroImage: Clinical.
+BerronD,NeumannK,MaassA,SchützeH,FliessbachK,KivenV,JessenF,SauvageM,KumaranD,DüzelE(2018)
+Age-relatedfunctionalchangesindomain-specificmedialtemporallobepathways. NeurobiologyofAging.
+BonniciHB,ChadwickM,KumaranD,HassabisD,WeiskopfN,MaguireEA(2012) Multi-voxelpatternanalysisin
+humanhippocampalsubfields. Frontiersinhumanneuroscience6:290.
+BrodeurMB,Dionne-DostieE,MontreuilT,LepageM(2010) Thebankofstandardizedstimuli(boss),anewsetof
+480normativephotosofobjectstobeusedasvisualstimuliincognitiveresearch. PloSone5:e10773.
+BunseyM,EichenbaumH(1996)Conservationofhippocampalmemoryfunctioninratsandhumans.Nature379:255.
+BurtonAM,WhiteD,McNeillA(2010) Theglasgowfacematchingtest. BehaviorResearchMethods42:286–291.
+Chadwick MJ, Hassabis D, Weiskopf N, Maguire EA (2010) Decoding individual episodic memory traces in the
+humanhippocampus. CurrentBiology20:544–547.
+23
+
+--- PAGE 24 ---
+ChrobakJJ,AmaralDG(2007) Entorhinalcortexofthemonkey: Vii.intrinsicconnections. Journalofcomparative
+neurology500:612–633.
+ChrobakJJ,LörinczA,BuzsákiG(2000) Physiologicalpatternsinthehippocampo-entorhinalcortexsystem. Hip-
+pocampus10:457–465.
+ClarkRE,SquireLR(2013) Similarityinformandfunctionofthehippocampusinrodents,monkeys, andhumans.
+ProceedingsoftheNationalAcademyofSciences110:10365–10370.
+CohenNJ,EichenbaumH(1993) Memory,AmnesiaandtheHippocampalSystem MITPress,Cambridge,MA.
+Collin SH, Milivojevic B, Doeller CF (2015) Memory hierarchies map onto the hippocampal long axis in humans.
+NatureNeuroscience18:1562–1564.
+CoutancheMN,Thompson-SchillSL(2013) Informationalconnectivity:identifyingsynchronizeddiscriminabilityof
+multi-voxelpatternsacrossthebrain. FrontiersinHumanNeuroscience7:15.
+DeMartinoF,MoerelM,UgurbilK,GoebelR,YacoubE,FormisanoE(2015) Frequencypreferenceandattention
+effects across cortical depths in the human primary auditory cortex. Proceedings of the National Academy of
+Sciences112:16036–16041.
+DolorfoCL,AmaralDG(1998) Entorhinalcortexoftherat: organizationofintrinsicconnections. JournalofCom-
+parativeNeurology398:49–82.
+EichenbaumH,DudchenkoP,WoodE,ShapiroM,TanilaH(1999) Thehippocampus,memory,andplacecells: isit
+spatialmemoryoramemoryspace? Neuron23:209–226.
+FavilaSE,ChanalesAJ,KuhlBA(2016) Experience-dependenthippocampalpatterndifferentiationpreventsinterfer-
+enceduringsubsequentlearning. NatureCommunications7.
+Fracasso A, Petridou N, Dumoulin SO (2016) Systematic variation of population receptive field properties across
+corticaldepthinhumanvisualcortex. Neuroimage139:427–438.
+24
+
+--- PAGE 25 ---
+Gershman SJ, Monfils MH, Norman KA, Niv Y (2017) The computational nature of memory modification.
+eLife6:e23763.
+GluckMA,MyersCE(1993)Hippocampalmediationofstimulusrepresentation:Acomputationaltheory.Hippocam-
+pus3:491–516.
+Graves A, Wayne G, Reynolds M, Harley T, Danihelka I, Grabska-Barwin´ska A, Colmenarejo SG, Grefenstette E,
+Ramalho T, Agapiou J et al. (2016) Hybrid computing using a neural network with dynamic external memory.
+Nature538:471–476.
+HasselmoME(2006)Theroleofacetylcholineinlearningandmemory.Currentopinioninneurobiology16:710–715.
+HasselmoME,McClellandJL(1999) Neuralmodelsofmemory. CurrentOpinioninNeurobiology9:184–188.
+HaxbyJV,GobbiniMI,FureyML,IshaiA,SchoutenJL,PietriniP(2001)Distributedandoverlappingrepresentations
+offacesandobjectsinventraltemporalcortex. Science293:2425–2430.
+HebartMN,BakerCI(2017) Deconstructingmultivariatedecodingforthestudyofbrainfunction. NeuroImage.
+Howard MW, Fotedar MS, Datey AV, Hasselmo ME (2005) The temporal context model in spatial navigation and
+relationallearning: towardacommonexplanationofmedialtemporallobefunctionacrossdomains. Psychological
+Review112:75.
+HuberL,HandwerkerDA,JangrawDC,ChenG,HallA,StüberC,Gonzalez-CastilloJ,IvanovD,MarrettS,Guidi
+Metal.(2017b) High-resolutioncbv-fmriallowsmappingoflaminaractivityandconnectivityofcorticalinputand
+outputinhumanm1. Neuron96:1253–1263.
+HuberL,Uludag˘ K,MöllerHE(2017a) Non-boldcontrastforlaminarfmriinhumans: Cbf, cbv, andcmro2. Neu-
+roimage.
+HuffmanDJ,StarkCE(2017) Theinfluenceoflow-levelstimulusfeaturesontherepresentationofcontexts, items,
+andtheirmnemonicassociations. NeuroImage.
+25
+
+--- PAGE 26 ---
+InMH,SpeckO(2012)Highlyacceleratedpsf-mappingforepidistortioncorrectionwithimprovedfidelity.Magnetic
+ResonanceMaterialsinPhysics,BiologyandMedicine25:183–192.
+Ketz N, Morkonda SG, O’Reilly RC (2013) Theta coordinated error-driven learning in the hippocampus. PLoS
+ComputationalBiology9:e1003067.
+Kloosterman F, van Haeften T, Lopes da Silva FH (2004) Two reentrant pathways in the hippocampal-entorhinal
+system. Hippocampus14:1026–1039.
+KokP,BainsLJ,vanMourikT,NorrisDG,deLangeFP(2016) Selectiveactivationofthedeeplayersofthehuman
+primaryvisualcortexbytop-downfeedback. CurrentBiology26:371–376.
+KumaranD(2012) Whatrepresentationsandcomputationsunderpinthecontributionofthehippocampustogeneral-
+izationandinference? FrontiersinHumanNeuroscience6:157.
+Kumaran D,Hassabis D,McClelland JL(2016) Whatlearning systemsdo intelligentagents need? complementary
+learningsystemstheoryupdated. TrendsinCognitiveSciences20:512–534.
+KumaranD,McClellandJL(2012) Generalizationthroughtherecurrentinteractionofepisodicmemories:amodelof
+thehippocampalsystem. PsychologicalReview119:573.
+Lawrence SJ, Formisano E, Muckli L, de Lange FP (2017) Laminar fmri: applications for cognitive neuroscience.
+Neuroimage.
+LiangJC,PrestonAR(2017) Medialtemporallobereinstatementofcontent-specificdetailspredictssourcememory.
+Cortex91:67–78.
+LibbyLA,EkstromAD,RaglandJD,RanganathC(2012) Differentialconnectivityofperirhinalandparahippocam-
+pal cortices within human hippocampal subregions revealed by high-resolution functional imaging. Journal of
+Neuroscience32:6550–6560.
+Litman L, Awipi T, Davachi L (2009) Category-specificity in the human medial temporal lobe cortex. Hippocam-
+pus19:308–319.
+26
+
+--- PAGE 27 ---
+MaassA,BerronD,LibbyLA,RanganathC,DüzelE(2015) Functionalsubregionsofthehumanentorhinalcortex.
+Elife4:e06426.
+Maass A, Schütze H, Speck O, Yonelinas A, Tempelmann C, Heinze HJ, Berron D, Cardenas-Blanco A, Brodersen
+KH, Stephan KE et al. (2014) Laminar activity in the hippocampus and entorhinal cortex related to novelty and
+episodicencoding. NatureCommunications5:5547.
+MarrD(1971) Simplememory: atheoryforarchicortex. PhilosTransRSocLondBBiolSci262:23–81.
+McClelland JL, McNaughton BL, O’Reilly RC (1995) Why there are complementary learning systems in the hip-
+pocampusandneocortex: insightsfromthesuccessesandfailuresofconnectionistmodelsoflearningandmemory.
+PsychologicalReview102:419.
+McNaughtonBL,MorrisRG(1987) Hippocampalsynapticenhancementandinformationstoragewithinadistributed
+memorysystem. TrendsinNeurosciences10:408–415.
+Milivojevic B, Vicente-Grabovetsky A, Doeller CF (2015) Insight reconfigures hippocampal-prefrontal memories.
+CurrentBiology25:821–830.
+MuckliL,DeMartinoF,VizioliL,PetroLS,SmithFW,UgurbilK,GoebelR,YacoubE(2015) Contextualfeedback
+tosuperficiallayersofv1. CurrentBiology25:2690–2695.
+MumfordJA,TurnerBO,AshbyFG,PoldrackRA(2012) Deconvolving{BOLD}activationinevent-relateddesigns
+formultivoxelpatternclassificationanalyses. NeuroImage59:2636–2643.
+NasrS,LiuN,DevaneyKJ,YueX,RajimehrR,UngerleiderLG,TootellRB(2011) Scene-selectivecorticalregions
+inhumanandnonhumanprimates. JournalofNeuroscience31:13771–13785.
+NicholsTE,HolmesAP(2002) Nonparametricpermutationtestsforfunctionalneuroimaging: Aprimerwithexam-
+ples. HumanBrainMapping15:1–25.
+Norman KA, O’Reilly RC (2003) Modeling hippocampal and neocortical contributions to recognition memory: a
+complementary-learning-systemsapproach. PsychologicalReview110:611–646.
+27
+
+--- PAGE 28 ---
+OlmanCA,DavachiL,InatiS(2009) Distortionandsignallossinmedialtemporallobe. PloSone4:e8160.
+OlmanCA,HarelN,FeinbergDA,HeS,ZhangP,UgurbilK,YacoubE(2012) Layer-specificfmrireflectsdifferent
+neuronalcomputationsatdifferentdepthsinhumanv1. PloSone7:e32536.
+O’Reilly RC, McClelland JL (1994) Hippocampal conjunctive encoding, storage, and recall: avoiding a trade-off.
+Hippocampus4:661–682.
+O’Reilly RC, Rudy JW (2001) Conjunctive representations in learning and memory: principles of cortical and hip-
+pocampalfunction. PsychologicalReview108:311.
+PennyWD,FristonKJ,AshburnerJT,KiebelSJ,NicholsTE(2011) Statisticalparametricmapping: theanalysisof
+functionalbrainimages Elsevier.
+Pereira F, Mitchell T, Botvinick M (2009) Machine learning classifiers and fmri: a tutorial overview. Neuroim-
+age45:S199–S209.
+Qian J, Hastie T, Friedman J, Tibshirani R, Simon N (2013) Glmnet for matlab. http://www.stanford.edu/∼
+hastie/glmnet_matlab/.
+SchapiroAC,GregoryE,LandauB,McCloskeyM,Turk-BrowneNB(2014) Thenecessityofthemedialtemporal
+lobeforstatisticallearning. JournalofCognitiveNeuroscience26:1736–1747.
+Schapiro AC, Turk-Browne NB, Botvinick MM, Norman KA (2017) Complementary learning systems within the
+hippocampus:aneuralnetworkmodellingapproachtoreconcilingepisodicmemorywithstatisticallearning.Philo-
+sophicalTransactionsoftheRoyalSocietyB:BiologicalSciences372:20160049.
+SchlichtingM,PrestonA(2017)TheHippocampusandMemoryIntegration:BuildingKnowledgetoNavigateFuture
+Decisions,pp.405–437 SpringerInternationalPublishing,Cham.
+Schlichting ML, Guarino KF, Schapiro AC, Turk-Browne NB, Preston AR (2016) Hippocampal structure predicts
+statisticallearningandassociativeinferenceabilitiesduringdevelopment. JournalofCognitiveNeuroscience.
+28
+
+--- PAGE 29 ---
+SchlichtingML,MumfordJA,PrestonAR(2015) Learning-relatedrepresentationalchangesrevealdissociableinte-
+grationandseparationsignaturesinthehippocampusandprefrontalcortex. NatureCommunications6.
+Schröder TN, Haak KV, Jimenez NIZ, Beckmann CF, Doeller CF (2015) Functional topography of the human en-
+torhinalcortex. Elife4.
+ShohamyD,Turk-BrowneNB(2013) Mechanismsforwidespreadhippocampalinvolvementincognition. Journalof
+ExperimentalPsychology: General142:1159.
+ShohamyD,WagnerAD(2008) Integratingmemoriesinthehumanbrain: hippocampal-midbrainencodingofover-
+lappingevents. Neuron60:378–389.
+Smith S, Jenkinson M, Woolrich M, Beckmann C, Behrens T, Heidi J, Bannister P, Luca M, Drobnjak I, Flitney D,
+Niazy R, Saunders J, Vickers J, Zhang Y, Stefano N, Brady J, Matthews P (2004) Advances in functional and
+structuralMRimageanalysisandimplementationasFSL. Neuroimage23:S208–S219.
+StephanK,PetzschnerF,KasperL,BayerJ,WellsteinK,StefanicsG,PruessmannK,HeinzleJ(2017) Laminarfmri
+andcomputationaltheoriesofbrainfunction. NeuroImage.
+Striem-AmitE,Ovadia-CaroS,CaramazzaA,MarguliesDS,VillringerA,AmediA(2015) Functionalconnectivity
+ofvisualcortexintheblindfollowsretinotopicorganizationprinciples. Brain138:1679–1695.
+Sukhbaatar S, Weston J, Fergus R et al. (2015) End-to-end memory networks In Advances in Neural Information
+ProcessingSystems,pp.2440–2448.
+ThesenS,HeidO,MuellerE,SchadLR(2000) Prospectiveacquisitioncorrectionforheadmotionwithimage-based
+trackingforreal-timefmri. Magneticresonanceinmedicine44:457–465.
+TrevesA,RollsET(1992)Computationalconstraintssuggesttheneedfortwodistinctinputsystemstothehippocam-
+palca3network. Hippocampus2:189–199.
+Tug˘ranE,KocakM,Mirtagiog˘luH,Yig˘itS,MendesM(2015) Asimulationbasedcomparisonofcorrelationcoeffi-
+cientswithregardtotypeierrorrateandpower. JournalofDataAnalysisandInformationProcessing3:87.
+29
+
+--- PAGE 30 ---
+Turner R (2002) How much cortex can a veindrain? downstream dilutionof activation-related cerebral blood oxy-
+genationchanges. Neuroimage16:1062–1067.
+Van Strien NM, Cappaert N, Witter MP (2009) The anatomy of memory: an interactive overview of the
+parahippocampal–hippocampalnetwork. NatureReviewsNeuroscience10:272–282.
+Varoquaux G, Raamana PR, Engemann DA, Hoyos-Idrobo A, Schwartz Y, Thirion B (2017) Assessing and tuning
+braindecoders: Cross-validation,caveats,andguidelines. NeuroImage145,PartB:166–179.
+WelvaertM,RosseelY(2013) Onthedefinitionofsignal-to-noiseratioandcontrast-to-noiseratioforfmridata. PloS
+one8:e77089.
+Wisse L, Gerritsen L, Zwanenburg JJ, Kuijf HJ, Luijten PR, Biessels GJ, Geerlings MI (2012) Subfields of the
+hippocampalformationat7tmri: Invivovolumetricassessment. Neuroimage61:1043–1049.
+YassaMA,StarkCE(2011) Patternseparationinthehippocampus. TrendsinNeurosciences34:515–525.
+YushkevichPA,PlutaJB,WangH,XieL,DingS,GertjeEC,MancusoL,KliotD,DasSR,WolkDA(2015) Auto-
+matedvolumetryandregionalthicknessanalysisofhippocampalsubfieldsandmedialtemporalcorticalstructures
+inmildcognitiveimpairment. HumanBrainMapping36:258–287.
+Zeithamova D, Dominick AL, Preston AR (2012) Hippocampal and ventral medial prefrontal activation during
+retrieval-mediatedlearningsupportsnovelinference. Neuron75:168–179.
+ZeithamovaD,PrestonAR(2010)Flexiblememories:differentialrolesformedialtemporallobeandprefrontalcortex
+incross-episodebinding. JournalofNeuroscience30:14676–14684.
+ZhangD,SnyderAZ,FoxMD,SansburyMW,ShimonyJS,RaichleME(2008) Intrinsicfunctionalrelationsbetween
+humancerebralcortexandthalamus. JournalofNeurophysiology100:1740–1748.
+30
+
+--- PAGE 31 ---
+Figure 1. Experimental design and background. A. Experimental design. 144 triplets (i.e. A B C , where
+n n n
+n=1:144)wereusedasstimuliinwhichAandCwerealwaysfaces,linkedbyasceneorobject(B).Aftertwotraining
+exposures(ABandBCpairspresentedseparately),subjectsweretestedondirectassociations(AB/BCtesttrials)and
+indirect associations (AC test trials). During inference test trials (i.e. AC) only faces were displayed, allowing us
+toinvestigatereactivationofretrievedmemorycontent(connectingBitem)bydecodingscenesvs. objectsfromthe
+neuralactivation. Notethatlures(i.e. C inillustratedtesttrial)wereassociatedwiththesamecategory(object/scene)
+3
+asthetarget. Thestarindicatesthecorrectanswer(C ). Notethatnofeedbackwasgiven. B.Schematicillustrationof
+1
+howbig-looprecurrencesupportsperformanceonACtesttrials.Thefirstpassresultsinhippocampalmemoryretrieval
+andupdatingoftherepresentationontheoutput(dEC)layer(i.e.activationoftherepresentationcorrespondingtoB ).
+1
+Next,theproductoftheinitialcycleofretrievalisrecirculatedfromtheoutputlayer(dEC)totheinputlayer(sEC).
+Theninthesecondpass, theupdatedinputlayerrepresentationonthesEC–whichconsistsoftheinitialqueryand
+theproductofthepreviouscycleofretrieval–re-queriesthehippocampus. Followingsubsequentcyclesinvolvingan
+interplaybetweenfeaturespaceandepisodespace,thisresultsinthenetworkproducingthecorrectanswer(C ).
+1
+31
+
+--- PAGE 32 ---
+Figure2. BehavioralandunivariateresultsA.Behavioralresults. SubjectsdisplayedabovechanceaccuracyonAC
+trials,andshowtheexpectedpatternofresults,withACtestperformancesignificantlylowerthanondirect(AB/BC)
+testtrials,andreactiontimesignificantlyhigheronACtesttrials.B.TheScenevsObjectgroup-levelcontrastindirect
+Testtrials(ABandBC)(p<0.001,uncorrected)spanstheposteriorMTLtooccipitalcortex,incorporatingboththe
+posterior parahippocampal gyrus and retrosplenial cortex. C. Displaying the Scene vs Object group-level contrast
+restricted to the medial temporal lobe to visualize a posterior-anterior gradient for scenes and objects respectively;
+contrast scaled from negative (objects) to positive (scenes), note that the scaling is uneven to display the relatively
+weakerobjectactivation.
+32
+
+--- PAGE 33 ---
+Figure3. ACtestdecodingresults. A.AnatomicalmasksofoneexamplesubjectdisplayedonT2image(red: sEC;
+green: dEC; purple: Hippocampus; orange: PRC). B. Depiction of classification evidence on a single subject mean
+EPI, classifying whether a voxel belongs to the sEC or dEC based on its activity profile over trials (red and green
+indicatingmaximalevidenceforavoxelbelongingtothesECordEC,respectively;seeFig. S3Bforallsubjects). The
+subject with the median classification accuracy across voxels is shown. C. We find reactivation of memory content
+(scene/object distinction in AC test trials, in which no scene or object was displayed) significantly above chance
+throughout the MTL (EC: 2.3%±0.6, p<0.001; HC: 3.5%±0.5, p<0.001; PHC: 4.2%±0.7, p<0.001; PRC:
+2.2%±0.5, p<0.001). D.Crucially,thesECalsoshowssignificantreactivationlevels,consistentwithinformation
+passingbacktotheentorhinalinputlayer(sEC:1.7%±0.7, p=0.007;dEC:2.4%±0.06, p<0.001). **indicates
+p<0.01,***indicates p<0.001
+33
+
+--- PAGE 34 ---
+34
+
+--- PAGE 35 ---
+Figure4. Schematicdepictionofinformationalconnectivityanalysismethodsandlaminarconnectivityresults. A.
+Schematic depiction of the sEC and dEC layer separation in EPI space. B. Informational connectivity between two
+regionsiscalculatedbyobtainingthedecodingaccuracies(scene/objectcategoryreactivation)foreachtrialandregion
+for a given subject and correlating these time series pairwise (adding all other regions’ timeseries as covariates). C.
+TrialbytrialcovariationbetweenthesECanddECinformationisdisplayedforoneexamplesubject(thesubjectwith
+medianconnectivitystrength)D.Connectivity-graphofbrainregionsofinterest(AmaralandLavenex,2009;Libby
+etal.,2012). Connectivitypatternswereusedtodivideallpossiblepairwiseconnectionsinto’direct’(connectionson
+thegraph)or’indirect’(offgraph)MTLconnections,exceptingthelaminarECconnectionwhichwetreatseparately.
+E.Groupmeansofinformationalconnectivity. Errorbarsdisplaythestandarderrorofthemean. Boththeselective
+laminar connectivity (mean rho=0.11±0.01) and direct MTL (mean rho=0.096±0.002) connectivity are larger
+(p<0.001,one-tailed)thantheindirectMTLconnectivitybaseline(meanrho=0.065±0.003),suggestingthatthe
+laminarconnectionmayreflectadirectflowofinformationbetweentheEClayers.
+35
+
+--- PAGE 36 ---
+Figure5. Individualvariationinentorhinallaminar(sEC/dEC)connectivitycorrelateswiththreekeyvariablesA.
+Across subjects, laminar connectivity correlates with sEC reactivation of memory content (r=0.406, p=0.018, y
+axis displays proportion of correctly classified trials, x axis displays averaged connectivity in Spearman’s rho in all
+panels). B.LaminarconnectivitycorrelateswithsEC/DG&CA3connectivity(r=0.391, p=0.026, yaxisdisplays
+averagedconnectivityinSpearman’srho),whichreflectstheinputpathwayfromthesECbackintothehippocampus.
+C.LaminarconnectivitycorrelateswithBehavioralAC(inference)performance(r=0.378,p=0.028,yaxisdisplays
+proportionofcorrectresponses). Theseresultssupportthefunctionalrelevanceoftheentorhinallaminarconnection
+underpinningbig-looprecurrence,anditsroleinreactivationofmemorycontentontheinputlayeroftheEC(sEC),
+the re-entry of that information into the hippocampus and its relevance for behavioral inference performance. All
+correlationshaveone-tailedpermutedp-values.
+36
+
+--- PAGE 37 ---
+STAR Methods
+Contact for Reagent or Resource Sharing
+FurtherinformationandrequestsforresourcesshouldbedirectedtoandwillbefulfilledbytheLeadContact,Raphael
+Koster(rkoster@google.com).
+Experimental Model and Subject Details
+Subjects
+Twenty-sixsubjects(recruitedviatheOtto-von-GuerickeUniversityMagdeburgparticipantdatabase,meanage27.5±3.9
+years,12males)participatedinthestudyandwereincludedintheanalysis. Exclusioncriteriaweremetallicimplants
+(otherthanstandarddentalimplants),tinnitus,knownmetabolicdisordersorahistoryofneurologicalorpsychiatric
+disorders.ThisstudywasapprovedbytheethicscommitteeoftheOtto-von-GuerickeUniversityMagdeburg.Allsub-
+jectsgavewritteninformedconsentbeforeparticipation. Atotaloffoursubjectscompletedtheexperimentbutwere
+excludedfromfurtheranalysis. ThreesubjectswereexcludedduetostrongsignaldropoutintheECdeterminedby
+visualinspectionofthemeanEPIimage. Onesubjectwasexcludedduetopoorperformanceonthepairedassociate
+inferencetask(belowchanceperformanceinACinferencetrials).
+Method Details
+Stimuli
+The stimuli consisted of 432 digital color photographic images: 72 objects (Bank of Standardized Stimuli, Brodeur
+et al., 2010), 72 scenes (obtained from various sources on the internet) and 288 faces (Glasgow Unfamiliar Face
+Database,Burtonetal.,2010).Allimages’meanvaluewasadjustedtothesamevalue.Thefixationtargetwasawhite
+fixationcrossinthemiddleofablackscreen. Participantswatchedthestimulithroughamirrormountedonthehead
+coil. Notethatfordisplaypurposed,depictionsofthestimulidisplayingfacesandscenesinthispaperarelicense-free
+imagesobtainedfromtheinternet.
+37
+
+--- PAGE 38 ---
+Task
+DuringthefMRIsession,subjectsperformedanadaptedversionofthepairedassociateinferencetask(Zeithamovaet
+al.,2012;Baninoetal.,2016). Foreachsubject,thestimuliwererandomlyorganizedinto144triplets(ABC;Face-
+Object-Face(FOF)orFace-Scene-Face(FSF)).Everyexperimentalblockutilized16differenttriplets. Eachsubject
+completedonescanningsession,whichcontained3functionalruns. Eachfunctionalruncontainedthreeexperimental
+blocks (one cycle of training and test utilising 16 triplets – see below). Each block lasted approximately 7 minutes
+resultinginatotalexperimentaltimeinthescannerof63minutes. Beforethescanning,subjectscompletedatraining
+sessionconsistingofashortenedexperimentalblock. Thetrainingwascompletedonceataselfpacedspeedandonce
+withtime-limitsexactlylikethescanningversionoftheexperiment.
+Trainingblock
+Thetrainingblockconsistedofbeingexposedtopairsofstimulipresentednexttoeachotheronthescreenfor2.5s
+eachfollowedbya0.5sfixationscreen. First,16AB(Face-ObjectorFace-Scene)pairswereshowninrandomorder.
+Then, the16correspondingBC(Object-FaceorScene-Face)pairswereshownintheorderfollowingtheinitialAB
+presentation. Then,theentiresequenceof16ABand16BCpresentationswasrepeatedinthesameorder. Whichof
+thetwoimageswaspresentedontheleftorrightsideofthescreenwasrandomizedacrosstrials.
+Testblock
+The test block contained three test trials for each of 16 triplets (48 total): direct (i.e. AB and BC) and indirect (AC
+inference) test trials (see below for details). Each test screen presented one face at the top of the screen (A for AB
+trials,CforBCtrialsandAforACtrials)andtwoimagesonthebottomofthescreen: thetarget(BforABtrials,B
+forBCtrialsandCforACtrials)andthelure. Thelurepicturewasthesamescene/objectcategoryasthetarget(or
+in case of AC trials, associated with the same category) but chosen from a different triplet of the same block. This
+ensured that the task could not be solved with a category level memory, or with familiarity (i.e. since both choice
+itemswereequallyfamiliar). Theleft-rightlocationofthetargetandlurewasrandomizedacrosstrials. Subjectswere
+taskedwithidentifyingwhichofthetwobottompictureswasinthesametripletasthepicturepresentedatthetopof
+thescreenwithaleftorrightbuttonpress.
+SolutionoftheABandBCtesttrialscanbesolvedviadirectassociations,asineachcasethepictureswerepresented
+together. By contrast, AC trials can only be solved by inferring the connection via the shared linking picture B –
+hence items A and C were indirectly associated. Importantly, during the AC trials, three faces were displayed on
+the screen and no object or scene, as A and C were always faces in each triplet. This ensured that any successful
+classification of objects versus scenes could only be driven by reactivation of the linking image (B). The screen of
+thetestquestionwasdisplayedfor5sduringwhichsubjectscouldsubmittheirresponse. After5sthechosenoption
+was outlined with a green square for 0.5s or, if subjects failed to respond the words ’too slow’ were displayed for
+0.5s. Each trial was concluded with a fixation screen for 0.5s. The trial order of the 48 test trials was random, but
+constrained such that for each triplet, the AC test trial had to be presented before the AB or BC trial from the same
+38
+
+--- PAGE 39 ---
+triplet. ThiswasdonetonotcontaminatetheACtestwithlearningorexposurefromprevioustrialsofthesametriplet.
+TheexperimentwasperformedusingPresentationsoftware(Version18.0,NeurobehavioralSystems,Inc.,Berkeley,
+CA,www.neurobs.com).
+Quantification and Statistical Analysis
+Behavioralanalysis
+Behaviorwasassessedintermsofchoiceaccuracy(i.e. belongingtothesametripletasthestimulidisplayedatthe
+topofthescreen)andchoicereactiontime.DifferencesinthesemeasureswereassessedwithonewayANOVAs(with
+the levels AB, BC and AC) and paired t-tests for comparisons of individual conditions. For reaction time, the same
+procedurewasrepeatedonlyoncorrectlyansweredtrials.
+F/MRIdataacquisition
+MRI data were acquired using a 7T MR system (Siemens, Erlangen, Germany). A 32-channel head coil was used
+(NovaMedical). BeforethefMRIsession,awhole-headMPRAGEvolume(TE=2.8ms,TR=2500ms,TI=1050ms,
+flipangle=5◦,resolution=0.8mmisotropic,hereinafter’T1’)wasacquired. Thesliceswereacquiredinanodd-even
+interleavedfashionorientedparalleltothehippocampuslongitudinalaxis.EPIsweremotioncorrectedbythesequence
+built-inalgorithmduringtheonlinereconstruction(Thesenetal.,2000)anddistortioncorrectedusingapointspread
+functionmappingmethod(InandSpeck,2012). Eachsubject’sfMRIscanconsistedof720volumes,eachcomprising
+28T2*-weightedechoplanar(hereinafter’EPI’)sliceswitharesolutionof0.8x0.8mm(TE=22ms,TR=2000ms,
+slicethickness=0.8mm,FOV=205mm,matrix=256x256,partialFourier=5/8,parallelimagingwithgrappafactor4,
+bandwidth=1028Hz/Pixel, echospacing=1.1ms, echotrainlength=40, flipangle=90◦)ineachof3functionalruns.
+After that, the high resolution partial structural volume was acquired (Turbo Spin echo (TSE) with hyperecho (flip
+angle60◦), TE=76ms, TR=8000ms, bandwidth=155Hz/Pixel, turbofactor9, 55slicesof1mmthicknessand
+10%gap,FOV=224mm,matrix=512x512resultinginaneffectivespatialresolutionof0.44mmx0.44mmx1.1
+mm,hereinafter’T2’),withaslicealignmentorthogonaltothehippocampallongitudinalaxis.
+39
+
+--- PAGE 40 ---
+AnatomicalROIsinMTL
+AutomatedsegmentationofMTL(ASHS)
+Forcompleteness, webrieflydescribeherethealgorithmicschemeoftheASHSsoftware(Yushkevichetal.,2015).
+UtilizingstructuralinformationfrombothT1andT2images,ASHSgeneratesanatomicallabelsaccordingtoacus-
+tomizableatlas,inwhichlabelsweremanuallydefinedontheT2images. Foranew,unlabelledbrainvolume,ASHS
+evaluatesitssimilaritytoeachofthelabelledbrainvolumesintheatlasand,usingthissimilarityasweights,produces
+aprobabilisticlabellingforthenewbrain. Thefinallabelsofthebrainaredeterminedbycombiningtheprobabilistic
+labellingandthegrayvaluesinthenewbrain,usingaBayesianapproach. Inourcase,theatlasconsistedof38young
+healthyindividualsfromanotherdataset,ofwhichhippocampalsubfields(CA1,CA2,CA3,dentategyrus(DG)and
+subiculum (SUB)) as well as extrahippocampal subregions (perirhinal (PRC), entorhinal (EC) and parahippocampal
+cortex(PHC))weremanuallysegmentedandcross-examinedbyexperiencedsegmentationexperts.Importantly,these
+structural images for atlas building were acquired in the same scanner with exactly the same scanning protocol. In
+so doing we aimed to maximize the compatibility between the atlas and the current dataset. The labels of the man-
+ualsegmentation,thusalsooftheautomatedsegmentationoutput,includebothcorticalregionsinMTL:PHC,PRC
+(consistingofA35andA36)andEC,andhippocampalsubfields: CA1,CA2,CA3,DG,SUB.Hippocampalsubfield
+segmentationfollowedtheprotocolfromWisseandcolleagues(Wisseetal.,2012). Manualdelineationofextrahip-
+pocampal regions was mainly based on the protocol from Berron and colleagues with a few adaptations, described
+below(Berronetal.,2017). DelineationofPRCandECstarted3slicesanteriortothehippocampalhead. PRCcon-
+sistedofarea35and36whichincludedthemedialandthelateralbankofthecollateralsulcus.Theposteriorborderof
+thePRCandECwasthefirstsliceofthehippocampalbodydefinedbythedisappearanceoftheuncalapex. Thiswas
+alsothestartingpointforthedelineationofthePHCwhichcontainedbothlateralandmedialbanksofthecollateral
+sulcusandwassegmenteduntilthelastsliceofthehippocampaltail.
+Corticallayerseparation
+Asdemonstratedpreviously(Maassetal.,2014),dividingtheECinto3layerscancapturecytoarchitecturalfeatures
+oftheEC.Thesuperficialthird(referredtohereas’sEC’)ofthehumanECmainlycoversEClayerIIandlikelyparts
+of EC layer III, projecting into DG/CA3 and CA1, respectively. The deep third (referred to here as ’dEC’) mostly
+coverslayerVandVIandisthemainoutputoftheHC.Themiddlelayerisexcludedfromtheanalysisasfunctional
+interpretationsarelesscertain(seeMaassetal. (2014)fordetails).
+OurapproachtoseparatethebinarymaskofECinto3differentlayersisbasedonshapeanalysisandcorticalthickness
+estimation. ToavoidthealiasingartefactsduetotheanisotropicacquisitionoftheT2images,wefirstsmoothedthe
+binary mask of EC in T2 space with a Gaussian kernel (FWHM=1.1 mm), and resampled the smoothed mask to an
+isotropicresolutionof0.22×0.22×0.22mm3(Fig. S6C1-2).
+Boundary voxels of the mask in this super-sampled image were identified by using an isosurface method with a
+volume-preservingthreshold,i.e.
+N(I>threshold)·VS =N(BI>0)·VS ,
+I T2
+40
+
+--- PAGE 41 ---
+where I is the smoothed and super-sampled image, BI the binary mask image in T2 space, VS andVS are their
+I T2
+respectivevoxelvolumes.
+We further take the smoothed volume as a probabilistic image of the mask, and the gradient vector of this image at
+eachvoxelasapotentialdirectionalongwhichthecorticalthicknesscanbeestimated. Foreachboundaryvoxel,we
+thenestimatedthecorticalthicknessbyapproximatingalineintegralalongthegradientdirection(Fig. S6C3). More
+specifically,wetooksumofdensesamplesalongthedirection:
+(cid:90) N
+thickness(x)= I(x)dx≈∑I(x+i/N·∇ ),
+x
+∇x i=0
+wherexisthelocationofaboundaryvoxel,and∇ thenormalizedgradientvectoratx. Inimplementation,weuseda
+x
+samplingdensityof0.06mm,andtook100samplesalongeachgradientdirection,presumingthemaximalthickness
+<6mm.
+Thisproceduregaveus,foreachboundaryvoxel,anestimateofthecorticalthicknessinthedirectionperpendicular
+to the local boundary surface. Notably, only those voxels on the pial or gray-white matter surfaces provide useful
+cortical thickness information for laminar separation. We thus removed the voxels residing on the boundaries next
+to neighbouring regions of grey matter, using an automated approach. Specifically, as shown in Fig. S6C3, vox-
+els falling at these grey matter borders will have much greater estimates of “cortical thickness” than those on the
+pial or gray-white matter surfaces. We therefore remove all voxels with a cortical thickness estimate greater than
+mean(thickness)+2×std(thickness) (Fig. S6C4) to automatically detect these outlying values. For the remaining
+voxels,westartedfromeachboundaryvoxel,alongitsgradientdirection,toincludeallthevoxelslyingwithin1/3of
+itsthicknesstoformeachsegmentofthemask. Fig. S6Cshowsthelayermaskafterthisgrowingprocedure.
+NotethatdespitetheillustrationinFig.S6Cisin2D,theactualshapeanalysiswasalldonein3Dspace,thusavoiding
+the view-specific limitation of fully manual separation. Furthermore, all anatomical ROIs and masks of separated
+layersweresubsequentlyexaminedand,whennecessary,correctedmanually. VoxelsinwhichtwoROIsoverlapped
+after the growing procedure were removed from the mask with lower probability in that voxel. Fig. S6A shows a
+summaryoftheseROIsonallsubjects.
+Cross-modalregistrationandmappingofROIs
+To precisely extract the layer-specific activity patterns in a cortical area of average thickness ≤3 mm and measured
+with imaging resolution of 0.8 mm, the separated layer masks of EC in the anatomical image space have to be very
+accuratelytransformedintothefunctionalimagespace. Moreover,duetothepartial-coveragescanningprotocol,the
+overlap between the T2 image space, in which the anatomical ROIs were defined, and the functional image space
+wasoftentoolimitedtoprovidereliableregistration. Thereforeforeachsubject,thewholebrainT1imagewasused
+asaproxyfortransformingtheROImaskstothefunctionalimagespace. Specifically, toobtainthefinalmasksfor
+functionalactivityextraction,tworegistrationstepswereinvolved:onefromtheT2totheT1andanotherfromtheT1
+tothefunctionalimage.
+41
+
+--- PAGE 42 ---
+Foreverypairofimagesofeachsubject,weusedtheregistrationtoolsfrom3softwarepackages:SPM,FSL(Smithet
+al.,2004)andANTs(Avantsetal.,2008,2011). Mutualinformationoptimizationcriteriawereusedandregistration
+transformation was limited to rigid transform. Field bias of T1 images was corrected using SPM before running
+registration,tominimizetheadverseinfluenceofintensityinhomogeneityontheregistrationalgorithms. Inaddition
+tocarefully manualexaminationof theregistrationresults, we setanindependent criteriontoassessthe registration
+qualityobjectively: wecalculatedtheagreementbetweengradientdirectionsatthemaskboundariesandthatofthe
+target image, after applying the transformation. Here the target image designates the space into which anatomical
+ROIsweretransformed. Basedonthisboundarygradientagreementcriterion,wechosefromthe3registrationresults
+thebesttransformationformappingtheanatomicalROIstothefunctionalimagespace.
+When mapping the separated layer masks from the super-sampled image space for functional activity pattern ex-
+traction, we again adopted a volume-preserving strategy: after smoothing the ROI masks with a Gaussian kernel
+(FWHM=1mm)toaprobabilisticmask,weappliedthetransformmatricesandre-thresholdedtheprobabilisticmask
+topreserveitsoriginalbinaryvolume. Thisstrategyalsoenabledustoresolvecasesofpartiallyoverlappedvoxelsby
+selectingtheROIlabelwiththehighestprobability. Fig. S6EshowstheseparatedEClayersfromthelefthemisphere
+ofatypicalsubject,inthesuper-sampledspaceandaftertransformationintothefunctionalimagespace.
+FMRIdatapreprocessing
+fMRIpreprocessingandstatisticalmodelingofthefMRIdatawasconductedusingSPM12(WellcomeTrustCentre
+forNeuroimaging,UniversityCollegeLondon,Pennyetal.,2011). SubsequentanalyseswererunusingMatlab. As
+imageswerealreadycorrectedfordistortionsandformotion(see“F/MRIdataacquisition”section),thepreprocessing
+consistedsolelyofslicetimingcorrectionusingdefaultsettings. Forthemultivariatedecodinganalysis,datawereleft
+unsmoothed to preserve the patterns of activation at high spatial resolution. Six volumes that were acquired before
+the experiment started were discarded. To estimate brain activity for every single trial enabling multi-voxel pattern
+classification analysis, we computed a separate general linear model (GLM) for each trial (Mumford et al., 2012).
+For each subject, 1008 GLMs were created, containing the onset of the picture presentation for all training and test
+trials. EachGLMcontainstwoconditionsmodellingthescansofoneexperimentalblock:thefirstregressorcontained
+theevent(onsetoftrainortesttrial)tobemodelledinthisGLM,thesecondregressorcontainedallotherevents(all
+otheronsetsoftrainortesttrials)intheexperimentalblock(onecycleoftrainingandtest). Additionally,eachmodel
+contained6regressorsofnointerestcontainingmotioncorrectionparameterstoaccountfortask-relatedmotion. The
+GLMestimatedallvoxelscontainedwithinacombinedmaskcomprisingallanatomicalmasksofinterestcreatedby
+theautomatedsegmentation(seeabove). Foronesubject,thescannerwaserroneouslystoppedbeforetheconclusion
+oftheexperiment. Forthissubjectthelast7trialswereexcluded. Toestimatetheactivityrelatedtoeachindividual
+trial, the condition containing the event of interest was contrasted against the condition containing all other events.
+Theresultingt-statisticswereusedforallmulti-voxelpatternclassificationanalyses.
+42
+
+--- PAGE 43 ---
+Univariateanalysis
+Fortheunivariateanalysis, afirstlevelmodelwascreatedmodelling3sessions, eachcontainingthefollowingcon-
+ditions(onsetsofeventswithduration0): 1. EncodingRepetition1ABObject2. EncodingRepetition1BCObject
+3. Encoding Repetition 1 AB Scene 4. Encoding Repetition 1 BC Scene 5. Encoding Repetition 2 AB Object 6.
+Encoding Repetition 2 BC Object 7. Encoding Repetition 2 AB Scene 8. Encoding Repetition 2 BC Scene 9. Test
+AB Object 10. Test BC Object 11. Test AC Object 12. Test AB Scene 13. Test BC Scene 14. Test AC Scene 15.
+ButtonPresses16. Fixationperiods. Weconsideredthecontrasts;’ABandBCTestconditionsScenevsObject’,’AC
+TestconditionsScenevsObject’,’Fixationagainstthefirst14conditions(picturedisplay)’and’TestACtrialsagainst
+baseline(zerooverallotherconditions)’. Theresultingt-contrastimageswerethennormalisedtothegrouptemplate
+created by using ANTs with all the subjects’ T1 whole brain images. The normalised images were then smoothed
+(Gaussiankernel,FWHM=4mm)andgrouplevelstatisticswerecomputedusingthenonparametrictoolbox(Nichols
+and Holmes, 2002). Analyses were restricted to either (a) a mask containing all scanned voxels (the overlap of all
+subjects’acquisitionwindowsintemplatespace),(b)ananatomicalgroupMTL,or(b)ananatomicalgroupECmask.
+Theanatomicalmasksonthegrouplevelwerecreatedbynormalizingeachsubject’sanatomicalmasksintotheANTS
+templatespace,averagingthemandbinarizingthemusingathresholdchosenviavisualinspection.
+ToinvestigateSceneandObject(SvO)representationsduringvisualpresentationofscenesandobjectsweconsidered
+a contrast of Test AB Scene and Test BC Scene vs Test AB Object and Test BC Object. The SvO representation of
+reactivatedmemorycontent(linkingBitem)wereinvestigatedwithacontrastofTestACScenevsTestACObject.
+We considered the contrasts masked with scanning coverage of all subject and with the anatomical MTL masks for
+display purposes. In order to investigate a posterior-anterior Scene to Object gradient within the EC (Litman et al.,
+2009;Schröderetal.,2015;Berronetal.,2018),wemaskedeachsubject’snormalizedcontrastt-imagewiththegroup
+ECmaskandcollapsedittoonedimensionbyaveragedittotheposterior-anterioraxis.Wethencorrelatedtheaverage
+t-valuewiththevoxelpositionviaPearsoncorrelation,obtainingonecorrelationvaluepersubject. Theinferenceon
+the group level was performed via a Wilcoxon sign-rank test. One-tailed significance levels were used due to the
+directional hypothesis (Berron et al., 2018). We conducted this analysis both for the Test AB/BC SvO contrast as
+well asthe TestAC SvO contrast. We also investigated reinstated memories(Test ACSvO contrast) ina functional
+regionofinterestdefinedbytheTestAB/BCSvOcontrast. Forthis,weextractedtheaverageTestACSvOandTest
+ACOvSt-valuefromthetop100voxelsselectedforthehighestandlowestt-valuesintheTestAB/BCSvOcontrast,
+respectively. Theaveraget-valuesweretestedagainsteachotherwithasign-ranktest. Duetothedirectedhypothesis
+one-tailedsignficancelevelswereused. TodisplaysinglesubjectmapsoftheSvOandOvScontrastsinAB/BCand
+ACTestTrials,thecontrastswereconsideredinsinglesubjectspaceandsmoothedwitha2mmkernel.
+Validatinglayerseparationviaclassification
+In order to assess the presence of layer-specific signals in our data, we took a subject-specific, task-independent
+approach. Based on the preprocessing steps outlined above, each voxel has a response estimate to every trial in the
+experiment, which we refer to as the temporal response profile of that voxel. The temporal response profile (i.e.
+features)usedforclassificationwerethe1008valuesfromthet-imagesmodellingeachexperimentaltrial,orthe144
+values from the AC test trials. For each subject we took the set of voxels in each of the segmented EC layers (sEC
+anddEC),andtrainedalogisticridge-regressionclassifier(lambda=0.01)toclassifyeachvoxelasbelongingtothe
+43
+
+--- PAGE 44 ---
+sEC or dEC based on the temporal response profiles. We used a leave-two-out cross-validation approach, where on
+eachfold,onevoxelfromeachlayerwasheldout(notethatwhennecessaryrandomvoxelsfromthelargerlayerwere
+discardedtoequatethesamplesizeineachlayer). Thisclassificationprocedurewasrepeatedforeachvoxelinboth
+layers. Wecalculatethepercentageofcorrectlyclassified(classifierevidencehigherthan0.5forsECandlowerthan
+0.5fordEC)voxelsforeachsubject. Grouplevelstatisticswerecalculatedwithasign-ranktestonaccuracyz-scores
+calculatedforeachsubject,byplacingtheactualdecodingaccuracyvalueacrossvoxelsinadistributionofpermuted
+decoding accuracy values. In order to create this distribution of permuted values, we computed the classification of
+eachvoxel100timeswithshuffledlabels.
+Signalintensity,SNRandCNRinEClayers
+ToassesstheoverallsignalqualityineachoftheEClayers,wecomputedandcomparedanumberofmetrics.First,we
+calculatedthemeangrayvalueofthemeanEPIseriesofallscansthatwereacquiredduringtheexperiment. Second,
+tSNRwascomputedbydividingthemeanbythestandarddeviationofeveryvoxeloverthewholetimeseriesofscans
+(averaged over the three functional scanning runs separately). Third we considered the univariate contrasts of ’Test
+ACtrialsoverbaseline’and’picturepresentationoverfixation’,toprovidetwoestimatesofcontrast-to-noise(CNR,
+WelvaertandRosseel,2013). Theaverageovervoxelswasthencalculatedforeachregion. Wedirectlycomparethe
+magnitudeofthemeasuresinthesECanddECusingasign-ranktest.
+FMRIMVPAanalysis
+In order to assess the reactivation of scene and object information, a classifier was trained to distinguish AC trials
+associatedwithtripletscontainingobjectsandACtrialsassociatedwithtripletscontainingscenes. Notethatduring
+AC trials only faces were displayed on the screen, thus any ability to discriminate between the two trial categories
+mustbeduetoreactivatedmemorycontent.Foreachregionofinterest(hippocampus,parahippocampalcortex(PHC),
+perihinalcortex(PRC),deepandsuperficiallayersoftheentorhinalcortex(dECandsEC))theactivationpatternsof
+eachACtesttrialwereextracted. Alogisticridge-regressionclassifierwasusedtoassessthepresenceofsignificant
+reactivatedcategorycontent,usingarepeatedsplit,12-foldcross-validationapproach. Oneachdatasplit,the72AC
+Object trials and 72 AC Scene trials were randomly split into 12 folds; each fold contained 6 AC Object and 6 AC
+Scenetrialsinthetestsetandtheremainingtrialsinthetrainingset(forthesubjectmissingtrialsonefoldcontained
+5 items each). For each fold, a logistic ridge regression (lambda = 0.01) was fitted to the training set, and the fitted
+model was used to predict an output value for each of the items in the test set (Qian et al., 2013). The output value
+waspassedthroughasoftmaxfunctiontoproduceaprobabilisticpredictionofthetrialcategory. Thispredictionwas
+usedtocalculate‘decodingevidence’whichisthelikelihoodofthetrialbeingclassifiedcorrectly. Thisprocesswas
+repeated 100 times, each time using a new random split of the data. The predictions of the 100 runs were averaged
+for more stable decoding estimates (Varoquaux et al., 2017). For each subject the decoding evidence was averaged
+acrosstrialstoobtaintheoveralldecodingaccuracy. Significanceofthedecodingaccuracyacrossthepopulationwas
+assessed via a permutation test. The null distribution was obtained for each region for each subject by running the
+aboveanalyses1000timeswithrandomlyshuffledtriallabels. Foreachsubjectaz-scorewasobtainedbyscoringthe
+decodingvaluewithrespecttothemeanandstandarddeviationofthepermutednulldistribution. Thetestassessing
+44
+
+--- PAGE 45 ---
+significanceonthegrouplevelwasasign-ranktestoverthez-scoresoftheentiregroup. Forthisanalysisaone-tailed
+significancelevelisused,asonewouldonlyexpectdecodingaccuraciesabovechance. Throughoutthemaintextwe
+reportbilateralneuralsignalsbyaveragingtheresultsoftheleftandrighthemispherepersubject(butseeTablesS1
+andS2forresultsineachhemisphereseparately).
+Controllingforlocalvasculatureinfluences
+In order to control for the presence of local vasculature influences on the BOLD signal, we ran a control analysis
+incorporatinganadditionalprocessingstepintotheMVPAanalysis. Wereasonedthat,asvasculatureartefactsshould
+bespatiallylocalinnature,explicitlyremovinglocalcorrelationbetweenthetwolayersshouldminimizetheirimpact.
+Foreachvoxelinthetargetlayer(e.g.sEC),wefoundtheclosestvoxelintheopposinglayer(e.g.dEC),andregressed
+thesignalout. Toensurethatthisneighbouringvoxelrepresentsthelocalsignal,wesmoothedthatlayerbeforehand
+(smoothing kernel 2mm, constrained to smooth within the structure in order to avoid contamination of the signal
+throughotheradjacentstructures). Asaresult,eachvoxelinthesECdidnotcontainsignalsharedwiththeadjacent
+dECvoxels,andviceversa. TheMVPAanalysisdescribedabovewasthenrepeatedusingthisprocesseddata.
+FMRIinformationalconnectivityanalysis
+Toinvestigatewhetherinformationispasseddirectlybetweenthedeepandsuperficiallayeroftheentorhinalcortex,
+weusedaninformationalconnectivityapproach(CoutancheandThompson-Schill,2013;AlyandTurk-Browne,2016;
+HuffmanandStark,2017). Thisapproachinfersinformationalconnectivityfromcovariationintrial-by-trialdecoding
+accuracybetweenregions,andisthereforetheMVPAanalogueoffunctionalconnectivitymethodscommonlyapplied
+to univariate data. This technique has been shown to be more sensitive than univariate functional connectivity in
+a classic dataset of visual processing of objects by Haxby et al. (Haxby et al., 2001; Coutanche and Thompson-
+Schill,2013). SelectiveconnectivitybetweenthesECanddEC(hereafter’laminarconnectivity’)wasmeasuredasthe
+Spearmancorrelationbetweenthetrial-wisedecodingaccuracyofthetwoentorhinallayers,whilepartiallingoutthe
+decodingevidenceofallotherregionsofinterestinthenetwork(DG,CA1,CA2,CA3,PHC,PRC,SUB,seeZhang
+etal.,2008;Striem-Amitetal.,2015). Additionally, toruleoutthatconnectivitybetweenlayersmeasuredthisway
+ismerelyanartefactofageneralwidespreadeffectintheBOLDresponse,orspatialcorrelationbetweentheregions,
+weaddedthetrial-wisefluctuationinunivariateresponse(themeant-valueofthecontrastimagesovervoxelsforeach
+trial’sestimatedactivationpattern)inthesECanddECasadditionalcovariates. Theresultingcorrelationcoefficients
+were transformed using Fisher’s z-transform. The group level inference of whether the correlation coefficients are
+significantlybiggerthanzerowasbasedonasign-ranktest(two-tailed). SeeFig.4foraschematicdepictionofthe
+analysis. To validate this approach we also computed the average correlation coefficient strength (pairwise partial
+Spearman’s rho while controlling for all regions of interest and the mean t-value of the two EC layers, as above) of
+all known direct connections between the MTL regions (all pairwise correlations between the two EC layers, DG,
+CA1, CA3, PHC, PRC and SUB except the indirect connections) and indirect connections (deep EC layer & DG,
+deep EC layer & CA3, SUB & DG, SUB & CA3, CA1 & DG, PRC & DG, PRC & CA3, PHC & DG, PHC &
+CA3, Amaral and Lavenex, 2009; Libby et al., 2012). See Fig. 4D for a depiction of the connectivity graph. If
+informational connectivity is sensitive to the true underlying anatomical connectivity, we should detect a significant
+45
+
+--- PAGE 46 ---
+differencebetweenthedirectandindirectconnectionswithintheMTLasawhole.Ifthelaminarconnectionisgenuine,
+itshouldbesignificantlystrongerthantheindirectconnections. Alloftheaforementionedinformationalconnectivity
+comparisons were conducted on bilateral data, by averaging the informational connectivity across hemispheres for
+eachregion(hemispherespecificresultsarereportedinTableS1). Allstatisticalcomparisonswereconductedusing
+sign-ranktestsonthedifferencebetweenconditionsatthegrouplevel. Giventhedirectionalnatureofthehypothesis
+(connectivity reflecting known anatomical connections) one-tailed significance levels were used when comparing to
+the indirect baseline. Additionally, we used a classification approach to determine whether the laminar connectivity
+isclassedas’directMTL’or’indirectMTL’connectivity. Forthis,wetrainedaclassifier(seedecodingmethods)to
+distinguishdirectandindirectconnectionsforallsubjects(onevectorwith52values, thefeaturebeingconnectivity
+strength). We then applied the regression equation to the 26 values of the laminar connectivity values. In order to
+obtainapermutedp-value, weplacedthemeanvalueoftheresultingclassificationevidencewithinadistributionof
+10000valuesobtainedbyshufflingthe’directMTL’and’indirectMTLlabels’.
+Localvasculatureinfluencesonconnectivity
+AdditionaltoaddingtheaverageBOLDsignalineachlayersascovariateinthepairwiseinformationalconnectivity
+measures,weperformedtwocontrolanalysestoensurethattheconnectivityobservedbetweenthelayersisnotdueto
+avascularartefact.First,asdescribedabovewithregardtotheMVPAanalyses,weremovedthelocalspatialinfluence
+of one layer on the other, and recomputed the connectivity on the processed data. In the case of the connectivity
+analysis,weappliedasecondmethodofcontrollingforlocalvasculatureconfounds. Specifically,wesubdividedthe
+sECanddECmasksintolateralandmedialportionstoavoidcorrelatingadjacentvoxels(displayedinFig. S5). We
+cutthesECanddECintomedialandlateralportionsbyapplyingadiagonalcutineverycoronalslicethataimedto
+minimize the pairwise size difference between the two medial/lateral sEC and two dEC subregions. We applied the
+sameprocedureofdecodingScene/ObjectreactivationduringACtrialsinthoseregionsandcorrelatingthedecoding
+accurariestrial-by-trial. Thisconnectivitywasalwaysacrosslayer,butnowcaneitherbewithinregion(e.g. medial-
+medial, or lateral-lateral), or across region (medial-lateral). In the latter case, the regions no longer contain any
+spatiallyneighbouringvoxelsacrossthelayers,ensuringthatanyresidualconnectivitycannotbeinfluencedbylocal
+vasculatureconfounds.
+Individualvariationanalyses
+Eachsubject’smeasureof"reactivation"wasbasedontheMVPAclassificationaccuracyontheACinferencetrialsin
+agivenregion. Eachmeasureof"connectivity"wasbasedontheinformationalconnectivitybetweenagivenpairof
+regions, as described in an earlier section. Inference performance was each subject’s accuracy on the AC test trials,
+whichrequireinferencetosolve.Herewewereinterestedinassessingthecorrelationbetweencertainconnectivityand
+reactivationmetrics,aswellaswithbehavioralvariationininferenceperformance,atthelevelofindividualvariation.
+Foreachsuchanalysis,weusedaPearsoncorrelation(partialcorrelationswhenadditionalvariableswerecontrolled
+for), where the p-value was obtained via its rank in a permuted distribution of 10000 values (Tug˘ran et al., 2015).
+Wheredifferencesbetweensuchcorrelationsarereported, thep-valueisbasedontherankcomparedtoapermuted
+distributionofcorrelationdifferences. Alltestswereonesidedduetocleardirectionalhypotheses,unlessotherwise
+46
+
+--- PAGE 47 ---
+stated. Alltestswereconductedonbilateraldata. Thekeyanalysesarealsoreportedfortheindividualhemispheres
+inSupplementalMaterials(TableS2). Toestablishtheexpectedpatternofresultsunderthebig-loophypothesis,we
+implementedasimulationofbetweensubjectvarianceinPython,detailsandresultsofwhicharedescribedinS8.
+47

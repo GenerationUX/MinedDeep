@@ -1,0 +1,466 @@
+
+--- PAGE 1 ---
+When Fear Is Near: Threat Imminence Elicits
+Prefrontal-Periaqueductal Gray Shifts in Humans
+Dean Mobbs, et al.
+Science 317, 1079 (2007);
+DOI: 10.1126/science.1144298
+The following resources related to this article are available online at
+www.sciencemag.org (this information is current as of August 23, 2007 ):
+Updated information and services, including high-resolution figures, can be found in the online
+version of this article at:
+http://www.sciencemag.org/cgi/content/full/317/5841/1079
+Supporting Online Material can be found at:
+http://www.sciencemag.org/cgi/content/full/317/5841/1079/DC1
+This article cites 22 articles, 7 of which can be accessed for free:
+http://www.sciencemag.org/cgi/content/full/317/5841/1079#otherarticles
+This article appears in the following subject collections:
+Neuroscience
+http://www.sciencemag.org/cgi/collection/neuroscience
+Information about obtaining reprints of this article or about obtaining permission to reproduce
+this article in whole or in part can be found at:
+http://www.sciencemag.org/about/permissions.dtl
+Science (print ISSN 0036-8075; online ISSN 1095-9203) is published weekly, except the last week in December, by the
+American Association for the Advancement of Science, 1200 New York Avenue NW, Washington, DC 20005. Copyright
+c 2007 by the American Association for the Advancement of Science; all rights reserved. The title SCIENCE is a
+registered trademark of AAAS.
+7002
+,32
+tsuguA
+no
+gro.gamecneics.www
+morf
+dedaolnwoD
+
+--- PAGE 2 ---
+REPORTS
+When assayed individually, the mutant enzymes inthetreatmentofobesityortype2diabetes,and 21. D.V.Reddy,S.Rothemund,B.C.Shenoy,P.R.Carey,
+Lys1119→Gln1119 (K1119Q) and K718Q exhib- the mechanistic insights gained from the com- F.D.Sonnichsen,ProteinSci.7,2156(1998).
+22. R.N.Perham,Biochemistry30,8501(1991).
+ited 0.1 and 4% wild-type activity,respectively plete structural description of RePC permit de-
+23. P.V.Attwood,W.Johannssen,A.Chapman-Smith,
+(tableS4).Hybridtetramerswerecreatedbymix- tailedinvestigationsintotheindividualcatalytic J.C.Wallace,Biochem.J.290,583(1993).
+ing and diluting the mutants together before as- andregulatorysitesoftheenzyme.Furthermore, 24. V.S.Rangan,A.K.Joshi,S.Smith,J.Biol.Chem.273,
+sayingforenzymeactivity.DilutionofPCpromotes asaconsequenceofitsfullydefineddomainar- 34949(1998).
+25. Y.Tang,C.Y.Kim,I.I.Mathews,D.E.Cane,C.Khosla,
+equilibration among monomers, dimers, and tet- chitecture,PCrepresentsaparadigmforunder-
+Proc.Natl.Acad.Sci.U.S.A.103,11124(2006).
+ramers(23)andallowsamixedheterotetramerpop- standinginterdomainarrangementandallosteric
+26. J.J.Cazzulo,A.O.Stoppani,Arch.Biochem.Biophys.
+ulation to reassociate. The mixed population of regulationinmultifunctionalenzymes. 127,563(1968).
+heterotetramersexhibited20%wild-typeactivity 27. A.Chapman-Smith,G.W.Booker,P.R.Clements,
+(tableS3),nearlyfivetimesasmuchasthatob- ReferencesandNotes J.C.Wallace,D.B.Keech,Biochem.J.276,759(1991).
+28. M.S.deQueiroz,G.L.Waldrop,J.Theor.Biol.246,167
+servedwitheithermutanthomotetramerandnear 1. F.M.Raushel,J.B.Thoden,H.M.Holden,Acc.Chem.
+(2007).
+Res.36,539(2003).
+tothemaximumpredictedactivityof26%(fig.S4). 29. L.A.Fahien,J.W.Davis,J.Laboy,J.Biol.Chem.268,
+2. R.N.Perham,Annu.Rev.Biochem.69,961(2000).
+Therecoveryofactivityonreassociationispossible 17935(1993).
+3. S.Jitrapakdee,J.C.Wallace,Curr.ProteinPept.Sci.4,
+onlyifthehybridtetramersrecombinetorestorea 217(2003). 30. Y.Kazuta,E.Tokunaga,E.Aramaki,H.Kondo,FEBSLett.
+427,377(1998).
+functionalpairofneighboringactivesites,capable 4. L.Tong,Cell.Mol.LifeSci.62,1784(2005).
+31. ThisworkwassupportedbygrantstoW.W.C.,J.C.W.,and
+of transferring the tethered carboxybiotin interme- 5. S.Jitrapakdee,A.Vidal-Puig,J.C.Wallace,Cell.Mol.Life P.V.A.fromNIH(GM070455)andtoI.R.fromNIH
+Sci.63,843(2006).
+diatebetweentwoopposingchains.Thetransferof (AR35186).M.St.M.wassupportedinpartbyafellowship
+6. S.Kondoetal.,ActaCrystallogr.D60,486(2004).
+a carboxybiotin intermediate between active sites 7. P.R.Halletal.,EMBOJ.23,3621(2004). fromtheNaturalScienceandEngineeringResearch
+CouncilofCanada.UseoftheStructuralBiologyBM19
+onseparatepolypeptidechainsisapreviouslyun- 8. E.L.Robertsetal.,Biochemistry38,5045(1999).
+beamlineArgonneNationalLaboratoryAdvancedPhoton
+recognizedfeatureofPCcatalysis.Severalmulti- 9. R.Studeretal.,J.Mol.Biol.367,547(2007). SourcewassupportedbytheU.S.DepartmentofEnergy, 10. P.V.Attwood,J.C.Wallace,Acc.Chem.Res.35,113
+functionalenzymeshavesimilarlybeenshownto OfficeofEnergyResearch,undercontractnumberW-31-
+(2002).
+transfertheirtetheredintermediatesbetweenac- 11. Materialsandmethodsareavailableassupporting 109-ENG-38.WethankM.DunnforprovidingtheR.etli
+tivesitesonopposingpolypeptidechains(24,25), materialonScienceOnline. PCclone;V.Klenchinforhelpfuldiscussionsandcritical
+readingofthemanuscript;J.B.ThodenandH.M.Holden
+suggestingthatintermolecularintermediatetrans- 12. M.Y.Galperin,E.V.Koonin,ProteinSci.6,2639(1997).
+forpreliminarycrystallographytrials;A.Netting
+13. J.B.Thoden,C.Z.Blanchard,H.M.Holden,G.L.
+ferisacommonandessentialfeatureofcatalysis. (AdelaideMicroscopy)fortechnicalassistancewithmetal- Waldrop,J.Biol.Chem.275,16183(2000).
+Ethyl-CoA is bound to only one monomer 14. J.B.Thoden,G.Wesenberg,F.M.Raushel,H.M.Holden, ionanalysis;andA.Steinbergforhisassistancein generatingtheillustrations.Coordinatesandstructure
+oftheRePCasymmetricdimer,permittingadi- Biochemistry38,2347(1999).
+factorshavebeendepositedintheProteinDataBank
+rectcomparisonoftheconsequencesofactivator 15. J.B.Thoden,S.Firestine,A.Nixon,S.J.Benkovic,
+(www.rcsb.org)withtheaccessionnumber2QF7.
+H.M.Holden,Biochemistry39,8791(2000).
+bindingondomainarrangementandorientation.
+Asuperpositionofthetwomonomersrevealsa 16. J.Yong-Biao,M.N.Islam,S.Sueda,H.Kondo, SupportingOnlineMaterial
+Biochemistry43,5912(2004).
+www.sciencemag.org/cgi/content/full/317/5841/1076/DC1
+40°rotation anda translocation of nearly 40Å 17. S.Jitrapakdee,J.C.Wallace,Biochem.J.340,1
+MaterialsandMethods
+intheBCactivesite,centeredattheethyl-CoA (1999). SOMText
+bindingsiteoftheallostericdomain(Fig.4).In 18. F.Dyda,D.C.Klein,A.B.Hickman,Annu.Rev.Biophys. Figs.S1toS4
+Biomol.Struct.29,81(2000).
+thetetramer,ethyl-CoAisboundtobothmono- TablesS1toS4
+19. E.Krissinel,K.Henrick,ActaCrystallogr.D60,2256
+References
+mers on the top face, and the BC active site is (2004).
+positioned ~65 Å from its opposing CTactive- 20. P.G.Peters-Wendisch,V.F.Wendisch,S.Paul, 1May2007;accepted5July2007
+site pair (Fig. 3B). On the bottom face of the B.J.Eikmanns,H.Sahm,Microbiology143,1095(1997). 10.1126/science.1144504
+tetramer,ethyl-CoAisunbound,andthedistance
+between the opposing active-site pairs increases
+to~80Å(Fig.3C).TherotationintheBCdo- When Fear Is Near:
+maininhibitsacetyl-CoAbindingonthebottom
+faceofthetetramer.Thus,onlytwobindingsites –
+Threat Imminence Elicits Prefrontal
+are available per tetramer, which is consistent
+with the Hill coefficient observed for yeast PC
+(26) and with the observation that only 50% of Periaqueductal Gray Shifts in Humans
+acetyl-CoA binding sites are occupied in yeast
+PC(27).Thestructuresuggeststhatacetyl-CoA
+activatesPCbydecreasingthedistancebetween DeanMobbs,*Predrag Petrovic, Jennifer L. Marchant, Demis Hassabis, NikolausWeiskopf,
+neighboringactivesites.Whiletheactive-sitepairs BenSeymour,Raymond J. Dolan,Christopher D.Frith
+onthetopfaceofthetetramerarepushedcloser
+together,theactive-sitepairsonthebottomface Humans,likeotheranimals,altertheirbehaviordependingonwhetherathreatiscloseordistant.We
+arepulledfartherapart.Thisisarareexampleof investigatedspatialimminenceofthreatbydevelopinganactiveavoidanceparadigminwhich
+allosteric activation paired with negative coop- volunteerswerepursuedthroughamazebyavirtualpredatorendowedwithanabilitytochase,
+erativity and implies that half of the active-site capture,andinflictpain.Usingfunctionalmagneticresonanceimaging,wefoundthatasthevirtual
+pairsaremoreactivethantheothers.Recentki- predatorgrewcloser,brainactivityshiftedfromtheventromedialprefrontalcortextothe
+netic studies and numerical simulations support periaqueductalgray.Thisshiftshowedmaximalexpressionwhenahighdegreeofpainwasanticipated.
+half-sites reactivity for the BC subunit of ACC Moreover,imminence-drivenperiaqueductalgrayactivitycorrelatedwithincreasedsubjectivedegreeof
+(28),suggestingthatthismechanismisconserved dreadanddecreasedconfidenceofescape.Ourfindingscastlightontheneuraldynamicsofthreat
+among enzymes of the biotin-dependent family. anticipationandhaveimplicationsfortheneurobiologyofhumananxiety-relateddisorders.
+Suchhalf-sitesreactivitymaypermitPCtoaffect
+efficient catalysis while maintaining its in vivo Critical to an organism’s survival is the fensive switching is the “predatory imminence
+associationwithothermetabolicenzymes(29). abilitytoswitchflexiblybetweendefen- continuum”wheredistinctthreatstatesarecon-
+The allosteric binding site in PC offers a sive states in response to threat. Within figuredaccordingtowhetherapredatorisdistal
+targetformodifiersofactivitythatmaybeuseful behavioral ecology, a key component of de- or proximal to the prey (1–5). This continuum
+www.sciencemag.org SCIENCE VOL317 24 AUGUST2007 1079
+7002
+,32
+tsuguA
+no
+gro.gamecneics.www
+morf
+dedaolnwoD
+
+--- PAGE 3 ---
+REPORTS
+encompassesthreecorestages:“pre-encounter,” structures control fast reflexive behaviors (e.g., toavoida“virtualpredator”thathadthecapacity
+wherethereisriskintheabsenceofimmediate fight, flight, or freeze) as well as fear-induced tochase,capture,andcausepainofhigh(three
+danger; “post-encounter,” where the threat is analgesia.Theparallelneuraldynamicsofthreat shocks:AIpredator)orlow(oneshock:AIpredator)
+high low
+detected;and“circa-strike,”definedasdistalor inhumanshaveyettobeidentified. intensity(Fig.1).
+proximalinteractionwiththethreatstimulus(2). We hypothesized that brain activity asso- Avoidancetimeinthemazewassignificantly
+Thesestages,relatingtothedistancefroma ciatedwiththreatdetectionanddistalandproximal longer for AIpredator (mean ± SD: 24.2 ± 1.6 s)
+high
+threat,areassociatedwithdistinctpatternsofac- distancetothreatinhumanswouldmirrorthose relative to AIpredator(19.4 ± 2.0 s) on escaped
+low
+tivity at the neurobiological level (6–8). For derivedfromdefensesystemsmodelsdeveloped conditions(t =–9.59,P<0.0005),suggesting
+13
+example, distal threat elicits activity in the inrodents.Wetestedapredictionthatdetection thatplayersweremoremotivatedtoescapethe
+prefrontal cortices, which possibly reflects the of distal threat would elicit activity in brain re- AIpredator. Speed, defined as number of squares
+high
+complex planning of avoidance strategies. As gionsassociatedwithvalue-basedandcomplex per second, was significantly different between
+threat becomes proximal, midbrain structures decision making, such as the anterior cingulate the first half and second half of the conditions
+suchastheperiaqueductalgray(PAG)dominate and ventromedial prefrontal cortex (vmPFC), (AIpredatort =–5.86,P<0.0005;AIpredatort =
+high 13 low 13
+(3,6).Thisshifttophylogeneticallyoldermid- whereasproximalthreatwouldengagelow-level –5.984, P < 0.0005). However, no significant
+brain regions has adaptive value because these midbrainregions implicatedin reflexiveescape differencewasfoundforspeedbetweentheprox-
+behavior(i.e.,PAG).Totestthismodel,weused imal AIpredator and AIpredator (t = –2.94, P <
+high low 13
+high-resolution functional magnetic resonance 0.773) conditions. A trend toward significance
+WellcomeTrustCentreforNeuroimaging,FunctionalImaging
+imaging(fMRI)toexaminebrainactivityin14 wasevidentforthenumberoftimesthesubjects
+Laboratory,UniversityCollegeLondon,LondonWC1N3BG,
+UK. healthysubjectswhiletheyperformedanactive were captured in the AI h p i r g e h dator (62.5 ± 15.9%)
+“escape-pain” task within a two-dimensional versus theAIpredator condition (67.0 ±16.4%;
+*To whom correspondence should be addressed. E-mail: low
+d.mobbs@fil.ion.ucl.ac.uk maze.Theparadigminvolvedthesubjecttrying t 13 =–1.5,P<0.14).Togethertheseresultssug-
+Fig. 1. The virtual predator and prey paradigm. Subjects were presented cue phase, subjects were passive and unable to move the blue triangle
+with a two-dimensional maze containing a 9 × 13 rectangle grid of walls situated in the upper right corner of the maze. The “chase phase” began
+(black squares) and paths (white squares). All experimental conditions withtheAI ceasingtoflashandthesubjectmovingthebluetriangle
+predator
+commenced with a “neutral phase” where a preprogrammed artificially to (E) escape the AIpredator, (F) mimic the movements of the triangle in a
+low
+intelligent(AI)graycircle(AI )appearedattheleft-bottomsideofthe replayofapreviousexperimentalcondition,or(G)escapetheAIpredator.(H)
+neutral high
+maze (A). The AI was presented on average for 6 s (jitter ± 2 s) and Afterescapeorcapture,arestperiodwaspresentedbeforetheonsetofthe
+neutral
+programmed to wander the maze indiscriminately. After this, the “cue nexttrial.Toensurethatsubjectswouldnotanticipatetheendofthechase,
+phase”commencedwiththeAI changedintoapredator(AI )ora werandomlyvariedthetimeeachAI encounterwasplayed(e.g.,16,
+neutral predator predator
+yokedcontrolcondition.ThechangefromAI toAI wassignaled 20,24, 28,32s). Thesubjectswere not informedthat the lengthof trials
+neutral predator
+bythecircleflashingbetweenredandgray.TheflashingAI appeared variedorgivenanyindicationofhowmuchtimetheyhadoneachtrial.To
+predator
+for2s,andduringthistimeitwanderedthemazeindiscriminately.Directly enhancethefeelingsofspatialdistance,mazeswereintentionallydesigned
+after this, subjects were also informed for 2 s of the amount of cutaneous sothatchaseswerelongunimpededrunswithnodead-ends.Eachblockwas
+electrical shock they would receive if the AI captured them: (B) one interleavedwith8,10,or12sofblackscreen.Furtherdetailscanbefound
+predator
+shock (AIpredator), (C) no shock, or (D) three shocks (AIpredator). During the inthesupportingonlinematerial.
+low high
+1080 24AUGUST 2007 VOL317 SCIENCE www.sciencemag.org
+7002
+,32
+tsuguA
+no
+gro.gamecneics.www
+morf
+dedaolnwoD
+
+--- PAGE 4 ---
+REPORTS
+gest that subjects were more efficient in move- For the “chase phase,” we first collapsed was associated with increased activity in the
+ment planning and execution when escaping activityacrossallAI blocks(i.e.,AIpredator vmPFC, including the subgenual ACC, for
+predator high
+theAIpredator. andAIpredatorconditions)andcomparedthemto bothAIpredator(–8,35,–13;Z=3.66;Fig.3A)
+high low high
+For the analysis of brain activity, we first theyokedblocks.FortheAI condition,we and AIpredator (–10, 38, –11; Z = 3.93; Fig.
+predator low
+examinedtheevokedbloodoxygenationlevel– found increased activity that peaked in the 3B) conditions. Proximal threat was asso-
+dependent(BOLD)responsestothe2-scuethat cerebellum(–5,–63,–13;Z=5.48)butextended ciated with increased activity in the PAG for
+indicated participants would encounter the acrosstheentirePAG(right:3,–25,–7;Z=4.87; both AIpredator (left: –3, –33, –15; Z = 3.58;
+high
+AI (Fig.1AandtableS1)ascomparedto left:–2,–28,–8;Z=4.94)andposteriorthalamus right: 8, –32, –21; Z = 3.73; Fig. 3C) and
+predator
+the yoked control cue (Fig. 1C). We found includingthepulvinar(3,–22,11;Z=4.63)(Fig. AIpredator (6, –33, –14; Z = 3.02; fig. S2)
+low
+enhanced activity in the rostral anterior cingu- 2B). A different pattern was observed for the conditions. Proximal AIpredator condition also
+high
+latecortex[rACC;MNIspacecoordinates(x,y, yokedminustheAI blocks,whereactivity elicited activity in the right dorsal amygdala
+predator
+z):–6,41,22;Z=3.85;P<0.0005]andmedial peakedinthemedialPFC(mPFC)(–5,48,17;Z= correspondingwiththecentralnucleus(CeA)/
+orbitofrontal cortex (mObfc; 6, 49, –19; Z = 5.50),extendingtotherightvmPFC(3,37,–9; bed nucleus of the stria terminalis (BNST)
+3.42; P < 0.0005), ventral anterior cingulate Z=4.63)andamygdala(22,–2,–18;Z=4.94) (32, 4, –13; Z = 4.78), whereas the distal
+cortex(vACC;13,32,–14;Z=4.56;P<0.0005 (Fig.2CandtableS2). AIpredator elicited activity in the right lateral
+high
+uncorrected),andthevmPFC(–4,39,–13;Z= We next asked whether there was a rela- amygdala corresponding to the basolateral
+3.48;P<0.0005). tionship between distal and proximal threat amygdala (BLA; 32, –4, –24; Z = 3.77). Di-
+and brain activity for the “chase phase” of rect subtraction showed that the AIpredator
+high
+AI (Fig. 3 and table S3). We used a activated the PAG to a greater extent than
+predator
+parametric regression between predator dis- didtheAIpredatorcondition(–3,–32,–15;Z=
+low
+tance andBOLD signal, excluding the period 3.33). Conversely, the AIpredator activated the
+low
+in which the shock was administered. Thus, anterior vmPFC (–1, 51, –1; Z = 3.81) and
+these effects were independent of whether BLA (31, –4, –23; Z = 4.09) to a greater ex-
+shocks were actually received. Distal threat tentthandidtheAIpredatorcondition(fig.S4).
+high
+Fig.3.fMRIresultsillustrating
+the imminence effect in the
+predator condition. For distal
+threattherewasgreateractivity
+invmPFC(horizontalview)for
+both (A) AIpredator and (B)
+AIpredatorshoc h k ig e h xpectation.(C)
+low
+For proximal threat there was
+greater activity in the PAG for
+AIpredator [left panel, sagittal
+high
+view; center panel, horizontal
+view; right panel, schematic
+depictionofthemidbrainwith
+PAGshowninorange;modified
+from (27)]. See fig. S2 for
+images of the PAG activity for
+the AIpredator imminence. See
+low
+fig. S4 for coronal viewof the
+PAGactivity.
+Fig. 2. Statistical parametric maps illustrating
+BOLDresponsestotheaversivecuesandactivation
+fortheAI conditionscollapsedacrossblocks.
+predator
+Meanactivityisshownforregionswithin4mmof
+peak.(AandB)ActivityfortheAI (redcircle)
+predator
+minustheAI (bluecircle)cuein(A)rACCand
+neutral
+(B) periaqueductal gray (PAG) activity increased
+duringallAI blocksminusyokedblocks.(C)
+predator
+ActivityintherACC/mPFCandvmPFC(tableS2)for
+yokedblocksminusAI blocks.
+predator
+www.sciencemag.org SCIENCE VOL317 24 AUGUST2007 1081
+7002
+,32
+tsuguA
+no
+gro.gamecneics.www
+morf
+dedaolnwoD
+
+--- PAGE 5 ---
+REPORTS
+If this forebrain-midbrain threat circuit is models of defensive avoidance (6, 7) and fear connectionswiththevmPFCandmObfcandis
+mediated by both geographical-temporal and (10). When threat was detected, we observed importantindeterminingthemotivationalimpor-
+psychologicaldistance,aspredictedbytheorists enhancedactivityintherACCandmObfc.The tance of the stimuli (e.g., the degree of threat),
+(4, 5), we would then expect subject-specific rACC activation encompassed the cytoarchi- whereas the CeA/BNST of the amygdala are
+differencesinpsychologicalindicesofthreatto tectonicsubdivisionsofBrodmannareas32and majorentrywaysintothePAGandareimportant
+be correlated with PAG activity. We regressed 24c,whichhaveknownconnectionstotheamyg- for controlling a repertoire of behavioral and
+post-scanreportsofdreadofbeingchasedbythe dala,mObfc,PAG,andbrainstemreticularforma- neurovegative defensive states (3, 5, 17, 19). In
+AI (9)andconfidenceofescapingcapture tion; these regions are critical to autonomic, thisframework,theBLAmaybemoreinvolvedin
+predator
+with the imminence-driven BOLD signal (Fig. visceromotor, and opioidergic functioning (11). activeresponsesintheformofguidanceorgating
+4).Subjectivescoresofdreadandconfidencedid One interpretation is that the rACC activity is ofbehavior,whereastheCeA/BNSTisinvolved
+not correlate (Pearson r = –0.016; P < 0.96), associated with the response conflict between inaversiveconditioningandreflexiveresponding
+whichsuggeststhattheytapdistincttraits. fleeing or staying (3), whereas mObfc activity throughitsdescendingconnectionstothePAG(3,6).
+Dread of capture correlated with enhanced representsthethreatvalueoftheAI (12).It Whenthreatbecameproximal,weobserved
+predator
+activityinthePAG(11,–32,–18;Z=3.14),but has been suggested that post-encounter antic- increased PAG activity. This forebrain-to-
+peakinginthevicinityofthedorsalraphenuclei ipatory anxiety promotes behavior that reduces midbrainswitchisanatomicallycredibleinlight
+(DRN;–1,–26,–19;Z=4.65),fortheAIpredator an aversive state (e.g., avoidance) and may ofdescendingconnectionsbetweenthevmPFC/
+high
+condition. A similar pattern was observed for recruit the rACC for this purpose (5, 13). The amygdalaandPAGintheprimatebrain(16,20,21).
+PAG(–5,–32,–18;Z=3.33)andDRN(0,–28, ACC markedly increases in activity with in- Electrical stimulation of the human PAG can
+–19;Z=4.29;fig.S5)activityintheAIpredator creased dread of pain (9) and supports our resultinheightenedfearandanxiety(22).Inrats,
+low
+condition (Fig. 4). Decreased dread was asso- findingsofapositivecorrelationbetweendread stimulationoftheventrolateralPAGanddorso-
+ciatedwithmedialPFCactivity(–3,48,24;Z= ratings and rACC activity when the AIpredator lateralPAGpromotespassive(e.g.,freezing)and
+high
+3.56)fortheAIpredatorconditionandventralPFC was proximal (table S4). Notably, the ACC active(e.g.,escape)coping,respectively(21,23).
+low
+activity (3, 38, –17; Z = 3.37) for the AIpredator producesglutamatergicaversiveteachingsignals The PAG is further divisible along the rostral-
+high
+condition(tableS4).Likewise,decreasedconfi- (14)thatmayregulateavoidancebehaviors(15). caudal axis, implicated in flight and fight (21).
+dence of escape was associated with increased As hypothesized, distal threat elicited in- Althoughthefunctionalterritoriesofthehuman
+activityinthePAGforboththeAIpredator(2,–29, creased vmPFC activityduring the chase phase. PAG are difficult to dissociate and should be high
+–19;Z=3.19),andAIpredator(–3,–37,–20;Z= It might be argued that this prefrontal activity interpreted with caution, our study shows that
+low
+2.63) conditions. Increased confidence of es- represents processes where different alternative boththeventralanddorsalportionsofthePAG
+cape was associated with increased activity in goal-directedbehaviorsarecomparedinorderto were active during the AIpredator condition.
+high
+thevmPFCforbothconditions(tableS5). choose the most effective strategy to avoid the Moreover, both the AIpredator and the AIpredator
+high high
+Ourresultsshowadynamicconfigurationof threatordistress(16–18).However,thefunctions minusAIpredatorcomparisons were activein the
+low
+threat responses that include the PAG and are of the vmPFC may also be understood by its dorsalPAG,supportingtheputativeroleofthis
+akin to what might be predicted from animal connectionstotheamygdala.TheBLAhasdirect regioninactiveavoidance(21).
+Activity in the PAG was conspicuously
+increasedduringtheAIpredatorconditionandfor
+high
+participantswithincreaseddreadanddecreased
+confidence of escape. Previous studies have
+shownthatthisforebrain-midbraincircuitisab-
+normalinpanicandchronicanxietypatientswho
+showdecreasedvmPFCbutincreasedgraymat-
+tervolumeandactivityinthemidbrainencom-
+passing the PAG (24, 25). Intriguingly, the
+infralimbicvmPFCinhibitsstress-inducedneural
+activityintherodentbrainstemandisimportant
+in facilitating escape and extinction learning
+(18,26).NotealsothatthevmPFCandmObfc
+project directly into the dorsolateral PAG (17).
+Ourresultsthereforesupportthehypothesisthat
+the PAG is critical during immediate proximal
+threat, yet may be suppressed or promoted by
+higherprefrontalregions(16–18).
+Ourobservationsconcurwiththeproposition
+of a hardwired forebrain-midbrain network,
+which includes the vmPFC at the lowest level
+ofthreatandinteractswiththemidbrainPAGas
+thethreatlevelincreases.Fromanevolutionary
+viewpoint, higher cortical systems control be-
+haviorwhenthedegreeofthreatisappraisedas
+non–life-endangeringandguidestheorganismto
+choose the most effective and resourceful
+Fig. 4. Subject-specific differences in dread of capture and confidence of escape. (A and B) strategyforinstrumentalavoidance.Atextreme
+ScatterplotsofregionsofthePAGthatcorrelatedwiththreatdistanceandincreaseddreadofbeing levelsofthreat,thePAGmayinturninhibitmore
+caughtbythe(A)AIpredatorand(B)AIpredator.(CandD)Regionsassociatedwiththreatdistanceand complex control processes when a fast and
+high low
+decreased confidence of escaping the (C) AIpredator and (D) AIpredator. Each point represents an indeedobligatoryresponseisrequired,preparing
+high low
+individual’sresponse on post-scanquestionnaire. the organism for survival and possible tissue
+1082 24AUGUST 2007 VOL317 SCIENCE www.sciencemag.org
+7002
+,32
+tsuguA
+no
+gro.gamecneics.www
+morf
+dedaolnwoD
+
+--- PAGE 6 ---
+REPORTS
+damage (3, 16–18, 21). Understanding the bal- 7. J.F.W.Deakin,F.G.Graeff,J.Psychopharmacol.5,305 22. B.S.Nashold,W.P.Wilson,D.G.Slaughter,
+ancebetweenforebrainandmidbrainresponses (1991). J.Neurosurg.30,14(1969).
+8. P.J.Lang,M.Davis,Prog.BrainRes.156,3(2006). 23. M.R.Viannaetal.,Braz.J.Med.Biol.Res.34,233
+tothreatmightilluminatethepathophysiologyof
+9. G.S.Bernsetal.,Science312,754(2006). (2001).
+neuropsychiatricdisturbances,includingchronic 10. J.M.Gorman,J.M.Kent,G.M.Sullivan,J.D.Coplan, 24. X.Protopopescuetal.,Neuroreport17,361(2006).
+anxiety and panic disorder, where brainstem Am.J.Psychiatry157,493(2000). 25. E.M.Reimanetal.,Arch.Gen.Psychiatry46,493
+involvementhaslongbeensuspected. 11. O.Devinsky,M.J.Morrell,B.A.Vogt,Brain118,279 (1989).
+(1995). 26. E.A.Phelps,M.R.Delgado,K.I.Nearing,J.E.LeDoux,
+12. P.H.Rudebeck,M.J.Buckley,M.E.Walton, Neuron43,897(2004).
+ReferencesandNotes M.F.Rushworth,Science313,1310(2006). 27. H.M.Duvernoy,TheHumanBrainStemandCerebellum
+1. R.J.Blanchard,D.C.Blanchard,inFearandDefence, 13. J.C.Hsieh,S.Stone-Elander,M.Ingvar,Neurosci.Lett. (Springer,NewYork,1995).
+P.F.Brain,R.J.Blanchard,S.Parmigiani,Eds.(Harwood 262,61(1999). 28. WethankC.HaganandU.Frithforhelpfulcomments.
+Academic,London,1990),pp.89–108. 14. J.P.Johansen,H.L.Fields,Nat.Neurosci.7,398 SupportedbyaBrainResearchTrustPrizestudentship
+2. M.S.Fanselow,L.S.Lester,inEvolutionandLearning, (2004). (D.M.)andbytheWellcomeTrust.
+R.C.Bolles,M.D.Beecher,Eds.(Erlbaum,Hillsdale, 15. K.Shima,J.Tanji,Science282,1335(1998).
+NJ,1988),pp.185–211. 16. G.Hadjipavlou,P.Dunckley,T.E.Behrens,I.Tracey,Pain
+3. M.S.Fanselow,Psychon.Bull.Rev.1,429(1994). 123,169(2006). SupportingOnlineMaterial
+4. M.G.Craske,AnxietyDisorders:PsychologicalApproaches 17. J.L.Price,J.Comp.Neurol.493,132(2005). www.sciencemag.org/cgi/content/full/317/5841/1079/DC1
+toTheoryandTreatment(Westview,Boulder,CO,1999). 18. J.Amatetal.,Nat.Neurosci.8,365(2005). MaterialsandMethods
+5. V.Rau,M.S.Fanselow,inUnderstandingTrauma: 19. F.G.Graeff,Neurosci.Biobehav.Rev.28,239 Figs.S1toS5
+IntegratingBiological,Clinical,andCulturalPerspectives (2004). TablesS1toS5
+L.J.Kirmayer,R.Lemelson,M.Barad,Eds.(Cambridge 20. N.S.Floyd,J.L.Price,A.T.Ferry,K.A.Keay,R.Bandler, References
+Univ.Press,NewYork,2007),pp.27–40. J.Comp.Neurol.422,556(2000).
+6. N.McNaughton,P.J.Corr,Neurosci.Biobehav.Rev.28, 21. R.Bandler,K.A.Keay,N.Floyd,J.Price,BrainRes.Bull. 26April2007;accepted10July2007
+285(2004). 53,95(2000). 10.1126/science.1144298
+Astrocytes Potentiate inthestratumradiatumnear(<50mmfrom)the
+stimulatingpipette.WeincludedNP-EGTAand
+Transmitter Release at Single fluo-4intherecordingpipettetoselectivelyac-
+tivatesingleastrocytesandtomonitortheirCa2+
+levels, respectively (Fig. 1A). UV-flash trains
+Hippocampal Synapses evokedastrocyteCa2+elevationsthatwerereliably
+repeated by successive stimuli [15 out of 15
+astrocytes(fig.S2)].
+Gertrudis Perea andAlfonso Araque* After the control recording of EPSCs, NP-
+EGTA–loadedastrocyteswerephoto-stimulated.
+Astrocytes playactiverolesinbrainphysiology.Theyrespondtoneurotransmitters andmodulate In 18 out of 38 neuron-astrocyte pairs [47%
+neuronal excitabilityandsynaptic function.However,theinfluenceof astrocytesonsynaptic (Fig.1D)]astrocyticCa2+elevationstransiently
+transmissionand plasticityatthesinglesynapselevelisunknown.Ca2+elevation inastrocytes (~2 min) increased the synaptic efficacy (from
+transientlyincreasedthe probabilityoftransmitter release athippocampal areaCA3-CA1 4.8±0.6pAto6.2±1.0pA;n=18;P<0.05).
+synapses, withoutaffecting theamplitudeofsynaptic events.This formofshort-term plasticity This was due to a transient enhancement of Pr
+wasduetothereleaseofglutamatefromastrocytes,aprocessthatdependedonCa2+andsoluble
+ratherthanapostsynapticmodulation(Fig.1,F
+N-ethylmaleimide–sensitivefactorattachmentproteinreceptor(SNARE)proteinandthatactivated
+andG).Indeed,althoughPrincreasedafterastro-
+metabotropic glutamatereceptors(mGluRs).Thetransient potentiationoftransmitter release cytestimulation(from0.24±0.03to0.33±0.04;
+becamepersistentwhen theastrocyticsignalwastemporallycoincident withpostsynaptic n = 18; P < 0.001), the synaptic potency was
+depolarization. ThispersistentplasticitywasmGluR-mediated butN-methyl-D-aspartate receptor– unchanged(from15.2±1.3pAto15.7±1.9pA;
+independent.Theseresultsindicatethatastrocytesareactivelyinvolvedinthetransferandstorage n = 18; P = 0.96). Moreover, the PPF index
+ofsynaptic information. changed from 0.64 ± 0.06 to 0.33 ± 0.10 after
+astrocytestimulation[(fig.S3)n=18;P<0.01],
+Recent data have demonstrated the exis- od that activates single, or very few synapses which is consistent with a presynaptic mecha-
+tenceofbidirectionalcommunicationbe- (5,6). nismofaction.Furthermore,thekineticproper-
+tween astrocytes and neurons (1). In First, we established that single synapses ties of EPSCs were unaffected (respective rise
+additiontorespondingtosynapticactivity,astro- were stimulated in our experimental model by and decay time constants before and after
+cytesreleasegliotransmitters(2),whichmodulate quantifyingthesynaptictransmissionproperties astrocytestimulationweret =1.48±0.22ms
+on
+neuronal excitability and neurotransmission (3). of the excitatory postsynaptic currents (EPSCs) and 1.45 ± 0.23 ms; P = 0.34; t = 9.80 ±
+off
+ToinvestigatetheconsequencesofastrocyteCa2+ (Fig.1).Synapticresponsesshowedfailuresand 0.94msand10.31±1.77ms;P=0.43;n=6).
+elevations on evoked synaptic transmission at successes in neurotransmitter release [probabil- Theseeffectswerereliablyevokedbysuccessive
+singlehippocampalsynapses,weperformedpaired ityofrelease(Pr)was0.34±0.02;range,0.13 astrocytestimulation(Fig.2A).
+recordingsfromCA1pyramidalneuronsandsin- to0.54;n=34];regularamplitudeofsuccessful IntheabsenceofNP-EGTAorwiththeNP-
+gle astrocytes (4). Astrocytes were loaded with responses (termed “synaptic potency”; 20.9 ± EGTA–filledpipetteplacedoutsidethecell,UV
+the Ca2+-cage o-nitrophenyl-EGTA (NP-EGTA) 1.3pA;range,8.5to37.5pA;n=34);andrel- flashesdidnotmodifysynaptictransmission(fig.
+tobeselectivelystimulatedbyultraviolet(UV)– ativelylowsynapticefficacy{i.e.,themeanam- S4),whichindicatedthattheeffectswerenotdue
+flash photolysis, while we stimulated Schaffer plitude of allresponsesincluding failures: 6.9 ± to photo-stimulation of synaptic terminals and
+collateralsusingtheminimalstimulationmeth- 0.5 pA [range, 2.8 to 10.2 pA; n = 34 (fig. thatCa2+elevationinastrocytesisnecessaryand
+S1)]}. Paired-pulse stimulation facilitated the sufficienttopotentiatethesynaptictransmission.
+secondEPSCrelativetothefirstEPSC[paired- We further analyzed whether the astrocyte-
+InstitutoCajal,ConsejoSuperiordeInvestigacionesCientíficas,
+Madrid,Spain. pulsefacilitation(PPF)indexwas0.48±0.05; inducedneuromodulationcouldalsobeevoked
+n = 20 (fig. S1)]. To stimulate astrocytes, we by stimuli that elevate astrocyte Ca2+ through
+*To whom correspondence should be addressed. E-mail:
+araque@cajal.csic.es patch-clamped single passive astrocytes located transmitter receptor activation. We used adeno-
+www.sciencemag.org SCIENCE VOL317 24 AUGUST2007 1083
+7002
+,32
+tsuguA
+no
+gro.gamecneics.www
+morf
+dedaolnwoD

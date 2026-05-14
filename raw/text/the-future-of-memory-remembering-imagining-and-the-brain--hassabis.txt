@@ -1,0 +1,1183 @@
+
+--- PAGE 1 ---
+Neuron
+Review
+The Future of Memory:
+Remembering, Imagining, and the Brain
+DanielL.Schacter,1,*DonnaRoseAddis,2DemisHassabis,3VictoriaC.Martin,2R.NathanSpreng,4andKarlK.Szpunar1
+1DepartmentofPsychology,HarvardUniversity,Cambridge,MA02138,USA
+2SchoolofPsychologyandCentreforBrainResearch,TheUniversityofAuckland,Auckland1142,NewZealand
+3GatsbyComputationalNeuroscienceUnit,UniversityCollegeLondon,LondonWC1N3AR,UK
+4LaboratoryofBrainandCognition,DepartmentofHumanDevelopment,CornellUniversity,Ithaca,NY14853,USA
+*Correspondence:dls@wjh.harvard.edu
+http://dx.doi.org/10.1016/j.neuron.2012.11.001
+Duringthepastfewyears,therehasbeenadramaticincreaseinresearchexaminingtheroleofmemoryin
+imaginationandfuturethinking.Thisworkhasrevealedstrikingsimilaritiesbetweenrememberingthepast
+and imagining or simulating the future, including the finding that a common brain network underlies both
+memoryandimagination.Here,wediscussanumberofkeypointsthathaveemergedduringrecentyears,
+focusinginparticularontheimportanceofdistinguishingbetweentemporalandnontemporalfactorsinanal-
+ysesofmemoryandimagination,thenatureofdifferencesbetweenrememberingthepastandimaginingthe
+future, the identification of component processes that comprise the default network supporting memory-
+based simulations, and the finding that this network can couple flexibly with other networks to support
+complexgoal-directedsimulations.Thisgrowingareaofresearchhasbroadenedourconceptionofmemory
+byhighlightingthemanywaysinwhichmemorysupportsadaptivefunctioning.
+Introduction 2007a, 2007b; Schacter et al., 2007a). At the close of 2007,
+During the past century, memory research has focused on Scienceincludedtheaforementionedneuroimagingandneuro-
+avarietyofkeyissuesandtopicsthatcanbesaidtoconstitute psychological studies of memory and imagination on their list
+theconceptualcoreofthefield.Accordingtoarecentvolume of the top ten discoveries of the year (Science, 21 December,
+devotedtodelineatingcoreconceptsinmemoryresearch(Roe- 2007,pp.1848–1849).
+diger et al., 2007), they include encoding, consolidation, Althoughresearchconcerningtheroleofmemoryinimagina-
+retrieval, forgetting, plasticity, transfer, context, and memory tionandfuturethinkingseemedtoburstonthescientificscenein
+systems,amongothers.In2007,severalarticlesappearedthat 2007,avarietyofearlierarticleshadinfactalreadylaidsomeof
+examinedatopic—theroleofmemoryinimaginationandfuture theconceptualandempiricalfoundationsforthiswork.Evidence
+thinking—thatwasnowheretobefoundinthecomprehensive thatamnesicpatientshaveproblemsimaginingthefuturewas
+volume published by Roediger et al. during that same year. first reported byTulving (1985) and later byKlein et al.(2002).
+Twoofthesearticlescombinedfunctionalmagneticresonance In a positron emission tomography (PET) study, Okuda et al.
+imaging(fMRI)withnovelbehavioralmethodstorevealstriking (2003)askedparticipantstothinkaboutpastandfutureevents,
+overlapinthebrainactivityassociatedwithrememberingactual and observed considerable overlap in the activated brain
+past experiences and imagining or simulating possible future regions. Similarities between remembering past events and
+experiences(Addisetal.,2007;Szpunaretal.,2007).Compa- imagining future eventshad also been documented in a study
+rablelevelsofactivitywereobservedduringbothremembering ofdepressedpatients(Williamsetal.,1996)aswellasinbehav-
+andimagininginregionsincludingmedialtemporalandfrontal ioralstudiesofhealthyindividuals(e.g.,D’ArgembeauandVan
+lobes, posterior cingulate and retrosplenial cortex, and lateral derLinden,2004,2006;SprengandLevine,2006;Suddendorf
+parietalandtemporalareas. andBusby,2005),andwereexploredinexperimentsthatinves-
+Thesestudiessuggestedthatacommon‘‘core’’networkthat tigatedwhethernon-humananimalscanprojectintothepastor
+includestheabove-mentionedregions,commonlyreferredtoas future (e.g., Clayton and Dickinson, 1998; Emery and Clayton,
+the default network (e.g., Raichle et al., 2001), underlies both 2001). Social psychologists had published studies concerning
+remembering and imagining (Buckner and Carroll, 2007; the role of mental simulations in predicting future experiences
+Schacter et al., 2007a). In a related vein, an investigation of andtheroleofmemoryinguidingsuchsimulations(e.g.,More-
+amnesicpatientswithhippocampaldamagerevealedsignificant wedge etal.,2005). Moreover, severalreviewpapers had dis-
+impairmentswhenthesepatientswereaskedtoimaginenovel cussedrelevanttheoreticalandconceptualissues(Atanceand
+experiences (Hassabis et al., 2007b). These empirical studies O’Neill, 2001, 2005; Clayton et al., 2003; Ingvar, 1979, 1985;
+were accompanied by review and theoretical papers that Suddendorf and Corballis, 1997; Tulving, 1985, 2002a, 2002b,
+emphasizedthelinksamongrememberingthepast,imagining 2005; Wheeler et al., 1997). Building on these foundational
+the future, and engaging in related forms of mental simulation studies and analyses, the papers published in 2007 served to
+(Bar, 2007; Buckner and Carroll, 2007; Gilbert and Wilson, galvanize scientific interest in the relations between remem-
+2007; Hassabis and Maguire, 2007; Schacter and Addis, bering the past and imagining the future, as evidenced by the
+Neuron76,November21,2012ª2012ElsevierInc. 677
+
+--- PAGE 2 ---
+Neuron
+Review
+rapidlygrowingnumberofpapersonthetopicthathavebeen andfuturereflectsacapacityfor‘‘mentaltimetravel’’(Sudden-
+publishedsince. dorf and Corballis, 1997, 2007; Tulving, 1983, 2002a, 2005).
+Themainpurposeofthepresentarticleistoreviewsomeof However, as noted by Addis et al. (2009a), the distinction
+the progress that has been made since 2007 (our review will between‘‘pastevents’’and‘‘futureevents’’inthesestudiesis
+focusexclusivelyonstudieswithhumansubjects,butrelevant confounded with the distinction between ‘‘remembering’’ and
+recentworkhasalsobeenconductedwithnonhumananimals; ‘‘imagining.’’Whilerememberedeventsmustrefertothepast,
+forreviews,seeChekeandClayton,2010;Crystal,2012;Rob- activityattributedto‘‘futureevents’’couldjustaswellbeattrib-
+erts,2012;vanderMeeretal.,2012).Specifically,wehaveorga- utedto‘‘imaginedevents,’’irrespectiveofwhetherthoseevents
+nized the literature with respect to four key points that have refertothe future,thepast, orthepresent (HassabisandMa-
+emergedfromresearchreportedduringthepastfiveyears:(1) guire,2009).Theseconsiderationsraisethequestionofwhether
+itisimportanttodistinguishbetweentemporalandnontemporal experimentsthatexaminetherelationbetweenrememberingthe
+factors when conceptualizing processes involved in remem- past and imagining the future specifically inform our under-
+beringthepastandimaginingthefuture;(2)despiteimpressive standingoftherelationbetweenpastandfuture,asclaimedin
+similarities between remembering the past and imagining the theaforementionedstudies,orwhethertheybearonourunder-
+future, theoretically important differences have also emerged; standingoftherelationbetweenmemoryandimagination,irre-
+(3)thecomponentprocessesthatcomprisethedefaultnetwork spectiveoftheinvolvementofmentaltimetravel.
+supportingmemory-basedsimulationsarebeginningtobeiden- EvidenceforaNontemporalPerspective
+tified;and(4)thisnetworkcancoupleflexiblywithothernetworks Severalkindsofobservationsfavoranontemporalperspective.
+tosupportcomplexgoal-directedsimulations.Wewillconclude Forexample,BucknerandCarroll(2007)pointedoutthatactiva-
+byconsideringbrieflyseveralotheremergingpointsthatwillbe tionofdefaultnetworkregionsisobservednotonlywhenindivid-
+importanttoexpandoninfutureresearch. ualsrememberthepastandimaginethefuture,butalsowhen
+Notethatalthoughthefocusofourreviewwillbetoelucidate they engage in related forms of mental simulation that involve
+recent advances in understanding the neural mechanisms of takingtheperspectiveofothers(withoutanexplicitrequirement
+memory-basedsimulations,numerouspurelybehavioralstudies for mental time travel), and also during spatial navigation (see
+havealsoshedlightonthetopicandwewillconsiderthosedata Sprengetal.,2009).Similarly,Hassabisetal.(2007a)reported
+where appropriate. Throughout the review, we will use the activation of several default network regions in an fMRI study
+conceptsofimaginationor‘‘imaginingthefuture’’andsimulation inwhichparticipantswereinstructedtoimaginenovelscenes,
+or‘‘simulatingthefuture’’inaroughlyinterchangeablemanner. without a specific requirement for mental time travel into the
+Schacter et al. (2008; p. 42), following Taylor and Schneider future. Hassabis et al. (2007b) reported deficits on the same
+(1989), defined future simulations as imaginative constructions task in amnesic patients with medial temporal lobe damage,
+ofhypotheticaleventsorscenarios,andwewilladoptthisusage and Romero and Moscovitch (2012) have recently reported
+inthepresentreview.Further,mostofthereviewwillfocusonthe that such patients exhibit deficits on a related task involving
+contributions of episodic memory—memory for specific constructionofanoveleventfromwordcues,withoutanexplicit
+happeningsinone’spersonalpast(Tulving,1983,2002a)—but requirement for mental time travel. Addis et al. (2009a) found
+we will conclude by discussing the contribution of semantic nearlyidenticalpatternsofdefaultnetworkactivitywhenindivid-
+memory (i.e., general knowledge) to imagination and future ualswereaskedtoimagineeventsthatmightoccurinthefuture
+thinking. ormighthaveoccurredinthepast(seeFigure1),suggestingthat
+previous observations of default network activity during imag-
+UnderstandingtheRelationbetweenRememberingthe iningthefuturearenotspecificallyassociatedwiththeprospec-
+PastandImaginingtheFutureRequiresDistinguishing tivecomponentsofthetask.
+betweenTemporalandNontemporalFactors de Vito et al. (2012a) reported behavioral evidence favoring
+Asnotedearlier,oneofthefindingsresponsiblefortheupsurge anontemporalperspective.Theyaskedparticipantstoimagine
+of interest in the relation between remembering the past and themselves carrying out specific future activities in familiar or
+imagining the future comes from functional neuroimaging unfamiliarsettingsortoimaginethemselvescarryingoutactivi-
+studies that revealed activation of a common brain network ties in familiar settings with no reference to a particular time.
+during these two forms of mental activity. On the basis of this Participantsdescribedeachimaginedepisode,andtheexperi-
+observation, Okuda et al. (2003) concluded that ‘‘thinking of mentersrecordedandlatertranscribedtheseprotocols.Partic-
+thefutureiscloselyrelatedtoretrospectivememory’’(p.1369); ipants provided subjective ratings concerning the clarity and
+Addisetal.(2007,p.1363)statedthat‘‘thisstrikingneuralover- vividnessoftheimaginedepisodes,andtheexperimentersper-
+lap.confirmsthattheepisodicsystemcontributesimportantly formedobjectiveratingsconcerningtheamountofdetailrepre-
+to imagining the future’’; and Szpunar et al. (2007, p.642) sented in the protocols that participants provided. To accom-
+observed that ‘‘our results offer insight into the fundamental plish this latter objective, the experimenters used a scoring
+andlittle-studied capacityofvividmentalprojection ofoneself procedure known as the Autobiographical Interview (Levine
+inthefuture.’’ et al., 2002) that distinguishes between ‘‘internal’’ or episodic
+These conclusions seem straightforward enough given that details present in a protocol (e.g., details concerning people,
+overlapinbrainactivitywasobservedwhenpeopleremembered locations,andactions)and‘‘external’’orsemanticdetails(e.g.,
+pasteventsorimaginedfutureevents.Andthoseconclusionsfit factsandevaluativecomments).Participants’subjectiveratings
+nicelywiththeideathattheabilitytoprojectoneselfintothepast revealed greater vividness for future episodes that were
+678 Neuron76,November21,2012ª2012ElsevierInc.
+
+--- PAGE 3 ---
+Neuron
+Review
+Figure1. ASubsystemofBrainRegionsIs
+MoreActiveWhenParticipantsImagine
+EventsinEitherthePastorFuture,Relative
+toWhenTheyRememberRealPastEvents
+orCompleteaControlTask
+Theregionsinwhichactivationisassociatedwith
+thepastandfutureimaginetasks(warmcolors)or
+control and past-recall tasks (cool colors) are
+shown8–10saftertrialonset,superimposedover
+a standard MRI template at a threshold of p <
+0.001. The line graph illustrates the weighted
+averageofactivationacrossallvoxelsassociated
+withaparticularconditionacrossthelengthofthe
+experimental tasks. Adapted from Addis et al.
+(2009a).
+imaginedinfamiliarsettingsthaninunfamiliarsettings,thereby conditions differed in other ways (e.g., greater use of mental
+replicating earlier results (Arnold et al., 2011a; Szpunar and imageryinthefutureselfcondition).
+McDermott,2008),andobjectivedatafromtheAutobiographical AnotherrecentfMRIstudyexaminedtheneuralbasisofchron-
+Interviewshowedsignificantlymoreinternaldetailsforepisodes esthesia,orthecapacitytobeawareofsubjectivetime(Tulving,
+imaginedinfamiliarthanunfamiliarsettings.Bycontrast,there 2002b; for related ideas, see Dalla Barba and Boisse´, 2010;
+were no differences between future episodes and atemporal Szpunar, 2011). Chronesthesia is invoked whenever people
+episodes on either the subjective or objective measures. A rememberthepastorimaginethefuture,butisolatingthecogni-
+second experiment revealed that imagined future events that tive processes or brain regions associated with chronesthesia
+arerelevanttotheselfwereassociatedwithastrongersubjec- requires an experimental design that controls for nontemporal
+tive‘‘feeling of experiencing’’thanimagined futureeventsthat cognitive activities. That is, an appropriate experimental para-
+werenotrelevanttotheselfandthatself-relevanteventscon- digm should contrast tasks that involve chronesthesia (e.g.,
+tained more internal details than self-irrelevant episodes. But rememberingthepast,imaginingthefuture)withataskthatis
+future self-relevant and atemporal self-relevant events did not matchedtothepastandfuturetasksonnontemporalfeatures,
+differoneitherofthesemeasures.Thus,therewasnoevidence suchasimaginingoneselfinteractingwithpeopleandlocations,
+fordifferencesbetweenfutureandatemporaleventsonsubjec- withoutrequiring‘‘movement’’insubjectivetime.Nybergetal.
+tiveandobjectivemeasuresthatweresensitiveenoughtoreveal (2010) scanned participants using fMRI during experimental
+differencesbetweenfamiliarversusunfamiliarsettingsandself- tasks that, they contended, require chronesthesia—remem-
+relevantversusself-irrelevantevents. bering a recent short walk along a familiar route or imagining
+EvidenceforaTemporalPerspective a future short walk along the same route. Brain activity during
+Theforegoingresultsareconsistentwiththeideathatfutureand thesetaskswascomparedwithactivityduringamatchedtask
+atemporalimaginedeventsarerepresentedsimilarly,butother that,accordingtotheauthors,doesnotrequirechronesthesia:
+recent data indicate differences between temporal and atem- participantswereinstructedtotakeamentalwalkthroughthe
+poral imagined scenarios. For example, de Vito et al. (2012b) samerouteinthepresentmoment,withoutanythoughtsabout
+report that patients with Parkinson’s disease exhibit deficits specific personal past orfuture happenings. Participants were
+when asked to imagine future events, but perform normally given extensive training in performing the key tasks and the
+when asked to imagine atemporal scenarios. Rendell et al. authors tried to equate the tasks for mental contents—they
+(2012),usingataskbasedonpreviousworkbyHassabisetal. tookplaceinthesamesettinganddidnotinvolveinteractions
+(2007a,2007b),foundthatolderadultsexhibiteddeficitswhen withotherpeople—inanattempttoisolatebrainactivityassoci-
+imagining future and atemporal scenarios compared with ated with chronesthesia by contrasting the remembering and
+younger adults, but showed a significantly greater impairment imaginingtaskswiththementalwalktask.Nybergetal.(2010)
+for the future than the atemporal scenarios. Klein et al. (2010) reported that left lateral parietal cortex, as well as left frontal
+demonstrated that encoding of new information benefits from cortex, cerebellum, and thalamus were preferentially engaged
+creatingimaginedscenariosthatinvolveplanningforthefuture, asparticipantsthoughtabouttakingwalksinthepastorfuture
+but the same encoding benefit is not observed when people as compared to taking the same walk in the present moment.
+encode information by calling up past scenarios or imagining By contrast, many default network regions that had shown
+atemporal scenarios. Andrews-Hanna et al. (2010b) reported increased activity during remembering the past and imagining
+fMRI evidence that distinct regions within the default network thefutureinpreviousstudies(e.g.,medialtemporallobe,medial
+were associated with imagining future scenarios involving prefrontalcortex,retrosplenialcortex)didnotshowpreferential
+oneselfversusreflectingaboutoneselfinthepresent.However, activation when thinking about taking walks in the past and
+it is not clear that this contrast specifically isolated temporal future tasks as compared with the present moment. Although
+factors,becauseasnotedbytheauthors,thefutureandpresent interpretationofthesefindingsdependscriticallyontheextent
+Neuron76,November21,2012ª2012ElsevierInc. 679
+
+--- PAGE 4 ---
+Neuron
+Review
+towhichthetraininggiventoparticipantsindeedallowedthemto participants report frequent thoughts about past and future
+remaininthepresentmomentduringthementalwalktask,they events during rest blocks (Andreasen et al., 1995; Andrews-
+suggestthatonlysomeregionsarespecificallyrelatedtochron- Hannaetal.,2010a;Stawarczyketal.,2011).
+esthesia or mental time travel (for related evidence, see Arzy Consistentwiththefindingthatbothrememberingandimag-
+etal.,2008,2009). ining are associated with activity in the default network, many
+Furtherhighlightingapossiblerolefortemporalfactors,recent studieshavedemonstratedthatthecognitiveprocessesassoci-
+behavioral studies have revealed individual differences in the ated with memory and simulation show commonalities. For
+feeling of experiencing simulations of future events (Arnold example,D’ArgembeauandVanderLinden(2004;seealsoAr-
+et al., 2011b; D’Argembeau et al., 2010a; Quoidbach et al., noldetal.,2011a;D’Argembeauetal.,2011;TropeandLiber-
+2008)alongwithasymmetriesinthewaythatpeoplethinkabout man,2003)reportedthatpositiveeventswereassociatedwith
+thepastandthefuture.Forinstance,VanBovenandCarusoand increasedsubjectiveratingsofre-experiencingforpastevents
+their colleagues have shown that people experience more and‘‘pre-experiencing’’forfutureevents.Theyalsofoundthat
+intenseemotionswhentheyanticipatefutureexperiencesthan temporallycloseeventsineitherthepastorthefutureincluded
+when they retrospect about past experiences, either actual or more sensory and contextual details, and greater feelings of
+hypothetical (Caruso, 2010; Caruso et al., 2008; Van Boven re-experiencing and pre-experiencing, than did temporally
+and Ashworth, 2007). Nonetheless, an in depth understanding distantevents.D’ArgembeauandVanderLinden(2006)showed
+of the brain bases of subjective experiences associated with thatindividualdifferencesinimageryabilityandemotionregula-
+mentaltimetravelawaitsfutureresearch. tion strategies have similar effects on both past and future
+Taken together with the studies considered earlier in this events, whereas D’Argembeau etal. (2012)demonstrated that
+section, we conclude that studies of remembering the past individualdifferencesintheconstructionof‘‘self-definingmemo-
+and imagining the future can potentially inform our under- ries’’—pasteventsofgreatimportancethatshapeanindividual’s
+standingoftherelationbetweenmemoryandimagination,inde- senseofidentity—aremanifestedsimilarlyintheconstructionof
+pendentoftemporalfactors(cf.,EacottandEaston,2012),but self-definingfutureprojections,i.e.,imaginedfutureeventswith
+canalsoinformourunderstandingofmentaltimetravelorchron- greatimportanceforselfandidentity.Brownetal.(2012)recently
+esthesia,whenpossibledifferencesbetweenmemoryandimag- reported that individuals who are led to believe that they can
+ination are held constant. However, distinguishing between cope effectively with stress (high ‘‘self-efficacy’’) remember
+these factors requires careful experimental designs that pasteventsandimaginefutureeventsingreaterepisodicdetail
+preciselytargetspecificprocessesofinterest.Simplecompari- thandoindividualswhoareledtobelievethattheyhavedifficul-
+sons between remembering the past and imagining the future tiescopingwithstress(lowself-efficacy).Andersonetal.(2012)
+cannot alone disentangle the contributions of temporal and showed that remembering the past and imagining the future
+non-temporalfactors. dependsimilarlyondistinctretrievalpathways,onecharacter-
+ized as ‘‘direct’’ or automatic and the other characterized as
+DespiteImpressiveSimilaritiesbetweenRemembering ‘‘controlled’’ or effortful. Spreng and Levine (2006; see also
+thePastandImaginingtheFuture,Theoretically Spreng and Levine, 2012) reported similarities in the temporal
+ImportantDifferencesAreBeginningtoEmerge distributionsofpastandfutureautobiographicaleventsprovided
+NeuralandCognitiveSimilarities:ABriefSummary by college students, middle-aged, and older adults. Several
+Asnotedearlier,neuroimagingstudieshaverevealedthatwhen studieshavefoundthatthedevelopmentaltrajectoriesofreport-
+peoplerememberthepastorimaginethefuture,similarlevelsof ing and making judgments about past and future events are
+activationareobservedinregionsincludingmedialtemporaland similar,aschildrenbecomeabletoanswerquestionsabouttheir
+frontal lobes, posterior cingulate and retrosplenial cortex, and ownpersonalpastandfuturebetweentheagesofthreeandfive
+lateral parietal and temporal areas (Addis et al., 2007, 2009a, years (Busby and Suddendorf, 2005; Hayne and Imuta, 2011;
+2011b;Botzungetal.,2008;BucknerandCarroll,2007;Okuda Hudson et al., 2011; Russell et al., 2010; Suddendorf, 2010b;
+etal.,2003;Schacteretal.,2007a;Sprengetal.,2009;Spreng forreview,seeSuddendorf,2010a).Thesefindingsarecomple-
+and Grady, 2010; Szpunar et al., 2007; Szpunar, 2010; Viard mented by a recent report indicating that some measures of
+etal.,2011).Wealsonotedthattheseregionsoverlapsubstan- functional connectivity within the default network in children
+tiallywiththedefaultnetwork(Raichleetal.,2001;forreviews, andadolescentsarerelatedtothequalitativefeaturesofmemo-
+seeBuckneretal.,2008;Andrews-Hanna,2012),whichwasfirst riesandtosomeextentfutureimaginations(Østbyetal.,2012).
+identified in neuroimaging studies on the basis of activation StudiesusingtheAutobiographicalInterviewprocedure(Lev-
+increases in the above-noted brain regions for experimental ine et al., 2002) discussed earlier have documented that older
+participantsinpassiverestconditionscomparedwiththeexper- adults produce fewer internal orepisodic details than younger
+imentalconditionsofprincipalinterestinwhichtheyperformed adults both when remembering the past and imagining the
+attention demanding or goal-directed cognitive tasks (Raichle future, along with an increased number of external details for
+etal.,2001;Shulmanetal.,1997).Givenrecentstudiesshowing both remembering and imagining (Addis et al., 2008, 2010,
+default network activity when people remember the past or 2011b; Gaesser et al., 2011; Sheldon et al., 2011; for review,
+imaginethefuture,itnowseemslikelythatduringpassiverest seeSchacteretal.,2012).Similarly,studiesofvariousneurolog-
+conditions in earlier studies, participants were engaged in ical and psychopathological populations have documented
+rememberingpastexperiencesorimaginingfutureexperiences. parallelreductionsintheepisodicspecificityofpastandfuture
+Indeed, thought-sampling experiments have revealed that events in patients with Alzheimer’s disease (Addis et al.,
+680 Neuron76,November21,2012ª2012ElsevierInc.
+
+--- PAGE 5 ---
+Neuron
+Review
+2009b), mild cognitive impairment (Gamboz et al., 2010b), sabisetal.,2007a).Sceneconstructionisthoughttobeacritical
+amnesic syndrome (Andelman et al., 2010; Hassabis et al., componentofbothmemoryandimaginationasmentalsimula-
+2007b; Klein et al., 2002; Race et al., 2011; Tulving, 1985), tions, whether of the past, future or purely fictional, because
+depression(Williamsetal.,1996),schizophrenia(D’Argembeau they are all usually framed within a spatial context (Hassabis
+et al., 2008a), autism (Lind and Bowler, 2010), and post-trau- andMaguire,2007).BucknerandCarroll(2007)contendedthat
+maticstressdisorder(Brownetal.,2011). the default network underpins ‘‘self-projection’’ processes by
+Theseconvergingfindingshaveledinvestigatorstopropose which past experiences areused toimagine perspectives and
+theoreticalideasthatemphasizethetightlinksbetweenmemory eventsbeyondthoseintheimmediateenvironment.Inaddition
+andsimulation.Forinstance,SchacterandAddis(2007a,2007b, tothedefaultnetwork’sroleinrememberingthepastandimag-
+2009)proposedtheconstructiveepisodicsimulationhypothesis, iningthefuture,theyarguedthatitservesanevenmoregeneral
+which connects work on future simulation with ‘‘constructive’’ function,extendingtodiversetasksthatrequirementalsimula-
+aspectsofmemory,suchasmemorydistortionsanderrors,by tion of alternative perspectives, such as thinking about the
+emphasizing memory’s role in simulating future events (for mentalstatesofothers(butseeRosenbaumetal.,2007).This
+related ideas, see Suddendorf and Busby, 2005; Suddendorf perspective places emphasis on attempting to understand
+andCorballis,1997).Thegeneralideathatmemoryisaconstruc- whatiscommontothevariouscapacitiesthatarelinkedtothe
+tiveprocessofintegratingbitsandpiecesofinformation,rather default network (i.e., self projection), and as noted earlier,
+thanaliteralreplayofthepast,datestothepioneeringworkof conceivesofmentaltimetravelasjustoneformofdisengaging
+Bartlett(1932),andhasbeendevelopedbyavarietyofinvestiga- fromtheimmediateenvironment.
+torswhohavedemonstratedtheoccurrenceofmemorydistor- EvidenceforDifferences
+tionsandtheorizedabouttheirbasis(e.g.,BrainerdandReyna, Akeypointforthepresentpurposesisthattheaboveviewsand
+2005;Johnsonetal.,1993;Loftus,1979,2003;Schacteretal., relatedideas(e.g.,SuddendorfandCorballis,1997,2007)have
+1998; Schacter and Slotnick, 2004). A longstanding question been formulated largely on the basis of evidence showing
+concerns whether the constructive nature of memory serves commonalities between remembering the past and imagining
+anyadaptivefunction(Bartlett,1932;Hardtetal.,2010;Howe, the future. However, it has become clear during the past few
+2011; Newman and Lindsay, 2009; Schacter, 2001; Schacter years that these impressive similarities are accompanied by
+et al., 2011). The constructive episodic simulation hypothesis importantdifferences.Somesuchdifferenceswerereportedin
+statesthatacriticalfunctionofaconstructivememorysystem the initial neuroimaging studies comparing past and future
+istomakeinformationavailableinaflexiblemannerforsimula- events. For example, Okuda et al. (2003) and Addis et al.
+tion of future events. Specifically, the hypothesis holds that (2007)bothreportedgreaterneuralactivityinfrontopolarregions
+pastandfutureeventsdrawonsimilarinformationandrelyon andthehippocampuswhenparticipantsimaginedfutureevents
+similar underlying processes, and that the episodic memory compared with remembering past events. In the Addis et al.
+systemsupportstheconstructionoffutureeventsbyextracting (2007) study, participants pressed a button when they first
+andrecombiningstoredinformationintoasimulationofanovel generatedapastorfutureeventinresponsetoawordcue(the
+event. While this adaptive function allows past information to ‘‘construction’’ phase) and then mentally elaborated on the
+be used flexibly when simulating alternative future scenarios, generated events (the ‘‘elaboration’’ phase). Increased activity
+theflexibilityofmemorymayalsoresultinvulnerabilitytoimag- forfutureeventsemergedprimarilyduringtheinitialconstruction
+ination-induced memory errors, where imaginary events are phase,butasubsequentanalysisoftheelaborationphasedata
+confusedwithactualevents(forfurtherdiscussion,seeSchacter (AddisandSchacter,2008)revealedadditionaldifferences,most
+etal.,2011;Schacter,2012).Notethattheconstructiveepisodic notably in the hippocampal region. Addis and Schacter (2008)
+simulationhypothesisdoesnotplacemuchtheoreticalemphasis analyzed the relation between neural activity and subjective
+ontemporalprocessessuchasmentaltimetravel(Suddendorf ratings that participants provided concerning the amount of
+and Corballis, 1997, 2007; Tulving, 2002a, 2002b) but instead detailcomprisingpastandfutureevents.Thisanalysisrevealed
+emphasizes processes involved in linking together distinct that activity in the left posterior hippocampus was associated
+elements of an episode, in particular relational processing withtheamountofdetailcomprisingbothpastandfutureevents,
+capacitiesthathavebeenlinkedwithhippocampalfunction(Ei- whereasleftanteriorhippocampusrespondedselectivelytothe
+chenbaum and Cohen, 2001) and that may contribute to the amountofdetailcomprisingfutureevents.
+constructionofsimulatedevents. SchacterandAddis(2007a,2009)haveattemptedtoaccom-
+HassabisandMaguire(2007,2009;seealsoHassabisetal., modate such differences in discussions of the constructive
+2007a,2007b;Summerfieldetal.,2010)arguedthataprocess episodic simulation hypothesis, proposing that the finding of
+of ‘‘scene construction’’ is critically involved in both memory greaterneuralactivityforfuturerelativetopasteventsreflects
+andimagination.Sceneconstructionentailsretrievingandinte- the more extensive constructive processes required by imag-
+grating perceptual, semantic, and contextual information into ining future events relative to remembering past events. That
+a coherent spatial context. Scene construction is held to be is,whereasbothpastandfutureeventtasksrequiretheretrieval
+more complex than ‘‘simple’’ visual imagery for individual ofinformationfrommemory,imaginingfutureexperiences—but
+objects (Kosslyn et al., 2001) because it relies on binding not remembering past experiences—requires that details ex-
+together disparate types of information into a coherent whole, tracted from past experiences are flexibly recombined into
+andlikelyinvolvesprocessesmediatedbyseveralregionswithin anovelevent.Morerecently,additionalfactorshavebeensug-
+thedefaultnetwork,mostnotablythemedialtemporallobe(Has- gested asexplaining the increased hippocampal activation for
+Neuron76,November21,2012ª2012ElsevierInc. 681
+
+--- PAGE 6 ---
+Neuron
+Review
+future events, including the fact that imagining future events logical properties of past and future events did not differ,
+requiresthegenerationofnewmentalrepresentations,resulting including greater activations of visual regions for remembered
+inagreaterdegreeofencodingthanthatforpreviouslystored past events as compared with imagined future events (Weiler
+information(Martinetal.,2011).Moreover,theincreasedhippo- etal.,2010a).
+campalactivationforfuturerelativetopasteventsisonlyseenin Greateractivityforrememberingthepastrelativetoimagining
+imaginedfutureeventsthatarespecific(asopposedtogeneral the future has also been demonstrated in the hippocampus
+orroutineevents),whichhasbeenproposedtoreflectthathighly (Abraham et al., 2008a; Botzung et al., 2008, Weiler et al.,
+detailedandspecificeventsrequiretheformationofmorenovel 2010b).Theparadigmsinthesestudiesshareacommonfeature:
+associationsamongtheeventdetails(Addisetal.,2011a). the future events were preimagined prior to scanning, and
+Behavioralstudieshavealsouncoveredimportantdifferences. thereforeduringthefMRIparadigm,participantswerenotcon-
+Storm and Jobe (2012) reported that the phenomenon of structing a novel future event, but instead reimagining the
+retrieval-induced forgetting—when retrieving information can scenario. There is evidence to suggest that simulation-related
+lead to impaired subsequent recall of related information— activity in the hippocampus reduces with repeated simulation
+occurs when retrieving actual autobiographical memories, but of future events (V. van Mulukom, D.L.S., M. Corballis, and
+not when retrieving imagined future (or imagined past) D.R.A., unpublished data; for related evidence from studies of
+experiences. Several behavioral studies have revealed that memory, see Svoboda and Levine, 2009), possibly to a level
+remembered events are associated with greater retrieval of lower than that associated with remembering, which would
+sensory-perceptual details than are imagined future events resultinapastgreaterthanfutureeffect.Anotherpossibilityis
+(D’Argembeau andVan derLinden,2004;BerntsenandBohn, thatwhenfutureeventsarepreimagined(andthenreimagined
+2010; Gamboz et al., 2010a; McDonough and Gallo, 2010) or inthescanner),theparticipantsarerememberingarepresenta-
+imagined events in general (Johnson et al., 1988), whereas tionofthefuturesimulationthat,asnotedearlier,istypicallyless
+imagined future events (or imagined events in general) are detailedrelativetopreviouslyexperiencedevents.
+more difficulttogenerate thanremembered eventsandhence Complementing the above data, recent neuropsychological
+areassociatedwithmoreextensivecognitiveoperations(D’Ar- studiesoflesionpatientsalsoprovideevidencefordifferences
+gembeauandVanderLinden,2004;Johnsonetal.,1988;McDo- betweenrememberingthepastandimaginingthefuture.Berry-
+nough and Gallo, 2010). Along similar lines, Anderson and hilletal.(2010)examinedtheautobiographicalmemoryoftwo
+Dewhurst (2009) reported that imagined future experiences patientswithbilateralposteriorparietallesionsandfivepatients
+contain less specific information than do remembered past with assorted unilateral prefrontal lesions using the Autobio-
+experiences.EvidencefromtheAutobiographicalInterviewlike- graphical Interview (Levine et al., 2002) and a ‘‘constructed
+wise indicates that remembered past events contain more experiences’’ task based on previous work by Hassabis et al.
+internalorepisodicdetailsthandoimaginedfutureevents(Addis (2007a, 2007b), in which patients were asked to imagine ficti-
+etal.,2008,2010)orimaginedpastevents(Addisetal.,2010;De tiousscenes(‘‘Imagineyourselfinamuseum’’)orself-relevant
+BrigardandGiovanello,2012). future events (‘‘Imagine the next holiday’’). The parietal lesion
+Related fMRI evidence comes from a study by Addis et al. patients showed impaired performance on both the memory
+(2009a) in which participants remembered person-location- and constructed experience tasks (e.g., they generated fewer
+objectmemoriesandalsoimaginedeventsthatmightoccurin specificdetailsthandidcontrols),whereastheprefrontallesion
+the future, or might have occurred in the past, that consisted patientswereimpairedontheconstructedexperiencetaskbut
+of person-location-object scenarios recombined from actual notontheautobiographicalmemorytask.Relatedtothesefind-
+memories.Allthreeconditionswereassociatedwithactivityin ings,inthedeVitoetal.(2012b)studyofpatientswithParkin-
+thedefaultnetwork,butdifferenceswerealsoobserved:activity son’s disease noted earlier, it was found that Parkinson’s
+inposteriorvisualcorticessuchasfusiform,lingualandoccipital patients showed a significant reduction in internal or episodic
+gyriandcuneus,aswellasparahippocampalgyrusandposte- detailswhenimaginingfutureeventsbutnotwhenremembering
+rior hippocampus, was preferentially associated with remem- pastevents(asnotedearlier,thesesamepatientsfailedtoshow
+beringactualeventsascomparedwithimaginingfutureorpast adeficitinatemporalimagining)andthatthedeficitwasrelated
+events. Addis et al. (2009a) suggested that the association of toperformanceontestsassessingfrontallobefunction.
+posterior visual cortices with memory for actual experiences, Severalotherrecentpatientstudiesprovidefurtherevidence
+as distinct from imaginary experiences, reflects reactivation of that remembering the past and imagining the future can be
+sensory-perceptual details during memory retrieval, which dissociated.Semanticdementiapatients,whohaveseveredefi-
+recruitstheneuralregionsinvolvedintheoriginalprocessingof cits in semantic memory with relative preservation of episodic
+the remembered information. Importantly, the behavioral data memoryconsequenttoatrophyoftheanteriortemporallobes,
+from this study revealed that remembered events were rated showed a reduction relative to controls in internal (episodic)
+as more detailed than imagined events, whereas in the earlier details on the Autobiographical Interview when imagining the
+Addisetal.(2007)studythatdidnotproduceevidenceofgreater future, together with a preserved ability to generate internal
+activityforrememberingthepastcomparedwithimaginingthe details when remembering the past (Irish, et al., 2012; see
+future,levelofrateddetailforrememberedandimaginedevents Figure 2). Based on these findings, Irish et al. (2012) argued
+wasindistinguishable(seealso,Hassabisetal.,2007a).None- thatsimulatingnovelfutureevents,incontrasttoremembering
+theless,someneuraldifferencesbetweenpastandfutureevents past events, relies on general conceptual knowledge that
+havebeenreportedunderconditionsinwhichmostphenomeno- providesa‘‘scaffoldingintowhichspecificepisodicdetailscan
+682 Neuron76,November21,2012ª2012ElsevierInc.
+
+--- PAGE 7 ---
+Neuron
+Review
+Figure2. PatientswithSemanticDementia
+ShowaSelectiveDeficitforImagining
+FutureEventswhileDisplayingIntact
+EpisodicMemory
+Thedifferenceinthenumberofinternalepisodic
+details generated for past and future events is
+plotted for healthy controls and semantic
+dementiapatients;thisdifferenceislargerforthe
+patientsthancontrols.Errorbarsare95%confi-
+denceintervals.Voxel-basedmorphometryanal-
+yses indicate that this deficit in episodic future
+thinking is related to changes in gray matter
+intensityintheleftinferiortemporalgyrusandright
+temporalpole.Clustersareshownatathreshold
+ofp<0.001andoverlaidontheMontrealNeuro-
+logicalInstitutestandardbrain.AdaptedfromIrish
+etal.(2012).
+be integrated’’ (p. 2187). Consistent with these observations, 2010;Hurleyetal.,2011;butsee,Kwanetal.,2010),andthey
+Duvaletal.(2012)alsoreportedthatsemanticdementiapatients also report normal imagination abilities in children with hippo-
+exhibited impaired episodic future thinking despite intact campaldamageandautobiographicalmemorydeficits(Cooper
+episodicrecall.Weileretal.(2011)reportedasimilarpatternin etal.,2011).Thesefindingssuggestthatthetimeofonsetofthe
+twopatientswiththalamiclesions,whoexhibitedintactepisodic amnesia could be an important factor: perhaps patients who
+memory together with an impaired ability to imagine fictitious suffer early damage develop other strategies or rely either on
+andimpersonaleventsandasomewhatmilderdeficitinimag- residualepisodicmemoriesordetailedsemanticinformationto
+iningpersonalfutureevents. construct imaginary scenarios (Cooper et al., 2011). Note also
+Finally,althoughwenotedearlierthatanumberofstudiesof that although Hassabis et al. (2007b) reported that four adult
+amnesicpatientshaverevealedparalleldeficitsinremembering amnesic patients had severe difficulties imagining scenarios,
+thepastandimaginingthefutureorimaginingnovelscenesor theydidreportthatoneadultamnesiccouldperformtheirscene
+events (Andelman et al., 2010; Hassabis et al., 2007b; Klein construction task normally. They observed that this patient is
+etal.,2002;Raceetal.,2011;RomeroandMoscovitch,2012; characterized by the presence of residual right hippocampal
+Tulving,1985),notallsuchstudiesshowthiseffect.Forexample, tissue,andhaverecentlyreportedfMRIevidenceshowingacti-
+in a study that used the Autobiographical Interview as well as vation of the right hippocampus when the patient performed
+measuresofsceneconstructionbasedonpriorworkbyHassa- asceneconstructiontask(Mullallyetal.,2012;seealso,Maguire
+bis et al. (2007b), Squire et al. (2010) reported that amnesic etal.,2010).Overall,itseemsclearthattherearesomecasesin
+patients with damage to the hippocampus showed an intact which hippocampal damage differentially affects memory and
+abilitytocreatedetailedimaginaryfutureeventsandsuggested imagination, but it is not yet well understood why differential
+thatfindingsofimaginationimpairmentsinpreviouscasesreflect effects are observed in some cases while parallel effects are
+thepresenceofextra-hippocampaldamage(forfurtherdiscus- observedinothers.
+sion of this point, see Maguire and Hassabis, 2011; Squire Atamoregenerallevel,giventhatbothcognitiveandneural
+etal., 2011). However,the hippocampal patients in the Squire differencesbetweenrememberingandimagininghavebeenes-
+et al. (2010) study exhibited only mild levels of retrograde tablished,itwillbeimportantfortheoreticalaccountstoattempt
+amnesia; they were able to retrieve events from the remote toexplainthesedifferences.Ideassuchassceneconstruction
+pastnormallyandshowedonlyamild,nonsignificantdeficitfor (HassabisandMaguire,2007,2009)andself-projection(Buck-
+retrievingmemoriesfromtherecentpast.Thus,asnotedbyAd- ner and Carroll, 2007) have focused on explaining what is
+disandSchacter(2012),theresultsofthisstudycouldalsobe common to remembering, imagining, and related processes.
+interpretedassupportfortheideathatarelativelyintactability We noted earlier that the constructive episodic simulation
+toretrieve muchof the past can provide a basis for imagining hypothesis(SchacterandAddis,2007a,2007b,2009)addresses
+the future, even when the hippocampus is damaged. Squire someofthedifferencesthathavebeendocumented(seealso
+et al. (2010) also reported that the severely amnesic patient SuddendorfandCorballis,2007),butdevelopingmoredetailed
+E.P., who is characterized by extensive medial temporal lobe theoreticalaccountsaimedathandlingthedifferencesbetween
+damage, showed an intact ability to imagine future events. rememberingandimaginingreviewedinthissectionconstitutes
+However,althoughE.P.showedimpairedrecentautobiograph- acriticaltask.
+ical memory, he exhibited intact remote autobiographical
+memory, perhaps contributing to his ability to imagine future NeuroimagingandCognitiveStudiesAreBeginningto
+personalexperiences. RevealtheComponentStructuresandProcessesthat
+Severalothercaseshavebeenreportedinwhichhippocampal SupportMemory-BasedSimulations
+damagesignificantlyimpairedrememberingbutnotimagining. Demonstrationsthatsimilaritiesbetweenrememberingthepast
+For instance, Maguire and colleagues reported that adult and imagining the future reflect the operation of a common
+amnesicpatientswhohadsustainedhippocampaldamageearly networkhaveledinvestigatorstoaskquestionsconcerningthe
+inlifeareabletoconstructimaginaryscenarios(Maguireetal., role played by specific regions within the network in both
+Neuron76,November21,2012ª2012ElsevierInc. 683
+
+--- PAGE 8 ---
+Neuron
+Review
+Figure3. TwoComponentsoftheDefault
+Network
+(A)Aselectionofsagittal,coronal,andaxialviews
+ofthe‘‘sceneconstruction’’subnetworkoverlaid
+on‘‘glassbrain’’andstructuralimages(p<0.001).
+This network includes the hippocampus, para-
+hippocampal gyrus, retrosplenial and posterior
+parietal cortices, and medial PFC and supports
+thegenerationandmaintenanceofacomplexand
+coherentsceneorevent.
+(B)Realmemoriesareusuallymoreself-relevant
+and familiar than imagined experiences. When
+thesetwotypesofsimulationweredirectlycon-
+trasted in a well-controlled fMRI paradigm the
+precuneus,posteriorcingulatecortex,andante-
+rior medial PFC were found to be preferentially
+engaged for real memories (see also D’Argem-
+beauetal.,2010b).Thisnetworkisoftenreferred
+toasthe‘‘self-reflection’’network(Johnsonetal.,
+2002).AdaptedfromHassabisetal.(2007a).
+scanning(e.g.,imagininglyingonasandy
+beach),retrievesimilarkindsoffictitious
+experiences that had been constructed
+aweekpriortoscanning,orrecallrecent
+episodic memories of actual experi-
+ences. All of these conditions were
+compared with a control condition
+involvingimaginingorrecallingindividual
+objects(asopposedtocoherentscenes).
+Hassabis et al. (2007a) reasoned that
+regionsactivatedsimilarlyduringallthree
+experimental conditions relative to the
+control task are involved in the process
+of scene construction, whereas regions
+thatwere selectively active duringrecall
+ofrealautobiographicalexperiencesare
+specifically related to episodic memory,
+above and beyond scene construction.
+Construction of novel scenes engaged
+a network that included hippocampus,
+parahippocampal gyrus, retrosplenial
+cortex and posterior parietal cortices,
+andtheseregionswereallsimilarlyactive
+during recall of previously imagined
+scenes and recall of episodic memories
+(Figure 3A). By contrast, retrieving epi-
+sodic memories of actual experiences,
+relativetotheothertwoconditions,was
+associatedwithactivityinanteriormedial
+rememberingandimagining:whatspecificprocessesaresup- prefrontalcortexandposteriorcingulate(Figure3B),whichthe
+portedbyindividualdefaultnetworkstructures? authors linked with processes that support self-relevant pro-
+To test hypotheses concerning the roles of particular struc- cessing(e.g.,ConwayandPleydell-Pearce,2000;Kelleyetal.,
+tures in component processes relevant to remembering and 2002)andperhapsmentaltimetravel(e.g.,Tulving,2002a).
+imagining, it is important to construct experimental designs Consistent with these observations, Andrews-Hanna et al.
+thatallowcontrolledmanipulationoftheoreticallyrelevanttask (2010b) used both resting state measures of intrinsic connec-
+features.AstudybyHassabisetal.(2007a)attemptedtoaccom- tivity and experimental manipulations to provide evidence for
+plish this objective. Participants were instructed either to dissociable components of the default network. Intrinsic
+construct fictitious experiences for the first time during fMRI connectivitymeasures revealed adistinctionbetween adorsal
+684 Neuron76,November21,2012ª2012ElsevierInc.
+
+--- PAGE 9 ---
+Neuron
+Review
+medial prefrontal cortex (dMPFC) subsystem comprised of the that MPFC contributes to coding and evaluating the self-rele-
+dMPFC, lateral temporal cortex, temporoparietal junction, and vance of future simulations with respect to personal goals. In
+temporal pole, and a medial temporal lobe (MTL) subsystem, light of previous work discussed above linking the posterior
+comprisedoftheventralMPFC,hippocampalformation,para- cingulate to contextual aspects of simulations, D’Argembeau
+hippocampalcortex,retrosplenialcortex,andposteriorinferior et al. (2010b) suggested that because scenarios involving
+parietal lobule. Both subsystems were tightly connected to personal goals likely involve more familiar contextsthan those
+‘‘hub’’regionsincludinganteriorMPFCandposteriorcingulate. involving nonpersonal goals, posterior cingulate could
+Importantly,Andrews-Hannaetal.(2010b)providedconverging contributetothecontextualizationofself-relevantsimulations.
+evidencefromtask-basedfMRIexperimentsthatrevealedfunc- Another approach to identifying components of the default
+tional characteristics of the two subsystems. The MTL networkandtheirrelationtospecificfeaturesoffuturesimula-
+subsystemwasassociatedwithmemory-basedsceneconstruc- tions involves repetition-related reductions in neural activity,
+tionwhenparticipants imagined futurescenarios,whereas the knownasrepetitionsuppressionorneuralpriming(Grill-Spector
+dMPFC subsystem was preferentially linked with affective, et al., 2006; Schacter et al., 2007b). According to the logic of
+self-referentialactivityasparticipantsreflectedontheircurrent repetition suppression, if a particular region is involved in the
+mental states. Likewise, Andrews-Hanna et al. (2010b) found initial processing of a specific feature of a simulation, then it
+evidence for a link between the anterior MPFC and posterior shouldshowreducedactivitywhenthatfeatureisrepeated.In
+cingulate‘‘hub’’regionsandaffectiveself-referentialprocesses, tworecentexperiments(K.K.S.,P.St.Jacques,C.Robbins,G.
+generallyinlinewiththefindingsfromHassabisetal.(2007a). Wig,andD.L.S.,unpublisheddata),participantseitherimagined
+Theseandrelatedbroaddivisionsbetweensubsystemsofthe futuresocialscenarios(e.g.,interactingwithafamiliarpersonin
+default network (see Addis et al., 2009a; Kim, 2012) should afamiliarlocation)orfuturenonsocialscenarios(e.g.,interacting
+provide a basis for further refining our understanding of the withafamiliarobjectinafamiliarlocation).Thepatternofrepe-
+contributions of individual regions within these subsystems. titioneffectssuggestedthatmedialprefrontal,posteriorcingu-
+Severalstudieshavealreadymadeprogressinthisregard.For late,temporal-parietal,andmiddletemporalcorticesarespecif-
+example,Szpunaretal.(2009)manipulatedthecontextualfamil- ically related to social scenarios, and also provided evidence
+iarityofrememberedandimaginedscenarios.DuringfMRIscan- linking simulations of people with medial prefrontal cortex,
+ning, participants remembered past events or imagined future objectswithinferiorfrontalandpremotorcortices,andlocations
+eventssetinfamiliarcontexts(e.g.,theirapartment).Inaddition, with posterior cingulate/retrosplenial, parahippocampal, and
+participants also imagined future events set in unfamiliar lateralparietalcortices.
+contexts(e.g.,ajungle).Basedonpreviousresearchdiscussed These observations converge with data from another recent
+earlier(Szpunaretal.,2007),Szpunaretal.(2009)hypothesized study in which participants (1) imagined scenarios in which
+thatseveralposteriorcorticalregions,includingparahippocam- theysimulatedthebehaviorofotherpeoplebasedonpersonality
+pal cortex and posterior cingulate, would exhibit increased characteristics they had learned about the protagonists, who
+activityforfamiliarpastandfuturesettings,comparedwithunfa- conformedtooneoffourdifferentpersonalitytypes,(2)imagined
+miliarfuturesettings,andtheirresultssupportedthishypothesis. themselves in the scenarios, or (3) simply imagined an empty
+Szpunaretal.(2009)interpretedthesefindingsinlightofworkby scene, i.e., a spatial context lacking people or events (D.H.,
+Bar and colleagues (e.g., Bar and Aminoff, 2003; Bar, 2007) R.Spreng,A.Rusu,C.Robbins,R.Mar,andD.L.S.,unpublished
+showing that both of these regions play a role in generating data). Compared with a control task in which participants
+contextual associations based on past experience, which is counted syllables in a text cue, all three imagination tasks
+important for both remembering the past and imagining the engaged the default network. Comparing common activity in
+future. theprotagonistandselfconditionswiththeemptyscenecondi-
+D’Argembeau et al. (2010b) focused on the self-referential tions revealed increased activity in several regions previously
+aspectofepisodicfuturethinkingbyusingfMRItoexaminebrain implicated in processing of social scenarios, including dorsal
+activity when participants simulated future episodes that were andanteriorMPFC,anteriortemporallobes,andposteriorcingu-
+relatedtotheirpersonalgoals(e.g.,movingintoanewapartment late. A further analysis using multivariate pattern classification
+in2months,gettingmarriednextsummer)versusfutureevents methodsaddressedthequestionofwhereinthebrainperson-
+thatwereplausibleandcouldbeeasilyimagined,butwerenot ality characteristics of the protagonists are represented,
+related to the individual’s personal goals (e.g., buying a clock revealing that anterior and dorsal MPFC reliably discriminated
+at the flea market in 2 months, taking a pottery lesson next amongthefourprotagonists.
+summer). Each of these tasks was compared with a control Overall,thestudiesreviewedinthissectionsuggestabroad
+conditioninwhichparticipantsimaginedroutineactivities(e.g., consensus emerging around the idea that regions including
+taking a shower, commuting to school). D’Argembeau et al. MPFC and posterior cingulate are differentially involved with
+(2010b) found that the act of imagining scenarios related to selfandsocialaspectsofsimulation,whereasregionsincluding
+personalgoalswasassociatedwithincreasedactivityinventral medial temporal lobe and retrosplenial cortex are differentially
+MPFCandposteriorcingulaterelativetoimaginingnonpersonal involvedinmemory-basedsceneconstruction.
+scenarios(seealsoAbrahametal.,2008a).Relatingtheirfind- Thereislessconsensus,however,concerningthepreciserole
+ingstopreviousworklinkingMPFCwiththeprocessoftagging ofthehippocampusinimaginationandfuturethinking(forrecent
+informationasself-relevant(e.g.,Gusnardetal.,2001;Schmitz reviews,seeAddisandSchacter,2012;Buckner,2010;Hassa-
+andJohnson,2007;Northoffetal.,2006),theauthorssuggested bisandMaguire,2007,2009;SchacterandAddis,2009;Viard
+Neuron76,November21,2012ª2012ElsevierInc. 685
+
+--- PAGE 10 ---
+Neuron
+Review
+et al., 2012). As noted in the previous section, neuroimaging this perspective, the memories and future simulations associ-
+studieshaverevealedavarietyofpatterns,wherehippocampal ated with default network activity do not involve goal-directed
+activityhasbeensimilarlyrelatedtorememberingandimagining, cognitionandinsteadrepresentcognitiveactivityakintomind-
+greaterforimaginingthanremembering,orgreaterforremem- wandering or daydreaming, consistent with the general notion
+beringthanimagining.Arecentactivationlikelihoodestimation that the default network does not contribute to goal-directed
+(ALE)meta-analysisofneuroimagingstudiesthathaveexamined cognition.
+medialtemporallobeactivityduringrememberingandimagining Contrary to these ideas, recent evidence indicates that the
+taskssuggeststhatsuchdetailsastypeofcue,task,andspec- default network can support goal-directed simulations. As
+ificity of the retrieved information can all influence the precise alreadynoted,defaultnetworkactivityhasbeenreportedwhen
+location and pattern of activity in the hippocampus and other participantsmakedecisionsaboutself-relevantfuturescenarios
+medial temporal lobe structures (Viard et al., 2012). Moreover, thatinvolvedspecificgoals(Andrews-Hannaetal.,2010b;D’Ar-
+lesion studies have provided contrasting evidence regarding gembeau et al., 2010b). Spreng et al. (2010) examined goal-
+thequestionofwhetherhippocampaldamagealoneissufficient directed cognition by devising an autobiographical planning
+to produce a deficit in future simulation or imagining novel taskandcomparedactivityduringperformanceofatraditional
+scenes. Addis and Schacter (2012) suggested that three visuospatialplanningtask,theTowerofLondon(e.g.,Shallice,
+different simulation-related processes rely to some extent on 1982).Inthelattertask,participantswereshowntwoconfigura-
+the hippocampus: (1) providing access to details stored in tionsofdiscsonverticalrodsinan‘‘initial’’and‘‘goal’’position,
+memorythatarerelevanttoaconstructedscenario,(2)recom- andtheyattemptedtodeterminetheminimumnumberofmoves
+biningthesedetailsintoaspatiotemporalcontext,and(3)encod- neededtomatchtheconfigurations.Theautobiographicalplan-
+ingasimulationintomemorysothatitcaninfluenceandguide ningtaskwasvisuallymatchedtotheTowerofLondontaskbut
+future behaviors. Addis and Schacter (2012)further noted that required participants to devise plans in order to meet specific
+these processes might depend on regional differences within goals in their personal futures. For example, freedom from
+thehippocampus,whichcouldalsoberelevanttosomeofthe debtconstitutedoneofthegoalsintheautobiographicalplan-
+inconsistenciesnotedintheliterature. ningtask.Participantsviewedthegoalandthensawtwosteps
+Muchremainstobedonetoclarifytheroleofthehippocampus theycouldtaketowardachievingthatgoal(goodjobandsave
+andotherstructuresinimaginationandfuturesimulation.Itwill money)aswellasanobstacletheyneededtoovercomeinorder
+beimportant forthisneurallyfocusedworktotakeaccountof toachievethegoal(havefun).Theywereinstructedtointegrate
+behavioral studiesthatarebeginningtoteaseapartthecorre- thestepsandobstaclesintoacohesivepersonalplanthatwould
+sponding cognitive components of memory and simulation, allowthemtoachievethegoal.
+some of which we have already discussed in this review (for Such goal-directed autobiographical planning engaged the
+recentexamples,seeAnderson,2012;Andersonetal.,2012;Ar- defaultnetwork.AsshowninFigure4,duringtheautobiograph-
+noldetal.,2011a;D’ArgembeauandMathy,2011;deVitoetal., ical planning task activity in the default network coupled with
+2012a;Pillemeretal.,2012;SzpunarandMcDermott,2008). a distinct frontoparietal control network (e.g., Vincent et al.,
+2008; Niendam et al., 2012) that has been linked to executive
+TheDefaultNetworkCanCoupleFlexiblywithOther control processes. By contrast, visuospatial planning during
+NetworkstoSupportComplexGoal-Directed theTowerofLondontaskengagedathirdnetwork—thedorsal
+Simulations attentionnetwork,whichisknowntoincreaseitsactivitywhen
+We have emphasized that the network of regions activated attentiontotheexternalenvironmentisrequired(e.g.,Corbetta
+duringrememberingthepastandimaginingthefutureoverlaps and Shulman, 2002)—that also coupled with the frontoparietal
+considerably with the default network and also noted that the controlnetwork.Theseresultssuggestthatthedefaultnetwork
+default network was initially identified by deactivations during cansupportgoal-directedcognitionofaparticularkind,autobio-
+externally directed attention to visually presented stimuli graphicalplanning,bycooperatingwiththefrontoparietalcontrol
+compared with passive resting states (Raichle et al., 2001). network,whichappearscapableofflexiblycouplingwithdistinct
+This latter observation led investigators to suggest that the networks depending on task demands. Spreng and Schacter
+default network does not contribute to goal-directed cognitive (2012) replicated these results in young adults and extended
+processing and that its activity might even be antithetical to themtoolderadults,alsoshowingthatduringvisuospatialplan-
+goal-directedcognition(e.g.,Carhart-HarrisandFriston,2010; ning,theelderlyfailedtosuppressdefaultnetworkactivityand
+Parketal.,2010;Thomasonetal.,2008).Inlinewiththeseobser- thatdefaultactivityintheelderlydidnotdecouplefromthefron-
+vations,Masonetal.(2007)reportedfMRIevidencethatdefault toparietalcontrolnetwork.Sprengetal.(2012)usedmeasuresof
+network activity showed significant increases as participants intrinsic functional connectivity and analyses based on graph
+performedhighlypracticedworkingmemorytaskscharacterized theorytoexaminefurthertherelationsamongthedefault,fronto-
+by frequent incidents of mind-wandering relative to novel task parietalcontrol,anddorsalattentionnetworks.Convergingwith
+conditions.Increasedactivityinseveraldefaultnetworkregions the results from task-based activation studies, Spreng et al.
+during practiced (versus novel) taskswas positively correlated (2012) reported that whereas the default and dorsal attention
+withself-reportedtendenciestomind-wander.Thefindingthat networksexhibitedlittlepositiveconnectivitywithoneanother,
+default network activity increased as participants mentally the frontoparietal control network showed a high degree of
+wandered ‘‘off task’’ supports the idea that this network does intrinsicconnectivitywitheachofthesenetworks(seealso,Dou-
+notandperhapscannotsupportgoal-directedcognition.From cetetal.,2011).
+686 Neuron76,November21,2012ª2012ElsevierInc.
+
+--- PAGE 11 ---
+Neuron
+Review
+Figure4. NetworkCoupling
+(A)Intrinsicconnectivitymapsdepictingthedefault(blue),dorsalattention(red),andfrontoparietalcontrol(green)networksofthebrain.Task-relatedBOLDsignal
+changeduringplanningwithineachintrinsicconnectivitynetwork:(B)defaultnetwork,(C)dorsalattentionnetwork,(D)frontoparietalcontrolnetwork(*significant
+differencefrombaseline).
+(E)Frontoparietalcontrolnetworkcouplingismodulatedbydomainofplanningtask.Frontoparietalcontrolnetworkactivityiscoupledwiththedefaultnetwork,
+anddecoupledfromthedorsalattentionnetwork,duringautobiographicalplanning.Frontoparietalcontrolnetworkactivityiscoupledwiththedorsalattention
+network,anddecoupledfromthedefaultnetwork,duringvisuospatialplanning.AdaptedfromSprengetal.(2010).
+Inarelatedtask-basedstudy,Gerlachetal.(2011)carriedout andposteriorcingulate,aswellasaregionoflateralprefrontal
+fMRIscanswhileparticipantsperformedagoal-directedtaskin cortex that has been linked with executive processing. These
+which they generated mental simulations in order to solve key default and frontoparietal control structures behaved as
+specific problems that arose in imaginary scenarios. For a functional network in a multivariate functional connectivity
+example,participantswereaskedtoimaginebeingleftalonein analysis,couplingwithregionsinthedefaultnetworkincluding
+a friend’s dorm room, and trying on their friend’s ring, which thehippocampus(Gerlachetal.,2011).
+they could not remove. They received a cue word such as Along similar lines, Ellamil et al. (2012) reported that when
+‘‘soap’’ to help them imagine a solution to the problem. A participantsevaluatedcreativeideastheyhadgeneratedinthe
+contrast of brain activity during this task with activity during scanner, default network regions coupled with executive
+a semantic processing control task revealed that the simula- regions, including lateral prefrontal cortex. Two additional
+tion-based problem-solving task engaged several key regions studiesdemonstratedcoactivationoftheexecutiveanddefault
+within the default network, including medial prefrontal cortex systems in a manner consistent with cross-network coupling.
+Neuron76,November21,2012ª2012ElsevierInc. 687
+
+--- PAGE 12 ---
+Neuron
+Review
+In both, information load modulated lateral prefrontal cortex lation andappropriate problem-solving activities (Brown et al.,
+while domain specific information modulated the default 2002;Sheldonetal.,2011;Tayloretal.,1998).Numerousstudies
+network. Meyer at al. (2012) reported that medial prefrontal havealsoestablishedthatviewsofthefutureareassociatedwith
+andposteriorcingulateactivitywasrelatedtomeasuresofsocial aprevalentpositivityoroptimismbias(Sharot,2011),andfMRI
+competence and social reasoning during a social working evidence has linked this bias with reduced activity in brain
+memory task, whereas lateral prefrontal activity increased as regions associated with emotion, such as the amygdala and
+a function of the amount of social information required to be rostral anterior cingulate, during simulation of negative future
+maintained. Summerfield et al. (2010) reported that regions scenarios versus simulation of positive future scenarios or
+including hippocampus and retrosplenial cortex were involved memory for positive or negative past events (Sharot et al.,
+in integrating imagined objects into a scene, whereas activity 2007).Thesefindingsfitwellwithbehavioralresearchshowing
+in lateral prefrontal regions was dependent on the number of apositivitybiaswhenpeopleremembersimulationsofpositive,
+elementstobeintegrated. negative, and neutral future events: details associated with
+RecentfMRIevidencealsoshowsthatbothdefaultnetwork negative simulations are remembered more poorly over time
+andexecutiveregionsarecoactiveandcoupledduringmemory comparedwithdetailsassociatedwithpositiveorneutralsimu-
+retrieval(Fornitoetal.,2012;StJacquesetal.,2011)andmind- lations (Szpunar et al., 2012; see also, Gallo et al., 2011).
+wandering (Christoff, et al., 2009; Christoff, 2012). Further, Emotionalfactorsalsoplayaroleinthewell-establishedfinding
+people typically focus on the future and engage in extensive thatrepeatedlysimulatingafutureeventmakesthateventseem
+autobiographical planning during mind-wandering episodes moreprobable(forreviewofearlystudies,seeKoehler,1991).
+(Bairdetal.,2011;Stawarczyk,etal.,2011),andtheseeffects SzpunarandSchacter(2012)recentlyreportedthatafterrepeat-
+aremostpronouncedinindividualswithhighworkingmemory edlysimulatingpersonaleventsthatmightoccurinone’sfuture,
+capacity, a measure of executive processing (Baird et al., the subjective plausibility of those events increases, but the
+2011). These observations provide further evidence that the effectwasobservedonlyforpositiveandnegativeevents,and
+defaultnetworkcancouplewithexecutiveregionsintheservice not for neutral events. Research investigating the neural basis
+ofgoal-directedcognition(forfurtherdiscussion,seeSchacter, ofthiscognitivebiascouldbenefitfromstudiesthathavebegun
+2012;Smallwoodetal.,2012;Spreng,2012). to examine the neural underpinnings of emotional simulations
+(e.g.,D’Argembeauetal.,2008b;Sharotetal.,2007).
+ConcludingCommentsandFutureDirections Another promising domain centers on the phenomenon of
+Itshouldbeclearfromthematerialreviewedherethatmuchhas temporaldiscounting:peopletypicallydevalueafuturereward
+beenlearned abouttherelationsamongmemory, imagination, accordingtotheextentofdelaybeforetherewardisdelivered
+andfuturethinkingduringthepastseveralyears.Weconclude (Green and Myerson, 2004). Boyer (2008) argued that a key
+bynotinganumberofotheremergingissuesthatwethinkare adaptivefunctionoftheabilitytosimulatefutureeventsbased
+particularlysuitableforadditionalstudy. onpastexperienceistoallowindividualstorepresentemotional
+The tight linkage between remembering the past and imag- aspects offuture rewardin away thatoverridestemporal dis-
+ining the future has led several investigators to propose that counting so as to produce less impulsive and more farsighted
+a key function of memory is to provide a basis for predicting decisions. Two recent studies have shown that when people
+thefutureviaimaginedscenariosandthattheabilitytoflexibly imagine experiencing a reward in the future, they show an
+recombineelementsofpastexperienceintosimulationsofnovel increasedtendencytofavorrewardthatproducegreaterlong-
+futureeventsisthereforeanadaptiveprocess(e.g.,Boyer,2008; term payoffs, thereby countering the normal tendency to
+SchacterandAddis,2007a,2007b;Suddendorf andCorballis, devaluedelayedreward(Benoitetal.,2011;PetersandBu¨chel,
+1997, 2007). Although future simulations are subject to some 2010;forrelatedresults,seeMitchelletal.,2011).Moreover,the
+pitfalls(GilbertandWilson,2007;Schacter,2012),severallines results of fMRI scanning carried out during this procedure
+ofresearchhavebeguntoprovideevidenceforthefunctional- showedthattheeffectsofepisodicsimulationontemporaldis-
+adaptive role of future simulations, including work on default counting are associated with increased coupling between
+network contributions to planning and problem solving dis- activityinthehippocampusandprefrontal(Benoitetal.,2011)
+cussed earlier (for review, see Schacter, 2012). An interesting oranteriorcingulate(PetersandBu¨chel,2010)regionsinvolved
+parallelhasalsoappearedinthefieldofmachinelearning,where in reward-related processing. These findings could provide
+significant advances have been made in planning through the a basis for investigating effects of simulation on discounting,
+deployment of Monte Carlo tree search methods (e.g., Silver anditsneuralunderpinnings,inpopulationspronetoimpulsive
+andVeness,2010).Thesetechniquesmakeuseofsimulations decision making such as drug addicts (e.g., Bechara, 2005).
+of the future (‘‘rollouts’’) to better evaluate situations and aid Importantly, Kwan et al. (2012) showed that the severely
+decisionmaking,andhavebeensuccessfullyusedinagaming amnesic patient KC, who is unable to recall specific episodes
+context to train master level Computer Go programs (i.e., from his personal past or imagine specific episodes in his
+programsthatplaytheboardgameGo). personal future (Tulving, 1985), did not exhibit more impulsive
+Another promising direction involves the simulation of decision-makingthanmatchedcontrols.Theauthorssuggested
+emotionaleventsanditsrelationtomemory.Ithasbeenestab- thatKCreliesonhisintactsemanticmemorywhenmakingdeci-
+lishedthattheabilitytogeneratespecificanddetailedsimula- sions about the future. Clearly, developing a more complete
+tions of future events is associated with effective coping by understanding of the separate and possibly interacting influ-
+enhancingtheabilityofindividualstoengageinemotionalregu- ences of episodic and semantic memory processes for
+688 Neuron76,November21,2012ª2012ElsevierInc.
+
+--- PAGE 13 ---
+Neuron
+Review
+farsighted versus impulsive future decisions represents an about the contribution of narrative processing to memory and
+importantavenueforfutureresearch. imagination(e.g.,Abelson,1981).
+Theseconsiderationsalsohighlightthepotentially important Finally,socialandcognitivepsychologistshavedoneagreat
+contributions made by semantic memory to imagining the deal of research on the topic of counterfactual simulations—
+future. We began this review by noting that we would focus that is, constructing alternative versions of what could have
+primarily on episodic memory, and though there is little doubt happened in the past (e.g., Byrne, 2002; Epstude and Roese,
+that episodic memory plays a key role in imagining the future, 2008)—but few studies have examined the neural basis of
+it is also clear that semantic memory is highly relevant (Klein, such simulations (e.g., Barbey et al., 2009) or how they are
+2012; Martin-Ordas et al., 2012). For example, early work by related to simulating future events (e.g., De Brigard et al.,
+Klein et al. (2002) examined the role of semantic memory in 2013). Neuroimaging evidence reviewed earlier (Addis et al.,
+thinkingaboutthefuture,andthislinkhasbeenacknowledged 2009a)indicatesthatmanyofthesameregionsareinvolvedin
+byanumberofinvestigators(e.g.,Abrahametal.,2008a;Binder imagining future and imagining past events, and recent fMRI
+andDesai,2011;Duvaletal.,2012;Irishetal.,2012;Sudden- evidence examining the construction of alternative outcomes
+dorf and Corballis, 2007; Schacter et al., 2008; Szpunar, to past events also implicates many regions in the default
+2010). Several recent findings, in addition to the work by network(VanHoecketal.,2012).Additionalstudiesonthetopic
+Kwan et al. (2012) on temporal discounting, highlight ways in shouldbehighlyrevealing.
+which semantic memory can contribute to imagining future At a more general level, research examining the relations
+episodes, including findings that (1) patients with impaired amongmemory,imaginationandfuturethinkinghashelpedto
+semantic memory show a reduced ability to generate specific broaden our conception of memory by bringing into focus the
+future episodes (Duval et al., 2012; Irish et al., 2012) and also numerouswaysinwhichmemorysupportsadaptivefunctioning
+show deficits in constructing semantic future scenarios (Duval andbyemphasizingthecloselinkbetweenmemoryandsimula-
+etal.,2012),(2)somedefaultnetworkregionsareactiveduring tion.Webelievethatmanyvaluableinsightsremaintobegained
+both episodic and semantic future thinking tasks (Abraham fromfurtherdevelopmentofthispromisingapproach.
+etal.,2008a),and(3)generalorsemanticpersonalknowledge
+guides retrieval of episodic details during the construction ACKNOWLEDGMENTS
+of future events in healthy individuals, providing a basis for
+structuring and interpreting them (D’Argembeau and Mathy, Supported by grants from the National Institute on Aging (AG08441) and
+2011; D’Argembeau and Demblon, 2012). Taken together, NationalInstituteofMentalHealth(MH060941)toD.L.S.,MarsdenFundand
+RutherfordDiscoveryFellowshipSchemetoD.R.A.,andWellcomeTrustto
+we think that these findings suggest that semantic memory
+D.H.WethankT.Fernandoforhelpwithpreparationofthemanuscriptand
+playsanimportantroleintheprocessofrecombination,which F. De Brigard, B. Gaesser, K. Gerlach, K. Madore,and P. St Jacques for
+has been emphasized as critical for constructing simulated commentsanddiscussion.
+scenarios, and thus believe that an important task will be to
+distinguishepisodicandsemanticcontributionstotheprocess REFERENCES
+of recombination. While it has been suggested that future
+Abelson,R.P.(1981).Psychologicalstatusofthescriptconcept.Am.Psychol.
+thinking based on semantic memory may draw heavily on
+36,715–729.
+lateral and anterior temporal lobe regions (e.g., Addis et al.,
+Abraham,A.,Schubotz,R.I.,andvonCramon,D.Y.(2008a).Thinkingaboutthe
+2007, 2011b; Irish et al., 2012), more direct investigations are
+futureversusthepastinpersonalandnon-personalcontexts.BrainRes.1233,
+needed. 106–119.
+Studies of remembering the past and imagining the future
+Abraham,A.,vonCramon,D.Y.,andSchubotz,R.I.(2008b).MeetingGeorge
+should benefit from establishing closer connections with work BushversusmeetingCinderella:theneuralresponsewhentellingapartwhatis
+onnarrativeprocessingandtherepresentationofnonpersonal realfromwhatisfictionalinthecontextofourreality.J.Cogn.Neurosci.20,
+965–976.
+fictionalinformation.Forexample,theseverelyamnesicpatient
+KCwho,asnotedearlier,hasessentiallynocapacityforepisodic Addis, D.R., and Schacter, D.L. (2008). Constructive episodic simulation:
+memoryorfuturesimulation(Tulving,1985)alsoexhibitsdeficits temporaldistanceanddetailofpastandfutureeventsmodulatehippocampal
+engagement.Hippocampus18,227–237.
+when attempting to generate non-personal fictional narratives
+(Rosenbaum et al., 2009). These findings are in line with fMRI Addis,D.R.,andSchacter,D.L.(2012).Thehippocampusandimaginingthe
+future:wheredowestand?Front.Hum.Neurosci.5,173.
+evidence from Abraham et al. (2008b), who found that medial
+temporal lobe regions were active when participants made Addis,D.R.,Wong,A.T.,andSchacter,D.L.(2007).Rememberingthepastand
+possible/impossible judgments about scenarios involving real imagining the future: common and distinct neural substrates during event
+constructionandelaboration.Neuropsychologia45,1363–1377.
+people (e.g., Peter heard about George Bush on the radio
+yesterday) or fictional characters (e.g., Peter heard about Addis,D.R.,Wong,A.T.,andSchacter,D.L.(2008).Age-relatedchangesinthe
+episodicsimulationoffutureevents.Psychol.Sci.19,33–41.
+Cinderella on the radio). A related line of evidence indicates
+thatcorrelatedreductionsintheepisodicspecificityofremem- Addis, D.R., Pan, L., Vu, M.A., Laiser, N., and Schacter, D.L. (2009a).
+bering past events and imagining the future in older adults Constructiveepisodicsimulationofthefutureandthepast:distinctsubsys-
+temsofacorebrainnetworkmediateimaginingandremembering.Neuropsy-
+extend to the description of perceptually present pictures chologia47,2222–2238.
+(Gaesser et al., 2011), perhaps involving age-related changes
+Addis, D.R., Sacchetti, D.C., Ally, B.A., Budson, A.E., and Schacter, D.L.
+in narrative processing (Labouvie-Vief and Blanchard-Fields,
+(2009b).EpisodicsimulationoffutureeventsisimpairedinmildAlzheimer’s
+1982;TrunkandAbrams,2009),butmuchremainstobelearned disease.Neuropsychologia47,2660–2671.
+Neuron76,November21,2012ª2012ElsevierInc. 689
+
+--- PAGE 14 ---
+Neuron
+Review
+Addis,D.R.,Musicaro,R.,Pan,L.,andSchacter,D.L.(2010).Episodicsimula- Benoit,R.G.,Gilbert,S.J.,andBurgess,P.W.(2011).Aneuralmechanism
+tionofpastandfutureeventsinolderadults:Evidencefromanexperimental mediatingtheimpactofepisodicprospectiononfarsighteddecisions.J.Neu-
+recombinationtask.Psychol.Aging25,369–376. rosci.31,6771–6779.
+Addis, D.R., Cheng, T., Roberts, R.P., and Schacter, D.L. (2011a). Hippo- Berntsen,D.,andBohn,A.(2010).Rememberingandforecasting:therelation
+campalcontributionstotheepisodicsimulationofspecificandgeneralfuture betweenautobiographicalmemoryandepisodicfuturethinking.Mem.Cognit.
+events.Hippocampus21,1045–1052. 38,265–278.
+Addis,D.R.,Roberts, R.P.,andSchacter,D.L.(2011b).Age-relatedneural Berryhill,M.E.,Picasso,L.,Arnold,R.,Drowos,D.,andOlson,I.R.(2010).Simi-
+changesinrememberingandimagining.Neuropsychologia49,3656–3669. laritiesanddifferencesbetweenparietalandfrontalpatientsinautobiograph-
+icalandconstructedexperiencetasks.Neuropsychologia48,1385–1393.
+Andelman, F., Hoofien, D., Goldberg, I.,Aizenstein, O., and Neufeld, M.Y.
+(2010).Bilateralhippocampallesionandaselectiveimpairmentoftheability Binder,J.R.,andDesai,R.H.(2011).Theneurobiologyofsemanticmemory.
+formentaltimetravel.Neurocase16,426–435. TrendsCogn.Sci.15,527–536.
+Anderson,R.J.(2012).Imaginingnovelfutures:therolesofeventplausibility Botzung, A., Denkova, E., and Manning, L. (2008). Experiencing past and
+andfamiliarity.Memory20,443–451. futurepersonalevents:functionalneuroimagingevidenceontheneuralbases
+ofmentaltimetravel.BrainCogn.66,202–212.
+Anderson,R.J.,andDewhurst,S.A.(2009).Rememberingthepastandimag-
+iningthefuture:differencesineventspecificityofspontaneouslygenerated
+Boyer,P.(2008).Evolutionaryeconomicsofmentaltimetravel?TrendsCogn.
+thought.Memory17,367–373.
+Sci.12,219–224.
+Anderson, R.J., Dewhurst, S.A., and Nash, R.A. (2012). Shared cognitive
+Brainerd,C.J.,andReyna,V.F.(2005).TheScienceofFalseMemory(New
+processes underlying past and future thinking: the impact of imagery and
+York,NY:OxfordUniversityPress).
+concurrenttaskdemandsoneventspecificity.J.Exp.Psychol.Learn.Mem.
+Cogn.38,356–365.
+Brown,G.P.,MacLeod,A.K.,Tata,P.,andGoddard,L.(2002).Worryandthe
+Andreasen,N.C.,O’Leary,D.S.,Cizadlo,T.,Arndt,S.,Rezai,K.,Watkins,G.L., simulationoffutureoutcomes.AnxietyStressCoping15,1–17.
+Ponto,L.L.,andHichwa,R.D.(1995).Rememberingthepast:twofacetsof
+Brown,A.D.,Root,J.C.,Romano,T.A.,Chang,L.J.,Bryant,R.A.,andHirst,W.
+episodicmemoryexploredwithpositronemissiontomography.Am.J.Psychi-
+(2011). Overgeneralized autobiographical memory and future thinking in
+atry152,1576–1585.
+combat veterans with posttraumatic stress disorder. J. Behav. Ther. Exp.
+Andrews-Hanna,J.R.(2012).Thebrain’sdefaultnetworkanditsadaptiverole Psychiatry.PublishedonlineDecember7,2011.http://dx.doi.org/10.1016/j.
+ininternalmentation.Neuroscientist18,251–270. jbtep.2011.11.004.
+Andrews-Hanna,J.R.,Reidler,J.S.,Huang,C.,andBuckner,R.L.(2010a). Brown, A.D., Dorfman, M.L., Marmar, C.R., and Bryant, R.A. (2012). The
+Evidenceforthedefaultnetwork’sroleinspontaneouscognition.J.Neurophy- impactofperceivedself-efficacyonmentaltimetravelandsocialproblem
+siol.104,322–335. solving.Conscious.Cogn.21,299–306.
+Andrews-Hanna,J.R.,Reidler,J.S.,Sepulcre,J.,Poulin,R.,andBuckner,R.L. Buckner,R.L.(2010).Theroleofthehippocampusinpredictionandimagina-
+(2010b). Functional-anatomic fractionation of the brain’s default network. tion.Annu.Rev.Psychol.61,27–48,C1–C8.
+Neuron65,550–562.
+Buckner,R.L.,andCarroll,D.C.(2007).Self-projectionandthebrain.Trends
+Arnold,K.M.,McDermott,K.B.,andSzpunar,K.K.(2011a).Imaginingthenear Cogn.Sci.11,49–57.
+andfarfuture:theroleoflocationfamiliarity.Mem.Cognit.39,954–967.
+Buckner,R.L.,Andrews-Hanna,J.R.,andSchacter,D.L.(2008).Thebrain’s
+Arnold,K.M.,McDermott,K.B.,andSzpunar,K.K.(2011b).Individualdiffer- default network: anatomy, function, and relevance to disease. Ann. N Y
+encesintimeperspectivepredictautonoeticexperience.Conscious.Cogn. Acad.Sci.1124,1–38.
+20,712–719.
+Busby, J., and Suddendorf, T. (2005). Recalling yesterday and predicting
+Arzy,S.,Molnar-Szakacs,I.,andBlanke,O.(2008).Selfintime:imaginedself- tomorrow.Cogn.Dev.20,362–372.
+locationinfluencesneuralactivityrelatedtomentaltimetravel.J.Neurosci.28,
+6502–6507. Byrne,R.M.(2002).Mentalmodelsandcounterfactualthoughtsaboutwhat
+mighthavebeen.TrendsCogn.Sci.6,426–431.
+Arzy,S.,Collette,S.,Ionta,S.,Fornari,E.,andBlanke,O.(2009).Subjective
+mentaltime:thefunctionalarchitectureofprojectingtheselftopastandfuture. Carhart-Harris,R.L.,andFriston,K.J.(2010).Thedefault-mode,ego-functions
+Eur.J.Neurosci.30,2009–2017. and free-energy: a neurobiological account of Freudian ideas. Brain 133,
+1265–1283.
+Atance,C.M.,andO’Neill,D.K.(2001).Episodicfuturethinking.TrendsCogn.
+Sci.5,533–539. Caruso,E.M.(2010).Whenthefuturefeelsworsethanthepast:atemporal
+inconsistencyinmoraljudgment.J.Exp.Psychol.Gen.139,610–624.
+Atance, C.M., and O’Neill, D.K. (2005). The emergence of episodic future
+thinkinginhumans.Learn.Motiv.36,126–144.
+Caruso,E.M.,Gilbert,D.T.,andWilson,T.D.(2008).Awrinkleintime:asym-
+metricvaluationofpastandfutureevents.Psychol.Sci.19,796–801.
+Baird,B.,Smallwood,J.,andSchooler,J.W.(2011).Backtothefuture:auto-
+biographical planning and the functionality of mind-wandering. Conscious.
+Cheke,L.G.,andClayton,N.S.(2010).Mentaltimetravelinanimals.WileyIn-
+Cogn.20,1604–1611.
+terdiscip.Rev.Cogn.Sci.1,1–16.
+Bar, M. (2007). The proactive brain: using analogies and associations to
+Christoff,K.(2012).Undirectedthought:neuraldeterminantsandcorrelates.
+generatepredictions.TrendsCogn.Sci.11,280–289.
+BrainRes.1428,51–59.
+Bar,M.,andAminoff,E.(2003).Corticalanalysisofvisualcontext.Neuron38,
+347–358. Christoff, K., Gordon, A.M., Smallwood, J., Smith, R., and Schooler, J.W.
+(2009).ExperiencesamplingduringfMRIrevealsdefaultnetworkandexecu-
+Barbey,A.K.,Krueger,F.,andGrafman,J.(2009).Structuredeventcomplexes tive system contributions to mind wandering. Proc. Natl. Acad. Sci. USA
+in the medial prefrontal cortex support counterfactual representations for 106,8719–8724.
+futureplanning.Philos.Trans.R.Soc.Lond.BBiol.Sci.364,1291–1300.
+Clayton,N.S.,andDickinson,A.(1998).Episodic-likememoryduringcache
+Bartlett,F.C.(1932).Remembering(Cambridge:CambridgeUniversityPress). recoverybyscrubjays.Nature395,272–274.
+Bechara,A.(2005).Decisionmaking,impulsecontrolandlossofwillpowerto Clayton,N.S.,Bussey,T.J.,andDickinson,A.(2003).Cananimalsrecallthe
+resistdrugs:aneurocognitiveperspective.Nat.Neurosci.8,1458–1463. pastandplanforthefuture?Nat.Rev.Neurosci.4,685–691.
+690 Neuron76,November21,2012ª2012ElsevierInc.
+
+--- PAGE 15 ---
+Neuron
+Review
+Conway,M.A.,andPleydell-Pearce,C.W.(2000).Theconstructionofautobio- Eacott,M.J.,andEaston,A.(2012).Rememberingthepastandthinkingabout
+graphicalmemoriesintheself-memorysystem.Psychol.Rev.107,261–288. thefuture:Isitreallyabouttime?Learn.Motiv.43,200–208.
+Cooper,J.M.,Vargha-Khadem,F.,Gadian,D.G.,andMaguire,E.A.(2011). Eichenbaum,H.E.,andCohen,N.J.(2001).FromConditioningtoConscious
+Theeffectofhippocampaldamageinchildrenonrecallingthepastandimag- Recollection: Memory Systems of the Brain (New York: Oxford University
+iningnewexperiences.Neuropsychologia49,1843–1850. Press).
+Corbetta,M.,andShulman,G.L.(2002).Controlofgoal-directedandstimulus- Ellamil,M.,Dobson,C.,Beeman,M.,andChristoff,K.(2012).Evaluativeand
+drivenattentioninthebrain.Nat.Rev.Neurosci.3,201–215. generativemodesofthoughtduringthecreativeprocess.Neuroimage 59,
+1783–1794.
+Crystal,J.D.(2012).Prospectivecognitioninrats.Learn.Motiv.43,181–191.
+Emery,N.J.,andClayton,N.S.(2001).Effectsofexperienceandsocialcontext
+D’Argembeau,A.,andDemblon,J.(2012).Ontherepresentationalsystems onprospectivecachingstrategiesbyscrubjays.Nature414,443–446.
+underlyingprospection:Evidencefromtheevent-cuingparadigm.Cognition
+125,160–167. Epstude,K.,andRoese,N.J.(2008).Thefunctionaltheoryofcounterfactual
+thinking.Pers.Soc.Psychol.Rev.12,168–192.
+D’Argembeau,A.,andMathy,A.(2011).Trackingtheconstructionofepisodic
+futurethoughts.J.Exp.Psychol.Gen.140,258–271. Fornito,A.,Harrison,B.J.,Zalesky,A.,andSimons,J.S.(2012).Competitive
+andcooperativedynamicsoflarge-scalebrainfunctionalnetworkssupporting
+D’Argembeau,A.,andVanderLinden,M.(2004).Phenomenalcharacteristics recollection.Proc.Natl.Acad.Sci.USA109,12788–12793.
+associatedwithprojectingoneselfbackintothepastandforwardintothe
+future: influence of valence and temporal distance. Conscious. Cogn. 13, Gaesser,B.,Sacchetti,D.C.,Addis,D.R.,andSchacter,D.L.(2011).Charac-
+844–858. terizing age-related changes in remembering the past and imagining the
+future.Psychol.Aging26,80–84.
+D’Argembeau,A.,andVanderLinden,M.(2006).Individualdifferencesinthe
+phenomenologyofmentaltimetravel:Theeffectofvividimageryandemotion Gallo,D.A.,Korthauer,L.E.,McDonough,I.M.,Teshale,S.,andJohnson,E.L.
+regulationstrategies.Conscious.Cogn.15,342–350. (2011). Age-related positivity effects and autobiographical memory detail:
+evidencefromapast/futuresourcememorytask.Memory19,641–652.
+D’Argembeau,A.,Raffard,S.,andVanderLinden,M.(2008a).Remembering
+thepastandimaginingthefutureinschizophrenia.J.Abnorm.Psychol.117,
+Gamboz,N.,Brandimonte,M.A.,andDeVito,S.(2010a).Theroleofpastinthe
+247–251.
+simulationofautobiographicalfutureepisodes.Exp.Psychol.57,419–428.
+D’Argembeau, A., Xue, G., Lu, Z.L., Van der Linden, M., and Bechara, A.
+Gamboz,N.,DeVito,S.,Brandimonte,M.A.,Pappalardo,S.,Galeone,F.,Ia-
+(2008b).Neuralcorrelatesofenvisioningemotionaleventsinthenearandfar
+varone,A.,andDellaSala,S.(2010b).Episodicfuturethinkinginamnesicmild
+future.Neuroimage40,398–407.
+cognitiveimpairment.Neuropsychologia48,2091–2097.
+D’Argembeau,A.,Ortoleva,C.,Jumentier,S.,andVanderLinden,M.(2010a).
+Gerlach,K.D.,Spreng,R.N.,Gilmore,A.W.,andSchacter,D.L.(2011).Solving
+Componentprocessesunderlyingfuturethinking.Mem.Cognit.38,809–819.
+futureproblems:defaultnetworkandexecutiveactivityassociatedwithgoal-
+directedmentalsimulations.Neuroimage55,1816–1824.
+D’Argembeau,A.,Stawarczyk,D.,Majerus,S.,Collette,F.,VanderLinden,M.,
+Feyers,D.,Maquet,P.,andSalmon,E.(2010b).Theneuralbasisofpersonal
+Gilbert,D.T.,andWilson,T.D.(2007).Prospection:experiencingthefuture.
+goal processing when envisioning future events. J. Cogn. Neurosci. 22,
+Science317,1351–1354.
+1701–1713.
+D’Argembeau,A.,Renaud,O.,andVanderLinden,M.(2011).Frequency, Green,L.,andMyerson,J.(2004).Adiscountingframeworkforchoicewithde-
+characteristics,andfunctionsoffuture-orientedthoughtsindailylife.Appl. layedandprobabilisticrewards.Psychol.Bull.130,769–792.
+Cogn.Psychol.35,96–103.
+Grill-Spector,K.,Henson,R.,andMartin,A.(2006).Repetitionandthebrain:
+D’Argembeau,A.,Lardi,C.,andVanderLinden,M.(2012).Self-definingfuture neuralmodelsofstimulus-specificeffects.TrendsCogn.Sci.10,14–23.
+projections: exploring the identity function of thinking about the future.
+Memory20,110–120. Gusnard,D.A.,Akbudak,E.,Shulman,G.L.,andRaichle,M.E.(2001).Medial
+prefrontal cortex and self-referential mental activity: relation to a default
+Dalla Barba, G., and Boisse´, M.-F. (2010). Temporal consciousness and modeofbrainfunction.Proc.Natl.Acad.Sci.USA98,4259–4264.
+confabulation:isthemedialtemporallobe‘‘temporal’’?Cogn.Neuropsychi-
+atry15,95–117. Hardt,O.,Einarsson,E.O.,andNader,K.(2010).Abridgeovertroubledwater:
+reconsolidation as a link between cognitive and neuroscientific memory
+DeBrigard,F.,andGiovanello,K.S.(2012).Influenceofoutcomevalenceinthe researchtraditions.Annu.Rev.Psychol.61,141–167.
+subjectiveexperienceofepisodicpast,future,andcounterfactualthinking.
+Conscious.Cogn.21,1085–1096. Hassabis,D.,andMaguire,E.A.(2007).Deconstructingepisodicmemorywith
+construction.TrendsCogn.Sci.11,299–306.
+DeBrigard,F.,Szpunar,K.K.,andSchacter,D.L.(2013).Comingtogripswith
+the past: Effects of repeated simulation on the perceived plausibility of Hassabis,D.,andMaguire,E.A.(2009).Theconstructionsystemofthebrain.
+episodiccounterfactualthoughts.Psychol.Sci.,inpress. Philos.Trans.R.Soc.BBiol.Sci.364,1263–1271.
+deVito,S.,Gamboz,N.,andBrandimonte,M.A.(2012a).Whatdifferentiates Hassabis,D.,Kumaran,D.,andMaguire,E.A.(2007a).Usingimaginationto
+episodicfuturethinkingfromcomplexsceneimagery?Conscious.Cogn.21, understand the neural basis of episodic memory. J. Neurosci. 27, 14365–
+813–823. 14374.
+deVito,S.,Gamboz,N.,Brandimonte,M.A.,Barone,P.,Amboni,M.,andDella Hassabis,D.,Kumaran,D.,Vann,S.D.,andMaguire,E.A.(2007b).Patients
+Sala,S.(2012b).FuturethinkinginParkinson’sdisease:anexecutivefunction? with hippocampal amnesia cannot imagine new experiences. Proc. Natl.
+Neuropsychologia50,1494–1501. Acad.Sci.USA104,1726–1731.
+Doucet,G.,Naveau,M.,Petit,L.,Delcroix,N.,Zago,L.,Crivello,F.,Jobard,G., Hayne,H.,andImuta,K.(2011).Episodicmemoryin3-and4-year-oldchil-
+Tzourio-Mazoyer, N., Mazoyer, B., Mellet, E., and Joliot, M. (2011). Brain dren.Dev.Psychobiol.53,317–322.
+activityatrest:amultiscalehierarchicalfunctionalorganization.J.Neurophy-
+siol.105,2753–2763. Howe,M.L.(2011).Theadaptivenatureofmemoryanditsillusions.Curr.Dir.
+Psychol.Sci.20,312–315.
+Duval,C.,Desgranges,B.,deLaSayette,V.,Belliard,S.,Eustache,F.,and
+Piolino,P.(2012).Whathappenstopersonalidentitywhensemanticknowl- Hudson,J.A.,Mayhew,E.M.,andPrabhakar,J.(2011).Thedevelopmentof
+edgedegrades?Astudyoftheselfandautobiographicalmemoryinsemantic episodicforesight:emergingconceptsandmethods.Adv.ChildDev.Behav.
+dementia.Neuropsychologia50,254–265. 40,95–137.
+Neuron76,November21,2012ª2012ElsevierInc. 691
+
+--- PAGE 16 ---
+Neuron
+Review
+Hurley,N.C.,Maguire,E.A.,andVargha-Khadem,F.(2011).PatientHCwith Martin,V.C.,Schacter,D.L.,Corballis,M.C.,andAddis,D.R.(2011).Arolefor
+developmental amnesia can construct future scenarios. Neuropsychologia thehippocampusinencodingsimulationsoffutureevents.Proc.Natl.Acad.
+49,3620–3628. Sci.USA108,13858–13863.
+Ingvar,D.H.(1979).‘‘Hyperfrontal’’distributionofthecerebralgreymatterflow Martin-Ordas,G.,Atance,C.M.,andLouw,A.(2012).Theroleofepisodicand
+inrestingwakefulness;onthefunctionalanatomyoftheconsciousstate.Acta semanticmemoryinepisodicforesight.Learn.Motiv.43,209–219.
+Neurol.Scand.60,12–25.
+Mason,M.F.,Norton,M.I.,VanHorn,J.D.,Wegner,D.M.,Grafton,S.T.,and
+Ingvar,D.H.(1985).‘‘Memoryofthefuture’’:anessayonthetemporalorgani- Macrae, C.N. (2007). Wandering minds: the defaultnetwork and stimulus-
+zationofconsciousawareness.Hum.Neurobiol.4,127–136. independentthought.Science315,393–395.
+Irish,M.,Addis,D.R.,Hodges,J.R.,andPiguet,O.(2012).Consideringtherole McDonough,I.M.,andGallo,D.A.(2010).Separatingpastandfutureautobio-
+of semantic memory in episodic future thinking: evidence from semantic graphical events in memory: evidence for a reality monitoring asymmetry.
+dementia.Brain135,2178–2191. Mem.Cognit.38,3–12.
+Johnson,M.K.,Foley,M.A.,Suengas,A.G.,andRaye,C.L.(1988).Phenom- Meyer,M.L.,Spunt,R.P.,Berkman,E.T.,Taylor,S.E.,andLieberman,M.D.
+enalcharacteristicsofmemoriesforperceivedandimaginedautobiographical (2012). Evidence for social working memory from a parametric functional
+events.J.Exp.Psychol.Gen.117,371–376. MRIstudy.Proc.Natl.Acad.Sci.USA109,1883–1888.
+Johnson,M.K.,Hashtroudi,S.,andLindsay,D.S.(1993).Sourcemonitoring. Mitchell, J.P., Schirmer, J., Ames, D.L., and Gilbert, D.T. (2011). Medial
+Psychol.Bull.114,3–28. prefrontal cortex predicts intertemporal choice. J. Cogn. Neurosci. 23,
+857–866.
+Johnson,S.C.,Baxter,L.C.,Wilder,L.S.,Pipe,J.G.,Heiserman,J.E.,andPri-
+gatano,G.P.(2002).Neuralcorrelatesofself-reflection.Brain125,1808–1814. Morewedge,C.K.,Gilbert,D.T.,andWilson,T.D.(2005).Theleastlikelyof
+times: how remembering the past biases forecasts of the future. Psychol.
+Kelley,W.M.,Macrae,C.N.,Wyland,C.L.,Caglar,S.,Inati,S.,andHeatherton, Sci.16,626–630.
+T.F.(2002).Findingtheself?Anevent-relatedfMRIstudy.J.Cogn.Neurosci.
+14,785–794. Mullally,S.L.,Hassabis,D.,andMaguire,E.A.(2012).Sceneconstructionin
+amnesia:anFMRIstudy.J.Neurosci.32,5646–5653.
+Kim,H.(2012).Adual-subsystemmodelofthebrain’sdefaultnetwork:self-
+referential processing, memory retrieval processes, and autobiographical Newman,E.J.,andLindsay,S.D.(2009).Falsememories:whatthehellare
+memoryretrieval.Neuroimage61,966–977. theyfor?Appl.Cogn.Psychol.23,1105–1121.
+Klein,S.B.(2012).Thecomplexactofprojectingonselfintothefuture.Wiley Niendam,T.A.,Laird,A.R.,Ray,K.L.,Dean,Y.M.,Glahn,D.C.,andCarter,C.S.
+Interdiscip.Rev.Cogn.Sci.http://dx.doi.org/10.1002/wcs.1210. (2012).Meta-analyticevidenceforasuperordinatecognitivecontrolnetwork
+subservingdiverseexecutivefunctions.Cogn.Affect.Behav.Neurosci.12,
+Klein,S.B.,Loftus,J.,andKihlstrom,J.F.(2002).Memoryandtemporalexpe- 241–268.
+rience:Theeffectsofepisodicmemorylossonanamnesicpatient’sabilityto
+rememberthepastandimaginethefuture.Soc.Cogn.20,353–379. Northoff,G.,Heinzel,A.,deGreck,M.,Bermpohl,F.,Dobrowolny,H.,and
+Panksepp,J.(2006).Self-referentialprocessinginourbrain—ameta-analysis
+Klein, S.B., Robertson, T.E., and Delton, A.W. (2010). Facing the future: ofimagingstudiesontheself.Neuroimage31,440–457.
+memory as an evolved system for planning future acts. Mem. Cognit. 38,
+13–22. Nyberg,L.,Kim,A.S.,Habib,R.,Levine,B.,andTulving,E.(2010).Conscious-
+nessofsubjectivetimeinthebrain.Proc.Natl.Acad.Sci.USA107,22356–
+Koehler,D.J.(1991).Explanation,imagination,andconfidenceinjudgment. 22359.
+Psychol.Bull.110,499–519.
+Okuda,J.,Fujii,T.,Ohtake,H.,Tsukiura,T.,Tanji,K.,Suzuki,K.,Kawashima,
+Kosslyn,S.M.,Ganis,G.,andThompson,W.L.(2001).Neuralfoundationsof R.,Fukuda,H.,Itoh,M.,andYamadori,A.(2003).Thinkingofthefutureand
+imagery.Nat.Rev.Neurosci.2,635–642. past:therolesofthefrontalpoleandthemedialtemporallobes.Neuroimage
+19,1369–1380.
+Kwan,D.,Carson,N.,Addis,D.R.,andRosenbaum,R.S.(2010).Deficitsin
+past remembering extend to future imagining in a case of developmental Østby,Y.,Walhovd,K.B.,Tamnes,C.K.,Grydeland,H.,Westlye,L.T.,and
+amnesia.Neuropsychologia48,3179–3186. Fjell, A.M. (2012). Mental time travel and default-mode network functional
+connectivityinthedevelopingbrain.Proc.Natl.Acad.Sci.USA109,16800–
+Kwan,D.,Craver,C.F.,Green,L.,Myerson,J.,Boyer,P.,andRosenbaum, 16804.
+R.S. (2012). Future decision-making without episodic mental time travel.
+Hippocampus22,1215–1219. Park,D.C.,Polk,T.A.,Hebrank,A.C.,andJenkins,L.J.(2010).Agedifferences
+indefaultmodeactivityoneasyanddifficultspatialjudgmenttasks.Front.
+Labouvie-Vief, G., and Blanchard-Fields, F. (1982). Cognitive ageing and Hum.Neurosci.3,75.
+psychologicalgrowth.AgeingSoc.2,183–209.
+Peters, J.,and Bu¨chel,C. (2010). Episodic future thinking reduces reward
+Levine,B.,Svoboda,E.,Hay,J.F.,Winocur,G.,andMoscovitch,M.(2002). delaydiscountingthroughanenhancementofprefrontal-mediotemporalinter-
+Aging and autobiographical memory: dissociating episodic from semantic actions.Neuron66,138–148.
+retrieval.Psychol.Aging17,677–689.
+Pillemer,D.B.,Thomsen,D.,Kuwabara,K.J.,andIvcevic,Z.(2012).Feeling
+Lind,S.E.,andBowler,D.M.(2010).Episodicmemoryandepisodicfuture good and bad about the past and future self. Memory. Published online
+thinkinginadultswithautism.J.Abnorm.Psychol.119,896–905. September11,2012.http://dx.doi.org/10.1080/09658211.2012.720263.
+Loftus,E.F.(1979).EyewitnessTestimony(Cambridge,MA:HarvardUniversity Quoidbach,J.,Hansenne,M.,andMottet,C.(2008).Personalityandmental
+Press). timetravel:adifferentialapproachtoautonoeticconsciousness.Conscious.
+Cogn.17,1082–1092.
+Loftus,E.F.(2003).Make-believememories.Am.Psychol.58,867–873.
+Race,E.,Keane,M.M.,andVerfaellie,M.(2011).Medialtemporallobedamage
+Maguire,E.A.,andHassabis,D.(2011).Roleofthehippocampusinimagina- causesdeficitsinepisodicmemoryandepisodicfuturethinkingnotattribut-
+tionandfuturethinking.Proc.Natl.Acad.Sci.USA108,E39. abletodeficitsinnarrativeconstruction.J.Neurosci.31,10262–10269.
+Maguire,E.A.,Vargha-Khadem,F.,andHassabis,D.(2010).Imaginingficti- Raichle,M.E.,MacLeod,A.M.,Snyder,A.Z.,Powers,W.J.,Gusnard,D.A.,and
+tiousandfutureexperiences:evidencefromdevelopmentalamnesia.Neuro- Shulman,G.L.(2001).Adefaultmodeofbrainfunction.Proc.Natl.Acad.Sci.
+psychologia48,3187–3192. USA98,676–682.
+692 Neuron76,November21,2012ª2012ElsevierInc.
+
+--- PAGE 17 ---
+Neuron
+Review
+Rendell,P.G.,Bailey,P.E.,Henry,J.D.,Phillips,L.H.,Gaskin,S.,andKliegel, Shulman,G.L.,Fiez,J.A.,Corbetta,M.,Buckner,R.L.,Miezen,F.M.,Raichle,
+M. (2012). Older adults have greater difficulty imagining future rather than M.E.,andPetersen,S.E.(1997).Commonbloodflowchangesacrossvisual
+atemporalexperiences.Psychol.Aging.http://dx.doi.org/10.1037/a0029748. tasks:II:Decreasesincerebralcortex.J.Cogn.Neurosci.9,648–663.
+Roberts,W.A.(2012).Futurecognitioninanimals.Learn.Motiv.43,169–180. Silver,D.,andVeness,J.(2010).MonteCarloplanninginlargePOMPDS.Adv.
+NeuralInf.Process.Syst.24,2164–2172.
+Roediger,H.L.,Dudai,Y.,andFitzpatrick,S.M.(2007).ScienceofMemory:
+Concepts(Oxford:OxfordUniversityPress). Smallwood,J.,Brown,K.S.,Baird,B.,andSchooler,J.W.(2012).Cooperation
+between the default mode network and the frontal-parietal network in the
+Romero,K.,andMoscovitch,M.(2012).Episodicmemoryandeventconstruc- productionofaninternaltrainofthought.BrainRes.1428,60–70.
+tioninagingandamnesia.J.Mem.Lang.67,270–284.
+Spreng,R.N.(2012).Thefallacyofa‘‘task-negative’’network.FrontPsychol3,
+Rosenbaum,R.S.,Stuss,D.T.,Levine,B.,andTulving,E.(2007).Theoryof 145.
+mindisindependentofepisodicmemory.Science318,1257.
+Spreng,R.N.,andGrady,C.L.(2010).Patternsofbrainactivitysupporting
+Rosenbaum,R.S.,Gilboa,A.,Levine,B.,Winocur,G.,andMoscovitch,M. autobiographicalmemory,prospection,andtheoryofmind,andtheirrelation-
+(2009).Amnesiaasanimpairmentofdetailgenerationandbinding:evidence shiptothedefaultmodenetwork.J.Cogn.Neurosci.22,1112–1123.
+frompersonal,fictional,andsemanticnarrativesinK.C.Neuropsychologia
+Spreng,R.N.,andLevine,B.(2006).Thetemporaldistributionofpastand
+47,2181–2187.
+futureautobiographicaleventsacrossthelifespan.Mem.Cognit.34,1644–
+1651.
+Russell,J.,Alexis,D.,andClayton,N.S.(2010).Episodicfuturethinkingin3-to
+5-year-oldchildren:theabilitytothinkofwhatwillbeneededfromadifferent
+Spreng,R.N.,andLevine,B.(2012).Doingwhatweimagine:completionrates
+pointofview.Cognition114,56–71.
+andfrequencyattributesofimaginedfutureeventsoneyearafterprospection.
+Memory.http://dx.doi.org/10.1080/09658211.2012.736524.
+Schacter,D.L.(2001).TheSevenSinsofMemory:HowtheMindForgetsand
+Remembers(Boston,NewYork:HoughtonMifflin). Spreng, R.N., and Schacter, D.L. (2012). Default network modulation and
+large-scale network interactivity in healthy young and old adults. Cereb.
+Schacter, D.L. (2012). Adaptive constructive processes and the future of Cortex22,2610–2621.
+memory.Am.Psychol.67,603–613.
+Spreng,R.N.,Mar,R.A.,andKim,A.S.(2009).Thecommonneuralbasisof
+Schacter, D.L., and Addis, D.R. (2007a). The cognitive neuroscience of autobiographicalmemory,prospection,navigation,theoryofmind,andthe
+constructivememory:rememberingthepastandimaginingthefuture.Philos. defaultmode:aquantitativemeta-analysis.J.Cogn.Neurosci.21,489–510.
+Trans.R.Soc.Lond.BBiol.Sci.362,773–786.
+Spreng,R.N.,Stevens,W.D.,Chamberlain,J.P.,Gilmore,A.W.,andSchacter,
+Schacter,D.L.,andAddis,D.R.(2007b).Constructivememory:theghostsof D.L.(2010).Defaultnetworkactivity,coupledwiththefrontoparietalcontrol
+pastandfuture.Nature445,27. network,supportsgoal-directedcognition.Neuroimage53,303–317.
+Schacter, D.L., and Addis, D.R. (2009). On the nature of medial temporal Spreng,R.N.,Sepulcre,J.,Turner,G.R.,Stevens,W.D.,andSchacter,D.L.
+contributionstotheconstructivesimulationoffutureevents.Philos.Trans. (2012).Intrinsicarchitectureunderlyingtherelationsamongthedefault,dorsal
+R.Soc.BBiol.Sci.364,1245–1253. attention,andfrontoparietalcontrolnetworksofthehumanbrain.J.Cogn.
+Neurosci.http://dx.doi.org/10.1162/jocn_a_00281.
+Schacter, D.L., and Slotnick, S.D. (2004). The cognitive neuroscience of
+memorydistortion.Neuron44,149–160. Squire,L.R.,vanderHorst,A.S.,McDuff,S.G.,Frascino,J.C.,Hopkins,R.O.,
+andMauldin,K.N.(2010).Roleofthehippocampusinrememberingthepast
+Schacter,D.L.,Norman,K.A.,andKoutstaal,W.(1998).Thecognitiveneuro- andimaginingthefuture.Proc.Natl.Acad.Sci.USA107,19044–19048.
+scienceofconstructivememory.Annu.Rev.Psychol.49,289–318.
+Squire,L.R.,McDuff,S.G.,andFrascino,J.C.(2011).ReplytoMaguireand
+Schacter,D.L.,Addis,D.R.,andBuckner,R.L.(2007a).Rememberingthepast Hassabis:autobiographicalmemoryandfutureimagining.Proc.Natl.Acad.
+toimagingthefuture:theprospectivebrain.Nat.Rev.Neurosci.8,657–661. Sci.USA108,E40.
+Schacter,D.L.,Wig,G.S.,andStevens,W.D.(2007b).Reductionsincortical St Jacques, P.L., Kragel, P.A., and Rubin, D.C. (2011). Dynamic neural
+activityduringpriming.Curr.Opin.Neurobiol.17,171–176. networkssupportingmemoryretrieval.Neuroimage57,608–616.
+Schacter,D.L.,Addis,D.R.,andBuckner,R.L.(2008).Episodicsimulationof Stawarczyk,D.,Majerus,S.,Maj,M.,VanderLinden,M.,andD’Argembeau,
+futureevents:concepts,data,andapplications.Ann.NYAcad.Sci.1124, A.(2011).Mind-wandering:phenomenologyandfunctionasassessedwith
+39–60. anovelexperiencesamplingmethod.ActaPsychol.(Amst.)136,370–381.
+Storm,B.C.,andJobe,T.A.(2012).Rememberingthepastandimaginingthe
+Schacter,D.L.,Guerin,S.A.,andStJacques,P.L.(2011).Memorydistortion:
+future:examiningtheconsequencesofmentaltimetravelonmemory.Memory
+anadaptiveperspective.TrendsCogn.Sci.15,467–474.
+20,224–235.
+Schacter,D.L.,Gaesser,B.,andAddis,D.R.(2012).Rememberingthepast
+Suddendorf,T.(2010a).Linkingyesterdayandtomorrow:preschoolers’ability
+and imagining the future in the elderly. Gerontology. Published online
+toreporttemporallydisplacedevents.Br.J.Dev.Psychol.28,491–498.
+September13,2012.http://dx.doi.org/10.1159/000342198.
+Suddendorf,T.(2010b).Episodicmemoryversusepisodicforesight:similari-
+Schmitz,T.W.,andJohnson,S.C.(2007).Relevancetoself:abriefreviewand
+tiesanddifferences.WileyInterdiscip.Rev.Cogn.Sci.1,99–107.
+frameworkofneuralsystemsunderlyingappraisal.Neurosci.Biobehav.Rev.
+31,585–596. Suddendorf,T.,andBusby,J.(2005).Makingdecisionswiththefutureinmind:
+developmentalandcomparative identificationofmentaltimetravel.Learn.
+Shallice,T.(1982).Specificimpairmentsofplanning.Philos.Trans.R.Soc. Motiv.36,110–125.
+Lond.BBiol.Sci.298,199–209.
+Suddendorf,T.,andCorballis,M.C.(1997).Mentaltimetravelandtheevolu-
+Sharot,T.(2011).TheOptimismBias:ATouroftheIrrationallyPositiveBrain tionofthehumanmind.Genet.Soc.Gen.Psychol.Monogr.123,133–167.
+(NewYork:VintageBooks).
+Suddendorf,T.,andCorballis,M.C.(2007).Theevolutionofforesight:whatis
+Sharot,T.,Riccardi,A.M.,Raio,C.M.,andPhelps,E.A.(2007).Neuralmecha- mentaltimetravel,andisituniquetohumans?Behav.BrainSci.30,299–313,
+nismsmediatingoptimismbias.Nature450,102–105. discussion313–351.
+Sheldon,S.,McAndrews,M.P.,andMoscovitch,M.(2011).Episodicmemory Summerfield,J.J.,Hassabis,D.,andMaguire,E.A.(2010).Differentialengage-
+processesmediatedbythemedialtemporallobescontributetoopen-ended mentofbrainregionswithina‘core’networkduringsceneconstruction.Neu-
+problemsolving.Neuropsychologia49,2439–2447. ropsychologia48,1501–1509.
+Neuron76,November21,2012ª2012ElsevierInc. 693
+
+--- PAGE 18 ---
+Neuron
+Review
+Svoboda,E.,andLevine,B.(2009).Theeffectsofrehearsalonthefunctional Tulving,E.(2002b).Chronesthesia:awarenessofsubjectivetime.InPrinciples
+neuroanatomy of episodic autobiographical and semantic remembering: ofFrontalLobeFunction,D.T.StussandR.C.Knight,eds.(NewYork:Oxford
+afunctionalmagneticresonanceimagingstudy.J.Neurosci.29,3073–3082. UniversityPress),pp.311–325.
+Szpunar,K.K.(2010).Episodicfuturethought:anemergingconcept.Perspect. Tulving,E.(2005).Episodicmemoryandautonoesis:uniquelyhuman?InThe
+Psychol.Sci.5,142–162. Missing Link in Cognition: Origins of Self-reflective Consciousness, H.S.
+TerraceandJ.Metcalfe,eds.(NewYork:OxfordUniversityPress),pp.3–56.
+Szpunar,K.K.(2011).Onsubjectivetime.Cortex47,409–411.
+VanBoven,L.,andAshworth,L.(2007).Lookingforward,lookingback:antic-
+Szpunar,K.K.,andMcDermott,K.B.(2008).Episodicfuturethoughtandits ipation is more evocative than retrospection. J. Exp. Psychol. Gen. 136,
+relation to remembering: evidence from ratings of subjective experience. 289–300.
+Conscious.Cogn.17,330–334.
+vanderMeer,M.,Kurth-Nelson,Z.,andRedish,A.D.(2012).Informationpro-
+Szpunar,K.K.,andSchacter,D.L.(2012).Getreal:Effectsofrepeatedsimula- cessingindecision-makingsystems.Neuroscientist18,342–359.
+tionandemotionontheperceivedplausibilityoffutureexperiences.J.Exp.
+Psychol. Gen. Published online June 11, 2012. http://dx.doi.org/10.1037/ VanHoeck,N.,Ma,N.,Ampe,L.,Baetens,K.,Vandekerckhove,M.,andVan
+a0028877. Overwalle,F.(2012).Counterfactualthinking:anfMRIstudyonchangingthe
+pastforabetterfuture.Soc.Cogn.Affect.Neurosci.PublishedonlineMarch
+Szpunar,K.K.,Watson,J.M.,andMcDermott,K.B.(2007).Neuralsubstrates 7,2012.http://dx.doi.org/10.1093/scan/nss031.
+ofenvisioningthefuture.Proc.Natl.Acad.Sci.USA104,642–647.
+Viard,A.,Che´telat,G.,Lebreton,K.,Desgranges,B.,Landeau,B.,deLaSay-
+Szpunar,K.K.,Chan,J.C.K.,andMcDermott,K.B.(2009).Contextualprocess- ette,V.,Eustache,F.,andPiolino,P.(2011).Mentaltimetravelintothepast
+inginepisodicfuturethought.Cereb.Cortex19,1539–1548. andthefutureinhealthyagedadults:anfMRIstudy.BrainCogn.75,1–9.
+Szpunar,K.K.,Addis,D.R.,andSchacter,D.L.(2012).Memoryforemotional Viard, A., Desgranges, B., Eustache, F., and Piolino, P. (2012). Factors
+simulations:rememberingarosyfuture.Psychol.Sci.23,24–29. affecting medial temporal lobe engagement for past and future episodic
+events: an ALE meta-analysis of neuroimaging studies. Brain Cogn. 80,
+Taylor,S.E.,andSchneider,S.K.(1989).Copingandthesimulationofevents. 111–125.
+Soc.Cogn.7,174–194.
+Vincent,J.L.,Kahn,I.,Snyder,A.Z.,Raichle,M.E.,andBuckner,R.L.(2008).
+Taylor,S.E.,Pham,L.B.,Rivkin,I.D.,andArmor,D.A.(1998).Harnessingthe Evidenceforafrontoparietalcontrolsystemrevealedbyintrinsicfunctional
+imagination.Mentalsimulation,self-regulation,andcoping.Am.Psychol.53, connectivity.J.Neurophysiol.100,3328–3342.
+429–439.
+Weiler,J.A.,Suchan,B.,andDaum,I.(2010a).Whenthefuturebecomesthe
+Thomason,M.E.,Chang,C.E.,Glover,G.H.,Gabrieli,J.D.,Greicius,M.D.,and past:differencesinbrainactivationpatternsforepisodicmemoryandepisodic
+Gotlib,I.H.(2008).Default-modefunctionandtask-induceddeactivationhave futurethinking.Behav.BrainRes.212,196–203.
+overlappingbrainsubstratesinchildren.Neuroimage41,1493–1503.
+Weiler,J.A.,Suchan,B.,andDaum,I.(2010b).Foreseeingthefuture:occur-
+Trope,Y.,andLiberman,N.(2003).Temporalconstrual.Psychol.Rev.110, renceprobabilityofimaginedfutureeventsmodulateshippocampalactiva-
+403–421. tion.Hippocampus20,685–690.
+Trunk,D.L.,andAbrams,L.(2009).Doyoungerandolderadults’communica- Weiler,J.A.,Suchan,B.,Koch,B.,Schwarz,M.,andDaum,I.(2011).Differen-
+tivegoalsinfluenceoff-topicspeechinautobiographicalnarratives?Psychol. tial impairment of remembering the past and imagining novel events after
+Aging24,324–337. thalamiclesions.J.Cogn.Neurosci.23,3037–3051.
+Tulving,E.(1983).ElementsofEpisodicMemory(NewYork:OxfordUniversity Wheeler,M.A.,Stuss,D.T.,andTulving,E.(1997).Towardatheoryofepisodic
+Press). memory:thefrontallobesandautonoeticconsciousness.Psychol.Bull.121,
+331–354.
+Tulving,E.(1985).Memoryandconsciousness.Can.Psychol.26,1–12.
+Williams,J.M.G.,Ellis,N.C.,Tyers,C.,Healy,H.,Rose,G.,andMacLeod,A.K.
+Tulving,E.(2002a).Episodicmemory:frommindtobrain.Annu.Rev.Psychol. (1996).Thespecificityofautobiographicalmemoryandimageability ofthe
+53,1–25. future.Mem.Cognit.24,116–125.
+694 Neuron76,November21,2012ª2012ElsevierInc.

@@ -1,0 +1,421 @@
+
+--- PAGE 1 ---
+Demis Hassabis' TIME100 on AlphaFold, AGI, and humanity. 13/05/2026, 08:35
+BUSINESS TECH
+Demis
+Hassabis
+Is
+Preparing
+for AI’s
+https://time.com/7277608/demis-hassabis-interview-time100-2025/ Page 1 of 16
+
+--- PAGE 2 ---
+Demis Hassabis' TIME100 on AlphaFold, AGI, and humanity. 13/05/2026, 08:35
+bbbbyyyyBBBBiiiillllllllyyyy PPPPeeeerrrrrrrriiiiggggoooo
+Endgame
+CORRESPONDENT
+David Vintiner for TIME
+ADD TIME ON GOOGLE
+Updated: APR Published: APR
+16, 2025 1:42 15, 2025 2:44 PM
+PM GMT GMT
+his story is part of the 2025 TIME100. Read Jennifer Doudna’s tribute to
+T
+Demis Hassabis here.
+Demis Hassabis learned he had won the 2024 Nobel Prize in Chemistry just 20
+minutes before the world did. The CEO of Google DeepMind, the tech giant’s
+artificial intelligence lab, received a phone call with the good news at the last
+minute, after a failed attempt by the Nobel Foundation to find his contact
+information in advance. “I would have got a heart attack,” Hassabis quips, had he
+learned about the prize from the television. Receiving the honor was a “lifelong
+dream,” he says, one that “still hasn’t sunk in” when we meet five months later.
+https://time.com/7277608/demis-hassabis-interview-time100-2025/ Page 2 of 16
+
+--- PAGE 3 ---
+Demis Hassabis' TIME100 on AlphaFold, AGI, and humanity. 13/05/2026, 08:35
+Trending Shorts
+MORE
+Minneapolis Mayor Frey The Most Memorable Looks White House Insists Trump Is
+Responds After Vice… from the 2026 Met Gala "Joking" About Canceling…
+Hassabis received half of the award alongside a colleague, John Jumper, for the
+design of AlphaFold: an AI tool that can predict the 3D structure of proteins using
+only their amino acid sequences—something Hassabis describes as a “50-year
+grand challenge” in the field of biology. Released freely by Google DeepMind for the
+world toM uEsNeU five years ago, AlphaFold has revolutionized the workS UoBfS sCcRiIeBEntists
+CLOSE
+toiling on research as varied as malaria vaccines, human longevity, and cures for
+cancer, allowing them to model protein structures in hours rather than years. The
+Nobel Prizes in 202 I 4 n w tr e o r d e u t c h i e n g fi r T s I t M in E h G is a t m or e y s t … o recVoIEgWn iMzeO RthEe contributions of AI to
+the field of science. If Hassabis gets his way, they won’t be the last.
+AlphaFold’s impact may have been broad enough to win its creators a Nobel Prize,
+but in the world of AI, it is seen as almost hopelessly narrow. It can model the
+structures of proteins but not much else; it has no understanding of the wider
+https://time.com/7277608/demis-hassabis-interview-time100-2025/ Page 3 of 16
+
+--- PAGE 4 ---
+Demis Hassabis' TIME100 on AlphaFold, AGI, and humanity. 13/05/2026, 08:35
+world, cannot carry out research, nor can it make its own scientific breakthroughs.
+Hassabis’s dream, and the wider industry’s, is to build AI that can do all of those
+things and more, unlocking a future of almost unimaginable wonder. All human
+diseases will be a thing of the past if this technology is created, he says. Energy will
+be zero-carbon and free, allowing us to transcend the climate crisis and begin
+restoring our planet’s ecosystems. Global conflicts over scarce resources will
+dissipate, giving way to a new era of peace and abundance. “I think some of the
+biggest problems that face us today as a society, whether that's climate or disease,
+will be helped by AI solutions,” Hassabis says. “I'd be very worried about society
+today if I didn't know that something as transformative as AI was coming down the
+line.”
+Advertisement
+00:03 / 01:21
+This hypothetical technology—known in the industry as Artificial General
+Intelligence, or AGI—had long been seen as decades away. But the fast pace of
+breakthroughs in computer science over the last few years has led top AI scientists
+to radically revise their expectations of when it will arrive. Hassabis predicts AGI is
+somewhere between five and 10 years away—a rather pessimistic view when judged
+https://time.com/7277608/demis-hassabis-interview-time100-2025/ Page 4 of 16
+
+--- PAGE 5 ---
+Demis Hassabis' TIME100 on AlphaFold, AGI, and humanity. 13/05/2026, 08:35
+by industry standards. OpenAI CEO Sam Altman has predicted AGI will arrive within
+Trump’s second term, while Anthropic CEO Dario Amodei says it could come as
+early as 2026.
+Partially underlying these different predictions is a disagreement over what AGI
+means. OpenAI’s definition, for instance, is rooted in cold business logic: a
+technology that can perform most economically valuable tasks better than humans
+can. Hassabis has a different bar, one focused instead on scientific discovery. He
+believes AGI would be a technology that could not only solve existing problems, but
+also come up with entirely new explanations for the universe. A test for its existence
+might be whether a system could come up with general relativity with only the
+information Einstein had access to; or if it could not only solve a longstanding
+hypothesis in mathematics, but theorize an entirely new one. “I identify myself as a
+scientist first and foremost,” Hassabis says. “The whole reason I'm doing everything
+I've done in my life is in the pursuit of knowledge and trying to understand the world
+around us.”
+Advertisement
+https://time.com/7277608/demis-hassabis-interview-time100-2025/ Page 5 of 16
+
+--- PAGE 6 ---
+Demis Hassabis' TIME100 on AlphaFold, AGI, and humanity. 13/05/2026, 08:35
+Photograph by David Vintiner for TIME
+Order your copy of the 2025 TIME100 issue here
+Read More: DeepMind’s CEO Helped Take AI Mainstream. Now He’s Urging Caution
+In an AI industry whose top ranks are populated mostly by businessmen and
+technologists, that identity sets Hassabis apart. Yet he must still operate in a system
+where market logic is the driving force. Creating AGI will require hundreds of billions
+of dollars’ worth of investments—dollars that Google is happily plowing into
+Hassabis’ DeepMind unit, buoyed by the promise of a technology that can do
+anything and everything. Whether Google will ensure that AGI, if it comes, benefits
+the world remains to be seen; Hassabis points to the decision to release AlphaFold
+for free as a symbol of its benevolent posture. But Google is also a company that
+must legally act in the best interests of its shareholders, and consistently releasing
+expensive tools for free is not a long-term profitable strategy. The financial promise
+of AI—for Google and for its competitors—lies in controlling a technology capable of
+automating much of the labor that drives the more than $100 trillion global
+https://time.com/7277608/demis-hassabis-interview-time100-2025/ Page 6 of 16
+
+--- PAGE 7 ---
+Demis Hassabis' TIME100 on AlphaFold, AGI, and humanity. 13/05/2026, 08:35
+economy. Capture even a small fraction of that value, and your company will
+become one of the most profitable the world has ever seen. Good news for
+shareholders, but bad news for regular workers who may find themselves suddenly
+unemployed.
+Advertisement
+So far, Hassabis has successfully steered Google's multibillion-dollar AI ambitions
+toward the type of future he wants to see: one focused on scientific discoveries
+that, he hopes, will lead to radical social uplift. But will this former child chess
+prodigy be able to maintain his scientific idealism as AI reaches its high-stakes
+endgame? His track record reveals one reason to be skeptical.
+When DeepMind was acquired by Google in 2014, Hassabis insisted on a contractual
+firewall: a clause explicitly prohibiting his technology from being used for military
+applications. It was a red line that reflected his vision of AI as humanity's scientific
+savior, not a weapon of war. But multiple corporate restructures later, that
+protection has quietly disappeared. Today, the same AI systems developed under
+Hassabis's watch are being sold, via Google, to militaries such as Israel's—whose
+campaign in Gaza has killed tens of thousands of civilians. When pressed, Hassabis
+denies that this was a compromise made in order to maintain his access to Google's
+computing power and thus realize his dream of developing AGI. Instead, he frames
+it as a pragmatic response to geopolitical reality, saying DeepMind changed its
+stance after acknowledging that the world had become “a much more dangerous
+place” in the last decade. “I think we can't take for granted anymore that democratic
+values are going to win out,” he says. Whether or not this justification is honest, it
+raises an uncomfortable question: If Hassabis couldn't maintain his ethical red line
+when AGI was just a distant promise, what compromises might he make when it
+comes within touching distance?
+Advertisement
+https://time.com/7277608/demis-hassabis-interview-time100-2025/ Page 7 of 16
+
+--- PAGE 8 ---
+Demis Hassabis' TIME100 on AlphaFold, AGI, and humanity. 13/05/2026, 08:35
+To get to Hassabis’s dream of a utopian future, the AI industry must first navigate its
+way through a dark forest full of monsters. Artificial intelligence is a dual-use
+technology like nuclear energy: it can be used for good, but it could also be terribly
+destructive. Hassabis spends much of his time worrying about risks, which generally
+fall into two different buckets. One is the possibility of systems that can
+meaningfully enhance the capabilities of bad actors to wreak havoc in the world; for
+example, by endowing rogue nations or terrorists with the tools they need to
+synthesize a deadly virus. Preventing risks like that, Hassabis believes, means
+carefully testing AI models for dangerous capabilities, and only gradually releasing
+them to more users with effective guardrails. It means keeping the “weights” of the
+most powerful models (essentially their underlying neural networks) out of the
+public’s hands altogether, so that models can be withdrawn from public use if
+dangers are discovered after release. That’s a safety strategy that Google follows but
+which some of its competitors, such as DeepSeek and Meta, do not.
+Advertisement
+The second category of risks may seem like science fiction, but they are taken
+seriously inside the AI industry as model capabilities advance. These are the risks of
+AI systems acting autonomously— such as a chatbot deceiving its human creators,
+or a robot attacking the person it was designed to help. Language models like
+DeepMind’s Gemini are essentially grown from the ground up, rather than written by
+hand like old-school computer programs, and so computer scientists and users are
+constantly finding ways to elicit new behaviors from what are best understood as
+incredibly mysterious and complex artifacts. The question of how to ensure that
+they always behave and act in ways that are “aligned” to human values is an
+unsolved scientific problem. Early signs of misaligned behaviors, like strategic lying,
+have already been identified by researchers working with today’s language models.
+Those problems are only likely to become more acute as models get better. “How
+do we ensure that we can stay in charge of those systems, control them, interpret
+what they're doing, understand them, and put the right guardrails in place that are
+not movable by very highly capable self-improving systems?” Hassabis says. “That is
+an extremely di$icult challenge.”
+Advertisement
+https://time.com/7277608/demis-hassabis-interview-time100-2025/ Page 8 of 16
+
+--- PAGE 9 ---
+Demis Hassabis' TIME100 on AlphaFold, AGI, and humanity. 13/05/2026, 08:35
+It’s a devilish technical problem—but what really keeps Hassabis up at night are the
+political coordination challenges that accompany it. Even if well-meaning
+companies can make safe AIs, that doesn’t by itself stop the creation and
+proliferation of unsafe AIs. Stopping that will require international collaboration—
+something that’s becoming increasingly di$icult as western alliances fray and
+geopolitical tensions between the U.S. and China rise. Hassabis has played a
+significant role in the three AI summits held by global governments since 2023, and
+says he would like to see more of that kind of cooperation. He says the U.S.
+government’s export controls on AI chips, intended to prevent China’s AI industry
+from surpassing Silicon Valley, are “fine”—but he would prefer to avoid political
+choices that “end up in an antagonistic kind of situation.”
+He might be out of luck. As both the U.S. and China have woken up in recent years
+to the potential power of AGI, the climate of global cooperation —which reached a
+high watermark with the first AI Safety Summit in 2023—has given way to a new kind
+of realpolitik. In this new era, with nations racing to militarize AI systems and build
+up stockpiles of chips, and with a new cold war brewing between the U.S. and
+China, Hassabis still holds out hope that competing nations and companies can find
+ways to set aside their differences and cooperate, at least on AI safety. “It’s in
+everyone’s self-interest to make sure that goes well,” he says.
+Advertisement
+Even if the world can find a way to safely navigate through the geopolitical turmoil
+of AGI’s arrival, the question of labor automation will rear its head. When
+governments and companies no longer rely on humans to generate their wealth,
+what leverage will citizens have left to demand the ingredients of democracy and a
+comfortable life? AGI might create abundance, but it won’t dispel the incentives for
+companies and states to amass resources and compete with rivals. Hassabis admits
+he is better at forecasting technological futures than social and economic ones; he
+says he wishes more economists would take the possibility of near-term AGI
+https://time.com/7277608/demis-hassabis-interview-time100-2025/ Page 9 of 16
+
+--- PAGE 10 ---
+Demis Hassabis' TIME100 on AlphaFold, AGI, and humanity. 13/05/2026, 08:35
+seriously. Still, he thinks it’s inevitable we’ll need a “new political philosophy” to
+organize society in this world. Democracy, he says, “is not a panacea, by any
+means,” and might have to give way to “something better.”
+Hassabis, left, captaining the England under-11s chess team at the age of 9. Courtesy Demis Hassabis
+Advertisement
+Automation, meanwhile, is already on the horizon. In March, DeepMind announced
+Gemini 2.5, the latest version of its flagship AI model, which outperforms rival
+models made by OpenAI and Anthropic on many popular metrics. Hassabis is
+currently hard at work on Project Astra, a DeepMind effort to build a universal digital
+assistant powered by Gemini. That work, he says, is not intended to hasten labor
+disruptions, but instead is about building the necessary scaffolding for the type of AI
+that he hopes will one day make its own scientific discoveries. Still, as research into
+these AI “agents” progresses, Hassabis says, expect them to be able to carry out
+https://time.com/7277608/demis-hassabis-interview-time100-2025/ Page 10 of 16
+
+--- PAGE 11 ---
+Demis Hassabis' TIME100 on AlphaFold, AGI, and humanity. 13/05/2026, 08:35
+increasingly more complex tasks independently. (An AI agent that can meaningfully
+automate the job of further AI research, he predicts, is “a few years away.”) For the
+first time, Google is also now using these digital brains to control robot bodies: in
+March the company announced a Gemini-powered android robot that can carry out
+embodied tasks like playing tic-tac-toe, or making its human a packed lunch. The
+tone of the video announcing Gemini Robotics was friendly, but its connotations
+were not lost on some YouTube commenters: “Nothing to worry [about,] humanity,
+we are only developing robots to do tasks a 5 year old can do,” one wrote. “We are
+not working on replacing humans or creating robot armies.”
+Advertisement
+Hassabis acknowledges the social impacts of AI are likely to be significant. People
+must learn how to use new AI models, he says, in order to excel professionally in the
+future and not risk getting left behind. But he is also confident that if we eventually
+build AGI capable of doing productive labor and scientific research, the world that it
+ushers into existence will be abundant enough to ensure a substantial increase in
+quality of life for everybody. “In the limited-resource world which we're in, things
+ultimately become zero-sum,” Hassabis says. “What I'm thinking about is a world
+where it's not a zero-sum game anymore, at least from a resource perspective.”
+Five months after his Nobel Prize, Hassabis’s journey from chess prodigy to Nobel
+laureate now leads toward an uncertain future. The stakes are no longer just
+scientific recognition—but potentially the fate of human civilization. As DeepMind's
+machines grow more capable, as corporate and geopolitical competition over AI
+intensifies, and as the economic impacts loom larger, Hassabis insists that we might
+be on the cusp of an abundant economy that benefits everyone. But in a world
+where AGI could bring unprecedented power to those who control it, the forces of
+business, geopolitics, and technological power are all bearing down with increasing
+pressure. If Hassabis is right, the turbulent decades of the early 21st century could
+give way to a shining utopia. If he has miscalculated, the future could be darker than
+anyone dares imagine. One thing is for sure: in his pursuit of AGI, Hassabis is playing
+the highest-stakes game of his life.
+https://time.com/7277608/demis-hassabis-interview-time100-2025/ Page 11 of 16
+
+--- PAGE 12 ---
+Demis Hassabis' TIME100 on AlphaFold, AGI, and humanity. 13/05/2026, 08:35
+Must-Reads from TIME
+SSSSeeeevvvveeeerrrraaaallll UUUU....SSSS....
+CCCCaaaalllliiiiffffoooorrrrnnnniiiiaaaa
+SSSSttttaaaatttteeeessss
+MMMMaaaayyyyoooorrrr TTTThhhheeee SSSSlllleeeeeeeepppp
+MMMMoooonnnniiiittttoooorrrriiiinnnngggg
+RRRReeeessssiiiiggggnnnnssss,,,, TTTTrrrriiiicccckkkk TTTThhhhaaaatttt
+CCCCrrrruuuuiiiisssseeee
+AAAAddddmmmmiiiittttttttiiiinnnngggg ttttoooo AAAAccccttttuuuuaaaallllllllyyyy
+PPPPaaaasssssssseeeennnnggggeeeerrrrssss aaaassss
+BBBBeeeeiiiinnnngggg aaaannnn QQQQuuuuiiiieeeettttssss aaaa
+LLLLaaaatttteeeesssstttt
+AAAAggggeeeennnntttt ffffoooorrrr RRRRaaaacccciiiinnnngggg MMMMiiiinnnndddd
+HHHHaaaannnnttttaaaavvvviiiirrrruuuussss
+CCCChhhhiiiinnnnaaaa
+CCCCaaaasssseeee RRRReeeeppppoooorrrrtttteeeedddd
+TTTThhhheeee PPPPeeeennnnttttaaaaggggoooonnnn
+AAAA 2222000022226666 BBBBlllluuuueeee
+JJJJuuuusssstttt RRRReeeelllleeeeaaaasssseeeedddd 11110000 MMMMeeeeaaaannnniiiinnnnggggffffuuuullll
+WWWWaaaavvvveeee aaaassss BBBBiiiigggg aaaassss
+OOOOvvvveeeerrrr aaaa TTTThhhhiiiinnnnggggssss ttttoooo TTTTeeeellllllll
+tttthhhheeee OOOOnnnneeee iiiinnnn
+HHHHuuuunnnnddddrrrreeeedddd UUUUFFFFOOOO YYYYoooouuuurrrr MMMMoooommmm
+2222000000006666 NNNNoooo
+FFFFiiiilllleeeessss.... HHHHeeeerrrreeee''''ssss WWWWhhhhiiiilllleeee YYYYoooouuuu SSSSttttiiiillllllll
+LLLLoooonnnnggggeeeerrrr SSSSeeeeeeeemmmmssss
+WWWWhhhhaaaatttt WWWWeeee CCCCaaaannnn
+FFFFaaaarrrr----FFFFeeeettttcccchhhheeeedddd
+FFFFoooouuuunnnndddd IIIInnnnssssiiiiddddeeee
+This Ann Summers Toy Looks
+Sweet But Knows Exactly Wha…
+Ann Summers Is Filled With
+Surprises... Free Delivery On Orde…
+Ann Summers|Sponsored Shop Now
+TV Presenter: I Drank Olive Oil
+For A Month - I Had No Idea I…
+Radiant Glow Secrets|Sponsored
+Sarah Palin's Crew - TIME
+The former screenwriter says she left
+the GOP in 2006 because of Georg…
+https://time.com/7277608/demis-hassabis-interview-time100-2025/ Page 12 of 16
+
+--- PAGE 13 ---
+Demis Hassabis' TIME100 on AlphaFold, AGI, and humanity. 13/05/2026, 08:35
+TIME
+Why This Tiny Silver Bird is
+Becoming The Uk's Most…
+Look Closer: The Genius Secret
+Hidden In This Viral "Hope" Bird …
+Glosritystore|Sponsored Learn More
+The "Silverware Bird" Secret:
+Why Thousands Are Buying T…
+Look Closer: The Genius Secret
+Hidden In This Viral "Hope" Bird …
+Glosritystore|Sponsored Learn More
+Top Dermatologists Say This
+Gem Is "All You Need" To…
+"My Skin Is Smooth And My Age …
+Skincare|Sponsored Learn More
+This overlooked vitamin soothes
+nerve pain in 7 days
+Nerve Research|Sponsored
+Brits Could Find New Ways to
+Earn Extra Income Thanks to…
+North Vale G… |Sponsored Learn More
+Sciatica Pain? Do This Tric…
+UK Readers with sciatic nerve pain
+are trying this 15-minute at-home …
+Daily Trends … |Sponsored Learn More
+California Mayor Resigns,…
+Eileen Wang resigned as mayor of
+…
+https://time.com/7277608/demis-hassabis-interview-time100-2025/ Page 13 of 16
+
+--- PAGE 14 ---
+Demis Hassabis' TIME100 on AlphaFold, AGI, and humanity. 13/05/2026, 08:35
+Arcadia Monday, as U.S. officials s…
+TIME
+A simple trick alleviates yea…
+SB|Sponsored Learn More
+Installers Agree: Solar Only Pays
+Off in These UK Postcodes
+Free solar panel quote.
+UK Solar|Sponsored Learn More
+The 3-Second Trick UK Car
+Thieves Hate
+Everyday drivers in Britain call this
+the best car security upgrade in …
+Motoring New…|Sponsored Read More
+Catholic Leaders in U.S.…
+But some MAGA Catholics say they …
+TIME
+3 Toxic Foods for Dogs: The
+One Meat You Should Neve…
+Your Pet Nutrition|Sponsored
+Sections More About Us Your
+Subscriptions
+https://time.com/7277608/demis-hassabis-interview-time100-2025/ Page 14 of 16
+
+--- PAGE 15 ---
+Demis Hassabis' TIME100 on AlphaFold, AGI, and humanity. 13/05/2026, 08:35
+Home The TIME Our
+Vault Mission Subscribe
+Politics
+TIME Contact Access My
+Health
+Africa the Digital
+Editors Magazine
+AI
+TIME
+France Press Manage My
+World
+Room Subscription
+TIME For
+Business
+Kids Media Kit Global
+Help
+Science
+TIME Reprints &
+Center
+Futures Permissions
+Climate
+Buy an
+TIME Masthead
+Issue
+Ideas
+Studios
+Careers
+Shop the
+Entertainment
+Video
+Cover
+Site Map
+Sports Store
+Red
+Modern
+Border
+Technology Give a Gift
+Slavery
+Supplied Statement
+Newsletters
+Partner
+Content
+© 2026 TIME USA, LLC. All Rights Reserved. Use of this site constitutes acceptance of our Terms
+of Service, Privacy Policy (Your Privacy Rights) and Do Not Sell or Share My Personal Information
+.
+TIME may receive compensation for some links to products and services on this website. Offers
+may be subject to change without notice.
+This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.
+https://time.com/7277608/demis-hassabis-interview-time100-2025/ Page 15 of 16
+
+--- PAGE 16 ---
+Demis Hassabis' TIME100 on AlphaFold, AGI, and humanity. 13/05/2026, 08:35
+https://time.com/7277608/demis-hassabis-interview-time100-2025/ Page 16 of 16

@@ -1,0 +1,1640 @@
+
+--- PAGE 1 ---
+Article
+Computations Underlying Social Hierarchy Learning:
+Distinct Neural Mechanisms for Updating and
+Representing Self-Relevant Information
+Highlights Authors
+d SocialhierarchylearningaccountedforbyaBayesian DharshanKumaran,AndreaBanino,
+inferencescheme CharlesBlundell,DemisHassabis,
+PeterDayan
+d Amygdalaandhippocampussupportdomain-generalsocial
+hierarchylearning
+Correspondence
+dkumaran@google.com
+d Medialprefrontalcortexselectivelyupdatesknowledge
+aboutone’sownhierarchy
+In Brief
+d Ranksignalsgeneratedbytheseneuralstructuresinabsence Howdowelearnthepowerstructure
+oftaskdemands withinoursocialcommunity?Kumaran
+etal.showthatthisinvolvesthe
+maintenanceandupdatingofbeliefs
+aboutindividuals’power,withthemedial
+prefrontalcortexspecificallysupporting
+knowledgeaboutone’sownsocial
+hierarchy.
+Kumaranetal.,2016,Neuron92,1135–1147
+December7,2016ª2016TheAuthors.PublishedbyElsevierInc.
+http://dx.doi.org/10.1016/j.neuron.2016.10.052
+
+--- PAGE 2 ---
+Neuron
+Article
+Computations Underlying Social Hierarchy Learning:
+Distinct Neural Mechanisms for Updating
+and Representing Self-Relevant Information
+DharshanKumaran,1,3,4,*AndreaBanino,1CharlesBlundell,1DemisHassabis,1,2andPeterDayan2
+1GoogleDeepMind,5NewStreetSquare,LondonEC4A3TW,UK
+2GatsbyComputationalNeuroscienceUnit,25HowlandStreet,LondonW1T4JG,UK
+3InstituteofCognitiveNeuroscience,UniversityCollegeLondon,17QueenSquare,LondonWC1N3AR,UK
+4LeadContact
+*Correspondence:dkumaran@google.com
+http://dx.doi.org/10.1016/j.neuron.2016.10.052
+SUMMARY rapidlyassessthethreatposedbyanunfamiliarindividualinpri-
+mates(e.g.,anintruder)(Marshetal.,2004;Todorovetal.,2008;
+Knowledge about social hierarchies organizes hu- Whalen, 1998). In contrast, the other source of information,
+man behavior, yet we understand little about the namely, experience of previous encounters between (pairs of)
+underlying computations. Here we show that a individuals,ismorerobust—albeitpotentiallyincomplete,ifnot
+Bayesianinferencescheme,whichtracksthepower allencountersarise.Researchinanimals,therefore,hasempha-
+ofindividuals,bettercapturesbehavioralandneural sized that rank judgments depend critically on knowledge
+acquired through learning, coupled with a highly developed
+datacomparedwithareinforcementlearningmodel
+capacity for transitive inference (i.e., if A > B and B > C, then
+inspired by rating systems used in games such
+A>C)(ByrneandBates,2010;CheneyandSeyfarth,1990;Gro-
+as chess. We provide evidence that the medial
+senicketal.,2007;Paz-Y-Min˜oCetal.,2004).
+prefrontal cortex (MPFC) selectively mediates the
+Althoughexistingworkinhumans(Kumaranetal.,2012),com-
+updating of knowledge about one’s own hierarchy,
+plemented byresearch in animals (Noonan etal., 2014; Rush-
+as opposed to that of another individual, a pro- worth et al., 2013), has provided evidence that the amygdala
+cess that underpinned successful performance andanteriorhippocampusareselectivelyinvolvedintheacqui-
+and involved functional interactions with the amyg- sitionanduseofknowledgeaboutasocial(i.e.,asopposedto
+dala and hippocampus. In contrast, we observed anon-social(Kumaranetal.,2012)hierarchy,threeimportantis-
+domain-general coding of rank in the amygdala and suesremainopen.First,whataretheneuralcomputationsthat
+hippocampus, even when the task did not require support the learning of social hierarchies? Although a recent
+line of research demonstrates that certain aspects of social
+it. Our findings reveal the computations underlying
+learning (e.g., about traits, trust games, and theory of mind
+a core aspect of social cognition and provide new
+[ToM]) can be accounted for by reinforcement learning (RL)
+evidence that self-relevant information may indeed
+mechanisms (Behrens et al., 2009; Burke et al., 2010; Hackel
+be afforded a unique representational status in the
+et al., 2015; Hampton et al., 2008; King-Casas, 2005; Suzuki
+brain.
+etal.,2012),arichtheoreticalframeworkformalizestheacquisi-
+tionofstructuredknowledge(e.g.,aboutsocialhierarchiesand
+networks) in Bayesian terms (Kemp and Tenenbaum, 2008;
+INTRODUCTION Tervo et al., 2016). Which accounts better for social hierarchy
+learningisnotclear.Second,previousworkhasonlyexamined
+Considerable evidence suggests that groups of humans, non- the neural substrates underlying learning about social hierar-
+humanprimates,andavarietyofotherspeciesarearrangedin chies composed exclusively of other individuals (Chiao et al.,
+linearsocialdominancehierarchiesthatarestableoverrelatively 2008; Kumaran et al., 2012; Zink et al.,2008). Akeyquestion,
+longperiodsoftime.Knowingtheserelativesocialranksiscrit- therefore, is whether learning about dominance relationships
+ical for selecting advantageous allies and avoiding potentially withinone’sownhierarchy—arguablythemostrelevanttypeof
+dangerous conflicts (Cheney and Seyfarth, 1990; Rushworth knowledge in the real world—recruits similar or distinct neural
+et al., 2013). At least two sources of information may be used mechanisms.Indeed,thishasbroaderrelevanceforthefunda-
+toguidejudgmentsofsocialrank.Oneisthephysicalappear- mental question of whether self-related information is repre-
+ance of an individual (e.g., facial features and body posture) sentedbydistinctneuralmechanisms(AmodioandFrith,2006;
+(Marsh et al., 2004; Todorov et al., 2008; Zink et al., 2008). Dennyetal.,2012;Mitchelletal.,2006),anissuethathasbeen
+Suchperceptualcuesarethoughttobewidelyusedintheanimal difficulttoanswerdefinitivelybecauseofthenaturalintertwining
+kingdomtoindicaterank(e.g.,plumage)(ByrneandBates,2010) oftheself/otherdimensionwiththerichnessandquantityofprior
+and may provide a relatively coarse heuristic with which to knowledge(e.g.,intraitjudgmenttasks).Third,isthereautomatic
+Neuron92,1135–1147,December7,2016ª2016TheAuthors.PublishedbyElsevierInc. 1135
+ThisisanopenaccessarticleundertheCCBYlicense(http://creativecommons.org/licenses/by/4.0/).
+
+--- PAGE 3 ---
+Figure1. LearnPhase:ExperimentalTaskandBehavioralData
+(A)Trainingtrials:timeline(left),behavioraldata(right).Participantsviewedadjacentitemsinthehierarchy:P4versusP5illustratedforSelfcondition(above,
+yellowborderaroundfaces)andOthercondition(below,blueborderaroundfaces).Yelloworblue(counterbalanced)signifiedthelogocolorofthecompanyto
+whichindividualsbelonged.P5wastheparticipantoraclosefriendfortheSelfandOtherconditions,respectively.Participantsselectedtheitemtheythoughthad
+morepowerandreceivedcorrectivefeedback.Maleparticipantssawonlymaleindividuals;femaleparticipantssawonlyfemaleindividuals.Right:trainingtrial
+performanceacrossall12experimentalblocks,averagedacrossalleighttrainingtrialtypes(e.g.,P1versusP2,P2versusP3)andparticipants(Selfcondition:
+green;Othercondition:blue;errorbarsreflectSEM).
+(B)Testtrials:timeline(left),behavioraldata(right).Participantsviewednon-adjacentitemsinthehierarchy(P3versusP6illustrated),inferredthehigherranking
+item,andratedtheirconfidenceintheirchoices;nofeedbackwasprovided.Right:performanceoverall12experimentalblocks,averagedacrossalleighttest
+trialtypes(fourofwhichincludedtheparticipantorhisorherfriend[P2versusP5]andfourofwhichdidnot[e.g.,P3versusP6])andparticipants(Selfcondition:
+blue;Othercondition:green;errorbarsreflectSEM).
+(C)Hierarchyrecalltest(debriefingsession):picturesofthesetsofpeopleintheSelfandOtherhierarchyconditionswerepresentedtoparticipants,andtheywere
+askedtorankthemintermsoftheirorderinthehierarchy,withtheirperformancetimed.ExampleSelfandOtherhierarchiesareillustrated(notshownto
+participants):membersoftheyellow-andblue-logocompanies,respectively.Notethattheallocationofpersontorankposition(1=highrank,9=lowrank)was
+randomizedacrossparticipants,althoughP5wasalwaystheparticipantoraclosefriendfortheSelforOthercondition.Right:performance(%)onhierarchy
+recalltestandtimetaken(seconds)(Selfcondition:green;Othercondition:blue).
+generationofneuralsignalsreflectingrankinasocialhierarchy rates extra features. In the ‘‘Learn’’ phase of the task, partici-
+(hereaftertermed‘‘power’’becauseitisconsideredacontinuous pantsacquiredknowledgeoftwosocialhierarchiesinparallel.
+dimension in our study) that was learned through experience, Although both hierarchies were comprised of unfamiliar mem-
+evenwhenthetaskdoesnotrequireit?Althoughpreviouswork bers of two fictitious companies, they were distinguished by
+(Kumaran et al., 2012) demonstrated that neural signatures of incorporating either the participants themselves (hereafter the
+power are generated when needed to perform an evaluation Selfhierarchy)orclosefriendsoftheparticipants(hereafterthe
+task, ecological evidence suggests that the power of others Other hierarchy) (see Figure 1). Thus, our experimental design
+should be automatically represented, in an analogous fashion afforded us the opportunity to identify putative differences in
+to perceptual signals relating to trustworthiness (Engell et al., theneuralmechanismsthatsupportlearningaboutself-related
+2007;Todorovetal.,2008;Winstonetal.,2002). information, decoupled as far as possible from many forms of
+Toexaminetheseissues,wedevelopedanewexperimental preexistingandpriorknowledgeabouttheselfthatareinherent
+taskthatbuildsonapriorstudy(Kumaranetal.,2012)usedto inotherstudies(Dennyetal.,2012;Jenkinsetal.,2008;Kelley
+elucidatetheneuralsubstratesofhierarchylearningbutincorpo- etal.,2002;Macraeetal.,2004;Mitchelletal.,2005,2006;Tamir
+1136 Neuron92,1135–1147,December7,2016
+
+--- PAGE 4 ---
+andMitchell,2011,2012).Weincorporatedadirecttestofthe 1.49[0.04]sand1.54[0.05]s;trainingandtesttrialsrespectively,
+effectivenessofourSelf/Othermanipulationusingaspecifically SEMinbrackets),thecorrectnessofchoices,orconfidencerat-
+tailored version of the classic implicit association test (IAT) ings(allpvalues>0.2;Figures1Aand1B).Followingscanning,
+(Greenwald et al., 1998; Mitchell et al., 2006) (see below and participantswerealsotestedontheirexplicitknowledgeofthe
+SupplementalExperimental Procedures).Finally,duringasec- hierarchy(hierarchyrecalltest;seeFigure1CandExperimental
+ondscanning(‘‘Categorization’’)phase,participantsviewedpic- Procedures). They performed proficiently (Figure 1C), with no
+turesofindividualsfrombothhierarchies,allowingustoprobe significant difference between conditions in terms of accuracy
+theunderlyingrepresentationsofthehierarchieslearnedinthe (Self versus Other: 92.1% [2.7%] versus 84.1% [4.4%], mean
+previousphaseandidentifyregionsthatautomaticallygenerate with SEM in brackets) or time taken (Self versus Other: 22.7 s
+signalsofpower,evenwhenthetaskdoesnotrequireit. [2.1s]versus25.6s[3.1s],meanwithSEMinbrackets)(both
+Insum,ourexperimentwasspecificallysetuptoelucidatethe pvalues>0.2).
+computational mechanisms operating during social hierarchy Followingscanning,participantsalsocompletedaversionofa
+learning, examine whether distinct neural processes support classical psychological paradigm, the implicit association test
+the learning and representation of self-relevant information (seeFigures2andS1andSupplementalExperimentalProced-
+(i.e.,thepowerofindividualswithinone’sown,comparedwith ures)(Greenwaldetal.,1998),whichweadaptedtoprobethe
+another’s,socialgroup),anddeterminewhethersignalsreflect- extent to which participants incorporated themselves into the
+ing individuals’ power are automatically generated even in the Selfhierarchycondition.TherewasahighlysignificantIATeffect,
+absenceoftaskdemands. evidenced by speeding of RTs in congruent trials (congruent:
+690 ms[152.8 ms]; incongruent: 856 ms [30.2ms]; t = 5.33,
+23
+RESULTS p < 0.001; Figure 2; see Supplemental Experimental Proced-
+ures). This evidence was complemented by related subjective
+LearnPhase measuresobtainedthroughadebriefingquestionnaire,inwhich
+DuringtheLearnphase,participantscompletedtrainingtrialsin participants reported that they incorporated themselves in the
+eachofwhichapairofadjacentpeopleinthehierarchywaspre- SelfconditionandtheirfriendsintheOthercondition,toasimilar
+sented (e.g., P1 versus P2, where P = person; Figure 1): they degree(p>0.1)(seeTableS8).Theseresultsdemonstratethe
+wererequiredtolearnthroughtrialanderrorwhichpersonhad effectivenessofourexperimentalmanipulationintheSelfversus
+morepowerineachoftwohierarchiesrelatingtodifferentcom- Othercondition,consistentwithpreviousevidencethatmerely
+panies signified by colored logos (i.e., yellow and blue; each assigningparticipantsintodifferentgroupsinanarbitraryfashion
+company consisted exclusively of people of the same gender canhavesubstantialeffectsonbehavior(i.e.,highermonetary
+as the subject). One hierarchy included the subject himself or sharing within a group, compared with across groups, in Volz
+herself(the Self condition), and the other incorporated a close etal.,2009).
+friend(theOthercondition;seeSupplementalExperimentalPro-
+ceduresfortheelicitationprocedure).Ourexperimentaldesign ComputationalModeling
+incorporated a close friend in the Other condition, rather than Existingmodelsoftransitiveinferencehavebeentypicallybeen
+anacquaintanceorunfamiliarotherindividual,inordertorender restrictedinbeingabletolearnonlyrelativelysmallhierarchies
+theseconditionsassimilaraspossible,therebyisolatingtheSelf/ (i.e., six or fewer items) (Frank et al., 2003; von Fersen et al.,
+Other dimension (e.g., Mitchell et al., 2006). Following each 1991). We therefore developed two novel models capable
+training trial block, participants completed test trials in which of learning long hierarchies (i.e., here of nine items): one
+theywererequiredtoselectthemorepowerfulofthetwoitems involving (approximate) Bayesian inference and the other
+presented (e.g., P4 versus P6; Figure 1B) and rate their confi- involving reinforcement learning (see Supplemental Experi-
+denceintheirdecisionsonascalerangingfrom1(guess)to3 mentalProcedures).
+(very sure). Test trials, therefore, differed from training trials in Accordingtothefirstmodel,subjectstreatthepowersofindi-
+twocriticalways:non-adjacentitemsinthehierarchywerepre- viduals as a hidden or latent variable, about which they make
+sentedduringtesttrials(e.g.,P4versusP6),andnocorrective approximate Bayesian inferences. Theseinferences arebased
+feedbackwasissued(although subjectsknewthattheywould onthelikelihoodofobservations(i.e.,theoutcomesoftraining
+ultimately be remunerated for correct answers). Confidence trials that reveal which individual has more power). Given the
+judgements did not attract compensation. Importantly, partici- finding that participants required approximately 200 trials to
+pants could not rely on memorization (i.e., of the item from achieveproficiency(seeFigures1Aand1B),despitereceiving
+each training pair associated with the positive outcome) to deterministic feedback during training, we modeled them as
+performsuccessfullyduringtesttrialsbutinsteadwererequired having imperfect memory (as might, for instance, arise from a
+to deduce the correct item using knowledge of the underlying changingenvironment).Foraconcreteimplementationofforget-
+hierarchy. fulBayesianinference,weusedanexampleofapopularclassof
+filtering algorithms known as sequential Monte Carlo (SMC)
+BehavioralResults methods(Doucetetal.,2000).Theseaimtoinfertheunderlying
+Participants improved their performance on training and test distribution of an evolving hidden variable, representing it
+trials over the course of the Learn phase: no significant differ- throughasetofnotionalsamplesorparticles.Forgetfulnessis
+encewasfoundbetweenSelfandOtherconditionsintermsof straightforward to capture via a parameter (called s) in the
+reactiontimes(RTs)(Self:1.49[0.04]sand1.52[0.04]s;Other: SMCmodel,whichinfluencesthetendencyforparticlestodrift
+Neuron92,1135–1147,December7,2016 1137
+
+--- PAGE 5 ---
+Figure 2. Implicit Association Test: Evi-
+dencethatParticipantsIncorporatedThem-
+selvesintotheSelfHierarchy
+(A) Experimental design. Top: congruent condi-
+tion:whentheyellowlogo(i.e.,thecoloroftheSelf
+companylogointhisexample)isdisplayedonthe
+samesideastheword‘‘Self’’andwhentheblue
+logo(i.e.,thecoloroftheOthercompany)isdis-
+played on the same side as the word ‘‘Other.’’
+Bottom:incongruentcondition:when theyellow
+logoisdisplayedonthesideoftheword‘‘Other.’’
+Therationaleisthatifparticipantshaveincorpo-
+ratedthemselvesintotheirownsocialgroup,they
+should be faster to categorize faces according
+to company membership in the congruent
+(cf. incongruent) condition, in which the word
+‘‘Self’’ is on the same side as the color of the
+company logo (i.e., yellow). In contrast, RTs
+shouldbeslowerintheincongruentcondition,in
+whichtheyellowlogoisdisplayedonthesideoftheword‘‘Other,’’becauseofaStroop-likeeffect(seeSupplementalExperimentalProcedures).Notethatthe
+words‘‘Self’’and‘‘Other’’werenotpresentedtoparticipantsduringtheexperiment:profilepicturesweredenotedby‘‘you’’and‘‘him’’or‘‘her.’’
+(B)Meanlatenciesforthecongruent(lightgray)andincongruent(darkgray)trials,averagedacrossparticipants(seeSupplementalExperimentalProceduresfor
+detailsofanalyticprocedure).TheIATeffectisthedifferenceinresponsetimesbetweencongruenttrialsandincongruenttrials(errorbarsreflectSEM).
+over time (see Supplemental Experimental Procedures). This participant (see Daw, 2011; Wimmer et al., 2012), we found
+preventsasymptoticcertaintyandslowslearning. strongevidence(seeTable1)infavoroftheSMCmodelaccord-
+The second method involved RL. Typical RL methods that ing to the log likelihood of each model and the corresponding
+assignvaluestoitemsonthebasisoftheirpropensitytobeasso- Bayesian information criterion (BIC) measure (Raftery, 1995).
+ciatedwitharewardingoutcome(e.g.,theRescorla-Wagnerrule WealsoexaminedavariantoftheRL-ELOmodel,termedRL-
+orQlearning;WatkinsandDayan,1992)areknowntofailinhi- ELO , which incorporated an extra parameter (i.e., s) to allow
+F
+erarchy learning tasks. This is because each item (apart from forgetting (i.e.,through the addition of Gaussian noise at each
+thetopandbottomranked)isequallyassociatedwithpositive time step); this did not significantly improve the fit of the RL
+and negative outcomes during training trials. Consequently, in modelindexedbyBICscores(seeTable1).
+developing an RL account (hereafter termed RL-ELO) capable Interestingly,thedifferencebetweenourtwoprimarymodels
+ofsuccessfulhierarchylearningperformance,wesoughtinspira- aroseinthetrialsinthefirsthalfoftheexperiment(BIC=185.0
+tion from algorithms used to update player ratings in games versus 201.8 for SMC versus RL-ELO) rather than the second
+(e.g.,YliniemiandTumer,2013)(e.g.,theELOratingsystemin half (BIC = 109.3 versus 111.7, respectively), consistent with
+chess;seeSupplementalExperimentalProcedures),whosecrit- the notion that the SMC model captures behavior more effec-
+icalcomponentistoincreaseordecreasetherating(i.e.,power) tivelythantheRLmodelwhenparticipantsaremoreuncertain
+ofthewinningorlosingindividualinapairwisecontestortrialas about the relative power of individuals during the early phase
+afunctionoftheratingofone’sopponent(i.e.,thewinnerhasa oflearning.Thisisexplainedbyaqualitativedifferencebetween
+relativelysmallupdateiftheopponentwasestimatedtobemuch theupdatingmechanismsofthemodels:theRL-ELOmodelonly
+lesspowerful).Thishasbeenprovedtoworkeveningargantuan updates the values of the current items in a trial (i.e., uncon-
+problems. strainedbythevaluesoftheotheritems).Incontrast,theSMC
+AcriticalqualitativedifferencebetweentheSMCandRL-ELO model naturally updates the values of items not present in a
+schemes concerns uncertainty. The SMC model inherently given training trial, because it updates a posterior distribution
+modelstheuncertaintyintheestimationofpower.Incontrast, overallitemsonatrial-by-trialbasis,becauseeachparticlecon-
+the RL-ELO, like temporal difference (TD) learning, maintains stitutesaparticularbeliefaboutthevaluesofallnineitemsinthe
+only a single scalar estimate of power for each individual hierarchy.Thereasonthatthedifferenceinmodelfitisgreatestin
+(e.g.,Nivetal.,2006;Schultzetal.,1997;althoughseeGersh- thefirsthalfoftheexperimentisthatthisistheperiodwhenmost
+man,2015).Furthermore,themodelsdifferinthenatureofthe learningandhierarchyupdatingisoccurring(e.g.,seeFigure1).
+mechanismbywhichtheyupdatetheirestimatesofthepower Thisdifferenceinupdatingmechanismmakesthespecificpre-
+ofindividualswithinthehierarchy(seebelow). dictionthattheRL-ELOmodelshouldbemuchmoresensitive
+One principal aim of this study was to determine which of (i.e., in terms of influence on its predicted choices) than the
+thesetwomodels,theSMCmechanismortheRL-ELOmecha- SMCmodeltotheparticularreinforcementhistoryofitemsand
+nism,wasbetterabletocaptureparticipants’data.Atabehav- thereforetrialorderexperienced. Weprovideevidenceforthis
+iorallevel,wequantifiedthefitofeachoftheSMCandRL-ELO predicteddifference(seeFigureS2:asignificantlygreatereffect
+models,aswellaspreviouslydevelopedmodels(valuetransfer of reinforcement history on negative log likelihood [NLL] for
+and Rescorla-Wagner), to participants’ choice behavior during the RL [cf. SMC] model, Z = 24.8, p < 0.0001). Notably, the
+training and testtrials. Using amaximumlikelihood estimation difference in updating mechanism also results in the SMC
+procedure to optimize a separate set of parameters for each model’s being able to more rapidly converge on the correct
+1138 Neuron92,1135–1147,December7,2016
+
+--- PAGE 6 ---
+Table1. ResultsofBehavioralModelFitting
+Model Condition (cid:1)LL BIC a b s q
+SMC Self 136 283 – 0.64(0.12) 0.11(0.03) –
+Other 137 285 – 0.65(0.15) 0.15(0.04) –
+RL-ELO Self 144 299 1.35(0.12) 1.83(0.22) – –
+Other 146 303 1.31(0.15) 1.39(0.08) – –
+RL-ELO Self 141 299 1.16(0.22) 1.22(0.23) 0.11(0.02) –
+F
+Other 142 301 1.06(0.20) 1.18(0.22) 0.13(0.03) –
+Valuetransfer Self 160 331 0.11(0.01) 0.13(0.01) – 0.22(0.02)
+Other 161 333 0.10(0.01) 0.14(0.01) – 0.19(0.02)
+RW Self 191 393 0.05(0.01) 0.37(0.03) – –
+Other 191 393 0.05(0.01) 0.46(0.08) – –
+Base Self 200 400 – – – –
+Other 200 400 – – – –
+(cid:1)LL,negativeloglikelihood.Averagequantitiesreported.Modelsfitindividuallytoparticipants.Mean(SEM)ofbestfittingparametersforeachindi-
+vidualreported(seeSupplementalExperimentalProceduresfordescriptionofmodelsandparameters).
+rankordering:thedifferencebetweenmodelfits(i.e.,intermsof sought to identify regions where neural activity tracked the
+negative log likelihood) showed a highly significant correlation (expectationoverthe)differencebetweenthemodeleddistribu-
+with subjects’ performance, with higher performing subjects tions of the power of items in a given trial (see Figure 3A). To
+showinggreateradvantagefortheSMCmodel(Pearson’scorre- achieve this,wecreatedparticipant-specific trial-by-trial para-
+lation:R=(cid:1)0.75and(cid:1)0.79[p<0.0001]fortheSelfandOther metricregressorsreflectingtheunsignedpowerdifferencebe-
+conditions). Notably, the vast majority of subjects were better tweenitemswhichwereusedtoregressagainstthefMRIdata
+fitbytheSMCmodel(22and23of28subjectsintheSelfand (seeSupplementalExperimentalProcedures).
+Otherconditions). We found a robust correlation between neural activity in
+Thetaskaffordstwoadditionalmeasuresbywhichthemodels the amygdala, hippocampus, ventromedial prefrontal cortex
+canbecompared:reactiontimesandconfidencejudgments.We (vMPFC), and the difference between the power of individuals
+expectthesetoberelatedtotheuncertaintyassociatedwiththe asestimatedbytheSMCmodel(seeFigure3BandTableS1).
+choices,capturedbyatrial-by-trialinternalvariablecommonto We also observed a tight correlation between neural activity
+both SMC and RL-ELO models, namely, choice entropy (see anditempowerdifferenceinaregionproximatetothefusiform
+SupplementalExperimentalProcedures).Alinearmixed-effects facearea(FFA)(seeFigure3B).Resultsfromanregion-of-inter-
+modeldemonstratedthattheSMCmodelalsoprovidedasupe- est (ROI) analysis performed separately in the Self and Other
+riorfittoparticipants’reactiontimedata,comparedwiththeRL- conditions provide evidence that the left amygdala (Self: t =
+27
+ELO model during both training (SMC, BIC = 8,492; RL-ELO, 1.95,p=0.028;Other:t =1.73,p=0.044),ventromedialpre-
+27
+BIC=8,699)andtest(SMC,BIC=4,491;RL,BIC=4,520)trials, frontal cortex (Self: t = 2.27, p = 0.01; Other: t = 3.14,
+27 27
+in which a choice entropy was entered as a fixed effect, and p = 0.0013), and FFA-proximate region (Self: t = 2.75,
+27
+participantandcondition(SelforOther)wereenteredasrandom p=0.005;Other:t =3.33,p=0.0011)codeSMC-modeleddif-
+27
+effects (likelihood ratio compared with the null model, all ferencesinpowerthatsupportperformanceduringtesttrialsin
+pvalues<1310(cid:1)15).ThechoiceentropyfromtheSMCmodel bothconditions.Notably,theseeffectscannotbedrivenbydif-
+alsocapturedtheconfidenceofparticipantsintheirresponses ferencesinreactiontimesbetweentrialsgiventhatanearlierre-
+duringtransitivetesttrialsmoreproficiently(SMC,BIC=8,687; gressorinthesamegenerallinearmodelcapturedsucheffects
+RL-ELO, BIC = 8,733; likelihood ratio versus null model, all (seeExperimentalProcedures).Togetherwithapreviousstudy
+pvalues<1310(cid:1)15). (Kumaranetal.,2012),thesefindingsprovideevidencethatthe
+anteriorhippocampusandamygdalaplayaspecificroleinsocial
+NeuroimagingData rankjudgements:indeed,activityinthisregionidentifiedinthis
+NeuralActivityintheAmygdalaandAnterior previousstudytobeassociatedwithmodel-agnosticmeasures
+HippocampusCorrelateswithSMC-ModeledDifference ofhierarchylearning(i.e.,social>non-socialcontrast,shownin
+betweenthePowerofIndividualsduringTestTrials Figure 2B of Kumaran et al., 2012; ROI defined at p < 0.005
+GivenourfindingthattheSMCmodelbestaccountsforpartici- uncorrected) showed a robust correlation with the SMC-
+pants’ behavior (i.e., choices, RT, confidence data), we next modeled difference in power during test trials in the present
+probedtheneuraldatausingitskeyinternalvariables.Wefirst study(t =6.17,p<0.000001).
+27
+focused on the test trial data, in which participants were pre- HierarchyUpdating:TheSMCModelProvidesaSuperior
+sented with item pairs not seen during training trials (e.g., P3 FittoNeuralDataComparedwiththeRLModel
+versusP6),werenotgivencorrectivefeedback,andwerethere- Previousresultsprovideevidenceforsharedsignalsintheamyg-
+forerequiredtousetheirestimatesaboutindividuals’power.We dalaandhippocampusduringperformanceoftesttrials,relating
+Neuron92,1135–1147,December7,2016 1139
+
+--- PAGE 7 ---
+Figure3. LearnPhase:NeuralActivityinthe
+Amygdala,Hippocampus,andvMPFCCor-
+relates with SMC-Estimated Difference in
+Individuals’PowerduringTestTrialsinSelf
+andOtherConditions
+(A)Illustrativeplotfromaparticipantshowingthe
+evolution overthe experimentof the mean (i.e.,
+expectationoverthedistributionof)powerrelating
+toeachofthenineindividualsinthehierarchy.
+(B) Activity in the bilateral amygdala (top right),
+vmPFC andposteriorcingulatecortex (topleft),
+bilateralanteriorhippocampus(bottomleft),and
+regionproximatetothefusiformfacearea(bottom
+right) shows a significant correlation with SMC-
+modeledabsolutedifferencebetweenindividuals’
+powerintesttrials.Activationsarethresholdedat
+p<0.005uncorrectedfordisplaypurposesbut
+significantinallregionsatp<0.001uncorrected
+andp<0.05whole-brainFWEcorrectedatpeak
+or cluster level. See Table S1 for a full list of
+activations.
+to both one’s own group (Self condition) and another’s group sors,collapsedacrossSelfandOtherconditions,inregionsofin-
+(Othercondition).Wenextturnedourfocustotrainingtrials,in terestdefinedanatomicallyandfunctionally(seeSupplemental
+which participants had the opportunity to update their beliefs Experimental Procedures) (Ashby and Waldschmidt, 2008; Niv
+aboutthepowerofindividualsintheSelfandOtherhierarchies et al., 2015; Wilson and Niv, 2015). The relative differences in
+(i.e.,onthebasisofcorrectivefeedback):thisprovidedthebasis BIC between models (Ashby and Waldschmidt, 2008; Raftery,
+ofsuccessfulperformanceintesttrials.Toidentifysignaturesof 1995)providestrongsupportthattheSMCmodelbestcaptures
+learning, we sought regions in which neural activity showed a neural activity in amygdala, hippocampus, and MPFC (see
+correlation with an internal measure, termed the hierarchy up- TableS2).
+dateindex(Figure4A)(seeSupplementalExperimentalProced- ActivityintheMPFCCorrelateswithSMC-Modeled
+ures) reflecting the degree to which participants updated their HierarchyUpdateSignalintheSelfConditionduring
+estimates of the power of individuals from trial to trial. Specif- TrainingTrials
+ically,foreachpairofitems(e.g.,P1versusP2)wecomputed WefoundthatthecorrelationbetweenMPFCactivityandthehi-
+theKullback-Leiblerdivergencebetweentheparticipants’esti- erarchy updateindexwas driven bytheSelfcondition (whole-
+mates of the probability of one item winning against the other brain analysis: MPFC: x, y, and z coordinates (cid:1)6, 46, and 12;
+beforeandafterfeedback,summingthisquantityacrossallpairs Z = 4.22, p < 0.001 uncorrected and small-volume corrected
+(seeSupplementalExperimentalProcedures).Notethatthecor- [SVC]p=0.0040;MPFCROIanalysis,t =2.73,p=0.0055;Fig-
+27
+relationbetweenthehierarchyupdateindexandothermeasures ure 4B and Table S3B). This finding remained robust when
+(e.g.,chosenpower)wasrelativelylow((cid:3)0.2). we restricted our analyses to just those trials in which partici-
+Inawhole-brainanalysiscollapsedacrossbothSelfandOther pants updated their knowledge about other individuals in the
+conditions,wefoundarobustcorrelationbetweenMPFCactivity hierarchy, excluding themselves and their friends (i.e., P4
+andtheSMC-modeledhierarchyupdateindex(MPFC:x,y,and versusP5,P5versusP6;seeSupplementalExperimentalPro-
+zcoordinates(cid:1)8,44,and10;Z=5.04,family-wiseerrorpeak cedures) (whole-brain analysis: Self: Montreal Neurological
+levelcorrectedp=0.022)andalsowiththehippocampusand Institute[MNI]x,y,andzcoordinates(cid:1)6,46,and12;Z=4.25,
+the FFA-proximate region (see Table S3A). We also identified p<0.001uncorrectedandSVCp=0.0030;MPFCROIanalysis,
+significant correlations inatargetedROIanalysisintheMPFC t =2.93,p=0.0034).Nosignificantcorrelationswereobserved
+27
+(t =1.97,p=0.030),leftamygdala(t =1.73,p=0.047),bilat- intheMPFCintheseanalysesintheOthercondition(ROIana-
+27 27
+eralhippocampus(left:t =3.70,p=0.00048;right:t =2.77, lyses:pvalues>0.2).Further,anROIanalysisshowedthatthere
+27 27
+p=0.005),andFFA-proximateregion(t =3.28,p=0.0014)but wasagreatercorrelationbetweenMPFCactivityandthehierar-
+27
+not the vmPFC (p > 0.1). When the Self and Other conditions chyupdateindexintheSelfcomparedwiththeOthercondition
+wereconsideredseparately,significanteffectswerepresentin (Self>Other:t =1.83,p=0.039),withnosignificantdifferences
+27
+the hippocampus (Self: left hippocampus t = 3.10, p = foundinthisanalysisinotherregions(i.e.,hippocampus,amyg-
+27
+0.0022,righthippocampust =2.94,p=0.0033;Other:lefthip- dala,andFFA-proximateregion:allpvalues>0.1).Nosignificant
+27
+pocampust =1.93,p=0.032). differenceswerefoundinthereversecontrast(i.e.,Other>Self)
+27
+Previously we showed that the SMC model fit the behavior ineitherawhole-brainanalysisorROIanalysis(allpvalues>0.2).
+moreproficientlythantheRL-ELOmodelandprovidedevidence Furthermore,wefoundarobustbetween-subjectscorrelation
+oftheirqualitativedifferenceinhierarchy-updatingmechanism between performance (i.e., averaged across this experimental
+(e.g.,seeFigureS2).Herewecomparethefitofthesemodels phase)andthestrengthofthecorrelationbetweenMPFCactivity
+totheneuraldata,usingmodel-derivedhierarchyupdateregres- andthehierarchyupdateindexintheSelfcondition.Thiswasthe
+1140 Neuron92,1135–1147,December7,2016
+
+--- PAGE 8 ---
+Figure4. LearnPhase:MPFCActivityCor-
+relates with SMC-Modeled Hierarchy Up-
+dateSignalSelectivelyinSelfCondition
+(A)Illustrativeexamplefromonesubjectshowing
+profile of SMC-modeled hierarchy update index
+during training trials (see Supplemental Experi-
+mentalProceduresfordetails).
+(B) Whole-brain analysis: significant correlation
+betweenactivity inMPFCandhierarchyupdate
+indexinSelfcondition(sagittalandcoronalviews:
+MNI x, y, and z coordinates (cid:1)6, 46, and 12;
+Z = 4.22, p < 0.001 uncorrected and SVC
+p=0.0040)(TableS3B).
+(C)SignificantlygreatercorrelationbetweenMPFC
+activityandupdatingofobjectivemeasureofhi-
+erarchyknowledge(i.e.,negativeloglikelihoodof
+responding correctly on all possible pairs of in-
+dividuals)inSelfcomparedwithOthercondition:
+sagittal (left) and coronal (right) sections shown
+(MPFCx,y,andzcoordinates2,44,and8;Z=
+3.87,p<0.001uncorrectedandSVCp=0.021).
+Displaythresholdisp<0.005uncorrected.
+caseatthewhole-brainlevelintheMPFCintheSelfcondition greater correlation withthe amount bywhich hierarchy knowl-
+(x, y, and z coordinates (cid:1)8, 42, and 8; p < 0.001 uncorrected edge changes in the Self compared with the Other condition,
+and SVC p = 0.043) and in the MPFC ROI (t = 2.07, aboveandbeyondthatexplainedbydifferencesinthebasiccor-
+27
+p = 0.024; trend in L amygdala ROI t = 1.61, p = 0.06). No relationbetweenthehierarchyupdateindexintheSelfandOther
+27
+suchcorrelationwasfoundintheMPFCROIintheOthercondi- conditions(i.e.,hierarchyupdate:Self>Other,asreportedinthe
+tion,withasignificantlygreatercorrelationintheSelfcondition preceding analysis). We observed significant effects in the
+(Self>Other:Z=1.85,p=0.032). amygdala and hippocampus both in a whole-brain analysis
+This hierarchy update analysis was based on participants’ (seeTableS4)andintargetedROIanalyses(lefthippocampus
+subjective estimates of the power of individuals at a given t =2.35,p=0.010,righthippocampust =1.65,p=0.051;
+27 27
+moment:wealsoderivedananalogousmeasurecapturingthe left amygdala t =2.14, p= 0.020,right amygdala t =2.00,
+27 27
+trial-by-trialchangeinparticipants’objectiveknowledgeofthe p=0.028).Theseresultsprovideevidenceforselectivecoupling
+groundtruthhierarchy.Althoughthisquantitycannotbedirectly betweentheMPFCandtheamygdalaandhippocampusduring
+computedbyparticipants,itwashighlycorrelatedwiththehier- updatingofhierarchyknowledgeintheSelfcondition.
+archyupdateindex(i.e.,(cid:3)0.8)andyieldedrobustdifferencesbe- CorrelationbetweenNeuralActivityinAmygdala,
+tweentheSelfandOtherconditionsintheMPFCinawhole-brain Hippocampus,andMPFCandSMC-ModeledPowerof
+analysis(Self>Other:whole-brainanalysisMPFCx,y,andzco- ChosenIndividualduringTrainingTrials
+ordinates2,44,and8;Z=3.87,p<0.001uncorrectedandSVC Having established that neural activity in the MPFC correlates
+p = 0.021, see Figure 4C: MPFC ROI analysis t = 3.56, withupdatingofhierarchyknowledgeintheSelfcondition,we
+27
+p=0.00064).Ofnote,nosignificantcorrelationswiththisobjec- nextaskedwhetheranotherinternalvariableoftheSMCmodel,
+tivehierarchyupdateindexwerefoundintheMPFCintheOther specifically,theexpectationofthedistribution(i.e.,mean)ofpo-
+condition(ROIanalyses:pvalues>0.2). werofthechosenitem(Figure5A),wasreflectedinneuralactiv-
+SelectiveCouplingbetweenMPFCandAmygdalaand ity(seeSupplementalExperimentalProcedures,TableS5,fora
+HippocampalActivityduringUpdatingofHierarchy separate analysis relating to another internal variable: the en-
+KnowledgeintheSelfCondition tropyoveritempairs).Wefirstperformedananalysiscollapsed
+OurresultsshowthatneuralactivityintheMPFCspecificallycor- acrossSelfandOtherconditions(i.e.,maineffect):ROIanalyses
+relateswithupdatingofhierarchyknowledgeintheSelfcondi- provided evidence that chosen power was represented in
+tion,withsignificanteffectsintheamygdalaandhippocampus the amygdala (left: t = 2.62, p = 0.0071; right: t = 1.75,
+27 27
+observedacrossbothSelfandOtherconditions.Wenextasked p = 0.046) and ventromedial prefrontal cortex (t = 3.19,
+27
+whetherneuralactivityinthispartoftheMPFCandtheamygdala p=0.0018)(seeTableS6Aforresultsofwhole-brainanalysis).
+andhippocampus,regionsthatarethoughttobeanatomically WealsoobservedsignificantdifferencesbetweentheSelfand
+connected (Beckmann et al., 2009; Carmichael and Price, Otherconditionsintermsofthecorrelationofneuralactivitywith
+1995),exhibitgreaterfunctionalcouplingduringupdatingofhier- chosenpower.Inawhole-brainanalysis,wefoundthatneuralac-
+archyknowledgeintheSelfcomparedwiththeOthercondition. tivity,inasimilarregionofMPFCtothatrevealedbythehierarchy
+Todothis,weperformedapsychophysiological(PPI)analysis update index analysis above, was significantly correlated with
+(Friston et al., 1997; O’Reilly et al., 2012) (see Supplemental trial-by-trialchosenpowerintheSelfcondition(MNIx,y,andzco-
+Experimental Procedures for details): this was specifically set ordinates4,44,and2;Z=3.01,SVCp=0.037;seeTableS6B)but
+up to ask in which brain regions the magnitude of functional nottheOthercondition(seeTableS6C).Moreover,therewasa
+couplingofneuralactivitywiththeMPFCshowsasignificantly significantdifferencebetweentheSelfandOtherconditionsin
+Neuron92,1135–1147,December7,2016 1141
+
+--- PAGE 9 ---
+Figure5. LearnPhase:Correlationbetween
+Neural Activity in the MPFC and SMC-
+Modeled Chosen Power during Training
+Trials:SelfversusOther
+(A) SMC-modeled (expectation over) posterior
+distributionofchosenpowerforillustrativesubject.
+(B) Results of whole-brain analysis: region of
+MPFCidentifiedbycorrelation ofneural activity
+withSMCmodeledchosenpower:Self>Other
+(MNIx,y,andzcoordinates:6,42,and4;Z=4.23,
+significantatSVCp=0.001andp<0.001un-
+corrected; see Table S6D). Display threshold is
+p<0.005uncorrected.
+the MPFC (see Figure 5B and Table S6D). Furthermore, this thatneuralactivityintheleftamygdalaandanteriorhippocam-
+findingremainedrobustwhenwerestrictedouranalysestoonly pus showed a significant positive correlation with rank across
+thosetrialsthatdidnotinvolvetheparticipantorhisorherfriend Self and Other conditions (Figures 6B and 6C; Table S7). This
+(Self>Other:MNIx,y,andzcoordinates6,42,and4;Z=4.31, providesnovelevidencethattheseneuralstructuresautomati-
+p<0.001uncorrectedandSVCp=0.001).Noregionshowedsig- callygenerateranksignalsevenwhenthetaskdoesnotrequire
+nificantdifferencesinthereversecontrast(i.e.,Other>Self). it and complements studies showing obligatory processing of
+Similarly,inanROIanalysisbasedonthisregionoftheMPFC, perceptual cues of trustworthiness (though not dominance),
+wefoundsignificantdifferencesbetweentheSelfandOthercon- wherebylesstrustworthyfaceselicithigherlevelsofamygdala
+ditionsduringtesttrialsthatdidnotinvolvetheparticipantorhis activity (Todorov et al., 2011; Winston et al., 2002). No region
+orherfriend(seeSupplementalExperimentalProcedures).Spe- showedasignificantnegativecorrelationwithrank.Thefinding
+cifically, we found evidence for a difference in the correlation thatlesspowerful(i.e.,lowerranked)individualselicitedhigher
+betweenneuralactivityandthetrial-by-trialSMC-modeleddif- levelsofactivityisconsistentwithpreviousworkexaminingsig-
+ferenceinindividual’spowerwithintheMPFCROI(Self>Other nalsrelatingtovalenceanddominanceoffacesbasedonphys-
+t =1.69,p=0.050),thoughnotwithinamygdala,hippocampal, ical appearance (Todorov et al., 2011), rather than associative
+27
+vmPFC,andFFA-proximateROIs(allpvalues>0.1).Together, learning(i.e.,asinthisstudy).
+these analyses, by focusing only on trials that did not involve Wealsoobservedasignificantlinearcorrelationbetweenrank
+the participants themselves, suggest that the MPFC supports and neural activity in the MPFC ROI derived from the Learn
+the updating and representation of power information about phase (t = 1.86, p = 0.036; Figure 7) in the Self condition,
+27
+otherindividuals(i.e.,ratherthanonlyoneself),whentheseindi- providingaparalleltotheautomaticvaluationofitemsobserved
+viduals are part of our own social group rather than another in the vmPFC (Lebreton et al., 2009). No such correlation was
+group(i.e.,Self>Other)(seeDiscussion). observedintheOthercondition(p>0.2).Althoughthedifference
+between this linear correlation between Self and Other condi-
+CategorizationPhase tions was not significant in the MPFC ROI, we did observe a
+BehavioralResults significant interaction when rank extremes were considered
+Inthenextphaseoftheexperiment,weaimedtoprobepartici- (i.e.,Self/Other3top/bottomrank:t =1.98,p=0.029),reflect-
+27
+pants’ representations of the underlying hierarchies and to ing the fact that MPFC activity distinguished between highest
+examine differences between those involving oneself versus a andlowestranksselectivelyintheSelfcondition.Nosucheffect
+closefriend.Participantscompletedanincidentalcategorization waspresentinanyoftheotherROIs(amygdala,hippocampus,
+taskthatdidnotrequiretheretrievalofinformationaboutpower orvmPFC;allpvalues>0.1).
+(Figure6A),allowingustoaskwhethersignalsrelatingtoindivid-
+uals’powerwereautomaticallygeneratedevenintheabsenceof DISCUSSION
+explicittaskdemands.IndividualpicturesofpeopleintheSelf
+andOtherhierarchies(withtheexceptionoftheprofilepictures Althoughsocialhierarchiesareafundamentalorganizingstruc-
+of participants and close friends) were presented, and partici- tureofprimatesocialgroups,littleisunderstoodaboutthecom-
+pantswererequiredtodeterminetowhichcompanyindividuals putationsunderlyinglearningandalsowhethertherearedistinct
+belonged(i.e.,theyelloworbluelogo,assignmentcounterbal- neuralmechanismsthatsupporttheabilityofprimatestojudge
+anced). Participants performed this categorization task accu- the rank of others within their own social groups, compared
+rately (Self: 81.8% [2.8%], Other 79.7% [2.96%]; Self reaction with other social groups. To address these questions, we first
+time: 0.80 s [0.010s]; Other reaction time: 0.80s [0.013 s];all developed two novel hierarchy learning models, one based
+pvalues>0.1).TherewasnodifferenceinaccuracyorRTasa on reinforcement learning (RL-ELO) and the other on approxi-
+functionofrank(p>0.1). mate Bayesian inference (SMC). Weshowed that participants’
+NeuroimagingData behaviorandneuraldatawerebettercapturedbytheBayesian
+We first set up a parametric model to identify regions whose inference scheme, which inherently computes the uncertainty
+activityexhibitedsignificantlinearcorrelationswiththerankof aboutestimatesofpower(i.e.,rankinacontinuousdimension),
+individual people in the true underlying hierarchy. We found thanbytheuncertainty-insensitiveRLmodel.Wedemonstrate
+1142 Neuron92,1135–1147,December7,2016
+
+--- PAGE 10 ---
+Figure 6. Categorization Phase: Amygdala
+and Anterior Hippocampus Automatically
+Generate Rank Signals: Linear Correlation
+withNeuralActivity
+(A) Paradigm: during the Categorization phase,
+participantsviewedindividualsfromtheSelfand
+Otherhierarchies(withtheexceptionoftheprofile
+pictures denoting themselves and their friends;
+eachpicturerepeatedfourtimes)andcategorized
+them according to the company to which they
+belonged(i.e.,thecompanywiththeyelloworblue
+logo).
+(B)Activityintheleftamygdalaandanteriorhip-
+pocampus shows a linear correlation with rank
+(maineffect:SelfandOtherconditions).Display
+p<0.005;significantatp<0.001uncorrectedand
+Lamygdala(SVCp=0.025),andLhippocampus
+(SVCp=0.034)(seeTableS7).
+(C) Parameter estimates from peak voxel in
+main effect (i.e., collapsed across Self and
+Otherconditions)Lamygdalaandhippocampus
+(see Table S7). Significant linear correlation
+evident,withlowerranks(i.e.,where9=lowest)
+eliciting highest neural activity. Note that these
+plots were derived from an ‘‘illustrative’’ model
+(see Supplemental Experimental Procedures).
+Statisticalinference,however,wasbasedstrictly
+on the parametric model (see Supplemental Experimental Procedures). Note that rank 5 is denoted by an empty slot, because the profile pictures
+denotingtheparticipantsthemselves(Selfcondition)ortheirfriends(Othercondition)werenotpresented.
+thatlearning about one’s ownsocial hierarchy, as opposed to ever, provides compelling evidence against this hypothesis.
+thatofaclosefriend,wasassociatedwithdistinctcorrelations Specifically,wefoundthattheSMCmodelprovidedaquantita-
+betweeninternalvariablesoftheSMCmodelandMPFCactivity, tivelybetterfitthantheRLmodelacrossbehavioral(i.e.,choice,
+whilesharedsignalsforbothhierarchytypeswerepresentinthe RT,andconfidencedata)andneurallevels.Ofcourse,thispro-
+amygdala and hippocampus. Furthermore, we found that the videsevidenceforthekeydifferentiatingconstructsunderlying
+MPFC was selectively engaged during updating of knowledge SMC, namely, forgetful, uncertainty-sensitive inference. Other
+about one’s own hierarchy, a process that explained variance approximateBayesianimplementationscouldleadtothesame
+in participants’ performance, and involved functional interac- behaviorandneuralsignals.
+tions with the amygdala and hippocampus. Finally, we show The current results dovetail with previous work that used a
+thatneuralsignalsthatautomaticallyrepresentthepowerofin- related paradigm to show that the anterior hippocampus
+dividuals were generated by the hippocampus and amygdala and amygdala as identified here—regions that are coupled
+evenwhenthetaskdidnotrequireit,withpower-relatedactivity by massive bidirectional connectivity (Fanselow and Dong,
+intheMPFCspecifictoself-relevanthierarchies. 2010)—playaspecificroleintheacquisitionofknowledgeabout
+EmergingevidencesuggestsworkthatRLmodelsthatdonot socialhierarchies(Kumaranetal.,2012).Thatstudy,however,
+maintain explicit estimates of uncertainty about decision vari- wasnotabletoinvestigatethecomputationalmechanismsun-
+ables are able to capture behavior and neural data in a wide derlying learning; rather, neural activity in these regions was
+range of settings, including experiments involving trust games correlated directly with model-agnostic behavioral indices of
+(Hackeletal.,2015;King-Casas,2005),theoryofmind(Hampton learning. In contrast, our work implies that the anterior hippo-
+etal.,2008),andinferringthepreferencesandactionsofothers campus and amygdala supports social hierarchy learning by
+(Burkeetal.,2010;Suzukietal.,2012).Arecentstudy(Hackel maintainingandupdatingbeliefsaboutthepowerofindividuals
+etal.,2015)demonstratedthatlearningaboutthegenerosityof throughtheoperationofaprobabilisticmodel,evidencedbysig-
+anindividualonthebasisofinformativefeedbackreflectinghis nificantcorrelationsbetweenneuralactivityinthesestructures
+or her propensity to share a monetary endowment was well and internal variables of the SMC model (e.g., the differences
+capturedatthebehavioralandneurallevelsbyareinforcement in power between individuals during test trials). Indeed, the
+learning model. These findings raise the question of whether higher order representation of the uncertainty in one’s beliefs
+learning about the power of individuals in a social hierarchy— naturallysustainedbyprobabilisticmodels(comparedwithRL
+another trait-level characteristic like generosity, for which approaches) may be advantageous in deciding whether to
+learning is typically feedback-based (i.e., ecologically through approachoravoidanindividualonthebasisofestimateddiffer-
+observationoftheoutcomeofdyadiccontests,mirroredexper- encesinpower.Furthermore,ourfindingthatthehippocampus
+imentallybytrainingtrialsinourtask)—couldalsobemediated supports such model-based representations of social hierar-
+byanRLprocessmaintainingscalarquantities.Ourstudy,how- chiesconnectswiththenotionthatthesestructuresconstitute
+Neuron92,1135–1147,December7,2016 1143
+
+--- PAGE 11 ---
+Figure7. ActivityinMPFCShowsaLinear
+CorrelationwithRankintheSelfCondition
+duringtheCategorizationPhase
+(A)RegionofMPFCdefinedonthebasisofthe
+results of a separate fMRI phase (i.e., learning;
+see Supplemental Experimental Procedures for
+details).
+(B)ParameterestimatesaveragedacrossMPFC
+ROIintheSelfcondition(above)andOthercon-
+dition(below).Asignificantlinearcorrelationbe-
+tweenneuralactivityandrankintheSelfbutnot
+theOtherconditionisevident.Theseplotswere
+derived from an ‘‘illustrative’’ model; however,
+statistical inference was based strictly on the
+parametric model (see Supplemental Experi-
+mentalProcedures).Notethatrank5isdenotedby
+an empty slot, because the profile pictures de-
+notingtheparticipantsthemselves(Selfcondition)
+orfriend(Othercondition)werenotpresented.
+pus during updating of hierarchy knowl-
+edge in the Self condition, consistent
+withtheanatomicalconnectivitybetween
+these regions (Beckmann et al., 2009;
+Carmichael and Price, 1995). A nearby
+MPFCregionalsoexhibited significantly
+acardinalexampleofrelationalknowledgeoftheenvironment greater correlation between neural activity and SMC model-
+that can be flexibly accessed (e.g., for reasoning or recall) estimated chosen power in the Self compared with the Other
+(Cohen and Eichenbaum, 1994; Eichenbaum, 2004). How this condition(i.e.,inbothtrainingandtesttrials).Interestingly,this
+typeofhippocampalrepresentationforstructuralforms(i.e.,hi- dissociationbetweentheamygdalaandanteriorhippocampus
+erarchies) accrued across multiple experiences is compatible and the MPFC was also evident under very different circum-
+withakeyroleforthehippocampusinsupporting memoryfor stances:whenparticipantswereperforminganincidentalcate-
+individual episodes constitutes an important area for future gorization task (i.e., scanning phase 2: Figures 6 and 7). Even
+research (Eichenbaum, 2004; Kumaran and McClelland, 2012; though information concerning the power of individuals was
+Zeithamovaetal.,2012). irrelevant in this setting, we observed specific coding of self-
+Our experimental design was specifically configured to related information about power, and domain-general coding
+addressakeyquestionthathasnotbeenexploredinprevious ofpower,intheMPFCandamygdalaandanteriorhippocampus,
+studies, namely, whether learning about a hierarchy of which respectively.
+one is a part recruits similar or distinct neural mechanisms Our results, therefore, align withseveral strands of research
+thanlearningaboutahierarchythatiscomposedentirelyofother thathaveimplicatedasimilarventralregionoftheMPFCinthe
+individuals. The difference had notable behavioral signatures, representation and processing of self-relevant information
+bothinthecongruencyRTeffectobservedintheIATandfrom (Adolphs,2009;Dennyetal.,2012;Jenkinsetal.,2008;Kelley
+information obtained at debriefing, which suggested that the etal.,2002;KumaranandMaguire,2005;Macraeetal.,2004;
+participantsfoundthescenarionaturalistic.Ataneurallevel,in Mitchell etal.,2005,2006;Mobbsetal.,2009;Ochsneretal.,
+contrast to the shared representations for hierarchies in the 2004; Tamir and Mitchell, 2011, 2012; Wittmann et al., 2016).
+SelfandOtherconditionintheamygdalaandanteriorhippocam- This evidence has come from a range of studies: experiments
+pus,wefoundsignaturesofMPFCactivitythatwereselectiveto inwhichparticipantsareaskedtojudgetheapplicabilityoftraits
+theSelfcondition,afindingthatcannotbeattributedtodiffer- tothemselvescomparedwithothers(Dennyetal.,2012;Kelley
+ences in performance, because this was comparable across et al., 2002; Mitchell et al., 2006), work suggesting that items
+conditions.Specifically,MPFCactivityshowedarobustcorrela- subjectedtoself-relatedprocessingareaffordedprivilegedsta-
+tionwiththedegreetowhichparticipantsupdatedtheirknowl- tusinmemory(Macraeetal.,2004),andresearchonconstruct-
+edgeofthehierarchyfromtrialtotrial.Therelevantareaofthe ing imagined scenarios involving either oneself or others (De
+MPFCwastheonlyregiontoshowasignificantlygreatercorre- Brigard et al., 2015; FeldmanHall et al., 2012; Hassabis et al.,
+lationbetweenneuralactivityandthisSMCmodel-derivedhier- 2014;SchacterandAddis,2007).Anaturalconstraintofthispre-
+archyupdatesignalintheSelfconditionthantheOthercondition viousbodyofwork(seeDennyetal.,2012,forameta-analysis),
+(i.e.,nosignificantdifferencewasobservedintheamygdalaor however,isthatMPFCactivityelicitedinrelationtoself-attribu-
+hippocampus).Furthermore,wefoundevidenceforaselective tions (e.g., trait judgments such as ‘‘am I trustworthy?’’),
+couplingbetweentheMPFCandtheamygdalaandhippocam- compared with other-related judgments (e.g., ‘‘is Bill Clinton
+1144 Neuron92,1135–1147,December7,2016
+
+--- PAGE 12 ---
+trustworthy?’’), could reflect either differences in prior knowl- (i.e., are ‘‘agent independent’’) (Garvert et al., 2015; Nicolle
+edgeaboutoneselforinsteaduniqueaspectsofself-relatedrep- etal.,2012).Specifically,onestudy(Nicolleetal.,2012)argued
+resentationandprocessing.Critically,ourexperimentaldesign thatdifferentMPFCregionsmayrepresentvalueinthecontextof
+allowedustoeffectivelyisolatethelearningandrepresentation atemporaldiscountingtaskasafunctionofwhetherthisinfor-
+of self-related information from prior knowledge in two ways. mationisdirectlyrelevanttothechoicetobeexecutedornot,
+First,thepowerofindividualsintheSelfandOtherhierarchies ratherthanwhetheritisselfrelevantorotherrelevant.Several
+was arbitrary and needed to be learned ‘‘from scratch,’’ factorsmayaccountforthisdiscrepancy:onekeydifferenceis
+rendering prior knowledge concerning oneself irrelevant. Sec- thatinourstudy, thepowerofindividualsinboth theSelfand
+ond,ourparadigmallowedustodemonstratethattheMPFCef- Other hierarchies was arbitrary and needed to be learned
+fectsreportedwererobusttotheexclusionoftrialsinvolvingthe throughexperience.Henceinourstudy,theemphasiswason
+‘‘you’’and‘‘himorher’’profilepictures(i.e.,trialsinwhichthe learningnewself-relevantinformationratherthanonsimulation,
+participant or his or her friend was directly involved, such as wherebyanother’spreferencescouldbesimulatedusingone’s
+the P5 versus P6 training trial), providing evidence that the own preexisting preferences as an anchor (Garvert et al.,
+MPFCrepresentsthepowerofindividualsinone’sownhierar- 2015).Suchasimulationwouldhavebeenfutileinourparadigm,
+chy,adimensionthatisknowntoexertsignificantbehavioralin- becausethepowerofindividualsintheOtherhierarchycouldnot
+fluences (Chang et al., 2011; Cheney and Seyfarth, 1990). beassessedusingoneselfasatemplate.Onehypothesis,there-
+Hence, our results provide compelling evidence that neural fore,isthatthe learning andrepresentation of recentlyexperi-
+mechanismsoperatingintheMPFCaredistinctivewithrespect encedself-relatedinformationissubservedbyadistinctventral
+to self-related information and accordingly suggest that self- partoftheMPFC,whichifappropriatecanbeleveragedtosimu-
+relevantinformationmayindeedbeuniquelyrepresentedinthe latethepreferencesandbehaviorofothers,anotionthataligns
+brain,withconsequentimplicationsfortheregulationofcooper- withtheproposalthatthesimulationofotherindividualssimilar
+ative and competitive interactions (Apps et al., 2016; Crockett to oneself recruits this region of MPFC (Jenkins et al., 2008;
+etal.,2014;SeyfarthandCheney,2012). Mitchelletal.,2006).
+Itisinterestingtorelateourworktoevidencesuggestingthat
+the anterior cingulate cortex gyrus (ACCg), a region that con- Conclusions
+tains Brodmann areas 24 a/b and 32 (Apps et al., 2016) and Linearhierarchiesandrelatedstructures(e.g.,trees)areperva-
+whose anterior portion overlaps with the MPFC region identi- sivethroughoutthesocialdomainbutarealsoofmoregeneral
+fied in our study, makes an important contribution to social importanceinorganizinginformationinanefficientwaytofacil-
+cognition (Apps et al., 2016; Rudebeck, 2006). An emerging itate inductive inferences (Kemp and Tenenbaum, 2008). Our
+perspective suggests that the ACCg plays a key role in facili- study reveals neural computations by which observations of
+tating cooperative and competitive interactions, by tracking pairwise‘‘contests’’areusedtoupdateestimatesofindividuals’
+parameters such as the value and cost of options to others powerwithinahierarchyandprovidescompellingevidencethat
+(Appsetal.,2016;Changetal.,2013).Assuch,neuronalactiv- a Bayesian inference scheme, which has certain parallels with
+ityinACCghasbeenreferredtoassituatedinanOther-centric the Trueskill ratings system (Herbrich et al., 2006) used in
+referenceframe,withneuronsinthisregioncodingspecifically large-scale multiplayer games, underlies this process, rather
+for reward receipt by the other individual in a dictator game, thanasimplerRLmechanism.Atthesametime,ourresults,in
+contrastingwiththeself-centriccoding(i.e.,forrewardreceipt ascribing a specific role to the MPFC in the learning of one’s
+by self) of neurons in other regions such as the orbitofrontal ownsocialhierarchyundertightlycontrolledexperimentalcondi-
+cortex (Chang et al., 2013). On the face of it, evidence for tions,invigoratethedebateconcerningwhetherself-relevantin-
+other-referenced coding in the ACCg runs contrary to our formationisindeedaffordedauniquerepresentationalstatusin
+MPFC findings; in fact, our results are entirely consistent with thebrain.
+thisperspective.Specifically,weshowthattheMPFCsupports
+the learning and representation of power information about EXPERIMENTALPROCEDURES
+other individuals, when these individuals are part of our group
+rather than another group (i.e., Self > Other). As noted previ- See Supplemental Experimental Procedures for a full description of task,
+ously, our findings were robust to the exclusion of trials in computationalmodels,andfMRIanalysisprocedures.
+which participants themselves were involved. As such, our re-
+Phase1:Learn,Scanned
+sults suggest that the ACCg/MPFC tracks the motivation of
+Inthisphaseoftheexperiment,participantsacquiredknowledgeaboutthe
+othersthroughrepresentationsthatnotonlycodeforthevalues
+Self and Other hierarchies in parallel, with blocks of Self trials alternating
+andcostsofrewardtootherindividuals(Appsetal.,2016),but withblocksofOthertrialsandtrainingtrialblocksalternatingwithtesttrial
+also incorporates rank information, particularly within one’s blocks(seeFigure1andSupplementalExperimentalProceduresfordetails
+own social group, dovetailing with behavioral evidence con- oftrialschedule).
+cerning the influence of social dominance and familiarity on
+cooperative behavior (Chang et al., 2011; Molenberghs, 2013; Phase2:Categorization,Scanned
+Inthisphase,participantswerepresentedwithindividualfacepicturesfrom
+Seyfarthand Cheney,2012).
+theSelfandOtherhierarchies(excludingtheprofilepicturesdepictingthem-
+Our results, however, do provide an apparent contrast with
+selves in the Self condition or their friends in the Other condition) while
+recentworkarguingthatMPFCrepresentationsdonotinherently performinganincidentalcategorizationjudgement(seeFigure6andSupple-
+distinguish between self-related and other-related information mentalExperimentalProcedures).
+Neuron92,1135–1147,December7,2016 1145
+
+--- PAGE 13 ---
+SUPPLEMENTALINFORMATION Daw, N.D. (2011). Trial-by-trial data analysis using computational models.
+Decis.MakingAffect.Learn.Atten.Perform.23,555.
+SupplementalInformationincludesSupplementalExperimentalProcedures, DeBrigard,F.,NathanSpreng,R.,Mitchell,J.P.,andSchacter,D.L.(2015).
+threefigures,andeighttablesandcanbefoundwiththisarticleonlineat Neuralactivityassociatedwithself,other,andobject-basedcounterfactual
+http://dx.doi.org/10.1016/j.neuron.2016.10.052. thinking.Neuroimage109,12–26.
+Denny,B.T.,Kober,H.,Wager,T.D.,andOchsner,K.N.(2012).Ameta-anal-
+AUTHORCONTRIBUTIONS ysisoffunctionalneuroimagingstudiesofself-andotherjudgmentsreveals
+a spatial gradient for mentalizing in medial prefrontal cortex. J. Cogn.
+D.K.,A.B.,andD.H.designedthestudy.A.B.andD.K.collectedthedata.D.K., Neurosci.24,1742–1752.
+C.B., and P.D. formulated the computational models. D.K. performed the
+Doucet,A.,Godsill,S.,andAndrieu,C.(2000).OnsequentialMonteCarlo
+modelfitting.D.K.andA.B.analyzedthedata.D.K.andP.D.wrotethepaper samplingmethodsforBayesianfiltering.Stat.Comput.10,197–208.
+togetherwithC.B.,D.H.,andA.B.A.B.andC.B.contributedequallytothe
+study. Eichenbaum,H.(2004).Hippocampus:cognitiveprocessesandneuralrepre-
+sentationsthatunderliedeclarativememory.Neuron44,109–120.
+ACKNOWLEDGMENTS Engell,A.D.,Haxby,J.V.,andTodorov,A.(2007).Implicittrustworthinessde-
+cisions:automaticcodingoffacepropertiesinthehumanamygdala.J.Cogn.
+WethankChrisSummerfieldandBenedettodeMartinoforcommentsona
+Neurosci.19,1508–1519.
+previousversionofthemanuscript.ThisworkwasfundedbyaWellcomeIn- Fanselow,M.S.,andDong,H.-W.(2010).Arethedorsalandventralhippocam-
+termediateFellowship(grantnumberisWT085189MA)toD.K. pusfunctionallydistinctstructures?Neuron65,7–19.
+FeldmanHall,O.,Dalgleish,T.,Thompson,R.,Evans,D.,Schweizer,S.,and
+Received:July10,2016 Mobbs,D.(2012).Differentialneuralcircuitryandself-interestinrealvshypo-
+Revised:September17,2016 theticalmoraldecisions.Soc.Cogn.Affect.Neurosci.7,743–751.
+Accepted:October21,2016
+Frank, M.J., Rudy, J.W., and O’Reilly, R.C. (2003). Transitivity, flexibility,
+Published:December7,2016
+conjunctiverepresentations,andthehippocampus.II.Acomputationalanal-
+ysis.Hippocampus13,341–354.
+REFERENCES
+Friston,K.J.,Buechel,C.,Fink,G.R.,Morris,J.,Rolls,E.,andDolan,R.J.
+(1997). Psychophysiological and modulatory interactions in neuroimaging.
+Adolphs,R.(2009).Thesocialbrain:neuralbasisofsocialknowledge.Annu. Neuroimage6,218–229.
+Rev.Psychol.60,693–716.
+Garvert,M.M.,Moutoussis,M.,Kurth-Nelson,Z.,Behrens,T.E.J.,andDolan,
+Amodio,D.M.,andFrith,C.D.(2006).Meetingofminds:themedialfrontalcor-
+R.J.(2015).Learning-inducedplasticityinmedialprefrontalcortexpredicts
+texandsocialcognition.Nat.Rev.Neurosci.7,268–277.
+preferencemalleability.Neuron85,418–428.
+Apps, M.A.J., Rushworth, M.F.S., and Chang, S.W.C. (2016). The anterior
+Gershman,S.J.(2015).Aunifyingprobabilisticviewofassociativelearning.
+cingulate gyrus and social cognition: tracking the motivation of others. PLoSComput.Biol.11,e1004567.
+Neuron90,692–707.
+Greenwald,A.G.,McGhee,D.E.,andSchwartz,J.L.(1998).Measuringindivid-
+Ashby,F.G.,andWaldschmidt,J.G.(2008).Fittingcomputationalmodelsto
+ualdifferencesinimplicitcognition:theimplicitassociationtest.J.Pers.Soc.
+fMRI.Behav.Res.Methods40,713–721.
+Psychol.74,1464–1480.
+Beckmann,M.,Johansen-Berg,H.,andRushworth,M.F.S.(2009).Connectivity-
+Grosenick,L.,Clement,T.S.,andFernald,R.D.(2007).Fishcaninfersocial
+based parcellation of human cingulate cortex and its relation to functional rankbyobservationalone.Nature445,429–432.
+specialization.J.Neurosci.29,1175–1190.
+Hackel,L.M.,Doll,B.B.,andAmodio,D.M.(2015).Instrumentallearningof
+Behrens,T.E.J.,Hunt,L.T.,andRushworth,M.F.S.(2009).Thecomputationof
+traits versus rewards: dissociable neural correlates and effects on choice.
+socialbehavior.Science324,1160–1164.
+Nat.Neurosci.18,1233–1235.
+Burke,C.J.,Tobler,P.N.,Baddeley,M.,andSchultz,W.(2010).Neuralmech-
+Hampton,A.N.,Bossaerts,P.,andO’Doherty,J.P.(2008).Neuralcorrelatesof
+anismsofobservationallearning.Proc.Natl.Acad.Sci.USA107,14431–
+mentalizing-related computations during strategic interactions in humans.
+14436. Proc.Natl.Acad.Sci.USA105,6741–6746.
+Byrne,R.W.,andBates,L.A.(2010).Primatesocialcognition:uniquelypri-
+Hassabis, D., Spreng, R.N., Rusu, A.A., Robbins, C.A., Mar, R.A., and
+mate,uniquelysocial,orjustunique?Neuron65,815–830.
+Schacter, D.L. (2014). Imagine all the people: how the brain creates and
+Carmichael,S.T.,andPrice,J.L.(1995).Limbicconnectionsoftheorbitaland usespersonalitymodelstopredictbehavior.Cereb.Cortex24,1979–1987.
+medialprefrontalcortexinmacaquemonkeys.J.Comp.Neurol.363,615–641.
+Herbrich,R.,Minka,T.,andGraepel,T.(2006).Trueskill(cid:2):ABayesianskillrat-
+Chang,S.W.C.,Winecoff,A.A.,andPlatt,M.L.(2011).Vicariousreinforcement ing system. In Advances in Neural Information Processing Systems:
+inrhesusmacaques(macacamulatta).Front.Neurosci.5,27. Proceedings oftheFirst12Conferences,M.I.Jordan,Y.LeCun,andS.A.
+Chang, S.W.C., Garie´py, J.-F., and Platt, M.L. (2013). Neuronal reference Solla,eds.(MITPress),pp.569–576.
+frames for social decisions in primate frontal cortex. Nat. Neurosci. 16, Jenkins,A.C.,Macrae,C.N.,andMitchell,J.P.(2008).Repetitionsuppression
+243–250. ofventromedialprefrontalactivityduringjudgmentsofselfandothers.Proc.
+Cheney,D.L.,andSeyfarth,R.M.(1990).HowMonkeysSeetheWorld:Inside
+Natl.Acad.Sci.USA105,4507–4512.
+theMindofAnotherSpecies(UniversityofChicagoPress). Kelley,W.M.,Macrae,C.N.,Wyland,C.L.,Caglar,S.,Inati,S.,andHeatherton,
+Chiao, J.Y., Adams, R.B., Tse, P.U., Lowenthal, L., Richeson, J.A., and T.F.(2002).Findingtheself?Anevent-relatedfMRIstudy.J.Cogn.Neurosci.
+Ambady,N.(2008).Knowingwho’sboss:fMRIandERPinvestigationsofso-
+14,785–794.
+cialdominanceperception.GroupProcess.IntergroupRelat.11,201–214. Kemp,C.,andTenenbaum,J.B.(2008).Thediscoveryofstructuralform.Proc.
+Cohen, N.J., and Eichenbaum, H.B. (1994). Memory, Amnesia and the
+Natl.Acad.Sci.USA105,10687–10692.
+HippocampalSystem(MITPress). King-Casas,B.(2005).Gettingtoknowyou:reputationandtrustinatwo-per-
+Crockett, M.J., Kurth-Nelson, Z., Siegel, J.Z., Dayan, P., and Dolan, R.J.
+soneconomicexchange.Science308,78–83.
+(2014). Harm to others outweighs harm to self in moral decision making. Kumaran,D.,andMaguire,E.A.(2005).Thehumanhippocampus:cognitive
+Proc.Natl.Acad.Sci.USA111,17320–17325. mapsorrelationalmemory?J.Neurosci.25,7254–7259.
+1146 Neuron92,1135–1147,December7,2016
+
+--- PAGE 14 ---
+Kumaran,D.,andMcClelland,J.L.(2012).Generalizationthroughtherecurrent Rushworth,M.F.S.,Mars,R.B.,andSallet,J.(2013).Aretherespecializedcir-
+interaction of episodic memories: a model of the hippocampal system. cuits for social cognition and are they unique to humans? Curr. Opin.
+Psychol.Rev.119,573–616. Neurobiol.23,436–442.
+Kumaran,D.,Melo,H.L.,andDuzel,E.(2012).Theemergenceandrepresen- Schacter, D.L., and Addis, D.R. (2007). The cognitive neuroscience of
+tation of knowledge about social and nonsocial hierarchies. Neuron 76, constructive memory: remembering the past and imagining the future.
+653–666. Philos.Trans.R.Soc.BBiol.Sci.362,773–786.
+Lebreton,M.,Jorge,S.,Michel,V.,Thirion,B.,andPessiglione,M.(2009). Schultz,W.,Dayan,P.,andMontague,P.R.(1997).Aneuralsubstrateofpre-
+Anautomaticvaluationsysteminthehumanbrain:evidencefromfunctional
+dictionandreward.Science275,1593–1599.
+neuroimaging.Neuron64,431–439. Seyfarth,R.M.,andCheney,D.L.(2012).Theevolutionaryoriginsoffriendship.
+Macrae,C.N.,Moran,J.M.,Heatherton,T.F.,Banfield,J.F.,andKelley,W.M.
+Annu.Rev.Psychol.63,153–177.
+(2004).Medialprefrontalactivitypredictsmemoryforself.Cereb.Cortex14, Suzuki,S.,Harasawa,N.,Ueno,K.,Gardner,J.L.,Ichinohe,N.,Haruno,M.,
+647–654. Cheng,K.,andNakahara,H.(2012).Learningtosimulateothers’decisions.
+Neuron74,1125–1137.
+Marsh,A.A.,Blair,K.S.,Jones,M.M.,Soliman,N.,andBlair,R.J.R.(2004).
+Dominanceandsubmission:theventrolateralprefrontalcortexandresponses Tamir,D.I.,andMitchell,J.P.(2011).Thedefaultnetworkdistinguishescon-
+tostatuscues.J.Cogn.Neurosci.21,713–724. strualsofproximalversusdistalevents.J.Cogn.Neurosci.23,2945–2955.
+Mitchell,J.P.,Banaji,M.R.,andMacrae,C.N.(2005).Thelinkbetweensocial Tamir,D.I.,andMitchell,J.P.(2012).Disclosinginformationabouttheselfis
+cognitionandself-referentialthoughtinthemedialprefrontalcortex.J.Cogn.
+intrinsicallyrewarding.Proc.Natl.Acad.Sci.USA109,8038–8043.
+Neurosci.17,1306–1315. Tervo,D.G.R.,Tenenbaum,J.B.,andGershman,S.J.(2016).Towardtheneu-
+ralimplementationofstructurelearning.Curr.Opin.Neurobiol.37,99–105.
+Mitchell,J.P.,Macrae,C.N.,andBanaji,M.R.(2006).Dissociablemedialpre-
+frontalcontributionstojudgmentsofsimilaranddissimilarothers.Neuron50, Todorov,A.,Said,C.P.,Engell,A.D.,andOosterhof,N.N.(2008).Understanding
+655–663. evaluationoffacesonsocialdimensions.TrendsCogn.Sci.12,455–460.
+Mobbs, D., Yu, R., Meyer, M., Passamonti, L., Seymour, B., Calder, A.J., Todorov, A., Said, C.P., Oosterhof, N.N., and Engell, A.D. (2011). Task-
+Schweizer,S.,Frith,C.D.,andDalgleish,T.(2009).Akeyroleforsimilarityin
+invariantbrainresponsestothesocialvalueoffaces.J.Cogn.Neurosci.23,
+vicariousreward.Science324,900. 2766–2781.
+Volz,K.G.,Kessler,T.,andvonCramon,D.Y.(2009).In-groupaspartofthe
+Molenberghs, P. (2013). The neuroscience of in-group bias. Neurosci.
+Biobehav.Rev.37,1530–1536. self:in-groupfavoritismismediatedbymedialprefrontalcortexactivation.
+Soc.Neurosci.4,244–260.
+Nicolle,A.,Klein-Flu€gge,M.C.,Hunt,L.T.,Vlaev,I.,Dolan,R.J.,andBehrens,
+vonFersen,L.,Wynne,C.D.,Delius,J.D.,andStaddon,J.E.(1991).Transitive
+T.E.(2012).Anagentindependentaxisforexecutedandmodeledchoicein
+medialprefrontalcortex.Neuron75,1114–1121.
+inferenceformationinpigeons.J.Exp.Psychol.Anim.Behav.Process.17,
+334–341.
+Niv,Y.,Joel,D.,andDayan,P.(2006).Anormativeperspectiveonmotivation. Watkins,C.J.C.H.,andDayan,P.(1992).Q-learning.Mach.Learn.8,279–292.
+TrendsCogn.Sci.10,375–381.
+Whalen, P.J. (1998). Fear, vigilance, and ambiguity: initial neuroimaging
+Niv,Y.,Daniel,R.,Geana,A.,Gershman,S.J.,Leong,Y.C.,Radulescu,A.,and studiesofthehumanamygdala.Curr.Dir.Psychol.Sci.7,177–188.
+Wilson,R.C.(2015).Reinforcementlearninginmultidimensionalenvironments
+reliesonattentionmechanisms.J.Neurosci.35,8145–8157. Wilson,R.C.,andNiv,Y.(2015).Ismodelfittingnecessaryformodel-based
+fMRI?PLoSComput.Biol.11,e1004237.
+Noonan,M.P.,Sallet,J.,Mars,R.B.,Neubert,F.X.,O’Reilly,J.X.,Andersson,
+Wimmer,G.E.,Daw,N.D.,andShohamy,D.(2012).Generalizationofvaluein
+J.L.,Mitchell,A.S.,Bell,A.H.,Miller,K.L.,andRushworth,M.F.(2014).Aneural
+reinforcementlearningbyhumans.Eur.J.Neurosci.35,1092–1104.
+circuitcovaryingwithsocialhierarchyinmacaques.PLoSBiol.12,e1001940.
+Winston,J.S.,Strange,B.A.,O’Doherty,J.,andDolan,R.J.(2002).Automatic
+O’Reilly,J.X.,Woolrich,M.W.,Behrens,T.E.J.,Smith,S.M.,andJohansen-
+andintentionalbrainresponsesduringevaluationoftrustworthinessoffaces.
+Berg,H.(2012).Toolsofthetrade:psychophysiologicalinteractionsandfunc- NatNeurosci.5,277–283.
+tionalconnectivity.Soc.Cogn.Affect.Neurosci.7,604–609.
+Wittmann, M.K., Kolling, N., Faber, N.S., Scholl, J., Nelissen, N., and
+Ochsner, K.N., Knierim, K., Ludlow, D.H., Hanelin, J., Ramachandran, T., Rushworth,M.F.(2016).Self-othermergenceinthefrontalcortexduringcoop-
+Glover,G.,andMackey,S.C.(2004).Reflectinguponfeelings:anfMRIstudy erationandcompetition.Neuron91,482–493.
+of neural systems supporting the attribution of emotion to self and other.
+J.Cogn.Neurosci.16,1746–1772. Yliniemi,L.,andTumer,K.(2013).ELOratingsforstructuralcreditassignment
+inmultiagentsystems.InAAAIWorkshop—TechnicalReport,pp.152–154.
+Paz-Y-Min˜oC,G.,Bond,A.B.,Kamil,A.C.,andBalda,R.P.(2004).Pinyonjays
+Zeithamova,D.,Schlichting,M.L.,andPreston,A.R.(2012).Thehippocampus
+usetransitiveinferencetopredictsocialdominance.Nature430,778–781.
+and inferential reasoning: building memories to navigate future decisions.
+Raftery, A.E. (1995). Bayesian model selection in social research. Sociol. Front.Hum.Neurosci.6,70.
+Methodol.25,111–163.
+Zink, C.F., Tong, Y., Chen, Q., Bassett, D.S., Stein, J.L., and Meyer-
+Rudebeck,P.H.(2006).Aroleforthemacaqueanteriorcingulategyrusinso- Lindenberg,A.(2008).Knowyourplace:neuralprocessingofsocialhierarchy
+cialvaluation.Science313,1310–1312. inhumans.Neuron58,273–283.
+Neuron92,1135–1147,December7,2016 1147
+
+--- PAGE 15 ---
+Neuron, Volume 92
+Supplemental Information
+Computations Underlying Social Hierarchy Learning:
+Distinct Neural Mechanisms for Updating
+and Representing Self-Relevant Information
+Dharshan Kumaran, Andrea Banino, Charles Blundell, Demis Hassabis, and Peter Dayan
+
+--- PAGE 16 ---
+SUPPLEMENTAL INFORMATION.
+Computations underlying Social Hierarchy Learning: Distinct Neural Mechanisms
+for Updating and Representing Self-Relevant Information
+Dharshan Kumaran1,3, Andrea Banino1, Charles Blundell1, Demis Hassabis1,2, Peter
+Dayan2
+1Google DeepMind, 5 New Street Square, London EC4A 3TW.
+2Gatsby Computational Neuroscience Unit, 25 Howland St, London W1T 4JG, UK.
+3Institute of Cognitive Neuroscience, University College London, 17 Queen Square, WC1N 3AR,
+UK
+Contains:
+3 Supplemental Figures
+8 Supplemental Tables
+Supplemental Experimental Procedures
+1
+
+--- PAGE 17 ---
+Supplemental Figure 1 (Related to Fig 2). Full Implicit Association Test (IAT) experimental protocol.
+Example of a sequence of IAT shown. The first step (A) introduced the target-concept discrimination. The
+second step (B) introduced the attribute discrimination. In the third step (C) congruent trials are presented.
+In the fourth step (D), participants learned reversal attribute discrimination. In the fifth block (E)
+incongruent trials are presented. The fact of whether participants performed the congruent trials or the
+incongruent trials first was counterbalanced across participants. See Supplemental Experimental Procedures
+for details.
+2
+
+--- PAGE 18 ---
+Figure S2A (Related to Fig 4): Illustrative subject, mean item powers shown at training trial 15 (i.e. first
+training trial block). For this case study we describe a high performing subject (average correct overall 92%
+on training/test trials) who showed a large difference in model fit between the SMC and RL-ELO models:
+negative log likelihood (NLL) for first ½ of experiment was 53 vs 75 respectively, and for second ½
+experiment 23.6 vs 22.6, respectively. We focus on the first block of 16 training trials in the Self condition,
+where each of the 8 training pairs (e.g. P1 vs P2…P8 vs P9) occurs twice in pseudorandom order (different
+across subjects). We consider trial 15, which involves items P4 and P5, and the subject responds correctly
+(i.e. chooses P4). Due to the trial history, there is a transient imbalance in reinforcement associated with the
+2 items: item P4 has been the winning item in 1 trial, P5 in 2 trials (i.e. imbalance = -1). The RL-ELO
+model, with parameters best fit to this subject/condition, is associated with a large NLL due to the
+imbalance in reinforcement (i.e. NLL for trial 15 =3.1). In contrast, the SMC NLL is 0.1. The mean power
+of each item at this point (i.e. prior to feedback on trial 15) is shown for the RL-ELO and SMC models (see
+Fig S2A): the SMC model mean item power already reflect the hierarchy largely correctly, whilst the RL-
+ELO item powers do not. Note that the SMC model is much less but not entirely insensitive to
+reinforcement imbalance (see below for systematic analysis): the incorrect ordering of item 3 reflects that
+this item was the winner in only one previous (P3 vs P4) trial, and was the loser in 2 trials (i.e. P2 vs P3).
+3
+
+--- PAGE 19 ---
+Figure S2B (Related to Fig 4): Illustrative subject, mean item powers shown at training trial 25 (i.e.
+second training trial block). This demonstrates the superior ability of the SMC model to converge on the
+true rank ordering with less experience. We next carried out a systematic analysis to assess the differential
+sensitivity of the SMC and RL-ELO models to transient imbalances in reinforcement history of individual
+items. To do this, we used the trial orders generated for the actual subjects and focussed on training trials
+where the reinforcement associated with each item is equated within each block: i.e. training pairs P2 vs P3,
+P3 vs P4, …., P7 vs P8 (i.e excluding the outer training pairs P1 vs P2 and P8 vs P9 since P1 is always
+positively reinforced and P9 negatively reinforced). We focussed on the first half of the experiment, and
+determined the set of parameters that best fit synthetic choice data consisting of all correct responses. We
+discarded the first set of 7 training trials since the correct response is unknowable at this stage (i.e. even by
+an “optimal” model). The SMC model NLL was 39.3 (average across Self and Other conditions), whilst the
+RL-ELO model NLL was 77.2. This large difference in NLL between the SMC and RL-ELO models in
+fitting this synthetic dataset demonstrates the superior ability of the SMC model to converge on the true
+rank ordering with less experience (e.g. by trial 25 in the illustrated subject in figure above). We then ran
+separate linear regression models to quantify the relationship between trial-by-trial reinforcement
+imbalance (independent variable) and NLL (dependent variable), for the SMC and RL models – where the
+data was combined across all simulated subjects, with trial type entered as additional independent variable.
+We ran separate regression analyses for the first and second quarters of the experiment. We found a
+significant effect of imbalance on NLL for the RL model in the first quarter of the experiment (slope
+coefficient b=-0.24, standard error (se) = 0.0076, p<0.001; adj-R2 = 0.47) – that was similar for the second
+quarter (b=-0.197, se 0.0072, p<0.001 adj-R2=0.40). We found a significant but much smaller effect of
+imbalance in the SMC model in the first quarter (b=-0.073, se = 0.0099, p<0.001; adj R2 = 0.046;) and
+second quarter (b=-0.050, se 0.003, p<0.001; adj R2 = 0.041). The RL model was associated with a
+significantly greater effect of imbalance on NLL: (Z=24.8, p<0.0001; across both quarters). Further, there
+was a significantly greater effect of imbalance of the SMC model in the first quarter as compared to the
+second quarter (Z=2.5 p<0.01). The SMC and RL-ELO models, therefore, have qualitative different
+updating mechanisms: during a given training trial, the SMC model updates its posterior distribution over
+item values based on all the available experience – rather than basing its update solely on the current value
+of the items presented in the trial as in the RL-ELO model. This difference leads the RL-ELO model to be
+much more sensitive to transient imbalances in the reinforcement history of individual items, as compared
+to the SMC model – which shows a small sensitivity to reinforcement imbalance that decreased with
+increasing experience. The difference in updating mechanism results in the SMC model being able to more
+4
+
+--- PAGE 20 ---
+rapidly converge on the correct rank ordering: indeed, the difference between model fits (NLL) showed a
+highly significant correlation with subjects’ performance, with high performing subject showing the
+greatest advantage for the SMC model (pearson’s correlation: r = -0.75, -0.79; p<0.0001 for both self and
+other conditions). Notably, the vast majority of subjects were better fit by the SMC model (22 and 23 out of
+28 subjects in Self/Other condition).
+Figure S3A (Related to Fig 5): Learn Phase: Brain regions where activity negatively correlates with SMC-
+modelled entropy during training trials (Main effect: Self and Other). In an analysis where RT was included
+in the GLM (correlation with entropy regressors ~ 0.25 across subjects), we found significant negative
+correlations with the entropy (i.e relating to participants’ estimates of the probability of each item winning
+against the other) in the left amygdala/anterior hippocampus as well as FFA-proximate area and vMPFC.
+Whole brain analysis: significant correlation between activity in vmPFC (top left), amygdala (top right),
+FFA-proximate region evident (bottom left) (see Table S5A). Display p<0.005 corrected.
+Figure S3B (Related to Fig 5): Learn Phase: Brain regions where activity positively correlates with SMC-
+modelled entropy during training trials (Main effect: Self and Other). Positive correlations with entropy
+were found in the dorsolateral prefrontal cortex, insula, medial parietal cortex and intraparietal sulcus.
+Whole brain analysis: significant correlation between activity in DLPFC (left panel), insula (left panel),
+intraparietal sulcus (right panel) evident (see Table S5B). Display p<0.005 uncorrected.
+5
+
+--- PAGE 21 ---
+Table S1 (Related to Fig 1): Brain areas whose activity significantly correlated with the SMC modelled
+difference in power during test trials: Main effect across Self and Other conditions
+Region x y z z-score
+Amygdala/Anterior HC -18 -2 -24 5.44 FWE p=0.003
+p
+Ventromedial PFC 4 60 -10 5.10 FWE p=0.013
+p
+Posterior Cingulate 0 -32 36 4.45 FWE p=0.017
+c
+Fusiform -40 -50 -22 5.78 FWE p=0.003
+p
+Orbitofrontal -32 36 -14 4.13 p<0.001 unc
+HC = hippocampus, PFC = prefrontal cortex. FWE is whole brain FWE corrected at peak-level, FWE is
+p c
+whole brain FWE corrected at cluster level (cluster threshold: p=0.001), SVC is small volume corrected
+(see Supplemental Experimental Procedures for details).
+Table S2 (Related to Fig 4): Results of Neural Model Comparison, Relative BIC differences between SMC
+and RL-ELO models.
+L AMY R AMY L HC R HC MPFC FFA vMPFC
+41.6* 38.4 46.4* 43.8 32.0** 17.0* 3.2
+Numbers reflect relative BIC differences between models (i.e. BIC_RL-ELO – BIC_SMC). Values are
+summed across participants. Single set of parameters for each model across subjects (i.e. best fit to
+behavioural data). AMY = amygdala, HC = hippocampus, MPFC and vMFPC are functionally defined
+regions of medial and ventromedial prefrontal cortex; FFA is FFA-proximate region as referred to in main
+text, functionally defined (see Supplemental Experimental Procedures). Following previous work (Niv et
+al., 2015) we also report significance of the difference between the log likelihoods of SMC and RL-ELO,
+using permutation testing. *significant at p<0.05; ** significant at p<0.01. R HC p=0.068; vmPFC p>0.3.
+Table S3A (Related to Fig 4): Brain areas whose activity significantly correlated with the SMC modelled
+hierarchy update index during training trials: Main effect across Self and Other conditions.
+Region x y z z-score
+MPFC -8 44 10 5.04 FWE p=0.022
+p
+Hippocampus -26 -22 -14 3.45 SVC p=0.041
+Hippocampus 30 -36 -2 4.51 SVC p = 0.003
+Orbitofrontal 30 36 -8 3.61 p<0.001 uncorr
+Insula -28 16 12 3.91 p<0.001 uncorr
+Fusiform -42 -50 -18 4.63 FWEc p=0.014
+6
+
+--- PAGE 22 ---
+Table S3B (Related to Fig 4): Brain areas whose activity significantly correlated with the SMC modelled
+hierarchy update index in Self condition during training trials.
+Region x y z z-score
+MPFC -6 46 12 4.22 SVC p=0.0040
+Hippocampus -24 -12 -16 3.32 SVC p=0.05
+Posterior Cingulate -6 -44 34 4.51 p<0.001 uncorr
+Orbitofrontal 38 44 -14 4.21 p<0.001 uncorr
+Table S4 (Related to Fig 4): Brain areas whose activity shows significantly greater coupling with
+functionally defined MPFC seed region during updating of hierarchy knowledge in the Self, as compared to
+Other, condition.
+Region x y z z-score
+Hippocampus -26 -24 -14 3.25 SVC p=0.042
+Amygdala -18 0 -22 3.04 SVC p=0.040
+Orbitofrontal 34 32 -16 3.62 p<0.001 uncorr
+Orbitofrontal -24 38 -8 3.25 p<0.001 uncorr
+Table S5A (Related to Fig 5): Brain areas whose activity showed a negative correlation with entropy over
+item pairs (i.e. probability of item being correct) during training trials: Main effect Self and Other.
+Region x y z z-score
+Amygdala/anterior HC -22 -8 -24 3.51 SVC p=0.032
+Amygdala/anterior HC 24 -12 -26 3.42 p= 0.001 uncorr
+Fusiform -44 -52 -24 5.47 FWE p<0.003
+p
+vmPFC 14 50 -6 3.98 FWE p<0.002
+c
+Table S5B (Related to Fig 5): Brain areas whose activity showed a positive correlation with entropy over
+item pairs (i.e. probability of item being correct) during training trials: Main effect Self and Other.
+Region x y z z-score
+Dorsolateral PFC 44 22 22 4.65 FWE p<0.001
+c
+Insula -26 24 -4 3.92 p<0.001 uncorr
+Insula 26 20 -6 4.14 p<0.001 uncorr
+Parietal cortex 2 -66 44 5.71 FWE p<0.001
+p
+Intraparietal sulcus 30 -54 46 5.12 FWE p<0.001
+p
+7
+
+--- PAGE 23 ---
+Table S6A (Related to Fig 5): Brain areas whose activity significantly correlated with the SMC modelled
+chosen power during training trials: main effect of Self and Other conditions
+Region x y z z-score
+vmPFC -8 52 -12 3.74 SVC p=0.005
+Hippocampus 16 -16 20 3.91 p<0.001 uncorr
+Hippocampus -24 -40 18 3.51 p<0.001 uncorr
+Amygdala -18 -4 20 3.13 p<0.001 uncorr
+Striatum 14 2 -16 3.71 p<0.001 uncorr
+Striatum -22 10 -6 3.42 p<0.001 uncorr
+Orbitofrontal 18 42 -8 3.91 p<0.001 uncorr
+Table S6B (Related to Fig 5): Brain areas whose activity significantly correlated with the SMC modelled
+chosen power during training trials in the Self condition
+Region x y z z-score
+MPFC 4 44 2 3.01 SVC p=0.037
+Striatum 16 8 -12 3.82 p<0.001 uncorr
+Striatum -8 10 -12 4.25 p<0.001 uncorr
+Table S6C (Related to Fig 5): Brain areas whose activity significantly correlated with the SMC modelled
+chosen power during training trials in the Other condition
+Region x y z z-score
+vmPFC -12 52 -10 3.86 SVC p=0.016
+Table S6D (Related to Fig 5): Brain areas whose activity significantly correlated with the SMC modelled
+chosen power during training trials: Self > Other condition
+Region x y z z-score
+MPFC 6 42 4 4.23 SVC p=0.001
+Table S7 (Related to Fig 6): Brain areas whose activity showed a linear correlation with person rank in
+Categorization phase: Main effect Self and Other.
+Region x y z z-score
+Amygdala -32 -4 -22 3.72 SVC p=0.025
+Hippocampus (anterior) -32 -8 -20 3.64 SVC p=0.034
+8
+
+--- PAGE 24 ---
+Table 1
+Mean +/- SD Debriefing Score
+Scores Mean SD
+Power Explicit Scores: Can you tell me – use your gut instinct –
+how powerful each of these individuals feels to you? a
+Top Ranked Individuals in the Self Hierarchy 9.07 1.60
+Top Ranked Individuals in the Other Hierarchy 8.60 2.90
+Bottom Ranked Individuals in the Self Hierarchy 2.28 1.99
+Bottom Ranked Individuals in the Self Hierarchy 2.28 2.28
+Social Realism Scoresa
+Top: How realistic does it feel when you
+see “X” that he/she is the head of the company/top dog?
+Top Ranked Individuals in the Self Hierarchy 6.55 2.74
+Top Ranked Individuals in the Other Hierarchy 6.63 2.43
+Bottom: How realistic does it feel when you
+see “X” that he/she is the loser/lowest person in the company?
+Bottom Ranked Individuals in the Self Hierarchy 6.10 2.74
+Bottom Ranked Individuals in the Self Hierarchy 6.52 2.43
+Explicit Identification Scoresa
+How much did you feel YOU
+5.57 2.34
+were part of the company in the YOU trials?
+How much did you feel your FRIEND
+5.33 2.18
+was part of the company in the HIM/HER trials?
+How much did you feel YOU
+2.03 2.97
+were part of the company in the HIM/HER trials?
+How much did you feel that you FRIEND
+0.83 1.53
+was part of the company in the YOU trials?
+Friend Informationb
+How much do you like them? 9.57 0.72
+How similar would you say they are to you in terms of
+6.80 1.60
+overall perspective on life, personality, hobbies?
+a
+on a scale from 0 (low) to 10 (high)
+b
+on a scale from 1 (a little) to 10 (a lot)
+Table S8 (Related to Fig 2): Results of debriefing session performed at end of experiment. See
+Supplemental Experimental Procedures for details.
+9
+
+--- PAGE 25 ---
+Supplemental Experimental Procedures.
+Participants. Thirty healthy, right-handed individuals who were currently undertaking or had recently
+completed a university degree, participated in this experiment (age range 19-29; 18 female). Two of these
+participants performed at chance levels and were therefore excluded from the fMRI analyses. All
+participants gave informed written consent to participation in accordance with the local research ethics
+committee.
+Stimuli: Faces. Face pictures were obtained from a widely used database (Stirling database:
+http://pics.stir.ac.uk): pictures are rendered in grayscale and depict male individuals sitting on a chair, with
+a neutral expression. Images were cropped below the chin line and resized, though hair was retained to
+preserve the naturalistic properties of the stimuli. Male participants learnt about hierarchies comprised of
+male individuals, and vice versa for female participants. To represent the participant themselves (i.e. Self
+condition) and a close friend (i.e. Other condition – see below for procedure for eliciting the friend), two
+profile pictures were created in Adobe Photoshop CS5. The profile pictures depicted a black silhouette,
+with the same background, size and colour of the other face pictures. Profile pictures incorporated the
+pronoun “You”, and the pronoun “Him” or “Her” (i.e. for male/female participants, respectively: see Figure
+1).
+Hierarchies. Self and Other hierarchies were each comprised of 9 items (i.e. P1-P2-P3-P4-P5-P6-P7-P8-
+P9; where P=person and 1 is the highest ranking person and 9 the lowest ranking - Figure 1). The
+participant themself, denoted by the “You” profile picture – and their friend, denoted by “Him” or “Her”
+profile picture – always occupied the middle position in the hierarchy (i.e. P5). This was done to ensure that
+the rank of the participant and their friend was equated, and allowed us to create a controlled set of
+transitive inference test trials (see below). Apart from the profile pictures, the allocation of individual
+pictures to position in the hierarchy was randomized across the group of participants. No significant
+correlation was found between post-scanning ratings of attractiveness or dominance and rank order (ps >
+0.1).
+Prior to each scanning session, participants briefly performed a simple 1-back task in which they viewed
+each individual face three times – a procedure which is known to minimize stimulus novelty effects during
+scanning based on previous data (e.g. (Johnson et al., 2008)). Examples of faces used are shown in Figure 1.
+Tasks and Procedures. Participants were first asked the name of a close friend of theirs that fulfilled two
+requirements: the friend had to be of the same sex and they had to have known them for more than three
+months. Participants were asked to imagine that they and their friend had recently joined two different
+companies. They were informed that the individuals within each company were distinct (i.e. no individual
+belonged to both companies), and that each company had a distinct coloured logo (i.e. either yellow or
+blue, assignment to Self or Other condition counterbalanced). As such, the coloured border (e.g. yellow)
+surrounding a face picture would indicate which company the individual belonged to (i.e. Self or Other).
+Notably, our experimental design incorporated a close friend in the Other condition – rather than an
+acquaintance or unfamiliar other individual – in order to render these conditions as similar as possible,
+thereby isolating the self/other dimension (e.g. see (Mitchell et al., 2006)).
+They were informed that there would be two parts to the experiment: in the first phase ("Learn" phase) they
+would need to learn which individuals have more power within each company. In phase two
+("Categorization" phase), they were told that they would need to use knowledge acquired during phase 1 to
+make judgements about individuals. Participants were told that they would be renumerated based on their
+performance in the Learn and Categorization phases. Our aim, therefore, was to develop a naturalistic
+experimental scenario in which subjects would develop knowledge of a social hierarchy that either
+involved themselves (i.e. Self condition) or a close friend (i.e. Other condition).
+Phase 1 (Learn) In this phase of the experiment participants acquired knowledge about the Self and Other
+hierarchies in parallel.
+Training trials (Figure 1). During a training trial, participants viewed adjacent individuals in each of the
+Self and Other hierarchies displayed on either side of the screen (i.e. 8 training pairs in Self and Other
+10
+
+--- PAGE 26 ---
+conditions: i.e. P1 vs P2, P2 vs P3, P3 vs P4, P4 vs P5, P5 vs P6, P6 vs P7, P8 vs P9). The left-right
+position of an item on the screen was randomized across trials. They had 3 seconds in which to choose, via
+button press (i.e. left or right, index or middle finger of right hand respectively), the item which had "more
+power". After 3 seconds, a feedback screen appeared (2 second duration): this consisted of white circle
+below the chosen stimulus together with either “+20 points” or “-20 points”, for a correct or incorrect
+response (in green/red color, respectively). A fixation cross of 1.5 seconds duration preceded the onset of
+the next trial. The renumeration received by participants for this phase of the experiment was determined
+directly from the number of points won.
+Test trials (Figure 1B). During test trials, participants viewed pairs of non-adjacent individuals in the
+hierarchy (i.e. 8 inference pairs: P2 vs. P4, P2 vs. P5, P3 vs. P5, P3 vs. P6, P4 vs. P6, P4 vs. P7, P5 vs. P7,
+P5 vs. P8). Note that 4 of the inference pairs included the participant or their friend (e.g. P2 vs P5), and 4
+did not (e.g. P3 vs P6). As in training trials, participants had 3 seconds in which to choose, via button press
+(i.e. left or right), the person which they thought had more power in either the hierarchy of which they were
+a part (i.e. Self condition), or that incorporated their friend (i.e. Other condition). Importantly, however, no
+feedback was presented during test trials, though participants were instructed that their choices would still
+count towards their final payout. Instead, after 3 seconds, a screen appeared which required participants to
+rate (on a scale of 1 to 3) their confidence in their decision: participants were carefully instructed to enter a
+“1” response if they were guessing entirely, a “2” response if they were “had some idea but were not sure”
+about their choice, and to reserve a “3” response until they were “more than 90% certain” that their choice
+was the correct one. Participants were told that though their confidence responses would not count towards
+their final payout, they should still answer as accurately as possible.
+Schedule of trial presentation.
+Blocks of Self trials alternated with blocks of Other trials, with block order (i.e. whether Self or Other
+condition appeared as the first block) counterbalanced across subjects. Each block was comprised of a 16
+trial miniblock made up of each of the 8 training trial types repeated twice, followed by a 8 trial miniblock
+of each of the test trial types. The order of training and test trials was pseudorandomized and varied across
+blocks. The start of each miniblock was preceded with the relevant instruction which was presented for 2
+seconds (i.e. “You Training trials”, “Him” or “Her” Test trials). At the end of each training and test block,
+participants received cumulative feedback indicating their performance during that block (2 seconds).
+In total, there were 12 blocks for each of the Self and Other conditions – i.e. 192 training trials, and 92 test
+trials, in each condition. Phase one consisted of three sessions of approximately 20 minutes each, separated
+by a 1 minute break during which time participants remained inside the MRI scanner.
+Phase 2: Categorization (scanned)
+In this phase, participants were presented with individual face pictures from the Self and Other hierarchies
+(excluding the profile picture depicting themself in the Self condition, or the friend in the Other condition).
+Each picture was repeated 4 times, duration 2.3 seconds with 0.8 seconds fixation cross between stimuli.
+Participants had to make a categorization judgment i.e. to determine whether the person belonged to the
+company with the yellow or blue logo. Presentation order was pseudorandom. 64 trials were divided over 2
+experimental sessions lasting approximately minutes each. Participants had a 1 minute break between
+sessions during which time they remained inside the scanner.
+Implicit Association Test (IAT: not scanned).
+Following the end of the scanning part of the experiment, participants completed a version of the IAT test
+tailored to address our question of interest (Greenwald et al., 1998; Greenwald & Farnham, 2000) to probe
+the effectiveness of our experimental manipulation: i.e. the extent to which subjects incorporated
+themselves and their friend into the hierarchies.
+We describe the task in detail below. Briefly, the rationale behind this paradigm is as follows and is broadly
+analogous to the Stroop effect (e.g. (Cohen et al., 1990)): consider that participants have actually
+incorporated themselves into the Self hierarchy, and that this company has a yellow logo (note color
+counterbalanced across participants). When participants view face pictures, they should be faster to
+11
+
+--- PAGE 27 ---
+categorize in the congruent condition: when the yellow logo is displayed on the same side as the word
+“self” and when the blue logo is displayed on the same side as the word “other”. In contrast, RTs should be
+slower in the incongruent condition: where the yellow logo is displayed above the word “other”. Note that
+the words used in the IAT test – “self” and “other” were not used in other parts of the experiment (e.g.
+“You” trials and “Him” or “Her” trials in the Learning phase).
+IAT Stimuli: The stimuli used during the IAT test consisted of the face pictures used in the main
+experiment, and also word stimuli.
+Word stimuli: A set of 8 English pronouns were used: 4 of these pronouns – me, mine, myself, my – are
+known to be associated with the self concept and 4 pronouns – theirs, they, them, themselves – are known
+to be associated with the concept of another person. These pronouns were selected based on a pilot study to
+equate behavioural performance across both the Self and the Other conditions.
+Trial Blocks (Figure below) As in the typical IAT test, the task was divided into several distinct blocks – 5
+in our case.
+The first block (Figure S1A) introduced the so-called “target-concept discrimination”; in this block
+participants viewed two rectangles in the top of the screen – one on the left, and one on the right –
+representing the respective colours of the logo of their company and their friend’s company. The left-right
+position of the Self-colour and Other-colour logos was counterbalanced between participants. Participants
+viewed pictures of individuals from the Self and Other companies (with the exception of the profile
+pictures), and had 3 seconds to respond by button press (either Q or P, corresponding to left or right
+response) whether the individual was a member of the blue or the yellow company. A fixation cross,
+presented for 1 second, preceded the presentation of the next trial. There were 64 trials in this block: each
+picture presented 4 times. Order of stimulus presentation was pseudo-randomised across participants, in all
+blocks.
+The starting position of the Self-colour (e.g. yellow) and Other-colour (e.g. blue) logos were
+counterbalanced between participants. This, in combination with the counterbalanced allocation of color
+(yellow/blue) to Self/Other hierarcy, allowed us to counterbalance whether participants performed the
+congruent trials – i.e. the word “self” and “other” positioned on the same side of the Self company colour
+logo as experienced during the first hierarchy learning phase – or the incongruent trials first.
+The second block introduced the “attribute discrimination” (Figure S1B). Participants were presented with
+the word “self” on the left and the word “other” on the right side of the screen. In this section, participants
+were presented with one of the 8 word stimuli – pronouns (see above) – and had 3 seconds to respond as to
+whether they were related to the concept of the self or another person. A fixation cross, presented for 1
+second, preceded the presentation of the next trial. 16 trials in this block, each pronoun repeated twice.
+In the third block (Figure S1C) both the target concepts (i.e. colored logos) and the attributes (i.e. “self” or
+“other”) were presented on the screen. The words (“self” and “other”) and logos (yellow/blue) were
+presented on the same sides as in the preceding blocks (i.e. blocks 1 and 2). Participants viewed alternating
+pronouns and face pictures, and were required to respond according to whether they related to self/other
+concept, or yellow/blue logos, respectively. 96 trials in this block: 48 pronouns (each pronoun repeated 3
+times) and 48 pictures (each picture repeated 3 times).
+In the fourth block (Figure S1D) participants performed the same task as in block 2, but the position of the
+words “self” and “other” were reversed. 16 trials in this block, each pronoun repeated twice.
+Finally, in the fifth block (Figure S1D) participants performed the same task as in block 3 with the
+exception that the position of the words “self” and “other” were as in block 4, and therefore swapped in
+side compared to block 3. 96 trials in this block: 48 pronouns (each pronoun repeated 3 times) and 48
+pictures (each picture repeated 3 times).
+12
+
+--- PAGE 28 ---
+Post-Experimental Debriefing (after completion of IAT test). Participants were carefully debriefing
+following the end of the IAT test. Included in this assessment was a test assessing participants' declarative
+knowledge of the hierarchy: pictures of the two sets of people were presented to participants, and they were
+asked to rank them in terms of their order in the hierarchy, with their performance timed.
+Debriefing scores: Participants were also asked to evaluate how “real” the social rank dimension seemed –
+and to rate how much they felt part of the Self hierarchy, and how much they felt their friend was part of
+the Other hierarchy (see Table S8 for full details: appended below).
+Then participants responded to a question that assessed their feelings about the level of power of the first-
+ranked and last-ranked individuals in both hierarchies, the Power Explicit Scores: “Can you tell me – use
+your gut instinct – how powerful each of these individuals feels to you on a scale from 0-low to 10-high”.
+After that, they were also asked to evaluate the level of realism of the social rank, the Social Realism
+Scores: 1) “How realistic does it feel when you see this person – the two individuals at the top of the
+hierarchies presented – that he/she is the head of the company/top dog on scale from 0 to 10 (10=realistic, 0
+= unrealistic) and 2) “How realistic does it feel when you see this person – the two individuals at the
+bottom of the hierarchies presented – that he/she is the loser/lowest person on a scale from 0 to 10
+(10=realistic, 0 = unrealistic)”. Then, we obtained four explicit measures on how much participants
+identified themselves and their friend with the respective hierarchies, the Explicit Identification Scores: 1)
+"How much on a scale from 0-not at all to 10-a lot did you feel you were part of the company in the YOU
+trials", 2) “How much on a scale from 0-not at all to 10-a lot did you feel your friend was part of the
+company in the HIM/HER trials", 3) “How much on a scale from 0-not at all to 10-a lot did you feel YOU
+were part of the company in the HIM/HER trials”, and 4) “How much on a scale from 0-not at all to 10-a
+lot, did you feel your FRIEND was part of the company in the YOU trials". Next, we asked some general
+questions about their friend: “How much do you like them? (on a scale 1 to 10, 1 is a little, 10 is a lot), and
+“How similar would you say they are to you in terms of overall perspective on life, personality, hobbies ?
+(from 1 to 10)”. Finally, participants rated all the face stimuli according to three traits: dominance,
+trustworthiness, attractiveness – i.e. How “trait” is this person? (1=not at all, 9=extremely), use your gut
+feelings.
+"In phase 2, when you saw a picture of an individual who was more highly ranked in the company, how
+"real" did it seem that they were more highly ranked or had more power in the company etc? Please rate
+this on a scale of 1-10 (10 = a lot, 1 = not at all)- as an example, if when you saw the most highly ranked
+guy you thought to yourself that's the topdog/head-guy, then your answer is likely to be nearer the 10 end
+of the scale”
+“How much on a scale from 0-not at all to 10-a lot did you feel you were part of the hierarchy in the YOU
+trials?
+“How much on a scale from 0-not at all to 10-a lot did you feel your friend was part of the company in the
+hierarchy in the HIM/HER trials?”
+Behavioral analyses. Analyses were conducted using SPSS software (www.spss.com), Matlab 7.0
+(www.mathworks.com/products/matlab).
+Implicit Association Test. Before analysing the data from the IAT, we applied the reduction-data
+procedure describe by (Greenwald et al., 2003). Specifically we followed these steps: 1) subjects for whom
+more than 10% of trials had a latency less than 300ms were eliminated; 2) subjects for whom more than
+20% of trials were error trials were eliminated; 3) the means of only the correct latencies for block 3 and
+block 5 were computed; 4) the pooled standard deviation for all trials in block 3 and block 5 was computed;
+5) Each error latency in block 3 and 5 was replaced by the block mean computed at point 3 plus 600ms; 6)
+The difference between the mean latencies of block 3 and block 5 was computed; 7) The difference
+computed in step 6 was divided by the pooled standard deviation calculated in step 4 to obtain the correct
+IAT measure – the D measure – used in all the analyses. Following this procedure, 6 participants were
+excluded from the analysis.
+13
+
+--- PAGE 29 ---
+Computational Models.
+Sequential Monte-Carlo (SMC) model. SMC models (Doucet et al., 2000)are a type of state-space
+inference model that aims to infer the underlying state of an evolving dynamic system: in this case the level
+of power of a set of individuals. These hidden states (i.e. power levels) diffuse across training trials
+according to a Gaussian random-walk model (a non-zero variance for which models forgetting).
+Dominance decisions are assumed to be generated according to an observation process – here a random
+choice based on a sigmoid of the discrepancy in power between the individuals. The SMC method, which is
+a form of Bayesian filter, captures the way that a participant can use information about the hierarchy that is
+acquired over the course of the experiment to make inferences about these powers. We consider an on-line
+filter, according to which estimates of the powers are based on past data up to the current trial.
+SMC models – also known as particle filters – relax the conventional assumption for linear, Gaussian,
+Kalman filters, that the probability density function (pdf) of the inferred variables (i.e. power) is a normal
+distribution, thereby extending their flexibility in modelling complex multi-modal distributions in a range
+of domains (e.g (Doucet et al., 2000)). In the SMC model, each particle (here, N=10,000) contains one set
+of values for the hidden state variable (i.e. power). Hence a particle can be viewed as representing a
+hypothesis about the rank ordering of items within the hierarchy: the population of particles, therefore,
+constitutes a multimodal (i.e. 9-dimensional, given 9 items in each hierarchy) pdf of rank. Particles are
+initialized with equal weight (see below), with their weights being updated on each training trial depending
+on the likelihood of the trial outcome given the hypothesis concerning rank ordering they represent. A
+particle resampling step ensures that the density of particles is highest in regions of the (9-dimensional)
+space that are likely given the history of observed data (i.e. have highest weights), by tending to replace
+conditionally unlikely particles (i.e. with low weights) with new, more appropriate, ones.
+Prior model: the state variable (i.e. 𝑥 , denoting power) is initialized a normal distribution with fixed
+!
+initial variance 𝜎! (=10), and zero mean (Eq 1). The state process is described as a Gaussian random walk
+!
+with evolution variance 𝜎! (free parameter)(Eqn 2) – this instantiates a form of imperfect memory (i.e.
+forgetting), in order to account for participants needing ~ 200 trials to achieve proficiency on the task. The
+observation model (Eqn 3) is a sigmoid function of the difference between the distributions of the two
+items presented in a given training trial t: parameterized by beta i.e. the item with current highest expected
+value (𝑎 ) and that with the lower value (𝑏 ). 𝑦 = 1 denotes the situation when the highest valued item is
+! ! !
+the correct response.
+Particle filter: Let 𝑖 index particles, of which there are 𝑁 (=10,000). Particles are initialized as samples
+from a normal distribution, with zero mean and variance 𝜎! (Eqn 4), each with an equal weight (𝑤(!)),
+!
+which are then normalized (Eqn 5). State process equation for the particles – note since no feedback was
+provided during test trials, we assumed that this process only occurred during training trials (Eqn 6). The
+unnormalized weights (𝑤 (!) ) of the particles are updated using the observation model and the normalized
+!!!
+weights from the previous timestep (Eqn 7).
+14
+
+--- PAGE 30 ---
+RL model (RL-ELO).
+In the RL-ELO model, rather than updating based on the difference between trial outcome and current
+value (as in Rescorla Wagner), the value update is a function of the difference in current values between the
+two items (i.e. indexed by their positions, left and right, which was randomized on every trial): 𝑉 & 𝑉
+!,! !,!
+We term this model RL-ELO because of its relationship to algorithms used to update rankings (termed
+“ELO”) in multiagent scenarios (e.g. chess) – though it should be noted that it can be shown to be a version
+of a policy gradient algorithm (Williams, 1992).
+15
+
+--- PAGE 31 ---
+Note that we also examined a variant of the model, termed RL-ELO , which incorporated an extra free
+F
+parameter (σ) that controlled the amount of Gaussian noise (i.e. mean = 0 , SD = σ) that was added
+to the values at each timestep. This parameter instantiated a form of forgetting, akin to the role of the
+evolution variance parameter in the SMC model.
+Value Transfer model (von Fersen et al., 1991)
+This model incorporates the standard update term from Rescorla Wagner, but also includes an indirect
+component: the incorrect item in a training trial has its value updated with a proportion (i.e. theta %) of the
+correct item.
+Trial outcomes are +1 for correct choice, and -1 for incorrect choice.
+3 free parameters: α = learning rate; β=temperature ; θ = transfer factor
+Training trial at time t with items on left and right sides of screen
+Probability of choosing left item, and right item:
+16
+
+--- PAGE 32 ---
+Rescorla Wagner. As for Value transfer model, where theta parameter is set to zero.
+Computational model fitting. We quantified the fit of all models and a base model (random choice) – to
+participant’s choice behavior during training and test trials. We used a maximum likelihood estimation
+procedure and optimized a separate set of parameters for each participant (Wimmer et al., 2012). We report
+the negative log likelihood of each model, and the corresponding BIC measure which penalizes more
+complex models.
+FMRI Design & Analysis.
+fMRI design. The temporal pattern of stimulus presentation was designed to maximise statistical efficiency
+whilst preserving psychological validity, in line with established procedure (Frackowiak et al., 2004;
+Friston et al., 1998; Josephs and Henson, 1999). Importantly, the haemodynamic response to events that
+occur a few seconds apart is explicitly modelled (via a haemodynamic response function), and therefore
+can be estimated separately for each event type by implementing the general linear model as is standard
+when using statistical parametric mapping software (SPM8) (www.fil.ion.ucl.ac.uk/SPM) (also see below)
+(Friston et al., 1998).
+Functional imaging acquisition parameters. T2 weighted gradient-echo planar images (EPI) with BOLD
+(blood oxygen level dependent) contrast were acquired on a 3.0 tesla Siemens Allegra MRI scanner using a
+specialized sequence to acquire whole brain coverage, whilst minimizing signal dropout in the medial
+temporal lobe and ventromedial prefrontal cortex(Weiskopf et al., 2006). We used the following scanning
+parameters to achieve whole brain coverage: 48 oblique axial slices angled at 300 in the anterior-posterior
+axis, TR 2.88 seconds, TE 30ms, 2mm thickness (1mm gap), in-plane resolution 3x3 mm, z-shim -
+0.4mT/m*ms, negative phase encoding direction. High-resolution (1x1x1mm) T1-weighted structural MRI
+scan were also acquired for each participant after functional scanning. These were coregistered to the
+functional EPIs, and averaged across participants to aid localization.
+fMRI data preprocessing. Images were analyzed in a standard manner using the statistical parametric
+mapping software SPM8 (www.fil.ion.ucl.ac.uk/SPM). After the first six “dummy volumes” were
+discarded to permit T1 relaxation, EPI images were spatially realigned and unwarped using fieldmaps,
+17
+
+--- PAGE 33 ---
+followed by spatial normalization to a standard EPI template. Normalized images were smoothed using a
+gaussian kernel with full width at half maximum of 8mm.
+Phase 1 (Learn) fMRI data analysis. Following preprocessing, the event-related fMRI data were analyzed
+in SPM8 using the general linear model (GLM) following established procedures (Frackowiak et al., 2004;
+Friston et al., 1998). We targeted our analyses to detect brain regions whose activation pattern during test
+and training trials significantly correlated with participant-specific trial-by-trial parametric regressors:
+obtained from key hidden variables of the relevant computational models (SMC, RL-ELO). Note that
+following previous work (Daw et al., 2006; Wimmer et al., 2012) suggesting that using individually
+optimized parameters to analyse the fMRI data tends to lead to noisy fitting, we used a single set of
+parameters for the SMC, and the RL-ELO model (i.e. best fit parameters across the group).
+Specification of first-level design matrix.
+Test trials. As a first step, the 5 second period during which item pair and confidence rating were displayed
+during test trials was modeled as a boxcar function and convolved with the canonical haemodynamic
+response function (HRF) to create regressors of interest. All test trial types (i.e. 8 pairs: see above) were
+modeled within these regressors, with one regressor for the Self condition and one for the Other condition.
+These participant-specific parametric regressors were also convolved with the HRF, leading to the height of
+the HRF for a given event being modulated accordingly. Thus, these parametric regressors model BOLD
+signal changes that covary with a specific internal variable of the SMC model on a given trial (i.e. over and
+above non-specific effects captured by earlier parametric regressors such as RT). Further, participant-
+specific movement parameters were included as regressors of no interest. A high pass filter with a cutoff of
+180 seconds was employed. Temporal autocorrelation was modelled using an AR(1) process.
+In the first model, the parametric modulator was the difference between SMC model estimates of item
+power: this was a trial-by-trial variable obtained from the SMC model, by taking the expectation over the
+difference between estimated power of the items presented.
+Training trials. As a first step, the 5 second period during which item pair and outcome was displayed
+during training trials was modeled as a boxcar function and convolved with the canonical haemodynamic
+response function (HRF) to create regressors of interest. All training trial types (i.e. 8 pairs: P1 vs P2, P2 vs
+P3....) were modeled within these regressors, with one regressor for the Self condition and one for the Other
+condition.
+In this model, the parametric regressor included was termed the hierarchy update index: trial-by-trial
+estimates derived from the SMC model, to capture the change in hierarchy knowledge consequent on
+feedback on a given training trial.
+For each pair of items (e.g. 1 & 2) we computed a trial-by-trial KL divergence measure, with respect to the
+probability of one item winning against the other (i.e. before and after feedback).
+where p(1) is the probability of item_1 winning against item_2 following updating after feedback, and q(1)
+is that before feedback; where the probability of winning was calculated as elsewhere using a sigmoid
+function parameterized by beta. Note p(2) = 1 – p(1), and similarly q(2) = 1 – q(1). Then the KL
+divergence was summed across all 36 pairs. This analysis, therefore, for set up to identify regions where
+neural activity correlated positively with a change in participants’ hierarchy knowledge. Note that since no
+feedback was provided, there was no change in hierarchy knowledge during test trials.We also set up a
+model to identify neural regions that showed a correlation with the chosen power – computed from the
+SMC model as the expectation over distribution of the item power – during training trials. SMC estimated
+chosen power was the parametric modulator entered into the design matrix.
+18
+
+--- PAGE 34 ---
+Neural model comparison: Following previous work (Ashby and Waldschmidt, 2008; Niv et al., 2015;
+Wilson and Niv, 2015), we ran separate GLMs for the SMC and RL-ELO models using using parametric
+regressors relating to the hierarchy update index (i.e. using a single set of parameters for each model best fit
+to the group behavioral data). The negative log likelihood (NLL) of each model, calculated separately for
+each region of interest (e.g. amygdala) was:
+where 𝜎! is the variance of the residuals from the GLM, and n is the number of scans. We then calculated
+the relative difference in BIC between models: for completeness, and also following previous work (Niv et
+al., 2015) we tested whether the difference between model NLL was significantly different from zero using
+permutation testing.
+Phase 2 (Categorization). fMRI data analysis. Following preprocessing, the event-related fMRI data
+were analyzed in SPM8 using the general linear model (GLM) following established procedures
+(Frackowiak et al., 2004; Friston et al., 1998). We set up a parametric model to detect brain regions whose
+activation pattern exhibited a significant linear correlation with the rank of person in the Self and Other
+hierarchies.
+Specification of first-level design matrix. The 2 second trial period during which the face image was
+displayed on the screen and participants made their response, was modeled as a boxcar function and
+convolved with the canonical haemodynamic response function (HRF) to create regressors of interest.
+Parametric model. Separate regressors were included for Self and Other conditions. Rank, from 1 to 9,
+was included as a parametric modulator in the GLM: linear and quadratic components were modeled. Note
+that rank 5 was not included in the model since participants did not view the profile pictures of themselves
+or their friends during this phase. Thus, these regressors model BOLD signal changes that covary with
+specific indices on a given trial (e.g. the rank of a person).
+“Separate rank” model: This model was used for two purposes: i) firstly, it was used as an illustrative
+model to graphically represent the linear relationship between neural activity in a given brain region (e.g.
+amygdala) and person rank (see Figure 6; also see(Winston et al., 2002) & Kumaran et al 2012 for a similar
+useage). In this case, the parametric model specified above was used for statistical inference- i.e. to ask
+which brain regions show a significant linear correlation between the amplitude of neural activity and
+person rank. ii) this model was also used to ask whether activity in the MPFC ROI, defined based on
+orthogonal selection contrast (i.e. from during a separate scanning phase) distinguished rank extremes
+Model Estimation. Model estimation proceeded in two stages. In the first stage, condition-specific
+experimental effects (parameter estimates, or regression coefficients, pertaining to the height of the
+canonical HRF) were obtained via the GLM in a voxel-wise manner for each participant. In the second
+(random-effects) stage, participant-specific linear contrasts of these parameter estimates, collapsed across
+the 2 sessions, were entered into a series of one-sample t tests [as is standard when using SPM(Frackowiak
+et al., 2004)], each constituting a group-level statistical parametric map.
+Statistical inference.
+Voxel-based analyses. Voxel-based analyses. We report results in a priori regions of interest - the
+hippocampus, amygdala, vmPFC and MPFC - where activations are significant at p<0.001 uncorrected for
+multiple comparisons, and survive small volume correction (SVC) for multiple comparisons (at p<0.05
+corrected) using SPM8. For the SVC procedure we used anatomical masks, for the bilateral hippocampus
+and amygdala. For the vmPFC, and MPFC we used 6mm spheres centred on coordinates (MNI x, y, z -4,
+19
+
+--- PAGE 35 ---
+52, -14 and 6, 48, 4) derived from previous related studies: (Kumaran et al., 2012; Kumaran and Maguire,
+2005).
+Activations in other brain regions were only considered significant if they were significant at a level of
+p<0.001 uncorrected, and additionally survived whole brain FWE correction at the at the peak level or
+cluster level (p<0.05 corrected, with cluster threshold defined at p<0.001), in line with established
+procedures(Frackowiak et al., 2004).Reported voxels conform to MNI (Montreal Neurological Institute)
+coordinate space. Right side of the brain is displayed on the right side.
+Region of Interest (ROI) analyses. We performed anatomically defined ROI analysis (using the MarsBar
+SPM toolbox: http://marsbar.sourceforge.net/) in the amygdala, hippocampus, and vMPFC (defined in the
+same way as for the SVC procedure outlined above). Further, we defined a functional MPFC ROI (Figure
+7) based on the results of an analysis during the Learn phase (i.e. significantly greater correlation with
+chosen power during Self (cf Other) condition) that was subsequently used in a different scanning phase
+(i.e. the Categorization phase). ROI defined at a level of p<0.001 uncorrected. We also defined a ROI
+proximate to the fusiform face area based on a constrast defined on the categorization data (i.e. specifying
+the onset of face events vs implicit baseline, at p<0.001 uncorrected).
+It is important to note that these analyses treat data from a ROI as if it was from a single voxel and hence
+no correction for multiple comparisons is necessary. Results, therefore, were considered statistically
+significant where they pass a threshold of p<0.05.
+Selection contrast is unbiased with respect to contrasts of interest. ROI analyses are widely held to be a
+powerful tool for affording additional insights, above and beyond that provided by univariate fMRI
+analysis(Kriegeskorte et al., 2009). Recent work has highlighted potential shortcomings of previous work,
+and established a theoretically principled approach for carrying out an ROI analysis. Importantly, our
+analyses fulfil the criteria outlined by (Kriegeskorte et al., 2009): the definition of these ROI is unbiased –
+either based on a different portion of the data (i.e. training trials vs test trials), or on a different scanning
+phase (i.e. Learn phase vs Categorization phase) – and therefore statistically independent from the effects
+we examine.
+Psychophysiological Interaction (PPI) Analysis
+A PPI analysis is employed to identify the presence of functional coupling between different brain regions,
+by showing that activity in a distant region can be accounted for by an interaction between the influence of
+a source region and an experimental parameter (Friston et al., 1997). We followed established procedures
+(O’Reilly et al., 2012) to perform the PPI analysis by creating a GLM that included regressors capturing i)
+the physiological effect (here, the time series of activity in the MPFC seed region) ii) the psychological
+contrast of interest: here, hierarchy update: Self > Other (i.e. designed to identify regions showing a greater
+correlation with hierarchy update index in Self, as compared to Other, condition (see Main Text). iii)
+psychophysiological interaction term (i.e. physiological effect x psychological contrast of interest)
+Specifically: we used SPM8 to first extract the time series (i.e. physiological effect) for the peak voxel in
+the MPFC (i.e., 6 mm sphere centered on peak coordinate in the group analysis x, y, z, = -6, 46, 12),
+identified in the correlation of training trial related activity in the Learn phase with the hierarchy update
+index, collapsed across both Self and Other conditions (see Figure 4B and Table S3A). Next, we calculated
+the psychological contrast of interest (i.e. hierarchy update: Self > Other). Finally, we calculated the
+product of the first two signals. The physiological effect and psychophysiological interaction were entered
+as regressors within the GLM: in addition, we entered a regressor capturing the psychological contrast of
+interest (i.e. hierarchy update: Self > Other) without the interaction with physiological effect. The effect of
+the psychophysiological interaction term was assessed for each participant and entered into a second level
+group-level analysis.
+The configuration of the PPI GLM, therefore, allows us to ask in which brain regions the magnitude of
+functional coupling of neural activity with the MPFC seed region shows a significantly greater correlation
+with the amount by which hierarchy knowledge changes in the Self, as compared to the Other condition –
+above and beyond that explained by differences in the correlation between the hierarchy update index in
+the Self and Other conditions.
+20
+
+--- PAGE 36 ---
+Supplemental References
+Ashby, F.G., Waldschmidt, J.G., 2008. Fitting computational models to fMRI. Behav. Res. Methods 40,
+713–21.
+Cohen, J.D., Dunbar, K., McClelland, J.L., 1990. On the control of automatic processes: a parallel
+distributed processing account of the Stroop effect. Psychol. Rev. 97, 332–61.
+Daw, N.D., O’Doherty, J.P., Dayan, P., Dolan, R.J., Seymour, B., 2006. Cortical substrates for exploratory
+decisions in humans. Nature 441, 876–9.
+Doucet, A., Godsill, S., Andrieu, C., 2000. On sequential Monte Carlo sampling methods for Bayesian
+filtering. Stat. Comput. 197–208.
+Frackowiak, R. S. 2004. Human brain function. K. J. Friston, C. D. Frith, R. J. Dolan, C. J. Price, S. Zeki, J.
+T. Ashburner, & W. D. Penny (Eds.). Academic press.
+Friston, K.J., Buechel, C., Fink, G.R., Morris, J., Rolls, E., Dolan, R.J., 1997. Psychophysiological and
+modulatory interactions in neuroimaging. Neuroimage 6, 218–229.
+Friston, K. J., Fletcher, P., Josephs, O., Holmes, A. N. D. R. E. W., Rugg, M. D., & Turner, R. ,1998.
+Event-related fMRI: characterizing differential responses. Neuroimage, 7(1), 30-40.
+Greenwald, A.G., Farnham, S.D., 2000. Using the Implicit Association Test to measure self-esteem and
+self-concept. J. Pers. Soc. Psychol. 79, 1022–1038.
+Greenwald, A.G., McGhee, D.E., Schwartz, J.L., 1998. Measuring individual differences in implicit
+cognition: the implicit association test. J. Pers. Soc. Psychol. 74, 1464–80.
+Greenwald, A.G., Nosek, B. a., Banaji, M.R., 2003. Understanding and using the Implicit Association Test:
+I. An improved scoring algorithm. J. Pers. Soc. Psychol. 85, 197–216.
+Johnson, J.D., Muftuler, L.T., Rugg, M.D., 2008. Multiple repetitions reveal functionally and anatomically
+distinct patterns of hippocampal activity during continuous recognition memory. Hippocampus 18,
+975–980.
+Josephs, O., & Henson, R. N. ,1999. Event-related functional magnetic resonance imaging: modelling,
+inference and optimization. Philosophical Transactions of the Royal Society B: Biological Sciences,
+354(1387), 1215-1228.
+Kriegeskorte, N., Simmons, W.K., Bellgowan, P.S., Baker, C.I., 2009. Circular analysis in systems
+neuroscience: the dangers of double dipping. Nat Neurosci 12, 535–540.
+Mitchell, J.P., Macrae, C.N., Banaji, M.R., 2006. Dissociable Medial Prefrontal Contributions to Judgments
+of Similar and Dissimilar Others. Neuron 50, 655–663.
+Niv, Y., Daniel, R., Geana, A., Gershman, S.J., Leong, Y.C., Radulescu, A., Wilson, R.C., 2015.
+Reinforcement learning in multidimensional environments relies on attention mechanisms. J.
+Neurosci. 35, 8145–8157.
+O’Reilly, J.X., Woolrich, M.W., Behrens, T.E.J., Smith, S.M., Johansen-Berg, H., 2012. Tools of the trade:
+Psychophysiological interactions and functional connectivity. Soc. Cogn. Affect. Neurosci. 7, 604–
+609.
+von Fersen, L., Wynne, C.D., Delius, J.D., Staddon, J.E., 1991. Transitive inference formation in pigeons. J.
+Exp. Psychol. Anim. Behav. Process. 17, 334–341.
+Weiskopf, N., Hutton, C., Josephs, O., & Deichmann, R., 2006. Optimal EPI parameters for reduction of
+susceptibility-induced BOLD sensitivity losses: a whole-brain analysis at 3 T and 1.5 T. Neuroimage,
+33(2), 493-504.
+Williams, R.J., 1992. Simple statistical gradient-following algorithms for connectionist reinforcement
+learning. Mach. Learn. 8, 229–256.
+Wilson, R.C., Niv, Y., 2015. Is Model Fitting Necessary for Model-Based fMRI? PLoS Comput. Biol. 11.
+Wimmer, G.E., Daw, N.D., Shohamy, D., 2012. Generalization of value in reinforcement learning by
+humans. Eur. J. Neurosci. 35, 1092–1104.
+Winston, J.S., Strange, B. a, O’Doherty, J., Dolan, R.J., 2002. Automatic and intentional brain responses
+during evaluation of trustworthiness of faces. Nat. Neurosci. 5, 277–283.
+21

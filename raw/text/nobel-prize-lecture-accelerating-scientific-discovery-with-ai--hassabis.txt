@@ -1,0 +1,220 @@
+
+--- PAGE 1 ---
+Accelerating scientific
+discovery with AI
+Demis Hassabis
+Google DeepMind
+Nobel Lecture - 8th Dec 2024
+
+--- PAGE 2 ---
+Thinking about thinking
+
+--- PAGE 3 ---
+Games AI as a critical stepping stone
+DeepMind was founded in 2010 as a research lab to build AGI
+Initially we used games as the perfect proving ground for AI
+Go is the most complex game ever - the pinnacle for games AI
+Lee Sedol - 18 world titles
+10^170 possible positions > atoms in the universe!
+In 2016 AlphaGo beat Lee Sedol 4-1 in a famous match in Seoul
+But didn’t just win, came up with novel creative strategies (Move 37)
+AlphaGo mastered Go through self-learning: playing against itself
+and learning from its mistakes to build a useful model of Go
+Game 2 - Move 37
+
+--- PAGE 4 ---
+Learning a neural network model to efficiently guide the search
+
+--- PAGE 5 ---
+Learning a neural network model to efficiently guide the search
+
+--- PAGE 6 ---
+Learning a neural network model to efficiently guide the search
+
+--- PAGE 7 ---
+What makes for a suitable problem for AI?
+Massive combinatorial Clear objective function Either lots of data
+search space (metric) to optimise against and/or an accurate and
+efficient simulator
+
+--- PAGE 8 ---
+Proteins are the building blocks of life
+
+--- PAGE 9 ---
+The Protein Folding problem
+Predicting the 3D structure of a protein directly from its 1D amino acid sequence
+Amino Acid Sequence
+MANKGRLGEQEAFAMTVPLLIDVDSSQQEALEAIALNDELVRVRRALYLDLGVPF
+PGIHLRFNEGMGEGEYLISLQEVPVARGELKAGYLLVRESVSQLELLGIPYEKGEH
+LLPDQETFWVSVEYEERLEKSQLEFFSHSQVLTWHLSHVLREYAEDFIGIQETRY
+LLEQMEGGYGELIKEVQRIVPLQRMTEILQRLVGEDISIRNMRSILEAMVEWGQKE
+KDVVQLTEYIRSSLKRYICYKYANGNNILPAYLFDQEVEEKIRSRVRQTSAGSYLA
+LDPAVTESLLEQVRKTIGDLSQIQSKPVLIVSMDIRRYVRKLIESEYYGLPVLSYQE
+LTQQINIQPLGRVCL
+MGHHHHHHGNITLTKRQQEFLLLNGWLQLQCGHAERACILLDALLTLNPEHLAG
+RRCRLVALLNNNQGERAEKEAQWLISHDPLQAGNWLCLSRAQQLNGDLDKARH
+AYQHYLELKDHNESP
+GAMGALPPDGHPVEPHLERLYPTAQSKRSLWDFASPGYTFHGLHRAQDYRREL
+DTLQSLLTTSQSSELQAAAALLKCQQDDDRLLQIILNLLHKV
+“thermodynamic hypothesis”: a protein will assume the conformation that minimises the free energy in the system
+Christian Anfinsen, Nobel lecture 1972
+
+--- PAGE 10 ---
+The Protein Folding problem: a 50-year grand challenge in biology
+Why is this such Experimentally determining even a single protein
+structure can often take years of painstaking work
+a hard problem?
+Levinthal’s Paradox: estimated ~10300 possible
+conformations that a typical protein can take
+Enumerating all possibilities would take longer than
+the age of the universe
+Yet somehow in nature proteins fold spontaneously
+within milliseconds
+Must mean there’s some topology in the energy
+landscape that guides the folding process
+
+--- PAGE 11 ---
+Data and benchmarks
+<1 atom width apart
+Ground truth
+After decades of experimental work ~170,000 structures had been Prediction
+determined and collated in Protein Data Bank (PDB), an incredible
+resource that we used as a starting point to train AlphaFold
+CASP competition: gold standard benchmark, run biennially
+since 1994 by John Moult, to test the best computational systems
+Critical threshold: predictions had to be accurate down to the width
+of an atom (<1.0Å average error) to be of use to experimentalists
+
+--- PAGE 12 ---
+AlphaFold2 achieved atomic accuracy at CASP14 (2020)
+100
+90 Not much progress made for a
+decade. Advanced the field with
+80
+AlphaFold1 at CASP13 by
+70 introducing cutting edge ML as a
+main component for first time
+60
+Re-architected AlphaFold2
+50
+for CASP14 to reach atomic
+40
+accuracy - leading the organisers
+to declare the problem solved!
+30
+2006 2008 2010 2012 2014 2016 2018 2020
+CASP7 CASP8 CASP9 CASP10 CASP11 CASP12 CASP13 CASP14
+)TDG(
+ycarucca
+egatnecreP
+Mean GDT score for top team (avg across protein difficulty)
+ALPHAFOLD 2
+ALPHAFOLD
+Critical assessment of structure prediction
+
+--- PAGE 13 ---
+Innovate architecture of AlphaFold2: a hybrid system
+(Jumper et al., Nature 2021)
+Built in evolutionary and physical constraints into the architecture without impacting the learning
+Full end-to-end system with recycling stage that iteratively refines the structure prediction
+
+--- PAGE 14 ---
+AlphaFold's iterative steps toward a protein structure prediction
+6VR4: Drobysheva, A.V., et al. Structure and function of virion RNA polymerase
+of a crAss-like phage. Nature (2020). (CASP14 target T1044)
+
+--- PAGE 15 ---
+Impact of AlphaFold so far
+Folded all 200M+ proteins known to science
+Open-sourced AlphaFold and built the AlphaFold
+database with EMBL-EBI, to provide free and
+unrestricted access to every predicted structure
+Consulted with 30+ biosecurity & bioethics experts
+to ensure the benefits outweighed any risks
+2M+ researchers from 190 countries have made
+use of AlphaFold - 30000+ citations, standard tool
+(Jumper et al., Nature 2021)
+
+--- PAGE 16 ---
+AlphaFold is accelerating progress on a huge range of problems
+Plastic pollution Antibiotic resistance Neglected diseases
+Designing enzymes that can digest plastic Tackling the causes of antibiotic resistance Accelerating cures for underfunded diseases
+McGeehan et al. (Portsmouth) Sousa & Mitchell (Colorado) Perry (DNDi), Higgins (Oxford)
+Credit: Agnieszka Obarska-Kosinska
+Structural biology Drug delivery Fertilisation mechanism
+Determined structure of nuclear pore complex Molecular protein syringe for payload delivery Discovery of mechanisms in reproduction
+Fontana et al., Mosalaganti et al. (Science) Zhang et al. (Broad Institute) Pauli (Vienna BioCenter)
+
+--- PAGE 17 ---
+AlphaFold 3
+Modelling all of life’s biomolecules
+(Abramson et al., Nature 2024)
+
+--- PAGE 18 ---
+Implications
+for the bigger picture
+
+--- PAGE 19 ---
+Making search tractable
+Taking a step back, what is the essence of what our systems are doing?
+Finding the optimal solution in an enormous combinatorial space
+Learn a model of that environment (from data or simulation)
+Use that model to guide a search according to an objective function
+Turns out this is a very general solution and many problems fit this approach
+
+--- PAGE 20 ---
+Finding the best Go move
+
+--- PAGE 21 ---
+Finding the best molecule in chemical space
+
+--- PAGE 22 ---
+The new era of ‘digital biology’
+Biology at its most fundamental level can be thought of as an information
+processing system albeit a phenomenally complex and emergent one
+AI is potentially the perfect description language for biology
+AlphaFold is a proof point that could usher in a new era of ‘digital biology’
+Started Isomorphic Labs to build on AlphaFold and reimagine the drug
+discovery process from first principles with AI (years to months)
+We sometimes think of this as doing Science at Digital Speed
+Virtual cell
+
+--- PAGE 23 ---
+What are the limits of classical systems?
+Classical Turing Machines can do much more than we previously thought
+By doing a massive amount of pre-compute upfront to develop a good model
+Then use the model to efficiently explore a solution space in polynomial time
+My Proposed Conjecture:
+“Any pattern that can be generated or found in nature can be efficiently
+discovered and modelled by a classical learning algorithm”
+If it turns out that classic systems can model certain types of quantum systems,
+it could potentially have big implications for complexity theory including P=NP,
+and maybe even fundamental physics!
+
+--- PAGE 24 ---
+AI for Science, Medicine & Climate
+Identifying eye disease from retinal scans Genetic missense mutations Fusion - plasma containment
+(De Fauw et al., Nature Medicine 2018) (Cheng et al., Science 2023) (Degrave et al., Nature 2022)
+Faster matrix multiplication SOTA weather forecasting Discovery of new materials
+(Fawzi et al., Nature 2022) (Lam et al., Science 2023) (Merchant et al., Nature, 2023)
+
+--- PAGE 25 ---
+Advancing AI responsibly
+AI has incredible potential to help with humanity’s
+greatest challenges
+But AI must be built responsibly and safely,
+and be used for the benefit of everyone
+Critical to engage with a wide range of stakeholders
+from government, academia, and civil society
+Technology as transformative as AGI requires
+exceptional care and foresight
+
+--- PAGE 26 ---
+AGI - the ultimate general-purpose tool
+to help us understand the universe
+
+--- PAGE 27 ---
+Thank you to the incredible
+AlphaFold team!
+AlphaGo and The wider teams at Our collaborators The CASP PDB & experimental
+AlphaZero teams DeepMind and Google at EMBL-EBI community biology community

@@ -1,0 +1,416 @@
+
+--- PAGE 1 ---
+RESEARCH
+RESEARCH ARTICLE ◥ composedoftwomainparts:arepresentation
+networkfandagenerationnetworkg(Fig.1).The
+representationnetworktakesasinputtheagent’s
+observationsandproducesaneuralscenerep-
+MACHINELEARNING resentationr,whichencodesinformationabout
+theunderlyingscene(weomitscenesubscripti
+Neural scene representation wherepossible,forclarity).Eachadditionalob-
+servationaccumulatesfurtherevidenceabout
+and rendering thecontentsofthesceneinthesamerepresen-
+tation.Thegenerationnetworkthenpredicts
+thescenefromanarbitraryqueryviewpointvq,
+usingstochasticlatentvariablesztocreatevari-
+S.M.AliEslami*†,DaniloJimenezRezende†,FredericBesse,FabioViola,
+abilityinitsoutputswherenecessary.Thetwo
+AriS.Morcos,MartaGarnelo,AvrahamRuderman,AndreiA.Rusu,IvoDanihelka,
+networksaretrainedjointly,inanend-to-end
+KarolGregor,DavidP.Reichert,LarsBuesing,TheophaneWeber,OriolVinyals,
+fashion,tomaximizethelikelihoodofgenerat-
+DanRosenbaum,NeilRabinowitz,HelenKing,ChloeHillier,MattBotvinick, ingtheground-truthimagethatwouldbeob-
+DaanWierstra,KorayKavukcuoglu,DemisHassabis servedfromthequeryviewpoint.Moreformally,
+(i)r¼fqðo iÞ,(ii)thedeepgenerationnetwork
+Scenerepresentation—theprocessofconvertingvisualsensorydataintoconcise gdefines a probability density gqðxjvq;rÞ¼
+descriptions—isarequirementforintelligentbehavior.Recentworkhasshownthatneural ∫gqðx;zjvq;rÞdzofanimagexbeingobservedat
+networksexcelatthistaskwhenprovidedwithlarge,labeleddatasets.However,removing queryviewpointvqforascenerepresentationr
+therelianceonhumanlabelingremainsanimportantopenproblem.Tothisend,we usinglatentvariablesz,and(iii)the learnable
+introducetheGenerativeQueryNetwork(GQN),aframeworkwithinwhichmachineslearn parametersaredenotedbyq.AlthoughtheGQN
+torepresentscenesusingonlytheirownsensors.TheGQNtakesasinputimagesofa trainingobjectiveisintractable,owingtothe
+scenetakenfromdifferentviewpoints,constructsaninternalrepresentation,andusesthis presenceoflatentvariables,wecanemployvar-
+representationtopredicttheappearanceofthatscenefrompreviouslyunobserved iationalapproximationsandoptimizewithsto-
+viewpoints.TheGQNdemonstratesrepresentationlearningwithouthumanlabelsor chasticgradientdescent.
+domainknowledge,pavingthewaytowardmachinesthatautonomouslylearnto Therepresentationnetworkisunawareofthe
+understandtheworldaroundthem. viewpointsthatthegenerationnetworkwillbe
+M
+queriedtopredict.Asaresult,itwillproduce
+odernartificialvisionsystemsarebased cesseshavebeenhypothesizedtobeinstrumen- scenerepresentationsthatcontainallinforma-
+ondeepneuralnetworksthatconsume talforthisability(7–10).Itisthusdesirableto tion(e.g.,objectidentities,positions,colors,
+large,labeleddatasetstolearnfunctions createartificialsystemsthatlearntorepresent counts,androomlayout)necessaryforthegen-
+thatmapimagestohuman-generated scenesbymodelingdata[e.g.,two-dimensional eratortomakeaccurateimagepredictions.In
+scenedescriptions.Theydosoby,forex- (2D)imagesandtheagent’spositioninspace] otherwords,theGQNwilllearnbyitselfwhat
+ample,categorizingthedominantobjectinthe thatagentscandirectlyobtainwhileprocessing thesefactorsare,aswellashowtoextractthem
+image(1),classifyingthescenetype(2),detecting thescenesthemselves,withoutrecoursetose- frompixels.Moreover,thegeneratorinternalizes
+object-boundingboxes(3),orlabelingindividual mantic labels(e.g.,object classes, objectloca- any statistical regularities (e.g., typical colors
+pixelsintopredeterminedcategories(4,5).In tions,scenetypes,orpartlabels)providedbya ofthesky,aswellasobjectshaperegularities
+contrast,intelligentagentsinthenaturalworld human(11). andsymmetries,patterns,andtextures)that
+appeartorequirelittletonoexplicitsupervision Tothatend,wepresenttheGenerativeQuery arecommonacrossdifferentscenes.Thisallows
+forperception(6).Highermammals,including Network(GQN).Inthisframework,asanagent
+humaninfants,learntoformrepresentations navigatesa3Dscenei,itcollectsKimagesxk
+i
+thatsupportmotorcontrol,memory,planning, from2Dviewpointsvk,whichwecollectively
+i DeepMind,5NewStreetSquare,LondonEC4A3TW,UK.
+imagination,andrapidskillacquisitionwithout refertoasitsobservationso i¼fðx
+i
+k;v
+i
+kÞg
+k¼1;…;K
+.
+*Correspondingauthor.Email:aeslami@google.com
+anysocialcommunication,andgenerativepro- TheagentpassestheseobservationstoaGQN †Theseauthorscontributedequallytothiswork.
+Fig.1.Schematicillustrationof
+theGenerativeQueryNetwork.
+(A)Theagentobservestraining
+sceneifromdifferentviewpoints
+(inthisexample,fromv
+i
+1,v
+i
+2,andv
+i
+3).
+(B)Theinputstotherepresenta-
+tionnetworkfareobservations
+madefromviewpointsv1andv2,
+i i
+andtheoutputisthescenerepre-
+sentationr,whichisobtainedby
+element-wisesummingofthe
+observations’representations.The
+generationnetwork,arecurrent
+latentvariablemodel,usesthe
+representationtopredictwhatthe
+scenewouldlooklikefromadifferentviewpointv3.Thegeneratorcansucceedonlyifrcontainsaccurateandcompleteinformationaboutthecontentsof
+i
+thescene(e.g.,theidentities,positions,colors,andcountsoftheobjects,aswellastheroom’scolors).Trainingviaback-propagationacrossmany
+scenes,randomizingthenumberofobservations,leadstolearnedscenerepresentationsthatcapturethisinformationinaconcisemanner.Onlyahandful
+ofobservationsneedtoberecordedfromanysinglescenetotraintheGQN.h,h ,…h aretheLlayersofthegenerationnetwork.
+1 2 L
+Eslamietal.,Science360,1204–1210(2018) 15June2018 1of7
+Downloaded
+from
+http://science.sciencemag.org/
+on
+June
+21,
+2018
+
+--- PAGE 2 ---
+RESEARCH | RESEARCHARTICLE
+theGQNtoreserveitsrepresentationcapacity ofexperiments,weconsideredscenesinasquare Unlikeintraditionalsupervisedlearning,GQNs
+foraconcise,abstractdescriptionofthescene, roomcontainingavarietyofobjects.Walltextures— learn to make these inferences from images
+withthegeneratorfillinginthedetailswhere aswellastheshapes,positions,andcolorsofthe withoutanyexplicithumanlabelingofthecon-
+necessary.Forinstance,insteadofspecifying objectsandlights—arerandomized,allowing tentsofscenes.Moreover,theGQN’sgenerator
+thepreciseshapeofarobotarm,therepresen- foraneffectivelyinfinitenumberoftotalscene learnsanapproximate3Drenderer(inother
+tationnetworkcansuccinctlycommunicatethe configurations;however,weusedfinitedatasets words,aprogramthatcangenerateanimage
+configurationofitsjoints,andthegenerator totrainandtestthemodel[seesection4of(17) whengivenascenerepresentationandcamera
+knowshowthishigh-levelrepresentationmani- fordetails].Aftertraining,theGQNcomputes viewpoint) without any prior specification of
+festsitselfasafullyrenderedarmwithitspre- itsscenerepresentationbyobservingoneormore thelawsofperspective,occlusion,orlighting
+ciseshapesandcolors.Incontrast,voxel(12–15) imagesofapreviouslyunencountered,held-out (Fig.2B).Whenthecontentsofthesceneare
+orpoint-cloud(16)methods(astypicallyobtained testscene.Withthisrepresentation,whichcan notexplicitlyspecifiedbytheobservation(e.g.,
+byclassicalstructure-from-motion)employlit- beassmallas256dimensions,thegenerator’s becauseofheavyocclusion),themodel’sun-
+eralrepresentationsandthereforetypicallyscale predictionsatqueryviewpointsarehighlyaccu- certaintyisreflectedinthevariabilityofthe
+poorlywithscenecomplexityandsizeandare rateandmostlyindistinguishablefromground generator’ssamples(Fig.2C).Theseproperties
+alsodifficulttoapplytononrigidobjects(e.g., truth(Fig.2A).Theonlywayinwhichthemodel arebestobservedinreal-time,interactivequery-
+animals,vegetation,orcloth). cansucceedatthistaskisbyperceivingandcom- ingofthegenerator(movieS1).
+pactlyencodinginthescenerepresentationvector Notably,themodelobservesonlyasmallnum-
+Roomswithmultipleobjects rthenumberofobjectspresentineachscene, berofimages(inthisexperiment,fewerthanfive)
+Toevaluatethefeasibilityoftheframework,we theirpositionsintheroom,thecolorsinwhich fromeachsceneduringtraining,yetitiscapa-
+experimentedwithacollectionofenvironments theyappear,thecolorsofthewalls,andthein- bleofrenderingunseentrainingortestscenes
+inasimulated3Denvironment.Inthefirstset directlyobservedpositionofthelightsource. fromarbitraryviewpoints.Wealsomonitored
+Fig.2.Neuralscenerepresentationandrendering.(A)Afterhaving andlighting(e.g.,castingobjectshadowsconsistently).Whenobservations
+madeasingleobservationofapreviouslyunencounteredtestscene,the provideviewsofdifferentpartsofthescene,theGQNcorrectlyaggregates
+representationnetworkproducesaneuraldescriptionofthatscene. thisinformation(scenestwoandthree).(C)Samplevariabilityindicates
+Giventhisneuraldescription,thegeneratoriscapableofpredictingaccurate uncertaintyoverscenecontents(inthisinstance,owingtoheavyocclusion).
+imagesfromarbitraryqueryviewpoints.Thisimpliesthatthescene Samplesdepictplausiblescenes,withcompleteobjectsrenderedin
+descriptioncapturestheidentities,positions,colors,andcountsofthe varyingpositionsandcolors(seefig.S7forfurtherexamples).Themodel’s
+objects,aswellasthepositionofthelightandthecolorsoftheroom.(B)The behaviorisbestvisualizedinmovieformat;seemovieS1forreal-time,
+generator’spredictionsareconsistentwithlawsofperspective,occlusion, interactivequeryingofGQN’srepresentationoftestscenes.
+Eslamietal.,Science360,1204–1210(2018) 15June2018 2of7
+Downloaded
+from
+http://science.sciencemag.org/
+on
+June
+21,
+2018
+
+--- PAGE 3 ---
+RESEARCH | RESEARCHARTICLE
+thelikelihoodofpredictedobservationsoftrain- neverencounteredduringtraining(Fig.3B),de- “surprise”atobservingaheld-outimageofa
+ingandtestscenes(fig.S3)andfoundnonotice- spite learning that these compositions are un- sceneasthenumberofviewsincreases[Fig.4B
+abledifferencebetweenvaluesofthetwo.Taken likely.TotestwhethertheGQNlearnsafactorized andsection3of(17)].Weincludeanalysisonthe
+together,thesepointsruleoutthepossibilityof representation,weinvestigatedwhetherchang- GQN’sabilitytogeneralizetoout-of-distribution
+modeloverfitting. ingasinglesceneproperty(e.g.,objectcolor) scenes,aswellasfurtherresultsonmodeling
+Analysis of the trained GQN highlightssev- whilekeepingothers(e.g.,objectshapeandpo- ofShepard-Metzlerobjects,insections5.6and
+eraldesirablepropertiesofitsscenerepresen- sition) fixed leads to similar changes in the 4.2of(17).
+tationnetwork.Two-dimensionalt-distributed scenerepresentation(asdefinedbymeancosine
+Controlofaroboticarm
+stochasticneighborembedding(t-SNE)(18)vi- similarity across scenes). We found that object
+sualizationofGQNscenerepresentationvectors color, shape, and size; light position; and, to a Representationsthatsuccinctlyreflectthetrue
+showsclearclusteringofimagesofthesame lesserextent,objectpositionsareindeedfactor- stateoftheenvironmentshouldalsoallowagents
+scene,despitemarkedchangesinviewpoint ized [Fig. 3C and sections 5.3 and 5.4 of (17)]. to learn to act in those environments more ro-
+(Fig.3A).Incontrast,representationsproduced WealsofoundthattheGQNisabletocarryout bustlyandwithfewerinteractions.Therefore,we
+by autoencoding density models such as var- “scenealgebra”[akintowordembeddingalgebra consideredthecanonicaltaskofmovingarobotic
+iational autoencoders (VAEs) (19) apparently (20)].Byaddingandsubtractingrepresentations armtoreachacoloredobject,totesttheGQN
+failtocapturethecontentsoftheunderlying ofrelatedscenes,wefoundthatobjectandscene representation’ssuitabilityforcontrol.Theend-
+scenes[section5of(17)];theyappeartoberep- propertiescanbecontrolled,evenacrossobject goalofdeepreinforcementlearningistolearn
+resentations of the observed images instead. positions[Fig.4Aandsection5.5of(17)].Finally, thecontrolpolicydirectlyfrompixels;however,
+Furthermore,whenpromptedtoreconstructa because it is a probabilistic model, GQN also such methods require a large amount of expe-
+targetimage,GQNexhibitscompositionalbe- learnstointegrateinformationfromdifferent riencetolearnfromsparserewards.Instead,we
+havior,asitiscapableofbothrepresentingand viewpointsinanefficientandconsistentmanner, firsttrainedaGQNandusedittosuccinctlyrep-
+renderingcombinationsofsceneelementsithas as demonstrated by a reduction in its Bayesian resenttheobservations.Apolicywasthentrained
+Fig.3.Viewpointinvariance,compositionality,andfactorizationof thesameobjects(representedbyasteriskanddaggersymbols)butin
+thelearnedscenerepresentations.(A)t-SNEembeddings.t-SNEisa differentpositionsareclearlyseparated.(B)Compositionalitydemonstrated
+methodfornonlineardimensionalityreductionthatapproximatelypreserves byreconstructionofholdoutshape-colorcombinations.(C)GQNfactorizes
+themetricpropertiesoftheoriginalhigh-dimensionaldata.Eachdot objectandscenepropertiesbecausetheeffectofchangingaspecific
+representsadifferentviewofadifferentscene,withcolorindicatingscene propertyissimilaracrossdiversescenes(asdefinedbymeancosinesimilarity
+identity.WhereastheVAEclustersimagesmostlyonthebasisofwallangles, ofthechangesintherepresentationacrossscenes).Forcomparison,we
+GQNclustersimagesofthesamescene,independentofview(scene plotchancefactorization,aswellasthefactorizationoftheimage-spaceand
+representationscomputedfromeachimageindividually).Twosceneswith VAErepresentations.Seesection5.3of(17)fordetails.
+Eslamietal.,Science360,1204–1210(2018) 15June2018 3of7
+Downloaded
+from
+http://science.sciencemag.org/
+on
+June
+21,
+2018
+
+--- PAGE 4 ---
+RESEARCH | RESEARCHARTICLE
+tocontrolthearmdirectlyfromtheserepresenta- pixels [Fig.5 and section 4.4of (17)].The 3D ineachscene.Inthissetting,anysingleobser-
+tions.Inthissetting,therepresentationnetwork natureoftheGQNrepresentationallowsusto vationprovidesasmallamountofinformation
+mustlearntocommunicateonlythearm’sjoint trainapolicyfromanyviewpointaroundthe aboutthecurrentmaze.Asbefore,thetraining
+angles,thepositionandcoloroftheobject,and armandissufficientlystabletoallowforarm- objectiveforGQNistopredictmazesfromnew
+thecolorsofthewallsforthegeneratortobe jointvelocitycontrolfromafreelymovingcamera. viewpoints,whichispossibleonlyifGQNsuc-
+abletopredictnewviews.Becausethisvector cessfullyaggregatesmultipleobservationsto
+hasmuchlowerdimensionalitythantheraw Partiallyobservedmazeenvironments determinethemazelayout(i.e.,thewalland
+inputimages,weobservedsubstantiallymorero- Finally,weconsideredmorecomplex,procedur- floorcolors,thenumberofrooms,theirpositions
+bustanddata-efficientpolicylearning,obtaining almaze-likeenvironmentstotestGQN’sscaling inspace,andhowtheyconnecttooneanother
+convergence-levelcontrolperformancewithap- properties.Themazesconsistofmultiplerooms viacorridors).WeobservedthatGQNisableto
+proximatelyone-fourthasmanyinteractionswith connectedviacorridors,andthelayoutofeach makecorrectpredictionsfromnewfirst-person
+theenvironmentasastandardmethodusingraw mazeandthecolorsofthewallsarerandomized viewpoints (Fig. 6A). We queried the GQN’s
+Fig.4.ScenealgebraandBayesiansurprise.(A)Addingandsubtract- afterhavingmadeobservations1tokfork=1to5.Whenthemodel
+ingrepresentationsofrelatedscenesenablescontrolofobjectandscene observesimagesthatcontaininformationaboutthelayoutofthescene,its
+propertiesvia“scenealgebra”andindicatesfactorizationofshapes,colors, surprise(definedastheKullback-Leiblerdivergencebetweenconditional
+andpositions.Pred,prediction.(B)Bayesiansurpriseatanewobservation priorandposterior)atobservingtheheld-outimagedecreases.
+Fig.5.GQNrepresentationenablesmorerobustanddata-efficient todifferenthyperparameters;samehyperparametersexploredforboth
+control.(A)Thegoalistolearntocontrolaroboticarmtoreacha standardandGQNagents;bothagentsalsoreceiveviewpointcoordinates
+randomlypositionedcoloredobject.Thecontrollingpolicyobservesthe asinputs).Thefinalperformanceachievedbylearningfromrawpixels
+scenefromafixedormovingcamera(gray).WepretrainaGQN canbeslightlyhigherforsomehyperparameters,becausesometask-
+representationnetworkbyobservingrandomconfigurationsfromrandom specificinformationmightbelostwhenlearningacompressedrepresen-
+viewpointsinsideadomearoundthearm(lightblue).(B)TheGQN tationindependentlyfromtheRLtaskasGQNdoes.(Right)Thebenefit
+infersascenerepresentationthatcanaccuratelyreconstructthescene. ofGQNismostpronouncedwhenthepolicynetwork’sviewonthe
+(C)(Left)Forafixedcamera,anasynchronousadvantageactor-critic scenemovesfromframetoframe,suggestingviewpointinvariancein
+reinforcementlearning(RL)agent(44)learnstocontrolthearmusing itsrepresentation.Wenormalizescoressuchthatarandomagent
+roughlyone-fourthasmanyexperienceswhenusingtheGQNrepresenta- achieves0andanagenttrainedon“oracle”ground-truthstateinformation
+tion,asopposedtoastandardmethodusingrawpixels(linescorrespond achieves100.
+Eslamietal.,Science360,1204–1210(2018) 15June2018 4of7
+Downloaded
+from
+http://science.sciencemag.org/
+on
+June
+21,
+2018
+
+--- PAGE 5 ---
+RESEARCH | RESEARCHARTICLE
+representationmoredirectlybytrainingasep- from-depth,andmultiviewgeometrytechniques Classicalneuralapproachestothislearning
+arategeneratortopredictatop-downviewofthe (12–16,21)prescribethewayinwhichthe3D problem—e.g.,autoencodinganddensitymodels
+mazeandfoundthatityieldshighlyaccurate structureofthe environmentis represented (22–27)—arerequiredtocaptureonlythedis-
+predictions(Fig.6B).Themodel’suncertainty,as (forinstance,aspointclouds,meshclouds,ora tributionofobservedimages,andthereisno
+measuredbytheentropyofitsfirst-personand collectionofpredefinedprimitives).GQN,by explicitmechanismtoencouragelearningofhow
+top-downsamples,decreasesasmoreobserva- contrast,learnsthisrepresentationalspace,al- differentviewsofthesame3Dscenerelateto
+tionsaremade[Fig.6Bandsection3of(17)].After lowing it to express the presence of textures, oneanother.Theexpectationisthatstatistical
+aboutonlyfiveobservations,theGQN’suncer- parts,objects,lights,andscenesconciselyand compressionprincipleswillbesufficienttoen-
+taintydisappearsalmostentirely. atasuitablyhighlevelofabstraction.Further- ablenetworkstodiscoverthe3Dstructureof
+more,itsneuralformulationenablestask-specific theenvironment;however,inpractice,they
+Relatedwork fine-tuning of the representation via back- fallshortofachievingthiskindofmeaningful
+GQN offers key advantages over prior work. propagation(e.g.,viafurthersupervisedorre- representation and instead focus on regular-
+Traditionalstructure-from-motion,structure- inforceddeeplearning). itiesofcolorsandpatchesintheimagespace.
+Fig.6.Partialobservabilityanduncertainty.(A)Theagent(GQN) sampledpredictionsofthetop-downviewofthemaze.Predicted
+recordsseveralobservationsofapreviouslyunencounteredtestmaze uncertaintyismeasuredbycomputingthemodel’sBayesiansurpriseat
+(indicatedbygraytriangles).Itisthencapableofaccuratelypredictingthe eachlocation,averagedoverthreedifferentheadingdirections.The
+imagethatwouldbeobservedataqueryviewpoint(yellowtriangle).It model’suncertaintydecreasesasmoreobservationsaremade.Asthe
+canaccomplishthistaskonlybyaggregatinginformationacrossmultiple numberofobservationsincreases,themodelpredictsthetop-downview
+observations.(B)Inthekthcolumn,weconditionGQNonobservations withincreasingaccuracy.Seesection3of(17),fig.S8,andmovieS1for
+1tokandshowGQN’spredicteduncertainty,aswellastwoofGQN’s furtherdetailsandresults.nats,naturalunitsofinformation.
+Eslamietal.,Science360,1204–1210(2018) 15June2018 5of7
+Downloaded
+from
+http://science.sciencemag.org/
+on
+June
+21,
+2018
+
+--- PAGE 6 ---
+RESEARCH | RESEARCHARTICLE
+Viewpointtransformationnetworksdoexplic- ofgenerativemodelingwithcurrenthardware. M.Sugiyama,U.V.Luxburg,I.Guyon,R.Garnett,Eds.(Curran
+itlylearnthisrelationship;however,theyhave Althoughtheenvironmentsarerelativelycon- Associates,2016),pp.1696–1704.
+thusfarbeennonprobabilistic andlimitedin strained in terms of their visual fidelity, they 16.M.Pollefeysetal.,Int.J.Comput.Vision59,207–232(2004).
+scale—e.g.,restrictedtorotationaroundindi- capturemanyofthefundamentaldifficultiesof 17. Seesupplementarymaterials.
+vidualobjectsforwhichasingleviewissuffi- vision—namely,severepartialobservabilityand
+18.L.vanderMaaten,J.Mach.Learn.Res.9,2579–2605(2008).
+19. I.Higginsetal.,atInternationalConferenceonLearning
+cientforprediction(15,28–33)ortosmallcamera occlusion—aswellasthecombinatorial,multi-
+Representations(ICLR)(2017).
+displacementsbetweenstereocameras(34–36). objectnatureofscenes.Asnewsourcesofdata 20.T.Mikolovetal.,inAdvancesinNeuralInformationProcessing
+Byemployingstate-of-the-artdeep,iterative, becomeavailable(41)andadvancesaremadein Systems26(NIPS2013),C.J.C.Burges,L.Bottou,M.Welling,
+latentvariabledensitymodels(25),GQNisca- generative modeling capabilities (37, 43), we Z.Ghahramani,K.Q.Weinberger,Eds.(CurranAssociates,2013),
+pp.3111–3119.
+pableofhandlingfreeagentmovementaround expecttobeabletoinvestigateapplicationof
+21. Y.Zhang,W.Xu,Y.Tong,K.Zhou,ACMTrans.Graph.34,159
+scenescontainingmultipleobjects.Inaddition, theGQNframeworktoimagesofnaturalistic (2015).
+owingtoitsprobabilisticformulation,GQNcan scenes. 22.D.P.Kingma,M.Welling,arXiv:1312.6114[stat.ML]
+accountforuncertaintyinitsunderstanding Totalsceneunderstandinginvolvesmorethan (20December2013).
+aboutascene’scontentsinthefaceofsevere justrepresentationofthescene’s3Dstructure.In 23.D.J.Rezende,S.Mohamed,D.Wierstra,inProceedingsofthe
+31stInternationalConferenceonMachineLearning(ICML2014)
+occlusionandpartialobservability.Notably, thefuture,itwillbeimportanttoconsiderbroader (JMLR,2014),vol.32,pp.1278–1286.
+theGQNframeworkisnotspecifictothepar- aspectsofsceneunderstanding—e.g.,byquerying 24.I.Goodfellowetal.,inAdvancesinNeuralInformationProcessing
+ticularchoiceofarchitectureofthegeneration across both space and time for modeling of dy- Systems27(NIPS2014),Z.Ghahramani,M.Welling,C.Cortes,
+network, and alternatives such as generative namicandinteractivescenes—aswellasappli- N.D.Lawrence,K.Q.Weinberger,Eds.(CurranAssociates,2014),
+pp.2672–2680.
+adversarialnetworks(37)orautoregressivemod- cations in virtual and augmented reality and
+25.K.Gregor,F.Besse,D.J.Rezende,I.Danihelka,D.Wierstra,
+els(38)couldbeemployed. explorationofsimultaneousscenerepresentation inAdvancesinNeuralInformationProcessingSystems29(NIPS
+Acloselyrelatedbodyofworkisthatofdis- andlocalizationofobservations,whichrelatesto 2016),D.D.Lee,M.Sugiyama,U.V.Luxburg,I.Guyon,
+criminativeposeestimation(39–41),inwhich thenotionofsimultaneouslocalizationandmap- R.Garnett,Eds.(CurranAssociates,2016),pp.3549–3557
+26.P.Vincent,H.Larochelle,Y.Bengio,P.-A.Manzagol,in
+networksaretrainedtopredictcameramotion pingincomputervision.
+Proceedingsofthe25thInternationalConferenceonMachine
+betweenconsecutiveframes.TheGQNformu- Ourworkillustratesapowerfulapproachto Learning(ICML2008)(ACM,2008),pp.1096–1103.
+lation is advantageous, as it allows for aggre- machinelearningofgroundedrepresentationsof 27.P.Dayan,G.E.Hinton,R.M.Neal,R.S.Zemel,NeuralComput.
+gationofinformationfrommultipleimagesof physicalscenes,aswellasoftheassociatedper-
+7,889–904(1995).
+28.G.E.Hinton,A.Krizhevsky,S.D.Wang,inProceedingsofthe ascene(seemazeexperiments);itisexplicitly ceptionsystemsthatholisticallyextractthese
+21stInternationalConferenceonArtificialNeuralNetworks
+probabilistic, allowing for applications such as representationsfromimages,pavingtheway andMachineLearning(ICANN2011),T.Honkela,W.Duch,
+explorationthroughBayesianinformationgain; towardfullyunsupervisedsceneunderstand- M.Girolami,S.Kaski,Eds.(LectureNotesinComputerScience
+and,unliketheaforementionedmethodswhere ing,imagination,planning,andbehavior.
+Series,Springer,2011),vol.6791,pp.44–51.
+29.C.B.Choy,D.Xu,J.Gwak,K.Chen,S.Savarese,in
+scenerepresentationandposepredictionarein-
+Proceedingsofthe2016EuropeanConferenceonComputer
+tertwined,theGQNarchitectureadmitsaclear REFERENCESANDNOTES Vision(ECCV)(LectureNotesinComputerScienceSeries,
+architecturalseparationbetweentherepresen- Springer,2016),vol.1,pp.628–644.
+1. A.Krizhevsky,I.Sutskever,G.E.Hinton,inAdvancesinNeural
+tationandgenerationnetworks.Theideaof InformationProcessingSystems25(NIPS2012),F.Pereira, 30.M.Tatarchenko,A.Dosovitskiy,T.Brox,inProceedingsofthe
+poseestimationiscomplementary,however— C.J.C.Burges,L.Bottou,K.Q.Weinberger,Eds.(Curran 2016EuropeanConferenceonComputerVision(ECCV)
+theGQNcanbeaugmentedwithasecond“gen- Associates,2012),pp.1097–1105. ( v L o e l. c 9 tu 9 r 1 e 1, N p o p t . es 32 in 2– C 3 o 3 m 7. puterScienceSeries,Springer,2016),
+erator”that,givenanimageofascene,predicts 2. B.Zhou,A.Lapedriza,J.Xiao,A.Torralba,A.Oliva,inAdvances 31. F.Anselmietal.,Theor.Comput.Sci.633,112–121(2016).
+inNeuralInformationProcessingSystems27(NIPS2014),
+theviewpointfromwhichitwastaken,provid- Z.Ghahramani,M.Welling,C.Cortes,N.D.Lawrence, 32.D.F.Fouhey,A.Gupta,A.Zisserman,inProceedingsofthe2016
+inganewsourceofgradientswithwhichto K.Q.Weinberger,Eds.(CurranAssociates,2014),pp.487–495. IEEEConferenceonComputerVisionandPatternRecognition
+(CVPR)(IEEE,2016),pp.1516–1524.
+traintherepresentationnetwork. 3. S.Ren,K.He,R.Girshick,J.Sun,inAdvancesinNeural 33.A.Dosovitskiy,J.T.Springenberg,M.Tatarchenko,T.Brox,
+InformationProcessingSystems28(NIPS2015),C.Cortes, IEEETrans.PatternAnal.Mach.Intell.39,692–705(2017).
+N.D.Lawrence,D.D.Lee,M.Sugiyama,R.Garnett,Eds.
+Outlook (CurranAssociates,2015),pp.91–99. 34.C.Godard,O.MacAodha,G.J.Brostow,inProceedingsof
+Inthiswork,wehaveshownthatasingleneural 4. R.Girshick,J.Donahue,T.Darrell,J.Malik,inProceedingsof the2017IEEEConferenceonComputerVisionandPattern
+architecturecanlearntoperceive,interpret,and the2014IEEEConferenceonComputerVisionandPattern
+Recognition(CVPR)(IEEE,2017),pp.6602–6611.
+Recognition(CVPR)(IEEE,2014),pp.580–587. 35.T.Zhou,S.Tulsiani,W.Sun,J.Malik,A.A.Efros,in
+representsyntheticsceneswithoutanyhuman 5. M.C.Mozer,R.S.Zemel,M.Behrmann,inAdvancesinNeural Proceedingsofthe2016EuropeanConferenceonComputer
+labelingofthecontentsofthesescenes.Itcan InformationProcessingSystems4(NIPS1991),J.E.Moody, Vision(ECCV)(LectureNotesinComputerScienceSeries,
+also learn a powerful neural renderer that is S.J.Hanson,R.P.Lippmann,Eds.(Morgan-Kaufmann,1992),
+Springer,2016),pp.286–301.
+capable ofproducing accurate and consistent
+pp.436–443. 36.J.Flynn,I.Neulander,J.Philbin,N.Snavely,inProceedingsof
+6. J.Konorski,Science160,652–653(1968). the2016IEEEConferenceonComputerVisionandPattern
+imagesofscenesfromnewqueryviewpoints. 7. D.Marr,Vision:AComputationalInvestigationintotheHuman Recognition(CVPR)(IEEE,2016),pp.5515–5524.
+TheGQNlearnsrepresentationsthatadaptto RepresentationandProcessingofVisualInformation 37.T.Karras,T.Aila,S.Laine,J.Lehtinen,arXiv:1710.10196[cs.NE]
+andcompactlycapturetheimportantdetailsof (HenryHoltandCo.,1982). (27October2017).
+itsenvironment(e.g.,thepositions,identities, 8. D.Hassabis,E.A.Maguire,TrendsCogn.Sci.11,299–306 38.A.vandenOordetal.,inAdvancesinNeuralInformation
+(2007). ProcessingSystems29(NIPS2016),D.D.Lee,M.Sugiyama,
+andcolorsofmultipleobjects;theconfiguration
+9. D.Kumaran,D.Hassabis,J.L.McClelland,TrendsCogn.Sci. U.V.Luxburg,I.Guyon,R.Garnett,Eds.(CurranAssociates,
+ofthejointanglesofarobotarm;andthelayout 20,512–534(2016). 2016),pp.4790–4798.
+ofamaze),withoutanyofthesesemanticsbeing 10.B.M.Lake,R.Salakhutdinov,J.B.Tenenbaum,Science350, 39.D.Jayaraman,K.Grauman,inProceedingsofthe2015IEEE
+builtintothearchitectureofthenetworks.GQN 1332–1338(2015). InternationalConferenceonComputerVision(ICCV)(IEEE,
+uses analysis-by-synthesis to perform “inverse 11. S.Becker,G.E.Hinton,Nature355,161–163(1992). 2015),pp.1413–1421.
+12. Z.Wuetal.,inProceedingsofthe2015IEEEConferenceon 40.P.Agrawal,J.Carreira,J.Malik,arXiv:1505.01596[cs.CV]
+graphics,”butunlikeexistingmethods(42),
+ComputerVisionandPatternRecognition(CVPR)(IEEE,2015), (7May2015).
+whichrequire problem-specific engineeringin pp.1912–1920. 41.A.R.Zamiretal.,inProceedingsofthe2016European
+thedesignoftheirgenerators,GQNlearnsthis 13. J.Wu,C.Zhang,T.Xue,W.Freeman,J.Tenenbaum,inAdvances ConferenceonComputerVision(ECCV)(LectureNotesin
+inNeuralInformationProcessingSystems29(NIPS2016), ComputerScienceSeries,Springer,2016),pp.535–553.
+behaviorbyitselfandinagenerallyapplicable
+D.D.Lee,M.Sugiyama,U.V.Luxburg,I.Guyon,R.Garnett, 42.T.D.Kulkarni,P.Kohli,J.B.Tenenbaum,V.Mansinghka,
+manner.However,theresultingrepresentations Eds.(CurranAssociates,2016),pp.82–90. inProceedingsofthe2015IEEEConferenceonComputer
+arenolongerdirectlyinterpretablebyhumans. 14. D.J.Rezendeetal.,inAdvancesinNeuralInformation VisionandPatternRecognition(CVPR)(IEEE,2015),
+Ourexperimentshavethusfarbeenrestricted ProcessingSystems29(NIPS2016),D.D.Lee,M.Sugiyama, pp.4390–4399.
+tosyntheticenvironmentsforthreereasons:(i)a U.V.Luxburg,I.Guyon,R.Garnett,Eds.(CurranAssociates, 43.Q.Chen,V.Koltun,inProceedingsofthe2017IEEE
+2016),pp.4996–5004. InternationalConferenceonComputerVision(ICCV)(IEEE,
+need forcontrolledanalysis,(ii) limited availa- 15. X.Yan,J.Yang,E.Yumer,Y.Guo,H.Lee,inAdvancesinNeural 2017),pp.1511–1520.
+bilityofsuitablerealdatasets,and(iii)limitations InformationProcessingSystems29(NIPS2016),D.D.Lee, 44.A.A.Rusuetal.,arXiv:1610.04286[cs.RO](13October2016).
+Eslamietal.,Science360,1204–1210(2018) 15June2018 6of7
+Downloaded
+from
+http://science.sciencemag.org/
+on
+June
+21,
+2018
+
+--- PAGE 7 ---
+RESEARCH | RESEARCHARTICLE
+ACKNOWLEDGMENTS experiments.M.G.andA.A.R.performedrobotarmexperiments. SUPPLEMENTARYMATERIALS
+WethankM.Shanahan,A.Zisserman,P.Dayan,J.Leibo, I.D.,D.P.R.,O.V.,andD.R.assistedwithmazenavigation www.sciencemag.org/content/360/6394/1204/suppl/DC1
+P.Battaglia,andG.Wayneforhelpfuldiscussionsandadvice; experiments.L.B.andT.W.assistedwithShepard-Metzler SupplementaryText
+G.Ostrovski,N.Heess,D.Zoran,V.Nair,andD.Silverfor experiments.H.K.,C.H.,K.G.,M.B.,D.W.,N.R.,K.K.,andD.H. Figs.S1toS16
+reviewingthepaper;K.Andersonforhelpcreating managed,advised,andcontributedideastotheproject. AlgorithmsS1toS3
+environments;andtherestoftheDeepMindteamfor S.M.A.E.andD.J.R.wrotethepaper.Competinginterests:The TableS1
+supportandideas.Funding:Thisresearchwasfundedby authorsdeclarenocompetingfinancialinterests.DeepMind References(45–52)
+DeepMind.Authorcontributions:S.M.A.E.andD.J.R.conceived hasfiledaU.K.patentapplication(GP-201495-00-PCT)related MovieS1
+ofthemodel.S.M.A.E.,D.J.R.,F.B.,andF.V.designedand tothiswork.Dataandmaterialsavailability:Datasetsused
+implementedthemodel,datasets,visualizations,figures,and intheexperimentshavebeenmadeavailabletodownloadat 29November2017;accepted10April2018
+videos.A.S.M.andA.R.designedandperformedanalysis https://github.com/deepmind/gqn-datasets. 10.1126/science.aar6170
+Eslamietal.,Science360,1204–1210(2018) 15June2018 7of7
+Downloaded
+from
+http://science.sciencemag.org/
+on
+June
+21,
+2018
+
+--- PAGE 8 ---
+Neural scene representation and rendering
+S. M. Ali Eslami, Danilo Jimenez Rezende, Frederic Besse, Fabio Viola, Ari S. Morcos, Marta Garnelo, Avraham Ruderman,
+Andrei A. Rusu, Ivo Danihelka, Karol Gregor, David P. Reichert, Lars Buesing, Theophane Weber, Oriol Vinyals, Dan
+Rosenbaum, Neil Rabinowitz, Helen King, Chloe Hillier, Matt Botvinick, Daan Wierstra, Koray Kavukcuoglu and Demis
+Hassabis
+Science 360 (6394), 1204-1210.
+DOI: 10.1126/science.aar6170
+A scene-internalizing computer program
+To train a computer to ''recognize'' elements of a scene supplied by its visual sensors, computer scientists
+typically use millions of images painstakingly labeled by humans. Eslami et al. developed an artificial vision system,
+dubbed the Generative Query Network (GQN), that has no need for such labeled data. Instead, the GQN first uses
+images taken from different viewpoints and creates an abstract description of the scene, learning its essentials. Next, on
+the basis of this representation, the network predicts what the scene would look like from a new, arbitrary viewpoint.
+Science, this issue p. 1204
+ARTICLE TOOLS http://science.sciencemag.org/content/360/6394/1204
+SUPPLEMENTARY http://science.sciencemag.org/content/suppl/2018/06/13/360.6394.1204.DC1
+MATERIALS
+RELATED http://science.sciencemag.org/content/sci/360/6394/1188.full
+CONTENT
+REFERENCES This article cites 15 articles, 3 of which you can access for free
+http://science.sciencemag.org/content/360/6394/1204#BIBL
+PERMISSIONS http://www.sciencemag.org/help/reprints-and-permissions
+Use of this article is subject to the Terms of Service
+Science (print ISSN 0036-8075; online ISSN 1095-9203) is published by the American Association for the Advancement of
+Science, 1200 New York Avenue NW, Washington, DC 20005. 2017 © The Authors, some rights reserved; exclusive
+licensee American Association for the Advancement of Science. No claim to original U.S. Government Works. The title
+Science is a registered trademark of AAAS.
+Downloaded
+from
+http://science.sciencemag.org/
+on
+June
+21,
+2018

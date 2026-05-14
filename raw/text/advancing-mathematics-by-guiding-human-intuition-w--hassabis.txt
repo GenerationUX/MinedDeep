@@ -1,0 +1,623 @@
+
+--- PAGE 1 ---
+Article
+Advancing mathematics by guiding human
+intuition with AI
+https://doi.org/10.1038/s41586-021-04086-x Alex Davies1 ✉, Petar Veličković1, Lars Buesing1, Sam Blackwell1, Daniel Zheng1,
+Nenad Tomašev1, Richard Tanburn1, Peter Battaglia1, Charles Blundell1, András Juhász2,
+Received: 10 July 2021
+Marc Lackenby2, Geordie Williamson3, Demis Hassabis1 & Pushmeet Kohli1 ✉
+Accepted: 30 September 2021
+Published online: 1 December 2021
+The practice of mathematics involves discovering patterns and using these to
+Open access formulate and prove conjectures, resulting in theorems. Since the 1960s,
+Check for updates mathematicians have used computers to assist in the discovery of patterns and
+formulation of conjectures1, most famously in the Birch and Swinnerton-Dyer
+conjecture2, a Millennium Prize Problem3. Here we provide examples of new
+fundamental results in pure mathematics that have been discovered with the
+assistance of machine learning—demonstrating a method by which machine learning
+can aid mathematicians in discovering new conjectures and theorems. We propose a
+process of using machine learning to discover potential patterns and relations
+between mathematical objects, understanding them with attribution techniques and
+using these observations to guide intuition and propose conjectures. We outline this
+machine-learning-guided framework and demonstrate its successful application to
+current research questions in distinct areas of pure mathematics, in each case
+showing how it led to meaningful mathematical contributions on important open
+problems: a new connection between the algebraic and geometric structure of knots,
+and a candidate algorithm predicted by the combinatorial invariance conjecture for
+symmetric groups4. Our work may serve as a model for collaboration between the
+fields of mathematics and artificial intelligence (AI) that can achieve surprising results
+by leveraging the respective strengths of mathematicians and machine learning.
+One of the central drivers of mathematical progress is the discovery that AI can also be used to assist in the discovery of theorems and con-
+of patterns and formulation of useful conjectures: statements that jectures at the forefront of mathematical research. This extends work
+are suspected to be true but have not been proven to hold in all cases. using supervised learning to find patterns20–24 by focusing on enabling
+Mathematicians have always used data to help in this process—from mathematicians to understand the learned functions and derive useful
+the early hand-calculated prime tables used by Gauss and others that mathematical insight. We propose a framework for augmenting the
+led to the prime number theorem5, to modern computer-generated standard mathematician’s toolkit with powerful pattern recognition
+data1,5 in cases such as the Birch and Swinnerton-Dyer conjecture2. and interpretation methods from machine learning and demonstrate
+The introduction of computers to generate data and test conjectures its value and generality by showing how it led us to two fundamental
+afforded mathematicians a new understanding of problems that were new discoveries, one in topology and another in representation theory.
+previously inaccessible6, but while computational techniques have Our contribution shows how mature machine learning methodologies
+become consistently useful in other parts of the mathematical pro- can be adapted and integrated into existing mathematical workflows
+cess7,8, artificial intelligence (AI) systems have not yet established a to achieve novel results.
+similar place. Prior systems for generating conjectures have either
+contributed genuinely useful research conjectures9 via methods that
+do not easily generalize to other mathematical areas10, or have dem- Guiding mathematical intuition with AI
+onstrated novel, general methods for finding conjectures11 that have A mathematician’s intuition plays an enormously important role in
+not yet yielded mathematically valuable results. mathematical discovery—“It is only with a combination of both rigor-
+AI, in particular the field of machine learning12–14, offers a collec- ous formalism and good intuition that one can tackle complex math-
+tion of techniques that can effectively detect patterns in data and has ematical problems”25. The following framework, illustrated in Fig. 1,
+increasingly demonstrated utility in scientific disciplines15. In math- describes a general method by which mathematicians can use tools
+ematics, it has been shown that AI can be used as a valuable tool by from machine learning to guide their intuitions concerning complex
+finding counterexamples to existing conjectures16, accelerating calcu- mathematical objects, verifying their hypotheses about the existence
+lations17, generating symbolic solutions18 and detecting the existence of relationships and helping them understand those relationships. We
+of structure in mathematical objects19. In this work, we demonstrate propose that this is a natural and empirically productive way that these
+1DeepMind, London, UK. 2University of Oxford, Oxford, UK. 3University of Sydney, Sydney, New South Wales, Australia. ✉e-mail: adavies@deepmind.com; pushmeet@deepmind.com
+70 | Nature | Vol 600 | 2 December 2021
+Content courtesy of Springer Nature, terms of use apply. Rights reserved
+
+--- PAGE 2 ---
+Hypothesize Generatedata Trainsupervisedmodel Findpatternsviaattribution
+∃f: f(X(z)) ≈ Y(z) (X(z), Y(z)) fˆ(X(z)) ≈ Y(z) Interrogate fˆ
+z~Pz
+Alter sampling Conjecturecandidate f′
+distribution
+Reformulate hypothesis
+Mathematiciansteps Provetheorem
+Computationalsteps
+Fig. 1 | Flowchart of the framework. The process helps guide a mathematician’s the accuracy of the learned function fˆ and attribution techniques applied to it
+intuition about a hypothesized function f, by training a machine learning model to can aid in the understanding of the problem and the construction of a closed-form
+estimate that function over a particular distribution of data P. The insights from f′. The process is iterative and interactive, rather than a single series of steps.
+Z
+well-understood techniques in statistics and machine learning can be they may be related. We have used the above framework to help math-
+used as part of a mathematician’s work. ematicians to obtain impactful mathematical results in two cases—dis-
+Concretely, it helps guide a mathematician’s intuition about the covering and proving one of the first relationships between algebraic
+relationship between two mathematical objects X(z) and Y(z) associ- and geometric invariants in knot theory and conjecturing a resolution
+ated with z by identifying a function fˆ such that fˆ(X(z)) ≈ Y(z) and to the combinatorial invariance conjecture for symmetric groups4,
+analysing it to allow the mathematician to understand properties of a well-known conjecture in representation theory. In each area, we
+the relationship. As an illustrative example: let z be convex polyhedra, demonstrate how the framework has successfully helped guide the
+X(z) ∈ Z 2×R 2 be the number of vertices and edges of z, as well as the mathematician to achieve the result. In each of these cases, the neces-
+volume and surface area, and Y(z) ∈ ℤ be the number of faces of z. sary models can be trained within several hours on a machine with a
+Euler’s formula states that there is an exact relationship between X(z) single graphics processing unit.
+and Y(z) in this case: X(z) · (−1, 1, 0, 0) + 2 = Y(z). In this simple example,
+among many other ways, the relationship could be rediscovered by
+the traditional methods of data-driven conjecture generation1. How- Topology
+ever, for X(z) and Y(z) in higher-dimensional spaces, or of more complex Low-dimensional topology is an active and influential area of mathemat-
+types, such as graphs, and for more complicated, nonlinear fˆ, this ics. Knots, which are simple closed curves in R 3, are one of the key objects
+approach is either less useful or entirely infeasible. that are studied, and some of the subject’s main goals are to classify
+The framework helps guide the intuition of mathematicians in two them, to understand their properties and to establish connections with
+ways: by verifying the hypothesized existence of structure/patterns in other fields. One of the principal ways that this is carried out is through
+mathematical objects through the use of supervised machine learning; invariants, which are algebraic, geometric or numerical quantities that
+and by helping in the understanding of these patterns through the use are the same for any two equivalent knots. These invariants are derived
+of attribution techniques. in many different ways, but we focus on two of the main categories:
+In the supervised learning stage, the mathematician proposes a hyperbolic invariants and algebraic invariants. These two types of
+hypothesis that there exists a relationship between X(z) and Y(z). By invariants are derived from quite different mathematical disciplines,
+generating a dataset of X(z) and Y(z) pairs, we can use supervised learn- and so it is of considerable interest to establish connections between
+ing to train a function fˆ that predicts Y(z), using only X(z) as input. The them. Some examples of these invariants for small knots are shown in
+key contributions of machine learning in this regression process are Fig. 2. A notable example of a conjectured connection is the volume
+the broad set of possible nonlinear functions that can be learned given conjecture26, which proposes that the hyperbolic volume of a knot (a
+a sufficient amount of data. If fˆ is more accurate than would be geometric invariant) should be encoded within the asymptotic behav-
+expected by chance, it indicates that there may be such a relationship iour of its coloured Jones polynomials (which are algebraic invariants).
+to explore. If so, attribution techniques can help in the understanding Our hypothesis was that there exists an undiscovered relationship
+of the learned function fˆ sufficiently for the mathematician to conjec- between the hyperbolic and algebraic invariants of a knot. A supervised
+ture a candidate f′. Attribution techniques can be used to understand learning model was able to detect the existence of a pattern between a
+which aspects of fˆ are relevant for predictions of Y(z). For example, large set of geometric invariants and the signature σ(K), which is known
+many attribution techniques aim to quantify which component of X(z) to encode important information about a knot K, but was not previously
+the function fˆ is sensitive to. The attribution technique we use in our known to be related to the hyperbolic geometry. The most relevant
+work, gradient saliency, does this by calculating the derivative of out- features identified by the attribution technique, shown in Fig. 3a, were
+puts of fˆ, with respect to the inputs. This allows a mathematician to three invariants of the cusp geometry, with the relationship visualized
+identify and prioritize aspects of the problem that are most likely to partly in Fig. 3b. Training a second model with X(z) consisting of only
+be relevant for the relationship. This iterative process might need to these measurements achieved a very similar accuracy, suggesting that
+be repeated several times before a viable conjecture is settled on. In they are a sufficient set of features to capture almost all of the effect of
+this process, the mathematician can guide the choice of conjectures the geometry on the signature. These three invariants were the real and
+to those that not just fit the data but also seem interesting, plausibly imaginary parts of the meridional translation μ and the longitudinal
+true and, ideally, suggestive of a proof strategy. translation λ. There is a nonlinear, multivariate relationship between
+Conceptually, this framework provides a ‘test bed for intuition’— these quantities and the signature. Having been guided to focus on
+quickly verifying whether an intuition about the relationship between these invariants, we discovered that this relationship is best understood
+two quantities may be worth pursuing and, if so, guidance as to how by means of a new quantity, which is linearly related to the signature.
+Nature | Vol 600 | 2 December 2021 | 71
+Content courtesy of Springer Nature, terms of use apply. Rights reserved
+
+--- PAGE 3 ---
+Article
+z: Knot X(z): Geometric invariants Y(z): Algebraic invariants
+Volume Chern–Simons Meridional translation ... Signature Jones polynomial ...
+2.0299 0 i ... 0 t−2 − t−1 + 1 − t + t2 ...
+2.8281 –0.1532 0.7381+0.8831i ... –2 t − t2 + 2t3 − t4 + t5 − t6 ...
+3.1640 0.1560 –0.7237+1.0160i ... 0 t−2 − t−1 + 2 − 2t + t2 − t3 + t4 ...
+Fig. 2 | Examples of invariants for three hyperbolic knots. We hypothesized that there was a previously undiscovered relationship between the geometric and
+algebraic invariants.
+We introduce the ‘natural slope’, defined to be slope(K) = Re(λ/μ), where result that instead relies on short geodesics, another of the most salient
+Re denotes the real part. It has the following geometric interpretation. features, in the Supplementary Information. Further details and a full
+One can realize the meridian curve as a geodesic γ on the Euclidean proof of the above theorem are available in ref. 27. Across the datasets
+torus. If one fires off a geodesic γ⊥ from this orthogonally, it will even- we generated, we can place a lower bound of c ≥ 0.23392, and it would
+tually return and hit γ at some point. In doing so, it will have travelled be reasonable to conjecture that c is at most 0.3, which gives a tight
+along a longitude minus some multiple of the meridian. This multiple relationship in the regions in which we have calculated.
+is the natural slope. It need not be an integer, because the endpoint of The above theorem is one of the first results that connect the alge-
+γ⊥ might not be the same as its starting point. Our initial conjecture braic and geometric invariants of knots and has various interesting
+relating natural slope and signature was as follows. applications. It directly implies that the signature controls the
+Conjecture: There exist constants c and c such that, for every hyper- non-hyperbolic Dehn surgeries on the knot and that the natural slope
+1 2
+bolic knot K, controls the genus of surfaces in R+ 4 whose boundary is the knot. We
+expect that this newly discovered relationship between natural slope
+|2σ(K)−slope(K)|<c 1 vol(K)+c 2 (1) and signature will have many other applications in low-dimensional
+topology. It is surprising that a simple yet profound connection such
+While this conjecture was supported by an analysis of several large
+as this has been overlooked in an area that has been extensively studied.
+datasets sampled from different distributions, we were able to con-
+struct counterexamples using braids of a specific form. Subsequently,
+we were able to establish a relationship between slope(K), signature
+Representation theory
+σ(K), volume vol(K) and one of the next most salient geometric invari-
+ants, the injectivity radius inj(K) (ref. 27). Representation theory is the theory of linear symmetry. The building
+blocks of all representations are the irreducible ones, and understand-
+Theorem: There exists a constant c such that, for any hyperbolic knot K,
+ing them is one of the most important goals of representation theory.
+|2σ(K)−slope(K)|≤cvol(K)inj(K)−3 (2) Irreducible representations generalize the fundamental frequencies of
+Fourier analysis28. In several important examples, the structure of irreduc-
+It turns out that the injectivity radius tends not to get very small, ible representations is governed by Kazhdan–Lusztig (KL) polynomials,
+even for knots of large volume. Hence, the term inj(K)−3 tends not to get which have deep connections to combinatorics, algebraic geometry and
+very large in practice. However, it would clearly be desirable to have a singularity theory. KL polynomials are polynomials attached to pairs of
+theorem that avoided the dependence on inj(K)−3, and we give such a elements in symmetric groups (or more generally, pairs of elements in
+a b
+Im(Meridional translation)
+200
+30
+175
+Im(Short geodesic) 20
+150
+Injectivity radius
+10 125
+Cusp volume
+0 100
+–10 75
+Re(Short geodesic)
+Volume –20 50
+25
+–30
+0 0.2 0.4 0.6 –1 0 1
+Normalized attribution score
+72 | Nature | Vol 600 | 2 December 2021
+stnairavni
+cirtemoeG
+:)z(X
+erutangiS
+Longitudinal translation
+Re(Meridional translation)
+Symmetry group
+Torsion degree
+Chern–Simons
+Adjoint torsion degree
+0.8 1.0
+Meridional translation (real)
+Fig. 3 | Knot theory attribution. a, Attribution values for each of the input confidence interval error bars are across 10 retrainings of the model.
+X(z). The features with high values are those that the learned function is most b, Example visualization of relevant features—the real part of the meridional
+sensitive to and are probably relevant for further exploration. The 95% translation against signature, coloured by the longitudinal translation.
+Content courtesy of Springer Nature, terms of use apply. Rights reserved
+
+--- PAGE 4 ---
+z: Pair of permutations X(z): Unlabelled Bruhat interval Y(z): KL polynomial
+(03214), (34201) 1 + q2
+(021435), (240513) 1 + 2q + q2
+Fig. 4 | Two example dataset elements, one from S and one from S. The combinatorial invariance conjecture states that the KL polynomial of a pair of
+5 6
+permutations should be computable from their unlabelled Bruhat interval, but no such function was previously known.
+Coxeter groups). The combinatorial invariance conjecture is a fascinating Further structural evidence was found by calculating salient subgraphs
+open conjecture concerning KL polynomials that has stood for 40 years, that attribution techniques determined were most relevant and analysing
+with only partial progress29. It states that the KL polynomial of two ele- the edge distribution in these graphs compared to the original graphs.
+ments in a symmetric group S can be calculated from their unlabelled In Fig. 5a, we aggregate the relative frequency of the edges in the salient
+N
+Bruhat interval30, a directed graph. One barrier to progress in understand- subgraphs by the reflection that they represent. It shows that extremal
+ing the relationship between these objects is that the Bruhat intervals for reflections (those of the form (0, i) or (i, N − 1) for S ) appear more com-
+N
+non-trivial KL polynomials (those that are not equal to 1) are very large monly in salient subgraphs than one would expect, at the expense of
+graphs that are difficult to develop intuition about. Some examples simple reflections (those of the form (i, i + 1)), which is confirmed over
+of small Bruhat intervals and their KL polynomials are shown in Fig. 4. many retrainings of the model in Fig. 5b. This is notable because the
+We took the conjecture as our initial hypothesis, and found that a edge labels are not given to the network and are not recoverable from
+supervised learning model was able to predict the KL polynomial from the unlabelled Bruhat interval. From the definition of KL polynomials,
+the Bruhat interval with reasonably high accuracy. By experimenting on it is intuitive that the distinction between simple and non-simple reflec-
+the way in which we input the Bruhat interval to the network, it became tions is relevant for calculating it; however, it was not initially obvious
+apparent that some choices of graphs and features were particularly con- why extremal reflections would be overrepresented in salient subgraphs.
+ducive to accurate predictions. In particular, we found that a subgraph Considering this observation led us to the discovery that there is a natural
+inspired by prior work31 may be sufficient to calculate the KL polynomial, decomposition of an interval into two parts—a hypercube induced by
+and this was supported by a much more accurate estimated function. one set of extremal edges and a graph isomorphic to an interval in S .
+N−1
+a b
+0
+0 1 2 3 4 5
+Second reflection index
+c
+Inductive
+Hypercube
+0 1 2 34 5 6 7
+Bruhatintervalof
+Nature | Vol 600 | 2 December 2021 | 73
+xedni
+noitcefler
+tsriF
+45 Trained * 40
+Baseline
+****
+****
+6 78
+devresbo
+egatnecreP
+1 30 40 2
+3 20 35
+4 10
+5 30
+0
+6
+25
+7 –10
+8
+–20 20
+Extremal Simple Other
+Edge type
+First-order neighbours Hypercube
+021435 – 240513 and diamonds decomposition
+Fig. 5 | Representation theory attribution. a, An example heatmap of significance level shown was determined using a two-sided two-sample t-test.
+the percentage increase in reflections present in the salient subgraphs *p < 0.05; ****p < 0.0001. c, Illustration for the interval 021435–240513 ∈ S 6
+compared with the average across intervals in the dataset when predicting q4. of the interesting substructures that were discovered through the iterative
+b, The percentage of observed edges of each type in the salient subgraph for 10 process of hypothesis, supervised learning and attribution. The subgraph
+retrainings of the model compared to 10 bootstrapped samples of the same inspired by previous work31 is highlighted in red, the hypercube in green and
+size from the dataset. The error bars are 95% confidence intervals, and the the decomposition component isomporphic to an interval in S in blue.
+N−1
+Content courtesy of Springer Nature, terms of use apply. Rights reserved
+
+--- PAGE 5 ---
+Article
+The importance of these two structures, illustrated in Fig. 5c, led acknowledgements, peer review information; details of author con-
+to a proof that the KL polynomial can be computed directly from the tributions and competing interests; and statements of data and code
+hypercube and S components through a beautiful formula that is availability are available at https://doi.org/10.1038/s41586-021-04086-x.
+N−1
+summarized in the Supplementary Information. A further detailed
+treatment of the mathematical results is given in ref. 32. 1. Borwein, J. & Bailey, D. Mathematics by Experiment (CRC, 2008).
+2. Birch, B. J. & Swinnerton-Dyer, H. P. F. Notes on elliptic curves. II. J. Reine Angew. Math.
+1965, 79–108 (1965).
+Theorem: Every Bruhat interval admits a canonical hypercube decom- 3. Carlson, J. et al. The Millennium Prize Problems (American Mathematical Soc., 2006).
+position along its extremal reflections, from which the KL polynomial 4. Brenti, F. Kazhdan-Lusztig polynomials: history, problems, and combinatorial invariance.
+is directly computable. Sémin. Lothar. Combin. 49, B49b (2002).
+5. Hoche, R. Nicomachi Geraseni Pythagorei Introductionis Arithmeticae Libri 2
+(In aedibus BG Teubneri, 1866).
+Remarkably, further tests suggested that all hypercube decomposi- 6. Khovanov, M. Patterns in knot cohomology, I. Exp. Math. 12, 365–374 (2003).
+7. Appel, K. I. & Haken, W. Every Planar Map Is Four Colorable Vol. 98 (American
+tions correctly determine the KL polynomial. This has been computa-
+Mathematical Soc., 1989).
+tionally verified for all of the ∼3 × 106 intervals in the symmetric groups 8. Scholze, P. Half a year of the Liquid Tensor Experiment: amazing developments Xena
+up to S and more than 1.3 × 105 non-isomorphic intervals sampled from https://xenaproject.wordpress.com/2021/06/05/half-a-year-of-the-liquid-tensor-
+7
+experiment-amazing-developments/ (2021).
+the symmetric groups S and S.
+8 9 9. Fajtlowicz, S. in Annals of Discrete Mathematics Vol. 38 113–118 (Elsevier, 1988).
+10. Larson, C. E. in DIMACS Series in Discrete Mathematics and Theoretical Computer Science
+Conjecture: The KL polynomial of an unlabelled Bruhat interval can be cal- Vol. 69 (eds Fajtlowicz, S. et al.) 297–318 (AMS & DIMACS, 2005).
+11. Raayoni, G. et al. Generating conjectures on fundamental constants with the Ramanujan
+culated using the previous formula with any hypercube decomposition.
+machine. Nature 590, 67–73 (2021).
+12. MacKay, D. J. C. Information Theory, Inference and Learning Algorithms (Cambridge Univ.
+This conjectured solution, if proven true, would settle the combinatorial Press, 2003).
+13. Bishop, C. M. Pattern Recognition and Machine Learning (Springer, 2006).
+invariance conjecture for symmetric groups. This is a promising direction
+14. LeCun, Y., Bengio, Y. & Hinton, G. Deep learning. Nature 521, 436–444 (2015).
+as not only is the conjecture empirically verified up to quite large examples, 15. Raghu, M. & Schmidt, E. A survey of deep learning for scientific discovery. Preprint at
+but it also has a particularly nice form that suggests potential avenues for https://arxiv.org/abs/2003.11755 (2020).
+16. Wagner, A. Z. Constructions in combinatorics via neural networks. Preprint at
+attacking the conjecture. This case demonstrates how non-trivial insights
+https://arxiv.org/abs/2104.14516 (2021).
+about the behaviour of large mathematical objects can be obtained from 17. Peifer, D., Stillman, M. & Halpern-Leistner, D. Learning selection strategies in Buchberger’s
+trained models, such that new structure can be discovered. algorithm. Preprint at https://arxiv.org/abs/2005.01917 (2020).
+18. Lample, G. & Charton, F. Deep learning for symbolic mathematics. Preprint at
+https://arxiv.org/abs/1912.01412 (2019).
+19. He, Y.-H. Machine-learning mathematical structures. Preprint at https://arxiv.org/
+Conclusion abs/2101.06317 (2021).
+20. Carifio, J., Halverson, J., Krioukov, D. & Nelson, B. D. Machine learning in the string
+In this work we have demonstrated a framework for mathematicians
+landscape. J. High Energy Phys. 2017, 157 (2017).
+to use machine learning that has led to mathematical insight across 21. Heal, K., Kulkarni, A. & Sertöz, E. C. Deep learning Gauss-Manin connections.
+two distinct disciplines: one of the first connections between the alge- Preprint at https://arxiv.org/abs/2007.13786 (2020).
+22. Hughes, M. C. A neural network approach to predicting and computing knot invariants.
+braic and geometric structure of knots and a proposed resolution to a
+Preprint at https://arxiv.org/abs/1610.05744 (2016).
+long-standing open conjecture in representation theory. Rather than use 23. Levitt, J. S. F., Hajij, M. & Sazdanovic, R. Big data approaches to knot theory:
+machine learning to directly generate conjectures, we focus on helping understanding the structure of the Jones polynomial. Preprint at https://arxiv.org/
+abs/1912.10086 (2019).
+guide the highly tuned intuition of expert mathematicians, yielding
+24. Jejjala, V., Kar, A. & Parrikar, O. Deep learning the hyperbolic volume of a knot. Phys. Lett. B
+results that are both interesting and deep. It is clear that intuition 799, 135033 (2019).
+plays an important role in elite performance in many human pursuits. 25. Tao, T. There’s more to mathematics than rigour and proofs Blog https://terrytao.wordpress.
+com/career-advice/theres-more-to-mathematics-than-rigour-and-proofs/ (2016).
+For example, it is critical for top Go players and the success of AlphaGo
+26. Kashaev, R. M. The hyperbolic volume of knots from the quantum dilogarithm. Lett. Math.
+(ref. 33) came in part from its ability to use machine learning to learn Phys. 39, 269–275 (1997).
+elements of play that humans perform intuitively. It is similarly seen 27. Davies, A., Lackenby, M., Juhasz, A. & Tomašev, N. The signature and cusp geometry of
+hyperbolic knots. Preprint at arxiv.org (in the press).
+as critical for top mathematicians—Ramanujan was dubbed the Prince
+28. Curtis, C. W. & Reiner, I. Representation Theory of Finite Groups and Associative Algebras
+of Intuition34 and it has inspired reflections by famous mathematicians Vol. 356 (American Mathematical Soc., 1966).
+on its place in their field35,36. As mathematics is a very different, more 29. Brenti, F., Caselli, F. & Marietti, M. Special matchings and Kazhdan–Lusztig polynomials.
+Adv. Math. 202, 555–601 (2006).
+cooperative endeavour than Go, the role of AI in assisting intuition is 30. Verma, D.-N. Structure of certain induced representations of complex semisimple Lie
+far more natural. Here we show that there is indeed fruitful space to algebras. Bull. Am. Math. Soc. 74, 160–166 (1968).
+assist mathematicians in this aspect of their work. 31. Braden, T. & MacPherson, R. From moment graphs to intersection cohomology.
+Math. Ann. 321, 533–551 (2001).
+Our case studies demonstrate how a foundational connection in a 32. Blundell, C., Buesing, L., Davies, A., Veličković, P. & Williamson, G. Towards combinatorial
+well-studied and mathematically interesting area can go unnoticed, invariance for Kazhdan-Lusztig polynomials. Preprint at arxiv.org (in the press).
+and how the framework allows mathematicians to better understand 33. Silver, D. et al. Mastering the game of Go with deep neural networks and tree search.
+Nature 529, 484–489 (2016).
+the behaviour of objects that are too large for them to otherwise 34. Kanigel, R. The Man Who Knew Infinity: a Life of the Genius Ramanujan (Simon and
+observe patterns in. There are limitations to where this framework Schuster, 2016).
+will be useful—it requires the ability to generate large datasets of the 35. Poincaré, H. The Value of Science: Essential Writings of Henri Poincaré (Modern Library, 1907).
+36. Hadamard, J. The Mathematician’s Mind (Princeton Univ. Press, 1997).
+representations of objects and for the patterns to be detectable in
+examples that are calculable. Further, in some domains the functions of Publisher’s note Springer Nature remains neutral with regard to jurisdictional claims in
+published maps and institutional affiliations.
+interest may be difficult to learn in this paradigm. However, we believe
+there are many areas that could benefit from our methodology. More Open Access This article is licensed under a Creative Commons Attribution
+broadly, it is our hope that this framework is an effective mechanism to 4.0 International License, which permits use, sharing, adaptation, distribution
+and reproduction in any medium or format, as long as you give appropriate
+allow for the introduction of machine learning into mathematicians’ credit to the original author(s) and the source, provide a link to the Creative Commons license,
+work, and encourage further collaboration between the two fields. and indicate if changes were made. The images or other third party material in this article are
+included in the article’s Creative Commons license, unless indicated otherwise in a credit line
+to the material. If material is not included in the article’s Creative Commons license and your
+intended use is not permitted by statutory regulation or exceeds the permitted use, you will
+Online content need to obtain permission directly from the copyright holder. To view a copy of this license,
+Any methods, additional references, Nature Research reporting sum- visit http://creativecommons.org/licenses/by/4.0/.
+maries, source data, extended data, supplementary information, © The Author(s) 2021
+74 | Nature | Vol 600 | 2 December 2021
+Content courtesy of Springer Nature, terms of use apply. Rights reserved
+
+--- PAGE 6 ---
+Methods initial general hypothesis was that the hyperbolic invariants would
+be predictive of algebraic invariants. The specific hypothesis we in-
+Framework vestigated was that the geometry is predictive of the signature. The
+Supervised learning. In the supervised learning stage, the mathema- signature is an ideal candidate as it is a well-understood and common
+tician proposes a hypothesis that there exists a relationship between invariant, it is easy to calculate for large knots and it is an integer, which
+X(z) and Y(z). In this work we assume that there is no known function makes the prediction task particularly straightforward (compared to,
+mapping from X(z) to Y(z), which in turn implies that X is not invertible for example, a polynomial).
+(otherwise there would exist a known function Y ° X −1). While there may
+still be value to this process when the function is known, we leave this Data generation. We generated a number of datasets from different
+for future work. To test the hypothesis that X and Y are related, we gen- distributions P on the set of knots using the SnapPy software pack-
+Z
+erate a dataset of X(z), Y(z) pairs, where z is sampled from a distribution age45, as follows.
+P
+Z
+. The results of the subsequent stages will hold true only for the dis- 1. All knots up to 16 crossings (∼1.7 × 106 knots), taken from the Regina
+tribution P, and not the whole space Z. Initially, sensible choices for P census46.
+Z Z
+would be, for example, uniformly over the first N items for Z with a 2. Random knot diagrams of 80 crossings generated by SnapPy’s ran-
+notion of ordering, or uniformly at random where possible. In subse- dom_link function (∼106 knots). As random knot generation can po-
+quent iterations, P may be chosen to understand the behaviour on tentially lead to duplicates, we calculate a large number of invariants
+Z
+different parts of the space Z (for example, regions of Z that may be for each knot diagram and remove any samples that have identical
+more likely to provide counterexamples to a particular hypothesis). invariants to a previous sample, as they are likely to represent that
+To first test whether a relation between X(z) and Y(z) can be found, we same knot with very high probability.
+use supervised learning to train a function fˆ that approximately maps 3. Knots obtained as the closures of certain braids. Unlike the previous
+X(z) to Y(z). In this work we use neural networks as the supervised learn- two datasets, the knots that were produced here are not, in any sense,
+ing method, in part because they can be easily adapted to many differ- generic. Instead, they were specifically constructed to disprove
+ent types of X and Y and knowledge of any inherent geometry (in terms Conjecture 1. The braids that we used were 4-braids (n = 11,756),
+of invariances and symmetries) of the input domain X can be incorpo- 5-braids (n = 13,217) and 6-braids (n = 10,897). In terms of the stand-
+rated into the architecture of the network37. We consider a relationship ard generators σ for these braid groups, the braids were chosen to
+i
+between X(z) and Y(z) to be found if the accuracy of the learned function be (σn1σn2...σnk)N . The integers i were chosen uniformly at random
+fˆ is statistically above chance on further samples from P on which the for th
+i1
+e a
+i2
+pprop
+ik
+riate braid group
+j
+. The powers n were chosen uni-
+Z j
+model was not trained. The converse is not true; namely, if the model formly at random in the ranges [−10, −3] and [3, 10]. The final power
+cannot predict the relationship better than chance, it may mean that N was chosen uniformly between 1 and 10. The quantity ∑ |n| was
+i
+a pattern exists, but is sufficiently complicated that it cannot be cap- restricted to be at most 15 for 5-braids and 6-braids and 12 for
+tured by the given model and training procedure. If it does indeed 4-braids, and the total number of crossings N ∑ |n| was restricted to
+i
+exist, this can give a mathematician confidence to pursue a particular lie in the range between 10 and 60. The rationale for these restrictions
+line of enquiry in a problem that may otherwise be only speculative. was to ensure a rich set of examples that were small enough to avoid
+an excessive number of failures in the invariant computations.
+Attribution techniques. If a relationship is found, the attribution stage For the above datasets, we computed a number of algebraic and geo-
+is to probe the learned function fˆ with attribution techniques to further metric knot invariants. Different datasets involved computing different
+understand the nature of the relationship. These techniques attempt subsets of these, depending on their role in forming and examining the
+to explain what features or structures are relevant to the predictions main conjecture. Each of the datasets contains a subset of the follow-
+made by fˆ, which can be used to understand what parts of the problem ing list of invariants: signature, slope, volume, meridional translation,
+are relevant to explore further. There are many attribution techniques longitudinal translation, injectivity radius, positivity, Chern–Simons
+in the body of literature on machine learning and statistics, including invariant, symmetry group, hyperbolic torsion, hyperbolic adjoint tor-
+stepwise forward feature selection38, feature occlusion and attention sion, invariant trace field, normal boundary slopes and length spectrum
+weights39. In this work we use gradient-based techniques40, broadly including the linking numbers of the short geodesics.
+similar to sensitivity analysis in classical statistics and sometimes re- The computation of the canonical triangulation of randomly gener-
+ferred to as saliency maps. These techniques attribute importance to ated knots fails in SnapPy in our data generation process in between
+the elements of X(z), by calculating how much fˆ changes in predictions 0.6% and 1.7% of the cases, across datasets. The computation of the
+of Y(z) given small changes in X(z). We believe these are a particularly injectivity radius fails between 2.8% of the time on smaller knots up to
+useful class of attribution techniques as they are conceptually simple, 7.8% of the time on datasets of knots with a higher number of crossings.
+flexible and easy to calculate with machine learning libraries that sup- On knots up to 16 crossings from the Regina dataset, the injectivity
+port automatic differentiation41–43. Information extracted via attribu- radius computation failed in 5.2% of the cases. Occasional failures can
+tion techniques can then be useful to guide the next steps of mathe- occur in most of the invariant computations, in which case the compu-
+matical reasoning, such as conjecturing closed-form candidates f′, tations continue for the knot in question for the remaining invariants
+altering the sampling distribution P or generating new hypotheses in the requested set. Additionally, as the computational complexity of
+Z
+about the object of interest z, as shown in Fig. 1. This can then lead to some invariants is high, operations can time out if they take more than
+an improved or corrected version of the conjectured relationship be- 5 min for an invariant. This is a flexible bound and ultimately a trade-off
+tween these quantities. that we have used only for the invariants that were not critical for our
+analysis, to avoid biasing the results.
+Topology
+Problem framing. Not all knots admit a hyperbolic geometry; however, Data encoding. The following encoding scheme was used for con-
+most do, and all knots can be constructed from hyperbolic and torus verting the different types of features into real valued inputs for the
+knots using satellite operations44. In this work we focus only on hyper- network: reals directly encoded; complex numbers as two reals cor-
+bolic knots. We characterize the hyperbolic structure of the knot com- responding to the real and imaginary parts; categoricals as one-hot
+plement by a number of easily computable invariants. These invariants vectors.
+do not fully define the hyperbolic structure, but they are representative All features are normalized by subtracting the mean and dividing by
+of the most commonly interesting properties of the geometry. Our the variance. For simplicity, in Fig. 3a, the salience values of categoricals
+Content courtesy of Springer Nature, terms of use apply. Rights reserved
+
+--- PAGE 7 ---
+Article
+are aggregated by taking the maximum value of the saliencies of their (for example, to ~2.9 million intervals in S ). We further reduce the
+9
+encoded features. dataset by including a single interval for each distinct KL polynomial
+for all graphs with the same number of nodes, resulting in 24,322
+Model and training procedure. The model architecture used for the non-isomorphic graphs for S. We split the intervals randomly into
+9
+experiments was a fully connected, feed-forward neural network, with train/test partitions at 80%/20%.
+hidden unit sizes [300, 300, 300] and sigmoid activations. The task was
+framed as a multi-class classification problem, with the distinct values Data encoding. The Bruhat interval of a pair of permutations is a par-
+of the signature as classes, cross-entropy loss as an optimizable loss tially ordered set of the elements of the group, and it can be represented
+function and test classification accuracy as a metric of performance. as a directed acyclic graph where each node is labelled by a permuta-
+It is trained for a fixed number of steps using a standard optimizer tion, and each edge is labelled by a reflection. We add two features at
+(Adam). All settings were chosen as a priori reasonable values and did each node representing the in-degree and out-degree of that node.
+not need to be optimized.
+Model and training procedure. For modelling the Bruhat intervals,
+Process. First, to assess whether there may be a relationship between we used a particular GraphNet architecture called a message-passing
+the geometry and algebra of a knot, we trained a feed-forward neural neural network (MPNN)48. The design of the model architecture (in
+network to predict the signature from measurements of the geometry terms of activation functions and directionality) was motivated by the
+on a dataset of randomly sampled knots. The model was able to achieve algorithms for computing KL polynomials from labelled Bruhat inter-
+an accuracy of 78% on a held-out test set, with no errors larger than ±2. vals. While labelled Bruhat intervals contain privileged information,
+This is substantially higher than chance (a baseline accuracy of 25%), these algorithms hinted at the kind of computation that may be useful
+which gave us strong confidence that a relationship may exist. for computing KL polynomial coefficients. Accordingly, we designed
+To understand how this prediction is being made by the network, our MPNN to algorithmically align to this computation49. The model is
+we used gradient-based attribution to determine which measurements bi-directional, with a hidden layer width of 128, four propagation steps
+of the geometry are most relevant to the signature. We do this using a and skip connections. We treat the prediction of each coefficient of the
+simple sensitivity measure r that averages the gradient of the loss L KL polynomial as a separate classification problem.
+i
+with respect to a given input feature x over all of the examples x in a
+i
+dataset X: Process. First, to gain confidence that the conjecture is correct, we
+trained a model to predict coefficients of the KL polynomial from the
+rr= 1 ∑ ∂L (3) unlabelled Bruhat interval. We were able to do so across the different
+i X xx∈X ∂xx i coefficients with reasonable accuracy (Extended Data Table 1) giving
+some evidence that a general function may exist, as a four-step MPNN
+This quantity for each input feature is shown in Fig. 3a, where we can is a relatively simple function class. We trained a GraphNet model on
+determine that the relevant measurements of the geometry appear to the basis of a newly hypothesized representation and could achieve
+be what is known as the cusp shape: the meridional translation, which significantly better performance, lending evidence that it is a suf-
+we will denote μ, and the longitudinal translation, which we will denote ficient and helpful representation to understand the KL polynomial.
+λ. This was confirmed by training a new model to predict the signature To understand how the predictions were being made by the learned
+from only these three measurements, which was able to achieve the function fˆ, we used gradient-based attribution to define a salient sub-
+same level of performance as the original model. graph S for each example interval G, induced by a subset of nodes in
+G
+To confirm that the slope is a sufficient aspect of the geometry to that interval, where L is the loss and x is the feature for vertex v:
+v
+focus on, we trained a model to predict the signature from the slope
+alone. Visual inspection of the slope and signature in Extended Data S =  v∈G ∂L >C    (4)
+Fig. 1a, b shows a clear linear trend, and training a linear model on this G  ∂x v k 
+data results in a test accuracy of 78%, which is equivalent to the predic-
+tive power of the original model. This implies that the slope linearly We then aggregated the edges by their edge type (each is a reflection)
+captures all of the information about the signature that the original and compared the frequency of their occurrence to the overall data-
+model had extracted from the geometry. set. The effect on extremal edges was present in the salient subgraphs
+for predictions of the higher-order terms (q3, q4), which are the more
+Evaluation. The confidence intervals on the feature saliencies were complicated and less well-understood terms.
+calculated by retraining the model 10 times with a different train/test
+split and a different random seed initializing both the network weights Evaluation. The threshold C for salient nodes was chosen a priori as the
+k
+and training procedure. 99th percentile of attribution values across the dataset, although the re-
+sults are present for different values of C in the range [95, 99.5]. In Fig. 5a,
+k
+Representation theory we visualize a measure of edge attribution for a particular snapshot of
+Data generation. For our main dataset we consider the symmetric a trained model for expository purposes. This view will change across
+groups up to S. The first symmetric group that contains a non-trivial time and random seeds, but we can confirm that the pattern remains by
+9
+Bruhat interval whose KL polynomial is not simply 1 is S, and the larg- looking at aggregate statistics over many runs of training the model, as in
+5
+est interval in S contains 9! ≈ 3.6 × 105 nodes, which starts to pose Fig. 5b. In this diagram, the two-sample two-sided t-test statistics are as
+9
+computational issues when used as inputs to networks. The number follows—simple edges: t = 25.7, P = 4.0 × 10−10; extremal edges: t = −13.8,
+of intervals in a symmetric group S is O(N!2), which results in many P = 1.1 × 10−7; other edges: t = −3.2, P = 0.01. These significance results
+N
+billions of intervals in S. The distribution of coefficients of the KL are robust to different settings of the hyper-parameters of the model.
+9
+polynomials uniformly across intervals is very imbalanced, as higher
+coefficients are especially rare and associated with unknown com-
+Code availability
+plex structure. To adjust for this and simplify the learning problem,
+we take advantage of equivalence classes of Bruhat intervals that Interactive notebooks to regenerate the results for both knot theory
+eliminate many redundant small polynomials47. This has the added and representation theory have been made available for download at
+benefit of reducing the number of intervals per symmetric group https://github.com/deepmind.
+Content courtesy of Springer Nature, terms of use apply. Rights reserved
+
+--- PAGE 8 ---
+48. Gilmer, J., Schoenholz, S. S., Riley, P. F., Vinyals, O. & Dahl, G. E. Neural message
+Data availability passing for quantum chemistry. Preprint at https://arxiv.org/abs/1704.01212
+(2017).
+The generated datasets used in the experiments have been made avail- 49. Veličković, P., Ying, R., Padovano, M., Hadsell, R. & Blundell, C. Neural execution of graph
+able for download at https://github.com/deepmind. algorithms. Preprint at https://arxiv.org/abs/1910.10593 (2019).
+37. Bronstein, M. M., Bruna, J., Cohen, T. & Veličković, P. Geometric deep learning: grids, Acknowledgements We thank J. Ellenberg, S. Mohamed, O. Vinyals, A. Gaunt, A. Fawzi and
+groups, graphs, geodesics, and gauges. Preprint at https://arxiv.org/abs/2104.13478 D. Saxton for advice and comments on early drafts; J. Vonk for contemporary supporting work;
+(2021). X. Glorot and M. Overlan for insight and assistance; and A. Pierce, N. Lambert, G. Holland,
+38. Efroymson, M. A. in Mathematical Methods for Digital Computers 191–203 (John Wiley, R. Ahamed and C. Meyer for assistance coordinating the research. This research was funded by
+1960). DeepMind.
+39. Xu, K. et al. Show, attend and tell: neural image caption generation with visual
+attention. In Proc. International Conference on Machine Learning 2048–2057 (PMLR, Author contributions A.D., D.H. and P.K. conceived of the project. A.D., A.J. and M.L.
+2015). discovered the knot theory results, with D.Z. and N.T. running additional experiments. A.D., P.V.
+40. Sundararajan, M., Taly, A. & Yan, Q. Axiomatic attribution for deep networks. and G.W. discovered the representation theory results, with P.V. designing the model, L.B.
+In Proc. International Conference on Machine Learning 3319–3328 (PMLR, 2017). running additional experiments, and C.B. providing advice and ideas. S.B. and R.T. provided
+41. Bradbury, J. et al. JAX: composable transformations of Python+NumPy programs (2018); additional support, experiments and infrastructure. A.D., D.H. and P.K. directed and managed
+https://github.com/google/jax the project. A.D. and P.V. wrote the paper with help and feedback from P.B., C.B., M.L., A.J.,
+42. Martín A. B. A. D. I. et al. TensorFlow: large-scale machine learning on heterogeneous G.W., P.K. and D.H.
+systems (2015); https://doi.org/10.5281/zenodo.4724125.
+43. Paszke, A. et al. in Advances in Neural Information Processing Systems 32 Competing interests The authors declare no competing interests.
+(eds Wallach, H. et al.) 8024–8035 (Curran Associates, 2019).
+44. Thurston, W. P. Three dimensional manifolds, Kleinian groups and hyperbolic geometry. Additional information
+Bull. Am. Math. Soc 6, 357–381 (1982). Supplementary information The online version contains supplementary material available at
+45. Culler, M., Dunfield, N. M., Goerner, M. & Weeks, J. R. SnapPy, a computer program for https://doi.org/10.1038/s41586-021-04086-x.
+studying the geometry and topology of 3-manifolds (2020); http://snappy.computop.org. Correspondence and requests for materials should be addressed to Alex Davies or Pushmeet
+46. Burton, B. A. The next 350 million knots. In Proc. 36th International Symposium on Kohli.
+Computational Geometry (SoCG 2020) (Schloss Dagstuhl-Leibniz-Zentrum für Informatik, Peer review information Nature thanks Sanjeev Arora, Christian Stump and the other,
+2020). anonymous, reviewer(s) for their contribution to the peer review of this work. Peer reviewer
+47. Warrington, G. S. Equivalence classes for the μ-coefficient of Kazhdan–Lusztig reports are available.
+polynomials in S n. Exp. Math. 20, 457–466 (2011). Reprints and permissions information is available at http://www.nature.com/reprints.
+Content courtesy of Springer Nature, terms of use apply. Rights reserved
+
+--- PAGE 9 ---
+Article
+Extended Data Fig. 1 | Empirical relationship between slope and signature. a Signature vs slope for random dataset. b Signature vs slope for Regina dataset.
+Content courtesy of Springer Nature, terms of use apply. Rights reserved
+
+--- PAGE 10 ---
+Extended Data Table 1 | Model accuracies at predicting KL coefficients from Bruhat intervals in S
+9
+Content courtesy of Springer Nature, terms of use apply. Rights reserved
+
+--- PAGE 11 ---
+Terms and Conditions
+S pringer Nature journal content, brought to you courtesy of Springer Nature Customer Service Center GmbH (“Springer Nature”).
+Springer Nature supports a reasonable amount of sharing of research papers by authors, subscribers and authorised users (“Users”), for small-
+scale personal, non-commercial use provided that all copyright, trade and service marks and other proprietary notices are maintained. By
+accessing, sharing, receiving or otherwise using the Springer Nature journal content you agree to these terms of use (“Terms”). For these
+p urposes, Springer Nature considers academic use (by researchers and students) to be non-commercial.
+These Terms are supplementary and will apply in addition to any applicable website terms and conditions, a relevant site licence or a personal
+subscription. These Terms will prevail over any conflict or ambiguity with regards to the relevant terms, a site licence or a personal subscription
+(to the extent of the conflict or ambiguity only). For Creative Commons-licensed articles, the terms of the Creative Commons license used will
+a pply.
+We collect and use personal data to provide access to the Springer Nature journal content. We may also use these personal data internally within
+ResearchGate and Springer Nature and as agreed share it, in an anonymised way, for purposes of tracking, analysis and reporting. We will not
+otherwise disclose your personal data outside the ResearchGate or the Springer Nature group of companies unless we have your permission as
+d etailed in the Privacy Policy.
+While Users may use the Springer Nature journal content for small scale, personal non-commercial use, it is important to note that Users may
+n ot:
+1.use such content for the purpose of providing other users with access on a regular or large scale basis or as a means to circumvent access
+control;
+2.use such content where to do so would be considered a criminal or statutory offence in any jurisdiction, or gives rise to civil liability, or is
+otherwise unlawful;
+3.falsely or misleadingly imply or suggest endorsement, approval , sponsorship, or association unless explicitly agreed to by Springer Nature in
+writing;
+4.use bots or other automated methods to access the content or redirect messages
+5.override any security feature or exclusionary protocol; or
+6.share the content in order to create substitute for Springer Nature products or services or a systematic database of Springer Nature journal
+content.
+In line with the restriction against commercial use, Springer Nature does not permit the creation of a product or service that creates revenue,
+royalties, rent or income from our content or its inclusion as part of a paid for service or for other commercial gain. Springer Nature journal
+content cannot be used for inter-library loans and librarians may not upload Springer Nature journal content on a large scale into their, or any
+o ther, institutional repository.
+These terms of use are reviewed regularly and may be amended at any time. Springer Nature is not obligated to publish any information or
+content on this website and may remove it or features or functionality at our sole discretion, at any time with or without notice. Springer Nature
+m ay revoke this licence to you at any time and remove access to any copies of the Springer Nature journal content which have been saved.
+To the fullest extent permitted by law, Springer Nature makes no warranties, representations or guarantees to Users, either express or implied
+with respect to the Springer nature journal content and all parties disclaim and waive any implied warranties or warranties imposed by law,
+i ncluding merchantability or fitness for any particular purpose.
+Please note that these rights do not automatically extend to content, data or other material published by Springer Nature that may be licensed
+f rom third parties.
+If you would like to use or distribute our Springer Nature journal content to a wider audience or on a regular basis or in any other manner not
+e xpressly permitted by these Terms, please contact Springer Nature at
+onlineservice@springernature.com

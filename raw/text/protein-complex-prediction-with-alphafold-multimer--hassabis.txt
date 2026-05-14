@@ -1,0 +1,1098 @@
+
+--- PAGE 1 ---
+bioRxiv preprint doi: https://doi.org/10.1101/2021.10.04.463034; this version posted October 4, 2021. The copyright holder for this preprint
+(which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission.
+2021-10-04
+Protein complex prediction with
+AlphaFold-Multimer
+RichardEvans1*,MichaelO’Neill1*,AlexanderPritzel1*,NatashaAntropova1*,AndrewSenior1,TimGreen1,
+AugustinŽídek1,RussBates1,SamBlackwell1,JasonYim1,OlafRonneberger1,SebastianBodenstein1,Michal
+Zielinski1,AlexBridgland1,AnnaPotapenko1,AndrewCowie1,KathrynTunyasuvunakool1,RishubJain1,Ellen
+Clancy1,PushmeetKohli1,JohnJumper1* andDemisHassabis1*
+1DeepMind,London,UK,*Theseauthorscontributedequally
+Whilethevastmajorityofwell-structuredsingleproteinchainscannowbepredictedtohighaccuracydue
+to the recent AlphaFold [1] model, the prediction of multi-chain protein complexes remains a challenge
+in many cases. In this work, we demonstrate that an AlphaFold model trained specifically for multimeric
+inputsofknownstoichiometry, whichwecallAlphaFold-Multimer, significantlyincreasesaccuracyofpre-
+dictedmultimericinterfacesoverinput-adaptedsingle-chainAlphaFoldwhilemaintaininghighintra-chain
+accuracy. On a benchmark dataset of 17 heterodimer proteins without templates (introduced in [2]) we
+achieveatleastmediumaccuracy(DockQ[3] ≥ 0.49)on14targetsandhighaccuracy(DockQ ≥ 0.8)on
+6targets,comparedto9targetsofatleastmediumaccuracyand4ofhighaccuracyforthepreviousstate
+of the art system (an AlphaFold-based system from [2]). We also predict structures for a large dataset
+of 4,433 recent protein complexes, from which we score all non-redundant interfaces with low template
+identity. Forheteromericinterfaceswesuccessfullypredicttheinterface(DockQ ≥ 0.23)in67%ofcases,
+and produce high accuracy predictions (DockQ ≥ 0.8) in 23% of cases, an improvement of +25 and +11
+percentagepointsovertheflexiblelinkermodificationofAlphaFold[4]respectively. Forhomomericinter-
+faceswesuccessfullypredicttheinterfacein69%ofcases,andproducehighaccuracypredictionsin34%
+ofcases,animprovementof+5percentagepointsinbothinstances.
+1. Introduction
+Theformationofpermanentandtransientproteincomplexesunderpinsmostbiologicalprocesses,and
+understanding the structure of these complexes is a key step towards understanding and modifying
+theirfunction. Insilicoproteinstructurepredictionisplayinganincreasinglyimportantroleinbiological
+researchandapplicationsasithasapproachedexperimentalaccuracy,withtherecentstructureprediction
+systemAlphaFold[1]providingastepchangeinstructurepredictionaccuracy. ThoughAlphaFoldwas
+trainedonindividualproteinchains,includingmanyproteinswhosestructurewassolvedincomplex
+withotherproteins,ithasshownremarkableabilitytopredictproteinstructureswithboundco-factors
+orproteinsstabilisedbytheirmultimericinteractions. Subsequentworkhasalsoshownthatproviding
+pseudo-multimerinputs(e.g.residuegapinsertionorchainsjoinedwithaflexiblelinker)tothesingle-
+chainAlphaFoldmodelisoftensuccessfulatpredictingmultimerinteractions[4,5,6,7,8,9]. These
+papershaveshownsurprisinggeneralizationperformanceoftheoriginaltrainedAlphaFoldmodelbut
+leave open the question of how much more accurate AlphaFold is when training is also adapted for
+multimericinputs.
+The AlphaFold system has recently been described in publication [1] along with source code and
+modelparameters[10]. Tosummarizebriefly,itcombinesinformationfromtheaminoacidsequence,
+multiplesequencealignmentsandhomologousstructuresinordertopredictthestructureofindividual
+proteinchains. Thecorepartoftheneuralnetwork,calledEvoformer,consistsofaneuralrepresentation
+of the multiple sequence alignment (MSA) and pairwise relations between the different amino acids
+intheprotein. Thesetworepresentationsaremixedandprocessedbyacollectionofneuralnetwork
+Correspondingauthors:JohnJumper(jumper@deepmind.com),DemisHassabis(dhcontact@deepmind.com)
+© 2021DeepMind.Allrightsreserved
+
+--- PAGE 2 ---
+bioRxiv preprint doi: https://doi.org/10.1101/2021.10.04.463034; this version posted October 4, 2021. The copyright holder for this preprint
+(which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission.
+ProteincomplexpredictionwithAlphaFold-Multimer
+modules. Thepairrepresentationcanbethoughtofascontaininginformationabouttherelativepositions
+ofaminoacids inthechain. Thisrepresentationis usedtopredicttherelativedistancesbetweenthe
+amino acids in the chain via a binned distance distribution (distogram). The first row of the MSA
+embeddingisthenusedtogetherwiththepairembeddingtopredictthefinalstructure. Themodelis
+trainedend-to-endwithgradientspropagatingfromthepredictedstructurethroughtheentirenetwork.
+InthisworkweextendAlphaFoldtomultiplechainsduringbothtrainingandinference,withnative
+support for multi-chain featurization and symmetry handling. We refer to this system as AlphaFold-
+Multimer and demonstrate superior performance compared to existing approaches, including those
+basedonusingAlphaFold.
+2. Methods
+MultiplechangestotheAlphaFoldsystemweremadetoadaptittotrainingonproteincomplexes,which
+aredetailedbelow. Summarizingbriefly,wemodifythelossestotakeintoaccountpermutationsymmetry
+amongidenticalchains,pairtheMSAalignmentsbetweenindividualchainstosurfacecross-chaingenetic
+information,introduceanewwayofselectingsubsetsofresiduesfortraining,andmakevarioussmall
+adjustmentstothestructurelossesandthemodelarchitecture.
+2.1. Multi-Chain Permutation Alignment
+Whencomputingthelossesandscoringhomomericcomponents,permutationsymmetrymustbetaken
+intoaccount. Whenaproteinofagivensequenceappearsmultipletimesinthecomplex,themapping
+betweenthepredictedandtheground-truthcoordinatesisarbitraryandsothemodelcannotbeassumed
+to predict chains in the same order as in the ground truth. To account for this we aim to pick the
+optimalpermutationofpredictedhomomerchainsthatbestmatchesthegroundtruth. Thecomplexity
+ofoptimizingoverallpermutationsgrowscombinatoriallysoweemployasimpleheuristicthatgreedily
+triestofindagoodpermutation. Thedetailsofthisheuristicareexplainedinsubsection7.3.
+2.2. Cross-Chain Genetics
+IthasbeenshownthatpairwisecorrelationinaMultipleSequenceAlignment(MSA)isausefulfeature
+inpredictingcontactsand3Dstructure,butthisrequiresdeterminationofinteractinghomologsinthe
+heteromericcase,whichisingeneralambiguous[11]. Inthisworkweprovideexplicitalignedsequences
+tothenetworkfollowingtheprocedureofZhouetal.[12]. WepairsequencesusingtheUniProtspecies
+annotationandresolveambiguitiesusingthefollowingprocedure. Ifthetargetproteinisprokaryotic,
+thewithin-speciespairingisdoneusingthesmallestgeneticdistance(approximatedbythedifference
+betweentheirUniProtaccessionIDs). Ifthetargetproteiniseukaryotic,werankthecandidaterows
+ofeachchainbysimilaritytotheirrespectivetargetsequence,andconcatenatepairsofthesamerank.
+Moredetailsareavailableinsubsection7.4.
+2.3. Multi-Chain Cropping
+ThenumberofresiduesthatAlphaFold-Multimercanbetrainedonislimitedbymemoryandcompute
+considerationsasbothmemoryuseandcomputeuseincreaserapidlywiththetotalnumberofamino
+acidsinthecomplex. Toamelioratethis,theAlphaFoldsystemistrainedoncroppedsegmentsoffull
+lengthproteins,wherethesecroppedregionsarecontiguousblocksofresiduesupto384residues.
+We modified this procedure when training on complexes as the cropped regions need to involve
+multiple chains in a given complex, and binding interfaces between chains are crucial for modelling
+2
+
+--- PAGE 3 ---
+bioRxiv preprint doi: https://doi.org/10.1101/2021.10.04.463034; this version posted October 4, 2021. The copyright holder for this preprint
+(which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission.
+ProteincomplexpredictionwithAlphaFold-Multimer
+proteincomplexes. Therefore,wedesignedacroppingprocedurethatmaximizeschaincoverageand
+cropdiversitywhilstensuringgoodbalancebetweeninterfaceandnon-interfaceregions. Webalance
+per-chaincontiguouscroppinginsequencespacewithinterfacebiasedspatialcroppingincoordinate
+space. Thedetailsofthisprocedurearedescribedinsubsection7.2.
+2.4. Architecture and Losses
+AlphaFold uses a Frame Aligned Point Error (FAPE) loss [1], whereby the distances between ground
+truthandpredictedatomsarecomputedinthelocalreferenceframeofeveryresidue. InAlphaFold,this
+losswasclampedat10Å. Fortrainingthemultimermodelwemadechangestothelossfunctionused:
+fortheintra-chainaminoacidpairsofthecomplexwekeepthesame10Åclamping;fortheinter-chain
+pairs we use an unclamped FAPE loss. This provides a better gradient signal for incorrect interfaces.
+Moreover,weaddextrapositionalencodingsdenotingwhetheragivenpairofaminoacidscorresponds
+todifferentchainsandwhethertheybelongtodifferenthomomerorheteromerchains.
+Wealsomadevarioussmallchangestothemodelandimplementationinordertofacilitateinference
+of larger proteins for a given amount of memory. The details of these, and all other modifications
+mentionedinthissection,areexplainedintheSupplementaryInformation.
+2.5. Training Regimen
+AlphaFold-MultimerwastrainedinaverysimilarwaytoAlphaFold[1]. Thetrainingdatasetcomprised
+structuresfromtheProteinDataBank(PDB)[13]withamaximumreleasedateof2018-04-30. Chains
+weresampledininverseproportiontoclustersizeandtheircorrespondingmmCIFsselectedasinputto
+thedatapipeline,meaningthattherestofthechainsinthebio-assemblywillbeincluded. Thismeans
+thattheprobabilityofsamplingaparticularPDBentryisproportionaltothesumofprobabilitiesofthe
+individualchainclustersforallchainsinthefile. Thechainclustersare40%identityclusteringsofthe
+ProteinDataBankwithMMSeqs2[14].
+Werandomlycropto384residuesaccordingtothesamplingprocedureoutlinedinsubsection2.3.
+Wetrainthemodeltoconvergence(approximately10Msamples,for2weeks)across128TPUv3cores
+withabatchsizeof1perTPUcore. Thenwehalvethelearningrateanddoublethenumberofsequences
+fedintotheMSAstackbeforerunningtwoseparatefine-tuningstages(onefurtherdayoftrainingeach),
+the first with the experimentally resolved and predicted LDDT (pLDDT) heads switched on, and the
+second with violation losses enabled. These extra heads and losses are identical to those used in the
+AlphaFoldpaper[1]. Wetrained3modelsforthefirststage;thebestmodelonthevalidationsetwas
+then fine tuned with 5 different random seeds for the two fine-tuning stages, producing 5 models in
+total.
+2.6. Inference Regimen
+AswithAlphaFold[1],atinferencetimewerunall5trainedmodelsandselectthebestmodeloneach
+targetaccordingtomodelconfidence. TheonlydifferencetoAlphaFoldisthatourmodelconfidence
+metric is slightly modified to upweight accuracy on interfaces, as described in subsection 2.7. The
+inferencetimesfordifferentsequencelengthsaresimilartothosereportedin[1].
+2.7. Model Confidence
+TheAlphaFoldmodelprovidesintrinsicmodelaccuracyestimatesintheformofapredictedTM-score
+(pTM)[1,§1.9.7]. WeprovideasimilarmetricfortheAlphaFold-Multimermodel,butmodifiedtoscore
+3
+
+--- PAGE 4 ---
+bioRxiv preprint doi: https://doi.org/10.1101/2021.10.04.463034; this version posted October 4, 2021. The copyright holder for this preprint
+(which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission.
+ProteincomplexpredictionwithAlphaFold-Multimer
+interactionsbetweenresiduesofdifferentchains,sincewearepredominantlyinterestedintheaccuracy
+ofinterfaces. WecallthismetricInterfacepTM,oripTM.Seesubsection7.9formoredetails.
+In practice we use a weighted combination of pTM and ipTM as our model confidence metric, in
+ordertoaccountforsomeintra-chainconfidenceinourmodelranking:
+modelconfidence = 0 . 8·ipTM+0 . 2·pTM (1)
+3. Related Work
+Traditionalapproachestomultimericstructurepredictionhavetendedtorelyonahybridoftemplate-
+basedmodellingandfreedocking[15,16,17,18]. Template-basedmodellingapproachessearchfor
+homologouscomplexesofknownstructuretoserveastemplatemodelsforthesystemunderstudy. Free
+dockingapproachesstartfromindividualsubunitsofknownstructureandattempttoselectthemost
+plausibleinterfacesfromthousandsofsampledorientations. Thetop3entrantsofCASP14Multimers—
+Baker-experimental[19],Venclovas[20]andTakeda-Shitakalab[21]—allusedmethodologiesbased
+ontheseapproaches. Takeda-Shitakausedapurelytemplate-basedapproach,whilstBaker-experimental
+andVenclovasusedacombinationoftemplate-basedandfree-docking. Baker-experimentaladditionally
+employed a deep learning based system to infer inter-chain contacts from co-evolution information,
+whichwereusedtoguidetheoverallsamplingandscoringofdockedstructures.
+InspiredbyAlphaFold’srecentsuccessatCASP14,therehavenowbeenanumberofattemptstoapply
+thetrainedAlphaFoldnetworktothetaskofcomplexstructureprediction. Manyoftheseapproaches
+simply add a gap or linker segment between chains of a complex, and then fold it with pre-trained
+AlphaFold as if it were a single chain [4, 5, 6, 7, 8, 9], the residue gap trick having been previously
+appliedtoRoseTTAFold[22]. Theideaisthattheneuralnetworkshouldidentifythelinkersegment
+asunstructuredandfoldthesinglemulti-domainchaininasimilarwaytomultiplechains. Bryantet
+al.[9]benchmarkedAlphaFoldwitharesiduegapagainstRoseTTAFoldandtherigid-dockingmethod
+GRAMM[23],andAlphaFoldsubstantiallyoutperformedbothothermethods. Ghanietal.[2]combine
+thisapproachwithdockingusingtheClusProdockingserver[17]. Humphreysetal.[24]usedAlphaFold
+withRoseTTAFoldpre-screeningtogenerateadatasetof712highconfidencecomplexes,withpreviously
+unknown structure. All of these approaches use a single-chain trained AlphaFold or AlphaFold-like
+systematinferencetime;predictionsoncomplexesareachievedsimplybymodifyingtheinput. Inthis
+workwenativelyhandlemultimerchainsatbothtrainingandinferencetime,andoursystemistrained
+onadatasetthatincludesmultimers.
+A key aspect of the AlphaFold model is its ability to learn to identify residue conservation and
+co-evolution directly from the MSA. Such an ability has also been shown to be a useful factor for
+predictingprotein-proteininteractions[25,26]. However,constructinganinformativemulti-chainMSA
+isachallengingtask,ofteninvolvingthecarefulpairingofsequencesbetweenchainsinordertoconstruct
+validinterlogsofthetargetsequencethatexposeinterfaceinformation. Variousheuristicmethodsexist
+toperformthispairing[27,28,29,12]. WefollowtheapproachofZhouetal.[12]bypairingbyspecies
+label, disambiguating using genetic distance for prokaryotes, and similarity to the target sequence
+for eukaryotes. Note that [5] only performs pairing for prokaryotes (using genetic distance), whilst
+[9] doesn’t distinguish between prokaryotes and eukaryotes, disambiguating in both cases with the
+similarity-basedmethod.
+4. Results
+AlphaFold-Multimerpredictionsaregeneratedasdescribedinsubsection2.6. WebenchmarkedAlphaFold-
+Multimer on two datasets: Benchmark 2 from [2], and Recent-PDB-Multimers. Benchmark 2 is a set
+4
+
+--- PAGE 5 ---
+bioRxiv preprint doi: https://doi.org/10.1101/2021.10.04.463034; this version posted October 4, 2021. The copyright holder for this preprint
+(which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission.
+ProteincomplexpredictionwithAlphaFold-Multimer
+of17heterodimersfromPDBafterthetrainingsetcutoffdate. Theauthorsselectedthetargetssuch
+that there are no homologous complexes in PDB. Recent-PDB-Multimers is a homology-reduced set of
+4,433recentproteincomplexesfromPDB.Predictionsweremadeonfullcomplexesbeforesplittinginto
+in-contactchainpairs(accordingtothegroundtruth)foranalysis. Thesepairswereclusteredtoremove
+redundancyandfilteredsothatneitherchaininthepairhadgreaterthan40%templateidentitytothe
+trainingset,yielding2,603uniquepairsuponwhichwereportmetrics. Fordetailsseesubsection7.8.
+ForbothdatasetswecomparemodelsusingDockQscore[3,30]. DockQmeasuresthequalityofthe
+interface and yields a score in the range [0 , 1], interfaces with score < 0.23 are considered incorrect
+>
+andscores 0.8areofthehighestquality.
+4.1. Benchmark 2
+OnBenchmark2wecompareAlphaFold-Multimertothefollowingsystems:
+• AlphaFold-Linker: Inthissetupweadda21residuerepeatedGlycine-Glycine-Serinelinkerbetween
+each chain before running it as a single chain through the AlphaFold model. Similar linker
+modificationstoAlphaFoldhavepreviouslybeenused[4].
+• AlphaFold-Gap(ColabFold[5]): Thisisathird-partyGoogleColab,versionfrom2021-08-16,that
+runsAlphaFoldwitha200residuegapintheresidueindexbetweenchains. ItusesMMSeqs2[14]
+forgenetics,includesMSApairinganddoesn’tincludetemplates.
+• ClusPro: ThissetuprunsAlphaFoldontheindividualchainsbeforedockingthemtogetherusing
+ClusPro.
+• AlphaFold refined ClusPro: The ClusPro predictions are refined by feeding them back into the
+AlphaFold model as templates. The resulting 10 predictions are re-ranked according to the
+interfacepredictedalignederror(PAE)score.
+• AlphaFoldrefinedClusProplusAlphaFold: ThispoolstheAlphaFold-Gappredictionswiththoseof
+AlphaFoldrefinedClusProandre-ranksall15predictionsusinginterfacePAE.
+ForClusPro,AlphaFoldrefinedClusProandAlphaFoldrefinedClusProplusAlphaFoldweusethetop1
+numbers from [2]. Figure 1a compares the average DockQ score between the different systems. The
+AlphaFold-MultimersystemhasanaverageDockQScoreof0.65,whiletheClusProrefinedAlphaFold
+system has a score of 0.49. In order to demonstrate statistical significance, in Figure 1b we compare
+therelativedifferenceinDockQscorebetweeneachsystemandAlphaFold-Multimerandestimate95%
+confidenceintervalsusingbootstrappingoverthetargets. Afurtherbreakdownoftheresults,andthe
+pertargetDockQscoresareprovidedinTableS1andTableS2.
+4.2. Recent-PDB-Multimers
+InFigure2aweshowtheperformanceofthesystemfordifferentlevelsofsimilaritytothetrainingseton
+theRecent-PDB-Multimersdataset. Similarityisdefinedasidentity×coveragefortheleastwell-matched
+chainofthepair,maximisedoveralltrainingsettemplatesforwhichthereisamatchforbothchains.
+Herewecanseethatthereisfairlylittlecorrelationbetweensimilaritytothetrainingsetandmodel
+quality.
+In Figure 2b we compare the average DockQ score between AlphaFold-Multimer and AlphaFold-
+Linker. We see that AlphaFold-Multimer is more accurate on both homomeric and the heteromeric
+interfaces: inthehomomericcasetheimprovementisrelativelymodestwith+0.05meanDockQscore,
+butintheheteromericcasetheimprovementismorepronouncedwith+0.19meanDockQscore. On
+average the performance on homomeric interfaces is better than for heteromeric ones. In Figure 2c
+5
+
+--- PAGE 6 ---
+bioRxiv preprint doi: https://doi.org/10.1101/2021.10.04.463034; this version posted October 4, 2021. The copyright holder for this preprint
+(which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission.
+ProteincomplexpredictionwithAlphaFold-Multimer
+we show the difference between the two systems with bootstrapped error bars, showing clearly that
+AlphaFold-Multimerdemonstratesastatisticallysignificantimprovement. Theproportionoftargetsabove
+differentDockQscoresisshowninFigure2d,afurtherbreakdownintoDockQcategories(Incorrect,
+Acceptable, Medium and High) is available inTable S3. The AlphaFold-Multimer system successfully
+predicts(DockQ ≥ 0.23)heteromericinterfacesin67%ofcases,andsuccessfullypredictshomomeric
+interfacesin69%ofcases.
+InFigure3weshowthedistributionofDockQscoreasafunctionofpredictedinterfaceTM-scorefor
+theAlphaFold-Multimersystem. Thefigureshowsthatourpredictedaccuracymetricisagoodpredictor
+ofmodelqualitywiththemajorityofhighconfidencepredictionsalsohavinghighaccuracy.
+InFigure4weshowanumberofexampleswhereAlphaFoldsuccessfullypredictedtherightmulti-
+mericstructure. Inordertoillustratehowtounderstandthepredictederrormetricweshowanexample
+ofacasewithincorrectcoordinates(PDBcode: 6QF7)whichisalsopredictedtobewronginFigure5.
+Inthiscasetheindividualchainsarepredictedtobecorrect,whiletheirpredictedrelativepositionis
+uncertain,ascanbeseenfromtheblockswithahighpredictederror.
+TheAlphaFoldsystemwastrainedtopredicttheindividualchainsofmultimericcomplexes,andas
+suchthemodelwasnotgiventhecontextprovidedbytheotherchainsexplicitly. NeverthelessAlphaFold
+has been shown to often implicitly model structures with missing context correctly. In the AlphaFold
+paper [1] an example is provided of a heavily intertwined multimer with correctly predicted but not
+physicallymeaningfulchainstructure. Thisleadsustoaskthequestionwhethertheindividualchain
+predictionsofAlphaFold-MultimeraremoreaccuratethanthecorrespondingAlphaFoldpredictions. In
+Figure6wecomparetheperformanceofAlphaFold-LinkertoAlphaFold-Multimerundertworegimes. In
+AlphaFold-Multimerthefullcomplexisfoldedbeforeextractingtheindividualchains,sothatthesystem
+sees additional context. In the second regime (AlphaFold-Multimer as Monomers and AlphaFold) the
+individualchainsarefoldedinisolation. WecanseethatinthecaseofheteromersAlphaFold-Multimer
+islessaccuratethanAlphaFoldwhengiventhesinglechainswithincorrectmonomerstoichiometry,but
+ismoreaccuratethanAlphaFoldwhenthesinglechainsarepredictedaspartofthefullcomplex. Wedo
+notobserveasimilareffectintheAlphaFold-Linkersystem.
+5. Discussion
+WehaveshownthatbymodifyingtheAlphaFoldarchitecturetonativelyhandlemultimersandtraining
+explicitly on oligomeric data, we are able to provide high accuracy predictions for a large fraction of
+PDB complexes, surpassing the accuracy of inference-only modifications to AlphaFold. We have not
+yetimplementedmultimertemplatesorself-distillationofmultimerpredictions,sothereisalsolikely
+substantialscopeforfutureaccuracyimprovements.
+We observe that performance is generally higher for homomeric interfaces than for heteromeric
+interfaces; this is presumably since in the homomeric case the MSA will readily encode evolutionary
+informationaboutthecomplexinterfaces,whilethisinformationismorelimitedandhardertoaccessin
+thecaseofheteromericinterfaces. Asalimitation,weobserveanecdotallythatAlphaFold-Multimeris
+generallynotabletopredictbindingofantibodiesandthisremainsanareaforfuturework. Wehave
+also shown that the confidence metrics provided by the model correlate well with the true accuracy,
+somethingthatisvitalfortheuseabilityofastructurepredictionmodel. Byallowingaccurateprediction
+ofproteincomplexeswehopethatthismethodwillenablebiologiststofurtheracceleratetherecent
+progressinstructuralbioinformatics.
+Thesourcecodeandweightsforthetrainedmodelswillbemadeavailableshortly.
+6
+
+--- PAGE 7 ---
+bioRxiv preprint doi: https://doi.org/10.1101/2021.10.04.463034; this version posted October 4, 2021. The copyright holder for this preprint
+(which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission.
+ProteincomplexpredictionwithAlphaFold-Multimer
+6. Acknowledgements
+WethankC.Beattie,H.Maclean,A.Huber,C.Meyer,C.Donner,A.Ballard,M.Figurnov,S.Nikolov,Z.
+Wu,J.Adler,J.Dunger,O.Vinyals,F.YangandallourcolleaguesatDeepMind,GoogleandAlphabetfor
+theirencouragementandsupport.
+7
+
+--- PAGE 8 ---
+ProteincomplexpredictionwithAlphaFold-Multimer
+remitluM-dloFahplA ]4[
+rekniL-dloFahplA
+paG-dloFahplA ]5[
+)dloFbaloC(
+orPsulC ]2[
+1pot
+orPsulC
+denifer
+dloFahplA
+]2[
+1pot
+orPsulC
+denifer
+dloFahplA
+dloFahplA
+sulp
+]2[
+1pot
+0.6
+0.5
+0.4
+0.3
+0.2
+0.1
+0.0
+erocs
+QkcoD
+naeM
+(a)
+remitluM-dloFahplA ]4[
+rekniL-dloFahplA
+paG-dloFahplA ]5[
+)dloFbaloC(
+orPsulC ]2[
+1pot
+orPsulC
+denifer
+dloFahplA
+]2[
+1pot
+orPsulC
+denifer
+dloFahplA
+dloFahplA
+sulp
+]2[
+1pot
+0.0
+−0.1
+−0.2
+−0.3
+−0.4
+−0.5
+remitluM-dloFahplA
+ot
+erocs
+QkcoD
+Δ
+bioRxiv preprint doi: https://doi.org/10.1101/2021.10.04.463034; this version posted October 4, 2021. The copyright holder for this preprint
+(which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission.
+(b)
+Figure1 | TheperformanceofAlphaFold-Multimeragainstseveralpublishedbaselinesisshownonthe
+Benchmark2dataset,consistingof17heterodimertargetswithlowtrainingsethomology. AlphaFold-
+Linker is AlphaFold with a 21 residue linker of repeated Glycine-Glycine-Serine residues, similar to
+previous AlphaFold modifications [4]. AlphaFold-Gap (ColabFold [5]), version from 2021-08-16, is a
+publishedsystemthatrunsAlphaFoldwithagapbetweenresidueindicesbetweenchains,usesMMSeqs2
+forgenetics,includesMSApairinganddoesnotincludetemplates. ClusPro,AlphaFoldrefinedClusPro,
+andAlphaFoldrefinedClusProplusAlphaFoldareallsystemsandresultsbasedoncombiningthedocking
+algorithmClusProwithAlphaFold,resultsareasreportedin[2]. Errorbarsrepresenta95%confidence
+intervalaroundthemean.
+8
+
+--- PAGE 9 ---
+ProteincomplexpredictionwithAlphaFold-Multimer
+1.0
+0.8
+0.6
+0.4
+0.2
+0.0
+0 0-20 20-40 40-60 60-80 80-100
+Template quality (identity × coverage)
+erocS
+QkcoD
+0.5
+0.4
+0.3
+0.2
+0.1
+0.0
+Homomer Heteromer
+(a)
+erocS
+QkcoD
+naeM
+AlphaFold-Multimer
+AlphaFold-Linker
+(b)
+0.200
+0.175
+0.150
+0.125
+0.100
+0.075
+0.050
+0.025
+0.000
+Homomer Heteromer
+rekniL-dloFahplA
+ot
+erocS
+QkcoD
+Δ
+1.0
+0.8
+0.6
+0.4
+0.2
+0.0
+0.0 0.2 0.4 0.6 0.8 1.0
+DockQ Score cutoff
+(c)
+ffotuc
+>
+stegrat
+fo
+noitroporP
+bioRxiv preprint doi: https://doi.org/10.1101/2021.10.04.463034; this version posted October 4, 2021. The copyright holder for this preprint
+(which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission.
+(d)
+Figure2|TheperformanceofAlphaFold-MultimerontheRecent-PDB-Multimersdataset: thestructuresof
+4,433non-redundantproteincomplexesfromrecentPDBwerepredicted,fromwhichallnon-redundant
+pairsincontactwereextracted(definedasanyheavyatomofonechainbeingwithin5Aofanyheavy
+atomoftheotherchain),yielding5,271pairs. Forfiguresb,canddthissetwasfurtherreducedsuch
+thatnochaininthepairhadgreaterthan40%templateoverlap(identity×coverage)tothetraining
+set,yielding1,282homomericand1,321heteromericscoredinterfaces. Allerrorbarsrepresenta95%
+confidenceintervalaroundthemean.
+9
+
+--- PAGE 10 ---
+ProteincomplexpredictionwithAlphaFold-Multimer
+1.0
+0.8
+0.6
+0.4
+0.2
+0.0
+0 10 20 30 40 50 60 70 80 90 100
+Interface pTM
+erocS
+QkcoD
+1.0
+0.8
+0.6
+0.4
+0.2
+0.0
+0 10 20 30 40 50 60 70 80 90 100
+Interface pTM
+(a)
+erocS
+QkcoD
+bioRxiv preprint doi: https://doi.org/10.1101/2021.10.04.463034; this version posted October 4, 2021. The copyright holder for this preprint
+(which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission.
+(b)
+Figure3 | ThecorrelationbetweenAlphaFold-Multimermodelconfidence(predictedinterfaceTM-score)
+and the true DockQ score is shown for the 2,648 homology reduced in-contact chain pairs from the
+Recent-PDB-Multimersdataset. Errorbarsrepresenta95%confidenceintervalaroundthemean. In(a)
+interfacepTMisgroupedintointervalsofsize10,(b)showstherawdatapoints.
+10
+
+--- PAGE 11 ---
+bioRxiv preprint doi: https://doi.org/10.1101/2021.10.04.463034; this version posted October 4, 2021. The copyright holder for this preprint
+(which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission.
+ProteincomplexpredictionwithAlphaFold-Multimer
+(a)A2B2C2heteromer (b)A3B3heteromer
+TM-score=98.0,𝑁 =1,246,PDBID=6E3K TM-score=89.3,𝑁 =795,PDBID=7KHD
+res res
+(c)Protein-peptidecomplex (d)A2B2heteromer
+TM-score=96.0,DockQ=0.948, TM-score=98.3,𝑁 =716,PDBID=6IWD
+res
+𝑁 =385,PDBID=6JMT
+res
+Figure4 | StructureexamplespredictedwiththeAlphaFold-Multimer. Visualisedarethegroundtruth
+structures(blue)andpredictedstructures(colouredbychain).
+11
+
+--- PAGE 12 ---
+bioRxiv preprint doi: https://doi.org/10.1101/2021.10.04.463034; this version posted October 4, 2021. The copyright holder for this preprint
+(which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission.
+ProteincomplexpredictionwithAlphaFold-Multimer
+TM-score=67.4,DockQ=0.04,𝑁 =628,PDBID=6QF7
+res
+Figure 5 | Example of a predicted heterodimer with incorrect geometry that is correctly predicted as
+lowconfidencebythepredictedalignederror(PAE).Visualisedarethegroundtruthstructures(blue),
+predicted structures (coloured by chain), and PAE heat map. The PAE heat map shows the predicted
+error(inAngstroms)betweenallpairsofresidues.
+12
+
+--- PAGE 13 ---
+ProteincomplexpredictionwithAlphaFold-Multimer
+3
+2
+1
+0
+−1
+−2
+−3
+−4
+−5
+Homomer Heteromer
+dloFahplA
+ot
+ecnereffid
+TDG
+3
+2
+1
+0
+−1
+−2
+−3
+AlphaFold-Multimer
+−4
+AlphaFold-Linker
+AlphaFold-Multimer as Monomers
+−5
+Homomer Heteromer
+dloFahplA
+ot
+ecnereffid
+αC-TDDl
+bioRxiv preprint doi: https://doi.org/10.1101/2021.10.04.463034; this version posted October 4, 2021. The copyright holder for this preprint
+(which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission.
+AlphaFold-Multimer
+AlphaFold-Linker
+AlphaFold-Multimer as Monomers
+Figure6 | Comparisonon5,029clusteredsinglechainsextractedfromtheRecent-PDB-Multimersdataset.
+MetricsforAlphaFold-LinkerandAlphaFold-Multimerarecomputedbypredictingthefull-complex,then
+croppingouttheindividualchains. ForAlphaFoldandAlphaFold-MultimerasMonomerstheindividual
+chainsarerunwithA1stoichiometryinsteadofthetruestoichiometry. Allerrorbarsrepresenta95%
+confidenceintervalaroundthemean.
+13
+
+--- PAGE 14 ---
+bioRxiv preprint doi: https://doi.org/10.1101/2021.10.04.463034; this version posted October 4, 2021. The copyright holder for this preprint
+(which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission.
+ProteincomplexpredictionwithAlphaFold-Multimer
+References
+[1] JohnJumper,RichardEvans,AlexanderPritzel,TimGreen,MichaelFigurnov,OlafRonneberger,
+KathrynTunyasuvunakool,RussBates,AugustinŽídek,AnnaPotapenko,etal. Highlyaccurate
+proteinstructurepredictionwithAlphaFold. Nature,596(7873):583–589,2021.
+[2] UsmanGhani,IsraelDesta,AkhilJindal,OmeirKhan,GeorgeJones,SergeyKotelnikov,Dzmitry
+Padhorny,SandorVajda,andDimaKozakov. Improveddockingofproteinmodelsbyacombination
+ofAlphaFold2andClusPro. bioRxiv,2021.
+[3] Sankar Basu and Björn Wallner. DockQ: a quality measure for protein-protein docking models.
+PloSone,11(8):e0161879,2016.
+[4] YoshitakaMoriwaki(@Ag_smith). Twitterpost: AlphaFold2canalsopredictheterocomplexes.all
+youhavetodoisinputthetwosequencesyouwanttopredictandconnectthemwithalonglinker.
+https://twitter.com/Ag_smith/status/1417063635000598528. 2021-07-19.
+[5] Sergey Ovchinnikov, Milot Mirdita, and Martin Steinegger. ColabFold-making protein folding
+accessibletoallviagooglecolab,2021.
+[6] MinkyungBaek(@minkbaek).Twitterpost: Addingabigenoughnumberforresidue_indexfeature
+is enough tomodelhetero-complexusing AlphaFold (green&cyan: crystalstructure/ magenta:
+predictedmodelw/residue_indexmodification). https://twitter.com/minkbaek/status/1417538291709071362.
+2021-07-20.
+[7] JunsuKoandJuyongLee. CanAlphaFold2predictprotein-peptidecomplexstructuresaccurately?
+bioRxiv,2021.
+[8] TomerTsaban,JuliaKVarga,OrlyAvraham,ZivBenAharon,AlisaKhramushin,andOraSchueler-
+Furman. Harnessingproteinfoldingneuralnetworksforpeptide-proteindocking. bioRxiv,2021.
+[9] Patrick Bryant, Gabriele Pozzati, and Arne Elofsson. Improved prediction of protein-protein
+interactionsusingAlphaFold2andextendedmultiple-sequencealignments. bioRxiv,2021.
+[10] AlphaFoldopensourcecode. https://github.com/deepmind/alphafold. Accessed: 2021-09-14.
+[11] DPWall,HBFraser,andAEHirsh. Detectingputativeorthologs. Bioinformatics,19(13):1710–1711,
+2003.
+[12] Tian-ming Zhou, Sheng Wang, and Jinbo Xu. Deep learning reveals many more inter-protein
+residue-residuecontactsthandirectcouplinganalysis. bioRxiv,page240754,2018.
+[13] StephenKBurley,CharmiBhikadiya,ChunxiaoBi,SebastianBittrich,LiChen,GreggVCrichlow,
+ColeHChristie,KennethDalenberg,LuigiDiCostanzo,JoseMDuarte,etal. RCSBproteindata
+bank: powerfulnewtoolsforexploring3dstructuresofbiologicalmacromoleculesforbasicand
+appliedresearchandeducationinfundamentalbiology,biomedicine,biotechnology,bioengineering
+andenergysciences. Nucleicacidsresearch,49(D1):D437–D451,2021.
+[14] Martin Steinegger and Johannes Söding. Clustering huge protein sequence sets in linear time.
+Naturecommunications,9(1):1–8,2018.
+[15] AysamGuerler,BrandonGovindarajoo,andYangZhang. Mappingmonomericthreadingtoprotein–
+proteinstructureprediction. Journalofchemicalinformationandmodeling,53(3):717–725,2013.
+14
+
+--- PAGE 15 ---
+bioRxiv preprint doi: https://doi.org/10.1101/2021.10.04.463034; this version posted October 4, 2021. The copyright holder for this preprint
+(which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission.
+ProteincomplexpredictionwithAlphaFold-Multimer
+[16] RongChen,LiLi,andZhipingWeng. Zdock: aninitial-stageprotein-dockingalgorithm. Proteins:
+Structure,Function,andBioinformatics,52(1):80–87,2003.
+[17] DimaKozakov,DavidRHall,BingXia,KathrynAPorter,DzmitryPadhorny,ChristineYueh,Dmitri
+Beglov,andSandorVajda. TheClusProwebserverforprotein–proteindocking. Natureprotocols,
+12(2):255–278,2017.
+[18] MieczyslawTorchala,IainHMoal,RaphaelAGChaleil,JuanFernandez-Recio,andPaulABates.
+Swarmdock: aserverforflexibleprotein–proteindocking. Bioinformatics,29(6):807–809,2013.
+[19] MinkyungBaek,IvanAnishchenko,HahnbeomPark,IanRHumphreys,andDavidBaker. Protein
+oligomer modeling guided by predicted inter-chain contacts in CASP14. Proteins: Structure,
+Function,andBioinformatics,2021.
+[20] JustasDapkunas,KlimentOlechnovič,andČeslovasVenclovas. Modelingofproteincomplexesin
+CASP14withemphasisontheinteractioninterfaceprediction. AuthoreaPreprints,2021.
+[21] CASP14abstractbook. https://predictioncenter.org/casp14/doc/CASP14_Abstracts.pdf. Accessed: 2021-09-14.
+[22] MinkyungBaek,FrankDiMaio,IvanAnishchenko,JustasDauparas,SergeyOvchinnikov,GyuRie
+Lee,JueWang,QianCong,LisaNKinch,RDustinSchaeffer,etal. Accuratepredictionofprotein
+structuresandinteractionsusinga3-tracknetwork. bioRxiv,2021.
+[23] IlyaAVakser. Evaluationofgrammlow-resolutiondockingmethodologyonthehemagglutinin-
+antibodycomplex. Proteins: Structure,Function,andBioinformatics,29(S1):226–230,1997.
+[24] IanR.Humphreys,JiminPei,MinkyungBaek,AdityaKrishnakumar,IvanAnishchenko,Sergey
+Ovchinnikov, Jing Zhang, Travis J. Ness, Sudeep Banjade, Saket Bagde, Viktoriya G. Stancheva,
+Xiao-HanLi,KaixianLiu,ZhiZheng,DanielJ.Barrero,UpasanaRoy,IsraelS.Fernández,Barnabas
+Szakal,DanaBranzei,EricC.Greene,SueBiggins,ScottKeeney,ElizabethA.Miller,J.Christopher
+Fromme, Tamara L. Hendrickson, Qian Cong, and David Baker. Structures of core eukaryotic
+proteincomplexes. bioRxiv,2021.
+[25] ThomasAHopf,CharlottaPISchärfe,JoãoPGLMRodrigues,AnnaGGreen,OliverKohlbacher,
+ChrisSander,AlexandreMJJBonvin,andDeboraSMarks. Sequenceco-evolutiongives3dcontacts
+andstructuresofproteincomplexes. Elife,3:e03430,2014.
+[26] Sergey Ovchinnikov, Hetunandan Kamisetty, and David Baker. Robust and accurate prediction
+of residue–residue interactions across protein interfaces using evolutionary information. elife,
+3:e02030,2014.
+[27] QianCong,IvanAnishchenko,SergeyOvchinnikov,andDavidBaker. Proteininteractionnetworks
+revealedbyproteomecoevolution. Science,365(6449):185–189,2019.
+[28] Anna G Green, Hadeer Elhabashy, Kelly P Brock, Rohan Maddamsetti, Oliver Kohlbacher, and
+Debora S Marks. Proteome-scale discovery of protein interactions with residue-level resolution
+usingsequencecoevolution. bioRxiv,page791293,2019.
+[29] Hong Zeng, Sheng Wang, Tianming Zhou, Feifeng Zhao, Xiufeng Li, Qing Wu, and Jinbo Xu.
+Complexcontact: a web server for inter-protein contact prediction using deep learning. Nucleic
+acidsresearch,46(W1):W432–W437,2018.
+[30] DockQ score author’s implementation. https://github.com/bjornwallner/DockQ/blob/
+3735c160050f1e9128d2ccb23a0a1945aa98b5b2/DockQ.py. Accessed: 2021-09-14.
+15
+
+--- PAGE 16 ---
+bioRxiv preprint doi: https://doi.org/10.1101/2021.10.04.463034; this version posted October 4, 2021. The copyright holder for this preprint
+(which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission.
+ProteincomplexpredictionwithAlphaFold-Multimer
+[31] AlexLMitchell,AlexandreAlmeida,MartinBeracochea,MiguelBoland,JosephineBurgin,Guy
+Cochrane,MichaelRCrusoe,VarshaKale,SimonCPotter,LornaJRichardson,etal. Mgnify: the
+microbiomeanalysisresourcein2020. Nucleicacidsresearch,48(D1):D570–D578,2020.
+[32] YangZhangandJeffreySkolnick. Tm-align: aproteinstructurealignmentalgorithmbasedonthe
+tm-score. Nucleicacidsresearch,33(7):2302–2309,2005.
+[33] MartinoBertoni,FlorianKiefer,MarcoBiasini,LorenzaBordoli,andTorstenSchwede. Modeling
+proteinquaternarystructureofhomo-andhetero-oligomersbeyondbinaryinteractionsbyhomology.
+Scientificreports,7(1):1–15,2017.
+[34] LStevenJohnson,SeanREddy,andElonPortugaly. Hiddenmarkovmodelspeedheuristicand
+iterativehmmsearchprocedure. BMCbioinformatics,11(1):1–8,2010.
+[35] The UniProt Consortium. UniProt: the universal protein knowledgebase in 2021. Nucleic Acids
+Research,49(D1):D480–D489,2021.
+[36] ConradLSchoch,StacyCiufo,MikhailDomrachev,CarolLHotton,SivakumarKannan,Rogneda
+Khovanskaya, Detlef Leipe, Richard Mcveigh, Kathleen O’Neill, Barbara Robbertse, et al. NCBI
+taxonomy: acomprehensiveupdateoncuration,resourcesandtools. Database,2020,2020.
+16
+
+--- PAGE 17 ---
+bioRxiv preprint doi: https://doi.org/10.1101/2021.10.04.463034; this version posted October 4, 2021. The copyright holder for this preprint
+(which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission.
+ProteincomplexpredictionwithAlphaFold-Multimer
+7. Supplementary Information
+7.1. Data
+ThissectiondescribestheAlphaFold-Multimerdatapipeline,whichgeneratesfeaturesforthemodel.
+TheinputtothedatapipelineisanmmCIFfilecontainingoneormorechains. TheAlphaFold-Multimer
+datapipelinefollowssimilarstepstothesingle-chainAlphaFoldsystem[1],withafewkeydifferences
+thataredescribedbelow.
+Wederivethedetailsaboutthestructure’sbiologicalassembliesfromthemmCIFfileanduniformly
+sampleasinglebio-assemblyfromalltheavailablebio-assemblies. TheMSAfeaturesaremergedusing
+thecross-geneticsmethodoutlinedinsubsection7.4.
+TheAlphaFold-Multimersystemusesonlyper-chaintemplates. Thetemplatesearchissimilartothe
+AlphaFoldsystemtemplatesearch,exceptthatitusesHMMERsuitev3.3hmmsearchandhmmbuild
+insteadofHHsearch. First,theUniref90MSAobtainedintheMSAsearchisconvertedtoanHMMusing
+hmmbuild(theonlyflagsettoanon-defaultvalueis–hand). HMMERhmmsearchisthenusedtosearch
+formatchesoftheHMMagainstpdb_seqres.txt,downloadedfromftp://ftp.wwpdb.org/pub/pdb/derived_data/pdb_
+seqres.txton2020-05-14. Welimitthenumberoftemplatesto20. Furtherprocessingisasdescribedinthe
+AlphaFoldpaper. Anystructurereleasedafter2018-04-30isexcludedfromtraining. TheHMMSearch
+flagsusedare–F1 0.1 –F2 0.1 –F3 0.1 –incE 100 -E 100 –domE 100 –incdomE 100.
+The training data rebalancing procedure is very similar to the AlphaFold single chain setup: we
+uniformlysampleachaincluster,thenuniformlysampleachainwithinthatclusterandselectthemmCIF
+towhichitbelongsasinputtothepipeline. Thechainclustersare40%identityclusteringsoftheProtein
+DataBankwithMMSeqs2[14].
+Duringthetrainingprocedureweuseadifferentself-distillationset,setoffilters,MSApreprocessing,
+andresiduecroppingmethodsfromtheAlphaFolddatapipeline. Theself-distillationsetiscreatedusing
+theclusteredMGnifydataset[31],filteredtoclusterswithmorethan10sequences,resultinginabout
+13Msequences.
+Wefilteroutproteinsduringtrainingif:
+• TheinputmmCIFhasresolutiongreaterthan9Å.
+• Anysingleaminoacidaccountsformorethan80%ofthecomplexsequences.
+• Theexamplecomesfromthedistillationsetandhaslessthan200residues.
+Featuresoftheindividualchainsaremergedbeforefurtherprocessing. Forallidenticalchains,the
+featuresareconcatenatedalongtheresiduedimension.
+𝑁 ×𝑁
+featuresofdifferentchainsarepaired
+res seq
+𝑁
+usingthecross-chaingeneticsmethodoutlinedinsubsection7.4. featuresweresimplyconcatenated
+res
+alongtheresiduedimension.
+ThemergedfeaturesareprocessedinasimilarmannertoAlphaFold,includingMSAsamplingand
+clustering. MSAblockdeletionisnotincludedintheAlphaFold-Multimerdatapipeline.
+The features input to the multimer model are identical to the AlphaFold with one extra feature:
+asym_id, an integer indicating the chain number. The ordering of the input chains is arbitrary as the
+networkisagnostictochainorder.
+17
+
+--- PAGE 18 ---
+bioRxiv preprint doi: https://doi.org/10.1101/2021.10.04.463034; this version posted October 4, 2021. The copyright holder for this preprint
+(which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission.
+ProteincomplexpredictionwithAlphaFold-Multimer
+7.2. Multi-chain Cropping
+7.2.1. Contiguous Cropping
+Inthismethod(Algorithm1),weiteratethroughthelistofchains,selectingacontiguouscropfromeach
+𝑁 𝑛
+untilwehavereachedour budget. Wekeeptrackoftwovariablesduringtheprocedure: is
+res added
+𝑛
+thenumberofresiduesselectedsofar,and isthecombinedlengthofyettobecroppedchains
+remaining
+𝑁
+(excludingthecurrentchain). crop_size_mintakenforeachchainensuresweuseasmuchofour
+res
+budgetaspossible,andcrop_size_maxensureswedon’tgooverit. Theinputtothealgorithmistheset
+ofchainlengths, {𝑛 𝑘 },andthetotalresiduebudget 𝑁 res . Theoutputisasetofmaskstoapplytoeach
+chaininordertoextractthecorrespondingcrops, {m𝑘 }. Thechainsarefirstrandomlyshuffledtoavoid
+bias.
+Algorithm 1 CropContiguous
+def CropContiguous({𝑛 𝑘 },𝑁 res ) : 𝑛 𝑘 ,𝑁 res ∈ N
+1: 𝑛 added ← 0
+2: 𝑛 remaining ← 𝑁 res
+3: for all 𝑘 ∈ [0 ...𝑁 chains −1] do
+4:
+𝑛
+remaining
+−=𝑛
+𝑘
+5: crop_size_max ← minimum(𝑁 res −𝑛 added ,𝑛 𝑘 )
+6: crop_size_min ← minimum(𝑛 𝑘 , maximum(0 ,𝑁 res − (𝑛 added +𝑛 remaining ))
+7: crop_size ← uniform(crop_size_min , crop_size_max+1)
+8: 𝑛 added += crop_size
+9: crop_start ← uniform(0 ,𝑛 𝑘 −crop_size+1)
+10: m𝑘 ← 0 m𝑘 ∈ {0 , 1}𝑛 𝑘
+11: keep ← [crop_start ,..., crop_start+crop_size]
+12: m𝑘keep = 1
+13: endfor
+14: return {m𝑘 }
+7.2.2. Spatial Cropping (Interface Biased)
+In this method (Algorithm 2), we specifically target interface regions by selecting a 3D spatial crop
+𝑁
+aroundarandomlyselectedinterfaceresidue. Thecropconsistsofthe spatiallynearestneighbours
+res
+𝛼
+to the selected interface residue, as defined by distances between C coordinates. The input to the
+algorithm is the set of C 𝛼 coordinates across all chains, {x𝑖 }, and the index of the selected interface
+residue, 𝑐 . Theoutputisasetofbinaryvaluesindicatingwhichresiduestoincludeinthecrop, {𝑚 𝑖 }.
+Distancetiesarebrokenbyaddingsmalluniquifyingvalues. Wefoundempiricallythata50:50ratioof
+interfacecroppingtocontiguouscroppingworkedbestformultimers(alwayscontiguouscroppingfor
+monomers).
+7.3. Multi-Chain Permutation Alignment
+Stoichiometry must be carefully accounted for when scoring multimer structure predictions. In a
+predictionforA2B,bothorderingsoftheAchainsareequallyvalid,regardlessoftheirorderinginthe
+groundtruth. Inparticular,ifthisisnotaccountedforinthelossthencorrectpredictionswillbeunfairly
+penalizedandthenetworkwillfailtotrainproperly.
+Toaddressthisissue, beforescoringamultimerpredictionwefirstpermutechainswithidentical
+18
+
+--- PAGE 19 ---
+bioRxiv preprint doi: https://doi.org/10.1101/2021.10.04.463034; this version posted October 4, 2021. The copyright holder for this preprint
+(which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission.
+ProteincomplexpredictionwithAlphaFold-Multimer
+Algorithm 2 CropSpatial
+def CropSpatial({x𝑖 },𝑐) : x𝑖 ∈ R3, 𝑐 ∈ N
+# Addsmalluniquifyingvaluestothedistancestobreakties.
+1: 𝑑 𝑖 = ||x𝑖 −x𝑐 || +𝑖 ·10 −3 𝑑 𝑖 ∈ R
+# Selectdistancetothe 𝑁 th spatiallynearestneighbourascutoff.
+res
+2: 𝑑 cutoff ← partition(d ,𝑁 res −1)[𝑁 res −1] 𝑑 cutoff ∈ R
+3: 𝑚 𝑖 ←𝑑 𝑖 ≤𝑑 cutoff 𝑚 𝑖 ∈ {0 , 1}
+4: return {𝑚 𝑖 }
+sequences such that they are best-effort aligned with those of the prediction. One could imagine
+consideringthebestalignmentoverallpossiblepermutations,howeverthisquicklybecomesintractable,
+soaheuristicmethodisneeded. Ourmethodisasimplegreedyheuristicthatcanbeperformedefficiently
+on TPU; other multi-chain alignment algorithms also exist [32, 33]. The optimal ground truth chain
+permutationisfoundusingAlgorithm3,whichcanbebrokendownintothefollowingalignmentand
+assignmentstages.
+7.3.1. Alignment Stage
+In the alignment phase, we pick a pair of anchor chains to align, one in the ground truth and one in
+the prediction. The ground truth anchor chain
+𝑎gt
+is chosen to be the least ambiguous possible, for
+exampleinanA3B2complexanarbitraryBchainischosen. Intheeventofatiee.g. A2B2stoichiometry,
+the longest chain is chosen, with the hope that in general the longer chains are likely to have higher
+confidentpredictions. Thepredictionanchorchainischosenfromtheset
+{𝑎
+𝑚
+pred}
+ofallpredictionchains
+𝛼
+withthesamesequenceasthegroundtruthanchorchain. WethentransformthegroundtruthchainC
+coordinates {x gt} ontothepredictionchainC 𝛼 coordinates {x pred} suchthatthechosenpairofanchor
+𝑙 𝑘
+chainsisoptimallyaligned(line2).
+7.3.2. Assignment Stage
+Intheassignmentstage(Algorithm4),wegreedilyassigneachofthepredictedchainstotheirnearest
+neighbourofthesamesequenceinthegroundtruth. Theseassignmentsdefinetheoptimalpermutation
+to apply to the ground truth chains. Nearest neighbours are defined as the chains with the smallest
+𝛼
+distancebetweentheaverageoftheirC coordinates.
+Werepeattheabovealignmentandassignmentstagesforallvalidchoicesofthepredictionanchorchain
+{𝑎
+𝑚
+pred}
+giventhegroundtruthanchorchain
+𝑎gt.
+Finally,wepickthepermutation(line8)thatminimizes
+𝛼
+theRMSDbetweentheC coordinateaveragesofthepredictedandgroundtruthchains.
+Theaboveproceduremustbemodifiedduringtrainingtoaccountforcropping. Inparticular,inthe
+alignment stage, we must first restrict the ground truth anchor chain to the same crop region as the
+pairedpredictionchainbeforealignment. Similarly,intheassignmentstage,foreachpredictedchain
+thegroundtruthchainsmustberestrictedtothesamecropregionbeforeassignment.
+19
+
+--- PAGE 20 ---
+bioRxiv preprint doi: https://doi.org/10.1101/2021.10.04.463034; this version posted October 4, 2021. The copyright holder for this preprint
+(which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission.
+ProteincomplexpredictionwithAlphaFold-Multimer
+Algorithm 3 Multi-chainpermutationalignment
+def MultiChainPermutationAlignment(
+{x pred},{x gt},
+𝑘 𝑙
+{𝑎 𝑚 pred},𝑎gt) : x 𝑘 pred ∈ R𝑛 𝑘×3, x 𝑙 gt ∈ R𝑛 𝑙×3, 𝑎 𝑚 pred ∈ N, 𝑎gt ∈ N
+# Transformgroundtruthontopredictionsuchthatanchorsarealigned.
+1: 𝑇 𝑚 ← get_transform(x 𝑎 gt gt , x 𝑎 pr p e re d d )
+𝑚
+2: x 𝑙 gt ←𝑇 𝑚 ·x 𝑙 gt
+3: 𝑥 ¯ 𝑘 pred ← mean(x 𝑘 pred) 𝑥 ¯ 𝑘 pred ∈ R3
+4: 𝑥 ¯ 𝑙 gt ← mean(x 𝑙 gt) 𝑥 ¯ 𝑙 gt ∈ R3
+5: p𝑚 = FindOptimalPermutation({𝑥 ¯ 𝑘 pred},{𝑥 ¯ 𝑙 gt}) p𝑚 ∈ N𝑁 chains
+6: 𝑠 𝑚𝑘 ← rmsd(𝑥 ¯ 𝑘 pred,𝑥 ¯𝑝 g 𝑚 t 𝑘 ) 𝑠 𝑚𝑘 ∈ R
+7: 𝑠 𝑚 ← sum(s𝑚 )
+8: best_idx ← argmin({𝑠 𝑚 })
+9: return p best_idx
+Algorithm 4 FindOptimalPermutation
+def
+FindOptimalPermutation({𝑥
+¯
+pred},{𝑥
+¯
+gt})
+:
+𝑘 𝑙
+1: 𝑑 𝑘𝑙 ← ||𝑥 ¯ 𝑘 pred −𝑥 ¯ 𝑙 gt|| 𝑑 𝑘𝑙 ∈ R
+2: for all 𝑘 ∈ [0 ,...,𝑁 chains −1] do
+3: best_idx ← argmin(d𝑘 )
+# Ensurethisgroundtruthchainindexcannotbepickedagain.
+4: d :best_idx += 109
+5: 𝑝 𝑘 ← best_idx
+6: endfor
+7: return {𝑝 𝑘 }
+7.4. Cross-Chain Genetics
+Inordertomakecross-chaincoevolutionaryinformationavailabletothenetwork,itisnecessarytopair
+sequencesbetweentheper-chainMSAssuchthattheyformvalidorthologsofthetargetsequence. In
+practice,thispairingcan’tbedoneexactly,andvariousheuristicmethodsareusedinsteadtoapproxi-
+mate it. We follow the procedure of Zhou et al. [12], which pairs sequences of the same species and
+disambiguatesaccordingtoeithergeneticdistanceorsequencesimilarity,dependingonwhetherthe
+speciesisprokaryoticoreukaryotic. Ourexactstepsareasfollows:
+1. Foreachchain,JackHMMERv3.3[34]isusedtoquerytheunclusteredUniProt2020_05database
+[35]withmaximumMSAdepthsetto50,000,andnon-defaultflagsvaluessetto-N 1 -e 0.0001
+-Z 119222328.
+2. Theper-chainMSAsequencesaregroupedbyspecies,usingspecieslabelsderivedfromUniProt’s
+idmappingdownloadedfromhttps://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/idmapping/
+forthe2020_05UniProtversion.
+20
+
+--- PAGE 21 ---
+bioRxiv preprint doi: https://doi.org/10.1101/2021.10.04.463034; this version posted October 4, 2021. The copyright holder for this preprint
+(which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission.
+ProteincomplexpredictionwithAlphaFold-Multimer
+3. Sequences are then paired within a specific species. If there is only one sequence per species,
+wesimplyconcatenatethem. Otherwise,weneedtodisambiguate. Thedisambiguationmethod
+differsdependingonwhetherthespeciesiseukaryoticorprokaryotic.
+• Prokaryote: wematchthechainMSAsbyminimizingthebase-pairdistancebetweenchains.
+(a) The chains are considered in order of the chain id. Candidate MSA hits from the first
+chainareconsideredinorderofe-valueprovidedbyJackHMMER.
+(b) Hits for second and subsequent chains are chosen to minimize the base-pair distance
+fromthepreviouschain’shit,withahardcut-offifthedistanceistoogreat. Base-pair
+distanceisapproximatedusingthelexicographicdifferenceoftheUniprotaccessionIDs.
+(c) IfacandidateMSAhithasmorethan90%sequenceidentitytothequerychain,ormore
+than50%unmatchedgaps,theentirematchedsetofhitsuptothatchainisdiscarded
+andwemoveontothenextcandidateMSAhitfromthefirstchain.
+• Eukaryote: wematchthechainMSAsbyorderingthembysequenceidentitytothetarget
+sequenceandmatchingsequencesofthesamerank. Therewillbeasmanymatchesasthere
+arehitsintheshortestMSA.
+4. In both cases, chains with empty MSAs are not matched and the resulting paired MSA will be
+paddedwithgap(no-match)symbols.
+5. ThetargetcomplexisidentifiedaseukaryoticorprokaryoticfromthePDBentryforthecomplex,
+using the NCBI taxonomy database [36] and UniProt taxonomy [35] to determine the domain.
+Wedefaulttotheeukaryoticmethodwherethedomainisunknown.
+7.5. Chain Relative Positional Encoding
+In AlphaFold [1], relative positional features are encoded into the initial pair representation of the
+network,allowingthenetworktoreasonaboutthepositionsofresiduesinthechainandbreaksymmetry
+between identical residues. In the case of multimers, we also need to tell the network when two
+residues are in different chains, allowing it to break symmetry between homomer chains. To do this
+𝑓rel_pos
+(Algorithm 5) we simply add an extra bin to the relative position encoding of AlphaFold to
+𝑖𝑗
+𝑓same_entity
+denote ‘different chain’. Furthermore, we also provide a feature to the network encoding
+𝑖𝑗
+𝑓rel_chain
+whethertheresiduesarefromchainswithidenticalsequences,andanotherfeature encoding
+𝑖𝑗
+relativechainindexbetweenchainsofidenticalsequence. Relativeresidueindicesareclippedbetween
+[−𝑟 ,𝑟 ],with 𝑟 = 32,andrelativechainindicesareclippedbetween [−𝑠 ,𝑠 ],with 𝑠 = 2.
+max max max max max max
+𝑓residue_index 𝑖 𝑓asym_id 𝑓entity_id 𝑓sym_id
+istheindexofresidue ,and , and arechainidentifiersforresidue
+𝑖 𝑖 𝑖 𝑖
+𝑖 𝑓asym_id 𝑓entity_id
+: distiguishes between chains, distinguishes between unique chain sequences, and
+𝑖 𝑖
+𝑓sym_id
+distinguishesbetweenchainsofthesamesequence.
+𝑖
+7.6. Mixed Frame Aligned Point Error (FAPE) Clamping
+In AlphaFold the frame aligned point error (FAPE) backbone loss is clamped at 10 Å, emphasizing
+accurate positioning of residues within their local neighbourhood, but de-emphasizing longer range
+errors. Formultimerchains,wealsowanttoencourageaccuratepositioningofinterfaceresidues,which
+areingeneralmuchfartherapartthanneighbouringwithin-chainresidues. Weachievethisbysplitting
+theFAPElossintotwo. Thefirstisclampedat10Åandappliedtowithin-chainresidue-pairs;thesecond
+isunclampedandappliedtobetween-chainresidue-pairs. Thesetwolossesarethensummed(which
+alsohastheeffectofupweightingbetween-chainresidue-pairs).
+21
+
+--- PAGE 22 ---
+bioRxiv preprint doi: https://doi.org/10.1101/2021.10.04.463034; this version posted October 4, 2021. The copyright holder for this preprint
+(which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission.
+ProteincomplexpredictionwithAlphaFold-Multimer
+Algorithm 5 Relativepositionencoding
+def relpos({𝑓residue_index},{𝑓asym_id},{𝑓entity_id},{𝑓sym_id},𝑟 ,𝑠 ) :
+𝑖 𝑖 𝑖 𝑖 max max
+1: 𝑎 𝑖𝑗 ← 𝑓 𝑖 asym_id − 𝑓 𝑗 asym_id 𝑎 𝑖𝑗 ∈ Z
+2: 𝑑 𝑖𝑗 ← clip(𝑓 𝑖 residue_index − 𝑓 𝑗 residue_index +𝑟 max ,
+0 , 2·𝑟 max ) if 𝑎 𝑖𝑗 == 0 else 𝑟 max +1 𝑑 𝑖𝑗 ∈ N
+3: 𝑓 𝑖 r 𝑗 el_pos ← one_hot(𝑑 𝑖𝑗 , 2·𝑟 max +2)
+4: 𝑒 𝑖𝑗 ← 𝑓 𝑖 entity_id − 𝑓 𝑗 entity_id 𝑒 𝑖𝑗 ∈ Z
+5: 𝑓 𝑖 s 𝑗 ame_entity ← 𝑓 𝑖 entity_id == 𝑓 𝑗 entity_id
+6: 𝑠 𝑖𝑗 ← clip(𝑓 𝑖 sym_id − 𝑓 𝑗 sym_id +𝑠 max ,
+0 , 2·𝑠 max ) if 𝑒 𝑖𝑗 == 0 else 𝑠 max +1 𝑠 𝑖𝑗 ∈ N
+7: 𝑓 𝑖 r 𝑗 el_chain ← one_hot(𝑠 𝑖𝑗 , 2·𝑠 max +2)
+8: p𝑖𝑗 ← Linear(concat([𝑓 𝑖 r 𝑗 el_pos,𝑓 𝑖 s 𝑗 ame_entity,𝑓 𝑖 r 𝑗 el_chain])) p𝑖𝑗 ∈ R𝑁 channels
+9: return {p𝑖𝑗 }
+Algorithm 6 One-hotencodingwithnearestbin
+def one_hot(𝑥,𝑛 𝑏 ) : 𝑥 ∈ R 𝑛 𝑏 ∈ N
+1: v bins = [0 ,...,𝑛 𝑏 −1]
+2: p = 0 p ∈ {0 , 1}𝑁 bins
+3: 𝑏 = argmin(|𝑥 −v bins |)
+4: 𝑝 𝑏 = 1
+5: return p
+7.7. Architectural Modifications
+Wemadevarioussmallarchitecturechangestofacilitateinferencingproteinsoflargersize,andmade
+some further minor changes to make different components of the model more consistent with one
+another.
+Weswaptheorderoftheattentionandtriangularmultiplicativeupdatelayersinthetemplatestack
+relativetotheAlphaFoldmodel. ThisistomakeitconsistentwiththeorderintheEvoformerstack. The
+templateunitvectorsthatweredisabledintheAlphaFoldmodelareenabledhere,i.e. theyarenotset
+tozerobutcomputedfromthetemplatecoordinates. Wechangedthewaythetemplateembeddingsare
+aggregated. Beforethemodelwouldgiveapairwiserepresentationofembeddingsforeachtemplate,
+whichwerethenaggregatedviaattentionindependentlyforeachpairofresidues. Hereweuseasimpler
+approachwherebywesimplyaveragethetemplateembeddings. Forefficiencywecomputethissimilarly
+to how a moving averagewould be computed: we sumthe embeddings as they aregetting produced
+anddividebynumberoftemplatesattheend. Thishastheadvantagethatitdoesnotrequiretemplate
+embeddingsforalltemplatesinordertoaveragethem,whichleadstoasubstantialreductioninmemory
+consumption. Wehaveobservednosignificantdropinaccuracywhenaggregatingtemplatesinthisway.
+FurthermorewemovedtheouterproductmeantothestartoftheEvoformerblock. Thisallowsthepair
+representationandtheMSArepresentationtoevolveindependentlywithinagivenblock,withallcross
+22
+
+--- PAGE 23 ---
+bioRxiv preprint doi: https://doi.org/10.1101/2021.10.04.463034; this version posted October 4, 2021. The copyright holder for this preprint
+(which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission.
+ProteincomplexpredictionwithAlphaFold-Multimer
+communication happening at the start of the block. At training time this means that we do not need
+tokeepalloftheMSAstackactivationsandallthepairstackactivationsinmemoryatthesametime
+duringbackpropagation. Atinferencetimebothstackscanbeprocessedinparallel.
+7.8. Datasets
+The Recent-PDB-Multimers set consists of all targets in the Protein Data Bank [13] released between
+2018-04-30 and 2021-08-02. This set was filtered to proteins with more than one chain, less than 9
+chainsandlessthan1,536totalresidues. Itwasalsoclusteredwiththefollowingapproach,whichyields
+asetof4,433proteincomplexes:
+1. Assigneachchaintoits40%overlapcluster(usingtheclustersprovidedbyPDB(link)).
+2. Assigneachproteincomplexaclusteridentifierthatistheunionofallthesingle-chainclusterids
+fromstep1.
+3. Randomlypickasingleproteincomplexfromeveryfull-complexcluster.
+Predictions were made on the full complexes, however for Recent-PDB-Multimers metrics were
+computedforeachchain-pairseparately. Thechainpairswereselectediftheywere’incontact’inthe
+groundtruth,definedasanyheavyatomofonechainbeingwithin5Aofanyheavyatomoftheother
+chain. Theywerethenclusteredtoremoveredundancy: chainpairsweregreedilyselectedifthecluster
+id pair was unique amongst those already selected. Finally the data was filtered such that no chain
+has greater than 40% template identity to the training set. This resulted in 2,603 unique in-contact
+chain-pairs(5,271pre-filtering).
+7.9. Interface pTM
+DefininganinterfaceversionofAlphaFold’spredictedTM-scoremetric[1,§1.9.7]amountstomodifying
+𝑖 𝑗
+[1,Equation40]sothat and comefromdifferentchains.
+Concretely, if we follow the notation in [1, §1.9.7] such that 𝑋true = {𝑥(cid:174)t 𝑗 rue}, 𝑋 = {𝑥(cid:174) 𝑗 } are the C 𝛼
+positionsofthegroundtruthandpredictedstructuresrespectively, {𝑇 𝑖 true}, {𝑇 𝑖 } arethecorresponding
+backboneframes, 𝑒 𝑖𝑗 = (cid:107)𝑇 𝑖 −1◦𝑥(cid:174) 𝑗 −𝑇 𝑖 true−1◦𝑥(cid:174)t 𝑗 rue(cid:107) istheerrorinthepositionoftheC 𝛼 atomofresidue 𝑗
+𝑖 𝑁
+whenthepredictedandtruestructuresarealignedusingthebackboneframeofresidue , isthetotal
+res
+(cid:112)
+numberofresidues,and 𝑑 (𝑁 ) = 1 . 24 3maximum(𝑁 , 19) −15−1 . 8istheTM-scorenormalization
+0 res res
+constant,thenwecanobtainainterfaceTM-scorepredictionas:
+1 (cid:213) 1
+ipTM = max 𝔼 , (2)
+𝑖 |D −chain(𝑖) | 𝑗∈D
+−chain(𝑖)
+1+ (cid:16)
+𝑑 0 (|D
+𝑒
+−
+𝑖
+ch
+𝑗
+ain(𝑖) |)
+(cid:17)2
+where D −chain(𝑖) is the set of all residues except those of the chain of residue 𝑖 . As in [1, §1.9.7], the
+𝑒
+expectation is taken over the probability distribution defined by 𝑖𝑗, which is predicted by a neural
+network.
+23
+
+--- PAGE 24 ---
+bioRxiv preprint doi: https://doi.org/10.1101/2021.10.04.463034; this version posted October 4, 2021. The copyright holder for this preprint
+(which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission.
+ProteincomplexpredictionwithAlphaFold-Multimer
+Mean
+Incorrect Acceptable Medium High
+Method DockQ
+Count Count Count Count
+Score
+AlphaFold-Multimer 0.65 3 0 8 6
+AlphaFoldrefinedClusPro 0.49 7 1 4 5
+AlphaFoldrefinedClusPro
+0.47 7 1 5 4
+plusAlphaFold
+AlphaFold-Linker 0.41 7 1 5 4
+AlphaFold-Gap(ColabFold) 0.40 8 1 6 2
+ClusPro 0.25 10 3 4 0
+TableS1 | PerformanceontheBenchmark2datasetfrom[2]consistingof17heterodimerswithlow
+trainingsetsimilarity. ThefollowingCAPRIdefinitionswereused:
+Incorrect: 0 ≤ DockQ < 0.23
+Acceptable: 0.23 ≤ DockQ < 0.49
+Medium: 0.49 ≤ DockQ < 0.80
+High: 0.80 ≤ DockQ
+Target DockQScore
+5ZNG 0.02
+6A6I 0.05
+6GS2 0.50
+6H4B 0.80
+6IF2 0.74
+6II6 0.73
+6ONO 0.64
+6PNQ 0.56
+6Q76 0.91
+6U08 0.93
+6ZBK 0.79
+7AYE 0.88
+7D2T 0.78
+7M5F 0.89
+7N10 0.86
+7NLJ 0.06
+7P8K 0.86
+TableS2 | ResultspertargetforAlphaFold-Multimer,onthe17heterodimerBenchmark2datasetfrom
+[2]
+24
+
+--- PAGE 25 ---
+bioRxiv preprint doi: https://doi.org/10.1101/2021.10.04.463034; this version posted October 4, 2021. The copyright holder for this preprint
+(which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission.
+ProteincomplexpredictionwithAlphaFold-Multimer
+(a)HomomericInterfaces
+Mean
+Method DockQ Incorrect% Acceptable% Medium% High%
+Score
+AlphaFold-Linker 0.476 35.7 10.1 25.4 28.8
+AlphaFold-Multimer 0.523 30.7 9.83 25.1 34.3
+(b)HeteromericInterfaces
+Mean
+Method DockQ Incorrect% Acceptable% Medium% High%
+Score
+AlphaFold-Linker 0.290 57.5 10.4 20.6 11.4
+AlphaFold-Multimer 0.479 32.7 11.9 33.1 22.3
+TableS3 | PerformanceontheRecent-PDB-Multimersdataset,evaluatedonhomology-reducedchainpairs
+withlowtrainingsetsimilarity(seesubsection7.8),brokendownintoDockQcategoriesasinTableS1.
+25

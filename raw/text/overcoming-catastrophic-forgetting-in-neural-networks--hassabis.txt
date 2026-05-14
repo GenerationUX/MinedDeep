@@ -1,0 +1,512 @@
+
+--- PAGE 1 ---
+DEILPPA
+ECNEICSORUEN
+SCITAMEHTAM
+Overcoming catastrophic forgetting in
+neural networks
+JamesKirkpatricka,1,RazvanPascanua,NeilRabinowitza,JoelVenessa,GuillaumeDesjardinsa,AndreiA.Rusua,
+KieranMilana,JohnQuana,TiagoRamalhoa,AgnieszkaGrabska-Barwinskaa,DemisHassabisa,ClaudiaClopathb,
+DharshanKumarana,andRaiaHadsella
+aDeepMind,LondonEC45TW,UnitedKingdom;andbBioengineeringDepartment,ImperialCollegeLondon,LondonSW72AZ,UnitedKingdom
+EditedbyJamesL.McClelland,StanfordUniversity,Stanford,CA,andapprovedFebruary13,2017(receivedforreviewJuly19,2016)
+Theabilitytolearntasksinasequentialfashioniscrucialtothe In marked contrast to artificial neural networks, humans
+developmentofartificialintelligence.Untilnowneuralnetworks and other animals appear to be able to learn in a continual
+havenotbeencapableofthisandithasbeenwidelythoughtthat fashion (11). Recent evidence suggests that the mammalian
+catastrophic forgetting is an inevitable feature of connectionist brainmayavoidcatastrophicforgettingbyprotectingpreviously
+models. We show that it is possible to overcome this limitation acquired knowledge in neocortical circuits (11–14). When a
+andtrainnetworksthatcanmaintainexpertiseontasksthatthey mouseacquiresanewskill,aproportionofexcitatorysynapses
+havenotexperiencedforalongtime.Ourapproachremembers are strengthened; this manifests as an increase in the volume
+old tasks by selectively slowing down learning on the weights of individual dendritic spines of neurons (13). Critically, these
+importantforthosetasks.Wedemonstrateourapproachisscal- enlargeddendriticspinespersistdespitethesubsequentlearning
+ableandeffectivebysolvingasetofclassificationtasksbasedon ofothertasks,accountingforretentionofperformanceseveral
+a hand-written digit dataset and by learning several Atari 2600 months later (13). When these spines are selectively “erased,”
+gamessequentially. thecorrespondingskillisforgotten(11,12).Thisprovidescausal
+evidence that neural mechanisms supporting the protection of
+thesestrengthenedsynapsesarecriticaltoretentionoftaskper-
+synapticconsolidation|artificialintelligence|stabilityplasticity| formance.Theseexperimentalfindings—togetherwithneurobi-
+continuallearning|deeplearning ologicalmodelssuchasthecascademodel(15,16)—suggestthat
+continuallearningintheneocortexreliesontask-specificsynap-
+ticconsolidation,wherebyknowledgeisdurablyencodedbyren-
+Achieving artificial general intelligence requires that agents
+deringaproportionofsynapseslessplasticandthereforestable
+are able to learn and remember many different tasks (1).
+overlongtimescales.
+Thisisparticularlydifficultinreal-worldsettings:Thesequence
+Inthiswork,wedemonstratethattask-specificsynapticconsol-
+of tasks may not be explicitly labeled, tasks may switch unpre-
+idationoffersauniquesolutiontothecontinual-learningprob-
+dictably, and any individual task may not recur for long time
+lem for artificial intelligence. We develop an algorithm anal-
+intervals. Critically, therefore, intelligent agents must demon-
+ogous to synaptic consolidation for artificial neural networks,
+strateacapacityforcontinuallearning:thatis,theabilitytolearn
+which we refer to as elastic weight consolidation (EWC). This
+consecutive tasks without forgetting how to perform previously
+algorithmslowsdownlearningoncertainweightsbasedonhow
+trainedtasks.
+importanttheyaretopreviouslyseentasks.WeshowhowEWC
+Continual learning poses particular challenges for artificial
+can be used in supervised learning and reinforcement learn-
+neuralnetworksduetothetendencyforknowledgeofthepre-
+ing problems to train several tasks sequentially without forget-
+viouslylearnedtask(s)(e.g.,taskA)tobeabruptlylostasinfor-
+ting older ones, in marked contrast to previous deep-learning
+mationrelevanttothecurrenttask(e.g.,taskB)isincorporated.
+techniques.
+Thisphenomenon,termedcatastrophicforgetting(2–6),occurs
+specifically when the network is trained sequentially on multi-
+ple tasks because the weights in the network that are impor- Significance
+tant for task A are changed to meet the objectives of task B.
+Whereas recent advances in machine learning and in particu- Deep neural networks are currently the most successful
+lar deep neural networks have resulted in impressive gains in machine-learning technique for solving a variety of tasks,
+performance across a variety of domains (e.g., refs. 7 and 8), including language translation, image classification, and
+little progress has been made in achieving continual learning. image generation. One weakness of such models is that,
+Current approaches have typically ensured that data from all unlike humans, they are unable to learn multiple tasks
+tasksaresimultaneouslyavailableduringtraining.Byinterleav- sequentially. In this work we propose a practical solution
+ing data from multiple tasks during learning, forgetting does to train such models sequentially by protecting the weights
+not occur because the weights of the network can be jointly important for previous tasks. This approach, inspired by
+optimized for performance on all tasks. In this regime—often synaptic consolidation in neuroscience, enables state of the
+referred to as the multitask learning paradigm—deep-learning artresultsonmultiplereinforcementlearningproblemsexpe-
+techniques have been used to train single agents that can suc- riencedsequentially.
+cessfullyplaymultipleAtarigames(9,10).Iftasksarepresented
+sequentially,multitasklearningcanbeusedonlyifthedataare Authorcontributions:J.K.,R.P.,N.R.,D.H.,C.C.,D.K.,andR.H.designedresearch;J.K.,
+recordedbyanepisodicmemorysystemandreplayedtothenet- R.P.,N.R.,J.V.,G.D.,A.A.R.,K.M.,J.Q.,T.R.,andA.G.-B.performedresearch;andJ.K.,R.P.,
+work during training. This approach [often called system-level N.R.,D.K.,andR.H.wrotethepaper.
+consolidation(4,5)]isimpracticalforlearninglargenumbersof Theauthorsdeclarenoconflictofinterest.
+tasks,asinoursettingitwouldrequiretheamountofmemories ThisarticleisaPNASDirectSubmission.
+beingstoredandreplayedtobeproportionaltothenumberof FreelyavailableonlinethroughthePNASopenaccessoption.
+tasks.Thelackofalgorithmstosupportcontinuallearningthus 1Towhomcorrespondenceshouldbeaddressed.Email:kirkpatrick@google.com.
+remains a key barrier to the development of artificial general
+Thisarticlecontainssupportinginformationonlineatwww.pnas.org/lookup/suppl/doi:10.
+intelligence. 1073/pnas.1611835114/-/DCSupplemental.
+www.pnas.org/cgi/doi/10.1073/pnas.1611835114 PNAS | March28,2017 | vol.114 | no.13 | 3521–3526
+.09.03.82.401
+sserdda
+PI
+morf
+6202
+,31
+yaM
+no
+09.03.82.401
+yb
+gro.sanp.www//:sptth
+morf
+dedaolnwoD
+
+--- PAGE 2 ---
+Results independentparts,onedefiningtaskA(D A)andtheotherdefin-
+EWC. In brains, synaptic consolidation might enable continual ingtaskB(D B).Then,wecanrearrangeEq.1:
+learning by reducing the plasticity of synapses that are vital to
+logp(θ|D)=logp(D |θ)+logp(θ|D )−logp(D ). [2]
+previously learned tasks. We implement an algorithm that per- B A B
+forms a similar operation in artificial neural networks by con- Note that the left-hand side is still describing the posterior
+strainingimportantparameterstostayclosetotheiroldvalues. probability of the parameters given the entire dataset, whereas
+Inthissection,weexplainwhyweexpecttofindasolutiontoa the right-hand side depends only on the loss function for task
+newtaskintheneighborhoodofanolderone,howweimplement B,logp(D
+B
+|θ).AlloftheinformationabouttaskAmustthere-
+theconstraint,andfinallyhowwedeterminewhichparameters forehavebeenabsorbedintotheposteriordistributionp(θ|D
+A
+).
+areimportant. Thisposteriorprobabilitymustcontaininformationaboutwhich
+A deep neural network consists of multiple layers of lin- parameterswereimportanttotaskAandisthereforethekeyto
+ear projection followed by element-wise nonlinearities. Learn- implementingEWC.Thetrueposteriorprobabilityisintractable,
+ing a task consists of adjusting the set of weights and biases θ so,followingtheworkontheLaplaceapproximationbyMackay
+of the linear projections, to optimize performance. Many con- (19), we approximate the posterior as a Gaussian distribution
+figurations of θ will result in the same performance (17, 18); withmeangivenbytheparametersθ∗ andadiagonalprecision
+A
+this overparameterization makes it likely that there is a solu- givenbythediagonaloftheFisherinformationmatrixF.F has
+tion for task B, θ B ∗, that is close to the previously found solu- threekeyproperties(20):(i)Itisequivalenttothesecondderiva-
+tion for task A, θ A ∗. While learning task B, EWC therefore tive of the loss near a minimum, (ii) it can be computed from
+protects the performance in task A by constraining the param- first-orderderivativesaloneandisthuseasytocalculateevenfor
+eterstostayinaregionoflowerrorfortaskAcenteredaround large models, and (iii) it is guaranteed to be positive semidefi-
+θ A ∗, as shown schematically in Fig. 1. This constraint is imple- nite.Notethatthisapproachissimilartoexpectationpropaga-
+mented as a quadratic penalty and can therefore be imagined tionwhereeachsubtaskisseenasafactoroftheposterior(21).
+as a spring anchoring the parameters to the previous solution, Given this approximation, the function L that we minimize in
+hencehavingthenameelastic.Importantly,thestiffnessofthis EWCis
+spring should not be the same for all parameters; rather, it
+shouldbegreaterforparametersthatmostaffectperformancein L(θ)=L (θ)+
+(cid:88)λ
+F (θ −θ∗ )2, [3]
+taskA. B 2 i i A,i
+i
+Tojustifythischoiceofconstraintandtodefinewhichweights
+aremostimportantforatask,itisusefultoconsiderneuralnet- where L B (θ) is the loss for task B only, λ sets how important
+work training from a probabilistic perspective. From this point the old task is compared with the new one, and i labels each
+ofview,optimizingtheparametersistantamounttofindingtheir parameter.
+mostprobablevaluesgivensomedataD.Wecancomputethis When moving to a third task, task C, EWC will try to keep
+conditionalprobabilityp(θ|D)fromthepriorprobabilityofthe thenetworkparametersclosetothelearnedparametersofboth
+parametersp(θ)andtheprobabilityofthedatap(D|θ)byusing tasks A and B. This can be enforced either with two separate
+Bayes’rule: penaltiesorasonebynotingthatthesumoftwoquadraticpenal-
+tiesisitselfaquadraticpenalty.
+logp(θ|D)=logp(D|θ)+logp(θ)−logp(D). [1]
+EWC Extends Memory Lifetime for Random Patterns. As an initial
+Note that the log probability of the data given the parame- demonstration,wetrainedalinearnetworktoassociaterandom
+terslogp(D|θ)issimplythenegativeofthelossfunctionforthe (i.e.,uncorrelated)binarypatternstobinaryoutcomes.Whereas
+problemathand−L(θ).Assumethatthedataaresplitintotwo this problem differs in important ways from more realistic set-
+tingsthatweexaminelater,thisscenarioadmitsanalyticalsolu-
+tions and thus provides insights into key differences between
+EWC and plain gradient descent. In this case, the diagonal of
+thetotalFisherinformationmatrixisproportionaltothenum-
+berofpatternsobserved;thusinthecaseofEWCthelearning
+ratelowersasmorepatternsareobserved.Followingref.15,we
+define a memory as retained if its signal-to-noise ratio (SNR)
+exceedsacertainthreshold.Fig.2,TopshowstheSNRobtained
+usinggradientdescent(bluelines)andEWC(redlines)forthe
+firstpatternobserved.Atfirst,theSNRinthetwocasesisvery
+similar, following a power-law decay with a slope of −0.5. As
+thenumberofpatternsobservedapproachesthecapacityofthe
+network,theSNRforgradientdescentstartsdecayingexponen-
+tially,whereasEWCmaintainsapower-lawdecay.Theexponen-
+tialdecayobservedwithgradientdescentisduetonewpatterns
+interferingwitholdones;EWCprotectsfromsuchinterference
+andincreasesthefractionofmemoriesretained(Fig.2,Bottom).
+Fig.1. EWCensurestaskAisrememberedwhiletrainingontaskB.Train- Inthenextsectionsweshowthatinmorerealisticcases,where
+ingtrajectoriesareillustratedinaschematicparameterspace,withparam- inputpatternshavemorecomplexstatistics,interferenceoccurs
+eterregionsleadingtogoodperformanceontaskA(gray)andontaskB more easily with consequently more striking benefits for EWC
+(creamcolor).Afterlearningthefirsttask,theparametersareatθ A ∗.Ifwe overgradientdescent.
+takegradientstepsaccordingtotaskBalone(bluearrow),wewillminimize
+thelossoftaskBbutdestroywhatwehavelearnedfortaskA.Ontheother
+EWC Allows Continual Learning in a Supervised Learning Context.
+hand,ifweconstraineachweightwiththesamecoefficient(greenarrow),
+We next addressed the problem of whether EWC could allow therestrictionimposedistoosevereandwecanremembertaskAonlyat
+deepneuralnetworkstolearnasetofmorecomplextaskswith-
+theexpenseofnotlearningtaskB.EWC,conversely,findsasolutionfor
+taskBwithoutincurringasignificantlossontaskA(redarrow)byexplicitly outcatastrophicforgetting.Inparticular,wetrainedafullycon-
+computinghowimportantweightsarefortaskA. nectedmultilayerneuralnetworkonseveralsupervisedlearning
+3522 | www.pnas.org/cgi/doi/10.1073/pnas.1611835114 Kirkpatricketal.
+.09.03.82.401
+sserdda
+PI
+morf
+6202
+,31
+yaM
+no
+09.03.82.401
+yb
+gro.sanp.www//:sptth
+morf
+dedaolnwoD
+
+--- PAGE 3 ---
+DEILPPA
+ECNEICSORUEN
+SCITAMEHTAM
+largenumberoftaskstobelearnedinsequence,withonlymod-
+estgrowthintheerrorrates.
+GiventhatEWCallowsthenetworktoeffectivelysqueezein
+morefunctionalityintoanetworkwithfixedcapacity,wemight
+ask whether it allocates completely separate parts of the net-
+workforeachtaskorwhethercapacityisusedinamoreefficient
+fashionbysharingrepresentation.Toassessthis,wedetermined
+whethereachtaskdependsonthesamesetsofweights,bymea-
+suringtheoverlapbetweenpairsoftasks’respectiveFisherinfor-
+mationmatrices(FisherOverlap).Asmalloverlapmeansthatthe
+twotasksdependondifferentsetsofweights(i.e.,EWCsubdi-
+videsthenetwork’sweightsfordifferenttasks);alargeoverlap
+indicates that weights are being used for both of the two tasks
+(i.e.,EWCenablessharingofrepresentations).Fig.3Cshowsthe
+overlapasafunctionofdepth.Asasimplecontrol,whenanet-
+Fig.2. Log-logplotoftheSNRforrecallingthefirstpatternafterobserv- workistrainedontwotasksthatareverysimilartoeachother
+ingt randompatterns.Ifnopenaltyisapplied(blue),theSNRdecaysas (twoversionsofMNISTwhereonlyafewpixelsarepermutated),
+(n/t)0.5onlywhentissmallerthanthenumberofsynapsesn=1,000and thetasksdependonsimilarsetsofweightsthroughoutthewhole
+thendecaysexponentially.WhenEWCisapplied(red),thedecaytakesa network(graydashedcurve).Whenthenthetwotasksaremore
+power-lawformforalltimes.Thedashedandsolidlinesshowtheanalytic dissimilarfromeachother,thenetworkbeginstoallocatesepa-
+solutionsderivedinEqs.S28andS30.Thefractionofmemoriesretained
+rateweightsforthetwotasks(blackdashedline).Nevertheless,
+(Bottom)isdefinedasthefractionofpatternswhoseSNRexceeds1.EWC
+evenforthelargepermutations,thelayersofthenetworkcloser
+resultsinahigherfractionofmemoriesbeingretainedwhenthenetwork
+isatcapacity(t≈n).Afternetworkcapacityisexceeded(Right),EWCper- totheoutputareindeedbeingreusedforbothtasks.Thisreflects
+formsworsethangradientdescent(Discussion).Moredetailedplotscanbe thefactthatthepermutationsmaketheinputdomainverydif-
+foundintheSupportingInformation,Figs.S1andS2. ferent,buttheoutputdomain(i.e.,theclasslabels)isshared.
+EWCAllowsContinualLearninginaReinforcementLearningContext.
+tasksinsequence.Withineachtask,wetrainedtheneuralnet- We next tested whether EWC could support continual learn-
+workinthetraditionalway,namelybyshufflingthedataandpro- ing in the far more demanding reinforcement learning (RL)
+cessingtheminsmallbatches.Afterafixedamountoftrainingon domain.InRL,agentsdynamicallyinteractwiththeenvironment
+eachtask,however,weallowednofurthertrainingonthattask’s todevelopapolicythatmaximizescumulativefuturereward.We
+dataset. askedwhetherDeepQNetworks(DQNs)—anarchitecturethat
+Weconstructedthesetoftasksfromtheproblemofclassifying has achieved impressive successes in such challenging RL set-
+hand-writtendigitsfromtheMixedNationalInstituteofScience tings(25)—couldbeharnessedwithEWCtosuccessfullysupport
+and Technology (MNIST) (22) dataset, according to a scheme continuallearningintheclassicAtari2600taskset(26).Specif-
+previouslyusedinthecontinual-learningliterature(23,24).For ically,eachexperimentconsistedof10gameschosenrandomly
+each task, we generated a fixed, random permutation by which fromthosethatareplayedathumanlevelorabovebyDQN.At
+the input pixels of all images would be shuffled. Each task was training time, the agent was exposed to experiences from each
+thusofequaldifficultytoeachother,butwouldrequireadiffer- gameforextendedperiodsoftime.Theorderofpresentationof
+entsolution. thegameswasrandomizedandallowedforreturningtothesame
+Training on this sequence of tasks with plain stochastic gra- gamesseveraltimes.Atregularintervalswewouldalsotestthe
+dient descent (SGD) incurs catastrophic forgetting, as demon- agent’sscoreoneachofthe10games,withoutallowingtheagent
+strated in Fig. 3A. The blue curves show performance on the totrainonthem(Fig.4A).
+testing sets of two different tasks. At the point at which the Notably,previousreinforcementlearningapproachestocon-
+training regime switches from training on the first task (A) to tinuallearninghavereliedeitheronaddingcapacitytothenet-
+trainingonthesecondone(B),theperformancefortaskBfalls work (27, 28) or on learning each task in separate networks,
+rapidly, whereas for task A it climbs steeply. The forgetting of which are then used to train a single network that can play all
+taskAcompoundsfurtherwithmoretrainingtimeandtheaddi- games (9, 10). In contrast, the EWC approach presented here
+tionofsubsequenttasks.Thisproblemcannotbecounteredby makesuseofasinglenetworkwithfixedresources(i.e.,network
+regularizing the network with a fixed quadratic constraint for capacity)andhasminimalcomputationaloverhead.
+eachweight(greencurves,L2regularization):here,theperfor- In addition to using EWC to protect previously acquired
+manceintaskAdegradesmuchlessseverely,buttaskBcannot knowledge,weusedtheRLdomaintoaddressabroadersetof
+belearnedproperlyastheconstraintprotectsallweightsequally, requirements that are needed for successful continual-learning
+leavinglittlesparecapacityforlearningonB.However,whenwe systems: In particular, higher-level mechanisms are needed to
+useEWC,andthustakeintoaccounthowimportanteachweight inferwhichtaskiscurrentlybeingperformed,detectandincor-
+istotaskA,thenetworkcanlearntaskBwellwithoutforgetting poratenoveltasksastheyareencountered,andallowforrapid
+task A (red curves). This is exactly the behavior described dia- andflexibleswitchingbetweentasks(29).Intheprimatebrain,
+grammaticallyinFig.1. theprefrontalcortexiswidelyviewedassupportingthesecapa-
+Previousattemptstosolvethecontinual-learningproblemfor bilitiesbysustainingneuralrepresentationsoftaskcontextthat
+deep neural networks have relied upon careful choice of net- exerttop–downgatinginfluencesonsensoryprocessing,working
+workhyperparameters,togetherwithotherstandardregulariza- memory,andactionselection(30–33).
+tion methods, to mitigate catastrophic forgetting. However, on Inspiredbythisevidence,weaugmentedtheDQNagentswith
+thistask,theyhaveachievedreasonableresultsonlyonuptotwo extrafunctionalitytohandleswitchingtaskcontexts.Knowledge
+random permutations (23, 24). Using a similar cross-validated ofwhichtaskisbeingperformedisrequiredfortheEWCalgo-
+hyperparametersearchtothatinref.24,wecomparedtraditional rithm as it informs which quadratic constraints are currently
+dropoutregularizationtoEWC.Wefindthatstochasticgradient active and also which quadratic constraint to update when the
+descentwithdropoutregularizationaloneislimitedandthatit taskcontextchanges.Toinferthetaskcontext,weimplemented
+doesnotscaletomoretasks(Fig.3B).Incontrast,EWCallowsa anonlineclusteringalgorithmthatistrainedwithoutsupervision
+Kirkpatricketal. PNAS | March28,2017 | vol.114 | no.13 | 3523
+.09.03.82.401
+sserdda
+PI
+morf
+6202
+,31
+yaM
+no
+09.03.82.401
+yb
+gro.sanp.www//:sptth
+morf
+dedaolnwoD
+
+--- PAGE 4 ---
+A B C
+Fig.3. ResultsonthepermutedMNISTtask.(A)TrainingcurvesforthreerandompermutationsA,B,andC,usingEWC(red),L2regularization(green),and
+plainSGD(blue).NotethatonlyEWCiscapableofmaintainingahighperformanceonoldtasks,whileretainingtheabilitytolearnnewtasks.(B)Average
+performanceacrossalltasks,usingEWC(red)orSGDwithdropoutregularization(blue).Thedashedlineshowstheperformanceonasingletaskonly.
+(C)SimilaritybetweentheFisherinformationmatricesasafunctionofnetworkdepthfortwodifferentamountsofpermutation.Eitherasmallsquareof
+8×8pixelsinthemiddleoftheimageispermuted(gray)oralargesquareof26×26pixelsispermuted(black).Notehowthemoredifferentthetasks
+are,thesmallertheoverlapinFisherinformationmatricesinearlylayers.
+and is based on the forget-me-not (FMN) process (34) (see in this space (orange) has the same effect as perturbing in
+Materials and Methods for more details). We also allowed the the inverse Fisher space. This suggests that we are overconfi-
+DQNagentstomaintainseparateshort-termmemorybuffersfor dentaboutcertainparametersbeingunimportant:Itistherefore
+eachinferredtask.Theseallowactionvaluesforeachtasktobe likelythatthechieflimitationofthecurrentimplementationis
+learned off-policy, using an experience replay mechanism (25). thatitunderestimatesparameteruncertainty.
+Assuch,theoverallsystemhasmemoryontwotimescales:Over
+shorttimescales,theexperiencereplaymechanismallowslearn- Discussion
+ingintheDQNtobebasedontheinterleavedanduncorrelated
+We present an algorithm, EWC, that allows knowledge of pre-
+experiences(25).Atlongertimescales,know-howacrosstasksis
+vioustaskstobeprotectedduringnewlearning,therebyavoid-
+consolidated by using EWC. Finally, we allowed a small num-
+ing catastrophic forgetting. It does so by selectively decreas-
+berofnetworkparameterstobegamespecific.Inparticular,we
+ing the plasticity of weights and thus has certain parallels with
+allowedeachlayerofthenetworktohavebiasesandper-element
+neurobiological models of synaptic consolidation (15, 16). We
+multiplicativegainsthatwerespecifictoeachgame.
+implement EWC as a soft, quadratic constraint whereby each
+WecomparetheperformanceofagentsthatuseEWC(red)
+weight is pulled back toward its old values by an amount
+withonesthatdonot(blue)oversetsof10gamesinFig.4.We
+proportional to its importance for performance on previously
+measuretheperformanceasthetotalhuman-normalizedscore learnedtasks.Inanalyticallytractablesettings,wedemonstrate
+acrossall10games;thescoreoneachgameisclippedto1such that EWC can protect network weights from interference and
+that the total maximum score is 10 (at least at human level on thus increase the fraction of memories retained over plain
+allgames)and0meanstheagentisasgoodasarandomagent. gradient descent. To the extent that tasks share structure, net-
+If we rely on plain gradient descent methods as in ref. 25, the works trained with EWC reuse shared components of the net-
+agent never learns to play more than one game and the harm work. We further show that EWC can be effectively com-
+inflictedbyforgettingtheoldgamesmeansthatthetotalhuman- bined with deep neural networks to support continual learning
+normalizedscoreremains belowone. ByusingEWC,however, in challenging reinforcement learning scenarios, such as Atari
+the agents do indeed learn to play multiple games. As a con- 2600games.
+trol, we also considered the benefit to the agent if we explic- TheEWCalgorithmcanbegroundedinBayesianapproaches
+itlyprovidedtheagentwiththetruetasklabel(Fig.4B,brown), tolearning.Formally,whenthereisanewtasktobelearned,the
+ratherthanrelyingonthelearnedtaskrecognitionthroughthe networkparametersaretemperedbyapriorwhichistheposte-
+FMNalgorithm(Fig.4B,red).Theimprovementherewasonly riordistributionontheparametersgivendatafromtheprevious
+modest. task(s). This enables fast learning rates on parameters that are
+Whereas augmenting the DQN agent with EWC allows it to poorlyconstrainedbytheprevioustasksandslowlearningrates
+learn many games in sequence without suffering from catas- forthosethatarecrucial.
+trophic forgetting, it does not reach the score that would have There has been previous work (35, 36) using a quadratic
+beenobtainedbytraining10separateDQNs(Fig.S3).Onepos- penaltytoapproximateoldpartsofthedataset,buttheseappli-
+siblereasonforthisisthatweconsolidatedweightsforeachgame cations have been limited to small models. Specifically, ref. 35
+basedonatractableapproximationofparameteruncertainty,the usedrandominputstocomputeaquadraticapproximationtothe
+Fisher information. We therefore sought to test the quality of energysurface.Theirapproachisslow,asitrequiresrecomput-
+ourestimatesempirically.Todoso,wetrainedanagentonasin- ingthecurvatureateachsample.TheELLAalgorithmdescribed
+glegameandmeasuredhowperturbingthenetworkparameters in ref. 36 requires computing and inverting matrices with a
+affectedtheagent’sscore.Regardlessofwhichgametheagent dimensionality equal to the number of parameters being opti-
+wastrainedon,weobservedthesamepatterns,showninFig.4C. mized;thereforeithasbeenmainlyappliedtolinearandlogis-
+First,theagentwasalwaysmorerobusttoparameterperturba- tic regressions. In contrast, EWC has a run time that is linear
+tionsshapedbytheinverseofthediagonaloftheFisherinforma- in both the number of parameters and the number of training
+tion (blue), as opposed to uniform perturbations (black). This examples.Wecouldachievethislowcomputationalcomplexity
+validates that the diagonal of the Fisher information is a good only by using a crude Laplace approximation to the true the
+estimate of how important a parameter is. Within our approx- posterior distribution of the parameters. Despite its low com-
+imation, perturbing in the null space should have no effect on putational cost and empirical successes—even in the setting of
+performance.Empirically,however,weobservethatperturbing challenging RL domains—our use of a point estimate of the
+3524 | www.pnas.org/cgi/doi/10.1073/pnas.1611835114 Kirkpatricketal.
+.09.03.82.401
+sserdda
+PI
+morf
+6202
+,31
+yaM
+no
+09.03.82.401
+yb
+gro.sanp.www//:sptth
+morf
+dedaolnwoD
+
+--- PAGE 5 ---
+DEILPPA
+ECNEICSORUEN
+SCITAMEHTAM
+A B C
+Fig.4. ResultsonAtaritask.(A)Scheduleofgames.Blackbarsindicatethesequentialtrainingperiods(segments)foreachgame.Aftereachtraining
+segment,performanceonallgamesismeasured.TheEWCconstraintisactivatedonlytoprotectanagent’sperformanceoneachgameoncetheagenthas
+experienced20millionframesinthatgame.(B)Totalhuman-averagedscoresforeachmethodacrossallgames.Thescoreisaveragedacrossrandomseeds
+andoverthechoiceofwhich10gamesareplayed(Fig.S3).Thehuman-normalizedscoreforeachgameisclippedto1.Redcurvedenotesthenetworkthat
+infersthetasklabelsusingtheFMNalgorithm;browncurveisthenetworkprovidedwiththetasklabels.TheEWCandSGDcurvesstartdivergingwhen
+gamesstartbeingplayedagainthathavebeenprotectedbyEWC.(C)Sensitivityofasingle-gameDQN,trainedonBreakout,tonoiseaddedtoitsweights.
+TheperformanceonBreakoutisshownasafunctionofthemagnitude(standarddeviation)oftheweightperturbation.Theweightperturbationisdrawn
+fromazeromeanGaussianwithcovariancethatiseitheruniform(black;i.e.,targetsallweightsequally),theinverseFisher((F+λI)−1;blue;i.e.,mimicking
+weightchangesallowedbyEWC),oruniformwithinthenullspaceoftheFisher(orange;i.e.,targetsweightsthattheFisherestimatesthatthenetwork
+outputisentirelyinvariantto).Toevaluatethescore,werantheagentfor10fullgameepisodes,drawinganewrandomweightperturbationforevery
+timestep.
+posterior’s variance (as in a Laplace approximation) does con- therateofpotentiationeventsinthecascademodel,butontask
+stituteasignificantweakness(Fig.4C).Ourinitialexplorations relevanceinEWC.
+suggest that one might improve on this local estimate by using In this respect, the perspective we offer here aligns with a
+Bayesianneuralnetworks(37). recent proposal that each synapse stores not only its current
+Whereas this paper has primarily focused on building an weight, but also an implicit representation of its uncertainty
+algorithminspiredbyneurobiologicalobservationsandtheories aboutthatweight(39).Thisideaisgroundedinobservationsthat
+(15,16),itisalsoinstructivetoconsiderwhetherthealgorithm’s postsynapticpotentialsarehighlyvariableinamplitude(sugges-
+successescanfeedbackintoourunderstandingofthebrain.In tiveofsamplingfromtheweightposteriorduringcomputation)
+particular,weseeconsiderableparallelsbetweenEWCandtwo and those synapses that are more variable are more amenable
+computationaltheoriesofsynapticplasticity. topotentiationordepression(suggestiveofupdatingtheweight
+Cascade models of synaptic plasticity (15, 16) construct posterior).Althoughwedonotexplorethecomputationalben-
+dynamical models of synaptic states to understand the trade- efits of sampling from a posterior here, our work aligns with
+off between plasticity and memory retention. Cascade models thenotionthatweightuncertaintyshouldinformlearningrates.
+have important differences from our approach. In particular, We take this one step farther, to emphasize that consolidating
+theyaimtoextendmemorylifetimesforsystemsatsteadystate thehighprecisionweightsenablescontinuallearningoverlong
+(i.e., the limit of observing an infinite number of stimuli). As timescales.WithEWC,threevalueshavetobestoredforeach
+such, they allow for synapses to become more or less plastic synapse: the weight itself, its variance, and its mean. Interest-
+and model the process of both retaining and forgetting mem- ingly, synapses in the brain also carry more than one piece of
+ories. In contrast, we tackle the simpler problem of protecting information. For example, the state of the short-term plastic-
+thenetworkfrominterferencewhenstartingfromanemptynet- itycouldcarryinformationonthevariance(39,40).Theweight
+work.InfactinEWCweightscanonlybecomemoreconstrained for the early phase of plasticity (41) could encode the current
+(i.e., less plastic) with time and thus we can model only mem- synaptic strength, whereas the weight associated with the late
+ory retention rather than forgetting. Therefore when the num- phase of plasticity or the consolidated phase could encode the
+berofrandompatternsobservedexceedsthecapacityofthenet- meanweight.
+work and steady state is reached, EWC starts to perform even The ability to learn tasks in succession without forgetting is
+worsethanplaingradientdescent(Fig.2,Bottom).Further,the a core component of biological and artificial intelligence. In
+EWCmodel—likestandardHopfieldnetworks(38)—isproneto this work we show that an algorithm that supports continual
+thephenomenonofblackoutcatastrophewhennetworkcapac- learning—which takes inspiration from neurobiological mod-
+ityissaturated,resultingintheinabilitytoretrieveanyprevious elsofsynapticconsolidation—canbecombinedwithdeepneu-
+memoriesorstorenewexperiences.Notably,wedidnotobserve ral networks to achieve successful performance in a range of
+these limitations under the more realistic conditions for which challenging domains. In doing so, we demonstrate that current
+EWC was designed—likely because the network was operating neurobiological theories concerning synaptic consolidation do
+wellundercapacityintheseregimes. indeedscaletolarge-scalelearningsystems.Thisprovidesprima
+Despite these key differences, EWC and cascade share the facieevidencethattheseprinciplesmaybefundamentalaspects
+basicalgorithmicfeaturethatmemorylifetimesareextendedby oflearningandmemoryinthebrain.
+modulating the plasticity of synapses. Whereas prior work on
+cascade models (15, 16) has tied the metaplastic state to pat- MaterialsandMethods
+ternsofpotentiationanddepressionevents—i.e.,synaptic-level
+FullmethodsforallsimulationscanbefoundinRandomPatterns,MNIST
+measures—our approach focuses on the computational princi-
+Experiments,andAtariExperiments.HyperparametersfortheMNISTexper-
+ples that determine the degree to which each synapses might
+imentaredescribedinTableS1.FortheAtari2600experiments,weusedan
+beconsolidated.Itmaybepossibletodistinguishthesemodels agentverysimilartothatdescribedinref.42.Theonlydifferencesarethat
+experimentally, because the plasticity of a synapse depends on weused(i)anetworkwithmoreparameters,(ii)asmallertransitiontable,
+Kirkpatricketal. PNAS | March28,2017 | vol.114 | no.13 | 3525
+.09.03.82.401
+sserdda
+PI
+morf
+6202
+,31
+yaM
+no
+09.03.82.401
+yb
+gro.sanp.www//:sptth
+morf
+dedaolnwoD
+
+--- PAGE 6 ---
+(iii)task-specificbiasandgainsateachlayer,(iv)thefullactionsetinAtari, tion).ToapplyEWC,wecomputetheFisherinformationmatrixateachtask
+(v)atask-recognitionmodel,and(vi)theEWCpenalty.Fulldetailsofhyper- switch.Foreachtask,apenaltyisaddedwiththeanchorpointgivenbythe
+parametersaredescribedinTableS2.Herewebrieflydescribethetwomost currentvalueoftheparametersandwithweightsgivenbytheFisherinfor-
+importantmodificationstotheagent:thetask-recognitionmoduleandthe mationmatrixtimesascalingfactorλthatwasoptimizedbyhyperparame-
+implementationoftheEWCpenalty. tersearch.WeaddedanEWCpenaltyonlytogamesthathadexperienced
+We treat the task context as the latent variable of a hidden Markov atleast20millionframes.
+model.Eachtaskisthereforeassociatedtoanunderlyinggenerativemodel
+oftheobservations.Themaindistinguishingfeatureofourapproachisthat
+ACKNOWLEDGMENTS.WethankP.Dayan,D.Wierstra,S.Mohamed,Yee
+weallowfortheadditionofnewgenerativemodelsiftheyexplainrecent WhyeTeh,andK.Kavukcuogluforconstructivecommentsandusefuldiscus-
+databetterthantheexistingpoolofmodelsbyusingatrainingprocedure sion.C.C.wasfundedbytheWellcomeTrust,theEngineeringandPhysical
+inspiredbytheFMNprocessinref.33(seeAtariExperimentsforfulldescrip- SciencesResearchCouncil,andtheGoogleFacultyAward.
+1. LeggS,HutterM(2007)Universalintelligence:Adefinitionofmachineintelligence. 23. SrivastavaRK,MasciJ,KazerounianS,GomezF,SchmidhuberJ(2013)Competeto
+MindsMach17(4):391–444. compute.AdvancesinNeuralInformationProcessingSystems26,edsBurgesCJC,
+2. FrenchRM(1999)Catastrophicforgettinginconnectionistnetworks.TrendsCognit BottouL,WellingM,GhahramaniZ,WeinbergKQ(CurranAssoc,RedHook,NY),
+Sci3(4):128–135. Vol26,pp2310–2318.
+3. McCloskeyM,CohenNJ(1989)Catastrophicinterferenceinconnectionistnetworks: 24. GoodfellowIJ,MirzaM,XiaoD,CourvilleA,BengioY(2015)Anempiricalinvestiga-
+Thesequentiallearningproblem.ThePsychologyofLearningandMotivation,edGH tionofcatastrophicforgetingingradient-basedneuralnetworks.arXiv:1312.6211.
+Bower(Academic,NewYork),Vol24,pp109–165. 25. MnihV,etal.(2015)Human-levelcontrolthroughdeepreinforcementlearning.
+4. McClellandJL,McNaughtonBL,O’ReillyRC(1995)Whytherearecomplementary Nature518(7540):529–533.
+learning systems in the hippocampus and neocortex: Insights from the successes 26. BellemareMG,NaddafY,VenessJ,BowlingM(2013)Thearcadelearningenviron-
+andfailuresofconnectionistmodelsoflearningandmemory.PsycholRev102(3): ment:Anevaluationplatformforgeneralagents.JArtifIntellRes47:253–279.
+419–457. 27. RingMB(1998)Child:Afirststeptowardscontinuallearning.LearningtoLearn,eds
+5. KumaranD,HassabisD,McClellandJL(2016)Whatlearningsystemsdointelligent ThrunS,PrattL(KluwerAcadamic,Norwell,MA),pp261–292.
+agents need? Complementary learning systems theory updated. Trends Cogn Sci 28. RusuAA,etal.(2016)Progressiveneuralnetworks.arXiv:1606.04671.
+20(7):512–534. 29. CollinsAG,FrankMJ(2013)Cognitivecontroloverlearning:Creating,clustering,and
+6. RatcliffR(1990)Connectionistmodelsofrecognitionmemory:Constraintsimposed generalizingtask-setstructure.PsycholRev120(1):190–229.
+bylearningandforgettingfunctions.PsycholRev97(2):285–308. 30. O’Reilly RC, Frank MJ (2006) Making working memory work: A computational
+7. KrizhevskyA,SutskeverI,HintonGE(2012)Imagenetclassificationwithdeepcon- modeloflearningintheprefrontalcortexandbasalganglia.NeuralComput18(2):
+volutionalneuralnetworks.AdvancesinNeuralInformationProcessingSystems25, 283–328.
+edsPereiraF,BurgesCJC,BottouL,WeinbergerKQ(CurranAssoc,RedHook,NY), 31. ManteV,SussilloD,ShenoyKV,NewsomeWT(2013)Context-dependentcomputation
+pp1097–1105. byrecurrentdynamicsinprefrontalcortex.Nature503(7474):78–84.
+8. LeCunY,BengioY,HintonG(2015)Deeplearning.Nature521(7553):436–444. 32. MillerEK,CohenJD(2001)Anintegrativetheoryofprefrontalcortexfunction.Annu
+9. RusuAA,etal.(2015)Policydistillation.arXiv:1511.06295. RevNeurosci24(1):167–202.
+10. ParisottoE,BaJL,SalakhutdinovR(2015)Actor-mimic:Deepmultitaskandtransfer 33. DoyaK,SamejimaK,KatagiriK-i,KawatoM(2002)Multiplemodel-basedreinforce-
+reinforcementlearning.arXiv:1511.06342. mentlearning.NeuralComput14(6):1347–1369.
+11. CichonJ,GanWB(2015)Branch-specificdendriticca2+spikescausepersistentsynap- 34. MilanK,etal.(2016)Theforget-me-notprocess.AdvancesinNeuralInformation
+ticplasticity.Nature520(7546):180–185. ProcessingSystems29,edsLeeDD,SugiyamaM,LuxburgUV,GuyonI,GarnettR
+12. Hayashi-TakagiA,etal.(2015)Labellingandopticalerasureofsynapticmemory (CurranAssoc,RedHook,NY).
+tracesinthemotorcortex.Nature525(7569):333–338. 35. FrenchRM,ChaterN(2002)Usingnoisetocomputeerrorsurfacesinconnection-
+13. YangG,PanF,GanWB(2009)Stablymaintaineddendriticspinesareassociatedwith istnetworks:Anovelmeansofreducingcatastrophicforgetting.NeuralComput
+lifelongmemories.Nature462(7275):920–924. 14(7):1755–1769.
+14. YangG,etal.(2014)Sleeppromotesbranch-specificformationofdendriticspines 36. RuvoloPL,EatonE(2013)ELLA:Anefficientlifelonglearningalgorithm.JMLRWork-
+afterlearning.Science344(6188):1173–1178. shopConfProc28(1):507–515.
+15. FusiS,DrewPJ,AbbottL(2005)Cascademodelsofsynapticallystoredmemories. 37. BlundellC,CornebiseJ,KavukcuogluK,WierstraD(2015)Weightuncertaintyinneu-
+Neuron45(4):599–611. ralnetworks.JMLRWorkshopConfProc37:1613–1622.
+16. BennaMK,FusiS(2015)Computationalprinciplesofbiologicalmemory.arXiv:1507. 38. AmitD(1989)ModelingBrainFunction(CambridgeUnivPress,Cambridge,UK).
+07580. 39. AitchisonL,LathamPE(2015)Synapticsampling:AconnectionbetweenPSPvariabil-
+17. Hecht-Nielsen R (1988) Theory of the backpropagating network. Neural Netw ityanduncertaintyexplainsneurophysiologicalobservations.arXiv:1505.04544.
+1(Suppl1):445–448. 40. PfisterJP,DayanP,LengyelM(2010)Synapseswithshort-termplasticityareoptimal
+18. SussmannHJ(1992)Uniquenessoftheweightsforminimalfeedforwardnetswitha estimatorsofpresynapticmembranepotentials.NatNeurosci13(10):1271–1275.
+giveninput-outputmap.NeuralNetworks5:589–593. 41. ClopathC,ZieglerL,VasilakiE,Bu¨singL,GerstnerW(2008)Tag-trigger-consolidation:
+19. MacKayDJ(1992)ApracticalBayesianframeworkforbackpropagationnetworks. Amodelofearlyandlatelong-term-potentiationanddepression.PLoSComputBiol
+NeuralComput4(3):448–472. 4(12):e1000248.
+20. PascanuR,BengioY(2013)Revisitingnaturalgradientfordeepnetworks.arXiv:1301. 42. vanHasseltH,GuezA,SilverD(2016)Deepreinforcementlearningwithdouble
+3584. q-learning.ProceedingsoftheThirtiethAAAIConferenceonArtificialIntelligence,
+21. EskinE,SmolaAJ,VishwanathanS(2004)Laplacepropagation.AdvancesinNeural edsSchuurmansD,WellmanM(AAAIPress,PaloAlto,CA),pp2094–2100.
+InformationProcessingSystems16,edsThrunS,SaulLK,SchoelkopfPB(MITPress, 43. VenessJ,NgKS,HutterM,BowlingM(2012)Contexttreeswitching.2012DataCom-
+Cambridge,MA),pp441–448. pressionConference,edMalvarH(IEEE,NewYork),pp327–336.
+22. LeCunY,CortesC,BurgesCJ(1998)TheMNISTdatabaseofhandwrittendigits.Avail- 44. DowsonD,LandauB(1982)Thefre´chetdistancebetweenmultivariatenormaldistri-
+ableatyann.lecun.com/exdb/mnist/.AccessedMarch3,2017. butions.JMultivarAnal12(3):450–455.
+3526 | www.pnas.org/cgi/doi/10.1073/pnas.1611835114 Kirkpatricketal.
+.09.03.82.401
+sserdda
+PI
+morf
+6202
+,31
+yaM
+no
+09.03.82.401
+yb
+gro.sanp.www//:sptth
+morf
+dedaolnwoD

@@ -1,0 +1,578 @@
+
+--- PAGE 1 ---
+Opinion TRENDSinCognitiveSciences Vol.11No.7
+Deconstructing episodic memory with
+construction
+Demis Hassabis and Eleanor A. Maguire
+WellcomeTrustCentreforNeuroimaging,InstituteofNeurology,UniversityCollegeLondon,12QueenSquare,London,WC1N
+3BG,UK
+It has recently been observed that the brain network about the future [14–16], navigation [17], theory of mind
+supporting recall of episodic memories shares much in (perspectivetaking)[18],andthe‘defaultnetwork’[19](and
+commonwithothercognitivefunctionssuchasepisodic relatedtothe‘defaultnetwork’,perhapsalso‘mindwander-
+future thinking, navigation and theory of mind. It has ing’[20]).Thispresentstheintriguingpossibilitythatthese
+beenspeculatedthat‘self-projection’isthekeycommon disparate cognitive functions, hitherto treated as distinct,
+process. However, in this Opinion article, we note that might share common underlying processes. Buckner and
+other functions (e.g. imagining fictitious experiences) Carroll[13]suggestthatself-projectionmightbeacrucial
+notexplicitlyconnectedtoeithertheselforasubjective commonprocess.Theydefineself-projectionas‘theabilityto
+sense of time, activate a similar brain network. Hence, shiftperspectivefromtheimmediatepresenttoalternative
+we argue that the process of ‘scene construction’ is perspectives...requiring a shift in perception from the
+betterabletoaccountforthecommonalitiesinthebrain immediateenvironmenttothealternative,imaginedfuture
+areas engaged by an extended range of disparate func- environment...referenced to oneself’. Thus, their proposal
+tions.Inlightofthis,were-evaluateourunderstanding closely connects to Tulving’s original ideasof mental time
+ofepisodicmemory, theprocesses underpinningitand traveloftheself[4].Self-projectionisundoubtedlyimport-
+other related cognitive functions. ant, perhaps even uniquely so for episodic memory recall
+and thinking about the future [2]. However, recent con-
+vergent neuropsychological [21], electroencephalographic
+Introduction
+(EEG) [22] and fMRI (D. Hassabis, D. Kumaran and E.A.
+Episodic memory [1,2], the memory for our everyday
+Maguire, unpublished) findings suggest that at least one
+personalexperiences,isanessentialingredientinshaping
+furtherimportantcognitivefunction,namelythatofrichly
+how we perceive ourselves [3]. Tulving [2,4] seminally
+imaginingfictitiousexperiences[21], isalsoreliantonthe
+defined three key properties of episodic memory recall: a
+samebrainnetwork,butisnotexplicitlyconnectedtoeither
+subjectivesenseoftime(mentaltimetravel),connectionto
+theselforasubjectivesenseoftime.
+the self, and autonoetic consciousness – a special kind of
+Our Opinion article differs from that of Buckner and
+consciousness that accompanies the act of remembering,
+Carroll[13]inseveralways.Firstweputforwardthecase
+enablingone tobeawareoftheself insubjectivetime[2].
+for mental scene construction as a well-defined and key
+Others have since identified visual imagery [5], narrative
+componentprocessinsupportingrecollectiveexperiences.
+structure [5], retrieval of semantic information [6], and
+Second,wearguethatratherthanself-projection[13],the
+feelings of familiarity [7] as also being important aspects
+process of scene construction is better able to account for
+ofrecollection.Episodicmemoryrecallis,therefore,ahighly
+the commonalities in the brain networks activated by all
+complexcognitivefunctionthatcanbeconceptuallydivided
+thedisparatecognitivefunctionsnotedabove(andpossibly
+into several distinct component processes [3,6,8,9] and is
+othersinaddition–seeBox2).Third,welinktheprocessof
+accompaniedbyarichrecollectiveexperience(Box1)[2,4].
+scene construction with existing theories that view the
+Althoughnumerousfunctionalmagneticresonanceimaging
+recollection of complex episodic memories as a (re)con-
+(fMRI) studies investigating the neural basis of episodic
+structive process [3–5,8,23–25].
+memoryrecall[10–12]haverevealedaconsistentanddis-
+tributed network of associated brain regions, surprisingly Scene construction
+littleisunderstoodaboutthecontributionsindividualareas We define scene construction as the process of mentally
+maketotheoverallrecollectiveexperience[10–12]. generatingandmaintainingacomplexandcoherentscene
+In a stimulating Opinion article published in the orevent.Thisisachievedbytheretrievalandintegrationof
+February2007issueofTrendsinCognitiveSciences,Buck-
+relevant informational components, stored in their moda-
+nerandCarroll[13]maketheastuteobservationthatthere lity-specific cortical areas [26], the product of which has a
+isextensiveoverlapinthebrainnetworkactivatedduring coherentspatialcontext[21],andcanthenlaterbemanipu-
+fMRI studies of remembering the past [10–12], and that lated and visualized. The full recollective experience of
+engaged during other activities as diverse as thinking richlyrecallinganepisodicmemory[2],forexample,remem-
+beringwhatyoudidlastSaturdayevening,isnearlyalways
+Correspondingauthors:Hassabis,D. (d.hassabis@fil.ion.ucl.ac.uk);
+accompaniedbycomplexmentalimagery[5] ofthatevent
+Maguire,E.A. (e.maguire@fil.ion.ucl.ac.uk).
+Availableonline4June2007. playedoutwithinaspatialcontext[27,28]–likewiseifyou
+www.sciencedirect.com 1364-6613/$–seefrontmatter(cid:2)2007ElsevierLtd.Allrightsreserved.doi:10.1016/j.tics.2007.05.001
+
+--- PAGE 2 ---
+300 Opinion TRENDSinCognitiveSciences Vol.11No.7
+[21].Thus,wearguethatthecognitivefunctionsoutlinedin
+Box1.What,where,when–aretheyequallyimportant?
+Box 2 are related because they all crucially rely on scene
+Intheclassictaxonomyofepisodicmemory[1,2],what,whereand construction as a common core process, and that this can
+when, have been traditionally regarded as equally important
+account for a large proportion of the overlapping network
+properties of an episodic memory [2,4]. Indeed, a memory of an
+found in neuroimaging studies of these functions [13]. If
+eventisonlydefinedastrulyepisodicifonerememberswhenand
+where it happened in addition to what happened [2]. The rich scene construction is a key underlying component process
+recollective experience that accompanies the recall of an episodic ofepisodicmemory,thiswouldaccordwellwiththeoriesof
+memory [2,4] has content and a spatial context, the whatand the memory that propose the recollection of complex episodic
+where–thecentralcontributionofthesceneconstructionprocessto
+memories is actually a (re)constructive process [3–5,8,23–
+theprovisionofthiscoherentspatialcontexthasbeenhighlighted
+25] as opposed to the all-or-nothing retrieval of a perfect
+in the main text. But what role does time have, and is it really as
+importanttotherecollectiveexperienceastheothertwoaspectsof ‘holistic’recordoftenimplicitlyassumed(e.g.Ref.[30];also
+anepisodicmemory?Muchhasbeenwrittenabouttime[2,75–78] seediscussionsinRefs[31,32]).Indeed,well-knownmemory
+andthereareatleasttwotypesoftimethathaverelevancetothe errors and inconsistencies [33,34], such as misattribution
+recollectiveexperienceofepisodicmemory.Thereisthemomentby
+[33],providefurthertacitevidenceforconstructivistviewsof
+momentorderinwhichaneventorsequenceunfolds[72]or‘micro-
+time’.Thenthereissubjectivetime[2],thetimelineagainstwhich episodicmemory[3–5,8,23–25].
+theeventsinourlivesplayout,theconsciousawarenessofwhich
+hasbeendubbedchronesthesia[76],andwhichweviewas‘macro- Neuropsychological evidence
+time’. Micro-time, then, is an intrinsic property of an episodic
+So which brain regions might support scene construction
+memorythatwhenrecalledensuresitisplayedbackinthesame(or
+and what are their roles? Neuropsychological studies of
+reverse[79])temporalsequenceinwhichitwasrecorded[43].Itis
+relatedtothephysicallawsofnature,forexample,onemustopena patientswithhippocampaldamageconfirmthatthehippo-
+doorbeforegoingthroughit,anditmightbereliantonthespecial campusiscrucialforepisodicmemory[35,36]andnaviga-
+anatomicalpropertiesofthehippocampus[43,44]. tion[37].Ithasalsobeendemonstratedthathippocampal
+Bycontrast,macro-timeisaconceptthat,unlikemicro-time[72],
+damage [21,38–40] is associated with an impairment in
+perhapsonlyhumanspossess[2,73].Butshoulditbeelevatedtothe
+thinkingaboutone’spersonalfuture[14].However,arecent
+statusofaspecialsenseorprocessassomehavesuggested[13,76],
+andisitnecessaryforthefullrecollectiveexperienceofanepisodic study[21]showedthatthedeficitmightnotbelimitedtojust
+memory?Recentempiricalevidencedoesnotsupporttheideathat past and future personal experiences as some have sugg-
+chronesthesia is an independent process with a distinct neural ested [13,15,40], but possibly to any task that requires a
+signature. Near total overlap has been found in brain regions
+rich ‘recollection-like’ experience [21]. Hassabis et al. [21]
+supportingpastepisodicmemoryrecallandepisodicfuturethinking
+devisedanovel paradigmwhereparticipants,ratherthan
+[15,16].Besidesthesubjectivesenseofpast/futureasdescribedby
+Tulving [4], macro-time has also been commonly interpreted to recollectingthepast,hadtoconstructnewimaginedexperi-
+meanthattherearespecifictime-tagsassociatedwitheachepisodic encesinresponsetoshortverbalcuesthatoutlinedarange
+memory.Interestingly,studiestestingmemoriesfromdistincttime of simple commonplace scenarios. In all previous studies
+periods have also failed to show consistent neural correlations in
+anddiscussions[13],itisassumedthatimaginationnecess-
+response to macro-time modulation [15,41,51,80,81], and time is
+alsoapoorretrievalcueforepisodicmemory[82].Finally,iftheage arilyinvolvesmentaltimetravelinvolvingtheselfintothe
+ofamemoryhassomeintrinsicneuralbasisthenitseemsplausible future, and is a form of episodic future thinking [14]. By
+itmightberelatedtotheageofitsmemorytrace[41,83].However, contrast,Hassabisetal.donotmakesuchanassumption,
+inlightofcurrentideasregardingreconsolidation[84],itisnotclear
+and maintain that it is possible to richly imagine and
+whether one can meaningfully talk about the age of a memory
+visualize a new fictitious experience that is not explicitly
+becausetheactofrecallingitrefreshesthetraceanew[84].
+Thus, although macro or subjective time is frequently part of a temporalinnature,andthatisnotnecessarilyself-relevant,
+trueepisodicmemoryitisnotclearwhetheritcanbemeaningfully plausibleorevenpossible(Box2).Theyfoundthatamnesic
+separatedfromideasoftheselfandautonoeticconsciousness[2]. patientswithbilateralhippocampaldamageweremarkedly
+This is in contrast to micro-time, which appears to be an intrinsic
+impairedrelativetomatchedcontrolsubjectsatimagining
+property of an episodic memory [43,79]. By this view then, the
+new fictitious experiences (Figure 1). Moreover, Hassabis
+timestampofaneventsimplybecomesanotherpieceofsemantic
+knowledgethatmightormightnotberetrievedorlogicallydeduced et al. [21] identified a possible source for this deficit.
+atthepointtheeventisrecalled,perhapsnottoodissimilartothe Althoughpatientswereabletoproduceconsiderabledetail
+name of the place it occurred in or the names of any people when asked to imagine fictitious new experiences, their
+involved.
+descriptions lacked spatial coherence and were instead
+fragmentedandconsiderablylessrich[21].
+cast your mind forwards to what you might be doing next Webelievethesefindingsprovideempiricalevidencethat
+Saturday evening [14]. However, we believe that scene the hippocampus supports scene construction, crucial for
+construction is not just limited to remembering the past imaginingnewexperiences(andwewouldargueforrecol-
+[2]orthinkingaboutthefuture[14].Forexample,nowhere lectingthepast,imaginingthefutureandnavigation;Box
+isitmorenecessarythanfornavigation[29]. Thinkabout 2),eitherthroughitsabilitytoprocessspatialinformation
+howyouwouldgettoyourfavouriterestaurantandchances [27,28,41,42] or bind together disparate elements of the
+areyouwillconstructamentalrepresentationofthestreet, imagined scene [43–46]. These findings could also have
+the surrounding vicinity, and perhaps where you might implicationsfortheongoingdebate[47]concerningwhether
+park.Alternatively,imaginetakingapleasantwalkthrough thehippocampusisnecessary[41]ornot[48]forsupporting
+aforestthatyouhaveneverbeento,seen,orrecognizebutis remoteepisodicmemories.Ithasbeensuggestedthatdis-
+instead purely a product of your imagination. Again, con- crepancies between studies of remote episodic memory
+structionofacoherentscenewouldappeartobeintegralto in hippocampal patients [47] might be accounted for by
+theprocessofvividlyimaginingsuchafictitiousexperience differences in the quality or richness of the recollective
+www.sciencedirect.com
+
+--- PAGE 3 ---
+Opinion TRENDSinCognitiveSciences Vol.11No.7 301
+Box2.Componentprocesses
+The intention here (Table I) is to summarize the mapping of the the‘what’[2])anddoesnotfiteasilyintodefinitionsofepisodicor
+componentprocessesdiscussedinthemaintextontoasetofrelated semanticmemory[2].
+cognitive functions. It is not intended to be an exhaustive list of all (cid:2) Vividdreaming –vividvisualdreaming usuallytakesplaceduring
+possibleprocessesinvolvedinthesecognitivefunctions,norarewe the rapid eye movement (REM) phase of sleep [85]. Interestingly,
+suggestingthesearetheonlycognitivefunctionstheseprocessesare globalcessationofdreaminghasbeenassociatedwithdamageto
+involvedin.Nonethelesswebelievethisprovidesausefuloverviewof eitherfrontalorparietalcortex[85].
+ourargument. (cid:2) Theory of mind – modelling the mental states and intentions of
+others[18].
+Definitionsofcognitivefunctions
+(cid:2) Episodicmemoryrecall–vividrecollectionofapersonalpastevent Definitionsofprocesses
+[2]. (cid:2) Sceneconstruction–includestheretrievalofrelevantsemanticand
+(cid:2) Episodic future thinking – envisaging a plausible personal future sensory information [9,26], its integration into a coherent spatial
+event[14]. context [21] and online maintenance for later manipulation and
+(cid:2) Navigation–routeplanningandwayfinding[17]. visualization[5]includingpossibleviewpointtransformation[59].
+(cid:2) Imagination – richly imagining and visualizing a new fictitious (cid:2) Subjective time – sense of the self in the context of the timeline
+experience [21]thatis notexplicitlytemporal innature and isnot againstwhichtheeventsinourlivesplayout[2]orchronesthesia
+necessarily self-relevant, plausible or even possible. Although it [76].
+mightinvolvetheadoptionofanegocentricviewpoint[59]onthe (cid:2) Self–processesreliantonoraffectingtheconceptofoneself[3]and
+partofthe imaginer, apurelycreated imaginedexperiencewould thereby having a direct connection to or influence over our self-
+nothavethesamerelianceoreffectontheimaginer’sself-concept perception[2].
+[3]comparedwitharealepisodicmemory. (cid:2) Autonoetic consciousness – a special kind of consciousness that
+(cid:2) Defaultnetwork–so-calleddefaultnetworkactivatedwhennoovert accompaniestheactofremembering,allowingonetobeawareof
+task is assigned [19], also suggested to be related to mind theselfinsubjectivetime[2].
+wanderingordaydreaming[20]. (cid:2) Narrative–astorystructureformedbytheunfoldingofasequence
+(cid:2) Viewer replay – the vivid replay of an episodic-like memory even ofevents[5].
+thoughthespecifictemporaltimetagcannotberemembered,ithas (cid:2) Familiarity–asubjectivefeelingorjudgementofoldness[7].
+only an internal spatial context and, as with imagination (see (cid:2) Visualimagery–complexvisualimagery,involvingthecomposition
+above),doesnotexplicitlyinvolvetheselforaffecttheviewer’sself- ofsimpleimagerysuchassingleobjects[5].
+concept. For example, the recollection of one’s favourite episode (cid:2) Prospective planning – making plans about how to achieve future
+fromanoldTVseriescanbevividanddetailed,eventhoughoften goals[61].
+onecannolongerrememberwhenorwhereitwasseen.Thistype (cid:2) Task monitoring – executive processes overseeing successful
+ofmemoryisofambiguoustheoreticalstatus(becauseitonlyhas constructivetaskperformance[61].
+TableI.Mappingofcomponentprocessestocognitivefunctionsa
+Scene Subjective Self Autonoetic Narrative Familiarity Visual Prospective Task
+construction time consciousness imagery planning monitoring
+Episodic Y Y Y Y Y Y Y N Y
+memoryrecall
+Episodic Y Y Y Y Y Y Y Y Y
+future
+thinking
+Navigation Y N D N N D Y Y Y
+Imagination Y N N N D D Y N Y
+Default Y N Y D D D D N U
+network
+Viewerreplay Y N N N Y Y Y N Y
+Vivid Y N D N Y D Y N U
+dreaming
+Theoryof D N Y N N D D D D
+mind
+Abbreviations:Y,yes–processisinvolvedinthatcognitivefunction;N,no–processisnotinvolvedinthatcognitivefunction;D,depends–processinvolvementdepends
+ontheprecisenatureofthetaskandthecontentoperatedon;U,unknown–unclearifprocessisinvolvedinthatcognitivefunction.
+aProcessesarelabelledalongthetopandcognitivefunctionsdownthelefthandside.
+experience,afeaturethatisnotalwayscapturedbyexisting neuropsychological studies, fMRI permits examination of
+scoringsystems[41,49,50].Indeed,recentevidencesuggests distributed networks of brain regions engaged during
+thatthehippocampusmightbecrucialforrecollectingvivid, tasks.Inaddition,byusingwhatisknownasaconjunction
+detailedepisodicmemories,regardlessoftheir age[41,51, analysis,itispossibletoascertainthebrainareasthatare
+52]. Hassabis et al.’s results [21] are consistent with this engaged in common during the performance of different
+perspectiveandmoreoversuggestthatthecrucialattribute tasks. Imagining fictitious experiences and reliving past
+determining whether internally generated experiences, memoriessharemanyofthesamepsychologicalprocesses
+eitherrealorimaginary,arehippocampal-dependentmight [3,6,8,9] primarily related to scene construction [21]. We
+betheextenttowhichtheyarevividly(re-)experienced. recentlyinvestigatedwhethertheyhadneuralsubstrates
+incommonusingfMRI(D.Hassabis,D.KumaranandE.A.
+Neuroimaging evidence Maguire, unpublished). During scanning, subjects were
+The hippocampus, although apparently vital, does not asked to recall recent episodic memories. They also ret-
+support scene construction on its own. In contrast to rieved fictitious experiences previously constructed one
+www.sciencedirect.com
+
+--- PAGE 4 ---
+302 Opinion TRENDSinCognitiveSciences Vol.11No.7
+Figure1. Thehippocampusandsceneconstruction.Hassabisetal.[21]devisedanovelparadigmwherepatientswithbilateralhippocampaldamage(seeexamplepatient
+MRIscanin(a),withatrophiedhippocampicircled)andmatchedcontrolsubjects,ratherthanrecollectingthepast,hadtoimaginefictitiousexperiences.Patientswere
+significantlyimpairedonthistask.Themeanscores(andstandarderrors)ontheoverallcompositemeasure,theExperientialIndex,areshownin(b).Thefindingsalsooffer
+someinsightintoamechanismwhoseabsencecouldunderpinthedeficit.Patients’imaginedexperienceswerestrikinglydeficientinspatialcoherence(c),resultingintheir
+constructionsbeingfragmentedandlackinginrichness.
+week before, and in addition constructed new fictitious posterior parietal cortex, as well as the ventromedial
+experiences for the first time while in the scanner. A prefrontal cortex (vmPFC, BA 12) and middle temporal
+conjunction analysis of the three conditions, which have cortices(Figure2).PreviousfMRIstudieshaveconsistently
+scene construction as their primary process in common, observedactivationofasimilarnetworkduringnavigation
+revealed activation of a network of regions including, not [17,53], spatial[54,55], place[56,57] and episodicmemory
+surprisingly, (compare with Ref. [21]) the hippocampus, [10,11]taskslendingfurthercredencetothenotionofscene
+butalsoparahippocampalgyrus,retrosplenialcortex,and constructionasacommoncoreprocess.
+Figure2. Theextendedbrainnetworkinvolvedinsceneconstruction.Thecommonbrainnetworkthatunderliestherecallofepisodicmemories,recallofpreviously
+imaginedexperiences,andthecreationofnewimaginedexperiences(D.Hassabis,D.KumaranandE.A.Maguire,unpublished;alsoseemaintext).Sagittal(a)andaxial
+(b)imagesfroma‘glassbrain’–thisenablesonetoappreciateactivationsinalllocationsandlevelsinthebrainsimultaneously.Theglassbrainrevealsanextensive
+temporo-parietal-frontalnetworkincludingbilateralhippocampus,parahippocampalgyrus,retrosplenialandposteriorparietalcortices,andventromedialprefrontalcortex.
+(c)BilateralhippocampusactivationonacoronalsectionofanaveragedstructuralMRIscan.
+www.sciencedirect.com
+
+--- PAGE 5 ---
+Opinion TRENDSinCognitiveSciences Vol.11No.7 303
+Although relatively understudied, the retrosplenial connection to self, and autonoetic awareness [2,6]. The
+cortex [58] plays a major role in memory and navigation anterior medial prefrontal cortex (amPFC, BA 10) and
+[53].Perhapsthroughfacilitatingviewpointtransformation regions of the posterior medial parietal cortex, including
+from an allocentric to egocentric framework [29,59] or by posterior cingulate cortex and precuneus, were the only
+actingasanoutputbuffertorepresentdynamicallyepisodic regionsfoundtobepreferentiallyengagedduringtherecall
+information[7,60]thathasbeenretrievedandboundbythe ofrealepisodicmemoriesasopposedtoimaginarymemories
+hippocampus [21,43]. Moreover, retrosplenial cortex is (Figure3).Thispatternofactivationbearsastrikingresem-
+known to have major anatomical connections to vmPFC blance to networks found to support self-reflection [63],
+[58], also activated in the conjunction analysis (Figure 2). theory of mind [54,64] and episodic future thinking [15].
+ThevmPFChasbeenimplicatedinperformancemonitoring The amPFC in particular has been heavily implicated in
+[61] and semantic detail generation [15], both of which mentalizing[18,64]andself-perceptionprocesses[3,63],and
+would be required in scene construction, with the middle haslongbeenpredictedbyTulving[2,6]asanareaimport-
+temporalcortexactivationsprobablyreflectingtheretrieval antforautonoeticconsciousnessandmentaltimetravelon
+ofsemanticinformation[62]. The vmPFC mighttherefore thebasisoffindingsfrompatientswithfrontallesions[6].By
+work in concert with medial temporal lobe structures and contrast, activation of posterior parietal regions has pre-
+retrosplenial cortex to monitor successfully the scene con- viously been observed in studies of recognition memory,
+structionprocess[61]. responding preferentially to old or familiar items [7,65],
+suggesting that real memories are in some sense more
+Other key properties of episodic memory familiar than imagined fictitious memories, which is per-
+Sceneconstructioncan,therefore,accountforagooddealof haps not surprising given their often highly familiar con-
+thebrainnetworkconsistentlyactivatedbyepisodicmem- tent.Wethereforesuggestthatduringrecallofrealepisodic
+ory.InourrecentfMRIstudy(D.Hassabis,D.Kumaranand memoriestheinteractionorcooperationbetweentheseself-
+E.A.Maguire,unpublished),notonlycouldweexaminethe relevantandfamiliarityfunctionsmightbesufficienttogive
+commonalities across different types of tasks using a con- risetothephenomenologicalfeelingofwhetherare-experi-
+junctionanalysis,butwecoulddirectlycomparetherecallof encedeventactuallyhappenedtooneinthepastornot[2],or
+recentrealepisodicmemorieswiththerecallofpreviously indeedwhetheritcouldplausiblyhappentooneinthefuture
+constructed fictitious experiences that were well-matched [14,15]. It is interesting to speculate whether this process
+for difficulty, age, detailand vividness. This allowed usto might have malfunctioned in patients with schizophrenia
+partialouttheeffectsofsceneconstruction,andaskwhich [66]andinconfabulators[67].
+brainregionsmightberesponsibleforotherkeyaspectsof These findings connect with those from a recent fMRI
+therecollectiveexperience,namelysubjectivesenseoftime, study [15] that explored episodic future thinking [14].
+Figure3. Recallofrealversusimaginarymemories.Sagittal(a)andaxial(b)imagesfroma‘glassbrain’,showingthatanteriormedialprefrontalcortex(BA10)and
+posteriorparietalcortex,includingtheprecuneusandposteriorcingulatecortex,arepreferentiallyengagedbytherecallofrealmemories(D.Hassabis,D.Kumaranand
+E.A.Maguire,unpublished).(c)TheseactivationscanbeseenonasagittalsectionofanaveragedstructuralMRIscan.
+www.sciencedirect.com
+
+--- PAGE 6 ---
+304 Opinion TRENDSinCognitiveSciences Vol.11No.7
+Addisetal.[15]foundcomprehensiveoverlapbetweenthe
+Box3.Evolutionaryfunctionofconstruction
+brain networks supporting recall of past memories and
+thinkingaboutplausiblepersonalfutureevents.Indeed,if If constructive processes (i.e. the ability to put informational
+considered from a process point of view, then all the components together in novel ways in the service of a goal)
+underlie episodic memory and many other related high-level
+processes highlighted so far (see Table I in Box 2), in-
+cognitive functions (see Box 2), what, if any, evolutionary advan-
+cludingsceneconstructionandtheself,arepresentinboth
+tages does this confer? [2,76]. From a computational perspective,
+episodic memory recall and episodic future thinking. reconstructingamemoryfromitscomponentsismoreefficientin
+Therefore, one would predict the more or less complete terms of storage capacity than the alternative of storing each
+overlapinbrainnetworksthatwasindeedfoundbyAddis memory separately as an intact record [25,33]. Furthermore, this
+kind of storage structure lends itself conveniently to making
+etal.[15].WesuspectthatthereasonastudybySzpunar
+abstraction and generalization inferences across distinct experi-
+et al. [16], which also examined episodic future thinking, ences[44].
+didnotobservesomeofthebrainregionsinvolvedinscene Onecanspeculateastowhetherepisodicmemoryevolvedasthe
+constructionthatwehighlighthereisbecausetheirbase- ultimate expression of the combination of these underlying
+processes[2,76]orwhethertheseprocessesdevelopedtosupport
+line task (imagining Bill Clinton in various situations)
+episodic memory and were then later co-opted for use by other
+would also have activated regions involved in scene con-
+functions.Eitherwayitseemsclearthattheresultantflexiblesystem
+struction,makingitdifficultforthisfactortobeexamined. is useful for survival [13,25]. Consider an organism that, in their
+This is also true of other studies where, although scene present situation, is confronted by several choices of what to do
+constructionmighthavebeeninvolved,theprocesswasnot next.Beingabletoaccuratelyandrichlymentallysimulate[13]or
+construct what those possible future states might be like, before
+formally considered, controlled or manipulated (e.g. Ref.
+making the decision, would aid both the evaluation of the
+[68]).
+desirabilityofthoseoutcomesandtheplanningprocessesneeded
+tomakethemhappen.Theapplicationsofconstructiongobeyond
+Conclusions and future directions just planning for and anticipating possible future events
+A rich recollective experience is a key feature of episodic [13,14,25,71] based on past experience. It forms the basis of
+imagination and possibly creativity, where constructions are
+memoryrecall[2,4].Here,wehaveputforwardthecasefor
+envisagedthatarenotdirectlyrelatedtoatemporalfutureorpast,
+scene construction as a well-defined and key component
+or to prediction per se, but for general problem-solving and
+process in supporting that recollective experience. Scene inventionpurposessuchastoolmanufactureorart.
+constructionprovidesthe stageonwhich the remembered Ithasbeensuggestedthattheepisodicmemorysystemisunique
+eventisplayedorthe‘where’forthe‘what’tooccurin,using to humans [2,73]. This might be true for properties such as
+autonoetic consciousness and self-awareness that are difficult to
+Tulving’s‘what,where,when’taxonomyofepisodicmemory
+categoricallytestforinanimalsgiventheabsenceoflanguage[71].
+[2](Box1).Moreover,wearguethatsceneconstructionisan However, there is considerable evidence that certain animals do
+excellentcandidateforacommoncoreprocessthatunder- possess at least some of these constructive episodic capabilities
+pins a host of related cognitive functions [13] (Box 2) in- [13,71,75].Thishasbeendemonstratedmostpersuasivelyinscrub-
+jays,amemberofthecorvidfamilyofbirds[71].Theyintelligently
+cludingnavigationandimagination.Aswatheoftemporal
+andflexiblycachefoodforfutureconsumption[74,75]anddisplay
+and parietal regions, as well as ventromedial prefrontal
+impressive‘causalreasoning,imaginationandprospectionabilities’
+cortex, support the construction, maintenance and visual- [71]. The complexity of the constructive episodic memory system
+izationofascene,includingprominentrolesforthehippo- anditsunderlyingprocessesmightbethekeytoitsflexibility[2].It
+campus and retrosplenial cortex and, thus, potentially could also explain its vulnerability (see main text) and why it is
+relatively late developing, only becoming fully operational in
+accounting for a large part of the network consistently
+humansattheageofaboutfouryears[2].
+activatedinepisodicmemoryrecalltasks[10,11].
+From a systems standpoint, therefore, it could prove
+fruitful to consider episodic memory within the context of
+a set of related cognitive functions, some non-mnemonic, component processes that underlie episodic memory. We
+that share common component processes including scene have demonstrated the novel task of richly imagining
+construction,theself,autonoeticconsciousnessandfamili- fictitious experiences as an example of a valuable tool in
+arity.Thisaccordswellwithviewsofmemory[69]thatposit theserviceofthisaim.Furtherworkwillalsoberequired
+thatone-to-onemappingdoesnotexistbetweentasksand toascertaintheprecisecontributionofregionssuchasthe
+systemsbutthatinsteadalltasksare‘multiplydetermined’ amPFCandretrosplenial cortex, how themachinery that
+[2]. Different cognitive functions call on combinations of supportssceneconstructionmightberelatedtothatwhich
+different component processes depending on the precise supports scene perception [46,70], and how the role of
+nature of the content and the goal to be achieved, with emotion should be included [5]. In light of recent ideas
+episodicmemory,arguablythemostcomplexofthesefunc- [13,71,72](Box1),itmightalsobeworthreconsideringto
+tions, recruiting all these processes and, thus, sitting at what extent animals have some or all the abilities that
+theapexofthisgroup.Itfollowsthenthatdamaginganyof characterize episodic memory [13,71–73], particularly
+these operating components will, in turn, impair any cog- given the intriguing findings from scrub-jays in a series
+nitive functions relying on that process [69]. This would of elegant experiments by Clayton and colleagues [74,75]
+explainwhyepisodicmemoryappearstobemorevulnerable (Box 3). In summary, we believe that by focussing on the
+thanothermemorysystems[2]becauseitreliesonsomany constructive nature of episodic memory recall [3–5,8,23–
+wide-ranging underlying component processes across an 25],withprocessessuchassceneconstructionattheircore,
+extensivenetworkofbrainregions[10,11]. wecanbegintounderstandwhatmakesepisodicmemory
+In the future, new paradigms will be needed to make thedistinctkindofmemoryTulvingsoprescientlyargued
+progress in further disambiguating the myriad of for more than three decades ago [1,2].
+www.sciencedirect.com
+
+--- PAGE 7 ---
+Opinion TRENDSinCognitiveSciences Vol.11No.7 305
+Acknowledgements 31 Schacter,D.L.andAddis,D.R.(2007)Constructivememory:theghosts
+D.H. is supported by the Brain Research Trust, and E.A.M. by the ofpastandfuture.Nature445,27
+Wellcome Trust. We thank Dharshan Kumaran, Hugo Spiers and 32 Trinkler,I.etal.(2006)Partorparcel?Contextualbindingofeventsin
+JenniferSummerfieldforhelpfuldiscussions. episodicmemory.InHandbookofBindingandMemory:Perspectives
+from Cognitive Neuroscience (Zimmer, H.D. et al., eds), pp. 53–83,
+OxfordUniversityPress
+References
+33 Schacter,D.L.(2001)TheSevenSinsofMemory:HowtheMindForgets
+1 Tulving,E.(1972)Episodicandsemanticmemory.InOrganisationof
+andRemembers,HoughtonMifflin
+Memory(Tulving,E.andDonaldson,W.,eds),pp.381–403,Academic
+34 Loftus,E.F.(1993)Therealityofrepressedmemories.Am.Psychol.48,
+Press
+518–537
+2 Tulving,E.(2002)Episodicmemory:frommindtobrain.Annu.Rev.
+35 Scoville, W.B. and Milner, B. (1957) Loss of recent memory after
+Psychol.53,1–25
+bilateral hippocampal lesions. J. Neurol. Neurosurg. Psychiatry 20,
+3 Conway, M.A. and Pleydell-Pearce, C.W. (2000) The construction of
+11–21
+autobiographicalmemoriesintheself-memorysystem.Psychol.Rev.
+36 Spiers,H.J.etal.(2001)Hippocampalamnesia.Neurocase7,357–382
+107,261–288
+37 Maguire,E.A.etal.(2006)NavigationaroundLondonbyataxidriver
+4 Tulving,E.(1983)ElementsofEpisodicMemory,Claredon
+withbilateralhippocampallesions.Brain129,2894–2907
+5 Rubin, D.C. et al. (2003) Belief and recollection of autobiographical
+38 Tulving,E.(1985)Memoryandconsciousness.Can.Psychol.26,1–12
+memories.Mem.Cognit.31,887–901
+39 Rosenbaum, R.S. et al. (2005) The case of K.C.: contributions of a
+6 Wheeler,M.A.etal.(1997)Towardatheoryofepisodicmemory:the
+memory-impaired person to memory theory. Neuropsychologia 43,
+frontallobesandautonoeticconsciousness.Psychol.Bull.121,331–354
+989–1021
+7 Wagner, A.D. et al. (2005) Parietal lobe contributions to episodic
+40 Klein,S.B.etal.(2002)Memoryandtemporalexperience:theeffectsof
+memoryretrieval.TrendsCogn.Sci.9,445–453
+episodicmemorylossonanamnesicpatient’sabilitytorememberthe
+8 Schacter,D.L.etal.(1998)Thecognitiveneuroscienceofconstructive
+pastandimaginethefuture.Soc.Cogn.20,353–379
+memory.Annu.Rev.Psychol.49,289–318
+41 Moscovitch, M. et al. (2005) Functional neuroanatomy of remote
+9 Greenberg, D.L. and Rubin, D.C. (2003) The neuropsychology of
+episodic, semantic and spatial memory: a unified account based on
+autobiographicalmemory.Cortex39,687–728
+multipletracetheory.J.Anat.207,35–66
+10 Maguire,E.A.(2001)Neuroimagingstudiesofautobiographicalevent
+42 Gaffan,D.(1994)Scene-specificmemoryforobjects:amodelofepisodic
+memory.Philos.Trans.R.Soc.Lond.BBiol.Sci.356,1441–1451
+memory impairment in monkeys with fornix transection. J. Cogn.
+11 Svoboda, E. et al. (2006) The functional neuroanatomy of auto-
+Neurosci.6,302–320
+biographical memory: a meta-analysis. Neuropsychologia 44, 2189–
+43 Eichenbaum,H.(2004)Hippocampus:cognitiveprocessesandneural
+2208
+representationsthatunderliedeclarativememory.Neuron44,109–120
+12 Rugg,M.D.etal.(2002)Theneuralbasisofepisodicmemory:evidence
+44 McClelland,J.L.etal.(1995)Whytherearecomplementarylearning
+fromfunctionalneuroimaging.Philos.Trans.R.Soc.Lond.BBiol.Sci.
+systemsinthehippocampusandneocortex:insightsfromthesuccesses
+357,1097–1110
+andfailuresofconnectionistmodelsoflearningandmemory.Psychol.
+13 Buckner,R.L.andCarroll,D.C.(2007)Self-projectionandthebrain.
+Rev.102,419–457
+TrendsCogn.Sci.11,49–57
+45 Hannula, D.E. et al. (2006) The long and the short of it: relational
+14 Atance,C.M.andO’Neill,D.K.(2001)Episodicfuturethinking.Trends
+memoryimpairmentsinamnesia,evenatshortlags.J.Neurosci.26,
+Cogn.Sci.5,533–539
+8352–8359
+15 Addis, D.R. et al. (2007) Remembering the past and imagining the
+46 Lee,A.C.etal.(2005)Specializationinthemedialtemporallobefor
+future: common and distinct neural substrates during event
+processingofobjectsandscenes.Hippocampus15,782–797
+constructionandelaboration.Neuropsychologia45,1363–1377
+47 Bayley,P.J.etal.(2005)Theneuroanatomyofremotememory.Neuron
+16 Szpunar,K.K.etal.(2007)Neuralsubstratesofenvisioningthefuture.
+46,799–810
+Proc.Natl.Acad.Sci.U.S.A.104,642–647
+48 Squire, L.R. et al. (2004) The medial temporal lobe. Annu. Rev.
+17 Burgess, N. et al. (2002) The human hippocampus and spatial and
+Neurosci.27,279–306
+episodicmemory.Neuron35,625–641
+49 Kopelman,M.D.etal.(1989)Theautobiographicalmemoryinterview:
+18 Frith,U.andFrith,C.D.(2003)Developmentandneurophysiologyof
+anewassessmentofautobiographicalandpersonalsemanticmemory
+mentalizing.Philos.Trans.R.Soc.Lond.BBiol.Sci.358,459–473
+inamnesicpatients.J.Clin.Exp.Neuropsychol.11,724–744
+19 Raichle,M.E.etal.(2001)Adefaultmodeofbrainfunction.Proc.Natl.
+50 Levine,B.etal.(2002)Agingandautobiographicalmemory:dissociating
+Acad.Sci.U.S.A.98,676–682
+episodicfromsemanticretrieval.Psychol.Aging17,677–689
+20 Mason,M.F.etal.(2007)Wanderingminds:thedefaultnetworkand
+51 Gilboa, A. et al. (2004) Remembering our past: functional neuro-
+stimulus-independentthought.Science315,393–395
+anatomy of recollection of recent and very remote personal events.
+21 Hassabis,D.etal.(2007)Patientswithhippocampalamnesiacannot
+Cereb.Cortex14,1214–1225
+imaginenewexperiences.Proc.Natl.Acad.Sci.U.S.A.104,1726–1731
+52 Addis,D.R.etal.(2004)Recollectivequalitiesmodulatehippocampal
+22 Conway,M.A.etal.(2003)Neurophysiologicalcorrelatesofmemoryfor
+activation during autobiographical memory retrieval. Hippocampus
+experiencedandimaginedevents.Neuropsychologia41,334–340
+14,752–762
+23 Bartlett,F.C.(1932)Remembering,CambridgeUniversityPress
+53 Maguire, E.A. (2001) The retrosplenial contribution to human
+24 Dudai,Y.andCarruthers,M.(2005)TheJanusfaceofMnemosyne.
+navigation:a review of lesion and neuroimaging findings.Scand. J.
+Nature434,567
+Psychol.42,225–238
+25 Schacter, D.L. and Addis, D.R.(2007)Thecognitive neuroscience of
+54 Kumaran, D. and Maguire, E.A. (2005) The human hippocampus:
+constructivememory:rememberingthepastandimaginingthefuture.
+cognitivemapsorrelationalmemory?J.Neurosci.25,7254–7259
+Philos.Trans.R.Soc.Lond.BBiol.Sci.362,773–786
+55 Maguire,E.A.etal.(2003)Routestoremembering:thebrainsbehind
+26 Wheeler, M.E. et al. (2000) Memory’s echo: vivid remembering
+superiormemory.Nat.Neurosci.6,90–95
+reactivatessensory-specificcortex.Proc.Natl.Acad.Sci.U.S.A.97,
+56 Epstein,R.andKanwisher,N.(1998)Acorticalrepresentationofthe
+11125–11129
+localvisualenvironment.Nature392,598–601
+27 Burgess,N.etal.(2001)Memoryforeventsandtheirspatialcontext:
+57 Sugiura,M.etal.(2005)Corticalrepresentationsofpersonallyfamiliar
+modelsandexperiments.Philos.Trans.R.Soc.Lond.BBiol.Sci.356,
+objects and places: functional organization of the human posterior
+1493–1503
+cingulatecortex.J.Cogn.Neurosci.17,183–198
+28 O’Keefe,J.andNadel,L.(1978)TheHippocampusasaCognitiveMap,
+58 Vogt,B.A.etal.(2006)Cytologyandfunctionallycorrelatedcircuitsof
+OxfordUniversityPress
+humanposteriorcingulateareas.Neuroimage29,452–466
+29 Byrne,P.etal.(2007)Rememberingthepastandimaginingthefuture:a
+59 Burgess, N. (2006) Spatial memory: how egocentric and allocentric
+neuralmodelofspatialmemoryandimagery.Psychol.Rev.114,340–375
+combine.TrendsCogn.Sci.10,551–557
+30 Brewer, W.F. and Dupree, D.A. (1983) Use of plan schemata in the
+60 Baddeley,A.(1998)Recentdevelopmentsinworkingmemory.Curr.
+recallandrecognitionofgoal-directedactions.J.Exp.Psychol.Learn.
+Opin.Neurobiol.8,234–238
+Mem.Cogn.9,117–129
+www.sciencedirect.com
+
+--- PAGE 8 ---
+306 Opinion TRENDSinCognitiveSciences Vol.11No.7
+61 Simons,J.S.andSpiers,H.J.(2003)Prefrontalandmedialtemporal 73 Suddendorf,T.andBusby,J.(2003)Mentaltimetravelinanimals?
+lobeinteractionsinlong-termmemory.Nat.Rev.Neurosci.4,637– TrendsCogn.Sci.7,391–396
+648 74 Raby,C.R.etal.(2007)Planningforthefuturebywesternscrub-jays.
+62 Graham,K.S.etal.(2003)Theneuralbasisofautobiographicaland Nature445,919–921
+semanticmemory:newevidencefromthreePETstudies.Cogn.Affect. 75 Clayton,N.S.etal.(2003)Cananimalsrecallthepastandplanforthe
+Behav.Neurosci.3,234–254 future?Nat.Rev.Neurosci.4,685–691
+63 Johnson,S.C.etal.(2002)Neuralcorrelatesofself-reflection.Brain 76 Tulving, E. (2002) Chronesthesia: conscious awareness of subjective
+125,1808–1814 time.InPrinciplesofFrontalLobeFunction(Stuss,D.T.andKnight,
+64 Amodio, D.M. and Frith, C.D. (2006) Meeting of minds: the medial R.C.,eds),pp.311–325,OxfordUniversityPress
+frontalcortexandsocialcognition.Nat.Rev.Neurosci.7,268–277 77 Coull, J.T. et al. (2004) Functional anatomy of the attentional
+65 Vincent, J.L. et al. (2006) Coherentspontaneous activity identifies a modulationoftimeestimation.Science303,1506–1508
+hippocampal-parietalmemorynetwork.J.Neurophysiol.96,3517–3531 78 Friedman,W.F.(1993)Memoryforthetimeofpastevents.Psychol.
+66 Simons, J.S. et al. (2006) Discriminating imagined from perceived Bull.113,44–66
+informationengagesbrainareasimplicatedinschizophrenia.Neuro- 79 Foster, D.J. and Wilson, M.A. (2006) Reverse replay of behavioural
+image32,696–703 sequencesinhippocampalplacecellsduringtheawakestate.Nature
+67 Burgess,P.W.andShallice,T.(1996)Confabulationandthecontrolof 440,680–683
+recollection.Memory4,359–411 80 Nadel, L. et al. (2000) Multiple trace theory of human memory:
+68 Saxe, R. and Kanwisher, N. (2003) People thinking about thinking computational, neuroimaging, and neuropsychological results.
+people.Theroleofthetemporo-parietaljunctionin‘‘theoryofmind’’. Hippocampus10,352–368
+Neuroimage19,1835–1842 81 Maguire, E.A. et al. (2001) Activity in prefrontal cortex, not
+69 Tulving,E.(1985)Howmanymemorysystemsarethere?Am.Psychol. hippocampus, varies parametrically with the increasing remoteness
+40,385–398 ofmemories.Neuroreport12,441–444
+70 Graham,K.S.andGaffan,D.(2005)Theroleofthemedialtemporal 82 Jones,G.V.(1976)Afragmentationhypothesisofmemory:cuedrecall
+lobe in memory and perception: evidence from rats, nonhuman ofpicturesandsequentialposition.J.Exp.Psychol.Gen.105,277–293
+primatesandhumans.Q.J.Exp.Psychol.B58,193–201 83 Marr,D.(1971)Simplememory:atheoryforarchicortex.Philos.Trans.
+71 Emery, N.J. and Clayton, N.S. (2004) The mentality of crows: R.Soc.Lond.BBiol.Sci.262,23–81
+convergentevolutionofintelligenceincorvidsandapes.Science306, 84 Dudai, Y. (2006) Reconsolidation: the advantage of being refocused.
+1903–1907 Curr.Opin.Neurobiol.16,174–178
+72 Ferbinteanu, J. et al. (2006) Episodic memory–from brain to mind. 85 Rees,G.etal.(2002)Neuralcorrelatesofconsciousnessinhumans.
+Hippocampus16,691–703 Nat.Rev.Neurosci.3,261–270
+The ScienceDirect collection
+ScienceDirect’s extensiveand uniquefull-textcollection coversmore than1900journals, including
+titlessuchasThe Lancet,Cell, Tetrahedron andthe full suiteof Trends, CurrentOpinion andDrug
+Discovery Today journals. WithScienceDirect, the research processisenhanced with unsurpassed
+searchingand linkingfunctionality, allonasingle, intuitive interface.
+Therapid growth ofthe ScienceDirect collection isaresultof the integrationof severalprestigious
+publications andthe ongoingaddition tothe Backfiles – heritagecollections inanumberof
+disciplines.The lateststepinthis ambitious projectto digitizeallof Elsevier’sjournals backto
+volume one, issue one, isthe additionof the highlycited CellPressjournal collection on
+ScienceDirect. Alsoavailable online forthe first timearesix Celltitles’ long-awaitedBackfiles,
+containing more than12,000 articlesthathighlight importanthistoric developments inthe field of
+life sciences.
+For more information, visit www.sciencedirect.com
+www.sciencedirect.com

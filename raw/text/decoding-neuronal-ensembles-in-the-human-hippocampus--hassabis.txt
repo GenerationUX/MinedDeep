@@ -1,0 +1,711 @@
+
+--- PAGE 1 ---
+CurrentBiology19,546–554,April14,2009ª2009ElsevierLtd.Open access under CC BY license. DOI10.1016/j.cub.2009.02.033
+Article
+Decoding Neuronal Ensembles
+in the Human Hippocampus
+DemisHassabis,1,*CarltonChu,1GeraintRees,1,2 asubstantialchallenge[3].Decodingtheactivityofsingle,or
+NikolausWeiskopf,1PeterD.Molyneux,3 small numbers of, neurons has been highly successful, with
+andEleanorA.Maguire1,* the best characterized example being the memory-related
+1WellcomeTrustCentreforNeuroimaging response of hippocampal place cells that fire invariantly
+InstituteofNeurology when an animal is at a particular spatial location [4–6]. It is
+UniversityCollegeLondon not clear, however, what information such place cells repre-
+12QueenSquare sentatthepopulationlevel,giventhatrecordinginvivofrom
+LondonWC1N3BG thousands of hippocampal neurons simultaneously is not
+UK currently possible [3, 7–9]. Other techniques such as imme-
+2InstituteofCognitiveNeuroscience diate early gene imaging have provided some insights into
+UniversityCollegeLondon memory representations at the population level [10, 11] but
+17QueenSquare havelimitedtemporalresolution(intheorderofminutes)and
+LondonWC1N3AR donotprovideaninvivomeasure,makingitdifficulttoisolate
+UK withprecision the specific feature ofastimulus, memory, or
+3LionheadStudios behaviorassociatedwithgeneexpression.
+1OccamCourt Recently, invasive approaches to examining how neurons
+SurreyResearchPark encodeinformation[5,12]havebeencomplementedbymulti-
+Guildford,SurreyGU27YQ variatepatternanalysesofnoninvasivehumanfunctionalMRI
+UK (fMRI)data[13,14].FunctionalMRImeasuressignalsthatare
+indirectly correlated with neuronal activity simultaneously in
+many individual voxels. Each voxel, depending on its size
+Summary and location, contains thousands of neurons. Conventional
+univariate fMRI analysis methods focus on activity in each
+Background:Thehippocampusunderpinsourabilitytonavi- individual voxel in isolation. In contrast, multivariate pattern
+gate, to form and recollect memories, and to imagine future analyses harvest information from local patterns of activity
+experiences. How activity across millions of hippocampal expressedacrossmultiplevoxelsand,hence,largeneuronal
+neurons supports these functions is a fundamental question populations.Notonlycansuchnovelanalysesinferthepres-
+inneuroscience,whereinthesize,sparseness,andorganiza- ence of neuronal representations previously thought below
+tionofthehippocampalneuralcodearedebated. thespatialresolutionoffMRI[15,16],buttheensembleactivity
+Results:Here,byusingmultivariatepatternclassificationand ofsuchdistributedpatternscanpredicttheperceptualstateor
+high spatial resolution functional MRI, we decoded activity intentionofanindividualwithhighaccuracy[17].However,to
+acrossthepopulationofneuronsinthehumanmedialtemporal date,therehasbeenonlylimitedapplicationofthisapproach
+lobe while participants navigated in a virtual reality environ- to memory [18] and none that has focused specifically on
+ment. Remarkably, we could accurately predict the position decoding activity in the hippocampus, despite its critical
+ofanindividualwithinthisenvironmentsolelyfromthepattern mnemonicrole[19].Thisis,perhaps,notsurprisingbecause
+ofactivityinhis hippocampusevenwhenvisualinputandtask making discriminations on the basis of activity in the hippo-
+were held constant. Moreover, we observed a dissociation campusandsurroundingmedialtemporallobe(MTL)regions
+betweenresponsesinthehippocampusandparahippocampal only presents a far more challenging classification problem
+gyrus,suggestingthattheyplaydifferingrolesinnavigation. thansimplyusingwhole-braininformationinacategory-based
+Conclusions:Theseresultsshowthathighlyabstractedrepre- designthatresultsinlargeactivitydifferencesacrossmultiple
+sentationsofspaceareexpressedinthehumanhippocampus. brainregions[18].
+Furthermore,ourfindingshaveimplicationsforunderstanding However, successful decoding from focal hippocampal
+thehippocampalpopulationcodeandsuggestthat,contraryto fMRI signals would have significant implications for under-
+current consensus, neuronal ensembles representing place standinghowinformationisrepresentedwithinneuronalpop-
+memoriesmustbelargeandhaveananisotropicstructure. ulations in the human hippocampus and for appreciating
+fundamentalpropertiesofthehippocampalpopulationcode.
+The current consensus from invasive animal studies [10, 11]
+Introduction
+and computational models [20, 21] is that this population
+code is random and uniformly distributed, casting doubt on
+Informationabouttheenvironmentisthoughttobeencodedin
+some earlier studies that suggested a potential functional
+thebrainbyactivityinlargepopulations ofneurons [1–3].In
+structure in the hippocampus [22, 23]. However, if there is
+ordertounderstandthepropertiesanddynamicsofpopula-
+a functional organization to the hippocampal population
+tioncodes,itisnecessarytospecifyhowtheycanbedecoded
+code, then activity at the voxel level should also be nonuni-
+inordertoextractthepreciseinformationthattheyrepresent
+form,makingclassificationpossiblewithmultivariatemethods
+[2].Thisenterpriseisattheheartofneuroscienceandprovides
+appliedtohumanfMRIdata[13,14].
+WesetouttotestthishypothesisbycombiningfMRIathigh
+*Correspondence: d.hassabis@fil.ion.ucl.ac.uk (D.H.), e.maguire@fil.ion. spatialresolutionwithmultivariatepatternanalysistechniques
+ucl.ac.uk(E.A.M.) [13,14,24]toinvestigatewhetheritwaspossibletoaccurately
+
+--- PAGE 2 ---
+DecodingSpatialMemories
+547
+predicttheprecisepositionofanindividualwithinanenviron-
+ment from patterns of activity across hippocampal voxels
+alone.Weusedaninteractivevirtualreality(VR)spatialnaviga-
+tiontask(Figure1),giventhatspatialnavigationcriticallyrelies
+on the hippocampus [4, 19]. Importantly, by holding visual
+inputsandtaskconstantaftersuccessfulnavigationtoaposi-
+tionwithintheVRenvironment,wecouldisolateandcharac-
+terize the ‘‘abstract’’ (i.e., independent of current sensory
+inputs) internal representation of the environment’s layout.
+Withthisapproach,weshowthatnoninvasiveinvivomeasure-
+ments of activity across the population of neurons in the
+human hippocampus can be used to precisely decode and
+accurately predict the position of an individual within their
+environment.
+Results
+Weacquiredblood-oxygenlevel-dependent(BOLD)contrast,
+high spatial resolution fMRI images focused on the hippo-
+campus and wider MTL (see the Experimental Procedures
+and Figure 2B) while participants navigated as quickly and
+accuratelyaspossiblebetweenfourarbitrarilychosentarget
+positions (A, B, C, and D) in each of two well-learned virtual
+realityenvironments:ablueroomandagreenroom(Figure1). Figure1. TheExperimentalTask
+Thesetwoenvironmentsweredesignedtobeausteretomini- (A)Thevirtualrealityenvironmentcomprisedtwoseparateanddistinctenvi-
+mize the impact of extraneous sensory inputs. Apart from ronments,ablueroomandagreenroom.Eachroomwas15m315mand
+color, which acted as a simple, unambiguous retrieval cue contained four ‘‘target’’ positions, which participants were instructed to
+for each room and is processed in extrastriate cortex [25], navigatebetweenasquicklyandaccuratelyaspossiblefollowingextensive
+pretraining.
+thetwoenvironmentswerewellmatched,withnosignificant
+(B)Schematicoftheroomlayoutswiththefourtargetpositions,labeledA,
+difference between navigation times or overall time spent in
+B,C,andD.Thesetargetswerevisuallydelineatedbyidenticalclothrugs
+eitherroom(seeTableS1availableonlineforbehavioralfind- (i.e., not by letters, which are depicted here only for ease of reference)
+ings).Priortoourmainmultivariatepatternanalysis,aconven- placedontheflooratthosepositionsandeach1.5m31.5m.Singleobjects
+tionalunivariateanalysis[26]performedwithagenerallinear (door,chair,picture,andclockwithdifferentexemplarsperroombutof
+model confirmed that there was no significant difference in similarsizeandcolor)wereplacedalongthecenterofeachwalltoactas
+orientationcues.Identicalsmalltableswereplacedinallfourcornersof
+average brain activity between the two environments or any
+the rooms to help visually delineate the wall boundaries. Single trials
+of the positions even at liberal thresholds, which was as
+involvedparticipantsbeinginstructedtonavigatetoagiventargetposition
+expectedgiventheiralmostidenticalmacroscopiccharacter- withakeypad.Thetrialorderwasdesignedtoensurethatthenumberof
+istics(seeSupplementalResults). timesthatatargetpositionwasvisitedstartingfromanothertargetposition
+wasmatchedacrosspositionstocontrolforgoalandheaddirection.Once
+DiscriminatingbetweenTwoPositions the intended destination was reached, the participant pressed a trigger
+button,causingtheviewpointtosmoothlytransitiontolookverticallydown-
+We first investigated whether we could accurately predict
+wardatthefloor(asifbowingone’shead)torevealtherugonthefloor
+whereaparticipantwaslocatedwithinaroomsolelyfromthe
+markingthetargetposition,shownin(C).
+patternoffMRIBOLDresponsesacrossmultiplevoxelsinthe (C)Atthispoint,a5scountdownwasgiven,denotedbynumeralsdisplayed
+hippocampusandMTL.Todothis,weinitiallymadecompari- in white text overlaid on the rug (the number ‘‘3’’ is shown here as an
+sonsbetweenarbitrarilyselectedpairsofpositions(AversusB example)and followed bythetext labelofthenexttarget position (i.e.,
+andCversusD)inbothrooms.Importantly,afternavigation, ‘‘A,’’‘‘B,’’‘‘C,’’or‘‘D’’).Theviewpointthensmoothlytransitionedbackto
+thehorizontal,andnavigationcontrolwasreturnedtotheparticipant.
+when participants reached a target position, the default
+(D)Environmentblocksineachroomconsistedoftwotofournavigation
+horizontalviewpointtransitionedsmoothlydownwardby90(cid:2)
+trialsandwerecounterbalancedacrossparticipants.
+sothattheentirevisualdisplaywasoccupiedsolelybyaniden-
+tical view of the floor (Figure 1C). Critically, only volumes
+capturingfMRIactivityduringthisstationaryphase(Figure1D) performanceofthisclassifierwasevaluatedbyrunningiton
+at the target positions when the participant was viewing the theindependenttestdataandobtainingapercentagepredic-
+floor were entered into the analysis. This is a key aspect of tionaccuracyvalue.
+ourstudydesignbecausevisualstimulisuchasobjectsand By using a multivariate ‘‘searchlight’’ approach to feature
+boundaries are known to be processed by the MTL [12, 27– selection[14,17,24],westeppedthroughalargesearchspace
+30]. By removing visual input as a confounding factor, we encompassingtheMTL(Figure2)andidentifiedsphericalcli-
+werethusabletoisolatetheinternalrepresentationofspatial quesofvoxelswhosespatialpatternsofactivityenabledthe
+locationastheonlydifferencebetweenconditions.Moreover, classifier to correctly discriminate between two positions
+the task design (see Supplemental Data) controlled for significantly above chance (p < 0.05 uncorrected, by using
+otherpotentialconfoundingpsychologicalfactorsduringthis the statistically conservative approach of nonparametric
+period,asconfirmedinthedebriefing.Theimagingdatawere permutationtestingandaccountingforthemultiplecompari-
+then divided into independent training and test sets (see sons problem [31, 32]; see Experimental Procedures and
+Figure2),withtheformerusedtotrainalinearsupportvector Tables S2 and S3). Voxels at the center of cliques whose
+machine(SVM)classifier(seeExperimentalProcedures).The accuracies survived this thresholding and were, therefore,
+
+--- PAGE 3 ---
+CurrentBiologyVol19No7
+548
+Figure2. MultivariatePatternAnalysis
+An example multivariate analysis of a pairwise
+positionclassification,inthiscasediscriminating
+between position A and position B in the blue
+room(seeFigure1).
+(A)Onlyvolumesacquiredwhiletheparticipant
+wasstandingatthesetwoblueroompositions
+wereenteredintotheanalysis.
+(B)Coverageforfunctionalscanningisshownas
+awhiteboundingbox.Thesearchspaceforthe
+searchlight algorithm [14, 24], anatomically
+definedto encompass theentirehippocampus
+and wider MTL bilaterally, is shown as a red
+boundingbox.
+(C–E) The search space was stepped through
+voxel by voxel (C). For each voxel v i (example
+vioutlinedinred),asphericalclique(radius3vox-
+els)ofNvoxelsc1.Nwasextractedwithvoxelvi
+at its center (D) to produce an N-dimensional
+patternvectorforeachvolume(E).
+(F)Eachpatternvectorwaslabeledaccordingto
+thecorrespondingexperimentalcondition(posi-
+tion A versus position B) and then partitioned
+intoatrainingset(solidlines)andanindependent
+testset(dashedlineandindented).Patternsof
+activityacrossthevoxelcliquefromthetraining
+set were used to train a linear SVM classifier,
+whichwasthenusedtomakepredictionsabout
+the labels of the test set. A standard k-fold
+crossvalidationtestingregimewasimplemented,
+ensuringthatallpatternvectorswereusedonce
+asthetestdataset.
+(G and H) This crossvalidation step, therefore,
+yieldedapredictedlabelforeverypatternvector
+intheanalysisthatwasthencomparedtothereal
+labelstoproduceanoverallpredictionaccuracy
+for that voxel clique (G). This accuracy value
+wasstoredwiththevoxelv iforlaterthresholding
+and reprojection back into structural image
+space (H). The whole procedure was then
+repeatedforthenextvoxelv (outlinedinwhite
+i+1
+in[C])alonginthesearchspaceuntilallvoxelsin
+thesearchspacehadbeenconsidered.
+important for accurately distinguishing between the two structural brainimage of aparticipant toproduce prediction
+experimental conditions (e.g., position A versus position B) maps. This revealed a focal cluster of voxels in the body-
+were then reprojected back onto the structural brain image posterior of the hippocampus bilaterally, which allowed for
+oftheparticipanttoproduce‘‘predictionmaps.’’Remarkably, accuratedifferentiationbetweenallfourpositionsinaroom,
+this process revealed large numbers of voxels in the body- againindependentofvisualinput(Figure4),aresultthatwas
+posterior of the hippocampus bilaterally that accurately markedly consistent across participants. There were very
+discriminatedthepositionoftheparticipant(Figure3). fewdiscriminatingvoxelselsewhereintheMTL,thusdemon-
+stratingthespecificinvolvementofthehippocampusinrepre-
+DiscriminatingbetweenFourPositions sentingspatialpositions.
+Wenextinvestigatedwhethertherewerevoxelsinthehippo-
+campus capable of discriminating simultaneously between DiscriminatingbetweentheTwoEnvironments
+allfourtargetpositionsinaroom.Byusingthesameprotocol Thoughspatialpositionsoftheparticipantwithintheenviron-
+as above, we performed all six possible pairwise classifiers mentwererepresentedalmostexclusivelyinthehippocampus,
+foreachroom(comparingpositions AversusB,AversusC, our findings also highlighted an interesting dissociation
+AversusD,BversusC,BversusD,andCversusDagainst between the hippocampus and parahippocampal gyrus. In
+eachother;seeFigure1)andcombinedtheirresultsintoerror a separate multivariate analysis, we tested whether it was
+correctingoutputcodesfromwhichresultantpredictionswere possibletoaccuratelypredictwhichenvironment—theblueor
+determined by computing the nearest Hamming distance to greenroom—aparticipantwasinduringnavigation.Thepredic-
+a real label code (see Supplemental Experimental Proce- tion maps obtained revealed voxels in the parahippocampal
+dures).Althoughthesefour-wayclassificationsaredependent gyrusbilaterally,whichallowedfordifferentiationbetweenenvi-
+onalinearcombinationofthepairwiseclassificationsabove, ronments(Figure5).Incontrasttothepositionanalysis,minimal
+they provide distinct information about the data because numbersofvoxelswerefoundinthehippocampusthataccu-
+significantvoxelaccuracyinpairwiseclassificationdoesnot ratelydiscriminatedbetweenthetwoenvironments.
+necessitate significant accuracy in four-way classification. For each classification type, we formally quantified the
+Significant voxels were again reprojected back onto the differencesinnumbersofdiscriminatingvoxelspresentinthe
+
+--- PAGE 4 ---
+DecodingSpatialMemories
+549
+Figure3. PairwisePositionClassification
+Predictionmapsshowingtheaccuraciesofthe
+voxels atthecenterofsearchlightcliquesthat
+discriminate between two arbitrarily chosen
+targetpositionsinaroom(aprioriselectedtobe
+AversusBandCversusD)significantlyabove
+chance(50%).Theresultantpredictionmapfor
+a participant, bounded by the search space
+(indicatedbytheredboxinFigure2B),ispro-
+jectedontotheirstructuralbrainimage.Asagittal
+sectionforeachparticipantisdisplayed,showing
+thatvoxels inthebody-posteriorofthehippo-
+campusbilaterallyarecrucialforaccurateposi-
+tiondiscriminationbytheclassifier.Thefindings
+are highly consistent across participants. The
+redbarindicatespercentageaccuracyvaluesas
+afraction(significancethresholdsetat66.07%
+for all participants; see Tables S2 and S3 for
+thresholding and comparison pair details). ‘‘R’’
+and ‘‘L’’ are right and left sides of the brain,
+respectively.
+hippocampus and parahippocampal gyrus, respectively, by map[4],orthesetofinvariantspatialrelationships[37],repre-
+performingadifferenceofpopulationproportions[33]signifi- sentingthelayoutofanenvironment.Duetotheconstraintthat
+cance test on the two anatomically defined regions (see the pattern classifiers require a certain number of consistent
+ExperimentalProcedures).Forthepairwiseandfour-wayposi- examples for training purposes [13, 14], discrete localized
+tion classifications, we found that there was a significantly positionshadtobeusedastargetlocations.However,there
+higher proportion of voxels active in the hippocampus than isnothingspecialaboutthetargetlocationsusedinthisstudy;
+the parahippocampal gyrus for all participants (all p < 0.05; anypositionsintheroomscouldhavebeenchosen.Indeed,
+seetheSupplementalResults).Fortheenvironmentclassifica- withineachtargetlocation,aparticipant’sstationaryposition
+tion,therewasasignificantlyhigherproportionofvoxelsactive variedsubtlytrialbytrial,giventhatthetargetareameasured
+in the parahippocampal gyrus than the hippocampus for all 1.5m31.5minsize.Thus,wesuggestthatthespatialcodefor
+participants(allp<0.05;seetheSupplementalResults).Note an environment is likely to be continuous, with subtle differ-
+thatthesesignificantfindingsalsomitigateagainstthemultiple encesintheneuronalcodebetweenadjacentpositions.
+comparisonsproblem;ifactivevoxelswerejustfalsepositives Thevolumesacquiredduringanenvironmentblockwhilein
+due to chance, one would expect a uniform distribution of theblueorgreenroom(seeFigure1D)comprisedfMRIactivity
+activevoxels(seetheSupplementalResults). fromalargenumberofdifferent‘‘snapshot’’viewsofaroomat
+numerous spatial positions within it (not only our four target
+Discussion positions). Hence, we believe that the classifier operating on
+hippocampalvoxelsdidnotdiscriminatebetweenthetwoenvi-
+Ourresultsdemonstratethatfine-grainedspatialinformation ronmentsbecausethiswouldhavenecessitatedthesevoxelsto
+can be accurately decoded solely from the pattern of fMRI haveidentifiablysimilarpatternsofactivityacrossenvironment
+activityacrossspatiallydistributedvoxelsinthehumanhippo- blockvolumes(i.e.,volumesacquiredwhileintheblueorgreen
+campus. This shows that the population of hippocampal room). However, hippocampal voxels were instead acutely
+neuronsrepresentingplacemustnecessarilybelarge,robust, tunedtoindividualspatialpositionswithinablockand,there-
+andnonuniform.Thus,ourfindingsimplythat,contrarytopre- fore, displayeddiffering patternsofactivity during navigation
+vailingtheories,theremaybeanunderlyingfunctionalorgani- inanenvironmentblockthatencompassednumerousspatial
+zationtothehippocampalneuralcode.Ourdataalsorevealed positions.Bycontrast,itisclearthattheparahippocampalgyrus
+adissociation,permittingconclusionsaboutanatomicalspec- performedadistinctbutcomplementaryfunction.Wespeculate
+ificity.Whereasspatialpositionswereexpressedinthehippo- that this may have involved extracting the salient contextual
+campus, by contrast, voxels in the parahippocampal gyrus featuresofeachenvironment[27,29],suchasobject-in-place
+discriminatedbetweenthetwoenvironments. associations[28]andorientingwallobjectconfigurationsfrom
+Extending the pairwise position classification findings multiple visual snapshots for input to the hippocampal place
+(Figure3)todiscriminatebetweenfourarbitraryenvironmental representations[30].Thus,theclassifieroperatingonparahip-
+positions(Figure4)revealedaregionofthehippocampusthat pocampalgyrusvoxelswasabletodiscriminatebetweenthe
+isinvolvedinthegeneralstorageand/ormanipulationofposi- twoenvironments,althoughwecannotexcludethepossibility
+tionrepresentations.Theinvolvementofneuronalpopulations thatthisregionmighthavealsobeensensitivetothecolordiffer-
+locatedspecificallyinthebody-posteriorofthehippocampus encesbetweenthetwoenvironments.Furtherstudieswillbe
+[19]asindicatedbyourdataishighlyconsistentwithfindings neededtoascertaintheexactnatureandfunctionoftherepre-
+from human and animal studies of spatial memory that use sentationsintheparahippocampalgyrusduringnavigationand,
+otherinvestigativetechniques[34–36].Therefore,wepropose indeed, in other neocortical areas such astheprefrontal and
+that these individual abstracted position representations parietalcortices,whicharealsoknowntobeinvolvedinnaviga-
+aggregatedtogetherformthebasisoftheallocentriccognitive tion[38]butwereoutsideofthescanningcoverageofthisstudy.
+
+--- PAGE 5 ---
+CurrentBiologyVol19No7
+550
+Figure4. Four-WayPositionClassification
+Predictionmaps,boundedbythesearchspace
+(indicatedbytheredboxinFigure2B)andpro-
+jected onto each participant’s structural brain
+image,showingtheaccuraciesofthevoxelsat
+thecenterofsearchlightcliquesthatdiscriminate
+between all four target positions in the same
+roomsignificantlyabovechance(25%).Sagittal
+andcoronalsectionsforeachparticipantaredis-
+played on left and right panels, respectively,
+showingthatvoxelsinthebody-posteriorofthe
+hippocampusbilaterallyarecrucialforaccurate
+four-waypositiondiscriminationbytheclassifier.
+Thefindingsarehighlyconsistentacrosspartici-
+pants. The red bar indicates percentage accu-
+racyvaluesasafraction(significancethreshold
+setat33.04%forallparticipants;seeTablesS2
+andS3forthresholdingdetails).Four-wayposi-
+tiondiscrimination inthegreenroomisshown
+forparticipants1and2andintheblueroomfor
+participants3and4.‘‘R’’and‘‘L’’arerightand
+leftsidesofthebrain,respectively.
+representation of the current position.
+Thiswasfurtherconfirmedbyanumber
+ofadditionalcontrolanalysesthatwere
+performed to ensure that other factors
+such as the identity of the destination
+labels themselves or nearby orienting
+objects could not have significantly
+contributedto the successful decoding
+(see the Supplemental Experimental
+ProceduresandSupplementalResults).
+Hence,itiswithsomeconfidencethat
+wecansaythatthehippocampalvoxels
+that survived the rigorously controlled
+thresholding that we employed were
+associatedwithinternalrepresentations
+ofpositionwithintheenvironmentalone.
+A further point to note, specifically in
+relationtotheeffectofpreviously seen
+landmarks on the BOLD signal during
+the stationary phase, is that paths and
+approaches taken to target positions
+were not identical across trials and the
+timings of any views of landmarks en
+Therigorousdesignofourparadigm—inparticular,thecare- routevaried widely. The effect ofsuch substantial variability
+ful matching of visual input at the destination locations, the inpathstothetargetpositionineffectintroducedaself-paced
+counterbalancingofstartinganddestinationlocationcombina- random jitter with respect to the influence of any landmarks
+tions,andtheuseofanincidentalvisualtasktomaintainatten- seenontheBOLDsignalduringthestationaryperiods.There-
+tionduringthestationaryphase—allowsustoconcludethat fore, landmarks cannot be a contributing factor to the
+any informative patterns of voxels found by our multivariate successful performance of the classifier on the position
+analyses must codefor the internal representationof spatial discrimination(seetheSupplementalResults).
+locationonlyandnotforanyotheraspectsofthetask.Inaddi- Our finding that it is possible to distinguish between well-
+tiontothesedesignfeatures,ouranalysiswasrobusttoany matched spatial positions with human fMRI has significant
+residual cognitive differences that may conceivably have implicationsforunderstandingtheneuronalpopulationcode
+occurred. Classifiers can be thought of as distinguishing inthehippocampus.Ithasbeenproposedthatinformationis
+betweenlearnedcommonalitiesacrossmultipletrainingexam- encoded in the brain as a sequence of cell assemblies, with
+plesoftwoexperimentalconditions.Therefore,inorderforthe each activated clique encapsulating a fundamental unit of
+classifiertosuccessfullydecodebrainactivity,thedifference information[1–3].Cellassemblysynchronizationisthoughtto
+between two conditions must be systematic and consistent take place over timescales of w30 ms [2], in contrast to the
+across the majority of the training examples. We carefully timeframeofhumanneuroimaging, whichmeasuresactivity
+designedtheparadigmtoensurethattheonlypossiblesystem- averagedoverw6s.AlthoughtheBOLDsignalisonlyanindi-
+atic difference between stationary periods was the internal rectmeasureofneuronalactivityandthereisongoingdebate
+
+--- PAGE 6 ---
+DecodingSpatialMemories
+551
+Figure5. EnvironmentClassification
+Predictionmaps,boundedbythesearchspace
+(indicatedbytheredboxinFigure2B)andpro-
+jected onto each participant’s structural brain
+image,showingtheaccuraciesofthevoxelsat
+thecenterofsearchlightcliquesthatdiscriminate
+betweentheblueroomandthegreenroomsignif-
+icantly above chance. A representativesagittal
+sectionforeachparticipantisdisplayed,showing
+that voxels in the posterior parahippocampal
+gyrusbilaterallyarecrucialforaccuratediscrimi-
+nationbetweenthetwoenvironmentsbytheclas-
+sifier.Theresultisconsistentacrossparticipants.
+Note the dissociation between the parahippo-
+campal gyrus prediction maps here and the
+hippocampuspredictionmapsobservedforposi-
+tiondiscrimination(seeFigures3and4).Thered
+bar indicates percentage accuracy values as
+a fraction (significance thresholds were set for
+eachparticipantbetween 57.45%and58.00%;
+seeTablesS2andS3).‘‘R’’and‘‘L’’arerightand
+leftsidesofthebrain,respectively.
+abouttherelationshipbetweenthetwo[39],thereisarobust arise from differences in the clustering analyses used (see
+correlationbetweenBOLDresponsesandlocalfieldpotentials [23]comparedwith[11]).Theeffectofcellassemblysynchro-
+[39, 40]. Therefore, patterns of voxel activations acquired nizationonsingle-cellspikeoutputmayalsobeacontributing
+during a single fMRI volume and capable of discriminating factorbutis,asyet,largelyunknown[2].
+between well-matched positions are likely to reflect the
+average synaptic activity within many cell assemblies that, Conclusions
+takentogether, canrepresenthigh-levelinformation suchas
+spatiallocationwithinanenvironment. Here,wefocusedonthecross-speciesbehaviorofnavigation,
+AlthoughneuralcodesinthehippocampusandwiderMTL demonstrating that highly abstracted representations of
+are generally considered to be ‘‘sparse’’ [12, 41], that term spaceareexpressedacrosstensofthousandsofcoordinated
+hasbeenusedtodescribeawiderangeofdifferentrepresen- neuronsinthehumanhippocampusinastructuredmanner.In
+tationalscales,fromsingle‘‘grandmother’’cells[42]tomore sodoing,wehaveshownthat,contrarytocurrentconsensus,
+thantwomillioncellsinotheraccounts[41].Thehumanhippo- neuronal ensembles representing place memories must be
+campuscontainsw40millionprincipalneurons[19],andeven
+large,stable,andhaveananisotropicstructure.Spatialrepre-
+atthehighspatialresolutionofthescanningemployedhere, sentationsofthetypeinvestigatedherehavebeensuggested
+thistranslatestow104neuronspervoxel.Giventherelatively
+toformthescaffolduponwhichepisodicmemoriesarebuilt
+coarse and noisy nature of human neuroimaging in both the [4, 30, 43], but the precise mechanism by which the hippo-
+temporalandspatialdomains,itisstrikingthatitwaspossible campusachievesthisisstillunknown.Thiscrucialquestionis
+torobustlydistinguishbetweenpositionsofaparticipantinthe difficulttoaddressinnonhumans,whereineventheexistence
+environmentthatvaryinonlysubtleways.Totheextentthat of episodic memory has been challenged [44]. By showing
+multivariateclassificationwithfMRIreflectsbiasedsampling thatitispossibletodetectanddiscriminatebetweenmemories
+of a distributed anisotropic neuronal representation [16], ofadjacentspatialpositions,ourcombinationofnoninvasive
+our results are consistent with the notion that hippocampal invivo high-resolutionfMRI andmultivariateanalysesopens
+neuronal ensembles representing place memories are large upanewavenueforexploringepisodicmemoryatthepopula-
+andhaveananisotropicpredictablestructure.Moreover,the tionlevel.Inthefuture,itmaybefeasibletodecodeindividual
+prediction maps that we obtained indicated the presence of episodicmemorytracesfromtheactivityofneuronalensem-
+informationsufficienttodecodepositionfromvoxelsdistrib- bles in the human hippocampus. This brings ever closer the
+utedspatially throughoutthehippocampus.Ourdata,there- tantalizingprospectofdiscoveringhowaperson’slifetimeof
+fore,arebroadlysupportiveoftwopreviousinvasivestudies experiencesiscodedbytheneuronsofthebrain.
+thathavesuggestedthattheremaybesomeformofclustering
+[23]ortopographicalfunctionalorganization[22]inthehippo-
+ExperimentalProcedures
+campus. Although numerous invasive studies have reported
+thatthepopulationcodeisrandomanduniformlydistributed Participants
+[10, 11], a point often implicitly assumed by computational Four healthy right-handed males with prior experience of playing first-
+models[20,21],thiswouldresultinuniformpatternsofactivity personvideogamesparticipatedintheexperiment(meanage24.3years,
+atthevoxellevel,thusrenderingclassificationimpossible[13, SD3.2,agerange21–27).Allhadnormalorcorrected-to-normalvision.All
+participants gave informed written consent to participate in accordance
+14].However,therearewaysinwhichtheseopposingviews
+withthelocalresearchethicscommittee.
+and our findings can bepotentially reconciled. For instance,
+the spacing of tetrodes randomly sampling single neurons
+TaskandStimuli
+[11]couldbeoutofphasewiththestructureoftheunderlying During scanning, participants were required to navigate as quickly as
+functional organization [22]. Disparate findings might also possible between four arbitrary target locations in two different virtual
+
+--- PAGE 7 ---
+CurrentBiologyVol19No7
+552
+realityenvironments(Figure1).Thevirtualrealityenvironmentwasimple- BOLDsensitivityinthemedialtemporallobewasintrinsicallyreducedby
+mentedwithamodifiedversionofthegraphicsengineusedinthevideo thehighspatialresolutionandadjustingtheEPIparametersforthegiven
+game Fable (http://www.lionhead.com/fable/index.html). The room inte- slicetilt(z-shimgradientprepulsemoment=0mT/m3ms;positivePE
+riors were designed in the architectural package Sketch-up (http:// polarity).AT1-weighted,high-resolution,whole-brainstructuralMRIscan
+sketchup.google.com) and imported into thegraphics engine. The code wasacquiredforeachparticipantafterthemainscanningsession(1mm
+for the environment, controls, and scanner pulse synchronization was isotropicresolution,3DMDEFT).
+written in C++ with Microsoft Visual Studio (http://msdn.microsoft.com/
+en-gb/vstudio/products/default.aspx).Participantscontrolledtheirmove- ImagingDataPreprocessing
+mentthroughtheenvironmentwithafour-buttonMRI-compatiblecontrol This consistedof realignment to correct for motion effects and minimal
+pad.Thebuttonswereconfiguredtomoveforward,rotateleft,rotateright, spatial smoothing with a 3 mm FWHM Gaussian kernel. The first six
+andsignalthatatargetdestinationhadbeenreached.Participantswere ‘‘dummy’’volumeswerediscardedtoallowforT1equilibrationeffects[26].
+extensivelytrainedintheVRenvironmentspriortoscanning(fordetailsof
+theprescantrainingprocedure,seetheSupplementalExperimentalProce-
+MultivariatePatternClassification
+dures).Eachroomwas15m315m,andperspectivewassetattheheightof
+Astandardunivariatestatisticalanalysiswasperformedwithagenerallinear
+anaverageperson,around1.8maboveground.Thefourtargetpositions
+modelimplementedinSPM5(www.fil.ion.ucl.ac.uk/spm)(fordetailsofthis
+(A,B,C,andD)weresituated3minfromthecornersandvisuallydelineated
+analysis, seetheSupplementalExperimentalProcedures).Wethen per-
+byidenticalclothrugs.Eachrug(andhenceeachtargetarea)was1.5m3
+formedamultivariatepatternanalysis[13,14]designedtoidentifybrain
+1.5m.Identicalsmallsquaretableswereplacedineachcornertoaidvisi-
+regionswheredistributedfMRIactivationpatternscarriedinformationabout
+bilityandwereirrelevantascuesforthenavigationtask.Thetworooms
+theenvironmentthataparticipantwasinorinformationabouthispositionin
+were matched in terms of size, shape, luminosity, emotional salience,
+thatenvironment.Alineardetrendwasrunonthepreprocessedimagesto
+contents,andfloorcolor.Theroomsweredesignedsothatspatialrelation-
+removeanynoiseduetoscannerdriftorotherpossiblebackgroundsources
+shipsbetweenneighboringobjectcategoriesaswellasthetargetposition
+[46].Next,weconvolvedtheimagedatawiththecanonicalhemodynamic
+labelswereorthogonalforeachroom.Participantsnavigatedthroughthe
+responsefunctiontoincreasethesignal-to-noiseratioeffectivelyactingas
+roomsatafastwalkingspeedof1.9m/s.Itwasimportantformovement
+alow-passfilter[26].BOLDsignalhasaninherentdelayofaround6sto
+tobeatarealisticspeedandunderparticipantcontrolbecauseself-motion
+peakresponserelativetostimulusonsetduetothehemodynamicresponse
+isthoughttoplayanimportantpartinthespatialupdatingprocess[30,45].
+function[26],andapplyingthisconvolutionineffectdelayedthepeakby
+Hence,theuseofinteractivevirtualrealitywashighlysuitedforextractionof
+another6s,givingatotaldelayof12s.Tobestcompensateforthisdelay,
+positioninformationthatwasasecologicallyvalidaspossible.
+allonsettimeswereshiftedforwardintimebythreevolumes,yieldingthe
+Onceatargetlocationwasreached,theviewpointtransitioneddownward
+bestapproximationtothe12sdelaygivenaTRof3.57sandroundingto
+sothattheidenticalfloortextureoccupiedtheentirefieldofview,thus
+thenearestvolume[13,14].Thefirstvolumeandthelastfourvolumesof
+ensuringthatvisualinputwasmatchedperfectlyacrosspositions.Atthis
+eachenvironmentalblockwerediscardedtoallowforanyorientationeffects
+point,a5scountdownwasgiven,followedbytheletterofthenextlocation,
+tosettle(duetoappearingsuddenlyinaroom)andtoexcludecatchtrials
+displayed for 2 s, during which time the participant was stationary and
+(alwaysattheendofablockwhenpresent).Threeseparatemultivariateclas-
+viewing the floor (‘‘stationary phase’’). The viewpoint then transitioned
+sificationswerecarriedoutto(1)discriminatebetweenwhichoftwotarget
+backtothehorizontal,andtheparticipantnavigatedtothenextlocation
+positions in a single room the participant was standing (‘‘pairwise’’), (2)
+asquicklyandaccuratelyaspossible.Navigationblocksconsistingoftwo
+discriminate between all four target positions in a single room (‘‘four-
+tofourindividualtrialswereinterspersedwitha13speriodofrest,during
+way’’),and(3)discriminatebetweenwhichofthetworoomenvironments
+whichafixationcrosswaspresentedonaplainblackscreen.Thelabelof
+the participant was in (‘‘environment’’). The same technique, described
+thenexttargetpositionwasthendisplayedfor2sbeforetheparticipant
+next,wasusedinallthreetypesofclassification.
+wasplacedanewinoneoftheroomswithhisbackfacingthecloseddoor
+Inordertosearchinanunbiasedfashionforinformativevoxelsandmaxi-
+asifhehadjustenteredtheroom.Thetrialandroomorderswerepseudor-
+mizesensitivity,weusedanovelvariantofthe‘‘searchlight’’approach[17,
+andomizedandfullycounterbalancedacrossparticipants.Eachenviron-
+24],amultivariatefeatureselectionmethod[14,24]thatexaminestheinfor-
+ment(i.e.,blueorgreenroom)wasvisited20timesduringthescanning
+session, giving 40 environment blocks in total. Within eachroom, every
+mationinthelocalspatialpatternssurroundingeachvoxelv i(Figure2).This
+approachhasanotherimportantadvantageinthatitresultsinstatistical
+targetpositionwasvisited14times,giving112trialsintotal.Inordertomain-
+mapsthatallowfortheanatomicalmappingofthespatialpatternofinfor-
+tain attention during the stationary countdown period, catch trials were
+includedthatinvolvedanincidentalvisualtask.Thecountdownnumbers
+mativevoxelstobeappreciated.Thus,foreachvi,weinvestigatedwhether
+its local environment contained information that would allow accurate
+were displayed in white text, but occasionally one would flash red for
+decodingofthecurrentposition.Foragivenvoxelv,wefirstdefinedasmall
+200ms.Participantswereinstructedtopressthetriggerbuttonasquickly i
+sphericalcliqueofNvoxelsc witharadiusofthreevoxelscenteredonv.
+aspossibleuponspottingarednumber.Therewereeightcatchtrialsspread 1.N i
+Aradiusofthreevoxelswasreportedtobetheoptimalsizeforacliqueby
+throughoutthescanningsession—oneateachtargetpositionandalwaysat
+Kriegeskorteetal.[24],althoughthismaybepartiallydependentonthe
+theendofablock.Thevolumesacquiredduringthesecatchtrialswere
+excludedfromtheanalyses.Afterscanning,participantsweredebriefed
+resolutionoftheacquiredimages.Foreachvoxelc1.Ninthefixedlocalcli-
+que,weextractedthevoxelintensityfromeachimage,yieldinganN-dimen-
+andaskedaboutthenavigationalstrategiesthattheyadopted(fordetails
+sionalpatternvectorforeachimage.Multivariatepatternrecognitionwas
+ofthepostscandebriefingprocedure,seetheSupplementalData).
+thenusedtoassesshowmuchpositionandenvironmentinformationwas
+encodedintheselocalpatternvectors.Thiswasachievedbysplittingthe
+ImageAcquisition image data (now in the form of pattern vectors) into two segments:
+A3TMagnetomAllegraheadscanner(SiemensMedicalSolutions,Erlangen, a‘‘training’’setusedtotrainalinearsupportvectorpatternclassifier(with
+Germany)operatedwiththestandardtransmit-receiveheadcoilwasusedto fixedregularizationhyperparameterC=1)toidentifyresponsepatterns
+acquirefunctionaldatawithaT2*-weightedsingle-shotecho-planarimaging relatedtothetwoconditionsbeingdiscriminatedanda‘‘test’’setusedto
+(EPI)sequence(in-planeresolution=1.531.5mm2;matrix=1283128;field independentlytesttheclassificationperformance.Theclassificationwas
+ofview=1923192mm2;35slicesacquiredinaninterleavedorder;slice performedwithasupportvectormachine(SVM)[47]byusingtheLIBSVM
+thickness=1.5mmwithnogapbetweenslices;echotimeTE=30ms;asym- implementation (http://www.csie.ntu.edu.tw/wcjlin/libsvm/). We used a
+metricechoshiftedforwardby26phase-encoding(PE)lines;echospacing= standard k fold crossvalidation testing regime [13, 15, 47], wherein k
+560ms;repetitiontimeTR=3.57s;flipanglea=90(cid:2)).Alldatawererecordedin equaledthenumberofblocks,witheachblocksetaside,inturn,asthe
+one single uninterrupted functional scanning session (total volumes test data and the rest of the blocks used to train the classifier (see
+acquired for each participant: s1 636 volumes; s2 640 volumes; s3 658 Figure 2F). This procedure was then repeated until all blocks had been
+volumes;s4670volumes).Anisotropicvoxelsizeof1.531.531.5mm3 assignedonceasthetestdata(thecrossvalidationstep).Thus,thepairwise
+waschosenforanoptimaltradeoffbetweenBOLDsensitivityandspatial positionclassificationinvolveda28-foldcrossvalidationstep(14position
+resolution.Further,theisotropicvoxeldimensionreducedresamplingarti- Xand14positionYminiblocksoftwovolumeseach;becausethestationary
+factswhenapplyingmotioncorrection.Inordertominimizerepetitiontime phaselasted7sandthescanningrepetitiontimewas3.57s,thisconsisted
+while also optimizing coverage of the regions of interest in the medial ofthetwovolumesimmediatelyfollowingtheonsetofthestationaryperiod);
+temporallobe,wecapturedpartialfunctionalvolumesangledat5(cid:2)inthe thefour-waypositionclassificationinvolveda56-foldcrossvalidationstep
+anterior-posterior axis (see Figure 2B). Susceptibility induced loss of (14miniblocksoflengthtwovolumesforeachoffourpositions);andthe
+
+--- PAGE 8 ---
+DecodingSpatialMemories
+553
+environmentclassificationinvolveda40-foldcrossvalidationstep(20blue Acknowledgments
+roomand20greenroomblocks,withanaverageofsevenvolumesper
+block).Everyvolumewithinatestblockwasindividuallyclassifiedfollowing ThisworkwassupportedbytheWellcomeTrustandtheBrainResearch
+thecrossvalidationstep,thusyieldinganoverallpercentageaccuracyfor Trust.WethankK.Friston, R.Dolan, N.Burgess, P.Dayan, J.Mourao-
+thecliquecenteredaroundvoxelvforallofthevolumesintheentireexper- Miranda,J.D.Haynes,J.Ashburner,T.Niccoli,C.Barry,M.Bicknell,and
+i
+imentalsession(seeFigure2G).Thisdecodingaccuracywasstoredwith D.KumaranforhelpfuldiscussionsandR.Davis,P.Aston,D.Bradbury,
+voxelviforsubsequentreprojectionasa‘‘predictionmap’’(see‘‘Reprojec- J.Glensman,A.Perrotin,N.Furl,D.Mobbs,andA.Langridgefortechnical
+tionandThresholding’’below),andtheentireprocedurewasrepeatedon assistance.
+a voxel-by-voxel basis until all voxels in a previously defined region of
+interesthadbeenconsidered.Inthiscase,thesearchregionswereanatom- Received:October22,2008
+icallydefinedwithtwolargerectangularboundingboxes(eachcomposed Revised:January27,2009
+of 6750 voxels; see Figure 2B) covering both the right and left medial Accepted:February10,2009
+temporallobesandthusencompassingouraprioriregionsofinterest,i.e., Publishedonline:March12,2009
+thehippocampusandparahippocampalgyrus.Goodoverallclassification
+accuracyforavoxelv iimpliesthatpatternsinthesurroundinglocalclique
+ofvoxelsencodeinformationaboutthecurrentpositionandenvironment References
+oftheparticipant.Afinalmulticlassclassificationprocedurewasperformed
+1.Hebb,D.O.(1949).TheOrganizationofBehavior(NewYork:Wiley).
+forthefour-waypositionclassification(seetheSupplementalExperimental
+2.Harris,K.D.(2005).Neuralsignaturesofcellassemblyorganization.Nat.
+Proceduresfordetails).
+Rev.Neurosci.6,399–407.
+3.Buzsaki,G.(2004).Large-scalerecordingofneuronalensembles.Nat.
+ReprojectionandThresholding Neurosci.7,446–451.
+Oncetheclassificationswerecompletedandthedecodingaccuracieswere
+4.O’Keefe,J.,andNadel,L.(1978).Thehippocampusasacognitivemap
+storedforeachvoxelinthesearchregion,weproceededtoreprojectthese
+(Oxford,England:OxfordUniversityPress).
+valuesbackintostructuralbrainimagespacetoallowtheresultantpredic-
+5.Ekstrom, A.D., Kahana, M.J., Caplan, J.B., Fields, T.A., Isham, E.A.,
+tionmapstobevisuallyinspected.Thesepredictionmapswerethenthresh-
+Newman,E.L.,andFried,I.(2003).Cellularnetworksunderlyinghuman
+olded at a percentage accuracy value that was significantly above that
+spatialnavigation.Nature425,184–188.
+expectedbychance.Thissignificancethresholdwasdeterminedbyusing
+6.Moser,E.I.,Kropff,E.,andMoser,M.B.(2008).Placecells,gridcells,
+theclassicalmethodofnonparametricpermutationtesting[31,32],requiring
+and the brain’s spatial representation system. Annu. Rev. Neurosci.
+minimalassumptions(forexample,abouttheshapeofthepopulationdistri-
+31,69–89.
+bution)forvalidity.Theentireclassificationprocedureoutlinedabovewas
+7.Wilson,M.A.,andMcNaughton,B.L.(1993).Dynamicsofthehippo-
+performed100timeswithadifferentrandompermutationofthetraining
+campalensemblecodeforspace.Science261,1055–1058.
+labelsforeachclassificationtypeforeachparticipant.Theindividualvoxel
+8.Lin,L.,Osan,R.,Shoham,S.,Jin,W.,Zuo,W.,andTsien,J.Z.(2005).
+accuracyvaluesfromeachofthese100randomrunswerethenconcate-
+Identificationofnetwork-levelcodingunitsforreal-timerepresentation
+natedintoonepopulation,andtheaccuracyvalueatthe95thpercentileof
+ofepisodicexperiencesinthehippocampus.Proc.Natl.Acad.Sci.USA
+this aggregated distribution was calculated. Therefore, this procedure
+102,6125–6130.
+yieldedapercentageaccuracyvalueforeachindividualparticipant,above
+whichavoxel’saccuracywasconsideredsignificant,equatingtoaconfi- 9.Dombeck, D.A., Khabbaz, A.N., Collman, F., Adelman, T.L., and
+dencelevelofp<0.05uncorrectedinastandardttest. Tank,D.W.(2007).Imaginglarge-scaleneuralactivitywithcellularreso-
+We accounted for the multiple comparisons problem by performing lutioninawake,mobilemice.Neuron56,43–57.
+a standard test for the difference between two population proportions 10.Guzowski, J.F., McNaughton, B.L., Barnes, C.A., and Worley, P.F.
+[33].Ifsignificantvoxelsarefalsepositivesduetorandomvariation,the (1999).Environment-specificexpressionoftheimmediate-earlygene
+proportionofsignificantvoxelsshouldbeuniformovertheentiresearch Arcinhippocampalneuronalensembles.Nat.Neurosci.2,1120–1124.
+space(seeFigure2).Totestthisnullhypothesis,wecreatedtwoanatomical 11.Redish,A.D.,Battaglia,F.P.,Chawla,M.K.,Ekstrom,A.D.,Gerrard,J.L.,
+masks,onecoveringthehippocampusbilaterallyandtheothertheparahip- Lipa,P.,Rosenzweig,E.S.,Worley,P.F.,Guzowski,J.F.,McNaughton,
+pocampal gyrus bilaterally, for each individual participant by hand with B.L., and Barnes, C.A. (2001). Independence of firing correlates of
+MRIcro (http://www.sph.sc.edu/comd/rorden/mricro.html) by using each anatomicallyproximatehippocampalpyramidalcells.J.Neurosci.21,
+participant’sstructuralMRIscanforguidance.Theproportionofsignificant RC134.
+voxelsforeachregionwasdetermined(i.e.,activevoxels/totalvoxels)for 12.Quiroga,R.Q.,Reddy,L.,Kreiman,G.,Koch,C.,andFried,I.(2005).
+each prediction map (i.e., pairwise position, four-way position in blue Invariantvisualrepresentationbysingleneuronsinthehumanbrain.
+room,four-waypositioningreenroom,andenvironment)foreachpartici- Nature435,1102–1107.
+pant.Atwo-tailedtestfordifferencebetweenproportionswasperformed 13.Haynes,J.D.,andRees,G.(2006).Decodingmentalstatesfrombrain
+foreachofthepredictionmaps todeterminewhethertheproportion of activityinhumans.Nat.Rev.Neurosci.7,523–534.
+activevoxelsinthehippocampuswassignificantlydifferentfromthatin 14.Norman,K.A.,Polyn,S.M.,Detre,G.J.,andHaxby,J.V.(2006).Beyond
+theparahippocampalgyrus. mind-reading:Multi-voxelpatternanalysisoffMRIdata.TrendsCogn.
+Inadditiontothevoxelcountdifferenceofproportionstestdescribed Sci.10,424–430.
+above,weusedasecondanalyticapproachtotestforaregionxclassifica- 15.Haynes,J.D.,andRees,G.(2005).Predictingtheorientationofinvisible
+tion type interaction between the hippocampus and parahippocampal stimulifromactivityinhumanprimaryvisualcortex.Nat.Neurosci.8,
+gyrus.WeassessedtheinformationalcontentofBOLDsignalsforeach 686–691.
+typeofclassification(i.e.,pairwisepositionandcontext)forbothregions. 16.Kamitani,Y.,andTong,F.(2005).Decodingthevisualandsubjective
+AclassifiertrainedonAversusBintheblueroom(comprisingprimarily contentsofthehumanbrain.Nat.Neurosci.8,679–685.
+hippocampalvoxels;seeFigure3)wastestedondiscriminatingbetween 17.Haynes,J.D.,Sakai,K.,Rees,G.,Gilbert,S.,Frith,C.,andPassingham,
+theblueroomandgreenroomcontexts.Conversely,aclassifiertrained R.E.(2007).Readinghiddenintentionsinthehumanbrain.Curr.Biol.17,
+onblueversusgreenroomcontext(comprisingprimarilyparahippocampal 323–328.
+voxels; see Figure 5) was tested on discriminating between positions 18.Polyn,S.M.,Natu,V.S.,Cohen,J.D.,andNorman,K.A.(2005).Category-
+AversusBintheblueroom.Toenablecomparison,wegeneratedasingle specific cortical activity precedes retrieval during memory search.
+accuracy value for each classifier (see the Supplemental Experimental Science310,1963–1966.
+ProceduresandSupplementalResults). 19.Andersen,P.,Morris,R.,Amaral,D.G.,Bliss,T.,andO’Keefe,J.(2007).
+TheHippocampusBook(NewYork:OxfordUniversityPress).
+SupplementalData 20.Hartley,T.,Burgess,N.,Lever,C.,Cacucci,F.,andO’Keefe,J.(2000).
+Modelingplacefieldsintermsofthecorticalinputstothehippocampus.
+Supplemental Data include Supplemental Experimental Procedures, Hippocampus10,369–379.
+SupplementalResults,fivetables,andonefigureandcanbefoundwith 21.Samsonovich,A.,andMcNaughton,B.L.(1997).Pathintegrationand
+this article online at http://www.current-biology.com/supplemental/ cognitive mapping in a continuous attractor neural network model.
+S0960-9822(09)00741-6. J.Neurosci.17,5900–5920.
+
+--- PAGE 9 ---
+CurrentBiologyVol19No7
+554
+22. Hampson,R.E.,Simeral,J.D.,andDeadwyler,S.A.(1999).Distribution
+ofspatialandnonspatialinformation indorsalhippocampus.Nature
+402,610–614.
+23. Eichenbaum,H.,Wiener,S.I.,Shapiro,M.L.,andCohen,N.J.(1989).The
+organizationofspatialcodinginthehippocampus:Astudyofneural
+ensembleactivity.J.Neurosci.9,2764–2775.
+24. Kriegeskorte, N., Goebel, R., and Bandettini, P. (2006). Information-
+based functional brain mapping. Proc. Natl. Acad. Sci. USA 103,
+3863–3868.
+25. Gegenfurtner, K.R., and Kiper, D.C. (2003). Color vision. Annu. Rev.
+Neurosci.26,181–206.
+26. Frackowiak,R.S.J.,Friston,K.J., Frith,C.D.,Dolan, R.J.,Price,C.J.,
+Zeki,S.,Ashburner,J.T.,andPenny,W.D.(2004).HumanBrainFunction
+(NewYork:ElsevierAcademicPress).
+27. Epstein,R.,andKanwisher,N.(1998).Acorticalrepresentationofthe
+localvisualenvironment.Nature392,598–601.
+28. Janzen,G.,andvanTurennout,M.(2004).Selectiveneuralrepresenta-
+tionofobjectsrelevantfornavigation.Nat.Neurosci.7,673–677.
+29. Bar,M.(2004).Visualobjectsincontext.Nat.Rev.Neurosci.5,617–629.
+30. Bird, C.M., and Burgess, N. (2008). The hippocampus and memory:
+Insightsfromspatialprocessing.Nat.Rev.Neurosci.9,182–194.
+31. Fisher,R.A.(1935).Thedesignofexperiments(Edinburgh:OliverBoyd).
+32. Nichols,T.E.,andHolmes,A.P.(2002).Nonparametricpermutationtests
+forfunctionalneuroimaging:Aprimerwithexamples.Hum.BrainMapp.
+15,1–25.
+33. Daniel,W.W.,andTerrell,J.C.(1995).BusinessStatisticsforManage-
+mentandEconomics(Boston:HoughtonMifflin).
+34. Maguire,E.A.,Woollett,K.,andSpiers,H.J.(2006).Londontaxidrivers
+and bus drivers: A structural MRI and neuropsychological analysis.
+Hippocampus16,1091–1101.
+35. Moser, M.B., and Moser,E.I. (1998). Functionaldifferentiation in the
+hippocampus.Hippocampus8,608–619.
+36. Colombo, M., Fernandez, T., Nakamura, K., and Gross, C.G. (1998).
+Functionaldifferentiationalongtheanterior-posterioraxisofthehippo-
+campusinmonkeys.J.Neurophysiol.80,1002–1005.
+37. Cohen, N.J., and Eichenbaum, H. (1993). Memory, Amnesia and the
+HippocampalSystem(Cambridge,MA:MITPress).
+38. Spiers, H.J., and Maguire, E.A. (2006). Thoughts, behaviour, and
+brain dynamics during navigation in the real world. Neuroimage 31,
+1826–1840.
+39. Logothetis,N.K.(2008).Whatwecandoandwhatwecannotdowith
+fMRI.Nature453,869–878.
+40. Goense,J.B.,andLogothetis,N.K.(2008).NeurophysiologyoftheBOLD
+fMRIsignalinawakemonkeys.Curr.Biol.18,631–640.
+41. Quiroga,R.Q.,Kreiman,G.,Koch,C.,andFried,I.(2008).Sparsebutnot
+‘grandmother-cell’codinginthemedialtemporallobe.TrendsCogn.
+Sci.12,87–91.
+42. Gross,C.G.(2002).Genealogyofthe‘‘Grandmothercell’’.Neuroscien-
+tist8,512–518.
+43. Hassabis, D., Kumaran, D., Vann, S.D., and Maguire, E.A. (2007).
+Patientswithhippocampalamnesiacannotimaginenewexperiences.
+Proc.Natl.Acad.Sci.USA104,1726–1731.
+44. Tulving,E.(2002).Episodicmemory:Frommindtobrain.Annu.Rev.
+Psychol.53,1–25.
+45. Byrne,P.,Becker,S.,andBurgess,N.(2007).Rememberingthepast
+and imagining the future: A neural model of spatial memory and
+imagery.Psychol.Rev.114,340–375.
+46. LaConte, S., Strother, S., Cherkassky, V., Anderson, J., and Hu, X.
+(2005). Support vectormachines for temporal classification ofblock
+designfMRIdata.Neuroimage26,317–329.
+47. Duda, O.R., Hart,P.E., and Stork, D.G. (2001). Pattern Classification
+(NewYork:Wiley).

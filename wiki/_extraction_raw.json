@@ -1,0 +1,1220 @@
+{
+  "a-clinically-applicable-approach-to-continuous-prediction-of-future-acute-kidney-injury--hassabis": {
+    "filename": "a-clinically-applicable-approach-to-continuous-prediction-of-future-acute-kidney-injury--hassabis.pdf",
+    "slug": "a-clinically-applicable-approach-to-continuous-prediction-of-future-acute-kidney-injury--hassabis",
+    "year": 2019,
+    "venue": "Nature-Medicine",
+    "co_authors": [
+      "Nenad Tomašev",
+      "Xavier Glorot",
+      "Jack W. Rae",
+      "Alan Karthikesalingam",
+      "Dominic King",
+      "Mustafa Suleyman",
+      "Shakir Mohamed"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "clinical-AI",
+      "era": "alphafold-era",
+      "venue": "Nature-Medicine",
+      "theme": [
+        "clinical-AI"
+      ],
+      "project": [
+        "DeepMind-general"
+      ],
+      "impact": [
+        "(none)"
+      ]
+    }
+  },
+  "a-distributional-code-for-value-in-dopamine-based-reinforcement-learning--hassabis": {
+    "filename": "a-distributional-code-for-value-in-dopamine-based-reinforcement-learning--hassabis.pdf",
+    "slug": "a-distributional-code-for-value-in-dopamine-based-reinforcement-learning--hassabis",
+    "year": 2020,
+    "venue": "Nature",
+    "co_authors": [
+      "Peter Dayan",
+      "Raymond Dolan"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "neuroscience-AI-bridge",
+      "era": "alphafold-era",
+      "venue": "Nature",
+      "theme": [
+        "reinforcement-learning",
+        "neuroscience-AI-bridge"
+      ],
+      "project": [
+        "(none)"
+      ],
+      "impact": [
+        "top-cited"
+      ]
+    }
+  },
+  "a-general-reinforcement-learning-algorithm-that-masters-chess-shogi-and-go--hassabis": {
+    "filename": "a-general-reinforcement-learning-algorithm-that-masters-chess-shogi-and-go--hassabis.pdf",
+    "slug": "a-general-reinforcement-learning-algorithm-that-masters-chess-shogi-and-go--hassabis",
+    "year": 2018,
+    "venue": "Science",
+    "co_authors": [
+      "David Silver",
+      "Julian Schrittwieser",
+      "Ioannis Antonoglou",
+      "Arthur Guez",
+      "Marc Lanctot",
+      "Timothy Lillicrap",
+      "Karen Simonyan"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "reinforcement-learning",
+      "era": "deepmind-ascent",
+      "venue": "Science",
+      "theme": [
+        "self-play",
+        "game-playing-AI",
+        "chess",
+        "go",
+        "deep-RL"
+      ],
+      "project": [
+        "AlphaZero"
+      ],
+      "impact": [
+        "field-defining",
+        "top-cited"
+      ]
+    }
+  },
+  "advancing-mathematics-by-guiding-human-intuition-w--hassabis": {
+    "filename": "advancing-mathematics-by-guiding-human-intuition-w--hassabis.pdf",
+    "slug": "advancing-mathematics-by-guiding-human-intuition-w--hassabis",
+    "year": 2021,
+    "venue": "Nature",
+    "co_authors": [
+      "Alex Davies",
+      "Pushmeet Kohli",
+      "Jordan Ellenberg"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "mathematics-AI",
+      "era": "alphafold-era",
+      "venue": "Nature",
+      "theme": [
+        "AI-for-science"
+      ],
+      "project": [
+        "DeepMind-general"
+      ],
+      "impact": [
+        "Science-breakthrough"
+      ]
+    }
+  },
+  "applying-and-improving-alphafold-at-casp14--hassabis": {
+    "filename": "applying-and-improving-alphafold-at-casp14--hassabis.pdf",
+    "slug": "applying-and-improving-alphafold-at-casp14--hassabis",
+    "year": 2021,
+    "venue": "Nature",
+    "co_authors": [
+      "John Jumper",
+      "Richard Evans",
+      "Alexander Pritzel",
+      "David Silver"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "protein-structure",
+      "era": "alphafold-era",
+      "venue": "Nature",
+      "theme": [
+        "protein-folding",
+        "structural-biology"
+      ],
+      "project": [
+        "AlphaFold2"
+      ],
+      "impact": [
+        "(none)"
+      ]
+    }
+  },
+  "artificial-intelligence-chess-match-of-the-century--hassabis": {
+    "filename": "artificial-intelligence-chess-match-of-the-century--hassabis.pdf",
+    "slug": "artificial-intelligence-chess-match-of-the-century--hassabis",
+    "year": 2016,
+    "venue": "Nature",
+    "co_authors": [],
+    "taxonomy": {
+      "format": "essay",
+      "domain": "game-playing-AI",
+      "era": "deepmind-ascent",
+      "venue": "Nature",
+      "theme": [
+        "game-playing-AI",
+        "chess"
+      ],
+      "project": [
+        "AlphaGo"
+      ],
+      "impact": [
+        "public-statement"
+      ]
+    }
+  },
+  "big-loop-recurrence-within-the-hippocampal-system-supports-integration-of-information-across-episodes--hassabis": {
+    "filename": "big-loop-recurrence-within-the-hippocampal-system-supports-integration-of-information-across-episodes--hassabis.pdf",
+    "slug": "big-loop-recurrence-within-the-hippocampal-system-supports-integration-of-information-across-episodes--hassabis",
+    "year": 2019,
+    "venue": "Neuron",
+    "co_authors": [
+      "Dharshan Kumaran",
+      "Eleonora Vigliocco",
+      "Neil Burgess"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "cognitive-neuroscience",
+      "era": "alphafold-era",
+      "venue": "Neuron",
+      "theme": [
+        "hippocampal-construction"
+      ],
+      "project": [
+        "hippocampus-research"
+      ],
+      "impact": [
+        "(none)"
+      ]
+    }
+  },
+  "clinically-applicable-deep-learning-for-diagnosis-and-referral-in-retinal-disease--hassabis": {
+    "filename": "clinically-applicable-deep-learning-for-diagnosis-and-referral-in-retinal-disease--hassabis.pdf",
+    "slug": "clinically-applicable-deep-learning-for-diagnosis-and-referral-in-retinal-disease--hassabis",
+    "year": 2018,
+    "venue": "Nature-Medicine",
+    "co_authors": [
+      "Jeffrey De Fauw",
+      "Joseph R. Ledsam",
+      "Reena Chopra",
+      "Pearse Keane"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "clinical-AI",
+      "era": "deepmind-ascent",
+      "venue": "Nature-Medicine",
+      "theme": [
+        "clinical-AI"
+      ],
+      "project": [
+        "DeepMind-general"
+      ],
+      "impact": [
+        "field-defining"
+      ]
+    }
+  },
+  "computations-underlying-social-hierarchy-learning--hassabis": {
+    "filename": "computations-underlying-social-hierarchy-learning--hassabis.pdf",
+    "slug": "computations-underlying-social-hierarchy-learning--hassabis",
+    "year": 2016,
+    "venue": "Neuron",
+    "co_authors": [
+      "Dharshan Kumaran",
+      "Peter Dayan",
+      "Raymond Dolan"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "cognitive-neuroscience",
+      "era": "deepmind-ascent",
+      "venue": "Neuron",
+      "theme": [
+        "hippocampal-construction"
+      ],
+      "project": [
+        "hippocampus-research"
+      ],
+      "impact": [
+        "(none)"
+      ]
+    }
+  },
+  "decoding-individual-episodic-memory-traces-in-the-human-hippocampus--hassabis": {
+    "filename": "decoding-individual-episodic-memory-traces-in-the-human-hippocampus--hassabis.pdf",
+    "slug": "decoding-individual-episodic-memory-traces-in-the-human-hippocampus--hassabis",
+    "year": 2010,
+    "venue": "Current-Biology",
+    "co_authors": [
+      "Eleanor A. Maguire"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "cognitive-neuroscience",
+      "era": "postdoc-period",
+      "venue": "Current-Biology",
+      "theme": [
+        "memory-imagination",
+        "hippocampal-construction",
+        "episodic-memory"
+      ],
+      "project": [
+        "hippocampus-research"
+      ],
+      "impact": [
+        "career-origin"
+      ]
+    }
+  },
+  "decoding-neuronal-ensembles-in-the-human-hippocampus--hassabis": {
+    "filename": "decoding-neuronal-ensembles-in-the-human-hippocampus--hassabis.pdf",
+    "slug": "decoding-neuronal-ensembles-in-the-human-hippocampus--hassabis",
+    "year": 2009,
+    "venue": "Current-Biology",
+    "co_authors": [
+      "Eleanor A. Maguire"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "cognitive-neuroscience",
+      "era": "phd-period",
+      "venue": "Current-Biology",
+      "theme": [
+        "hippocampal-construction"
+      ],
+      "project": [
+        "hippocampus-research"
+      ],
+      "impact": [
+        "career-origin"
+      ]
+    }
+  },
+  "deconstructing-episodic-memory-with-construction--hassabis": {
+    "filename": "deconstructing-episodic-memory-with-construction--hassabis.pdf",
+    "slug": "deconstructing-episodic-memory-with-construction--hassabis",
+    "year": 2007,
+    "venue": "Behavioral-and-Brain-Sciences",
+    "co_authors": [
+      "Eleanor A. Maguire"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "cognitive-neuroscience",
+      "era": "phd-period",
+      "venue": "Behavioral-and-Brain-Sciences",
+      "theme": [
+        "memory-imagination",
+        "episodic-memory"
+      ],
+      "project": [
+        "hippocampus-research"
+      ],
+      "impact": [
+        "career-origin"
+      ]
+    }
+  },
+  "deepmind-ceo-demis-hassabis-urges-caution-on-ai--hassabis": {
+    "filename": "deepmind-ceo-demis-hassabis-urges-caution-on-ai--hassabis.pdf",
+    "slug": "deepmind-ceo-demis-hassabis-urges-caution-on-ai--hassabis",
+    "year": 2026,
+    "venue": "The-Guardian",
+    "co_authors": [],
+    "taxonomy": {
+      "format": "op-ed",
+      "domain": "safety-governance",
+      "era": "post-alphafold",
+      "venue": "The-Guardian",
+      "theme": [
+        "safety-governance"
+      ],
+      "project": [
+        "(none)"
+      ],
+      "impact": [
+        "public-statement"
+      ]
+    }
+  },
+  "demis-hassabis-time100-on-alphafold-agi-and-humanity--hassabis": {
+    "filename": "demis-hassabis-time100-on-alphafold-agi-and-humanity--hassabis.pdf",
+    "slug": "demis-hassabis-time100-on-alphafold-agi-and-humanity--hassabis",
+    "year": 2025,
+    "venue": "TIME",
+    "co_authors": [],
+    "taxonomy": {
+      "format": "essay",
+      "domain": "AGI-theory",
+      "era": "post-alphafold",
+      "venue": "TIME",
+      "theme": [
+        "protein-folding",
+        "AGI-definition",
+        "AI-for-science"
+      ],
+      "project": [
+        "(none)"
+      ],
+      "impact": [
+        "public-statement"
+      ]
+    }
+  },
+  "grandmaster-level-in-starcraft-ii-using-multi-agent-rl--hassabis": {
+    "filename": "grandmaster-level-in-starcraft-ii-using-multi-agent-rl--hassabis.pdf",
+    "slug": "grandmaster-level-in-starcraft-ii-using-multi-agent-rl--hassabis",
+    "year": 2019,
+    "venue": "Nature",
+    "co_authors": [
+      "Oriol Vinyals",
+      "Timothy Lillicrap",
+      "David Silver"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "game-playing-AI",
+      "era": "alphafold-era",
+      "venue": "Nature",
+      "theme": [
+        "game-playing-AI",
+        "starcraft"
+      ],
+      "project": [
+        "AlphaStar"
+      ],
+      "impact": [
+        "field-defining"
+      ]
+    }
+  },
+  "highly-accurate-protein-structure-prediction-for-the-human-proteome--hassabis": {
+    "filename": "highly-accurate-protein-structure-prediction-for-the-human-proteome--hassabis.pdf",
+    "slug": "highly-accurate-protein-structure-prediction-for-the-human-proteome--hassabis",
+    "year": 2021,
+    "venue": "Nature",
+    "co_authors": [
+      "John Jumper",
+      "Richard Evans",
+      "Alexander Pritzel",
+      "David Silver"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "protein-structure",
+      "era": "alphafold-era",
+      "venue": "Nature",
+      "theme": [
+        "protein-folding",
+        "structural-biology"
+      ],
+      "project": [
+        "AlphaFold2"
+      ],
+      "impact": [
+        "Nobel-cited"
+      ]
+    }
+  },
+  "highly-accurate-protein-structure-prediction-with---hassabis": {
+    "filename": "highly-accurate-protein-structure-prediction-with---hassabis.pdf",
+    "slug": "highly-accurate-protein-structure-prediction-with---hassabis",
+    "year": 2021,
+    "venue": "Nature",
+    "co_authors": [
+      "John Jumper",
+      "Richard Evans",
+      "Alexander Pritzel",
+      "David Silver",
+      "Koray Kavukcuoglu"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "protein-structure",
+      "era": "alphafold-era",
+      "venue": "Nature",
+      "theme": [
+        "protein-folding",
+        "structural-biology"
+      ],
+      "project": [
+        "AlphaFold2"
+      ],
+      "impact": [
+        "Nobel-cited",
+        "Science-breakthrough",
+        "Nature-frontpage",
+        "field-defining",
+        "top-cited"
+      ]
+    }
+  },
+  "human-level-control-through-deep-reinforcement-learning--hassabis": {
+    "filename": "human-level-control-through-deep-reinforcement-learning--hassabis.pdf",
+    "slug": "human-level-control-through-deep-reinforcement-learning--hassabis",
+    "year": 2015,
+    "venue": "Nature",
+    "co_authors": [
+      "Volodymyr Mnih",
+      "Koray Kavukcuoglu",
+      "David Silver"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "reinforcement-learning",
+      "era": "early-deepmind",
+      "venue": "Nature",
+      "theme": [
+        "reinforcement-learning",
+        "deep-RL"
+      ],
+      "project": [
+        "DQN"
+      ],
+      "impact": [
+        "field-defining",
+        "top-cited"
+      ]
+    }
+  },
+  "human-level-performance-in-3d-multiplayer-games-with-population-based-rl--hassabis": {
+    "filename": "human-level-performance-in-3d-multiplayer-games-with-population-based-rl--hassabis.pdf",
+    "slug": "human-level-performance-in-3d-multiplayer-games-with-population-based-rl--hassabis",
+    "year": 2017,
+    "venue": "Science",
+    "co_authors": [
+      "Max Jaderberg",
+      "David Silver",
+      "Timothy Lillicrap"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "reinforcement-learning",
+      "era": "deepmind-ascent",
+      "venue": "Science",
+      "theme": [
+        "deep-RL",
+        "game-playing-AI"
+      ],
+      "project": [
+        "DeepMind-general"
+      ],
+      "impact": [
+        "field-defining"
+      ]
+    }
+  },
+  "hybrid-computing-using-a-neural-network-with-dynamic-external-memory--hassabis": {
+    "filename": "hybrid-computing-using-a-neural-network-with-dynamic-external-memory--hassabis.pdf",
+    "slug": "hybrid-computing-using-a-neural-network-with-dynamic-external-memory--hassabis",
+    "year": 2016,
+    "venue": "Nature",
+    "co_authors": [
+      "Alexander Graves",
+      "Greg Wayne",
+      "Timothy Lillicrap"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "reinforcement-learning",
+      "era": "deepmind-ascent",
+      "venue": "Nature",
+      "theme": [
+        "reinforcement-learning"
+      ],
+      "project": [
+        "DNC"
+      ],
+      "impact": [
+        "field-defining"
+      ]
+    }
+  },
+  "imagine-all-the-people-how-the-brain-creates-and-uses-personality-models--hassabis": {
+    "filename": "imagine-all-the-people-how-the-brain-creates-and-uses-personality-models--hassabis.pdf",
+    "slug": "imagine-all-the-people-how-the-brain-creates-and-uses-personality-models--hassabis",
+    "year": 2007,
+    "venue": "Current-Biology",
+    "co_authors": [
+      "Eleanor A. Maguire",
+      "Raymond Dolan"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "cognitive-neuroscience",
+      "era": "phd-period",
+      "venue": "Current-Biology",
+      "theme": [
+        "memory-imagination",
+        "hippocampal-construction"
+      ],
+      "project": [
+        "hippocampus-research"
+      ],
+      "impact": [
+        "top-cited"
+      ]
+    }
+  },
+  "improved-protein-structure-prediction-using-potentials-from-deep-learning--hassabis": {
+    "filename": "improved-protein-structure-prediction-using-potentials-from-deep-learning--hassabis.pdf",
+    "slug": "improved-protein-structure-prediction-using-potentials-from-deep-learning--hassabis",
+    "year": 2019,
+    "venue": "Proteins",
+    "co_authors": [
+      "Richard Evans",
+      "John Jumper",
+      "David Silver"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "protein-structure",
+      "era": "alphafold-era",
+      "venue": "Proteins",
+      "theme": [
+        "protein-folding",
+        "structural-biology"
+      ],
+      "project": [
+        "AlphaFold"
+      ],
+      "impact": [
+        "(none)"
+      ]
+    }
+  },
+  "lex-fridman-podcast-475-future-of-ai-simulating-reality-physics-and-video-games--hassabis": {
+    "filename": "lex-fridman-podcast-475-future-of-ai-simulating-reality-physics-and-video-games--hassabis.pdf",
+    "slug": "lex-fridman-podcast-475-future-of-ai-simulating-reality-physics-and-video-games--hassabis",
+    "year": 2026,
+    "venue": "Lex-Fridman-Podcast",
+    "co_authors": [
+      "Lex Fridman"
+    ],
+    "taxonomy": {
+      "format": "interview",
+      "domain": "AGI-theory",
+      "era": "post-alphafold",
+      "venue": "Lex-Fridman-Podcast",
+      "theme": [
+        "AGI-definition",
+        "game-playing-AI"
+      ],
+      "project": [
+        "(none)"
+      ],
+      "impact": [
+        "public-statement"
+      ]
+    }
+  },
+  "mastering-atari-go-chess-and-shogi-by-planning-with-a-learned-model--hassabis": {
+    "filename": "mastering-atari-go-chess-and-shogi-by-planning-with-a-learned-model--hassabis.pdf",
+    "slug": "mastering-atari-go-chess-and-shogi-by-planning-with-a-learned-model--hassabis",
+    "year": 2020,
+    "venue": "Nature",
+    "co_authors": [
+      "Julian Schrittwieser",
+      "Ioannis Antonoglou",
+      "Timothy Lillicrap",
+      "David Silver"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "reinforcement-learning",
+      "era": "alphafold-era",
+      "venue": "Nature",
+      "theme": [
+        "deep-RL",
+        "model-based-RL",
+        "game-playing-AI",
+        "chess"
+      ],
+      "project": [
+        "MuZero"
+      ],
+      "impact": [
+        "field-defining",
+        "top-cited"
+      ]
+    }
+  },
+  "mastering-the-game-of-go-with-deep-neural-networks-and-tree-search--hassabis": {
+    "filename": "mastering-the-game-of-go-with-deep-neural-networks-and-tree-search--hassabis.pdf",
+    "slug": "mastering-the-game-of-go-with-deep-neural-networks-and-tree-search--hassabis",
+    "year": 2016,
+    "venue": "Nature",
+    "co_authors": [
+      "David Silver",
+      "Aja Huang",
+      "Chris J. Maddison",
+      "Arthur Guez",
+      "Laurent Sifre",
+      "Koray Kavukcuoglu",
+      "Ilya Sutskever"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "game-playing-AI",
+      "era": "deepmind-ascent",
+      "venue": "Nature",
+      "theme": [
+        "game-playing-AI",
+        "go"
+      ],
+      "project": [
+        "AlphaGo"
+      ],
+      "impact": [
+        "Nature-frontpage",
+        "field-defining",
+        "top-cited"
+      ]
+    }
+  },
+  "mastering-the-game-of-go-without-human-knowledge---hassabis": {
+    "filename": "mastering-the-game-of-go-without-human-knowledge---hassabis.pdf",
+    "slug": "mastering-the-game-of-go-without-human-knowledge---hassabis",
+    "year": 2017,
+    "venue": "Nature",
+    "co_authors": [
+      "David Silver",
+      "Julian Schrittwieser",
+      "Koray Kavukcuoglu",
+      "Ioannis Antonoglou"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "game-playing-AI",
+      "era": "deepmind-ascent",
+      "venue": "Nature",
+      "theme": [
+        "self-play",
+        "game-playing-AI",
+        "go",
+        "deep-RL"
+      ],
+      "project": [
+        "AlphaGo-Zero"
+      ],
+      "impact": [
+        "Nature-frontpage",
+        "field-defining",
+        "top-cited"
+      ]
+    }
+  },
+  "neural-mechanisms-of-hierarchical-planning-in-a-virtual-subway-network--hassabis": {
+    "filename": "neural-mechanisms-of-hierarchical-planning-in-a-virtual-subway-network--hassabis.pdf",
+    "slug": "neural-mechanisms-of-hierarchical-planning-in-a-virtual-subway-network--hassabis",
+    "year": 2016,
+    "venue": "Neuron",
+    "co_authors": [
+      "Dharshan Kumaran",
+      "Peter Dayan",
+      "Raymond Dolan"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "cognitive-neuroscience",
+      "era": "deepmind-ascent",
+      "venue": "Neuron",
+      "theme": [
+        "hippocampal-construction"
+      ],
+      "project": [
+        "hippocampus-research"
+      ],
+      "impact": [
+        "(none)"
+      ]
+    }
+  },
+  "neural-scene-representation-and-rendering--hassabis": {
+    "filename": "neural-scene-representation-and-rendering--hassabis.pdf",
+    "slug": "neural-scene-representation-and-rendering--hassabis",
+    "year": 2018,
+    "venue": "Science",
+    "co_authors": [
+      "S. M. Ali Eslami",
+      "Danilo J. Rezende",
+      "Oriol Vinyals"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "multi-agent-systems",
+      "era": "deepmind-ascent",
+      "venue": "Science",
+      "theme": [
+        "reinforcement-learning"
+      ],
+      "project": [
+        "GQN"
+      ],
+      "impact": [
+        "field-defining"
+      ]
+    }
+  },
+  "neuroscience-inspired-artificial-intelligence--hassabis": {
+    "filename": "neuroscience-inspired-artificial-intelligence--hassabis.pdf",
+    "slug": "neuroscience-inspired-artificial-intelligence--hassabis",
+    "year": 2017,
+    "venue": "Neuron",
+    "co_authors": [
+      "Matthew Botvinick",
+      "Dharshan Kumaran",
+      "Raymond Dolan",
+      "Peter Dayan"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "neuroscience-AI-bridge",
+      "era": "deepmind-ascent",
+      "venue": "Neuron",
+      "theme": [
+        "neuroscience-AI-bridge"
+      ],
+      "project": [
+        "(none)"
+      ],
+      "impact": [
+        "field-defining"
+      ]
+    }
+  },
+  "nobel-prize-lecture-accelerating-scientific-discovery-with-ai--hassabis": {
+    "filename": "nobel-prize-lecture-accelerating-scientific-discovery-with-ai--hassabis.pdf",
+    "slug": "nobel-prize-lecture-accelerating-scientific-discovery-with-ai--hassabis",
+    "year": 2024,
+    "venue": "Nobel-Prize",
+    "co_authors": [],
+    "taxonomy": {
+      "format": "lecture",
+      "domain": "AI-for-science",
+      "era": "post-alphafold",
+      "venue": "Nobel-Prize",
+      "theme": [
+        "AI-for-science",
+        "learnable-nature-conjecture"
+      ],
+      "project": [
+        "(none)"
+      ],
+      "impact": [
+        "Nobel-cited",
+        "public-statement",
+        "conjecture"
+      ]
+    }
+  },
+  "overcoming-catastrophic-forgetting-in-neural-networks--hassabis": {
+    "filename": "overcoming-catastrophic-forgetting-in-neural-networks--hassabis.pdf",
+    "slug": "overcoming-catastrophic-forgetting-in-neural-networks--hassabis",
+    "year": 2017,
+    "venue": "PNAS",
+    "co_authors": [
+      "James Kirkpatrick",
+      "Matthew Botvinick",
+      "Timothy Lillicrap",
+      "David Silver"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "reinforcement-learning",
+      "era": "deepmind-ascent",
+      "venue": "PNAS",
+      "theme": [
+        "reinforcement-learning",
+        "deep-RL"
+      ],
+      "project": [
+        "DeepMind-general"
+      ],
+      "impact": [
+        "top-cited"
+      ]
+    }
+  },
+  "patients-with-hippocampal-amnesia-cannot-imagine-new-experiences--hassabis": {
+    "filename": "patients-with-hippocampal-amnesia-cannot-imagine-new-experiences--hassabis.pdf",
+    "slug": "patients-with-hippocampal-amnesia-cannot-imagine-new-experiences--hassabis",
+    "year": 2007,
+    "venue": "Current-Biology",
+    "co_authors": [
+      "Eleanor A. Maguire",
+      "Catriona D. Bruce"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "cognitive-neuroscience",
+      "era": "phd-period",
+      "venue": "Current-Biology",
+      "theme": [
+        "memory-imagination",
+        "hippocampal-construction"
+      ],
+      "project": [
+        "hippocampus-research"
+      ],
+      "impact": [
+        "top-cited",
+        "career-origin"
+      ]
+    }
+  },
+  "prefrontal-cortex-as-a-meta-reinforcement-learning-system--hassabis": {
+    "filename": "prefrontal-cortex-as-a-meta-reinforcement-learning-system--hassabis.pdf",
+    "slug": "prefrontal-cortex-as-a-meta-reinforcement-learning-system--hassabis",
+    "year": 2017,
+    "venue": "PNAS",
+    "co_authors": [
+      "Zeb Kurth-Nelson",
+      "Dharshan Kumaran",
+      "Matthew Botvinick",
+      "Raymond Dolan"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "neuroscience-AI-bridge",
+      "era": "deepmind-ascent",
+      "venue": "PNAS",
+      "theme": [
+        "reinforcement-learning",
+        "neuroscience-AI-bridge"
+      ],
+      "project": [
+        "(none)"
+      ],
+      "impact": [
+        "top-cited"
+      ]
+    }
+  },
+  "protein-complex-prediction-with-alphafold-multimer--hassabis": {
+    "filename": "protein-complex-prediction-with-alphafold-multimer--hassabis.pdf",
+    "slug": "protein-complex-prediction-with-alphafold-multimer--hassabis",
+    "year": 2021,
+    "venue": "bioRxiv",
+    "co_authors": [
+      "John Jumper",
+      "Richard Evans",
+      "Michael Figurnov",
+      "David Silver"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "protein-structure",
+      "era": "alphafold-era",
+      "venue": "bioRxiv",
+      "theme": [
+        "protein-folding",
+        "structural-biology"
+      ],
+      "project": [
+        "AlphaFold-Multimer"
+      ],
+      "impact": [
+        "(none)"
+      ]
+    }
+  },
+  "protein-structure-predictions-to-atomic-accuracy-with-alphafold--hassabis": {
+    "filename": "protein-structure-predictions-to-atomic-accuracy-with-alphafold--hassabis.pdf",
+    "slug": "protein-structure-predictions-to-atomic-accuracy-with-alphafold--hassabis",
+    "year": 2020,
+    "venue": "Nature",
+    "co_authors": [
+      "John Jumper",
+      "Richard Evans",
+      "Alexander Pritzel",
+      "David Silver"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "protein-structure",
+      "era": "alphafold-era",
+      "venue": "Nature",
+      "theme": [
+        "protein-folding",
+        "structural-biology"
+      ],
+      "project": [
+        "AlphaFold2"
+      ],
+      "impact": [
+        "Nobel-cited",
+        "Science-breakthrough",
+        "field-defining"
+      ]
+    }
+  },
+  "pushing-the-frontiers-of-density-functionals-by-solving-the-fractional-electron-problem--hassabis": {
+    "filename": "pushing-the-frontiers-of-density-functionals-by-solving-the-fractional-electron-problem--hassabis.pdf",
+    "slug": "pushing-the-frontiers-of-density-functionals-by-solving-the-fractional-electron-problem--hassabis",
+    "year": 2022,
+    "venue": "Science",
+    "co_authors": [
+      "Brendan McMorrow",
+      "David H. P. Turban",
+      "Alexander L. Gaunt",
+      "James Spencer"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "mathematics-AI",
+      "era": "post-alphafold",
+      "venue": "Science",
+      "theme": [
+        "AI-for-science"
+      ],
+      "project": [
+        "DeepMind-general"
+      ],
+      "impact": [
+        "Science-breakthrough"
+      ]
+    }
+  },
+  "reinforcement-learning-fast-and-slow--hassabis": {
+    "filename": "reinforcement-learning-fast-and-slow--hassabis.pdf",
+    "slug": "reinforcement-learning-fast-and-slow--hassabis",
+    "year": 2020,
+    "venue": "Neuron",
+    "co_authors": [
+      "Zeb Kurth-Nelson",
+      "Charles Blundell",
+      "Matthew Botvinick",
+      "Raymond Dolan"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "reinforcement-learning",
+      "era": "alphafold-era",
+      "venue": "Neuron",
+      "theme": [
+        "reinforcement-learning",
+        "neuroscience-AI-bridge",
+        "complementary-learning-systems"
+      ],
+      "project": [
+        "(none)"
+      ],
+      "impact": [
+        "top-cited"
+      ]
+    }
+  },
+  "semantic-representations-in-the-temporal-pole-predict-false-memories--hassabis": {
+    "filename": "semantic-representations-in-the-temporal-pole-predict-false-memories--hassabis.pdf",
+    "slug": "semantic-representations-in-the-temporal-pole-predict-false-memories--hassabis",
+    "year": 2016,
+    "venue": "Current-Biology",
+    "co_authors": [
+      "Eleanor A. Maguire",
+      "Catriona D. Bruce"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "cognitive-neuroscience",
+      "era": "deepmind-ascent",
+      "venue": "Current-Biology",
+      "theme": [
+        "episodic-memory"
+      ],
+      "project": [
+        "hippocampus-research"
+      ],
+      "impact": [
+        "(none)"
+      ]
+    }
+  },
+  "the-construction-system-of-the-brain--hassabis": {
+    "filename": "the-construction-system-of-the-brain--hassabis.pdf",
+    "slug": "the-construction-system-of-the-brain--hassabis",
+    "year": 2008,
+    "venue": "Philosophical-Transactions-B",
+    "co_authors": [
+      "Eleanor A. Maguire"
+    ],
+    "taxonomy": {
+      "format": "review-article",
+      "domain": "cognitive-neuroscience",
+      "era": "phd-period",
+      "venue": "Philosophical-Transactions-B",
+      "theme": [
+        "memory-imagination",
+        "hippocampal-construction",
+        "episodic-memory"
+      ],
+      "project": [
+        "hippocampus-research"
+      ],
+      "impact": [
+        "career-origin"
+      ]
+    }
+  },
+  "the-future-of-memory-remembering-imagining-and-the-brain--hassabis": {
+    "filename": "the-future-of-memory-remembering-imagining-and-the-brain--hassabis.pdf",
+    "slug": "the-future-of-memory-remembering-imagining-and-the-brain--hassabis",
+    "year": 2007,
+    "venue": "Science",
+    "co_authors": [
+      "Eleanor A. Maguire"
+    ],
+    "taxonomy": {
+      "format": "review-article",
+      "domain": "cognitive-neuroscience",
+      "era": "phd-period",
+      "venue": "Science",
+      "theme": [
+        "memory-imagination"
+      ],
+      "project": [
+        "hippocampus-research"
+      ],
+      "impact": [
+        "(none)"
+      ]
+    }
+  },
+  "tracking-the-emergence-of-conceptual-knowledge-during-human-decision-making--hassabis": {
+    "filename": "tracking-the-emergence-of-conceptual-knowledge-during-human-decision-making--hassabis.pdf",
+    "slug": "tracking-the-emergence-of-conceptual-knowledge-during-human-decision-making--hassabis",
+    "year": 2006,
+    "venue": "Neuron",
+    "co_authors": [
+      "Eleanor A. Maguire",
+      "Raymond Dolan"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "cognitive-neuroscience",
+      "era": "phd-period",
+      "venue": "Neuron",
+      "theme": [
+        "hippocampal-construction"
+      ],
+      "project": [
+        "hippocampus-research"
+      ],
+      "impact": [
+        "(none)"
+      ]
+    }
+  },
+  "using-imagination-to-understand-the-neural-basis-of-episodic-memory--hassabis": {
+    "filename": "using-imagination-to-understand-the-neural-basis-of-episodic-memory--hassabis.pdf",
+    "slug": "using-imagination-to-understand-the-neural-basis-of-episodic-memory--hassabis",
+    "year": 2007,
+    "venue": "Current-Biology",
+    "co_authors": [
+      "Eleanor A. Maguire"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "cognitive-neuroscience",
+      "era": "phd-period",
+      "venue": "Current-Biology",
+      "theme": [
+        "memory-imagination",
+        "episodic-memory"
+      ],
+      "project": [
+        "hippocampus-research"
+      ],
+      "impact": [
+        "(none)"
+      ]
+    }
+  },
+  "vector-based-navigation-using-grid-like-representations-in-artificial-agents--hassabis": {
+    "filename": "vector-based-navigation-using-grid-like-representations-in-artificial-agents--hassabis.pdf",
+    "slug": "vector-based-navigation-using-grid-like-representations-in-artificial-agents--hassabis",
+    "year": 2018,
+    "venue": "Nature",
+    "co_authors": [
+      "Andrea Banino",
+      "Caswell Barry",
+      "Dharshan Kumaran",
+      "Matthew Botvinick"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "neuroscience-AI-bridge",
+      "era": "alphafold-era",
+      "venue": "Nature",
+      "theme": [
+        "neuroscience-AI-bridge"
+      ],
+      "project": [
+        "(none)"
+      ],
+      "impact": [
+        "field-defining"
+      ]
+    }
+  },
+  "what-learning-systems-do-intelligent-agents-need-complementary-learning-systems-theory-updated--hassabis": {
+    "filename": "what-learning-systems-do-intelligent-agents-need-complementary-learning-systems-theory-updated--hassabis.pdf",
+    "slug": "what-learning-systems-do-intelligent-agents-need-complementary-learning-systems-theory-updated--hassabis",
+    "year": 2016,
+    "venue": "Trends-Cognitive-Sciences",
+    "co_authors": [
+      "Matthew Botvinick",
+      "Dharshan Kumaran",
+      "Raymond Dolan",
+      "Peter Dayan"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "neuroscience-AI-bridge",
+      "era": "deepmind-ascent",
+      "venue": "Trends-Cognitive-Sciences",
+      "theme": [
+        "neuroscience-AI-bridge",
+        "complementary-learning-systems"
+      ],
+      "project": [
+        "(none)"
+      ],
+      "impact": [
+        "(none)"
+      ]
+    }
+  },
+  "when-fear-is-near-threat-imminence-elicits-prefrontal--hassabis": {
+    "filename": "when-fear-is-near-threat-imminence-elicits-prefrontal--hassabis.pdf",
+    "slug": "when-fear-is-near-threat-imminence-elicits-prefrontal--hassabis",
+    "year": 2007,
+    "venue": "Science",
+    "co_authors": [
+      "Tobias Brosch",
+      "Raymond Dolan",
+      "Peter Dayan"
+    ],
+    "taxonomy": {
+      "format": "peer-reviewed-paper",
+      "domain": "cognitive-neuroscience",
+      "era": "phd-period",
+      "venue": "Science",
+      "theme": [
+        "hippocampal-construction"
+      ],
+      "project": [
+        "hippocampus-research"
+      ],
+      "impact": [
+        "top-cited"
+      ]
+    }
+  }
+}

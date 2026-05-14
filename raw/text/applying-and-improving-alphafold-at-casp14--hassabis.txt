@@ -1,0 +1,444 @@
+
+--- PAGE 1 ---
+Received:22June2021 Revised:6September2021 Accepted:21September2021
+DOI:10.1002/prot.26257
+RESEARCH ARTICLE
+Applying and improving AlphaFold at CASP14
+John Jumper1 | Richard Evans1 | Alexander Pritzel1 | Tim Green1 |
+Michael Figurnov1 | Olaf Ronneberger1 | Kathryn Tunyasuvunakool1 |
+Russ Bates1 | Augustin Žídek1 | Anna Potapenko1 | Alex Bridgland1 |
+Clemens Meyer1 | Simon A. A. Kohl1 | Andrew J. Ballard1 |
+Andrew Cowie1 | Bernardino Romera-Paredes1 | Stanislav Nikolov1 |
+Rishub Jain1 | Jonas Adler1 | Trevor Back1 | Stig Petersen1 |
+David Reiman1 | Ellen Clancy1 | Michal Zielinski1 | Martin Steinegger2,3 |
+Michalina Pacholska1 | Tamas Berghammer1 | David Silver1 | Oriol Vinyals1 |
+Andrew W. Senior1 | Koray Kavukcuoglu1 | Pushmeet Kohli1 | Demis Hassabis1
+1DeepMind,London,UK
+Abstract
+2SchoolofBiologicalSciences,SeoulNational
+University,Seoul,SouthKorea We describe the operation and improvement of AlphaFold, the system that was
+3ArtificialIntelligenceInstitute,SeoulNational enteredbytheteamAlphaFold2tothe“human”categoryinthe14thCriticalAssess-
+University,Seoul,SouthKorea
+ment of Protein Structure Prediction (CASP14). The AlphaFold system entered in
+Correspondence CASP14 is entirely different to the one entered in CASP13. It used a novel end-to-
+JohnJumperandDemisHassabis,DeepMind,
+end deep neural network trained to produce protein structures from amino acid
+London,UK.
+Email:jumper@google.comand sequence,multiplesequencealignments,andhomologousproteins.Intheassessors'
+demishassabis@google.com
+rankingbysummedzscores(>2.0),AlphaFoldscored244.0comparedto90.8bythe
+Fundinginformation next bestgroup. The predictions madeby AlphaFoldhad a mediandomain GDT_TS
+NationalResearchFoundationofKorea,
+of 92.4; this is the first time that this level of average accuracy has been achieved
+Grant/AwardNumbers:
+2019R1A6A1A10073437, duringCASP,especiallyonthemoredifficultFreeModelingtargets,andrepresentsa
+2020M3A9G7103933;SeoulNational
+significant improvement in the state of the art in protein structure prediction. We
+University,Grant/AwardNumbers:Creative-
+PioneeringResearchersProgram,NewFaculty reported how AlphaFold was run as a human team during CASP14 and improved
+StartupFund
+such that it now achieves an equivalent level of performance without intervention,
+openingthedoortohighlyaccuratelarge-scalestructureprediction.
+KEYWORDS
+AlphaFold,CASP,deeplearning,machinelearning,proteinstructureprediction
+1 | INTRODUCTION
+JohnJumper,RichardEvans,AlexanderPritzel,TimGreen,MichaelFigurnov,Olaf
+Ronneberger,KathrynTunyasuvunakool,RussBates,AugustinŽídek,AnnaPotapenko,Alex In this paper, we describe the entry from team AlphaFold21 to the
+Bridgland,ClemensMeyer,SimonA.A.Kohl,AndrewJ.Ballard,AndrewCowie,Bernardino
+Romera-Paredes,StanislavNikolov,RishubJain,andDemisHassabiscontributedequally. “human” category in the 14th Critical Assessment of Protein
+ThisisanopenaccessarticleunderthetermsoftheCreativeCommonsAttribution?NonCommercial?NoDerivsLicense,whichpermitsuseanddistributioninany
+medium,providedtheoriginalworkisproperlycited,theuseisnon?commercialandnomodificationsoradaptationsaremade.
+©2021TheAuthors.Proteins:Structure,Function,andBioinformaticspublishedbyWileyPeriodicalsLLC.
+Proteins.2021;89:1711–1721. wileyonlinelibrary.com/journal/prot 1711
+
+--- PAGE 2 ---
+1712 JUMPERETAL.
+StructurePrediction(CASP14)and,inparticular,howthesystemwas 2.2 | Testingandmonitoring
+applied and improved during the CASP assessment. The AlphaFold
+system used was an updated version of the one deployed in CASP- ThesystemusedduringCASP14wasdevelopedwiththegoalofmini-
+Covid1anddifferssubstantiallytotheversionofAlphaFolddeployed mizingthepossibilityofhumanmistakesleadingtopoorpredictions,
+inCASP13.2,3Thenewsystemisbasedaroundanewneuralnetwork while making it possible to manually intervene, and to deploy new
+architecture,Evoformer,thatwedevelopedtoprocessbiologicaland versionsofAlphaFoldduringtheCASP14assessmentifnecessary.
+physicalinformationaswellasanumberofadvanceswiththe“struc- Components of the model were covered by tests of individual
+turemodule”thatenableustodesignandtrainanetworkthataccu- components (unit tests), checking for issues, such as coding errors,
+rately produces a 3-D structure as output. A full description of the stability, and numerical correctness. Furthermore, a daily test of the
+methodusedisprovidedbyJumperetal.4Here,wewillfocusonthe wholesystem(integrationtest)monitoredfor,otherwise,difficult-to-
+operationofthesystem,averysmallnumberofmanualinterventions, detectregressionsinend-to-endmodelaccuracy.
+andimprovementsmadetothesystemduringCASP14. Thesystemwasrunandanalysiscarriedoutbyasingleresearcher,
+In the CASP14 assessors' ranking by summed z scores (>2.0), determined bya weeklyrotaforthe duration of the CASP14 assess-
+AlphaFold2scored244.0comparedto90.8bythenextbestgroup.5 ment.Whenapredictionwasmade,astandardizedColaboratory8note-
+The system predicted high-accuracy structures (GDT_TS6 >70, best book was used to visualize (using matplotlib9 and NGL10) and check
+offive)for87outof92domains,structuresonparwithexperimental multiple aspects of the prediction (Figure 1). First, the confidence
+accuracy (GDT_TS>90, best of five) for 58 domains, and a median expressedbythemodelaspLDDTfortheoverallstructureaswellas
+GDT_TSof92.4.Thisisthefirsttimethatthislevelofaccuracyhas perresiduewaschecked.Highuncertaintyacrosstheentirechainwasa
+beenroutinelyachievedduringCASP,especiallyonthemoredifficult causeforconcern,thoughareasofuncertaintyattheC-andN-termini
+Free Modeling targets, and represents a significant improvement in and domain-linking loop regions could be expected, as they are
+thestateoftheartinproteinstructureprediction. expectedtooftenbedisorderedandnotresolvedinexperimentalstruc-
+tures.Othersignificantareasofuncertaintycouldalsobeindicativeof
+intrinsic disorder (rather than a poor prediction), which would not be
+2 | METHODS resolvedexperimentallyandsonotscoredinCASP14,thoughinforma-
+tionaboutresolvedregionsisnotknownatthetimeoftheprediction.
+AlphaFold2,themodeldeployedinCASP14,isadeepneuralnetwork Next, the expected distance matrix was computed from the
+thatdirectlyprocessestheMSAandintermediatepairwiserepresenta- predicted distogram. This is different from the distance matrix of the
+tions(includingtemplateinformation)usinganewEvoformerarchitec- predictedstructureasitisabletocapturedistanceuncertainty,andalso
+tureinaninterleavedmanner,ratherthansimpleconvolutionsasinthe is not required to represent a single, concreteset of 3D coordinates.
+previousAlphaFold,allowinglong-rangeinteractionsbetweenresidues. Thedifferencebetweentheexpecteddistancematrixandthedistance
+Anovelrotationallyandtranslationallyequivariantneuralnetworkmod- matrixofthepredictedstructurewasexaminedtorevealpredicteddis-
+ule was developed to directly generate the full atomic structure. The tancesthatwerenotrealizedinthepredictedstructure.Thiswascon-
+networkisiteratedmultipletimesina“recycling”proceduretofurther sideredanindicatorofmultipleconformations,andthattheprediction
+refinethestructurepredictions.Afulldescriptionofthemodelarchitec- mightneedmanualintervention.Allfivepredictionswerealignedwith
+tureanddetailsofthetrainingprocessaregivenbyJumperetal.4 TM-align11 against one another to check for diversity. Very high TM
+Aswellastheatomiccoordinates,AlphaFold2producesthedis- scores across the five models were considered problematic ifwe had
+togram and “predicted lDDT-Cα” (pLDDT) confidence measure as reasonstobelieveeitherthatthemodelshouldbelesscertain(e.g.,if
+auxiliaryoutputs.Thelatterregressesthetrueper-residuelDDT-Cα7 thepLDDTwaslow)oriftherewasabiologicalreasontobelievethat
+forthepredictedstructuresduringtraining. importantconformationsweremissedasinT1024.
+To remove small stereochemical violations, we relaxed our Theresultoftherelaxationprocesswasexaminedtocheckthatthe
+predictedstructuresusinggradientdescentonAmber99sbrestrained totalenergyandchangeinenergywerenegative,andthattherewasnot
+totheoriginalpredictionwithharmonicrestraints.Thisminimization a large RMSD change from the starting structure. Extreme Cɑ–Cɑ dis-
+produces an extremely small structure difference in most cases but tancesandinter/intra-residueatomicclasheswerealsocheckedtoensure
+removesdistractingbondandstericviolations. thattherewerenotanystereochemicalviolationsinthestructure.
+Whenaproteinwaspredictedwithlowcertaintyoranotherissue
+wasencountered,itwastreatedasbothanimmediateproblemtofind
+2.1 | Modelselectionandranking aworkaroundandsubmitanacceptableprediction,andasaresearch
+question to improve the automated system to avoid the need for
+TheCASPassessmentallowscompetitorstosubmituptofivediffer- manual intervention in the future. The speed of prediction with
+entpredictionsforeachtarget.Wefoundthatgeneratingfivepredic- AlphaFoldmeantthatpredictionswerecreatedwithinaday,andusu-
+tionsusingfivesetsofmodelparametersandthenrankingbypLDDT ally much faster. This allowed time for a number of manual evalua-
+gave the highest accuracy, as judged by the accuracy of the top tions and re-predictions, if necessary, before submitting to CASP
+rankedprediction. aheadofthetargetdeadline.
+
+--- PAGE 3 ---
+JUMPERETAL. 1713
+FIGURE 1 ExamplesofvisualizationsusedinthepredictioncheckingColaboratorynotebook,shownwithCASPtargetT1101
+2.3 | Manualinterventions facingandoutward-facingconformations.Whethertheexperimental
+structureprovidedinCASP14wouldbeinwardoroutwardfacingwas
+AlmostallofoursubmittedpredictionsinCASP14weremadeusing not deducible a priori, as the conformational state is influenced by
+ourautomatedsystemwithoutanysortofmanualintervention.Inthe biophysicalcontext,andthisinformationwasnotprovided.
+case of a few predictions, our analysis of model quality suggested OursearchofdatabasesprovidedalargeMSA(5702alignments,
+interventions (described below) that we applied to obtain the final goodcoverage)andgoodtemplates:88werefoundwithsumofprob-
+predictionsaswellasimprovementstoAlphaFoldtomaketheinter- abilities (sum_probs12) across matching residues >100 and coverage
+ventionsunnecessary.Whilethesesortsofmanualinterventionsare ofbothdomains.LowpLDDTinthelinkerregion(Figure2A)around
+not scalable to large sets of proteins, it is instructive to see how residue200suggestedflexibilitybetweenthedomains.Weobserved
+AlphaFoldpredictionscouldbeinterpreted,andseehowinsightsled alackofdiversityinourinitialfivepredictions(all>0.99TMscoreto
+toimprovementsintheautomatedsystem,whichdoesscaletolarge oneanother),meaningthatoursubmissionwouldonlycaptureoneof
+numbersofsequenceswithoutasignificantdifferenceinaccuracy. themultiplepossibleconformations.Wealsonotedthattheexpected
+distance matrix contained inter-domain contacts unrealized in the
+structure(Figure2B),indicatingthatthedistogrampossiblycontained
+2.3.1 | T1024 alternateconformations.
+We confirmed that within the set of high confidence templates
+ThetargetT1024isactivetransporterLmrP,amemberofthemajor foundtherewasadiversityofinward-facingandoutward-facingcon-
+facilitator superfamily, and so was expected to have both inward- formations. The initial predictions had high TM scores to some of
+
+--- PAGE 4 ---
+1714 JUMPERETAL.
+FIGURE 2 T1024:(A)Per-residuelDDT-CαandpLDDTofT1024.Verticalgrayshadingindicatesresiduesmissingintheexperimental
+structure,andcoloredshadingindicatesminimumandmaximumvaluesoverfivepredictions.ThepLDDTshowslowconfidenceinthelinker
+regionindicatingpossibleflexibilityandqualitativelyagreeswiththetrueper-residuelDDT-Cα.(B)Unrealizeddistancesintheexpecteddistances
+ofT1024indicatingpossiblealternaterelativeconformationsofthetwodomains
+these but not others, forming distinct “clusters” of templates. We Three extra structure predictions using the three template clusters
+attemptedtoforcethemodeltoproducethealternateconformation werecreated,in additiontotheoriginalfive predictions. Predictions
+by passing in only the templates from the alternate cluster, but we fromtheoriginalfivepredictionsthathadhighsimilarity(>97LDDT)
+foundthatthemodellargelyignoredchangesinthetemplateinputs. toanotherpredictionandwerelowerrankedwereremovedandrep-
+WehypothesizedthiswasduetothesufficientlylargeMSAforthis lacedwithamaximallydissimilartemplate-clusteredprediction.
+target,andafterremovingtheMSAentirely,wecouldforcethemodel Our final submission for T1024 used two original predictions
+tofollowthetemplates.UsingpLDDTasaguide,wereintroducedthe (in positions 1 and 2) and three template-clustered predictions
+top30sequences(nowknowntobenearthethresholdofhighconfi- (inpositions3–5).
+denceAlphaFoldpredictions)intheMSAtoprovideanadequatebal-
+ance between following the templates and the MSA, and this
+successfullypredictedastructureinthealternateconformation. 2.3.2 | T1044
+Toautomatecreationofthetemplateclusters,weclusteredtem-
+platesthathadavalueofsum_probsdividedbythesequencelength TargetsT1031,T1033,T1035,T1037,T1039,T1040,T1041,T1042,
+greater than 0.5. Clustering was performed by measuring similarity andT1043areallsubsequencesofS0A2C3,anRNApolymerase.The
+with TM score and then analyzed using scipy's cluster hierarchical fullsequencewasincludedseparatelyasatarget,firstasH1044and
+linkageclusteringalgorithm13,14togiveamaximumofthreeclusters. thenasT1044.Weinitiallypredictedthestructuresofthesedomains
+
+--- PAGE 5 ---
+JUMPERETAL. 1715
+FIGURE 3 T1044:Comparisonofthenumberofeffectivealignments(Neff)perresidueforeachMSA,derivedbothfromdomainsequences
+andfromcroppingthefullsequenceMSA.Fourdomains(T1033,T1039,T1040,andT1043)substantiallybenefitfromusingthefullsequence
+MSA.Thedashedgreenlineshowstheapproximate30alignmentthresholdconsideredsufficientforagoodpredictionwithAlphaFold
+asseparatesequences.Inaddition,toseeiftheextracontexthelped, prediction of T1033 with higher confidence and more consistent
+wepredictedthestructureofthefull2180aminoacidsequence. structure.
+Severaldomain-leveltargets(T1033,T1039,T1040,andT1043) These results indicated that using the full sequence rather than
+werefoundtohaveveryshallowMSAs,andthepredictionshadhigh individualdomainsasgivenbytheCASPtargetscouldgiveasuperior
+uncertainty and model diversity, indicating poor model outputs. prediction. However, it was noticed for T1040 that the prediction,
+However,thesedomainshadmanymorehitsintheircorresponding when cropped out of the full-sequence prediction, was lower confi-
+regionswhenusingthefullchainasthesequenceforgeneticssea- dence(andlesscompact)thanwhenthesamedomainwaspredicted
+rchasopposedtoper-domainsearches(Figure3).Itwasalsonoted usingjustthedomain-levelMSA.Thefinaldomain(T1043)wasalso
+that the prediction for T1033 when cropped out of the full- nearly completely unfolded in the full-sequence prediction. It was
+sequence prediction appeared to be superior to the domain-level hypothesized that these apparent failures were “long-chain
+
+--- PAGE 6 ---
+1716 JUMPERETAL.
+collapse”—that the model failed to generalize to long sequence structurepredictionsusingcroppedfull-sequenceMSAsappearedto
+lengths due to making predictions far out of the distribution of be higher quality and more confident than the domain predictions
+sequencelengthsthatthemodelwastrainedon.Wedescribebelow usingMSAsgeneratedjustfromthedomainsequence.
+both how we handled this for T1044 domain submissions and how Inordertocreateafull-chainpredictionthatdidnotsufferfrom
+thisledtofurtherresearchthatamelioratedtheprobleminthefinal collapseandcapturedadditionalinter-domaincontext,wepassedthe
+AlphaFoldsystem. crop-then-fold domain predictions for T1031, T1033, T1041, and
+Toaddressthisduringthepredictionwindow,newdomainMSAs T1042+T1043(joined)asartificialtemplatesforafull-sequencepre-
+werecreatedbycroppingouttheappropriatecolumnsfromthefull- diction.Theresultingpredictionwasahighqualitymodelofthefull
+sequenceMSA,whichcapturedtheextraalignmentsthatitprovided. sequencethatdidnotsufferfromcollapseandgavethedomainstheir
+Structureswerethenpredictedforjustthesedomain-sizedsequences fullstructuralcontext.Domainscroppedoutofthismodelwerethen
+in order to avoid long-chain collapse—“crop-then-fold.” The domain submitted as our predictions. Table 1A summarizes the pLDDT
+TABLE 1 T1044:(A)Confidencescores(pLDDT)fordifferentpredictionsystemsthatwereconsideredand(B)accuracy(GDT_TS)for
+predictionsofdomainsinT1044
+(A)Confidence(pLDDT)a
+Originaldomain Originalfullsequence Crop-then-folddomain Submittedfullsequence Finalsystemfullsequence
+T1031 80.6 64.4 84.1 71.9 69.4
+T1033 54.7 69.0 85.0 73.9 77.2
+T1035 81.7 78.8 83.2 77.9 82.6
+T1037 83.9 78.7 89.7 77.7 82.8
+T1039 75.0 68.2 89.3 67.9 71.6
+T1040 73.1 51.6 87.2 82.0 74.7
+T1041 83.7 78.4 86.6 77.8 80.0
+T1042 79.7 68.1 81.5 80.6 73.5
+T1043 37.5 47.4 79.7 82.8 64.1
+Average 72.2 67.2 85.2 76.9 75.1
+Fullsequence N/A 71.3 N/A 77.1 77.4
+(B)Accuracy(GDT_TS)b
+Originaldomain Originalfullsequence Crop-then-folddomain Submittedfullsequence Finalsystemfullsequence
+T1031 87.6 86.6 86.8 87.1 88.4
+T1033 44.0 85.7 89.0 87.7 87.0
+T1035 92.6 94.1 93.1 94.9 95.8
+T1037 82.9 88.4 85.0 87.3 92.6
+T1039 79.2 81.4 78.9 82.3 82.9
+T1040 55.0 30.8 70.0 71.7 69.2
+T1041 86.6 89.7 85.8 90.5 89.6
+T1042 62.1 80.2 69.9 83.8 90.4
+T1043 16.6 53.2 76.2 83.3 82.3
+Average 67.4 76.7 81.6 85.4 86.5
+Fullsequence N/A 0.807 N/A 0.878 0.960
+(TMscore)
+aT1044:Confidencescores(pLDDT)fordifferentpredictionsystemsthatwereconsidered.Themeanfull-sequencepLDDToveragivendomaincannotbe
+directlycomparedtothemeanpLDDTfoundjustbyfoldingthatdomain,aspLDDTwillconsidertheeffectofmispredictinginter-domaindistancesaswell
+asintra-domaindistances,whichpenalizeslongerpredictions.However,itcanbeseenthatusing“crop-then-fold”ledtoanimprovement,often
+substantial,inconfidenceacrossalldomains.Thefullsequenceconfidencesofpredictionsmadewiththesubmitted(template-patched)systemwerealso
+superiortotheoriginalsystem.Thefinalimprovedsystemgivesanequivalentlevelofconfidencetothesubmittedprediction.
+bAccuracy(GDT_TS)forpredictionsofdomainsinT1044.Itcanbeseenthat,usingtheoriginalsystem,T1033waspredictedmoreaccuratelyaspartof
+thefullchain,butT1040waspredictedmoreaccuratelywhenfoldedasanindependentdomain.Bothcrop-then-folddomainsandsubmitted(template-
+patched)full-sequencepredictionsgetthebestofbothworldsandgivebettermeandomainaccuracy.Thefinalsystemgetsequivalentperformancewith
+nocomplexinterventions,andbetterchain-levelTMscore.
+
+--- PAGE 7 ---
+JUMPERETAL. 1717
+confidences that were used to guide the process of building these secondary structure percentage was indicative of higher lDDT-Cα.
+predictions. We also found that higher pLDDT was correlated with higher beta
+Thismanualprocessiscumbersomesowealsoexploredwaysto strandcontentinORF8,lendingconfidencetoourrankingmethod.
+improveourmodeltonotsufferfromlong-chaincollapse.Wefound Seeing a large range of pLDDTs produced by the multi-head
+that fine-tuningthe modelwith 384 residuecrops from thetraining model, the multi-head model was run five more times, creating the
+set(256originally)addressedtheproblem,producinganon-collapsed additional 20 structure predictions with a wide range of pLDDTs,
+full sequence prediction without manual intervention with quality somewithsubstantiallyhigherconfidence.Re-runningAlphaFoldmul-
+equivalent to the template-patched prediction. We havetested pro- tiple times can produce different predictions, especially when it is
+teinsupto2700residuesinlengthwiththisfix,butexpectevenlon- uncertain, due to the random processing (masking and clustering) of
+ger proteins (e.g., titin) to still suffer from the long-chain collapse theinputMSA.
+problem. Our final submission was a combination of methods, mostly
+This improved model, the “Final system,” was used for targets ranked by pLDDT,to ensurea diversityof predictions. The toptwo
+T1080,T1091,andT1095andlatertargets. predictions were the top-ranked (by pLDDT) predictions from the
+multi-headreruns.Thenextpredictionwasmadebytheoriginalsys-
+tem with an updated Uniref90 database, and the fourth prediction
+2.3.3 | T1064 wasmadebytheoriginalsystemwithoutanyinterventions.Fordiver-
+sity, the final model was the third best multi-head model prediction
+TargetT1064istheSARS-CoV-2proteinORF8.TheinitialMSAcon- fromourfirstrunofit.
+tainedveryfewalignments(19)andgavealowconfidenceprediction.
+ORF8isknowntobehypervariablecomparedtootherSARS-CoV-2
+proteins—ithasonly30%identitytoSARS-1ORF8.15,16 2.4 | Otherinterventions
+GuidedbypLDDT,wetriedvariousMSAsusingadditionaldata-
+basesand chose theonethat maximizedpLDDT.We foundthat an Intwotargets(T1074andT1080),wefoundthatourrelaxationpro-
+extra five sequences from BLAST-NR17—searched with Jackhmmer ceduredidnotremoveallstereochemicalviolationsforallfivepredic-
+anddeduplicatedtohaveaneditdistanceofatleast3,togiveatotal tions. For these, we re-ran the relaxation stage using weaker
+of24alignedsequences—gavethebestimprovement.Wealsorana restraintsuntilaviolation-freepredictionwasgenerated.
+model using a more recent version of UniRef90,18 reasoning that it Themulti-headmodelwasalsousedtopredictthethirdranked
+waslikelythatmoreCoronaviridaehadbeensequencedinthemonths model for target T1100. The template clustering algorithm was also
+sincethe2020_03release. usedfortargetT1057,whichresultedinthesubstitutionofthefifth
+Aswithsomeothertargets,giventhehighuncertaintyofthestruc- rankedprediction.ForT1055,modelscroppedoutofapredictionof
+ture, we were concerned that the target might have multiple viable thefullsequence(UniProtaccessionA0A2I6J1H4)wereusedforthe
+structural modes. To address this, we developed an experimental fourthandfifthpredictions.
+“multi-head”modelbasedontheM-headsmethodofKohletal.19This An experimental model that used the provided homomeric stoi-
+“multi-head”modelcomprisesfourparallelcopiesofAlphaFold(includ- chiometry generated the fourth and fifth predictions for T1070 and
+ing the Evoformer and Structure modules), each with identical tied thefifthpredictionforT1060s2.
+parameters.However,eachcopyhasauniquelearntembedding,which
+isaddedtotheMSAembeddingandpairrepresentationoneachitera-
+tion of recycling, allowing each copy to make a different prediction 3 | RESULTS
+despitebeing,otherwise,identical.Thelosswasmodified,suchthatthe
+copywiththelowesttotallosshasweight0.95,andtheothercopies Considering domain predictions by AlphaFold in CASP14 (N =92),
+haveweight0.016,thusbackpropagatingmostofthegradientsintothe themeandomainGDT_TSoverallfivesubmittedmodelswas87.32,
+best model. This has the effect of allowing the model to produce a andoverthetop-1modelswas88.01,anaverageincreaseof+0.69.
+diversesetofpredictionsoverseveralmodeswithoutbeingpenalized This indicates that the ranking procedure was effective at selecting
+aslongasatleastoneheadproducedagoodprediction. models that were better than the average prediction. The maximum
+Foldingwiththemulti-headmodelgavehigherpLDDTsthanthe improvementachievablebyrankingwouldbe+0.80GDT_TS,asthe
+original model. However,it should becautioned that the multi-head mean domain GDT_TS of the best prediction from each chain is
+trainingsetupcouldleadtoabiastowardhighconfidence.Tocheck 88.81. This means that our selection procedure achieved
+forthisbias,weassembledasmallvalidationsetoffiveviralproteins 0.69/0.80 = 86% of the maximum improvement from model selec-
+withshallowMSAs.AfterconfirmingthatpLDDTwasrankcorrelated tion.Wenote,however,thatperfectselectionislikelyimpossiblein
+with prediction accuracy, even across different types of model, we practicesincemissingcontextmaymeanthatthecorrectmodelisnot
+decided to submit models ranked by pLDDT. In addition, literature predictablefromsequencealone,suchasforT1024.
+evidenceindicatedthatORF8hasninebetastrands(Figure2BbyTan Inonlytwocaseswasthetoprankedpredictionmorethanfive
+et al.16). On the validation set, we also found that higher non-loop GDT_TS worse than the mean GDT_TS of the five predictions:
+
+--- PAGE 8 ---
+1718 JUMPERETAL.
+T1030-D1 ((cid:1)6.29) and T1070-D1 ((cid:1)6.90); in three cases, the first Arecentpaper20suggests,withtheaidofdistancerestraintsfrom
+ranked structure was more than five GDT_TS better: T1030-D2 double electron–electron resonance spectroscopy, that our top
+(+29.12),T1064-D1(+11.80),andT1086-D1(+7.95).Inthecaseof rankedstructurecorrectlypredictedaninward-facingconformationof
+T1030,itappearsthatthatlargeimprovementinplacementofahelix LmrP, for which a structure has so far not been determined
+inT1030-D2(presentinmodels1and2)wasassociatedwithasmall experimentally.
+deleterious change in helix placement in T1030-D1, giving a more For T1044, a full comparison of the accuracy of each prediction
+accuratechainoverall. methodon each domainisshown inTable 1B. Onecan see that the
+Overall, our manual interventions on three predictions provided average domain GDT_TS is better for the submitted (templated-pat-
++1.14GDT_TStop-1(+1.20GDT_TStop-5)improvementacrossall ched)predictionsthantheoriginaldomainpredictions,andthatthefinal
+CASP14domainsversusthe“unadjusted”automatedsystemasitwas automatedsystemisabletomakepredictionsatanequivalentlevelof
+atthetimeofthetargetrelease.Re-runningalltargetsusingourauto- accuracy.Theoverallfull-sequenceaccuracy,asmeasuredbyTMscore,
+mated“final”systemasitwasbytheendofCASP14,manualinter- issuperiorforthesubmittedpredictionascomparedtotheoriginalfull-
+ventions only gives +0.01 GDT_TS top-1 (+0.35 GDT_TS top-5) sequenceprediction,andthefinalimprovedsystemissuperiortoboth.
+improvement, largely reflecting the impact of fine-tuning AlphaFold ForT1064,comparingallourpredictionsagainsttheexperimental
+onlargercropsizes. structureofORF8(Figure5),pLDDTisstronglycorrelatedwithlDDT-
+The most significant gains for domain accuracy were for T1044 Cαagainsttheground-truthstructures,evenacrossdifferenttypesof
+andT1064(Figure4).TheindividualdomainsofT1024werealready models.Thisvalidatesourdecisiontoselectpredictionsbyrankingby
+well predicted, but the best-of-five full-sequence accuracy, which pLDDT.
+takes into account the relative placement of the domains, improved InterventionsfortargetsT1057,T1100,T1055,T1060s2,T1074,
+significantly from 0.682 TM score (60.8 GDT_TS) for the prediction and T1080 had no effect on top-1 or top-5 accuracy metrics. The
+by the original system to 0.929 (79.3 GDT_TS) for the submitted intervention for T1070 gave a small increase in top-5 GDT_TS for
+structure. The TM score was 0.965 (86.7 GDT_TS) for the final T1070-D1(+4.28).
+improvedsystem.
+For T1024, in CASP14, it was revealed that, out of all submis-
+sions,ourthirdmodelwasthebestmatchfortheexperimentalstruc- 3.1 | Loweraccuracytargets
+ture. This was a model generated using template clustering. The
+experimental structure had a large ligand in the pore, forcing the Despite overall exceptional performance, some predictions made by
+outward-facing conformation. This would be hard to predict in AlphaFoldfailedtoreachahighlevelofaccuracy.Analysisonavery
+advancewithout theligand context being provided with theprotein largetestsetofrecentPDBstructuresbyJumperetal.(Figure5A)4
+sequence. andTunyasuvunakooletal.(Figure4D)21showsthatwhenthemodel
+FIGURE 4 Comparisonofthreedifferentpredictionmethodsforthetargetswithsignificantinterventions:“Originalsystem”isthe
+automatedpredictionsystemasitexistedattargetrelease.“Submittedprediction”isthesubmittedstructureprediction.“Finalsystem”isthe
+automatedsystemasitexistedattheendoftheCASP14assessment,improvedbyexperience
+
+--- PAGE 9 ---
+JUMPERETAL. 1719
+FIGURE 5 AllmodelsproducedforT1064–pLDDTversusfinallDDT-Cα.Thestrongcorrelationindicatesthatrankingmanypredictionsby
+pLDDTwasasuccessfulstrategyforthistarget
+fails,itcanoftenbeexplainedbysmallMSAsizesorahighproportion bytheautomatedsystemwithoutanyintervention.Asdescribed,ina
+of heterotypic contacts. The AlphaFold prediction for T1047s1-D1 very small number of cases, we decided to adapt this system, with
+(best-of-5GDT_TS=50.47)showedarelativelyuniquefailuremode positive results as compared to our original prediction. We have
+whereitcapturedthesecondarystructureofaverylongbetasheet describedtheinvestigationscarriedoutforthesecasesandhopethey
+butputitatthewronganglefromtherestofthedomainandimprop- prove instructive in how to run and use AlphaFold. In all cases, we
+erlycurledit.Wespeculatethatthetotallackofotherintra-domain found that the predicted lDDT-Cα (“pLDDT”) proved to be a useful
+structure in this region together with the very high oligomerization guide to understanding and improving the prediction,demonstrating
+state,ahomo-78mer,contributedtothispoorprediction. the value of robust quality indicators for both manually improving
+WealsonotethatAlphaFoldcansometimespredictasinglecon- modelsandfindingopportunitiestoimproveautomatedsystems.
+formationwithhighcertaintythatwasnottheparticularconformation WhilewegenerallyfoundthatinterventionsthatimprovepLDDT
+solved by the experimentalist. This likely occurred for Model 1 of resultedinhigheraccuracymodels,cautionshouldbetakentoavoida
+T1024,and thecarefulanalysisoftheoriginalNMRdatafor T1027 version of “Goodhart's law” by testing too many interventions and
+byHuangetal.22suggeststhatitispossiblethattheAlphaFoldpro- reducing the predictive power of pLDDT. We also note that low
+ducedaminorconformationpresentintheNMRdata. pLDDT can be an indicator of real disorder in the protein21 rather
+Finally, in some cases, discrepancies between AlphaFold and thanamodelingfailureperse,especiallywhentheproteinisnot,oth-
+experiment will turn out to have been limitations or errors in the erwise,knowntofoldtoacompactstructure.
+experimentalmodel.InthesameNMRanalysis,theauthorsshowthat ThechallengeofenteringAlphaFoldinCASP14helpedtomakeit
+AlphaFold'spredictionforT1055andT1029fittheNMRdatabetter better. We were able to use the insights gleaned from our manual
+thantheexperimentalist'smodel.ForT1029,theeffectofreanalysis interventionstoimprovetheautomatedsystemtoanequivalentlevel
+is quite dramatic, and the authors develop a novel procedure to of performance. This makes it possible to create predictions at the
+reanalyze the NMR data in light of the AlphaFold model. After samelevelofaccuracyatlargerscaleswithoutintervention,asdem-
+reanalysis, the new coordinates have a GDT_TS of 89 to the onstrated with proteome-scale predictions by Tunyasuvunakool
+AlphaFoldmodelsubmittedduringCASP14. etal.21
+ACKNOWLEDGMENTS
+4 | DISCUSSION The authors would like to thank Alban Rrustemi, Albert Gu, Alexey
+Guseynov,CharlieBeattie,CraigDonner,EmilioParisotto,ErichElsen,
+Inthiswork,wehavedescribedtheprocessofenteringAlphaFoldin Florentina Popovici, Hector Maclean, Jacob Menick, James
+theCASP14assessment.Almostallofourpredictionsweregenerated Kirkpatrick, Jeff Stanway, Karen Simonyan, Laurent Sifre, Sam
+
+--- PAGE 10 ---
+1720 JUMPERETAL.
+Blackwell, Shaobo Hou, Stephan Gouws, Steven Wheelwright, and ENDNOTE
+Zachary Wu for their contributions; Milot Mirdita for his help with 1AlphaFold v2.0. For expediency, we refer to this model simply as
+datasets; Mildred Piovesan-Forster and Alexander Nelson for their AlphaFoldthroughouttherestofthisarticle.
+helpmanagingtheproject;andourcolleaguesatDeepMindfortheir
+support.MartinSteinegger acknowledges supportfrom theNational
+REFERENCES
+Research Foundation of Korea grant (2019R1A6A1A10073437 and
+1. KryshtafovychA,MoultJ,BillingsWM,etal.ModelingSARS-CoV2
+2020M3A9G7103933), and the New Faculty Startup Fund and the proteinsintheCASP-commonsexperiment.Inreview(2021).
+Creative-Pioneering Researchers Program through Seoul National 2. SeniorAW,EvansR,JumperJ,etal.Improvedproteinstructurepre-
+diction using potentials from deep learning. Nature. 2020;577:
+University.TheywouldalsoliketothanktheCASP14organizersand
+706-710.
+theexperimentalistswhosestructuresenabledtheassessment.
+3. SeniorAW,EvansR,JumperJ,etal.Proteinstructurepredictionusing
+multipledeepneuralnetworksinthe13thCriticalAssessmentofPro-
+CONFLICTOFINTERESTS teinStructurePrediction(CASP13).Proteins:StructFunctBioinf.2019;
+87:1141-1148.
+John Jumper, Richard Evans, Alexander Pritzel, Tim Green, Michael
+4. JumperJ,EvansR,PritzelA,etal.Highlyaccurateproteinstructure
+Figurnov,OlafRonneberger,RussBates,AlexBridgland,SimonA.A.
+predictionwithAlphaFold.Nature.2021;596:583-589.
+Kohl,DavidReiman,andAndrewW.Seniorhavefiledprovisionalpat- 5. Kryshtafovych A, Schwede T, Topf M, Fidelis K, Moult J. Critical
+ent applications relating to machine learning for predicting protein assessmentofmethodsofproteinstructureprediction(CASP)—round
+structures.Theremainingauthorsdeclarenocompetinginterests. XIV.Inreview(2021).
+6. ZemlaA.LGA–amethodforfinding3Dsimilaritiesinproteinstruc-
+tures.NucleicAcidsRes.2003;31:3370-3374.
+PEERREVIEW 7. Mariani V, Biasini M, Barbato A, Schwede T. lDDT: a local
+Thepeerreviewhistoryforthisarticleisavailableathttps://publons. superposition-free score for comparing protein structures and
+com/publon/10.1002/prot.26257. models using distance difference tests. Bioinformatics. 2013;29:
+2722-2728.
+8. Bisong E. Google Colaboratory. Building Machine Learning and Deep
+DATAAVAILABILITYSTATEMENT
+LearningModelsonGoogleCloudPlatform:AComprehensiveGuidefor
+Thedatathatsupportthefindingsofthisstudyareopenlyavailable Beginners.Apress;2019:59-64.
+from https://www.predictioncenter.org/casp14/. Unsubmitted pre- 9. Hunter JD. Matplotlib: a 2D graphics environment. IEEE Ann Hist
+Comput.2007;9:90-95.
+dictionsandauxiliarydataarenotshared.
+10. Rose AS, Bradley AR, Valasatava Y, Duarte JM, Prli(cid:2)c A, Rose PW.
+Web-based molecular graphics for large complexes. Paper pres-
+ORCID ented at: Proceedings of the 21st International Conference on
+JohnJumper https://orcid.org/0000-0001-6169-6580 Web3D Technology. Association for Computing Machinery; 2016:
+185-186.
+RichardEvans https://orcid.org/0000-0003-4675-8469
+11. Zhang Y, Skolnick J. TM-align: a protein structure alignment algo-
+AlexanderPritzel https://orcid.org/0000-0002-4233-9040
+rithm based on the TM-score. Nucleic Acids Res. 2005;33:2302-
+TimGreen https://orcid.org/0000-0002-3227-1505 2309.
+MichaelFigurnov https://orcid.org/0000-0003-1386-8741 12. Steinegger M, Meier M, Mirdita M, Vöhringer H, Haunsberger SJ,
+Söding J. HH-suite3 for fast remote homology detection and deep
+OlafRonneberger https://orcid.org/0000-0002-4266-1515
+proteinannotation.BMCBioinformatics.2019;20:1-15.
+KathrynTunyasuvunakool https://orcid.org/0000-0002-8594-1074
+13. Virtanen P, Gommers R, Oliphant TE, et al. SciPy 1.0: fundamental
+RussBates https://orcid.org/0000-0002-4992-2319 algorithmsforscientificcomputinginPython.NatMethods.2020;17:
+AnnaPotapenko https://orcid.org/0000-0003-0962-0794 261-272.
+ClemensMeyer https://orcid.org/0000-0003-1165-6104 14. MüllnerD.Modernhierarchical,agglomerativeclusteringalgorithms.
+arXiv[stat.ML](2011).
+SimonA.A.Kohl https://orcid.org/0000-0003-4271-4418
+15. CeraoloC,GiorgiFM.Genomicvarianceofthe2019-nCoVcoronavi-
+AndrewCowie https://orcid.org/0000-0002-4491-1434 rus.JMedVirol.2020;92:522-528.
+BernardinoRomera-Paredes https://orcid.org/0000-0003-3604- 16. TanY,SchneiderT,LeongM,AravindL,ZhangD.Novelimmunoglob-
+3590 ulindomainproteinsprovideinsightsintoevolutionandpathogenesis
+ofSARS-CoV-2-relatedviruses.MBio.2020;11(3):e00760-20.
+StanislavNikolov https://orcid.org/0000-0001-8234-0751
+17. Sayers EW,BarrettT,BensonDA,etal.Databaseresources of the
+RishubJain https://orcid.org/0000-0002-8212-9427
+National Center for Biotechnology Information. Nucleic Acids Res.
+JonasAdler https://orcid.org/0000-0001-9928-3407 2019;47:D23-D28.
+TrevorBack https://orcid.org/0000-0002-0567-8043 18. SuzekBE,WangY,HuangH,McGarveyPB,WuCH,UniProtConsor-
+tium. UniRef clusters: a comprehensive and scalable alternative for
+DavidReiman https://orcid.org/0000-0002-1605-7197
+improving sequence similarity searches. Bioinformatics. 2015;31:
+EllenClancy https://orcid.org/0000-0003-4425-3985
+926-932.
+MartinSteinegger https://orcid.org/0000-0001-8781-9753 19. Kohl SAA, Romera-Paredes B, Meyer C, et al. A probabilistic U-net
+MichalinaPacholska https://orcid.org/0000-0002-2160-6226 forsegmentationofambiguousimages.arXiv[cs.CV](2018).
+20. del Alamo D, Govaerts C, Mchaourab HS. AlphaFold2 predicts the
+DavidSilver https://orcid.org/0000-0002-5197-2892
+inward-facing conformation of the multidrug transporter LmrP. Pro-
+AndrewW.Senior https://orcid.org/0000-0002-2401-5691
+teins.2021;89(9):1226–1228.
+PushmeetKohli https://orcid.org/0000-0002-7466-7997
+
+--- PAGE 11 ---
+JUMPERETAL. 1721
+21. Tunyasuvunakool K, Adler J, Wu Z, et al. Highly accurate protein
+structure prediction for the human proteome. Nature. 2021;596: Howtocitethisarticle:JumperJ,EvansR,PritzelA,etal.
+590-596.
+ApplyingandimprovingAlphaFoldatCASP14.Proteins.2021;
+22. Huang YJ, Zhang N, Bersch B, et al. Assessment of Prediction
+89(12):1711-1721.doi:10.1002/prot.26257
+Methods for Protein Structures Determined by NMR in CASP14:
+Impact of AlphaFold2.2021;89(12):1959–1976. https://doi.org/10.
+1002/prot.26246

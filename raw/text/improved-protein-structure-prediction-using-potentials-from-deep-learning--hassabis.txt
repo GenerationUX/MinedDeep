@@ -1,0 +1,832 @@
+
+--- PAGE 1 ---
+Article
+Improved protein structure prediction using
+potentials from deep learning
+https://doi.org/10.1038/s41586-019-1923-7 Andrew W. Senior1,4*, Richard Evans1,4, John Jumper1,4, James Kirkpatrick1,4, Laurent Sifre1,4,
+Tim Green1, Chongli Qin1, Augustin Žídek1, Alexander W. R. Nelson1, Alex Bridgland1,
+Received: 2 April 2019
+Hugo Penedones1, Stig Petersen1, Karen Simonyan1, Steve Crossan1, Pushmeet Kohli1,
+Accepted: 10 December 2019 David T. Jones2,3, David Silver1, Koray Kavukcuoglu1 & Demis Hassabis1
+Published online: 15 January 2020
+Protein structure prediction can be used to determine the three-dimensional shape of
+a protein from its amino acid sequence1. This problem is of fundamental importance
+as the structure of a protein largely determines its function2; however, protein
+structures can be difficult to determine experimentally. Considerable progress has
+recently been made by leveraging genetic information. It is possible to infer which
+amino acid residues are in contact by analysing covariation in homologous
+sequences, which aids in the prediction of protein structures3. Here we show that we
+can train a neural network to make accurate predictions of the distances between
+pairs of residues, which convey more information about the structure than contact
+predictions. Using this information, we construct a potential of mean force4 that can
+accurately describe the shape of a protein. We find that the resulting potential can be
+optimized by a simple gradient descent algorithm to generate structures without
+complex sampling procedures. The resulting system, named AlphaFold, achieves high
+accuracy, even for sequences with fewer homologous sequences. In the recent Critical
+Assessment of Protein Structure Prediction5 (CASP13)—a blind assessment of the state
+of the field—AlphaFold created high-accuracy structures (with template modelling
+(TM) scores6 of 0.7 or higher) for 24 out of 43 free modelling domains, whereas the
+next best method, which used sampling and contact information, achieved such
+accuracy for only 14 out of 43 domains. AlphaFold represents a considerable advance
+in protein-structure prediction. We expect this increased accuracy to enable insights
+into the function and malfunction of proteins, especially in cases for which no
+structures for homologous proteins have been experimentally determined7.
+Proteins are at the core of most biological processes. As the function of an intermediate (FM/TBM) category. Figure 1a shows that AlphaFold
+a protein is dependent on its structure, understanding protein struc- predicts more FM domains with high accuracy than any other system,
+tures has been a grand challenge in biology for decades. Although particularly in the 0.6–0.7 TM-score range. The TM score—ranging
+several experimental structure determination techniques have been between 0 and 1—measures the degree of match of the overall (back-
+developed and improved in accuracy, they remain difficult and time- bone) shape of a proposed structure to a native structure. The assessors
+consuming2. As a result, decades of theoretical work has attempted to ranked the 98 participating groups by the summed, capped z-scores of
+predict protein structures from amino acid sequences. the structures, separated according to category. AlphaFold achieved
+CASP5 is a biennial blind protein structure prediction assessment a summed z-score of 52.8 in the FM category (best-of-five) compared
+run by the structure prediction community to benchmark progress in with 36.6 for the next closest group (322). Combining FM and TBM/FM
+accuracy. In 2018, AlphaFold joined 97 groups from around the world in categories, AlphaFold scored 68.3 compared with 48.2. AlphaFold is
+entering CASP138. Each group submitted up to 5 structure predictions able to predict previously unknown folds to high accuracy (Fig. 1b).
+for each of 84 protein sequences for which experimentally determined Despite using only FM techniques and not using templates, AlphaFold
+structures were sequestered. Assessors divided the proteins into 104 also scored well in the TBM category according to the assessors’ for-
+domains for scoring and classified each as being amenable to template- mula 0-capped z-score, ranking fourth for the top-one model or first
+based modelling (TBM, in which a protein with a similar sequence has for the best-of-five models. Much of the accuracy of AlphaFold is due
+a known structure, and that homologous structure is modified in to the accuracy of the distance predictions, which is evident from the
+accordance with the sequence differences) or requiring free model- high precision of the corresponding contact predictions (Fig. 1c and
+ling (FM, in cases in which no homologous structure is available), with Extended Data Fig. 2a).
+1DeepMind, London, UK. 2The Francis Crick Institute, London, UK. 3University College London, London, UK. 4These authors contributed equally: Andrew W. Senior, Richard Evans, John Jumper,
+James Kirkpatrick, Laurent Sifre. *e-mail: andrewsenior@google.com
+706 | Nature | Vol 577 | 30 January 2020
+
+--- PAGE 2 ---
+a b c
+45
+1.0
+0.8
+0.6
+0.4
+0.2
+0
+The most-successful FM approaches thus far9–11 have relied on frag- neural network. By jointly predicting many distances, the network
+ment assembly. In these approaches, a structure is created through can propagate distance information that respects covariation, local
+a stochastic sampling process—such as simulated annealing12—that structure and residue identities of nearby residues. The predicted
+minimizes a statistical potential that is derived from summary statistics probability distributions can be combined to form a simple, principled
+extracted from structures in the Protein Data Bank (PDB)13. In fragment protein-specific potential. We show that with gradient descent, it is
+assembly, a structure hypothesis is repeatedly modified, typically by simple to find a set of torsion angles that minimizes this protein-specific
+changing the shape of a short section while retaining changes that lower potential using only limited sampling. We also show that whole chains
+the potential, ultimately leading to low potential structures. Simu- can be optimized simultaneously, avoiding the need to segment long
+lated annealing requires many thousands of such moves and must be proteins into hypothesized domains that are modelled independently
+repeated many times to have good coverage of low-potential structures. as is common practice (see Methods).
+In recent years, the accuracy of structure predictions has improved The central component of AlphaFold is a convolutional neural
+through the use of evolutionary covariation data14 that are found in sets network that is trained on PDB structures to predict the distances
+of related sequences. Sequences that are similar to the target sequence d between the C atoms of pairs, ij, of residues of a protein. On the
+ij β
+are found by searching large datasets of protein sequences derived basis of a representation of the amino acid sequence, S, of a protein
+from DNA sequencing and aligned to the target sequence to generate and features derived from the MSA(S) of that sequence, the network,
+a multiple sequence alignment (MSA). Correlated changes in the posi- which is similar in structure to those used for image-recognition tasks29,
+tions of two amino acid residues across the sequences of the MSA can be predicts a discrete probability distribution P(d|S, MSA(S)) for every
+ij
+used to infer which residues might be in contact. Contacts are typically ij pair in any 64 × 64 region of the L × L distance matrix, as shown in
+defined to occur when the β-carbon atoms of 2 residues are within 8 Å Fig. 2b. The full set of distance distribution predictions constructed
+of one another. Several methods15–18, including neural networks19–22, by combining such predictions that covers the entire distance map is
+have been used to predict the probability that a pair of residues is in termed a distogram (from distance histogram). Example distogram
+contact based on features computed from MSAs. Contact predictions predictions for one CASP protein, T0955, are shown in Fig. 3c, d. The
+are incorporated in structure predictions by modifying the statistical modes of the distribution (Fig. 3c) can be seen to closely match the
+potential to guide the folding process to structures that satisfy more true distances (Fig. 3b). Example distributions for all distances to one
+of the predicted contacts11,23. Other studies24,25 have used predictions residue (residue 29) are shown in Fig. 3d. We found that the predictions
+of the distance between residues, particularly for distance geometry of the distance correlate well with the true distance between residues
+approaches26–28. Neural network distance predictions without covari- (Fig. 3e). Furthermore, the network also models the uncertainty in its
+ation features were used to make the evolutionary pairwise distance- predictions (Fig. 3f). When the s.d. of the predicted distribution is low,
+dependent statistical potential25, which was used to rank structure the predictions are more accurate. This is also evident in Fig. 3d, in
+hypotheses. In addition, the QUARK pipeline11 used a template-based which more confident predictions of the distance distribution (higher
+distance-profile restraint for TBM. peak and lower s.d. of the distribution) tend to be more accurate, with
+In this study, we present a deep-learning approach to protein struc- the true distance close to the peak. Broader, less-confidently predicted
+ture prediction, the stages of which are illustrated in Fig. 2a. We show distributions still assign probability to the correct value even when it
+that it is possible to construct a learned, protein-specific potential is not close to the peak. The high accuracy of the distance predictions
+by training a neural network (Fig. 2b) to make accurate predictions and consequently the contact predictions (Fig. 1c) comes from a com-
+about the structure of the protein given its sequence, and to predict bination of factors in the design of the neural network and its training,
+the structure itself accurately by minimizing the potential by gradient data augmentation, feature representation, auxiliary losses, cropping
+descent (Fig. 2c). The neural network predictions include backbone and data curation (see Methods).
+torsion angles and pairwise distances between residues. Distance To generate structures that conform to the distance predictions,
+predictions provide more specific information about the structure we constructed a smooth potential V by fitting a spline to the
+distance
+than contact predictions and provide a richer training signal for the negative log probabilities, and summing across all of the residue pairs
+Nature | Vol 577 | 30 January 2020 | 707
+3D-2s3590T 1D-2s8690T 1D-0990T 2D-0990T 3D-0990T 1D-2s7101T
+Group AlphaFold 498 032
+0.2 0.3
+TM-score cut-off
+Target
+erocs
+MT
+AlphaFold Other groups
+0.4 0.5 0.6 0.7 0.8 0.9 1.0
+tnuoc
+niamod
+MBT/MF
++
+MF
+FM FM/TBM TBM 40 (31 domains) (12 domains) (61 domains)
+35
+30 75
+25
+)%(
+noisicerP
+20 50
+15
+10 25
+5
+0 0
+L/1 L/2 L/5 L/1 L/2 L/5 L/1 L/2 L/5
+Number of contacts
+Fig. 1 | The performance of AlphaFold in the CASP13 assessment. a, Number CASP13 for the most probable L, L/2 or L/5 contacts, where L is the length of the
+of FM (FM + FM/TBM) domains predicted for a given TM-score threshold for domain. The distance distributions used by AlphaFold in CASP13, thresholded
+AlphaFold and the other 97 groups. b, For the six new folds identified by the to contact predictions, are compared with the submissions by the two best-
+CASP13 assessors, the TM score of AlphaFold was compared with the other ranked contact prediction methods in CASP13: 498 (RaptorX-Contact26) and
+groups, together with the native structures. The structure of T1017s2-D1 is not 032 (TripletRes32) on ‘all groups’ targets, with updated domain definitions for
+available for publication. c, Precisions for long-range contact prediction in T0953s2.
+
+--- PAGE 3 ---
+Article
+0 280
+0.8
+0 200 400 600
+(cid:73) (cid:92)
+Gradient descent steps Prediction (cid:78)–1
+(see Methods). We parameterized protein structures by the backbone We repeated the optimization from sampled initializations,
+torsion angles (φ, ψ) of all residues and build a differentiable model of leading to a pool of low-potential structures from which further struc-
+protein geometry x = G(φ, ψ) to compute the C coordinates, x for all ture initializations are sampled, with added backbone torsion noise
+β i
+residues i and thus the inter-residue distances, d = ||x − x||, for each (‘noisy restarts’), leading to more structures to be added to the pool.
+ij i j
+structure, and express V as a function of φ and ψ. For a protein with After only a few hundred cycles, the optimization converges and the
+distance
+L residues, this potential accumulates L2 terms from marginal distribu- lowest potential structure is chosen as the best candidate structure.
+tion predictions. To correct for the overrepresentation of the prior, we Figure 2e shows the progress in the accuracy of the best-scoring struc-
+subtract a reference distribution30 from the distance potential in the log tures over multiple restarts of the gradient descent process, show-
+domain. The reference distribution models the distance distributions ing that after a few iterations the optimization has converged. Noisy
+P(d|length) independent of the protein sequence and is computed restarts enable structures with a slightly higher TM score to be found
+ij
+by training a small version of the distance prediction neural network than when continuing to sample from the predicted torsion distribu-
+on the same structures, without sequence or MSA input features. tions (average of 0.641 versus 0.636 on our test set, shown in Extended
+A separate output head of the contact prediction network is trained to Data Fig. 4).
+predict discrete probability distributions of backbone torsion angles Figure 4a shows that the distogram accuracy (measured using the
+P(φ,ψ|S, MSA(S)). After fitting a von Mises distribution, this is used to local distance difference test (lDDT ) of the distogram; see Meth-
+i i 12
+add a smooth torsion modelling term, V , to the potential. Finally, ods) correlates well with the TM score of the final realized structures.
+torsion
+to prevent steric clashes, we add the V score of Rosetta9 to the Figure 4b shows the effect of changing the construction of the potential.
+score2_smooth
+potential, as this incorporates a van der Waals term. We used multipli- Removing the distance potential entirely gives a TM score of 0.266.
+cative weights for each of the three terms in the potential; however, no Reducing the resolution of the distogram representation below six bins
+combination of weights noticeably outperformed equal weighting. by averaging adjacent bins causes the TM score to degrade. Removing
+As all of the terms in the combined potential V (φ, ψ) are the torsion potential, reference correction or V degrades the
+total score2_smooth
+differentiable functions of (φ, ψ), it can be optimized with respect to accuracy only slightly. A final ‘relaxation’ (side-chain packing inter-
+these variables by gradient descent. Here we use L-BFGS31. Structures leaved with gradient descent) with Rosetta9, using a combination of
+are initialized by sampling torsion values from P(φ, ψ|S, MSA(S)). the Talaris2014 potential and a spline fit of our reference-corrected
+i i
+Figure 2c illustrates a single gradient descent trajectory that minimizes distance potential adds side-chain atom coordinates, and yields a small
+the potential, showing how this greedy optimization process leads to average improvement of 0.007 TM score.
+increasing accuracy and large-scale conformation changes. The sec- We show that a carefully designed deep-learning system can pro-
+ondary structure is partly set by the initialization from the predicted vide accurate predictions of inter-residue distances and can be used
+torsion angle distributions. The overall accuracy (TM score) improves to construct a protein-specific potential that represents the protein
+quickly and after a few hundred steps of gradient descent the accuracy structure. Furthermore, we show that this potential can be optimized
+of the structure has converged to a local optimum of the potential. with gradient descent to achieve accurate structure predictions.
+708 | Nature | Vol 577 | 30 January 2020
+erocs
+MT
+eudiseR
+0.6
+Noisy restarts
+100 101 102 103
+Iteration
+80
+0.7
+0.6
+0.5
+0.4 0.3
+0.2
+0.1 0
+800 1,000 1,200
+140
+120
+100
+80
+60
+40
+20
+0 0 200 400 600 800 1,000 1,200 Nat. 0 1 0.1110
+erocs
+MT
+0.5
+0.4
+0.3
+0.2
+0.1
+0
+600 1,200
+70
+60
+50
+40 30
+20
+10 0
+)Å(
+.d.s.m.r
+a
+Sequence
+Deep neural Distance and torsion Gradient descent on
+and MSA network distribution predictions protein-specific potential
+features
+c
+serutaef
+elfiorp
+dna
+ecneuqes
+D1
+1
+× L deliT
+serutaef
+noitairavoc
+D2
+L ×
+L
+b
+220 residual convolution blocks
+46
+d
+64
+j
+e
+64 bins deep
+500
+TM score
+r.m.s.d.
+i
+Fig. 2 | The folding process illustrated for CASP13 target T0986s2. CASP structure prediction probabilities of the network and the uncertainty in
+target T0986s2, L = 155, PDB: 6N9V. a, Steps of structure prediction. b, The torsion angle predictions (as κ−1 of the von Mises distributions fitted to the
+neural network predicts the entire L × L distogram based on MSA features, predictions for φ and ψ). While each step of gradient descent greedily lowers
+accumulating separate predictions for 64 × 64-residue regions. c, One iteration the potential, large global conformation changes are effected, resulting in a
+of gradient descent (1,200 steps) is shown, with the TM score and root mean well-packed chain. d, The final first submission overlaid on the native structure
+square deviation (r.m.s.d.) plotted against step number with five snapshots of (in grey). e, The average (across the test set, n = 377) TM score of the lowest-
+the structure. The secondary structure (from SST33) is also shown (helix in blue, potential structure against the number of repeats of gradient descent per
+strand in red) along with the native secondary structure (Nat.), the secondary target (log scale).
+
+--- PAGE 4 ---
+d 100
+1 2 3 4 5 a b0
+20
+10–2
+100
+6 7 8 9 10
+10–2
+100 11 12 13 14 15
+10–2
+100 16 17 18 19 20
+10–2
+100
+21 22 23 24 25
+c 10–2
+100
+26 27 28 30 31
+10–2
+100
+32 33 34 35 36
+10–2
+100
+37 38 39 40 41
+10–2
+4 81216 4 81216 4 81216 4 81216 4 81216
+e f
+Whereas FM predictions only rarely approach the accuracy of experi- can match the performance of template-modelling approaches without
+mental structures, the CASP13 assessment shows that the AlphaFold using templates and is starting to reach the accuracy needed to provide
+system achieves unprecedented FM accuracy and that this FM method biological insights (see Methods). We hope that the methods we have
+Nature | Vol 577 | 30 January 2020 | 709
+Distance
+(Å)
+Distance (Å)
+)elacs
+gol(
+ytilibaborP
+QTKCEKKKCVCENCERSTYL
+SERKTMKFNERDSHVVCDKTC
+10 16
+20 12
+8 30
+4
+40
+0
+10
+20
+30
+40
+22 20
+20 15
+18
+10
+16
+5
+14
+0
+12
+–5
+10
+8 –10
+6 –15
+4 –20
+4 6 8 10 12 14 16 18 20 22 0 1 2 3 4 5 6
+)Å(
+noitciderp
+edoM
+True distance (Å) (cid:86) prediction (Å)
+)Å(
+)edom
+–
+evitan(
+rorre
+ecnatsiD
+Fig. 3 | Predicted distance distributions compared with true distances. e, The mode of the predicted distance plotted against the true distance for all
+a–d, CASP target T0955, L = 41, PDB 5W9F. a, Native structure showing residue pairs with distances ≤22 Å, excluding distributions with s.d. > 3.5 Å
+distances under 8 Å from the C of residue 29. b, c, Native inter-residue (n = 28,678). Data are mean ± s.d. calculated for 1 Å bins. f, The error of the mode
+β
+distances (b) and the mode of the distance predictions (c), highlighting residue distance prediction versus the s.d. of the distance distributions, excluding
+29. d, The predicted probability distributions for distances of residue 29 to all pairs with native distances >22 Å (n = 61,872). Data are mean ± s.d. are shown for
+other residues. The bin corresponding to the native distance is highlighted in 0.25 Å bins. The true distance matrix and distogram for T0990 are shown in
+red, 8 Å is drawn in black. The distributions of the true contacts are plotted in Extended Data Fig. 2b, c.
+green, non-contacts in blue. e, f, CASP target T0990, L = 552, PDB 6N9V.
+a b
+1.0
+0.8
+erocs
+MT
+erocs
+MT
++Rosetta relax No torsions
+Test r = 0.72 Downsample No reference
+CASP13 r = 0.78 No score2_smooth No distogram
+0.6
+0.650
+0.645
+0.5 0.640
+0.635
+0.630
+0.6 0.4
+48 51
+0.3
+0.4
+0.2
+0.2
+0.1
+0 0
+0 10 20 30 40 50 60 70 2 3 6 12 24 51
+Distogram IDDT Number of bins (log scale)
+12
+Fig. 4 | TM scores versus the accuracy of the distogram, and the dependency b, Average TM score over the test set (n = 377) versus the number of histogram
+of the TM score on different components of the potential. a, TM score versus bins used when downsampling the distogram, compared with removing
+distogram lDDT with Pearson’s correlation coefficients, for both CASP13 different components of the potential, or adding Rosetta relaxation.
+12
+(n = 500: 5 decoys for all domains, excluding T0999) and test (n = 377) datasets.
+
+--- PAGE 5 ---
+Article
+described can be developed further and applied to benefit all areas 16. Seemayer, S., Gruber, M. & Söding, J. CCMpred—fast and precise prediction of protein
+of protein science with more accurate predictions for sequences of residue–residue contacts from correlated mutations. Bioinformatics 30, 3128–3130
+(2014).
+unknown structure. 17. Morcos, F. et al. Direct-coupling analysis of residue coevolution captures native
+contacts across many protein families. Proc. Natl Acad. Sci. USA 108, E1293–E1301
+(2011).
+Online content 18. Jones, D. T., Buchan, D. W., Cozzetto, D. & Pontil, M. PSICOV: precise structural contact
+prediction using sparse inverse covariance estimation on large multiple sequence
+Any methods, additional references, Nature Research reporting sum- alignments. Bioinformatics 28, 184–190 (2012).
+19. Skwark, M. J., Raimondi, D., Michel, M. & Elofsson, A. Improved contact predictions using
+maries, source data, extended data, supplementary information,
+the recognition of protein like contact patterns. PLOS Comput. Biol. 10, e1003889 (2014).
+acknowledgements, peer review information; details of author con- 20. Jones, D. T., Singh, T., Kosciolek, T. & Tetchner, S. MetaPSICOV: combining coevolution
+tributions and competing interests; and statements of data and code methods for accurate prediction of contacts and long range hydrogen bonding in
+proteins. Bioinformatics 31, 999–1006 (2015).
+availability are available at https://doi.org/10.1038/s41586-019-1923-7.
+21. Wang, S., Sun, S., Li, Z., Zhang, R. & Xu, J. Accurate de novo prediction of protein contact
+map by ultra-deep learning model. PLOS Comput. Biol. 13, e1005324 (2017).
+22. Jones, D. T. & Kandathil, S. M. High precision in protein contact prediction using fully
+1. Dill, K. A., Ozkan, S. B., Shell, M. S. & Weikl, T. R. The protein folding problem. Annu. Rev.
+convolutional neural networks and minimal sequence features. Bioinformatics 34,
+Biophys. 37, 289–316 (2008).
+3308–3315 (2018).
+2. Dill, K. A. & MacCallum, J. L. The protein-folding problem, 50 years on. Science 338,
+23. Ovchinnikov, S. et al. Improved de novo structure prediction in CASP11 by incorporating
+1042–1046 (2012).
+coevolution information into Rosetta. Proteins 84, 67–75 (2016).
+3. Schaarschmidt, J., Monastyrskyy, B., Kryshtafovych, A. & Bonvin, A. M. J. J. Assessment of
+24. Aszódi, A. & Taylor, W. R. Estimating polypeptide α-carbon distances from multiple
+contact predictions in CASP12: co-evolution and deep learning coming of age. Proteins
+sequence alignments. J. Math. Chem. 17, 167–184 (1995).
+86, 51–66 (2018).
+25. Zhao, F. & Xu, J. A position-specific distance-dependent statistical potential for protein
+4. Kirkwood, J. Statistical mechanics of fluid mixtures. J. Chem. Phys. 3, 300–313 (1935).
+structure and functional study. Structure 20, 1118–1126 (2012).
+5. Kryshtafovych, A., Schwede, T., Topf, M., Fidelis, K. & Moult, J. Critical assessment of
+26. Xu, J. & Wang, S. Analysis of distance-based protein structure prediction by deep learning
+methods of protein structure prediction (CASP)—Round XIII. Proteins 87, 1011–1020 (2019).
+in CASP13. Proteins 87, 1069–1081 (2019).
+6. Zhang, Y. & Skolnick, J. Scoring function for automated assessment of protein structure
+27. Aszódi, A., Gradwell, M. J. & Taylor, W. R. Global fold determination from a small number
+template quality. Proteins 57, 702–710 (2004).
+of distance restraints. J. Mol. Biol. 251, 308–326 (1995).
+7. Zhang, Y. Protein structure prediction: when is it useful? Curr. Opin. Struct. Biol. 19,
+28. Kandathil, S. M., Greener, J. G. & Jones, D. T. Prediction of interresidue contacts with
+145–155 (2009).
+DeepMetaPSICOV in CASP13. Proteins 87, 1092–1099 (2019).
+8. Senior, A. W. et al. Protein structure prediction using multiple deep neural networks in the
+29. He, K., Zhang, X., Ren, S. & Sun, J. Deep residual learning for image recognition. In Proc.
+13th Critical Assessment of Protein Structure Prediction (CASP13). Proteins 87, 1141–1148
+IEEE Conference on Computer Vision and Pattern Recognition 770–778 (2016).
+(2019).
+30. Simons, K. T., Kooperberg, C., Huang, E. & Baker, D. Assembly of protein tertiary structures
+9. Das, R. & Baker, D. Macromolecular modeling with Rosetta. Annu. Rev. Biochem. 77,
+from fragments with similar local sequences using simulated annealing and Bayesian
+363–382 (2008).
+scoring functions. J. Mol. Biol. 268, 209–225 (1997).
+10. Jones, D. T. Predicting novel protein folds by using FRAGFOLD. Proteins 45, 127–132
+31. Liu, D. C. & Nocedal, J. On the limited memory BFGS method for large scale optimization.
+(2001).
+Math. Program. 45, 503–528 (1989).
+11. Zhang, C., Mortuza, S. M., He, B., Wang, Y. & Zhang, Y. Template-based and free modeling
+32. Li, Y., Zhang, C., Bell, E. W., Yu, D.-J. & Zhang, Y. Ensembling multiple raw coevolutionary
+of I-TASSER and QUARK pipelines using predicted contact maps in CASP12. Proteins 86,
+features with deep residual neural networks for contact-map prediction in CASP13.
+136–151 (2018).
+Proteins 87, 1082–1091 (2019).
+12. Kirkpatrick, S., Gelatt, C. D. Jr & Vecchi, M. P. Optimization by simulated annealing.
+33. Konagurthu, A. S., Lesk, A. M. & Allison, L. Minimum message length inference of
+Science 220, 671–680 (1983).
+secondary structure from protein coordinate data. Bioinformatics 28, i97–i105
+13. Berman, H. M. et al. The Protein Data Bank. Nucleic Acids Res. 28, 235–242 (2000).
+(2012).
+14. Altschuh, D., Lesk, A. M., Bloomer, A. C. & Klug, A. Correlation of co-ordinated amino acid
+substitutions with function in viruses related to tobacco mosaic virus. J. Mol. Biol. 193,
+693–707 (1987). Publisher’s note Springer Nature remains neutral with regard to jurisdictional claims in
+15. Ovchinnikov, S., Kamisetty, H. & Baker, D. Robust and accurate prediction of residue– published maps and institutional affiliations.
+residue interactions across protein interfaces using evolutionary information. eLife 3,
+e02030 (2014). © The Author(s), under exclusive licence to Springer Nature Limited 2020
+710 | Nature | Vol 577 | 30 January 2020
+
+--- PAGE 6 ---
+Methods The z-scores were taken from the results CASP13 assessors (http://
+predictioncenter.org/casp13/zscores_final.cgi?formula=assessors).
+Extended Data Figure 1a shows the steps involved in MSA construction,
+feature extraction, distance prediction, potential construction and Distogram prediction. The inter-residue distances are predicted by
+structure realization. a deep neural network. The architecture is a deep two-dimensional
+dilated convolutional residual network. Previously, a two-dimensional
+Tools residual network was used that was preceded by one-dimensional em-
+The following tools and dataset versions were used for the CASP sys- bedding layers for contact prediction21. Our network is two-dimensional
+tem and for subsequent experiments: PDB 15 March 2018; CATH 16 throughout and uses 220 residual blocks29 with dilated convolutions38.
+March 2018; HHblits based on v.3.0-beta.3 (three iterations, E = 1 × 10−3); Each residual block, illustrated in Extended Data Fig. 1b, consists of a
+HHpred web server; Uniclust30 2017-10; PSI-BLAST v.2.6.0 nr dataset sequence of neural network layers39 that interleave three batchnorm
+(as of 15 December 2017) (three iterations, E = 1 × 10−3); SST web server layers; two 1 × 1 projection layers; a 3 × 3 dilated convolution layer and
+(March 2019); BioPython v.1.65; Rosetta v.3.5; PyMol 2.2.0 for structure exponential linear unit (ELU)40 nonlinearities. Successive layers cycle
+visualization; TM-align 20160521. through dilations of 1, 2, 4, 8 pixels to allow propagation of informa-
+tion quickly across the cropped region. For the final layer, a position-
+Data specific bias was used, such that the biases were indexed by residue-
+Our models are trained on structures extracted from the PDB13. offset (capped at 32) and bin number.
+We extract non-redundant domains by utilizing the CATH34 35% The network is trained with stochastic gradient descent using a
+sequence similarity cluster representatives. This generated 31,247 cross-entropy loss. The target is a quantification of the distance
+domains, which were split into train and test sets (29,427 and 1,820 between the C atoms of the residues (or C for glycine). We divide
+β α
+proteins, respectively), keeping all domains from the same homologous the range 2–22 Å into 64 equal bins. The input to the network consists
+superfamily (H-level in the CATH classification) in the same partition. of a two-dimensional array of features in which each i,j feature is the
+The CATH superfamilies of FM domains from CASP11 and concatenation of the one-dimensional features for both i and j as well
+CASP12 were also excluded from the training set. From the test set, we as the two-dimensional features for i,j.
+took—at random—a single domain per homologous superfamily to Individual training runs were cross-validated with early stopping
+create the 377 domain subset used for the results presented here. We using 27 CASP11 FM domains as a validation set. Models were selected
+note that accuracies for this set are higher than for the CASP13 test by cross-validation on 27 CASP12 FM domains.
+domains.
+CASP13 submission results are drawn from the CASP13 results pages Neural network hyperparameters
+with additional results shown for the CASP13 dataset for ‘all groups’ (cid:427)(cid:1)(cid:1)(cid:359)(cid:2)(cid:206)(cid:247)(cid:236)(cid:261)(cid:245)(cid:251)(cid:1)(cid:236)(cid:205)(cid:2)(cid:356)(cid:1)(cid:186)(cid:226)(cid:236)(cid:187)(cid:224)(cid:251)(cid:1)(cid:273)(cid:213)(cid:257)(cid:211)(cid:1)(cid:354)(cid:357)(cid:358)(cid:1)(cid:187)(cid:211)(cid:176)(cid:231)(cid:231)(cid:195)(cid:226)(cid:251)(cid:408)(cid:1)(cid:187)(cid:279)(cid:187)(cid:226)(cid:213)(cid:231)(cid:206)(cid:1)(cid:257)(cid:211)(cid:247)(cid:236)(cid:261)(cid:206)(cid:211)(cid:1)(cid:193)(cid:213)(cid:226)(cid:176)(cid:257)(cid:213)(cid:236)(cid:231)(cid:251)(cid:1)
+chains, scored on CASP13 PDB files, by CASP domain definitions. Con- 1, 2, 4, 8.
+tact prediction accuracies were recomputed from the group 032 and (cid:427)(cid:1)(cid:1)(cid:356)(cid:360)(cid:2)(cid:206)(cid:247)(cid:236)(cid:261)(cid:245)(cid:251)(cid:1)(cid:236)(cid:205)(cid:2)(cid:356)(cid:1)(cid:186)(cid:226)(cid:236)(cid:187)(cid:224)(cid:251)(cid:1)(cid:273)(cid:213)(cid:257)(cid:211)(cid:1)(cid:353)(cid:354)(cid:360)(cid:1)(cid:187)(cid:211)(cid:176)(cid:231)(cid:231)(cid:195)(cid:226)(cid:251)(cid:408)(cid:1)(cid:187)(cid:279)(cid:187)(cid:226)(cid:213)(cid:231)(cid:206)(cid:1)(cid:257)(cid:211)(cid:247)(cid:236)(cid:261)(cid:206)(cid:211)(cid:1)(cid:193)(cid:213)(cid:226)(cid:176)(cid:257)(cid:213)(cid:236)(cid:231)(cid:251)(cid:1)
+498 submissions (as RR files), compared with the distogram predictions 1, 2, 4, 8.
+used by AlphaFold for CASP13 submissions. Contact prediction prob- (cid:427)(cid:1)(cid:76)(cid:245)(cid:257)(cid:213)(cid:230)(cid:213)(cid:284)(cid:176)(cid:257)(cid:213)(cid:236)(cid:231)(cid:409)(cid:1)(cid:251)(cid:279)(cid:231)(cid:187)(cid:211)(cid:247)(cid:236)(cid:231)(cid:213)(cid:284)(cid:195)(cid:193)(cid:1)(cid:251)(cid:257)(cid:236)(cid:187)(cid:211)(cid:176)(cid:251)(cid:257)(cid:213)(cid:187)(cid:1)(cid:206)(cid:247)(cid:176)(cid:193)(cid:213)(cid:195)(cid:231)(cid:257)(cid:1)(cid:193)(cid:195)(cid:251)(cid:187)(cid:195)(cid:231)(cid:257)
+abilities were obtained from the distograms by summing the probability (cid:427)(cid:1)(cid:25)(cid:176)(cid:257)(cid:187)(cid:211)(cid:1)(cid:251)(cid:213)(cid:284)(cid:195)(cid:409)(cid:1)(cid:186)(cid:176)(cid:257)(cid:187)(cid:211)(cid:1)(cid:236)(cid:205)(cid:1)(cid:356)(cid:1)(cid:187)(cid:247)(cid:236)(cid:245)(cid:251)(cid:1)(cid:236)(cid:231)(cid:1)(cid:195)(cid:176)(cid:187)(cid:211)(cid:1)(cid:236)(cid:205)(cid:1)(cid:360)(cid:1)(cid:45)(cid:85)(cid:101)(cid:1)(cid:273)(cid:236)(cid:247)(cid:224)(cid:195)(cid:247)(cid:251)(cid:407)
+mass in each distribution below 8 Å. (cid:427)(cid:1)(cid:352)(cid:407)(cid:360)(cid:357)(cid:1)(cid:193)(cid:247)(cid:236)(cid:245)(cid:236)(cid:261)(cid:257)(cid:1)(cid:224)(cid:195)(cid:195)(cid:245)(cid:1)(cid:245)(cid:247)(cid:236)(cid:186)(cid:176)(cid:186)(cid:213)(cid:226)(cid:213)(cid:257)(cid:279)(cid:407)
+For each training sequence, we searched for and aligned to the train- (cid:427)(cid:1)(cid:71)(cid:236)(cid:231)(cid:226)(cid:213)(cid:231)(cid:195)(cid:176)(cid:247)(cid:213)(cid:257)(cid:279)(cid:409)(cid:1)(cid:34)(cid:66)(cid:101)(cid:407)
+ing sequence similar protein sequences in the Uniclust3035 dataset (cid:427)(cid:1)(cid:66)(cid:195)(cid:176)(cid:247)(cid:231)(cid:213)(cid:231)(cid:206)(cid:1)(cid:247)(cid:176)(cid:257)(cid:195)(cid:409)(cid:1)(cid:352)(cid:407)(cid:352)(cid:358)(cid:407)
+with HHblits36 and used the returned MSA to generate profile features (cid:427)(cid:1)(cid:1)(cid:15)(cid:261)(cid:278)(cid:213)(cid:226)(cid:213)(cid:176)(cid:247)(cid:279)(cid:1)(cid:226)(cid:236)(cid:251)(cid:251)(cid:1)(cid:273)(cid:195)(cid:213)(cid:206)(cid:211)(cid:257)(cid:251)(cid:409)(cid:1)(cid:251)(cid:195)(cid:187)(cid:236)(cid:231)(cid:193)(cid:176)(cid:247)(cid:279)(cid:1)(cid:251)(cid:257)(cid:247)(cid:261)(cid:187)(cid:257)(cid:261)(cid:247)(cid:195)(cid:409)(cid:1)(cid:352)(cid:407)(cid:352)(cid:352)(cid:357)(cid:410)(cid:1)(cid:176)(cid:187)(cid:187)(cid:195)(cid:251)(cid:251)(cid:213)(cid:186)(cid:226)(cid:195)(cid:1)(cid:251)(cid:261)(cid:247)-
+with the position-specific substitution probabilities for each residue face area: 0.001. These auxiliary losses were cut by a factor 10 after
+as well as covariation features—the parameters of a regularized pseu- 100 000 steps.
+dolikelihood-trained Potts model similar to CCMpred16. CCMPred uses (cid:427)(cid:1)(cid:1)(cid:66)(cid:195)(cid:176)(cid:247)(cid:231)(cid:213)(cid:231)(cid:206)(cid:1)(cid:247)(cid:176)(cid:257)(cid:195)(cid:1)(cid:193)(cid:195)(cid:187)(cid:176)(cid:279)(cid:195)(cid:193)(cid:1)(cid:186)(cid:279)(cid:1)(cid:357)(cid:352)(cid:386)(cid:1)(cid:176)(cid:257)(cid:1)(cid:353)(cid:357)(cid:352)(cid:408)(cid:352)(cid:352)(cid:352)(cid:408)(cid:1)(cid:354)(cid:352)(cid:352)(cid:408)(cid:352)(cid:352)(cid:352)(cid:408)(cid:1)(cid:354)(cid:357)(cid:352)(cid:408)(cid:352)(cid:352)(cid:352)(cid:1)(cid:176)(cid:231)(cid:193)(cid:1)
+the Frobenius norm of the parameters, but we feed both this norm 350,000 steps.
+(1 feature) and the raw parameters (484 features) into the network for (cid:427)(cid:1)(cid:97)(cid:247)(cid:176)(cid:213)(cid:231)(cid:213)(cid:231)(cid:206)(cid:1)(cid:257)(cid:213)(cid:230)(cid:195)(cid:409)(cid:1)(cid:176)(cid:186)(cid:236)(cid:261)(cid:257)(cid:1)(cid:357)(cid:2)(cid:193)(cid:176)(cid:279)(cid:251)(cid:1)(cid:205)(cid:236)(cid:247)(cid:1)(cid:358)(cid:352)(cid:352)(cid:408)(cid:352)(cid:352)(cid:352)(cid:1)(cid:251)(cid:257)(cid:195)(cid:245)(cid:251)(cid:407)
+each residue pair ij. In addition, we provide the network with features
+that explicitly represent gaps and deletions in the MSA. To make the Cropped distograms. To constrain memory usage and avoid overfit-
+network better able to make predictions for shallow MSAs, and as a ting, the network was always trained and tested on 64 × 64 regions
+form of data augmentation, we take a sample of half the sequences of the distance matrix, that is, the pairwise distances between 64
+from the the HHblits MSA before computing the MSA-based features. consecutive residues and another group of 64 consecutive residues.
+Our training set contains 10 such samples for each domain. We extract For each training domain, the entire distance matrix was split into
+additional profile features using PSI-BLAST37. non-overlapping 64 × 64 crops. By training off-diagonal crops, the
+The distance prediction neural network was trained with the follow- interaction between residues that are further apart than 64 residues
+ing input features (with the number of features indicated in brackets). could be modelled. Each crop consisted of the distance matrix that
+(cid:427)(cid:1)(cid:71)(cid:261)(cid:230)(cid:186)(cid:195)(cid:247)(cid:1)(cid:236)(cid:205)(cid:1)(cid:50)(cid:50)(cid:186)(cid:226)(cid:213)(cid:257)(cid:251)(cid:1)(cid:176)(cid:226)(cid:213)(cid:206)(cid:231)(cid:230)(cid:195)(cid:231)(cid:257)(cid:251)(cid:1)(cid:375)(cid:251)(cid:187)(cid:176)(cid:226)(cid:176)(cid:247)(cid:376)(cid:407) represented the juxtaposition of two 64-residue fragments. It has
+(cid:427)(cid:1)(cid:1)(cid:91)(cid:195)(cid:246)(cid:261)(cid:195)(cid:231)(cid:187)(cid:195)(cid:372)(cid:226)(cid:195)(cid:231)(cid:206)(cid:257)(cid:211)(cid:1)(cid:205)(cid:195)(cid:176)(cid:257)(cid:261)(cid:247)(cid:195)(cid:251)(cid:409)(cid:1)(cid:353)(cid:372)(cid:211)(cid:236)(cid:257)(cid:1)(cid:176)(cid:230)(cid:213)(cid:231)(cid:236)(cid:1)(cid:176)(cid:187)(cid:213)(cid:193)(cid:1)(cid:257)(cid:279)(cid:245)(cid:195)(cid:1)(cid:375)(cid:354)(cid:353)(cid:1)(cid:205)(cid:195)(cid:176)(cid:257)(cid:261)(cid:247)(cid:195)(cid:251)(cid:376)(cid:410)(cid:1) previously been shown22 that contact prediction needs only a limited
+profiles: PSI-BLAST (21 features), HHblits profile (22 features), context window. We note that the distance predictions close to the
+non-gapped profile (21 features), HHblits bias, HMM profile (30 diagonal i = j, encode predictions of the local structure of the protein,
+features), Potts model bias (22 features); deletion probability (1 fea- and for any cropped region the distances are governed by the local
+ture); residue index (integer index of residue number, consecutive structure of the two fragments represented by the i and j ranges of the
+except for multi-segment domains, encoded as 5 least-significant crop. Augmenting the inputs with the on-diagonal two-dimensional
+bits and a scalar). input features that correspond to both the i and j ranges provides
+(cid:427)(cid:1)(cid:1)(cid:91)(cid:195)(cid:246)(cid:261)(cid:195)(cid:231)(cid:187)(cid:195)(cid:372)(cid:226)(cid:195)(cid:231)(cid:206)(cid:257)(cid:211)(cid:372)(cid:251)(cid:246)(cid:261)(cid:176)(cid:247)(cid:195)(cid:193)(cid:1)(cid:205)(cid:195)(cid:176)(cid:257)(cid:261)(cid:247)(cid:195)(cid:251)(cid:409)(cid:1)(cid:85)(cid:236)(cid:257)(cid:257)(cid:251)(cid:1)(cid:230)(cid:236)(cid:193)(cid:195)(cid:226)(cid:1)(cid:245)(cid:176)(cid:247)(cid:176)(cid:230)(cid:195)(cid:257)(cid:195)(cid:247)(cid:251)(cid:1) additional information to predict the structure of each fragment and
+(484 features, fitted with 500 iterations of gradient descent using thus the distances between them. It can be seen that if the fragment
+Nesterov momentum 0.99, without sequence reweighting); structures can be well predicted (for instance, if they are confidently
+Frobenius norm (1 feature); gap matrix (1 feature). predicted as helices or sheets), then the prediction of a single contact
+
+--- PAGE 7 ---
+Article
+between the fragments will strongly constrain the distances between ratio of the distances under the full conditional model and under the
+all other pairs. background model (Supplementary equation (2)).
+Randomizing the offset of the crops each time a domain is used in Torsions are modelled as a negative log likelihood under the pre-
+training leads to a form of data augmentation in which a single pro- dicted torsion distributions. As we have marginal distribution predic-
+tein can generate many thousands of different training examples. tions, each of which can be multimodal, it can be difficult to jointly
+This is further enhanced by adding noise proportional to the ground- optimize the torsions. To unify all of the probability mass, at the cost
+truth resolution to the atom coordinates, leading to variation in the of modelling fidelity of multimodal distributions, we fitted a unimodal
+target distances. Data augmentation (MSA subsampling and coordinate von Mises distribution to the marginal predictions. This potential was
+noise), together with dropout41, prevents the network from overfitting summed over all residues i (Supplementary equation (3)).
+to the training data. Finally, to prevent steric clashes, a van der Waals term was introduced
+To predict the distance distribution for all L × L residue pairs, many through the use of Rosetta’s V . Extended Data Figure 3c (top)
+score2_smooth
+64 × 64 crops are combined. To avoid edge effects, several such tilings shows the effect on the accuracy of the structure prediction of different
+are produced with different offsets and averaged together, with a heav- terms in the potential.
+ier weighting for the predictions near the centre of the crop. To improve
+accuracy further, predictions from an ensemble of four separate Structure realization by gradient descent. To realize structures that
+models, trained independently with slightly different hyperparameters, minimize the constructed potential, we created a differentiable model
+are averaged together. Extended Data Figure 2b, c shows examples of of ideal protein backbone geometry, giving backbone atom coordinates
+the true distances and the mode of the distogram predictions for a as a function of the torsion angles (φ, ψ): x = G(φ, ψ). The complete
+three-domain CASP13 target, T0990. potential to be minimized is then the sum of the distance, torsion and
+As the network has a rich representation capable of incorporat- score2_smooth (Supplementary equation (4)). Although there is no
+ing both profile and covariation features of the MSA, we argue that guarantee that these potentials have equivalent scale, scaling param-
+the network can be used to predict the secondary structure directly. eters on the terms were introduced and chosen by cross-validation
+By mean- and max- pooling the two-dimensional activations of the on CASP12 FM domains. In practice, equal weighting for all terms was
+penultimate layer of the network separately in both i and j, we add an found to lead to the best results.
+additional one-dimensional output head to the network that predicts As every term in V is differentiable with respect to the torsion
+total
+eight-class secondary structure labels as computed by DSSP42 for each angles, given an initial set of torsions φ, ψ, which can be sampled
+residue in j and i. The resulting accuracy of the Q3 (distinguishing the from the predicted torsion marginals, we can minimize V using a
+total
+three helix/sheet/coil classes) predictions is 84%, which is comparable gradient descent algorithm, such as L-BFGS31. The optimized struc-
+to the state-of-the-art predictions43. The relative accessible surface ture is dependent on the initial conditions, so we repeat the optimi-
+area (ASA) of each residue can also be predicted. zation multiple times with different initializations. A pool of the 20
+The one-dimensional pooled activations are also used to predict the lowest-potential structures is maintained and once full, we initialize
+marginal Ramachandran distributions, P(φ, ψ|S,MSA(S)), indepen- 90% of trajectories from those with 30° noise added to the backbone
+i i
+dently for each residue, as a discrete probability distribution approxi- torsions (the remaining 10% still being sampled from the predicted
+mated to 10° (1,296 bins). In practice during CASP13 we used distograms torsion distributions). In CASP13, we obtained 5,000 optimization
+from a network that was trained to predict distograms, secondary runs for each chain. Figure 2c shows the change in TM score against
+structure and ASA. Torsion predictions were taken from a second similar the number of restarts per protein. As longer chains take longer to
+network trained to predict distograms, secondary structure, ASA and optimize, this work load was balanced across (50 + L)/2 parallel work-
+torsions, as the former had been more thoroughly validated. ers. Extended Data Figure 4 shows similar curves against computation
+Extended Data Figure 3b shows that an important factor in the accu- time, always comparing sampling starting torsions from the predicted
+racy of the distograms (as has previously been found with contact marginal distributions with restarting from the pool of previous
+prediction systems) is N , the effective number of sequences in the structures.
+eff
+MSA20. This is the number of sequences found in the MSA, discounting
+redundancy at the 62% sequence identity level, which we then divide by Accuracy. We compare the final structures to the experimentally
+the number of residues in the target, and is an indication of the amount determined structures to measure their accuracy using metrics such
+of covariation information in the MSA. as TM score, GDT_TS (global distance test, total score44) and r.m.s.d.
+All of these accuracy measures require geometric alignment between
+Distance potential. The distogram probabilities are estimated for the candidate structure and the experimental structure. An alterna-
+discrete distance bins; therefore, to construct a differentiable potential, tive accuracy measure that requires no alignment is the lDDT45, which
+the distribution is interpolated with a cubic spline. Because the final measures the percentage of native pairwise distances D under 15 Å,
+ij
+bin accumulates probability mass from all distances beyond 22 Å, and with sequence offsets ≥ r residues, that are realized in a candidate struc-
+as greater distances are harder to predict accurately, the potential was ture (as d) within a tolerance of the true value, averaging across toler-
+ij
+only fitted up to 18 Å (determined by cross-validation), with a constant ances of 0.5, 1, 2 and 4 Å (without stereochemical checks), as shown in
+extrapolation thereafter. Extended Data Figure 3c (bottom) shows the Supplementary equation (5)).
+effect of varying the resolution of the distance histograms on structure As the distogram predicts pairwise distances, we can introduce dis-
+accuracy. togram lDDT (DLDDT), a measure similar to lDDT that is computed
+To predict a reference distribution, a similar model is trained on the directly from the probabilities of the distograms, as shown in Sup-
+same dataset. The reference distribution is not conditioned on the plementary equation (6)). As distances between residues nearby in
+sequence, but to account for the atoms between which we are predict- the sequence are often short, easier to predict and are not critical in
+ing distances, we do provide a binary feature δ to indicate whether determining the overall fold topology, we set r = 12, considering only
+αβ
+the residue is a glycine (C atom) or not (C) and the overall length of those distances for residues with a sequence separation ≥12. Because
+α β
+the protein. we predict C distances, for this study we computed both lDDT and
+β
+A distance potential is created from the negative log likelihood of DLDDT using the C distances. Extended Data Figure 3a shows that
+β
+the distances, summed over all pairs of residues i, j (Supplementary DLDDT has high correlation (Pearson’s r = 0.92 for CASP13) with the
+12
+equation (1)). With a reference state, this becomes the log-likelihood lDDT of the realized structures.
+12
+
+--- PAGE 8 ---
+Thus far only template-based predictions have been able to deliver
+Full chains without domain segmentation. Parameterizing proteins the most accurate predictions. Although AlphaFold is able to match
+of length L by two torsion angles per residue, the dimension of the TBM without using templates, and in some cases outperform other
+space of structures grows as 2L; thus, searching for structures of large methods (for example, T0981-D5, 72.8 GDT_TS, and T0957s1-D2, 88.0
+proteins becomes much more difficult. Traditionally this problem GDT_TS, two TBM-hard domains for which the top-one model of Alpha-
+was addressed by splitting longer protein chains into pieces—termed Fold is 12 GDT_TS better than any other top-one submission), the accu-
+domains—that fold independently. However, domain segmentation racy for FM targets still lags behind that for TBM targets and can still
+from the sequence alone is itself difficult and error-prone. For this not be relied on for the detailed understanding of hard structures. In an
+study, we avoided domain segmentation and folded entire chains. analysis of the performance of CASP13 TBM predictions for molecular
+Typically, MSAs are based on a given domain segmentation; however, replacement, another study48 reported that the AlphaFold predic-
+we used a sliding window approach, computing a full-chain MSA to tions (raw coordinates, without B-factors) led to a marginally greater
+predict a baseline full-sequence distogram. We then computed MSAs log-likelihood gain than those of any other group, indicating that
+for subsequences of the chain, trying windows of size 64, 128, 256 with these improved structures can assist in phasing for X-ray crystallog-
+offsets at multiples of 64. Each of these MSAs gave rise to an individual raphy.
+distogram that corresponded to an on-diagonal square of the full-chain
+distogram. We averaged all of these distograms together, weighted by Interpretation of distogram neural network. We have shown that
+the number of sequences in the MSA to produce an average full-chain the deep distance prediction neural network achieves high accuracy,
+distogram that is more accurate in regions in which many alignments but we would like to understand how the network arrives at its dis-
+can be found. For the CASP13 assessment, full chains were relaxed with tance predictions and—in particular—to understand how the inputs
+Rosetta relax with a potential of V + 0.2V (weighting deter- to the model affect the final prediction. This might improve our un-
+Talaris2014 distance
+mined by cross-validation) and submissions from all of the systems derstanding of the folding mechanisms or suggest improvements to
+were ranked based on this potential. the model. However, deep neural networks are complex nonlinear
+functions of their inputs, and so this attribution problem is difficult,
+CASP13 results. For CASP13, the five AlphaFold submissions were from under-specified and an on-going topic of research. Even so, there
+three different systems, all of which used potentials based on the neural are a number of methods for such analysis: here we apply Integrated
+network distance predictions. The systems that are not described here Gradients49 to our trained distogram network to indicate the location
+are described in a separate paper8. Before T0975, two systems based on of input features that affect the network’s predictions of a particular
+simulated annealing and fragment assembly (and using 40-bin distance distance.
+distributions) were used. From T0975 onward, newly trained 64-bin In Extended Data Fig. 9, plots of summed absolute Integrated Gradi-
+distogram predictions were used and structures were generated by the ent, ∑|SI,J |, (defined in Supplementary equations (7)–(9)) are shown
+c i,j,c
+gradient descent system described here (three independent runs) as for selected I,J output pairs in T0986s2; and in Extended Data Fig. 10, the
+well as one of the fragment assembly systems (five independent runs). top-10 highest attribution input pairs for each output pair are shown
+The five submissions were chosen from these eight structures (the on top of the top-one predicted structure of AlphaFold. The attribution
+lowest potential structure generated by each independent run) with maps are sparse and highly structured, closely reflecting the predicted
+the first submission (top-one) being the lowest-potential structure geometry of the protein. For the four in-contact pairs presented (1, 2,
+generated by gradient descent. The remaining four submissions were 3, 5), all of the highest attribution pairs are pairs within or between the
+the four best other structures, with the fifth being a gradient descent secondary structure that one or both of the output pair(s) are members
+structure if none had been chosen for position 2, 3 or 4. All submis- of. In 1, the helix residues are important as well as connections between
+sions for T0999 were generated by gradient descent. Extended Data the strands that follow either end of the helix, which might indicate
+Figure 5a shows the methods used for each submission, comparing with strain on the helix. In 2, all of the most important residue pairs connect
+‘back-fill’ structures generated by a single run of gradient descent for the same two strands, whereas in 3, a mixture of inter-strand pairs and
+targets before T0975. Extended Data Figure 5b shows that the gradient strand residues is most salient. In 5, the most important pairs involve
+descent method that was used later in CASP performed better than the packing of nearby secondary structure elements to the strand and
+the fragment assembly method, in each category. Extended Data Fig- helix. For the non-contacting pair, 4, the most important input pairs
+ure 5c compares the accuracy of the AlphaFold submissions for FM and are the residues that are geometrically between I and J in the predicted
+FM/TBM domains with the next best group 322. The assessors of CASP13 protein structure. Furthermore, most of the high-attribution input
+FM used expert visual inspection46 to choose the best submissions for pairs are themselves in contact.
+each target and found that AlphaFold had nearly twice as many best As the network is tasked with predicting the spatial geometry, with no
+models as the next best group. structure available at the input, these patterns of interaction indicate
+that the network is using intermediate predictions to discover impor-
+Biological relevance of AlphaFold predictions. There is a wide range tant interactions and channelling information from related residues
+of uses of predicted structures, all with different accuracy require- to refine the final prediction.
+ments, from generally understanding the fold shape to understand-
+ing detailed side-chain configurations in binding regions. Contact Reporting summary
+predictions alone can guide biological insights47, for instance, to Further information on research design is available in the Nature
+target mutations to destabilize the protein. Figure 1c and Extended Research Reporting Summary linked to this paper.
+Data Fig. 2a show that the accuracy of the contact predictions from
+AlphaFold exceeds that of the state-of-the-art predictions. In Extended
+Data availability
+Data Figs. 6–8, we present further results that show that the accuracy
+improvements of AlphaFold lead to more accurate interpretations of Our training, validation and test data splits (CATH domain codes) are
+function (Extended Data Fig. 6); better interface prediction for pro- available from https://github.com/deepmind/deepmind-research/tree/
+tein–protein interactions (Extended Data Fig. 7); better binding pocket master/alphafold_casp13. The following versions of public datasets
+prediction (Extended Data Fig. 8) and improved molecular replacement were used in this study: PDB 2018-03-15; CATH 2018-03-16; Uniclust30
+in crystallography. 2017-10; and PSI-BLAST nr dataset (as of 15 December 2017).
+
+--- PAGE 9 ---
+Article
+46. Abriata, L. A., Tamo, G. E. & Dal Peraro, M. A further leap of improvement in tertiary
+Code availability structure prediction in CASP13 prompts new routes for future assessments. Proteins 87,
+1100–1112 (2019).
+Source code for the distogram, reference distogram and torsion 47. Kayikci, M. et al. Visualization and analysis of non-covalent contacts using the Protein
+prediction neural networks, together with the neural network weights Contacts Atlas. Nat. Struct. Mol. Biol. 25, 185–194 (2018).
+48. Croll, T. I. et al. Evaluation of template-based modeling in CASP13. Proteins 87, 1113–1127
+and input data for the CASP13 targets are available for research and
+(2019).
+non-commercial use at https://github.com/deepmind/deepmind- 49. Sundararajan, M., Taly, A. & Yan, Q. Axiomatic attribution for deep networks. In Proc. 34th
+research/tree/master/alphafold_casp13. We make use of several International Conference on Machine Learning Vol. 70, 3319–3328 (2017).
+50. Abadi, M. et al. Tensorflow: a system for large-scale machine learning. In Proc. 12th
+open-source libraries to conduct our experiments, particularly
+USENIX Symposium on Operating Systems Design and Implementation (OSDI 16) 265–283
+HHblits36, PSI-BLAST37 and the machine-learning framework Tensor- (2016).
+Flow (https://github.com/tensorflow/tensorflow) along with the Ten- 51. Söding, J., Biegert, A. & Lupas, A. N. The HHpred interactive server for protein homology
+detection and structure prediction. Nucleic Acids Res. 33, W244–W248 (2005).
+sorFlow library Sonnet (https://github.com/deepmind/sonnet), which
+52. Cong, Q. et al. An automatic method for CASP9 free modeling structure prediction
+provides implementations of individual model components50. We also assessment. Bioinformatics 27, 3371–3378 (2011).
+used Rosetta9 under license. 53. Zhang, Y. & Skolnick, J. TM-align: a protein structure alignment algorithm based on the
+TM-score. Nucleic Acids Res. 33, 2302–2309 (2005).
+54. Tovchigrechko, A., Wells, C. A. & Vakser, I. A. Docking of protein models. Protein Sci. 11,
+34. Dawson, N. L. et al. CATH: an expanded resource to predict protein function through 1888–1896 (2002).
+structure and sequence. Nucleic Acids Res. 45, D289–D295 (2017). 55. Audet, M. et al. Crystal structure of misoprostol bound to the labor inducer prostaglandin
+35. Mirdita, M. et al. Uniclust databases of clustered and deeply annotated protein E 2 receptor. Nat. Chem. Biol. 15, 11–17 (2019).
+sequences and alignments. Nucleic Acids Res. 45, D170–D176 (2017).
+36. Remmert, M., Biegert, A., Hauser, A. & Söding, J. HHblits: lightning-fast iterative
+protein sequence searching by HMM–HMM alignment. Nat. Methods 9, 173–175 Acknowledgements We thank C. Meyer for assistance in preparing the paper; B. Coppin, O.
+(2012). Vinyals, M. Barwinski, R. Sun, C. Elkin, P. Dolan, M. Lai and Y. Li for their contributions and
+37. Altschul, S. F. et al. Gapped BLAST and PSI-BLAST: a new generation of protein database support; O. Ronneberger for reading the paper; the rest of the DeepMind team for their
+search programs. Nucleic Acids Res. 25, 3389–3402 (1997). support; the CASP13 organisers and the experimentalists whose structures enabled the
+38. Yu, F. & Koltun, V. Multi-scale context aggregation by dilated convolutions. Preprint at assessment.
+arXiv https://arxiv.org/abs/1511.07122 (2015).
+39. Oord, A. d. et al. Wavenet: a generative model for raw audio. Preprint at arXiv https://arxiv. Author contributions R.E., J.J., J.K., L.S., A.W.S., C.Q., T.G., A.Ž., A.B., H.P. and K.S. designed and
+org/abs/1609.03499 (2016). built the AlphaFold system with advice from D.S., K.K. and D.H. D.T.J. provided advice and
+40. Clevert, D.-A., Unterthiner, T. & Hochreiter, S. Fast and accurate deep network learning guidance on protein structure prediction methodology. S.P. contributed to software
+by exponential linear units (ELUs). Preprint at arXiv https://arxiv.org/abs/1511.07289 engineering. S.C., A.W.R.N., K.K. and D.H. managed the project. J.K., A.W.S., T.G., A.Ž., A.B., R.E.,
+(2015). P.K. and J.J. analysed the CASP results for the paper. A.W.S. and J.K. wrote the paper with
+41. Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I. & Salakhutdinov, R. Dropout: a contributions from J.J., R.E., L.S., T.G., A.B., A.Ž., D.T.J., P.K., K.K. and D.H. A.W.S. led the team.
+simple way to prevent neural networks from overfitting. J. Mach. Learn. Res. 15, 1929–1958
+(2014). Competing interests A.W.S., J.K., T.G., J.J., L.S., R.E., H.P., C.Q., K.S., A.Ž. and A.B. have filed
+42. Kabsch, W. & Sander, C. Dictionary of protein secondary structure: pattern provisional patent applications relating to machine learning for predicting protein structures.
+recognition of hydrogen-bonded and geometrical features. Biopolymers 22, The remaining authors declare no competing interests.
+2577–2637 (1983).
+43. Yang, Y. et al. Sixty-five years of the long march in protein secondary structure prediction: Additional information
+the final stretch? Briefings Bioinf. 19, 482–494 (2018). Supplementary information is available for this paper at https://doi.org/10.1038/s41586-019-
+44. Zemla, A., Venclovas, C., Moult, J. & Fidelis, K. Processing and analysis of CASP3 protein 1923-7.
+structure predictions. Proteins 37, 22–29 (1999). Correspondence and requests for materials should be addressed to A.W.S.
+45. Mariani, V., Biasini, M., Barbato, A. & Schwede, T. lDDT: a local superposition-free score for Peer review information Nature thanks Mohammed AlQuraishi and the other, anonymous,
+comparing protein structures and models using distance difference tests. Bioinformatics reviewer(s) for their contribution to the peer review of this work.
+29, 2722–2728 (2013). Reprints and permissions information is available at http://www.nature.com/reprints.
+
+--- PAGE 10 ---
+Extended Data Fig. 1 | Schematics of the folding system and neural network. block of the deep residual convolutional network. The dilated convolution is
+a, The overall folding system. Feature extraction stages (constructing the MSA applied to activations of reduced dimension. The output of the block is added
+using sequence database search and computing MSA-based features) are to the representation from the previous layer. The bypass connections of the
+shown in yellow; the structure-prediction neural network in green; potential residual network enable gradients to pass back through the network
+construction in red; and structure realization in blue. b, The layers used in one undiminished, permitting the training of very deep networks.
+
+--- PAGE 11 ---
+Article
+Extended Data Fig. 2 | CASP13 contact precisions. a, Precisions (as shown in groups’ targets, with updated domain definitions for T0953s2. b, c, True
+Fig. 1c) for long-range contact prediction in CASP13 for the most probable L, L/2 distances (b) and modes of the predicted distogram (c) for CASP13 target
+or L/5 contacts, where L is the length of the domain. The distance distributions T0990. CASP divides this chain into three domains as shown (D3 is inserted in
+used by AlphaFold (AF) in CASP13, thresholded to contact predictions, are D2) for which there are 39, 36 and 42 HHblits alignments, respectively (from the
+compared with submissions by the two best-ranked contact prediction CASP website).
+methods in CASP13: 498 (RaptorX-Contact26) and 032 (TripletRes32), on ‘all
+
+--- PAGE 12 ---
+Extended Data Fig. 3 | Analysis of structure accuracies. a, lDDT versus potential giving different results from ‘Full’, for a two-tailed paired data t-test.
+12
+distogram lDDT (see Methods, ‘Accuracy’). The distogram accuracy predicts ‘Bins’ shows the number of bins fitted by the spline before extrapolation and
+12
+the lDDT of the realized structure well (particularly for medium- and long-range the number in the full distribution. In CASP13, splines were fitted to the first 51
+residue pairs, as well as the TM score as shown in Fig. 4a) for both CASP13 of 64 bins. Bottom, reducing the resolution of the distogram distributions. The
+(n = 500: 5 decoys for domains excluding T0999) and test (n = 377) datasets. original 64-bin distogram predictions are repeatedly downsampled by a factor
+Data are shown with Pearson’s correlation coefficients. b, DLDDT against the of 2 by summing adjacent bins, in each case with constant extrapolation
+12
+effective number of sequences in the MSA (N ) normalized by sequence length beyond 18 Å (the last quarter of the bins). The two-level potential in the final
+eff
+(n = 377). The number of effective sequences correlates with this measure of row, which was designed to compare with contact predictions, is constructed
+distogram accuracy (r = 0.634). c, Structure accuracy measures, computed on by summing the probability mass below 8 Å and between 8 and 14 Å, with
+the test set (n = 377), for gradient descent optimization of different forms of the constant extrapolation beyond 14 Å. The TM scores in this table are plotted in
+potential. Top, removing terms in the potential, and showing the effect of Fig. 4b.
+following optimization with Rosetta relax. ‘P’ shows the significance of the
+
+--- PAGE 13 ---
+Article
+Extended Data Fig. 4 | TM score versus per-target computation time product of the number of (CPU-based) machines and time elapsed and can be
+computed as an average over the test set. Structure realization requires a largely parallelized. Longer targets take longer to optimize. Figure 2e shows
+modest computation budget, which can be parallelized over multiple how the TM score increases with the number of repeats of gradient descent.
+machines. Full optimization with noisy restarts (orange) is compared with n = 377.
+initialization from sampled torsions (blue). Computation is measured as the
+
+--- PAGE 14 ---
+Extended Data Fig. 5 | AlphaFold CASP13 results. a, The TM score for each of (submission with highest GDT_TS), a single run of full-chain gradient descent
+the five AlphaFold CASP13 submissions are shown. Simulated annealing with (a CASP13 run for T0975 and later, back-fill for earlier targets) and a single
+fragment assembly entries are shown in blue. Gradient-descent entries are CASP13 run of fragment assembly with domain segmentation (using a gradient
+shown in yellow. Gradient descent was only used for targets T0975 and later, so descent submission for T0999). c, The formula-standardized (z) scores of the
+to the left of the black line we also show the results for a single ‘back-fill’ run of assessors for GDT TS + QCS52, best-of-five for CASP FM (n = 31) and FM/TBM
+gradient descent for each earlier target using the deployed system. T0999 (n = 12) domains comparing AlphaFold with the closest competitor (group 322),
+(1,589 residues) was manually segmented based on HHpred51 homology coloured by domain category. AlphaFold performs better (P = 0.0032, one-
+matching. b, Average TM scores of the AlphaFold CASP13 submissions tailed paired statistic t-test).
+(n = 104 domains), comparing the first model submitted, the best-of-five model
+
+--- PAGE 15 ---
+Article
+Extended Data Fig. 6 | Correct fold identification by structural search in good ground-truth match (score > 0.5), we show the percentage of decoys for
+CATH. Often protein function can be inferred by finding homologous proteins which a domain with the same CATH code (CATH in red, CA in green; CAT results
+of known function. Here we show that the FM predictions of AlphaFold give are close to CATH results) as the top ground-truth match is in the top-k matches
+greater accuracy in a structure-based search for homologous domains in the with score > 0.5. Curves are shown for AlphaFold and the next-best group (322).
+CATH database. For each of the FM or TBM/FM domains, the top-one AlphaFold predictions determine the matching fold more accurately.
+submission and ground truth are compared to all 30,744 CATH S40 non- Determination of the matching CATH domain can provide insights into the
+redundant domains with TM-align53. For the 36 domains for which there is a function of a new protein.
+
+--- PAGE 16 ---
+Extended Data Fig. 7 | Accuracy of predictions for interfaces. Protein– system and all submissions were for isolated chains rather than complexes. For
+protein interaction is an important domain for understanding protein function the five all-groups heterodimer CASP13 targets, the full-atom r.m.s.d. values of
+that has hitherto largely been limited to template-based models because of the the interface residues (residues with a ground-truth inter-chain heavy-atom
+need for high-accuracy predictions, although there has been moderate distance <10 Å) are computed for the chain submissions of all groups (green),
+success54 in docking with predicted structures up to 6 Å r.m.s.d. This figure relative to the target complex. Results >8 Å are not shown. AlphaFold (blue)
+shows that the predictions by AlphaFold improve accuracy in the interface achieves consistently high accuracy interface regions and, for 4 out of 5
+regions of chains in hetero-dimer structures and are probably better targets, predicts interfaces below <5 Å for both chains.
+candidates for docking, although docking did not form part of the AlphaFold
+
+--- PAGE 17 ---
+Article
+Extended Data Fig. 8 | Ligand pocket visualizations for T1011. T1011 (PDB true pocket than that of the best other submission (322, model 3, 68.7 GDT TS)
+6M9T) is the EP3 receptor bound to misoprostol-FA55. a, The native structure (c). Both submissions are aligned to the native protein using the same subset of
+showing the ligand in a pocket. b, c, Submission 5 (78.0 GDT TS) by AlphaFold residues from the helices close to the ligand pocket and visualized with the
+(b), made without knowledge of the ligand, shows a pocket more similar to the interior pocket together with the native ligand position.
+
+--- PAGE 18 ---
+Extended Data Fig. 9 | Attribution map of distogram network. The contact contact, (2) a long-range strand–strand contact, (3) a medium-range strand–
+probability map of T0986s2, and the summed absolute value of the Integrated strand contact, (4) a non-contact and (5) a very long-range strand–strand
+Gradient, ∑|SI,J |, of the input two-dimensional features with respect to the contact. Each pair is shown as two red dots on the diagrams. Darker colours
+c i,j,c
+expected distance between five different pairs of residues (I,J): (1) a helix self- indicate a higher attribution weight.
+
+--- PAGE 19 ---
+Article
+Extended Data Fig. 10 | Attribution shown on predicted structure. For lighter green colours indicate more sensitive, and the output pair is shown as a
+T0986s2 (TM score 0.8), the top 10 input pairs, including self-pairs, with the blue line.
+highest attribution weight for each of the five output pairs shown in Extended
+Data Fig. 9, are shown as lines (or spheres for self-pairs) coloured by sensitivity,

@@ -1,0 +1,556 @@
+{
+  "_note": "Taxonomy axis lookup table. Maps each §0 field value to the slugs of all corpus files carrying that value. Written by /wiki index only. Do not edit manually.",
+  "_generated": "2026-05-13T08:10:01.237119+00:00",
+  "_corpus_count": 45,
+  "format": {
+    "peer-reviewed-paper": [
+      "a-clinically-applicable-approach-to-continuous-prediction-of-future-acute-kidney-injury--hassabis",
+      "a-distributional-code-for-value-in-dopamine-based-reinforcement-learning--hassabis",
+      "a-general-reinforcement-learning-algorithm-that-masters-chess-shogi-and-go--hassabis",
+      "advancing-mathematics-by-guiding-human-intuition-w--hassabis",
+      "applying-and-improving-alphafold-at-casp14--hassabis",
+      "big-loop-recurrence-within-the-hippocampal-system-supports-integration-of-information-across-episodes--hassabis",
+      "clinically-applicable-deep-learning-for-diagnosis-and-referral-in-retinal-disease--hassabis",
+      "computations-underlying-social-hierarchy-learning--hassabis",
+      "decoding-individual-episodic-memory-traces-in-the-human-hippocampus--hassabis",
+      "decoding-neuronal-ensembles-in-the-human-hippocampus--hassabis",
+      "deconstructing-episodic-memory-with-construction--hassabis",
+      "grandmaster-level-in-starcraft-ii-using-multi-agent-rl--hassabis",
+      "highly-accurate-protein-structure-prediction-for-the-human-proteome--hassabis",
+      "highly-accurate-protein-structure-prediction-with---hassabis",
+      "human-level-control-through-deep-reinforcement-learning--hassabis",
+      "human-level-performance-in-3d-multiplayer-games-with-population-based-rl--hassabis",
+      "hybrid-computing-using-a-neural-network-with-dynamic-external-memory--hassabis",
+      "imagine-all-the-people-how-the-brain-creates-and-uses-personality-models--hassabis",
+      "improved-protein-structure-prediction-using-potentials-from-deep-learning--hassabis",
+      "mastering-atari-go-chess-and-shogi-by-planning-with-a-learned-model--hassabis",
+      "mastering-the-game-of-go-with-deep-neural-networks-and-tree-search--hassabis",
+      "mastering-the-game-of-go-without-human-knowledge---hassabis",
+      "neural-mechanisms-of-hierarchical-planning-in-a-virtual-subway-network--hassabis",
+      "neural-scene-representation-and-rendering--hassabis",
+      "neuroscience-inspired-artificial-intelligence--hassabis",
+      "overcoming-catastrophic-forgetting-in-neural-networks--hassabis",
+      "patients-with-hippocampal-amnesia-cannot-imagine-new-experiences--hassabis",
+      "prefrontal-cortex-as-a-meta-reinforcement-learning-system--hassabis",
+      "protein-complex-prediction-with-alphafold-multimer--hassabis",
+      "protein-structure-predictions-to-atomic-accuracy-with-alphafold--hassabis",
+      "pushing-the-frontiers-of-density-functionals-by-solving-the-fractional-electron-problem--hassabis",
+      "reinforcement-learning-fast-and-slow--hassabis",
+      "semantic-representations-in-the-temporal-pole-predict-false-memories--hassabis",
+      "tracking-the-emergence-of-conceptual-knowledge-during-human-decision-making--hassabis",
+      "using-imagination-to-understand-the-neural-basis-of-episodic-memory--hassabis",
+      "vector-based-navigation-using-grid-like-representations-in-artificial-agents--hassabis",
+      "what-learning-systems-do-intelligent-agents-need-complementary-learning-systems-theory-updated--hassabis",
+      "when-fear-is-near-threat-imminence-elicits-prefrontal--hassabis"
+    ],
+    "essay": [
+      "artificial-intelligence-chess-match-of-the-century--hassabis",
+      "demis-hassabis-time100-on-alphafold-agi-and-humanity--hassabis"
+    ],
+    "op-ed": [
+      "deepmind-ceo-demis-hassabis-urges-caution-on-ai--hassabis"
+    ],
+    "interview": [
+      "lex-fridman-podcast-475-future-of-ai-simulating-reality-physics-and-video-games--hassabis"
+    ],
+    "lecture": [
+      "nobel-prize-lecture-accelerating-scientific-discovery-with-ai--hassabis"
+    ],
+    "review-article": [
+      "the-construction-system-of-the-brain--hassabis",
+      "the-future-of-memory-remembering-imagining-and-the-brain--hassabis"
+    ]
+  },
+  "domain": {
+    "clinical-AI": [
+      "a-clinically-applicable-approach-to-continuous-prediction-of-future-acute-kidney-injury--hassabis",
+      "clinically-applicable-deep-learning-for-diagnosis-and-referral-in-retinal-disease--hassabis"
+    ],
+    "neuroscience-AI-bridge": [
+      "a-distributional-code-for-value-in-dopamine-based-reinforcement-learning--hassabis",
+      "neuroscience-inspired-artificial-intelligence--hassabis",
+      "prefrontal-cortex-as-a-meta-reinforcement-learning-system--hassabis",
+      "vector-based-navigation-using-grid-like-representations-in-artificial-agents--hassabis",
+      "what-learning-systems-do-intelligent-agents-need-complementary-learning-systems-theory-updated--hassabis"
+    ],
+    "reinforcement-learning": [
+      "a-general-reinforcement-learning-algorithm-that-masters-chess-shogi-and-go--hassabis",
+      "human-level-control-through-deep-reinforcement-learning--hassabis",
+      "human-level-performance-in-3d-multiplayer-games-with-population-based-rl--hassabis",
+      "hybrid-computing-using-a-neural-network-with-dynamic-external-memory--hassabis",
+      "mastering-atari-go-chess-and-shogi-by-planning-with-a-learned-model--hassabis",
+      "overcoming-catastrophic-forgetting-in-neural-networks--hassabis",
+      "reinforcement-learning-fast-and-slow--hassabis"
+    ],
+    "mathematics-AI": [
+      "advancing-mathematics-by-guiding-human-intuition-w--hassabis",
+      "pushing-the-frontiers-of-density-functionals-by-solving-the-fractional-electron-problem--hassabis"
+    ],
+    "protein-structure": [
+      "applying-and-improving-alphafold-at-casp14--hassabis",
+      "highly-accurate-protein-structure-prediction-for-the-human-proteome--hassabis",
+      "highly-accurate-protein-structure-prediction-with---hassabis",
+      "improved-protein-structure-prediction-using-potentials-from-deep-learning--hassabis",
+      "protein-complex-prediction-with-alphafold-multimer--hassabis",
+      "protein-structure-predictions-to-atomic-accuracy-with-alphafold--hassabis"
+    ],
+    "game-playing-AI": [
+      "artificial-intelligence-chess-match-of-the-century--hassabis",
+      "grandmaster-level-in-starcraft-ii-using-multi-agent-rl--hassabis",
+      "mastering-the-game-of-go-with-deep-neural-networks-and-tree-search--hassabis",
+      "mastering-the-game-of-go-without-human-knowledge---hassabis"
+    ],
+    "cognitive-neuroscience": [
+      "big-loop-recurrence-within-the-hippocampal-system-supports-integration-of-information-across-episodes--hassabis",
+      "computations-underlying-social-hierarchy-learning--hassabis",
+      "decoding-individual-episodic-memory-traces-in-the-human-hippocampus--hassabis",
+      "decoding-neuronal-ensembles-in-the-human-hippocampus--hassabis",
+      "deconstructing-episodic-memory-with-construction--hassabis",
+      "imagine-all-the-people-how-the-brain-creates-and-uses-personality-models--hassabis",
+      "neural-mechanisms-of-hierarchical-planning-in-a-virtual-subway-network--hassabis",
+      "patients-with-hippocampal-amnesia-cannot-imagine-new-experiences--hassabis",
+      "semantic-representations-in-the-temporal-pole-predict-false-memories--hassabis",
+      "the-construction-system-of-the-brain--hassabis",
+      "the-future-of-memory-remembering-imagining-and-the-brain--hassabis",
+      "tracking-the-emergence-of-conceptual-knowledge-during-human-decision-making--hassabis",
+      "using-imagination-to-understand-the-neural-basis-of-episodic-memory--hassabis",
+      "when-fear-is-near-threat-imminence-elicits-prefrontal--hassabis"
+    ],
+    "safety-governance": [
+      "deepmind-ceo-demis-hassabis-urges-caution-on-ai--hassabis"
+    ],
+    "AGI-theory": [
+      "demis-hassabis-time100-on-alphafold-agi-and-humanity--hassabis",
+      "lex-fridman-podcast-475-future-of-ai-simulating-reality-physics-and-video-games--hassabis"
+    ],
+    "multi-agent-systems": [
+      "neural-scene-representation-and-rendering--hassabis"
+    ],
+    "AI-for-science": [
+      "nobel-prize-lecture-accelerating-scientific-discovery-with-ai--hassabis"
+    ]
+  },
+  "era": {
+    "alphafold-era": [
+      "a-clinically-applicable-approach-to-continuous-prediction-of-future-acute-kidney-injury--hassabis",
+      "a-distributional-code-for-value-in-dopamine-based-reinforcement-learning--hassabis",
+      "advancing-mathematics-by-guiding-human-intuition-w--hassabis",
+      "applying-and-improving-alphafold-at-casp14--hassabis",
+      "big-loop-recurrence-within-the-hippocampal-system-supports-integration-of-information-across-episodes--hassabis",
+      "grandmaster-level-in-starcraft-ii-using-multi-agent-rl--hassabis",
+      "highly-accurate-protein-structure-prediction-for-the-human-proteome--hassabis",
+      "highly-accurate-protein-structure-prediction-with---hassabis",
+      "improved-protein-structure-prediction-using-potentials-from-deep-learning--hassabis",
+      "mastering-atari-go-chess-and-shogi-by-planning-with-a-learned-model--hassabis",
+      "protein-complex-prediction-with-alphafold-multimer--hassabis",
+      "protein-structure-predictions-to-atomic-accuracy-with-alphafold--hassabis",
+      "reinforcement-learning-fast-and-slow--hassabis",
+      "vector-based-navigation-using-grid-like-representations-in-artificial-agents--hassabis"
+    ],
+    "deepmind-ascent": [
+      "a-general-reinforcement-learning-algorithm-that-masters-chess-shogi-and-go--hassabis",
+      "artificial-intelligence-chess-match-of-the-century--hassabis",
+      "clinically-applicable-deep-learning-for-diagnosis-and-referral-in-retinal-disease--hassabis",
+      "computations-underlying-social-hierarchy-learning--hassabis",
+      "human-level-performance-in-3d-multiplayer-games-with-population-based-rl--hassabis",
+      "hybrid-computing-using-a-neural-network-with-dynamic-external-memory--hassabis",
+      "mastering-the-game-of-go-with-deep-neural-networks-and-tree-search--hassabis",
+      "mastering-the-game-of-go-without-human-knowledge---hassabis",
+      "neural-mechanisms-of-hierarchical-planning-in-a-virtual-subway-network--hassabis",
+      "neural-scene-representation-and-rendering--hassabis",
+      "neuroscience-inspired-artificial-intelligence--hassabis",
+      "overcoming-catastrophic-forgetting-in-neural-networks--hassabis",
+      "prefrontal-cortex-as-a-meta-reinforcement-learning-system--hassabis",
+      "semantic-representations-in-the-temporal-pole-predict-false-memories--hassabis",
+      "what-learning-systems-do-intelligent-agents-need-complementary-learning-systems-theory-updated--hassabis"
+    ],
+    "postdoc-period": [
+      "decoding-individual-episodic-memory-traces-in-the-human-hippocampus--hassabis"
+    ],
+    "phd-period": [
+      "decoding-neuronal-ensembles-in-the-human-hippocampus--hassabis",
+      "deconstructing-episodic-memory-with-construction--hassabis",
+      "imagine-all-the-people-how-the-brain-creates-and-uses-personality-models--hassabis",
+      "patients-with-hippocampal-amnesia-cannot-imagine-new-experiences--hassabis",
+      "the-construction-system-of-the-brain--hassabis",
+      "the-future-of-memory-remembering-imagining-and-the-brain--hassabis",
+      "tracking-the-emergence-of-conceptual-knowledge-during-human-decision-making--hassabis",
+      "using-imagination-to-understand-the-neural-basis-of-episodic-memory--hassabis",
+      "when-fear-is-near-threat-imminence-elicits-prefrontal--hassabis"
+    ],
+    "post-alphafold": [
+      "deepmind-ceo-demis-hassabis-urges-caution-on-ai--hassabis",
+      "demis-hassabis-time100-on-alphafold-agi-and-humanity--hassabis",
+      "lex-fridman-podcast-475-future-of-ai-simulating-reality-physics-and-video-games--hassabis",
+      "nobel-prize-lecture-accelerating-scientific-discovery-with-ai--hassabis",
+      "pushing-the-frontiers-of-density-functionals-by-solving-the-fractional-electron-problem--hassabis"
+    ],
+    "early-deepmind": [
+      "human-level-control-through-deep-reinforcement-learning--hassabis"
+    ]
+  },
+  "venue": {
+    "Nature-Medicine": [
+      "a-clinically-applicable-approach-to-continuous-prediction-of-future-acute-kidney-injury--hassabis",
+      "clinically-applicable-deep-learning-for-diagnosis-and-referral-in-retinal-disease--hassabis"
+    ],
+    "Nature": [
+      "a-distributional-code-for-value-in-dopamine-based-reinforcement-learning--hassabis",
+      "advancing-mathematics-by-guiding-human-intuition-w--hassabis",
+      "applying-and-improving-alphafold-at-casp14--hassabis",
+      "artificial-intelligence-chess-match-of-the-century--hassabis",
+      "grandmaster-level-in-starcraft-ii-using-multi-agent-rl--hassabis",
+      "highly-accurate-protein-structure-prediction-for-the-human-proteome--hassabis",
+      "highly-accurate-protein-structure-prediction-with---hassabis",
+      "human-level-control-through-deep-reinforcement-learning--hassabis",
+      "hybrid-computing-using-a-neural-network-with-dynamic-external-memory--hassabis",
+      "mastering-atari-go-chess-and-shogi-by-planning-with-a-learned-model--hassabis",
+      "mastering-the-game-of-go-with-deep-neural-networks-and-tree-search--hassabis",
+      "mastering-the-game-of-go-without-human-knowledge---hassabis",
+      "protein-structure-predictions-to-atomic-accuracy-with-alphafold--hassabis",
+      "vector-based-navigation-using-grid-like-representations-in-artificial-agents--hassabis"
+    ],
+    "Science": [
+      "a-general-reinforcement-learning-algorithm-that-masters-chess-shogi-and-go--hassabis",
+      "human-level-performance-in-3d-multiplayer-games-with-population-based-rl--hassabis",
+      "neural-scene-representation-and-rendering--hassabis",
+      "pushing-the-frontiers-of-density-functionals-by-solving-the-fractional-electron-problem--hassabis",
+      "the-future-of-memory-remembering-imagining-and-the-brain--hassabis",
+      "when-fear-is-near-threat-imminence-elicits-prefrontal--hassabis"
+    ],
+    "Neuron": [
+      "big-loop-recurrence-within-the-hippocampal-system-supports-integration-of-information-across-episodes--hassabis",
+      "computations-underlying-social-hierarchy-learning--hassabis",
+      "neural-mechanisms-of-hierarchical-planning-in-a-virtual-subway-network--hassabis",
+      "neuroscience-inspired-artificial-intelligence--hassabis",
+      "reinforcement-learning-fast-and-slow--hassabis",
+      "tracking-the-emergence-of-conceptual-knowledge-during-human-decision-making--hassabis"
+    ],
+    "Current-Biology": [
+      "decoding-individual-episodic-memory-traces-in-the-human-hippocampus--hassabis",
+      "decoding-neuronal-ensembles-in-the-human-hippocampus--hassabis",
+      "imagine-all-the-people-how-the-brain-creates-and-uses-personality-models--hassabis",
+      "patients-with-hippocampal-amnesia-cannot-imagine-new-experiences--hassabis",
+      "semantic-representations-in-the-temporal-pole-predict-false-memories--hassabis",
+      "using-imagination-to-understand-the-neural-basis-of-episodic-memory--hassabis"
+    ],
+    "Behavioral-and-Brain-Sciences": [
+      "deconstructing-episodic-memory-with-construction--hassabis"
+    ],
+    "The-Guardian": [
+      "deepmind-ceo-demis-hassabis-urges-caution-on-ai--hassabis"
+    ],
+    "TIME": [
+      "demis-hassabis-time100-on-alphafold-agi-and-humanity--hassabis"
+    ],
+    "Proteins": [
+      "improved-protein-structure-prediction-using-potentials-from-deep-learning--hassabis"
+    ],
+    "Lex-Fridman-Podcast": [
+      "lex-fridman-podcast-475-future-of-ai-simulating-reality-physics-and-video-games--hassabis"
+    ],
+    "Nobel-Prize": [
+      "nobel-prize-lecture-accelerating-scientific-discovery-with-ai--hassabis"
+    ],
+    "PNAS": [
+      "overcoming-catastrophic-forgetting-in-neural-networks--hassabis",
+      "prefrontal-cortex-as-a-meta-reinforcement-learning-system--hassabis"
+    ],
+    "bioRxiv": [
+      "protein-complex-prediction-with-alphafold-multimer--hassabis"
+    ],
+    "Philosophical-Transactions-B": [
+      "the-construction-system-of-the-brain--hassabis"
+    ],
+    "Trends-Cognitive-Sciences": [
+      "what-learning-systems-do-intelligent-agents-need-complementary-learning-systems-theory-updated--hassabis"
+    ]
+  },
+  "theme": {
+    "clinical-AI": [
+      "a-clinically-applicable-approach-to-continuous-prediction-of-future-acute-kidney-injury--hassabis",
+      "clinically-applicable-deep-learning-for-diagnosis-and-referral-in-retinal-disease--hassabis"
+    ],
+    "reinforcement-learning": [
+      "a-distributional-code-for-value-in-dopamine-based-reinforcement-learning--hassabis",
+      "human-level-control-through-deep-reinforcement-learning--hassabis",
+      "hybrid-computing-using-a-neural-network-with-dynamic-external-memory--hassabis",
+      "neural-scene-representation-and-rendering--hassabis",
+      "overcoming-catastrophic-forgetting-in-neural-networks--hassabis",
+      "prefrontal-cortex-as-a-meta-reinforcement-learning-system--hassabis",
+      "reinforcement-learning-fast-and-slow--hassabis"
+    ],
+    "neuroscience-AI-bridge": [
+      "a-distributional-code-for-value-in-dopamine-based-reinforcement-learning--hassabis",
+      "neuroscience-inspired-artificial-intelligence--hassabis",
+      "prefrontal-cortex-as-a-meta-reinforcement-learning-system--hassabis",
+      "reinforcement-learning-fast-and-slow--hassabis",
+      "vector-based-navigation-using-grid-like-representations-in-artificial-agents--hassabis",
+      "what-learning-systems-do-intelligent-agents-need-complementary-learning-systems-theory-updated--hassabis"
+    ],
+    "self-play": [
+      "a-general-reinforcement-learning-algorithm-that-masters-chess-shogi-and-go--hassabis",
+      "mastering-the-game-of-go-without-human-knowledge---hassabis"
+    ],
+    "game-playing-AI": [
+      "a-general-reinforcement-learning-algorithm-that-masters-chess-shogi-and-go--hassabis",
+      "artificial-intelligence-chess-match-of-the-century--hassabis",
+      "grandmaster-level-in-starcraft-ii-using-multi-agent-rl--hassabis",
+      "human-level-performance-in-3d-multiplayer-games-with-population-based-rl--hassabis",
+      "lex-fridman-podcast-475-future-of-ai-simulating-reality-physics-and-video-games--hassabis",
+      "mastering-atari-go-chess-and-shogi-by-planning-with-a-learned-model--hassabis",
+      "mastering-the-game-of-go-with-deep-neural-networks-and-tree-search--hassabis",
+      "mastering-the-game-of-go-without-human-knowledge---hassabis"
+    ],
+    "chess": [
+      "a-general-reinforcement-learning-algorithm-that-masters-chess-shogi-and-go--hassabis",
+      "artificial-intelligence-chess-match-of-the-century--hassabis",
+      "mastering-atari-go-chess-and-shogi-by-planning-with-a-learned-model--hassabis"
+    ],
+    "go": [
+      "a-general-reinforcement-learning-algorithm-that-masters-chess-shogi-and-go--hassabis",
+      "mastering-the-game-of-go-with-deep-neural-networks-and-tree-search--hassabis",
+      "mastering-the-game-of-go-without-human-knowledge---hassabis"
+    ],
+    "deep-RL": [
+      "a-general-reinforcement-learning-algorithm-that-masters-chess-shogi-and-go--hassabis",
+      "human-level-control-through-deep-reinforcement-learning--hassabis",
+      "human-level-performance-in-3d-multiplayer-games-with-population-based-rl--hassabis",
+      "mastering-atari-go-chess-and-shogi-by-planning-with-a-learned-model--hassabis",
+      "mastering-the-game-of-go-without-human-knowledge---hassabis",
+      "overcoming-catastrophic-forgetting-in-neural-networks--hassabis"
+    ],
+    "AI-for-science": [
+      "advancing-mathematics-by-guiding-human-intuition-w--hassabis",
+      "demis-hassabis-time100-on-alphafold-agi-and-humanity--hassabis",
+      "nobel-prize-lecture-accelerating-scientific-discovery-with-ai--hassabis",
+      "pushing-the-frontiers-of-density-functionals-by-solving-the-fractional-electron-problem--hassabis"
+    ],
+    "protein-folding": [
+      "applying-and-improving-alphafold-at-casp14--hassabis",
+      "demis-hassabis-time100-on-alphafold-agi-and-humanity--hassabis",
+      "highly-accurate-protein-structure-prediction-for-the-human-proteome--hassabis",
+      "highly-accurate-protein-structure-prediction-with---hassabis",
+      "improved-protein-structure-prediction-using-potentials-from-deep-learning--hassabis",
+      "protein-complex-prediction-with-alphafold-multimer--hassabis",
+      "protein-structure-predictions-to-atomic-accuracy-with-alphafold--hassabis"
+    ],
+    "structural-biology": [
+      "applying-and-improving-alphafold-at-casp14--hassabis",
+      "highly-accurate-protein-structure-prediction-for-the-human-proteome--hassabis",
+      "highly-accurate-protein-structure-prediction-with---hassabis",
+      "improved-protein-structure-prediction-using-potentials-from-deep-learning--hassabis",
+      "protein-complex-prediction-with-alphafold-multimer--hassabis",
+      "protein-structure-predictions-to-atomic-accuracy-with-alphafold--hassabis"
+    ],
+    "hippocampal-construction": [
+      "big-loop-recurrence-within-the-hippocampal-system-supports-integration-of-information-across-episodes--hassabis",
+      "computations-underlying-social-hierarchy-learning--hassabis",
+      "decoding-individual-episodic-memory-traces-in-the-human-hippocampus--hassabis",
+      "decoding-neuronal-ensembles-in-the-human-hippocampus--hassabis",
+      "imagine-all-the-people-how-the-brain-creates-and-uses-personality-models--hassabis",
+      "neural-mechanisms-of-hierarchical-planning-in-a-virtual-subway-network--hassabis",
+      "patients-with-hippocampal-amnesia-cannot-imagine-new-experiences--hassabis",
+      "the-construction-system-of-the-brain--hassabis",
+      "tracking-the-emergence-of-conceptual-knowledge-during-human-decision-making--hassabis",
+      "when-fear-is-near-threat-imminence-elicits-prefrontal--hassabis"
+    ],
+    "memory-imagination": [
+      "decoding-individual-episodic-memory-traces-in-the-human-hippocampus--hassabis",
+      "deconstructing-episodic-memory-with-construction--hassabis",
+      "imagine-all-the-people-how-the-brain-creates-and-uses-personality-models--hassabis",
+      "patients-with-hippocampal-amnesia-cannot-imagine-new-experiences--hassabis",
+      "the-construction-system-of-the-brain--hassabis",
+      "the-future-of-memory-remembering-imagining-and-the-brain--hassabis",
+      "using-imagination-to-understand-the-neural-basis-of-episodic-memory--hassabis"
+    ],
+    "episodic-memory": [
+      "decoding-individual-episodic-memory-traces-in-the-human-hippocampus--hassabis",
+      "deconstructing-episodic-memory-with-construction--hassabis",
+      "semantic-representations-in-the-temporal-pole-predict-false-memories--hassabis",
+      "the-construction-system-of-the-brain--hassabis",
+      "using-imagination-to-understand-the-neural-basis-of-episodic-memory--hassabis"
+    ],
+    "safety-governance": [
+      "deepmind-ceo-demis-hassabis-urges-caution-on-ai--hassabis"
+    ],
+    "AGI-definition": [
+      "demis-hassabis-time100-on-alphafold-agi-and-humanity--hassabis",
+      "lex-fridman-podcast-475-future-of-ai-simulating-reality-physics-and-video-games--hassabis"
+    ],
+    "starcraft": [
+      "grandmaster-level-in-starcraft-ii-using-multi-agent-rl--hassabis"
+    ],
+    "model-based-RL": [
+      "mastering-atari-go-chess-and-shogi-by-planning-with-a-learned-model--hassabis"
+    ],
+    "learnable-nature-conjecture": [
+      "nobel-prize-lecture-accelerating-scientific-discovery-with-ai--hassabis"
+    ],
+    "complementary-learning-systems": [
+      "reinforcement-learning-fast-and-slow--hassabis",
+      "what-learning-systems-do-intelligent-agents-need-complementary-learning-systems-theory-updated--hassabis"
+    ]
+  },
+  "project": {
+    "DeepMind-general": [
+      "a-clinically-applicable-approach-to-continuous-prediction-of-future-acute-kidney-injury--hassabis",
+      "advancing-mathematics-by-guiding-human-intuition-w--hassabis",
+      "clinically-applicable-deep-learning-for-diagnosis-and-referral-in-retinal-disease--hassabis",
+      "human-level-performance-in-3d-multiplayer-games-with-population-based-rl--hassabis",
+      "overcoming-catastrophic-forgetting-in-neural-networks--hassabis",
+      "pushing-the-frontiers-of-density-functionals-by-solving-the-fractional-electron-problem--hassabis"
+    ],
+    "(none)": [
+      "a-distributional-code-for-value-in-dopamine-based-reinforcement-learning--hassabis",
+      "deepmind-ceo-demis-hassabis-urges-caution-on-ai--hassabis",
+      "demis-hassabis-time100-on-alphafold-agi-and-humanity--hassabis",
+      "lex-fridman-podcast-475-future-of-ai-simulating-reality-physics-and-video-games--hassabis",
+      "neuroscience-inspired-artificial-intelligence--hassabis",
+      "nobel-prize-lecture-accelerating-scientific-discovery-with-ai--hassabis",
+      "prefrontal-cortex-as-a-meta-reinforcement-learning-system--hassabis",
+      "reinforcement-learning-fast-and-slow--hassabis",
+      "vector-based-navigation-using-grid-like-representations-in-artificial-agents--hassabis",
+      "what-learning-systems-do-intelligent-agents-need-complementary-learning-systems-theory-updated--hassabis"
+    ],
+    "AlphaZero": [
+      "a-general-reinforcement-learning-algorithm-that-masters-chess-shogi-and-go--hassabis"
+    ],
+    "AlphaFold2": [
+      "applying-and-improving-alphafold-at-casp14--hassabis",
+      "highly-accurate-protein-structure-prediction-for-the-human-proteome--hassabis",
+      "highly-accurate-protein-structure-prediction-with---hassabis",
+      "protein-structure-predictions-to-atomic-accuracy-with-alphafold--hassabis"
+    ],
+    "AlphaGo": [
+      "artificial-intelligence-chess-match-of-the-century--hassabis",
+      "mastering-the-game-of-go-with-deep-neural-networks-and-tree-search--hassabis"
+    ],
+    "hippocampus-research": [
+      "big-loop-recurrence-within-the-hippocampal-system-supports-integration-of-information-across-episodes--hassabis",
+      "computations-underlying-social-hierarchy-learning--hassabis",
+      "decoding-individual-episodic-memory-traces-in-the-human-hippocampus--hassabis",
+      "decoding-neuronal-ensembles-in-the-human-hippocampus--hassabis",
+      "deconstructing-episodic-memory-with-construction--hassabis",
+      "imagine-all-the-people-how-the-brain-creates-and-uses-personality-models--hassabis",
+      "neural-mechanisms-of-hierarchical-planning-in-a-virtual-subway-network--hassabis",
+      "patients-with-hippocampal-amnesia-cannot-imagine-new-experiences--hassabis",
+      "semantic-representations-in-the-temporal-pole-predict-false-memories--hassabis",
+      "the-construction-system-of-the-brain--hassabis",
+      "the-future-of-memory-remembering-imagining-and-the-brain--hassabis",
+      "tracking-the-emergence-of-conceptual-knowledge-during-human-decision-making--hassabis",
+      "using-imagination-to-understand-the-neural-basis-of-episodic-memory--hassabis",
+      "when-fear-is-near-threat-imminence-elicits-prefrontal--hassabis"
+    ],
+    "AlphaStar": [
+      "grandmaster-level-in-starcraft-ii-using-multi-agent-rl--hassabis"
+    ],
+    "DQN": [
+      "human-level-control-through-deep-reinforcement-learning--hassabis"
+    ],
+    "DNC": [
+      "hybrid-computing-using-a-neural-network-with-dynamic-external-memory--hassabis"
+    ],
+    "AlphaFold": [
+      "improved-protein-structure-prediction-using-potentials-from-deep-learning--hassabis"
+    ],
+    "MuZero": [
+      "mastering-atari-go-chess-and-shogi-by-planning-with-a-learned-model--hassabis"
+    ],
+    "AlphaGo-Zero": [
+      "mastering-the-game-of-go-without-human-knowledge---hassabis"
+    ],
+    "GQN": [
+      "neural-scene-representation-and-rendering--hassabis"
+    ],
+    "AlphaFold-Multimer": [
+      "protein-complex-prediction-with-alphafold-multimer--hassabis"
+    ]
+  },
+  "impact": {
+    "(none)": [
+      "a-clinically-applicable-approach-to-continuous-prediction-of-future-acute-kidney-injury--hassabis",
+      "applying-and-improving-alphafold-at-casp14--hassabis",
+      "big-loop-recurrence-within-the-hippocampal-system-supports-integration-of-information-across-episodes--hassabis",
+      "computations-underlying-social-hierarchy-learning--hassabis",
+      "improved-protein-structure-prediction-using-potentials-from-deep-learning--hassabis",
+      "neural-mechanisms-of-hierarchical-planning-in-a-virtual-subway-network--hassabis",
+      "protein-complex-prediction-with-alphafold-multimer--hassabis",
+      "semantic-representations-in-the-temporal-pole-predict-false-memories--hassabis",
+      "the-future-of-memory-remembering-imagining-and-the-brain--hassabis",
+      "tracking-the-emergence-of-conceptual-knowledge-during-human-decision-making--hassabis",
+      "using-imagination-to-understand-the-neural-basis-of-episodic-memory--hassabis",
+      "what-learning-systems-do-intelligent-agents-need-complementary-learning-systems-theory-updated--hassabis"
+    ],
+    "top-cited": [
+      "a-distributional-code-for-value-in-dopamine-based-reinforcement-learning--hassabis",
+      "a-general-reinforcement-learning-algorithm-that-masters-chess-shogi-and-go--hassabis",
+      "highly-accurate-protein-structure-prediction-with---hassabis",
+      "human-level-control-through-deep-reinforcement-learning--hassabis",
+      "imagine-all-the-people-how-the-brain-creates-and-uses-personality-models--hassabis",
+      "mastering-atari-go-chess-and-shogi-by-planning-with-a-learned-model--hassabis",
+      "mastering-the-game-of-go-with-deep-neural-networks-and-tree-search--hassabis",
+      "mastering-the-game-of-go-without-human-knowledge---hassabis",
+      "overcoming-catastrophic-forgetting-in-neural-networks--hassabis",
+      "patients-with-hippocampal-amnesia-cannot-imagine-new-experiences--hassabis",
+      "prefrontal-cortex-as-a-meta-reinforcement-learning-system--hassabis",
+      "reinforcement-learning-fast-and-slow--hassabis",
+      "when-fear-is-near-threat-imminence-elicits-prefrontal--hassabis"
+    ],
+    "field-defining": [
+      "a-general-reinforcement-learning-algorithm-that-masters-chess-shogi-and-go--hassabis",
+      "clinically-applicable-deep-learning-for-diagnosis-and-referral-in-retinal-disease--hassabis",
+      "grandmaster-level-in-starcraft-ii-using-multi-agent-rl--hassabis",
+      "highly-accurate-protein-structure-prediction-with---hassabis",
+      "human-level-control-through-deep-reinforcement-learning--hassabis",
+      "human-level-performance-in-3d-multiplayer-games-with-population-based-rl--hassabis",
+      "hybrid-computing-using-a-neural-network-with-dynamic-external-memory--hassabis",
+      "mastering-atari-go-chess-and-shogi-by-planning-with-a-learned-model--hassabis",
+      "mastering-the-game-of-go-with-deep-neural-networks-and-tree-search--hassabis",
+      "mastering-the-game-of-go-without-human-knowledge---hassabis",
+      "neural-scene-representation-and-rendering--hassabis",
+      "neuroscience-inspired-artificial-intelligence--hassabis",
+      "protein-structure-predictions-to-atomic-accuracy-with-alphafold--hassabis",
+      "vector-based-navigation-using-grid-like-representations-in-artificial-agents--hassabis"
+    ],
+    "Science-breakthrough": [
+      "advancing-mathematics-by-guiding-human-intuition-w--hassabis",
+      "highly-accurate-protein-structure-prediction-with---hassabis",
+      "protein-structure-predictions-to-atomic-accuracy-with-alphafold--hassabis",
+      "pushing-the-frontiers-of-density-functionals-by-solving-the-fractional-electron-problem--hassabis"
+    ],
+    "public-statement": [
+      "artificial-intelligence-chess-match-of-the-century--hassabis",
+      "deepmind-ceo-demis-hassabis-urges-caution-on-ai--hassabis",
+      "demis-hassabis-time100-on-alphafold-agi-and-humanity--hassabis",
+      "lex-fridman-podcast-475-future-of-ai-simulating-reality-physics-and-video-games--hassabis",
+      "nobel-prize-lecture-accelerating-scientific-discovery-with-ai--hassabis"
+    ],
+    "career-origin": [
+      "decoding-individual-episodic-memory-traces-in-the-human-hippocampus--hassabis",
+      "decoding-neuronal-ensembles-in-the-human-hippocampus--hassabis",
+      "deconstructing-episodic-memory-with-construction--hassabis",
+      "patients-with-hippocampal-amnesia-cannot-imagine-new-experiences--hassabis",
+      "the-construction-system-of-the-brain--hassabis"
+    ],
+    "Nobel-cited": [
+      "highly-accurate-protein-structure-prediction-for-the-human-proteome--hassabis",
+      "highly-accurate-protein-structure-prediction-with---hassabis",
+      "nobel-prize-lecture-accelerating-scientific-discovery-with-ai--hassabis",
+      "protein-structure-predictions-to-atomic-accuracy-with-alphafold--hassabis"
+    ],
+    "Nature-frontpage": [
+      "highly-accurate-protein-structure-prediction-with---hassabis",
+      "mastering-the-game-of-go-with-deep-neural-networks-and-tree-search--hassabis",
+      "mastering-the-game-of-go-without-human-knowledge---hassabis"
+    ],
+    "conjecture": [
+      "nobel-prize-lecture-accelerating-scientific-discovery-with-ai--hassabis"
+    ]
+  },
+  "claim": {},
+  "influences": {},
+  "contradicts": {},
+  "open-questions": {},
+  "notable-quote": {}
+}

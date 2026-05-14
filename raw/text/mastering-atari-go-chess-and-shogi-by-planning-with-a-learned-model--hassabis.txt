@@ -1,0 +1,915 @@
+
+--- PAGE 1 ---
+Mastering Atari, Go, Chess and Shogi by Planning with a
+Learned Model
+JulianSchrittwieser,1∗ IoannisAntonoglou,1,2∗ ThomasHubert,1∗
+KarenSimonyan,1 LaurentSifre,1 SimonSchmitt,1 ArthurGuez,1
+EdwardLockhart,1 DemisHassabis,1 ThoreGraepel,1,2 TimothyLillicrap,1
+DavidSilver1,2∗
+1DeepMind,6PancrasSquare,LondonN1C4AG.
+2UniversityCollegeLondon,GowerStreet,LondonWC1E6BT.
+∗Theseauthorscontributedequallytothiswork.
+Abstract
+Constructing agents with planning capabilities has long been one of the main challenges in the
+pursuitofartificialintelligence. Tree-basedplanningmethodshaveenjoyedhugesuccessinchalleng-
+ing domains, such as chess and Go, where a perfect simulator is available. However, in real-world
+problems the dynamics governing the environment are often complex and unknown. In this work
+we present the MuZero algorithm which, by combining a tree-based search with a learned model,
+achievessuperhumanperformanceinarangeofchallengingandvisuallycomplexdomains, without
+anyknowledgeoftheirunderlyingdynamics. MuZerolearnsamodelthat, whenappliediteratively,
+predictsthequantitiesmostdirectlyrelevanttoplanning: thereward,theaction-selectionpolicy,and
+thevaluefunction. Whenevaluatedon57differentAtarigames-thecanonicalvideogameenviron-
+mentfortestingAItechniques,inwhichmodel-basedplanningapproacheshavehistoricallystruggled
+-ournewalgorithmachievedanewstateoftheart. WhenevaluatedonGo,chessandshogi,without
+any knowledge of the game rules, MuZero matched the superhuman performance of the AlphaZero
+algorithmthatwassuppliedwiththegamerules.
+1 Introduction
+Planningalgorithmsbasedonlookaheadsearchhaveachievedremarkablesuccessesinartificialintelligence. Hu-
+man world champions have been defeated in classic games such as checkers [34], chess [5], Go [38] and poker
+[3,26], andplanningalgorithmshavehadreal-worldimpactinapplicationsfromlogistics[47]tochemicalsyn-
+thesis[37]. However,theseplanningalgorithmsallrelyonknowledgeoftheenvironment’sdynamics,suchasthe
+rulesofthegameoranaccuratesimulator,preventingtheirdirectapplicationtoreal-worlddomainslikerobotics,
+industrialcontrol,orintelligentassistants.
+Model-based reinforcement learning (RL) [42] aims to address this issue by first learning a model of the
+environment’sdynamics,andthenplanningwithrespecttothelearnedmodel. Typically,thesemodelshaveeither
+focused on reconstructing the true environmental state [8, 16, 24], or the sequence of full observations [14, 20].
+However,priorwork[4,14,20]remainsfarfromthestateoftheartinvisuallyrichdomains,suchasAtari2600
+games [2]. Instead, the most successful methods are based on model-free RL [9, 21, 18] – i.e. they estimate
+the optimal policy and/or value function directly from interactions with the environment. However, model-free
+algorithmsareinturnfarfromthestateoftheartindomainsthatrequirepreciseandsophisticatedlookahead,such
+aschessandGo.
+1
+0202
+beF
+12
+]GL.sc[
+2v56280.1191:viXra
+
+--- PAGE 2 ---
+In this paper, we introduce MuZero, a new approach to model-based RL that achieves state-of-the-art per-
+formance in Atari 2600, a visually complex set of domains, while maintaining superhuman performance in pre-
+cision planning tasks such as chess, shogi and Go. MuZero builds upon AlphaZero’s [39] powerful search and
+search-based policy iteration algorithms, but incorporates a learned model into the training procedure. MuZero
+alsoextendsAlphaZerotoabroadersetofenvironmentsincludingsingleagentdomainsandnon-zerorewardsat
+intermediatetime-steps.
+Themainideaofthealgorithm(summarizedinFigure1)istopredictthoseaspectsofthefuturethataredirectly
+relevantforplanning. Themodelreceivestheobservation(e.g. animageoftheGoboardortheAtariscreen)asan
+inputandtransformsitintoahiddenstate. Thehiddenstateisthenupdatediterativelybyarecurrentprocessthat
+receivestheprevioushiddenstateandahypotheticalnextaction.Ateveryoneofthesestepsthemodelpredictsthe
+policy(e.g. themovetoplay),valuefunction(e.g. thepredictedwinner),andimmediatereward(e.g. thepoints
+scoredbyplayingamove). Themodelistrainedend-to-end,withthesoleobjectiveofaccuratelyestimatingthese
+threeimportantquantities,soastomatchtheimprovedestimatesofpolicyandvaluegeneratedbysearchaswell
+astheobservedreward. Thereisnodirectconstraintorrequirementforthehiddenstatetocaptureallinformation
+necessary to reconstruct the original observation, drastically reducing the amount of information the model has
+tomaintainandpredict;noristhereanyrequirementforthehiddenstatetomatchtheunknown,truestateofthe
+environment; nor any other constraints on the semantics of state. Instead, the hidden states are free to represent
+state in whatever way is relevant to predicting current and future values and policies. Intuitively, the agent can
+invent,internally,therulesordynamicsthatleadtomostaccurateplanning.
+2 Prior Work
+Reinforcement learning may be subdivided into two principal categories: model-based, and model-free [42].
+Model-based RL constructs, as an intermediate step, a model of the environment. Classically, this model is
+represented by a Markov-decision process (MDP) [31] consisting of two components: a state transition model,
+predicting the next state, and a reward model, predicting the expected reward during that transition. The model
+is typically conditioned on the selected action, or a temporally abstract behavior such as an option [43]. Once
+a model has been constructed, it is straightforward to apply MDP planning algorithms, such as value iteration
+[31] or Monte-Carlo tree search (MCTS) [7], to compute the optimal value or optimal policy for the MDP. In
+largeorpartiallyobservedenvironments,thealgorithmmustfirstconstructthestaterepresentationthatthemodel
+shouldpredict. Thistripartiteseparationbetweenrepresentationlearning,modellearning,andplanningispoten-
+tially problematic since the agent is not able to optimize its representation or model for the purpose of effective
+planning,sothat,forexamplemodelingerrorsmaycompoundduringplanning.
+A common approach to model-based RL focuses on directly modeling the observation stream at the pixel-
+level. It has been hypothesized that deep, stochastic models may mitigate the problems of compounding error
+[14, 20]. However, planning at pixel-level granularity is not computationally tractable in large scale problems.
+Othermethodsbuildalatentstate-spacemodelthatissufficienttoreconstructtheobservationstreamatpixellevel
+[48, 49], or to predict its future latent states [13, 11], which facilitates more efficient planning but still focuses
+themajorityofthemodelcapacityonpotentiallyirrelevantdetail. Noneofthesepriormethodshasconstructeda
+modelthatfacilitateseffectiveplanninginvisuallycomplexdomainssuchasAtari;resultslagbehindwell-tuned,
+model-freemethods,evenintermsofdataefficiency[45].
+Aquitedifferentapproachtomodel-basedRLhasrecentlybeendeveloped,focusedend-to-endonpredicting
+thevaluefunction[41]. ThemainideaofthesemethodsistoconstructanabstractMDPmodelsuchthatplanning
+in the abstractMDP is equivalent toplanning in the realenvironment. This equivalenceis achieved by ensuring
+value equivalence, i.e. that, starting from the same real state, the cumulative reward of a trajectory through the
+abstractMDPmatchesthecumulativerewardofatrajectoryintherealenvironment.
+Thepredictron[41]firstintroducedvalueequivalentmodelsforpredictingvalue(withoutactions). Although
+the underlying model still takes the form of an MDP, there is no requirement for its transition model to match
+realstatesintheenvironment. InsteadtheMDPmodelisviewedasahiddenlayerofadeepneuralnetwork. The
+unrolledMDPistrainedsuchthattheexpectedcumulativesumofrewardsmatchestheexpectedvaluewithrespect
+totherealenvironment,e.g. bytemporal-differencelearning.
+2
+
+--- PAGE 3 ---
+Figure 1: Planning, acting, and training with a learned model. (A) How MuZero uses its model to plan.
+Themodelconsistsofthreeconnectedcomponentsforrepresentation,dynamicsandprediction. Givenaprevious
+hiddenstatesk−1andacandidateactionak,thedynamicsfunctiongproducesanimmediaterewardrk andanew
+hiddenstatesk.Thepolicypkandvaluefunctionvkarecomputedfromthehiddenstateskbyapredictionfunction
+f. Theinitialhiddenstates0 isobtainedbypassingthepastobservations(e.g. theGoboardorAtariscreen)into
+arepresentationfunctionh. (B)HowMuZeroactsintheenvironment. AMonte-CarloTreeSearchisperformed
+ateachtimestept,asdescribedinA.Anactiona issampledfromthesearchpolicyπ ,whichisproportional
+t+1 t
+to the visit count for each action from the root node. The environment receives the action and generates a new
+observationo andrewardu . Attheendoftheepisodethetrajectorydataisstoredintoareplaybuffer. (C)
+t+1 t+1
+HowMuZerotrainsitsmodel.Atrajectoryissampledfromthereplaybuffer.Fortheinitialstep,therepresentation
+functionhreceivesasinputthepastobservationso ,...,o fromtheselectedtrajectory. Themodelissubsequently
+1 t
+unrolledrecurrentlyforK steps. Ateachstepk,thedynamicsfunctiong receivesasinputthehiddenstatesk−1
+from the previous step and the real action a . The parameters of the representation, dynamics and prediction
+t+k
+functionsarejointlytrained, end-to-endbybackpropagation-through-time, topredictthreequantities: thepolicy
+pk ≈ π , valuefunctionvk ≈ z , andrewardr ≈ u , wherez isasamplereturn: eitherthefinal
+t+k t+k t+k t+k t+k
+reward(boardgames)orn-stepreturn(Atari).
+Valueequivalentmodelsweresubsequentlyextendedtooptimisingvalue(withactions). TreeQN[10]learns
+anabstractMDPmodel,suchthatatreesearchoverthatmodel(representedbyatree-structuredneuralnetwork)
+approximatestheoptimalvaluefunction. Valueiterationnetworks[44]learnalocalMDPmodel,suchthatvalue
+iterationoverthatmodel(representedbyaconvolutionalneuralnetwork)approximatestheoptimalvaluefunction.
+Valuepredictionnetworks[28]areperhapstheclosestprecursortoMuZero: theylearnanMDPmodelgrounded
+in real actions; the unrolled MDP is trained such that the cumulative sum of rewards, conditioned on the actual
+sequenceofactionsgeneratedbyasimplelookaheadsearch,matchestherealenvironment. UnlikeMuZerothere
+isnopolicyprediction,andthesearchonlyutilizesvalueprediction.
+3 MuZero Algorithm
+We now describe the MuZero algorithm in more detail. Predictions are made at each time-step t, for each of
+k = 1...K steps,byamodelµ ,withparametersθ,conditionedonpastobservationso ,...,o andfutureactions
+θ 1 t
+a ,...,a .Themodelpredictsthreefuturequantities:thepolicypk ≈π(a |o ,...,o ,a ,...,a ),the
+t+1 t+k t t+k+1 1 t t+1 t+k
+valuefunctionvk ≈ E[u +γu +...|o ,...,o ,a ,...,a ],andtheimmediaterewardrk ≈ u ,
+t t+k+1 t+k+2 1 t t+1 t+k t t+k
+3
+
+--- PAGE 4 ---
+whereu isthetrue,observedreward,π isthepolicyusedtoselectrealactions,andγ isthediscountfunctionof
+.
+theenvironment.
+Internally, at each time-step t (subscripts suppressed for simplicity), the model is represented by the com-
+t
+bination of a representation function, a dynamics function, and a prediction function. The dynamics function,
+rk,sk = g (sk−1,ak),isarecurrentprocessthatcomputes,ateachhypotheticalstepk,animmediaterewardrk
+θ
+and an internal state sk. It mirrors the structure of an MDP model that computes the expected reward and state
+transitionforagivenstateandaction[31]. However, unliketraditionalapproachestomodel-basedRL[42], this
+internalstatesk hasnosemanticsofenvironmentstateattachedtoit–itissimplythehiddenstateoftheoverall
+model, and its sole purpose is to accurately predict relevant, future quantities: policies, values, and rewards. In
+thispaper,thedynamicsfunctionisrepresenteddeterministically;theextensiontostochastictransitionsisleftfor
+future work. The policy and value functions are computed from the internal state sk by the prediction function,
+pk,vk = f (sk),akintothejointpolicyandvaluenetworkofAlphaZero. The“root”states0 isinitializedusing
+θ
+arepresentationfunctionthatencodespastobservations, s0 = h (o ,...,o ); againthishasnospecialsemantics
+θ 1 t
+beyonditssupportforfuturepredictions.
+Given such a model, it is possible to search over hypothetical future trajectories a1,...,ak given past obser-
+vationso ,...,o . Forexample,anaivesearchcouldsimplyselectthek stepactionsequencethatmaximizesthe
+1 t
+valuefunction. Moregenerally,wemayapplyanyMDPplanningalgorithmtotheinternalrewardsandstatespace
+inducedbythedynamicsfunction. Specifically,weuseanMCTSalgorithmsimilartoAlphaZero’ssearch,gener-
+alizedtoallowforsingleagentdomainsandintermediaterewards(seeMethods). Ateachinternalnode,itmakes
+useofthepolicy,valueandrewardestimatesproducedbythecurrentmodelparametersθ. TheMCTSalgorithm
+outputsarecommendedpolicyπ andestimatedvalueν . Anactiona ∼π isthenselected.
+t t t+1 t
+All parameters of the model are trained jointly to accurately match the policy, value, and reward, for every
+hypothetical step k, to corresponding target values observed after k actual time-steps have elapsed. Similarly to
+AlphaZero, the improved policy targets are generated by an MCTS search; the first objective is to minimise the
+error between predicted policy pk and search policy π . Also like AlphaZero, the improved value targets are
+t t+k
+generatedbyplayingthegameorMDP.However,unlikeAlphaZero,weallowforlongepisodeswithdiscounting
+andintermediaterewardsbybootstrappingnstepsintothefuturefromthesearchvalue,z =u +γu +...+
+t t+1 t+2
+γn−1u +γnν . Finaloutcomes{lose,draw,win}inboardgamesaretreatedasrewardsu ∈{−1,0,+1}
+t+n t+n t
+occuring at the final step of the episode. Specifically, the second objective is to minimize the error between
+thepredictedvaluevk andthevaluetarget,z 1. Therewardtargetsaresimplytheobservedrewards;thethird
+t t+k
+objectiveisthereforetominimizetheerrorbetweenthepredictedrewardrkandtheobservedrewardu .Finally,
+t t+k
+anL2regularizationtermisalsoadded,leadingtotheoverallloss:
+K
+(cid:88)
+l (θ)= lr(u ,rk)+lv(z ,vk)+lp(π ,pk)+c||θ||2 (1)
+t t+k t t+k t t+k t
+k=0
+wherelr,lv,andlparelossfunctionsforreward,valueandpolicyrespectively. SupplementaryFigureS2summa-
+rizestheequationsgoverninghowtheMuZeroalgorithmplans,acts,andlearns.
+4 Results
+WeappliedtheMuZeroalgorithmtotheclassicboardgamesGo,chessandshogi2,asbenchmarksforchallenging
+planningproblems,andtoall57gamesintheAtariLearningEnvironment[2],asbenchmarksforvisuallycomplex
+RLdomains.
+IneachcasewetrainedMuZeroforK = 5hypotheticalsteps. Trainingproceededfor1millionmini-batches
+of size 2048 in board games and of size 1024 in Atari. During both training and evaluation, MuZero used 800
+simulations for each search in board games, and 50 simulations for each search in Atari. The representation
+1Forchess,Goandshogi,thesamesquarederrorlossasAlphaZeroisusedforrewardsandvalues. Across-entropylosswasfoundtobe
+morestablethanasquarederrorwhenencounteringrewardsandvaluesofvariablescaleinAtari. Cross-entropywasusedforthepolicyloss
+inbothcases.
+2ImperfectinformationgamessuchasPokerarenotdirectlyaddressedbyourmethod.
+4
+
+--- PAGE 5 ---
+Chess Shogi Go Atari
+rmblkans 香 桂 銀 金 玉 金 銀 桂 香
+opopopop 飛 角
+0Z0Z0Z0Z 歩 歩 歩 歩 歩 歩 歩 歩 歩
+Z0Z0Z0Z0
+0Z0Z0Z0Z
+Z0Z0Z0Z0
+歩 歩 歩 歩 歩 歩 歩 歩 歩
+POPOPOPO
+角 飛
+SNAQJBMR
+香 桂 銀 金 玉 金 銀 桂 香
+Figure2: EvaluationofMuZerothroughouttraininginchess,shogi,GoandAtari. Thex-axisshowsmillions
+oftrainingsteps. Forchess,shogiandGo,they-axisshowsElorating,establishedbyplayinggamesagainstAlp-
+haZerousing800simulationspermoveforbothplayers. MuZero’sEloisindicatedbytheblueline,AlphaZero’s
+Elobythehorizontalorangeline. ForAtari,mean(fullline)andmedian(dashedline)humannormalizedscores
+acrossall57gamesareshownonthey-axis.ThescoresforR2D2[21],(thepreviousstateoftheartinthisdomain,
+basedonmodel-freeRL)areindicatedbythehorizontalorangelines. PerformanceinAtariwasevaluatedusing
+50simulationseveryfourthtime-step,andthenrepeatingthechosenactionfourtimes,asinpriorwork[25].
+functionusesthesameconvolutional[23]andresidual[15]architectureasAlphaZero,butwith16residualblocks
+insteadof20. Thedynamicsfunctionusesthesamearchitectureastherepresentationfunctionandtheprediction
+function uses the same architecture as AlphaZero. All networks use 256 hidden planes (see Methods for further
+details).
+Figure2showstheperformancethroughouttrainingineachgame.InGo,MuZeroslightlyexceededtheperfor-
+manceofAlphaZero,despiteusinglesscomputationpernodeinthesearchtree(16residualblocksperevaluation
+in MuZero compared to 20 blocks in AlphaZero). This suggests that MuZero may be caching its computation in
+thesearchtreeandusingeachadditionalapplicationofthedynamicsmodeltogainadeeperunderstandingofthe
+position.
+In Atari, MuZero achieved a new state of the art for both mean and median normalized score across the 57
+games of the Arcade Learning Environment, outperforming the previous state-of-the-art method R2D2 [21] (a
+model-freeapproach)in42outof57games,andoutperformingthepreviousbestmodel-basedapproachSimPLe
+[20]inallgames(seeTableS1).
+WealsoevaluatedasecondversionofMuZerothatwasoptimisedforgreatersampleefficiency. Specifically,
+itreanalyzesoldtrajectoriesbyre-runningtheMCTSusingthelatestnetworkparameterstoprovidefreshtargets
+(see Appendix H). When applied to 57 Atari games, using 200 million frames of experience per game, MuZero
+Reanalyze achieved 731% median normalized score, compared to 192%, 231% and 431% for previous state-of-
+the-artmodel-freeapproachesIMPALA[9],Rainbow[17]andLASER[36]respectively.
+TounderstandtheroleofthemodelinMuZerowealsoranseveralexperiments,focusingontheboardgame
+ofGoandtheAtarigameofMs.Pacman.
+First,wetestedthescalabilityofplanning(Figure3A),inthecanonicalplanningproblemofGo.Wecompared
+theperformanceofsearchinAlphaZero,usingaperfectmodel,totheperformanceofsearchinMuZero,usinga
+5
+
+--- PAGE 6 ---
+Agent Median Mean Env. Frames TrainingTime TrainingSteps
+Ape-X[18] 434.1% 1695.6% 22.8B 5days 8.64M
+R2D2[21] 1920.6% 4024.9% 37.5B 5days 2.16M
+MuZero 2041.1% 4999.2% 20.0B 12hours 1M
+IMPALA[9] 191.8% 957.6% 200M – –
+Rainbow[17] 231.1% – 200M 10days –
+UNREALa[19] 250%a 880%a 250M – –
+LASER[36] 431% – 200M – –
+MuZeroReanalyze 731.1% 2168.9% 200M 12hours 1M
+Table 1: Comparison of MuZero against previous agents in Atari. We compare separately against agents
+trainedinlarge(top)andsmall(bottom)datasettings;allagentsotherthanMuZerousedmodel-freeRLtechniques.
+Meanandmedianscoresaregiven,comparedtohumantesters. Thebestresultsarehighlightedinbold. MuZero
+setsanewstateoftheartinbothsettings. aHyper-parametersweretunedpergame.
+learned model. Specifically, the fully trained AlphaZero or MuZero was evaluated by comparing MCTS with
+different thinking times. MuZero matched the performance of a perfect model, even when doing much larger
+searches (up to 10s thinking time) than those from which the model was trained (around 0.1s thinking time, see
+alsoFigureS3A).
+WealsoinvestigatedthescalabilityofplanningacrossallAtarigames(seeFigure3B).WecomparedMCTS
+with different numbers of simulations, using the fully trained MuZero. The improvements due to planning are
+muchlessmarkedthaninGo,perhapsbecauseofgreatermodelinaccuracy;performanceimprovedslightlywith
+searchtime,butplateauedataround100simulations. Evenwithasinglesimulation–i.e. whenselectingmoves
+solelyaccordingtothepolicynetwork–MuZeroperformedwell,suggestingthat,bytheendoftraining,theraw
+policyhaslearnedtointernalisethebenefitsofsearch(seealsoFigureS3B).
+Next,wetestedourmodel-basedlearningalgorithmagainstacomparablemodel-freelearningalgorithm(see
+Figure 3C). We replaced the training objective of MuZero (Equation 1) with a model-free Q-learning objective
+(as used by R2D2), and the dual value and policy heads with a single head representing the Q-function Q(·|s ).
+t
+Subsequently,wetrainedandevaluatedthenewmodelwithoutusinganysearch. WhenevaluatedonMs.Pacman,
+our model-free algorithm achieved identical results to R2D2, but learned significantly slower than MuZero and
+convergedtoamuchlowerfinalscore. Weconjecturethatthesearch-basedpolicyimprovementstepofMuZero
+providesastrongerlearningsignalthanthehighbias,highvariancetargetsusedbyQ-learning.
+To better understand the nature of MuZero’s learning algorithm, we measured how MuZero’s training scales
+with respect to the amount of search it uses during training. Figure 3D shows the performance in Ms. Pacman,
+using an MCTS of different simulation counts per move throughout training. Surprisingly, and in contrast to
+previouswork[1], evenwithonly6simulationspermove–fewerthanthenumberofactions–MuZerolearned
+an effective policy and improved rapidly. With more simulations performance jumped significantly higher. For
+analysisofthepolicyimprovementduringeachindividualiteration,seealsoFigureS3CandD.
+5 Conclusions
+Manyofthebreakthroughsinartificialintelligencehavebeenbasedoneitherhigh-performanceplanning[5,38,
+39] or model-free reinforcement learning methods [25, 29, 46]. In this paper we have introduced a method that
+combinesthebenefitsofbothapproaches.Ouralgorithm,MuZero,hasbothmatchedthesuperhumanperformance
+ofhigh-performanceplanningalgorithmsintheirfavoreddomains–logicallycomplexboardgamessuchaschess
+andGo–andoutperformedstate-of-the-artmodel-freeRLalgorithmsintheirfavoreddomains–visuallycomplex
+Atarigames. Crucially,ourmethoddoesnotrequireanyknowledgeofthegamerulesorenvironmentdynamics,
+potentially paving the way towards the application of powerful learning and planning methods to a host of real-
+worlddomainsforwhichthereexistsnoperfectsimulator.
+6
+
+--- PAGE 7 ---
+Figure 3: Evaluations of MuZero on Go (A), all 57 Atari Games (B) and Ms. Pacman (C-D). (A) Scaling
+with search time per move in Go, comparing the learned model with the ground truth simulator. Both networks
+weretrainedat800simulationspersearch,equivalentto0.1secondspersearch. Remarkably,thelearnedmodel
+is able to scale well to up to two orders of magnitude longer searches than seen during training. (B) Scaling of
+finalhumannormalizedmeanscoreinAtariwiththenumberofsimulationspersearch. Thenetworkwastrained
+at 50 simulations per search. Dark line indicates mean score, shaded regions indicate 25th to 75th and 5th to
+95th percentiles. The learned model’s performance increases up to 100 simulations per search. Beyond, even
+when scaling to much longer searches than during training, the learned model’s performance remains stable and
+onlydecreasesslightly. ThiscontrastswiththemuchbetterscalinginGo(A),presumablyduetogreatermodel
+inaccuracyinAtarithanGo. (C)ComparisonofMCTSbasedtrainingwithQ-learningintheMuZeroframework
+onMs.Pacman,keepingnetworksizeandamountoftrainingconstant. ThestateoftheartQ-Learningalgorithm
+R2D2isshownasabaseline. OurQ-LearningimplementationreachesthesamefinalscoreasR2D2,butimproves
+slower and results in much lower final performance compared to MCTS based training. (D) Different networks
+trained at different numbers of simulations per move, but all evaluated at 50 simulations per move. Networks
+trainedwithmoresimulationspermoveimprovefaster,consistentwithablation(B),wherethepolicyimprovement
+is larger when using more simulations per move. Surprisingly, MuZero can learn effectively even when training
+withlesssimulationspermovethanareenoughtocoverall8possibleactionsinMs.Pacman.
+7
+
+--- PAGE 8 ---
+6 Acknowledgments
+LorrayneBennett,OliverSmithandChrisAppsfororganizationalassistance; KorayKavukcuogluforreviewing
+the paper; Thomas Anthony, Matthew Lai, Nenad Tomasev, Ulrich Paquet, Sumedh Ghaisas for many fruitful
+discussions;andtherestoftheDeepMindteamfortheirsupport.
+References
+[1] KamyarAzizzadenesheli,BrandonYang,WeitangLiu,EmmaBrunskill,ZacharyC.Lipton,andAnimashree
+Anandkumar.Surprisingnegativeresultsforgenerativeadversarialtreesearch.CoRR,abs/1806.05780,2018.
+[2] MarcGBellemare,YavarNaddaf,JoelVeness,andMichaelBowling. Thearcadelearningenvironment: An
+evaluationplatformforgeneralagents. JournalofArtificialIntelligenceResearch,47:253–279,2013.
+[3] NoamBrownandTuomasSandholm. Superhumanaiforheads-upno-limitpoker: Libratusbeatstopprofes-
+sionals. Science,359(6374):418–424,2018.
+[4] LarsBuesing,TheophaneWeber,SebastienRacaniere,SMEslami,DaniloRezende,DavidPReichert,Fabio
+Viola, Frederic Besse, Karol Gregor, Demis Hassabis, et al. Learning and querying fast generative models
+forreinforcementlearning. arXivpreprintarXiv:1802.03006,2018.
+[5] Murray Campbell, A. Joseph Hoane, Jr., and Feng-hsiung Hsu. Deep blue. Artif. Intell., 134(1-2):57–83,
+January2002.
+[6] R.Coulom. Whole-historyrating: ABayesianratingsystemforplayersoftime-varyingstrength. InInter-
+nationalConferenceonComputersandGames,pages113–124,2008.
+[7] Re´miCoulom. Efficientselectivityandbackupoperatorsinmonte-carlotreesearch. InInternationalconfer-
+enceoncomputersandgames,pages72–83.Springer,2006.
+[8] MP. Deisenroth and CE. Rasmussen. Pilco: A model-based and data-efficient approach to policy search.
+In Proceedings of the 28th International Conference on Machine Learning, ICML 2011, pages 465–472.
+Omnipress,2011.
+[9] LasseEspeholt,HubertSoyer,RemiMunos,KarenSimonyan,VolodymirMnih,TomWard,YotamDoron,
+VladFiroiu,TimHarley,IainDunning,etal. Impala: Scalabledistributeddeep-rlwithimportanceweighted
+actor-learner architectures. In Proceedings of the International Conference on Machine Learning (ICML),
+2018.
+[10] GregoryFarquhar,TimRocktaeschel,MaximilianIgl,andShimonWhiteson. TreeQNandATreec: Differ-
+entiabletreeplanningfordeepreinforcementlearning. InInternationalConferenceonLearningRepresen-
+tations,2018.
+[11] CarlesGelada,SaurabhKumar,JacobBuckman,OfirNachum,andMarcG.Bellemare.DeepMDP:Learning
+continuouslatentspacemodelsforrepresentationlearning. InKamalikaChaudhuriandRuslanSalakhutdi-
+nov, editors, Proceedings of the 36th International Conference on Machine Learning, volume 97 of Pro-
+ceedingsofMachineLearningResearch,pages2170–2179,LongBeach,California,USA,09–15Jun2019.
+PMLR.
+[12] Cloudtpu. https://cloud.google.com/tpu/. Accessed: 2019.
+[13] David Ha and Ju¨rgen Schmidhuber. Recurrent world models facilitate policy evolution. In Proceedings of
+the32NdInternationalConferenceonNeuralInformationProcessingSystems,NIPS’18,pages2455–2467,
+USA,2018.CurranAssociatesInc.
+8
+
+--- PAGE 9 ---
+[14] DanijarHafner,TimothyLillicrap,IanFischer,RubenVillegas,DavidHa,HonglakLee,andJamesDavidson.
+Learninglatentdynamicsforplanningfrompixels. arXivpreprintarXiv:1811.04551,2018.
+[15] KaimingHe,XiangyuZhang,ShaoqingRen,andJianSun. Identitymappingsindeepresidualnetworks. In
+14thEuropeanConferenceonComputerVision,pages630–645,2016.
+[16] Nicolas Heess, Greg Wayne, David Silver, Timothy Lillicrap, Yuval Tassa, and Tom Erez. Learning con-
+tinuouscontrolpoliciesbystochasticvaluegradients. InProceedingsofthe28thInternationalConference
+onNeuralInformationProcessingSystems-Volume2,NIPS’15,pages2944–2952,Cambridge,MA,USA,
+2015.MITPress.
+[17] MatteoHessel,JosephModayil,HadoVanHasselt,TomSchaul,GeorgOstrovski,WillDabney,DanHorgan,
+BilalPiot,MohammadAzar,andDavidSilver. Rainbow: Combiningimprovementsindeepreinforcement
+learning. InThirty-SecondAAAIConferenceonArtificialIntelligence,2018.
+[18] DanHorgan,JohnQuan,DavidBudden,GabrielBarth-Maron,MatteoHessel,HadovanHasselt,andDavid
+Silver. Distributedprioritizedexperiencereplay. InInternationalConferenceonLearningRepresentations,
+2018.
+[19] Max Jaderberg, Volodymyr Mnih, Wojciech Marian Czarnecki, Tom Schaul, Joel Z Leibo, David Sil-
+ver, and Koray Kavukcuoglu. Reinforcement learning with unsupervised auxiliary tasks. arXiv preprint
+arXiv:1611.05397,2016.
+[20] LukaszKaiser,MohammadBabaeizadeh,PiotrMilos,BlazejOsinski,RoyHCampbell,KonradCzechowski,
+DumitruErhan,ChelseaFinn,PiotrKozakowski,SergeyLevine,etal. Model-basedreinforcementlearning
+foratari. arXivpreprintarXiv:1903.00374,2019.
+[21] Steven Kapturowski, Georg Ostrovski, Will Dabney, John Quan, and Remi Munos. Recurrent experience
+replayindistributedreinforcementlearning.InInternationalConferenceonLearningRepresentations,2019.
+[22] Levente Kocsis and Csaba Szepesva´ri. Bandit based monte-carlo planning. In European conference on
+machinelearning,pages282–293.Springer,2006.
+[23] Alex Krizhevsky, Ilya Sutskever, and Geoffrey E Hinton. Imagenet classification with deep convolutional
+neuralnetworks. InAdvancesinneuralinformationprocessingsystems,pages1097–1105,2012.
+[24] Sergey Levine and Pieter Abbeel. Learning neural network policies with guided policy search under un-
+knowndynamics. InZ.Ghahramani,M.Welling,C.Cortes,N.D.Lawrence,andK.Q.Weinberger,editors,
+AdvancesinNeuralInformationProcessingSystems27,pages1071–1079.CurranAssociates,Inc.,2014.
+[25] VolodymyrMnih,KorayKavukcuoglu,DavidSilver,AndreiARusu,JoelVeness,MarcGBellemare,Alex
+Graves,MartinRiedmiller,AndreasKFidjeland,GeorgOstrovski,etal. Human-levelcontrolthroughdeep
+reinforcementlearning. Nature,518(7540):529,2015.
+[26] MatejMoravcˇ´ık,MartinSchmid,NeilBurch,ViliamLisy`,DustinMorrill,NolanBard,TrevorDavis,Kevin
+Waugh,MichaelJohanson,andMichaelBowling. Deepstack: Expert-levelartificialintelligenceinheads-up
+no-limitpoker. Science,356(6337):508–513,2017.
+[27] Arun Nair, Praveen Srinivasan, Sam Blackwell, Cagdas Alcicek, Rory Fearon, Alessandro De Maria, Ve-
+davyasPanneershelvam, MustafaSuleyman, CharlesBeattie, StigPetersen, ShaneLegg, VolodymyrMnih,
+KorayKavukcuoglu,andDavidSilver. Massivelyparallelmethodsfordeepreinforcementlearning. CoRR,
+abs/1507.04296,2015.
+[28] JunhyukOh,SatinderSingh,andHonglakLee.Valuepredictionnetwork.InAdvancesinNeuralInformation
+ProcessingSystems,pages6118–6128,2017.
+[29] OpenAI. Openaifive. https://blog.openai.com/openai-five/,2018.
+9
+
+--- PAGE 10 ---
+[30] TobiasPohlen,BilalPiot,ToddHester,MohammadGheshlaghiAzar,DanHorgan,DavidBudden,Gabriel
+Barth-Maron,HadovanHasselt,JohnQuan,MelVecˇer´ık,etal. Observeandlookfurther: Achievingconsis-
+tentperformanceonatari. arXivpreprintarXiv:1805.11593,2018.
+[31] MartinL.Puterman. MarkovDecisionProcesses: DiscreteStochasticDynamicProgramming. JohnWiley
+&Sons,Inc.,NewYork,NY,USA,1stedition,1994.
+[32] Christopher D Rosin. Multi-armed bandits with episode context. Annals of Mathematics and Artificial
+Intelligence,61(3):203–230,2011.
+[33] MaartenPDSchadd,MarkHMWinands,HJaapVanDenHerik,GuillaumeMJ-BChaslot,andJosWHM
+Uiterwijk. Single-player monte-carlo tree search. In International Conference on Computers and Games,
+pages1–12.Springer,2008.
+[34] JonathanSchaeffer,JosephCulberson,NormanTreloar,BrentKnight,PaulLu,andDuaneSzafron. Aworld
+championshipcalibercheckersprogram. ArtificialIntelligence,53(2-3):273–289,1992.
+[35] Tom Schaul, John Quan, Ioannis Antonoglou, and David Silver. Prioritized experience replay. In Interna-
+tionalConferenceonLearningRepresentations,PuertoRico,2016.
+[36] SimonSchmitt,MatteoHessel,andKarenSimonyan. Off-policyactor-criticwithsharedexperiencereplay.
+arXivpreprintarXiv:1909.11583,2019.
+[37] MarwinHSSegler,MikePreuss,andMarkPWaller.Planningchemicalsyntheseswithdeepneuralnetworks
+andsymbolicai. Nature,555(7698):604,2018.
+[38] DavidSilver,AjaHuang,ChrisJ.Maddison,ArthurGuez,LaurentSifre,GeorgevandenDriessche,Julian
+Schrittwieser,IoannisAntonoglou,VedaPanneershelvam,MarcLanctot,SanderDieleman,DominikGrewe,
+John Nham, Nal Kalchbrenner, Ilya Sutskever, Timothy Lillicrap, Madeleine Leach, Koray Kavukcuoglu,
+ThoreGraepel,andDemisHassabis. MasteringthegameofGowithdeepneuralnetworksandtreesearch.
+Nature,529(7587):484–489,January2016.
+[39] David Silver, Thomas Hubert, Julian Schrittwieser, Ioannis Antonoglou, Matthew Lai, Arthur Guez, Marc
+Lanctot,LaurentSifre,DharshanKumaran,ThoreGraepel,etal. Ageneralreinforcementlearningalgorithm
+thatmasterschess,shogi,andgothroughself-play. Science,362(6419):1140–1144,2018.
+[40] DavidSilver,JulianSchrittwieser,KarenSimonyan,IoannisAntonoglou,AjaHuang,ArthurGuez,Thomas
+Hubert,LucasBaker,MatthewLai,AdrianBolton,YutianChen,TimothyLillicrap,FanHui,LaurentSifre,
+GeorgevandenDriessche, ThoreGraepel, andDemisHassabis. Masteringthegameofgowithouthuman
+knowledge. Nature,550:354–359,October2017.
+[41] David Silver, Hado van Hasselt, Matteo Hessel, Tom Schaul, Arthur Guez, Tim Harley, Gabriel Dulac-
+Arnold, David Reichert, Neil Rabinowitz, Andre Barreto, et al. The predictron: End-to-end learning and
+planning. In Proceedings of the 34th International Conference on Machine Learning-Volume 70, pages
+3191–3199.JMLR.org,2017.
+[42] RichardS.SuttonandAndrewG.Barto. ReinforcementLearning: AnIntroduction. TheMITPress,second
+edition,2018.
+[43] Richard S Sutton, Doina Precup, and Satinder Singh. Between mdps and semi-mdps: A framework for
+temporalabstractioninreinforcementlearning. Artificialintelligence,112(1-2):181–211,1999.
+[44] AvivTamar,YiWu,GarrettThomas,SergeyLevine,andPieterAbbeel.Valueiterationnetworks.InAdvances
+inNeuralInformationProcessingSystems,pages2154–2162,2016.
+[45] Hado van Hasselt, Matteo Hessel, and John Aslanides. When to use parametric models in reinforcement
+learning? arXivpreprintarXiv:1906.05243,2019.
+10
+
+--- PAGE 11 ---
+[46] OriolVinyals,IgorBabuschkin,WojciechMCzarnecki,Michae¨lMathieu,AndrewDudzik,JunyoungChung,
+DavidHChoi,RichardPowell,TimoEwalds,PetkoGeorgiev,etal. GrandmasterlevelinStarCraftIIusing
+multi-agentreinforcementlearning. Nature,pages1–5,2019.
+[47] IVlahavasandIRefanidis. Planningandscheduling. EETN,Greece,Tech.Rep,2013.
+[48] Niklas Wahlstro¨m, Thomas B. Scho¨n, and Marc Peter Deisenroth. From pixels to torques: Policy learning
+withdeepdynamicalmodels. CoRR,abs/1502.02251,2015.
+[49] ManuelWatter,JostTobiasSpringenberg,JoschkaBoedecker,andMartinRiedmiller. Embedtocontrol: A
+locallylinearlatentdynamicsmodelforcontrolfromrawimages. InProceedingsofthe28thInternational
+ConferenceonNeuralInformationProcessingSystems-Volume2,NIPS’15,pages2746–2754,Cambridge,
+MA,USA,2015.MITPress.
+SupplementaryMaterials
+• PseudocodedescriptionoftheMuZeroalgorithm.
+• DataforFigures2,3,S2,S3,S4andTables1,S1,S2inJSONformat.
+SupplementarymaterialscanbeaccessedfromtheancillaryfilesectionofthearXivsubmission.
+Appendix A Comparison to AlphaZero
+MuZeroisdesignedforamoregeneralsettingthanAlphaGoZero[40]andAlphaZero[39].
+In AlphaGo Zero and AlphaZero the planning process makes use of two separate components: a simulator
+implements the rules of the game, which are used to update the state of the game while traversing the search
+tree;andaneuralnetworkjointlypredictsthecorrespondingpolicyandvalueofaboardpositionproducedbythe
+simulator(seeFigure1A).
+Specifically, AlphaGo Zero and AlphaZero use knowledge of the rules of the game in three places: (1) state
+transitionsinthesearchtree,(2)actionsavailableateachnodeofthesearchtree,(3)episodeterminationwithin
+the search tree. In MuZero, all of these have been replaced with the use of a single implicit model learned by a
+neuralnetwork(seeFigure1B):
+1) State transitions. AlphaZero had access to a perfect simulator of the true dynamics process. In contrast,
+MuZero employs a learned dynamics model within its search. Under this model, each node in the tree is
+representedbyacorrespondinghiddenstate;byprovidingahiddenstates andanactiona tothemodel
+k−1 k
+thesearchalgorithmcantransitiontoanewnodes =g(s ,a ).
+k k−1 k
+2) Actions available. AlphaZero used the set of legal actions obtained from the simulator to mask the prior
+producedbythenetworkeverywhereinthesearchtree. MuZeroonlymaskslegalactionsattherootofthe
+searchtreewheretheenvironmentcanbequeried,butdoesnotperformanymaskingwithinthesearchtree.
+Thisispossiblebecausethenetworkrapidlylearnsnottopredictactionsthatneveroccurinthetrajectories
+itistrainedon.
+3) Terminal nodes. AlphaZero stopped the search at tree nodes representing terminal states and used the ter-
+minalvalueprovidedbythesimulatorinsteadofthevalueproducedbythenetwork. MuZerodoesnotgive
+specialtreatmenttoterminalnodesandalwaysusesthevaluepredictedbythenetwork. Insidethetree,the
+search can proceed past a terminal node - in this case the network is expected to always predict the same
+value. Thisisachievedbytreatingterminalstatesasabsorbingstatesduringtraining.
+Inaddition,MuZeroisdesignedtooperateinthegeneralreinforcementlearningsetting: single-agentdomains
+with discounted intermediate rewards of arbitrary magnitude. In contrast, AlphaGo Zero and AlphaZero were
+designedtooperateintwo-playergameswithundiscountedterminalrewardsof±1.
+11
+
+--- PAGE 12 ---
+Appendix B Search
+WenowdescribethesearchalgorithmusedbyMuZero. OurapproachisbaseduponMonte-Carlotreesearchwith
+upper confidence bounds, an approach to planning that converges asymptotically to the optimal policy in single
+agentdomainsandtotheminimaxvaluefunctioninzerosumgames[22].
+Every node of the search tree is associated with an internal state s. For each action a from s there is an
+edge (s,a) that stores a set of statistics {N(s,a),Q(s,a),P(s,a),R(s,a),S(s,a)}, respectively representing
+visitcountsN,meanvalueQ,policyP,rewardR,andstatetransitionS.
+SimilartoAlphaZero,thesearchisdividedintothreestages,repeatedforanumberofsimulations.
+Selection: Each simulation starts from the internal root state s0, and finishes when the simulation reaches a
+leafnodesl. Foreachhypotheticaltime-stepk = 1...lofthesimulation,anactionak isselectedaccordingtothe
+storedstatisticsforinternalstatesk−1,bymaximizingoveranupperconfidencebound[32][39],
+(cid:20) (cid:112)(cid:80) N(s,b)(cid:18) (cid:16) (cid:80) N(s,b)+c +1(cid:17)(cid:19)(cid:21)
+ak =argmax Q(s,a)+P(s,a)· b c +log b 2 (2)
+a 1+N(s,a) 1 c 2
+The constants c and c are used to control the influence of the prior P(s,a) relative to the value Q(s,a) as
+1 2
+nodesarevisitedmoreoften. Inourexperiments,c =1.25andc =19652.
+1 2
+Fork < l,thenextstateandrewardarelookedupinthestatetransitionandrewardtablesk = S(sk−1,ak),
+rk =R(sk−1,ak).
+Expansion: At the final time-step l of the simulation, the reward and state are computed by the dynamics
+function, rl,sl = g (sl−1,al), and stored in the corresponding tables, R(sl−1,al) = rl,S(sl−1,al) = sl. The
+θ
+policy and value are computed by the prediction function, pl,vl = f (sl). A new node, corresponding to state
+θ
+sl is added to the search tree. Each edge (sl,a) from the newly expanded node is initialized to {N(sl,a) =
+0,Q(sl,a) = 0,P(sl,a) = pl}. Notethatthesearchalgorithmmakesatmostonecalltothedynamicsfunction
+andpredictionfunctionrespectivelypersimulation;thecomputationalcostisofthesameorderasinAlphaZero.
+Backup:Attheendofthesimulation,thestatisticsalongthetrajectoryareupdated. Thebackupisgeneralized
+tothecasewheretheenvironmentcanemitintermediaterewards,haveadiscountγdifferentfrom1,andthevalue
+estimates are unbounded 3. For k = l...0, we form an l−k-step estimate of the cumulative discounted reward,
+bootstrappingfromthevaluefunctionvl,
+l−1−k
+(cid:88)
+Gk = γτr +γl−kvl (3)
+k+1+τ
+τ=0
+Fork =l...1,weupdatethestatisticsforeachedge(sk−1,ak)inthesimulationpathasfollows,
+N(sk−1,ak)·Q(sk−1,ak)+Gk
+Q(sk−1,ak):=
+N(sk−1,ak)+1 (4)
+N(sk−1,ak):=N(sk−1,ak)+1
+Intwo-playerzerosumgamesthevaluefunctionsareassumedtobeboundedwithinthe[0,1]interval. This
+choice allows us to combine value estimates with probabilities using the pUCT rule (Eqn 2). However, since in
+manyenvironmentsthevalueisunbounded,itisnecessarytoadjustthepUCTrule. Asimplesolutionwouldbe
+to use the maximum score that can be observed in the environment to either re-scale the value or set the pUCT
+constants appropriately [33]. However, both solutions are game specific and require adding prior knowledge to
+the MuZero algorithm. To avoid this, MuZero computes normalized Q value estimates Q ∈ [0,1] by using the
+minimum-maximum values observed in the search tree up to that point. When a node is reached during the
+selectionstage,thealgorithmcomputesthenormalizedQvaluesofitsedgestobeusedinthepUCTruleusingthe
+equationbelow:
+Q(sk−1,ak)−min Q(s,a)
+Q(sk−1,ak)= s,a∈Tree (5)
+max Q(s,a)−min Q(s,a)
+s,a∈Tree s,a∈Tree
+3Inboardgamesthediscountisassumedtobe1andtherearenointermediaterewards.
+12
+
+--- PAGE 13 ---
+Appendix C Hyperparameters
+For simplicity we preferentially use the same architectural choices and hyperparameters as in previous work.
+Specifically,westartedwiththenetworkarchitectureandsearchchoicesofAlphaZero[39]. Forboardgames,we
+usethesameUCBconstants,dirichletexplorationnoiseandthesame800simulationspersearchasinAlphaZero.
+DuetothemuchsmallerbranchingfactorandsimplerpoliciesinAtari,weonlyused50simulationspersearch
+tospeedupexperiments. AsshowninFigure3B,thealgorithmisnotverysensitivetothischoice. Wealsousethe
+samediscount(0.997)andvaluetransformation(seeNetworkArchitecturesection)asR2D2[21].
+Forparametervaluesnotmentionedinthetext,pleaserefertothepseudocode.
+Appendix D Data Generation
+Togeneratetrainingdata,thelatestcheckpointofthenetwork(updatedevery1000trainingsteps)isusedtoplay
+gameswithMCTS.IntheboardgamesGo,chessandshogithesearchisrunfor800simulationspermovetopick
+anaction;inAtariduetothemuchsmalleractionspace50simulationspermovearesufficient.
+For board games, games are sent to the training job as soon as they finish. Due to the much larger length of
+Atari games (up to 30 minutes or 108,000 frames), intermediate sequences are sent every 200 moves. In board
+games, thetraining job keeps an in-memoryreplay buffer of themost recent 1 milliongames received; in Atari,
+wherethevisualobservationsarelarger,themostrecent125thousandsequencesoflength200arekept.
+During the generation of experience in the board game domains, the same exploration scheme as the one
+described in AlphaZero [39] is used. Using a variation of this scheme, in the Atari domain actions are sampled
+fromthevisitcountdistributionthroughoutthedurationofeachgame,insteadofjustthefirstkmoves. Moreover,
+thevisitcountdistributionisparametrizedusingatemperatureparameterT:
+N(α)1/T
+p = (6)
+α (cid:80) N(b)1/T
+b
+T is decayed as a function of the number of training steps of the network. Specifically, for the first 500k
+trainingstepsatemperatureof1isused,forthenext250kstepsatemperatureof0.5andfortheremaining250ka
+temperatureof0.25. Thisensuresthattheactionselectionbecomesgreedierastrainingprogresses.
+Appendix E Network Input
+RepresentationFunction
+The history over board states used as input to the representation function for Go, chess and shogi is represented
+similarly to AlphaZero [39]. In Go and shogi we encode the last 8 board states as in AlphaZero; in chess we
+increasedthehistorytothelast100boardstatestoallowcorrectpredictionofdraws.
+ForAtari,theinputoftherepresentationfunctionincludesthelast32RGBframesatresolution96x96along
+with the last 32 actions that led to each of those frames. We encode the historical actions because unlike board
+games,anactioninAtaridoesnotnecessarilyhaveavisibleeffectontheobservation. RGBframesareencoded
+as one plane per color, rescaled to the range [0,1], for red, green and blue respectively. We perform no other
+normalization,whiteningorotherpreprocessingoftheRGBinput. Historicalactionsareencodedassimplebias
+planes,scaledasa/18(thereare18totalactionsinAtari).
+DynamicsFunction
+Theinputtothedynamicsfunctionisthehiddenstateproducedbytherepresentationfunctionorpreviousappli-
+cation of the dynamics function, concatenated with a representation of the action for the transition. Actions are
+encodedspatiallyinplanesofthesameresolutionasthehiddenstate. InAtari,thisresolutionis6x6(seedescrip-
+tionofdownsamplinginNetworkArchitecturesection),inboardgamesthisisthesameastheboardsize(19x19
+forGo,8x8forchess,9x9forshogi).
+13
+
+--- PAGE 14 ---
+InGo,anormalaction(playingastoneontheboard)isencodedasanallzeroplane,withasingleoneinthe
+positionoftheplayedstone. Apassisencodedasanallzeroplane.
+Inchess,8planesareusedtoencodetheaction. Thefirstone-hotplaneencodeswhichpositionthepiecewas
+movedfrom. Thenexttwoplanesencodewhichpositionthepiecewasmovedto: aone-hotplanetoencodethe
+targetposition,ifontheboard,andasecondbinaryplanetoindicatewhetherthetargetwasvalid(ontheboard)or
+not. Thisisnecessarybecauseforsimplicityourpolicyactionspaceenumeratesasupersetofallpossibleactions,
+not all of which are legal, and we use the same action space for policy prediction and to encode the dynamics
+functioninput. Theremainingfivebinaryplanesareusedtoindicatethetypeofpromotion,ifany(queen,knight,
+bishop,rook,none).
+The encoding for shogi is similar, with a total of 11 planes. We use the first 8 planes to indicate where the
+piecemovedfrom-eitheraboardposition(firstone-hotplane)orthedropofoneoftheseventypesofprisoner
+(remaining7binaryplanes). Thenexttwoplanesareusedtoencodethetargetasinchess. Theremainingbinary
+planeindicateswhetherthemovewasapromotionornot.
+InAtari,anactionisencodedasaonehotvectorwhichistiledappropriatelyintoplanes.
+Appendix F Network Architecture
+Thepredictionfunctionpk,vk =f (sk)usesthesamearchitectureasAlphaZero:oneortwoconvolutionallayers
+θ
+thatpreservetheresolutionbutreducethenumberofplanes,followedbyafullyconnectedlayertothesizeofthe
+output.
+ForvalueandrewardpredictioninAtariwefollow[30]inscalingtargetsusinganinvertibletransformh(x)=
+(cid:112)
+sign(x)( |x|+1−1+(cid:15)x), where(cid:15) = 0.001inallourexperiments. Wethenapplyatransformationφtothe
+scalarrewardandvaluetargetsinordertoobtainequivalentcategoricalrepresentations. Weuseadiscretesupport
+setofsize601withonesupportforeveryintegerbetween−300and300. Underthistransformation,eachscalar
+isrepresentedasthelinearcombinationofitstwoadjacentsupports,suchthattheoriginalvaluecanberecovered
+by x = x ∗p +x ∗p . As an example, a target of 3.7 would be represented as a weight of 0.3
+low low high high
+on the support for 3 and a weight of 0.7 on the support for 4. The value and reward outputs of the network are
+alsomodeledusingasoftmaxoutputofsize601. Duringinferencetheactualvalueandrewardsareobtainedby
+firstcomputingtheirexpectedvalueundertheirrespectivesoftmaxdistributionandsubsequentlybyinvertingthe
+scalingtransformation. Scalingandtransformationofthevalueandrewardhappenstransparentlyonthenetwork
+sideandisnotvisibletotherestofthealgorithm.
+BoththerepresentationanddynamicsfunctionusethesamearchitectureasAlphaZero,butwith16insteadof
+20residualblocks[15]. Weuse3x3kernelsand256hiddenplanesforeachconvolution.
+ForAtari,whereobservationshavelargespatialresolution,therepresentationfunctionstartswithasequence
+of convolutions with stride 2 to reduce the spatial resolution. Specifically, starting with an input observation of
+resolution96x96and128planes(32historyframesof3colorchannelseach,concatenatedwiththecorresponding
+32actionsbroadcasttoplanes),wedownsampleasfollows:
+• 1convolutionwithstride2and128outputplanes,outputresolution48x48.
+• 2residualblockswith128planes
+• 1convolutionwithstride2and256outputplanes,outputresolution24x24.
+• 3residualblockswith256planes.
+• Averagepoolingwithstride2,outputresolution12x12.
+• 3residualblockswith256planes.
+• Averagepoolingwithstride2,outputresolution6x6.
+Thekernelsizeis3x3foralloperations.
+For the dynamics function (which always operates at the downsampled resolution of 6x6), the action is first
+encodedasanimage,thenstackedwiththehiddenstateofthepreviousstepalongtheplanedimension.
+14
+
+--- PAGE 15 ---
+Appendix G Training
+Duringtraining,theMuZeronetworkisunrolledforK hypotheticalstepsandalignedtosequencessampledfrom
+thetrajectoriesgeneratedbytheMCTSactors. Sequencesareselectedbysamplingastatefromanygameinthe
+replaybuffer,thenunrollingforKstepsfromthatstate.InAtari,samplesaredrawnaccordingtoprioritizedreplay
+[35],withpriorityP(i)= (cid:80)
+pα
+i pα ,wherep i =|ν i −z i |,ν isthesearchvalueandztheobservedn-stepreturn. To
+k k
+correctforsamplingbiasintroducedbytheprioritizedsampling,wescalethelossusingtheimportancesampling
+ratiow =(1 · 1 )β. Inallourexperiments,wesetα=β =1. Forboardgames,statesaresampleduniformly.
+i N P(i)
+Each observation o along the sequence also has a corresponding MCTS policy π , estimated value ν and
+t t t
+environmentrewardu . Ateachunrolledstepk thenetworkhasalosstothevalue,policyandrewardtargetfor
+t
+thatstep, summedtoproducethetotallossfortheMuZeronetwork(seeEquation1). Notethat, inboardgames
+withoutintermediaterewards, weomittherewardpredictionloss. Forboardgames, webootstrapdirectlytothe
+endofthegame,equivalenttopredictingthefinaloutcome;forAtariwebootstrapforn=10stepsintothefuture.
+Tomaintainroughlysimilarmagnitudeofgradientacrossdifferentunrollsteps, wescalethegradientintwo
+separatelocations:
+• We scale the loss of each head by 1, where K is the number of unroll steps. This ensures that the total
+K
+gradienthassimilarmagnitudeirrespectiveofhowmanystepsweunrollfor.
+• We also scale the gradient at the start of the dynamics function by 1. This ensures that the total gradient
+2
+appliedtothedynamicsfunctionstaysconstant.
+In the experiments reported in this paper, we always unroll for K = 5 steps. For a detailed illustration, see
+Figure1.
+Toimprovethelearningprocessandboundtheactivations,wealsoscalethehiddenstatetothesamerangeas
+theactioninput([0,1]): s = s−min(s) .
+scaled max(s)−min(s)
+AllexperimentswererunusingthirdgenerationGoogleCloudTPUs[12]. Foreachboardgame,weused16
+TPUsfortrainingand1000TPUsforselfplay.ForeachgameinAtari,weused8TPUsfortrainingand32TPUsfor
+selfplay.ThemuchsmallerproportionofTPUsusedforactinginAtariisduetothesmallernumberofsimulations
+permove(50insteadof800)andthesmallersizeofthedynamicsfunctioncomparedtotherepresentationfunction.
+Appendix H Reanalyze
+To improve the sample efficiency of MuZero we introduced a second variant of the algorithm, MuZero Reana-
+lyze. MuZero Reanalyze revisits its past time-steps and re-executes its search using the latest model parameters,
+potentially resulting in a better quality policy than the original search. This fresh policy is used as the policy
+target for 80% of updates during MuZero training. Furthermore, a target network [25] ·,v− = f (s0), based
+θ−
+on recent parameters θ−, is used to provide a fresher, stable n-step bootstrapped target for the value function,
+z = u +γu +...+γn−1u +γnv− . Inaddition,severalotherhyperparameterswereadjusted–pri-
+t t+1 t+2 t+n t+n
+marilytoincreasesamplereuseandavoidoverfittingofthevaluefunction. Specifically,2.0samplesweredrawn
+per state, instead of 0.1; the value target was weighted down to 0.25 compared to weights of 1.0 for policy and
+rewardtargets;andthen-stepreturnwasreducedton=5stepsinsteadofn=10steps.
+Appendix I Evaluation
+We evaluated the relative strength of MuZero (Figure 2) in board games by measuring the Elo rating of each
+player. We estimate the probability that player a will defeat player b by a logistic function p(adefeatsb) =
+(1+10(celo(e(b)−e(a))))−1,andestimatetheratingse(·)byBayesianlogisticregression,computedbytheBayesElo
+program[6]usingthestandardconstantc =1/400.
+elo
+Elo ratings were computed from the results of a 800 simulations per move tournament between iterations of
+MuZero during training, and also a baseline player: either Stockfish, Elmo or AlphaZero respectively. Baseline
+15
+
+--- PAGE 16 ---
+FigureS1: RepeatabilityofMuZeroinAtariforfivegames. Totalrewardisshownonthey-axis,millionsof
+trainingstepsonthex-axis. Darklineindicatesmedianscoreacross10separatetrainingruns,lightlinesindicate
+individualtrainingruns,andtheshadedregionindicates25thto75thpercentile.
+playersusedanequivalentsearchtimeof100mspermove. TheEloratingofthebaselineplayerswasanchoredto
+publiclyavailablevalues[39].
+InAtari,wecomputedmeanrewardover1000episodespergame,limitedtothestandard30minutesor108,000
+framesperepisode[27],using50simulationspermoveunlessindicatedotherwise. Inordertomitigatetheeffects
+ofthedeterministicnatureoftheAtarisimulatorweemployedtwodifferentevaluationstrategies:30nooprandom
+startsandhumanstarts. Fortheformer, atthebeginningofeachepisodearandomnumberofbetween0and30
+noop actions are applied to the simulator before handing control to the agent. For the latter, start positions are
+sampledfromhumanexpertplaytoinitializetheAtarisimulatorbeforehandingthecontroltotheagent[27].
+16
+
+--- PAGE 17 ---
+Game Random Human SimPLe[20] Ape-X[18] R2D2[21] MuZero MuZeronormalized
+alien 227.75 7,127.80 616.90 40,805.00 229,496.90 741,812.63 10,747.5%
+amidar 5.77 1,719.53 74.30 8,659.00 29,321.40 28,634.39 1,670.5%
+assault 222.39 742.00 527.20 24,559.00 108,197.00 143,972.03 27,664.9%
+asterix 210.00 8,503.33 1,128.30 313,305.00 999,153.30 998,425.00 12,036.4%
+asteroids 719.10 47,388.67 793.60 155,495.00 357,867.70 678,558.64 1,452.4%
+atlantis 12,850.00 29,028.13 20,992.50 944,498.00 1,620,764.00 1,674,767.20 10,272.6%
+bankheist 14.20 753.13 34.20 1,716.00 24,235.90 1,278.98 171.2%
+battlezone 2,360.00 37,187.50 4,031.20 98,895.00 751,880.00 848,623.00 2,429.9%
+beamrider 363.88 16,926.53 621.60 63,305.00 188,257.40 454,993.53 2,744.9%
+berzerk 123.65 2,630.42 - 57,197.00 53,318.70 85,932.60 3,423.1%
+bowling 23.11 160.73 30.00 18.00 219.50 260.13 172.2%
+boxing 0.05 12.06 7.80 100.00 98.50 100.00 832.2%
+breakout 1.72 30.47 16.40 801.00 837.70 864.00 2,999.2%
+centipede 2,090.87 12,017.04 - 12,974.00 599,140.30 1,159,049.27 11,655.6%
+choppercommand 811.00 7,387.80 979.40 721,851.00 986,652.00 991,039.70 15,056.4%
+crazyclimber 10,780.50 35,829.41 62,583.60 320,426.00 366,690.70 458,315.40 1,786.6%
+defender 2,874.50 18,688.89 - 411,944.00 665,792.00 839,642.95 5,291.2%
+demonattack 152.07 1,971.00 208.10 133,086.00 140,002.30 143,964.26 7,906.4%
+doubledunk -18.55 -16.40 - 24.00 23.70 23.94 1,976.3%
+enduro 0.00 860.53 - 2,177.00 2,372.70 2,382.44 276.9%
+fishingderby -91.71 -38.80 -90.70 44.00 85.80 91.16 345.6%
+freeway 0.01 29.60 16.70 34.00 32.50 33.03 111.6%
+frostbite 65.20 4,334.67 236.90 9,329.00 315,456.40 631,378.53 14,786.7%
+gopher 257.60 2,412.50 596.80 120,501.00 124,776.30 130,345.58 6,036.8%
+gravitar 173.00 3,351.43 173.40 1,599.00 15,680.70 6,682.70 204.8%
+hero 1,026.97 30,826.38 2,656.60 31,656.00 39,537.10 49,244.11 161.8%
+icehockey -11.15 0.88 -11.60 33.00 79.30 67.04 650.0%
+jamesbond 29.00 302.80 100.50 21,323.00 25,354.00 41,063.25 14,986.9%
+kangaroo 52.00 3,035.00 51.20 1,416.00 14,130.70 16,763.60 560.2%
+krull 1,598.05 2,665.53 2,204.80 11,741.00 218,448.10 269,358.27 25,083.4%
+kungfumaster 258.50 22,736.25 14,862.50 97,830.00 233,413.30 204,824.00 910.1%
+montezumarevenge 0.00 4,753.33 - 2,500.00 2,061.30 0.00 0.0%
+mspacman 307.30 6,951.60 1,480.00 11,255.00 42,281.70 243,401.10 3,658.7%
+namethisgame 2,292.35 8,049.00 2,420.70 25,783.00 58,182.70 157,177.85 2,690.5%
+phoenix 761.40 7,242.60 - 224,491.00 864,020.00 955,137.84 14,725.3%
+pitfall -229.44 6,463.69 - -1.00 0.00 0.00 3.4%
+pong -20.71 14.59 12.80 21.00 21.00 21.00 118.2%
+privateeye 24.94 69,571.27 35.00 50.00 5,322.70 15,299.98 22.0%
+qbert 163.88 13,455.00 1,288.80 302,391.00 408,850.00 72,276.00 542.6%
+riverraid 1,338.50 17,118.00 1,957.80 63,864.00 45,632.10 323,417.18 2,041.1%
+roadrunner 11.50 7,845.00 5,640.60 222,235.00 599,246.70 613,411.80 7,830.5%
+robotank 2.16 11.94 - 74.00 100.40 131.13 1,318.7%
+seaquest 68.40 42,054.71 683.30 392,952.00 999,996.70 999,976.52 2,381.5%
+skiing -17,098.09 -4,336.93 - -10,790.00 -30,021.70 -29,968.36 -100.9%
+solaris 1,236.30 12,326.67 - 2,893.00 3,787.20 56.62 -10.6%
+spaceinvaders 148.03 1,668.67 - 54,681.00 43,223.40 74,335.30 4,878.7%
+stargunner 664.00 10,250.00 - 434,343.00 717,344.00 549,271.70 5,723.0%
+surround -9.99 6.53 - 7.00 9.90 9.99 120.9%
+tennis -23.84 -8.27 - 24.00 -0.10 0.00 153.1%
+timepilot 3,568.00 5,229.10 - 87,085.00 445,377.30 476,763.90 28,486.9%
+tutankham 11.43 167.59 - 273.00 395.30 491.48 307.4%
+upndown 533.40 11,693.23 3,350.30 401,884.00 589,226.90 715,545.61 6,407.0%
+venture 0.00 1,187.50 - 1,813.00 1,970.70 0.40 0.0%
+videopinball 0.00 17,667.90 - 565,163.00 999,383.20 981,791.88 5,556.9%
+wizardofwor 563.50 4,756.52 - 46,204.00 144,362.70 197,126.00 4,687.9%
+yarsrevenge 3,092.91 54,576.93 5,664.30 148,595.00 995,048.40 553,311.46 1,068.7%
+zaxxon 32.50 9,173.30 - 42,286.00 224,910.70 725,853.90 7,940.5%
+#best 0 5 0 5 13 37
+TableS1: EvaluationofMuZeroinAtariforindividualgameswith30randomno-opstarts. Bestresultfor
+eachgamehighlightedinbold. Eachepisodeislimitedtoamaximumof30minutesofgametime(108kframes).
+SimPLewasonlyevaluatedon36ofthe57games,unavailableresultsareindicatedwith‘-’. Humannormalized
+scoreiscalculatedass = sagent−srandom .
+normalized shuman−srandom
+17
+
+--- PAGE 18 ---
+Game Random Human Ape-X[18] MuZero MuZeronormalized
+alien 128.30 6,371.30 17,732.00 713,387.37 11,424.9%
+amidar 11.79 1,540.43 1,047.00 26,638.80 1,741.9%
+assault 166.95 628.89 24,405.00 143,900.58 31,115.2%
+asterix 164.50 7,536.00 283,180.00 985,801.95 13,370.9%
+asteroids 877.10 36,517.30 117,303.00 606,971.12 1,700.6%
+atlantis 13,463.00 26,575.00 918,715.00 1,653,202.50 12,505.6%
+bankheist 21.70 644.50 1,201.00 962.11 151.0%
+battlezone 3,560.00 33,030.00 92,275.00 791,387.00 2,673.3%
+beamrider 254.56 14,961.02 72,234.00 419,460.76 2,850.5%
+berzerk 196.10 2,237.50 55,599.00 87,308.60 4,267.3%
+bowling 35.16 146.46 30.00 194.03 142.7%
+boxing -1.46 9.61 81.00 56.60 524.5%
+breakout 1.77 27.86 757.00 849.59 3,249.6%
+centipede 1,925.45 10,321.89 5,712.00 1,138,294.60 13,533.9%
+choppercommand 644.00 8,930.00 576,602.00 932,370.10 11,244.6%
+crazyclimber 9,337.00 32,667.00 263,954.00 412,213.90 1,726.9%
+defender 1,965.50 14,296.00 399,865.00 823,636.00 6,663.7%
+demonattack 208.25 3,442.85 133,002.00 143,858.05 4,441.0%
+doubledunk -15.97 -14.37 22.00 23.12 2,443.1%
+enduro -81.84 740.17 2,042.00 2,264.20 285.4%
+fishingderby -77.11 5.09 22.00 57.45 163.7%
+freeway 0.17 25.61 29.00 28.38 110.9%
+frostbite 90.80 4,202.80 6,512.00 613,944.04 14,928.3%
+gopher 250.00 2,311.00 121,168.00 129,218.68 6,257.6%
+gravitar 245.50 3,116.00 662.00 3,390.65 109.6%
+hero 1,580.30 25,839.40 26,345.00 44,129.55 175.4%
+icehockey -9.67 0.53 24.00 52.40 608.5%
+jamesbond 33.50 368.50 18,992.00 39,107.20 11,663.8%
+kangaroo 100.00 2,739.00 578.00 13,210.50 496.8%
+krull 1,151.90 2,109.10 8,592.00 257,706.70 26,802.6%
+kungfumaster 304.00 20,786.80 72,068.00 174,623.60 851.1%
+montezumarevenge 25.00 4,182.00 1,079.00 57.10 0.8%
+mspacman 197.80 15,375.05 6,135.00 230,650.24 1,518.4%
+namethisgame 1,747.80 6,796.00 23,830.00 152,723.62 2,990.7%
+phoenix 1,134.40 6,686.20 188,789.00 943,255.07 16,969.6%
+pitfall -348.80 5,998.91 -273.00 -801.10 -7.1%
+pong -17.95 15.46 19.00 19.20 111.2%
+privateeye 662.78 64,169.07 865.00 5,067.59 6.9%
+qbert 159.38 12,085.00 380,152.00 39,302.10 328.2%
+riverraid 588.30 14,382.20 49,983.00 315,353.33 2,281.9%
+roadrunner 200.00 6,878.00 127,112.00 580,445.00 8,688.9%
+robotank 2.42 8.94 69.00 128.80 1,938.3%
+seaquest 215.50 40,425.80 377,180.00 997,601.01 2,480.4%
+skiing -15,287.35 -3,686.58 -11,359.00 -29,400.75 -121.7%
+solaris 2,047.20 11,032.60 3,116.00 2,108.08 0.7%
+spaceinvaders 182.55 1,464.90 50,699.00 57,450.41 4,465.9%
+stargunner 697.00 9,528.00 432,958.00 539,342.70 6,099.5%
+surround -9.72 5.37 6.00 8.46 120.5%
+tennis -21.43 -6.69 23.00 -2.30 129.8%
+timepilot 3,273.00 5,650.00 71,543.00 405,829.30 16,935.5%
+tutankham 12.74 138.30 128.00 351.76 270.0%
+upndown 707.20 9,896.10 347,912.00 607,807.85 6,606.9%
+venture 18.00 1,039.00 936.00 21.10 0.3%
+videopinball 0.00 15,641.09 873,989.00 970,881.10 6,207.2%
+wizardofwor 804.00 4,556.00 46,897.00 196,279.20 5,209.9%
+yarsrevenge 1,476.88 47,135.17 131,701.00 888,633.84 1,943.0%
+zaxxon 475.00 8,443.00 37,672.00 592,238.70 7,426.8%
+#best 0 6 5 46
+TableS2: EvaluationofMuZeroinAtariforindividualgamesfromhumanstartpositions. Bestresultfor
+eachgamehighlightedinbold. Eachepisodeislimitedtoamaximumof30minutesofgametime(108kframes).
+18
+
+--- PAGE 19 ---
+Model
+
+s0 =h (o ,...,o )
+θ 1 t 
+rk,sk =g (sk−1,ak) pk,vk,rk =µ (o ,...,o ,a1,...,ak)
+θ θ 1 t
+pk,vk =f (sk) 
+θ
+Search
+ν ,π =MCTS(s0,µ )
+t t t θ
+a ∼π
+t t
+LearningRule
+pk,vk,rk =µ (o ,...,o ,a ,...,a )
+t t t θ 1 t t+1 t+k
+(cid:26)
+u forgames
+z = T
+t u +γu +...+γn−1u +γnν forgeneralMDPs
+t+1 t+2 t+n t+n
+K
+(cid:88)
+l (θ)= lr(u ,rk)+lv(z ,vk)+lp(π ,pk)+c||θ||2
+t t+k t t+k t t+k t
+k=0
+Losses
+(cid:26)
+0 forgames
+lr(u,r)=
+φ(u)T logr forgeneralMDPs
+(cid:26) (z−q)2 forgames
+lv(z,q)=
+φ(z)T logq forgeneralMDPs
+lp(π,p)=πT logp
+Figure S2: Equations summarising the MuZero algorithm. Here, φ(x) refers to the representation of a real
+numberxthroughalinearcombinationofitsadjacentintegers,asdescribedintheNetworkArchitecturesection.
+19
+
+--- PAGE 20 ---
+FigureS3: DetailsofMuZeroevaluations(A-B)andpolicyimprovementablations(C-D).(A-B)Distribution
+ofevaluationdepthinthesearchtreeforthelearnedmodelfortheevaluationsinFigure3A-B.Thenetworkwas
+trained over 5 hypothetical steps, as indicated by the red line. Dark blue line indicates median depth from the
+root, dark shaded region shows 25th to 75th percentile, light shaded region shows 5th to 95th percentile. (C)
+PolicyimprovementinMs. Pacman-asinglenetworkwastrainedat50simulationspersearchandisevaluatedat
+differentnumbersofsimulationspersearch,includingplayingaccordingtotheargmaxoftherawpolicynetwork.
+Thepolicyimprovementeffectofthesearchovertherawpolicynetworkisclearlyvisiblethroughouttraining.This
+consistentgapbetweentheperformancewithandwithoutsearchhighlightsthepolicyimprovementthatMuZero
+exploits,bycontinuallyupdatingtowardstheimprovedpolicy,toefficientlyprogresstowardstheoptimalpolicy.
+(D) Policy improvement in Go - a single network was trained at 800 simulations per search and is evaluated at
+different numbers of simulations per search. In Go, the playing strength improvement from longer searches is
+much larger than in Ms. Pacman and persists throughout training, consistent with previous results in [40]. This
+suggests,asmightintuitivelybeexpected,thatthebenefitofmodelsisgreatestinprecisionplanningdomains.
+20
+
+--- PAGE 21 ---
+Figure S4: Learning curves of MuZero in Atari for individual games. Total reward is shown on the y-axis,
+millionsoftrainingstepsonthex-axis. Lineindicatesmeanscoreacross1000evaluationgames, shadedregion
+indicatesstandarddeviation. 21

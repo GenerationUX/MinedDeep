@@ -1,0 +1,362 @@
+
+--- PAGE 1 ---
+RESEARCH
+COMPUTERSCIENCE programmers,combinedwithahigh-performance
+alpha-betasearchthatexpandsavastsearchtree
+byusingalargenumberofcleverheuristicsand
+A general reinforcement learning
+domain-specificadaptations.In(10)wedescribe
+theseaugmentations,focusingonthe2016Top
+algorithm that masters chess, shogi, Chess Engine Championship (TCEC) season 9
+worldchampionStockfish(11);otherstrongchess
+and Go through self-play programs,includingDeepBlue,useverysimilar
+architectures(1,12).
+Intermsofgametreecomplexity,shogiisa
+DavidSilver1,2*†,ThomasHubert1*,JulianSchrittwieser1*,IoannisAntonoglou1,
+substantiallyhardergamethanchess(13,14):It
+isplayedonalargerboardwithawidervarietyof
+MatthewLai1,ArthurGuez1,MarcLanctot1,LaurentSifre1,DharshanKumaran1,
+pieces;anycapturedopponentpieceswitches
+ThoreGraepel1,TimothyLillicrap1,KarenSimonyan1,DemisHassabis1†
+sidesandmaysubsequentlybedroppedanywhere
+ontheboard.Thestrongestshogiprograms,such
+Thegameofchessisthelongest-studieddomaininthehistoryofartificialintelligence.
+asthe2017ComputerShogiAssociation(CSA)
+Thestrongestprogramsarebasedonacombinationofsophisticatedsearchtechniques,
+worldchampionElmo,haveonlyrecentlyde-
+domain-specificadaptations,andhandcraftedevaluationfunctionsthathavebeenrefined
+featedhumanchampions(15).Theseprograms
+byhumanexpertsoverseveraldecades.Bycontrast,theAlphaGoZeroprogramrecently
+useanalgorithmsimilartothoseusedbycom-
+achievedsuperhumanperformanceinthegameofGobyreinforcementlearningfromself-play.
+puterchessprograms,againbasedonahighly
+Inthispaper,wegeneralizethisapproachintoasingleAlphaZeroalgorithmthatcanachieve
+optimizedalpha-betasearchenginewithmany
+superhumanperformanceinmanychallenginggames.Startingfromrandomplayandgiven
+domain-specificadaptations.
+nodomainknowledgeexceptthegamerules,AlphaZeroconvincinglydefeatedaworld
+AlphaZeroreplacesthehandcrafted knowl-
+championprograminthegamesofchessandshogi(Japanesechess),aswellasGo.
+edgeanddomain-specificaugmentationsused
+T
+intraditionalgame-playingprogramswithdeep
+he study of computer chess is as old as ofGobyrepresentingGoknowledgewiththe neuralnetworks,ageneral-purposereinforce-
+computerscienceitself.CharlesBabbage, useofdeepconvolutionalneuralnetworks(7,8), mentlearningalgorithm,andageneral-purpose
+Alan Turing, Claude Shannon, and John trained solely by reinforcement learning from treesearchalgorithm.
+von Neumann devised hardware, algo- gamesofself-play(9).Inthispaper,weintroduce Insteadofahandcraftedevaluationfunction
+rithms,andtheorytoanalyzeandplaythe AlphaZero,amoregenericversionoftheAlphaGo andmove-orderingheuristics,AlphaZerousesa
+game of chess. Chess subsequently became a Zero algorithm that accommodates, without deepneuralnetwork(p,v)=f q(s)withparam-
+grandchallengetaskforagenerationofartifi- specialcasing,abroaderclassofgamerules. etersq.Thisneuralnetworkf q(s)takestheboard
+cialintelligenceresearchers,culminatinginhigh- WeapplyAlphaZerotothegamesofchessand position s as an input and outputs a vector of
+performancecomputerchessprogramsthatplay shogi,aswellasGo,byusingthesamealgorithm moveprobabilitiespwithcomponentsp a=Pr(a|s)
+atasuperhumanlevel(1,2).However,thesesys- andnetworkarchitectureforallthreegames. foreachactionaandascalarvaluevestimating
+temsarehighlytunedtotheirdomainandcan- Ourresultsdemonstratethatageneral-purpose theexpectedoutcomezofthegamefromposi-
+not be generalized to other games without reinforcement learning algorithm can learn, tions, v≈E½zjs(cid:2).AlphaZerolearnsthesemove
+substantialhumaneffort,whereasgeneralgame- tabularasa—withoutdomain-specifichuman probabilitiesandvalueestimatesentirelyfrom
+playingsystems(3,4)remaincomparativelyweak. knowledgeordata,asevidencedbythesame self-play;thesearethenusedtoguideitssearch
+A long-standing ambition of artificial intelli- algorithmsucceedinginmultipledomains— infuturegames.
+gencehasbeentocreateprogramsthatcanin- superhumanperformanceacrossmultiplechal- Insteadofanalpha-betasearchwithdomain-
+steadlearnforthemselvesfromfirstprinciples lenginggames. specificenhancements,AlphaZerousesageneral-
+(5, 6). Recently, the AlphaGo Zero algorithm A landmark for artificial intelligence was purposeMonteCarlotreesearch(MCTS)algorithm.
+achievedsuperhumanperformanceinthegame achievedin1997whenDeepBluedefeatedthe Each search consists of a series of simulated
+human world chess champion (1). Computer gamesofself-playthattraverseatreefromroot
+chess programs continuedtoprogressstead- states untilaleafstateisreached.Eachsim-
+root
+1DeepMind,6PancrasSquare,LondonN1C4AG,UK.2University ily beyond humanlevel in the following two ulationproceedsbyselectingineachstatesa
+CollegeLondon,GowerStreet,LondonWC1E6BT,UK. decades. These programs evaluate positions by move a with low visit count (not previously
+*Theseauthorscontributedequallytothiswork.
+†Correspondingauthor.Email:davidsilver@google.com(D.S.); usinghandcraftedfeaturesandcarefullytuned frequentlyexplored),highmoveprobability,and
+dhcontact@google.com(D.H.) weights,constructedbystronghumanplayersand high value (averaged over the leaf states of
+Fig.1.TrainingAlphaZerofor700,000steps.Eloratingswere (B)PerformanceofAlphaZeroinshogicomparedwiththe2017
+computedfromgamesbetweendifferentplayerswhereeachplayer CSAworldchampionprogramElmo.(C)PerformanceofAlphaZero
+wasgiven1spermove.(A)PerformanceofAlphaZeroinchess inGocomparedwithAlphaGoLeeandAlphaGoZero(20blocks
+comparedwiththe2016TCECworldchampionprogramStockfish. over3days).
+Silveretal.,Science362,1140–1144(2018) 7December2018 1of5
+Downloaded
+from
+http://science.sciencemag.org/
+on
+January
+11,
+2019
+
+--- PAGE 2 ---
+RESEARCH | REPORT
+simulationsthatselectedafroms)accordingto AsinAlphaGoZero,theboardstateisencoded adjacenciesbetweenpointsontheboard(match-
+thecurrentneuralnetworkf q.Thesearchreturns byspatialplanesbasedonlyonthebasicrulesfor ingthelocalstructureofconvolutionalnetworks).
+avectorprepresentingaprobabilitydistribution eachgame.Theactionsareencodedbyeither By contrast, the rules of chess and shogi are
+overmoves,p a=Pr(a|s
+root
+). spatialplanesoraflatvector,againbasedonly positiondependent(e.g.,pawnsmaymovetwo
+Theparametersqofthedeepneuralnetwork onthebasicrulesforeachgame(10). stepsforwardfromthesecondrankandpro-
+inAlphaZeroaretrainedbyreinforcementlearn- AlphaGo Zero used a convolutional neural mote on the eighth rank) and include long-
+ingfromself-playgames,startingfromrandomly networkarchitecturethatisparticularlywell- rangeinteractions(e.g.,thequeenmaytraverse
+initializedparametersq.Eachgameisplayedby suitedto Go: The rulesof the game are trans- the board in one move). Despite these differ-
+runninganMCTSfromthecurrentpositions = lationallyinvariant(matchingtheweight-sharing ences,AlphaZerousesthesameconvolutional
+root
+s t atturn tandthen selecting amove, a t ~p t, structureofconvolutionalnetworks)andarede- networkarchitectureasAlphaGoZeroforchess,
+eitherproportionally(forexploration)orgreedily finedintermsoflibertiescorrespondingtothe shogi,andGo.
+(forexploitation)withrespecttothevisitcounts
+attherootstate.Attheendofthegame,theter-
+minalpositions Tisscoredaccordingtotherules
+ofthegametocomputethegameoutcomez:−1
+foraloss,0foradraw,and+1forawin.The
+neural network parameters q are updated to
+minimizetheerrorbetweenthepredictedout-
+comev tandthegameoutcomezandtomaxi-
+mizethesimilarityofthepolicyvectorpttothe
+searchprobabilitiesp t.Specifically,theparam-
+etersqareadjustedbygradientdescentona
+loss function l that sums over mean-squared
+errorandcross-entropylosses
+ðp;vÞ¼f
+q
+ðsÞ;l¼ðz(cid:3)vÞ2(cid:3)pΤlogpþc‖q‖2;ð1Þ
+wherecisaparametercontrollingthelevelofL
+2
+weightregularization.Theupdatedparameters
+areusedinsubsequentgamesofself-play.
+TheAlphaZeroalgorithmdescribedinthispaper
+[see(10)forthepseudocode]differsfromtheorig-
+inalAlphaGoZeroalgorithminseveralrespects.
+AlphaGoZeroestimatedandoptimizedthe
+probabilityofwinning,exploitingthefactthat
+Gogameshaveabinarywinorlossoutcome.
+However,bothchessandshogimayendindrawn
+outcomes;itisbelievedthattheoptimalsolution
+tochessisadraw(16–18).AlphaZeroinsteades-
+timatesandoptimizestheexpectedoutcome.
+TherulesofGoareinvarianttorotationand
+reflection.ThisfactwasexploitedinAlphaGoand
+AlphaGoZerointwoways.First,trainingdata
+wereaugmentedbygeneratingeightsymmetries
+foreachposition.Second,duringMCTS,board
+positionsweretransformedbyusingarandomly
+selectedrotationorreflectionbeforebeingeval-
+uatedbytheneuralnetwork,sothattheMonte
+Carlo evaluation was averaged over different
+biases.Toaccommodateabroaderclassofgames,
+AlphaZerodoesnotassumesymmetry;therules
+ofchessandshogiareasymmetric(e.g.,pawns
+onlymoveforward,andcastlingisdifferenton Fig.2.Comparisonwithspecializedprograms.(A)TournamentevaluationofAlphaZeroinchess,
+kingside and queenside). AlphaZero does not shogi,andGoinmatchesagainst,respectively,Stockfish,Elmo,andthepreviouslypublishedversion
+augmentthetrainingdataanddoesnottrans- ofAlphaGoZero(AG0)thatwastrainedfor3days.Inthetopbar,AlphaZeroplayswhite;in
+formtheboardpositionduringMCTS. thebottombar,AlphaZeroplaysblack.EachbarshowstheresultsfromAlphaZero’sperspective:win
+In AlphaGo Zero, self-play games were gen- (W;green),draw(D;gray),orloss(L;red).(B)ScalabilityofAlphaZerowiththinkingtimecomparedwith
+eratedbythebestplayerfromallpreviousiter- StockfishandElmo.StockfishandElmoalwaysreceivefulltime(3hourspergameplus15spermove);
+ations. After each iteration of training, the timeforAlphaZeroisscaleddownasindicated.(C)ExtraevaluationsofAlphaZeroinchessagainst
+performanceofthenewplayerwasmeasured themostrecentversionofStockfishatthetimeofwriting(27)andagainstStockfishwithastrong
+againstthebestplayer;ifthenewplayerwon openingbook(28).ExtraevaluationsofAlphaZeroinshogiwerecarriedoutagainstanother
+byamarginof55%,thenitreplacedthebest strongshogiprogram,Aperyqhapaq(29),atfulltimecontrolsandagainstElmounder2017CSAworld
+player.Bycontrast,AlphaZerosimplymaintains championshiptimecontrols(10minpergameand10spermove).(D)Averageresultofchessmatches
+asingleneuralnetworkthatisupdatedcontin- startingfromdifferentopeningpositions,eithercommonhumanpositions(seealsoFig.3)orthe2016
+uallyratherthanwaitingforaniterationtocom- TCECworldchampionshipopeningpositions(seealsofig.S4),andaverageresultofshogimatches
+plete. Self-play games are always generated by startingfromcommonhumanpositions(seealsoFig.3).CSAworldchampionshipgamesstart
+usingthelatestparametersforthisneuralnetwork. fromtheinitialboardposition.MatchconditionsaresummarizedintablesS8andS9.
+Silveretal.,Science362,1140–1144(2018) 7December2018 2of5
+Downloaded
+from
+http://science.sciencemag.org/
+on
+January
+11,
+2019
+
+--- PAGE 3 ---
+RESEARCH | REPORT
+ThehyperparametersofAlphaGoZerowere We trained separate instances of AlphaZero 16second-generationTPUswereusedtotrain
+tuned by Bayesian optimization. In AlphaZero, forchess,shogi,andGo.Trainingproceededfor theneuralnetworks.Traininglastedforapprox-
+wereusethesamehyperparameters,algorithm 700,000steps(inmini-batchesof4096training imately9hoursinchess,12hoursinshogi,and
+settings,andnetworkarchitectureforallgames positions)startingfromrandomlyinitialized 13daysinGo(seetableS3)(20).Furtherdetails
+without game-specific tuning. The only excep- parameters.Duringtrainingonly,5000first- ofthetrainingprocedureareprovidedin(10).
+tionsaretheexplorationnoiseandthelearning generationtensorprocessingunits(TPUs)(19) Figure1showstheperformanceofAlphaZero
+rateschedule[see(10)forfurtherdetails]. wereusedtogenerateself-playgames,and duringself-playreinforcementlearning,asa
+Fig.3.Matchesstartingfromthemostpopularhumanopenings. AlphaZero’sperspective:win(green),draw(gray),orloss(red).
+AlphaZeroplaysagainst(A)Stockfishinchessand(B)Elmoinshogi. Thepercentagefrequencyofself-playtraininggamesinwhichthis
+Intheleftbar,AlphaZeroplayswhite,startingfromthegivenposition; openingwasselectedbyAlphaZeroisplottedagainsttheduration
+intherightbar,AlphaZeroplaysblack.Eachbarshowstheresultsfrom oftraining,inhours.
+Silveretal.,Science362,1140–1144(2018) 7December2018 3of5
+Downloaded
+from
+http://science.sciencemag.org/
+on
+January
+11,
+2019
+
+--- PAGE 4 ---
+RESEARCH | REPORT
+functionoftrainingsteps,onanElo(21)scale program(29);AlphaZeroagainwonbothmatches lowernumber of evaluations by usingits deep
+(22). In chess, AlphaZero first outperformed byawidemargin(Fig.2). neuralnetworktofocusmuchmoreselectively
+Stockfishafterjust4hours(300,000steps);in Table S7 shows 10 shogi games played by onthemostpromisingvariations(Fig.4provides
+shogi,AlphaZerofirstoutperformedElmoafter AlphaZeroinitsmatchesagainstElmo.Thefre- anexamplefromthematchagainstStockfish)—
+2hours(110,000steps);andinGo,AlphaZerofirst quencyplotsinFig.3andthetimelineinfig.S2 arguablyamorehumanlikeapproachtosearch-
+outperformedAlphaGoLee(9)after30hours showthatAlphaZerofrequentlyplaysoneofthe ing,asoriginallyproposedbyShannon(30).
+(74,000steps).Thetrainingalgorithmachieved twomostcommonhumanopeningsbutrarely AlphaZeroalsodefeatedStockfishwhengiv-
+similarperformanceinallindependentruns(see playsthesecond,deviatingontheveryfirstmove. en1= asmuchthinkingtimeasitsopponent
+10
+fig.S3),suggestingthatthehighperformanceof AlphaZero searches just 60,000 positions (i.e.,searching∼1= asmanypositions)and
+10;000
+AlphaZero’strainingalgorithmisrepeatable. persecondinchessandshogi,comparedwith won 46% of games against Elmo when given
+We evaluated the fully trained instances of 60millionforStockfishand25millionforElmo 1= asmuchtime(i.e.,searching∼1= as
+100 40;000
+AlphaZeroagainstStockfish,Elmo,andthepre- (table S4). AlphaZero may compensate for the manypositions)(Fig.2).Thehighperformance
+vious version of AlphaGo Zero in chess, shogi,
+andGo,respectively.Eachprogramwasrunon
+the hardware for which it wasdesigned (23):
+StockfishandElmoused44centralprocessing
+unit(CPU)cores(asintheTCECworldcham-
+pionship),whereasAlphaZeroandAlphaGoZero
+usedasinglemachinewithfourfirst-generation
+TPUsand44CPUcores(24).Thechessmatch
+was played against the 2016 TCEC (season 9)
+worldchampionStockfish[see(10)fordetails].
+Theshogimatchwas playedagainstthe2017
+CSAworldchampionversionofElmo(10).The
+Gomatchwasplayedagainstthepreviouslypub-
+lishedversionofAlphaGoZero[alsotrainedfor
+700,000steps(25)].Allmatcheswereplayedby
+usingtimecontrolsof3hourspergame,plusan
+additional15sforeachmove.
+In Go, AlphaZero defeated AlphaGo Zero
+(9), winning 61% of games. This demonstrates
+that a general approach can recover the per-
+formanceofanalgorithmthatexploitedboard
+symmetries to generate eight times as much
+data(seefig.S1).
+In chess, AlphaZero defeated Stockfish, win-
+ning155gamesandlosing6gamesoutof1000
+(Fig.2).Toverify therobustnessofAlphaZero,
+weplayedadditionalmatchesthatstartedfrom
+commonhumanopenings(Fig.3).AlphaZero
+defeatedStockfishineachopening,suggesting
+thatAlphaZerohasmasteredawidespectrum
+ofchessplay.ThefrequencyplotsinFig.3and
+thetimelineinfig.S2showthatcommonhuman
+openings were independently discovered and
+playedfrequentlybyAlphaZeroduringself-play
+training.Wealsoplayedamatchthatstarted
+fromthesetofopeningpositionsusedinthe
+2016TCECworldchampionship;AlphaZerowon
+convincinglyinthismatch,too(26)(fig.S4).We
+playedadditionalmatchesagainstthemostrecent
+developmentversionofStockfish(27)andavar-
+iantofStockfishthatusesastrongopeningbook
+(28).AlphaZerowonallmatchesbyalargemar-
+gin(Fig.2).
+Table S6 shows20 chess gamesplayedby
+AlphaZero in its matches against Stockfish.
+Inseveralgames,AlphaZerosacrificedpiecesfor
+long-termstrategicadvantage,suggestingthatit
+hasamorefluid,context-dependentpositional
+evaluationthantherule-basedevaluationsused
+bypreviouschessprograms. Fig.4.AlphaZero’ssearchprocedure.Thesearchisillustratedforaposition(inset)fromgame1
+Inshogi,AlphaZerodefeatedElmo,winning (tableS6)betweenAlphaZero(white)andStockfish(black)after29....Qf8.Theinternalstateof
+98.2%ofgameswhenplayingblackand91.2% AlphaZero’sMCTSissummarizedafter102,...,106simulations.Eachsummaryshowsthe10most
+overall.Wealsoplayedamatchunderthefaster visitedstates.Theestimatedvalueisshownineachstate,fromwhite’sperspective,scaledtothe
+timecontrolsusedinthe2017CSAworldcham- range[0,100].Thevisitcountofeachstate,relativetotherootstateofthattree,isproportionalto
+pionshipandagainstanotherstate-of-the-artshogi thethicknessofthebordercircle.AlphaZeroconsiders30.c6buteventuallyplays30.d5.
+Silveretal.,Science362,1140–1144(2018) 7December2018 4of5
+Downloaded
+from
+http://science.sciencemag.org/
+on
+January
+11,
+2019
+
+--- PAGE 5 ---
+RESEARCH | REPORT
+ofAlphaZerowiththeuseofMCTScallsinto 10.Seethesupplementarymaterialsforadditionalinformation. ofrandomizationinitsopeningmoves(10);thisavoided
+question the widely held belief (31, 32 ) that 11. Stockfish:Strongopensourcechessengine;https:// duplicategamesbutalsoresultedinmorelosses.
+alpha-betasearchisinherentlysuperiorinthese stockfishchess.org/[accessed29November2017]. 29.Aperyqhapaq’sevaluationfilesareavailableathttps://github.
+12. D.N.L.Levy,M.Newborn,HowComputersPlayChess com/qhapaq-49/qhapaq-bin/releases/tag/eloqhappa.
+domains. (IshiPress,2009). 30.C.E.Shannon,LondonEdinburghDublinPhilos.Mag.J.Sci.41,
+Thegameofchessrepresentedthepinnacle 13. V.Allis,“Searchingforsolutionsingamesandartificial 256–275(1950).
+of artificial intelligence research over several intelligence,”Ph.D.thesis,TransnationalUniversityLimburg, 31. O.Arenz,“MonteCarlochess,”master’sthesis,Technische
+decades.State-of-the-artprogramsarebasedon Maastricht,Netherlands(1994). UniversitätDarmstadt(2012).
+14. H.Iida,M.Sakuta,J.Rollason,Artif.Intell.134,121–144 32.O.E.David,N.S.Netanyahu,L.Wolf,inArtificialNeural
+powerfulenginesthatsearchmanymillionsof
+(2002).
+NetworksandMachineLearning—ICANN2016,PartII,
+positions, leveraging handcrafted domain ex- 15. ComputerShogiAssociation,Resultsofthe27thworld Barcelona,Spain,6to9September2016(Springer,2016),
+pertiseandsophisticateddomainadaptations. computershogichampionship;www2.computer-shogi.org/
+pp.88–96.
+AlphaZeroisagenericreinforcementlearning wcsc27/index_e.html[accessed29November2017].
+andsearchalgorithm—originallydevisedforthe 16. W.Steinitz,TheModernChessInstructor(EditionOlms,1990). ACKNOWLEDGMENTS
+17. E.Lasker,CommonSenseinChess(DoverPublications,1965). WethankM.Sadlerforanalyzingchessgames;Y.Habufor
+gameofGo—thatachievedsuperiorresultswith-
+18. J.Knudsen,EssentialChessQuotations(iUniverse,2000). analyzingshogigames;L.Bennettfororganizationalassistance;
+inafewhours,searching1= 1000 asmanyposi- 19. N.P.Jouppietal.,inProceedingsofthe44thAnnual B.Konrad,E.Lockhart,andG.Ostrovskiforreviewingthepaper;
+tions,givennodomainknowledgeexceptthe InternationalSymposiumonComputerArchitecture,Toronto, andtherestoftheDeepMindteamfortheirsupport.Funding:
+rulesofchess.Furthermore,thesamealgorithm Canada,24to28June2017(AssociationforComputing AllresearchdescribedinthisreportwasfundedbyDeepMind
+Machinery,2017),pp.1–12. andAlphabet.Authorcontributions:D.S.,J.S.,T.H.,andI.A.
+wasappliedwithoutmodificationtothemore 20.NotethattheoriginalAlphaGoZerostudyusedgraphics designedtheAlphaZeroalgorithmwithadvicefromT.G.,A.G.,
+challenginggameofshogi,againoutperforming processingunits(GPUs)totraintheneuralnetworks. T.L.,K.S.,M.Lai,L.S.,andM.Lan.;J.S.,I.A.,T.H.,andM.Lai
+state-of-the-art programs within a few hours. 21. R.Coulom,inProceedingsoftheSixthInternationalConference implementedtheAlphaZeroprogram;T.H.,J.S.,D.S.,M.Lai,I.A.,
+Theseresultsbringusastepclosertofulfillinga onComputersandGames,Beijing,China,29Septemberto T.G.,K.S.,D.K.,andD.H.ranexperimentsand/oranalyzeddata;
+1October2008(Springer,2008),pp.113–124. D.S.,T.H.,J.S.,andD.H.managedtheproject;D.S.,J.S.,T.H.,
+longstanding ambition of artificial intelligence 22.Theprevalenceofdrawsinhigh-levelchesstendstocompress M.Lai,I.A.,andD.H.wrotethepaper.Competinginterests:
+(3):ageneralgame-playingsystemthatcanlearn theEloscale,comparedwiththatforshogiorGo. DeepMindhasfiledthefollowingpatentapplicationsrelatedto
+tomasteranygame. 23.StockfishisdesignedtoexploitCPUhardwareandcannot thiswork:PCT/EP2018/063869,US15/280,711,andUS15/
+makeuseofGPUsorTPUs,whereasAlphaZeroisdesignedto 280,784.Dataandmaterialsavailability:Afulldescriptionofthe
+exploitGPU-TPUhardwareratherthanCPUhardware. algorithminpseudocodeaswellasdetailsofadditionalgames
+REFERENCESANDNOTES 24.AfirstgenerationTPUisroughlysimilarininferencespeedtoaTitan betweenAlphaZeroandotherprogramsisavailableinthe
+1. M.Campbell,A.J.HoaneJr.,F.Hsu,Artif.Intell.134,57–83(2002). VGPU,althoughthearchitecturesarenotdirectlycomparable. supplementarymaterials.
+2. F.-H.Hsu,BehindDeepBlue:BuildingtheComputerThat 25.AlphaGoZerowasultimatelytrainedfor3.1millionstepsover
+DefeatedtheWorldChessChampion(PrincetonUniv.,2002). 40days. SUPPLEMENTARYMATERIALS
+3. B.Pell,Comput.Intell.12,177–198(1996). 26.ManyTCECopeningpositionsareunbalancedaccordingtoboth
+4. M.R.Genesereth,N.Love,B.Pell,AIMag.26,62–72(2005). AlphaZeroandStockfish,resultinginmorelossesforbothplayers. www.sciencemag.org/content/362/6419/1140/suppl/DC1
+5. A.L.Samuel,IBMJ.Res.Dev.11,601–617(1967). 27.NewestavailableversionofStockfishasof13January2018 MaterialsandMethods
+6. G.Tesauro,NeuralComput.6,215–219(1994). (resolved_baseb508f9561cc2302c129efe8d60f201ff03ee72c8), Figs.S1toS4
+TablesS1toS9
+7. C.J.Maddison,A.Huang,I.Sutskever,D.Silver,paper fromhttps://github.com/official-stockfish/Stockfish/commit/. References(33–50)
+presentedattheInternationalConferenceonLearning 28.TheStockfishvariantusedtheCerebellumopeningbook
+DataS1
+Representations2015,SanDiego,CA,7to9May2015. downloadedfromhttps://zipproth.de/#Brainfish.AlphaZero
+8. D.Silveretal.,Nature529,484–489(2016). didnotuseanopeningbook.Toensurediversityagainsta 2March2018;accepted7November2018
+9. D.Silveretal.,Nature550,354–359(2017). deterministicopeningbook,AlphaZerousedasmallamount 10.1126/science.aar6404
+Silveretal.,Science362,1140–1144(2018) 7December2018 5of5
+Downloaded
+from
+http://science.sciencemag.org/
+on
+January
+11,
+2019
+
+--- PAGE 6 ---
+A general reinforcement learning algorithm that masters chess, shogi, and Go through
+self-play
+David Silver, Thomas Hubert, Julian Schrittwieser, Ioannis Antonoglou, Matthew Lai, Arthur Guez, Marc Lanctot, Laurent Sifre,
+Dharshan Kumaran, Thore Graepel, Timothy Lillicrap, Karen Simonyan and Demis Hassabis
+Science 362 (6419), 1140-1144.
+DOI: 10.1126/science.aar6404
+One program to rule them all
+Computers can beat humans at increasingly complex games, including chess and Go. However, these programs
+are typically constructed for a particular game, exploiting its properties, such as the symmetries of the board on which it
+is played. Silver et al. developed a program called AlphaZero, which taught itself to play Go, chess, and shogi (a
+Japanese version of chess) (see the Editorial, and the Perspective by Campbell). AlphaZero managed to beat
+state-of-the-art programs specializing in these three games. The ability of AlphaZero to adapt to various game rules is a
+notable step toward achieving a general game-playing system.
+Science, this issue p. 1140; see also pp. 1087 and 1118
+ARTICLE TOOLS http://science.sciencemag.org/content/362/6419/1140
+SUPPLEMENTARY http://science.sciencemag.org/content/suppl/2018/12/05/362.6419.1140.DC1
+MATERIALS
+RELATED http://science.sciencemag.org/content/sci/362/6419/1118.full
+CONTENT http://science.sciencemag.org/content/sci/362/6419/1087.full
+REFERENCES This article cites 28 articles, 0 of which you can access for free
+http://science.sciencemag.org/content/362/6419/1140#BIBL
+PERMISSIONS http://www.sciencemag.org/help/reprints-and-permissions
+Use of this article is subject to the Terms of Service
+Science (print ISSN 0036-8075; online ISSN 1095-9203) is published by the American Association for the Advancement of
+Science, 1200 New York Avenue NW, Washington, DC 20005. 2017 © The Authors, some rights reserved; exclusive
+licensee American Association for the Advancement of Science. No claim to original U.S. Government Works. The title
+Science is a registered trademark of AAAS.
+Downloaded
+from
+http://science.sciencemag.org/
+on
+January
+11,
+2019

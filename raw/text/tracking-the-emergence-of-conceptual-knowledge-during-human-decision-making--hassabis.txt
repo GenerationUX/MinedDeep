@@ -1,0 +1,785 @@
+
+--- PAGE 1 ---
+Neuron
+Article
+Tracking the Emergence of Conceptual Knowledge
+during Human Decision Making
+DharshanKumaran,1,2,3,*JenniferJ.Summerfield,1DemisHassabis,1andEleanorA.Maguire1
+1WellcomeTrustCentreforNeuroimaging,InstituteofNeurology,UniversityCollegeLondon,12QueenSquare,LondonWC1N3BG,UK
+2InstituteofCognitiveNeuroscience,UniversityCollegeLondon,11QueenSquare,LondonWC1N3BG,UK
+3DepartmentofPsychology,StanfordUniversity,Stanford,CA94305,USA
+*Correspondence:d.kumaran@fil.ion.ucl.ac.uk
+DOI10.1016/j.neuron.2009.07.030
+Open access under CC BY license.
+SUMMARY nisms mediating memory for our unique experiences from our
+past(i.e.,episodicmemory;Davachi,2006;Eichenbaum,2004;
+Concepts lie at the very heart of intelligence, pro- Eichenbaumetal.,2007)andfortherewardvalueofindividual
+viding organizing principles with which to compre- stimuliandactions,thelattercapturedsuccessfullybyreinforce-
+hendtheworld.Surprisinglylittle,however,isunder- mentlearning(RL)algorithms(e.g.,Montagueetal.,2006;Ran-
+stood about how we acquire and deploy concepts. gel et al., 2008). While a collection of isolated memories or
+Here, we show that a functionally coupled circuit reward associations may allow simple inferences to be made
+throughtheoperationoflogicalreasoningprocessesatretrieval
+involving the hippocampus and ventromedial pre-
+(e.g.,transitiveinferences;Greene,2007;Prestonetal.,2004),
+frontal cortex (vMPFC) underpins the emergence of
+the capacity for efficient generalization in novel situations is
+conceptual knowledge and its effect on choice be-
+limited. What is needed, therefore, is a neural system that
+havior.Critically, the hippocampus alone supported
+abstracts the commonalities across multiple related experi-
+the efficient transfer of knowledge to a perceptually
+ences, thereby creating a network of conceptual knowledge
+novel setting. These findings provide compelling that captures the higher-order structure of the environment.
+evidencethatthehippocampussupportsconceptual Whilethehippocampushasoftenbeencastasakeyplayerin
+learning through the networking of discrete memo- the emergence of conceptual knowledge (Cohen and Eichen-
+ries and reveal the nature of its interaction with baum, 1993; Eichenbaum, 2004) and the broader notion of
+downstreamvaluationmodulessuchasthevMPFC. semanticmemory,empiricaldatahaveprovidedonlyequivocal
+Our study offers neurobiological insights into the supportforthisidea(e.g.,Duffetal.,2006;Eichenbaum,2004;
+Vargha-Khadem et al., 1997). As such, whether the hippo-
+remarkablecapacityofhumanstodiscoverthecon-
+campus,orinsteadneocorticalareaswithinthemedialtemporal
+ceptualstructureofrelatedexperiencesandusethis
+lobe(MTL)orprefrontalcortex(PFC)(CohenandEichenbaum,
+knowledgetosolveexactingdecisionproblems.
+1993;Eichenbaum,2004;McClellandetal.,1995;Milleretal.,
+2002; Norman and O’Reilly, 2003; Vargha-Khadem et al.,
+INTRODUCTION 1997),arecriticaltoconceptuallearningremainsanunresolved
+questioninneuroscience.
+Thecapacitytobringpriorknowledgetobearinnovelsituations To address these questions, we constructed a paradigm
+isadefiningcharacteristicofhumanintelligence.Apowerfulway basedonataskknowntobedependentonthehippocampus
+in which humans achieve this is through the use of concepts, from a previous neuropsychological study (Kumaran et al.,
+whichareformedthroughabstraction,andcapturetheshared 2007).Inourtask,participantswereinstructedtoplaytherole
+meaningofsimilarentitiesthroughanorganizingprinciplethat ofaweatherforecasterandlearnovermultipletrialshoweach
+explains their relatedness. For instance, although an Alsatian ofeightpatternswas(deterministically)associatedwithoneof
+andaChihuahualookperceptuallyverydifferent,wecaneasily twooutcomes(i.e.,sunorrain)(Figure1).During‘‘learning’’trials,
+appreciate that they have similar attributes (e.g., they bark) participantsviewedapatternonthescreen,enteredtheirpredic-
+because they can be recognized as instances of a particular tion(usingindex/middlefinger),andreceivedfeedbackconcern-
+concept,inthiscaseadog(Locke,1690;Martin,2007;Murphy, ingactualoutcome(sunorrain),theircorrectness(correct/incor-
+2004; Rogers and McClelland, 2004). While the devastating rect), and reward (i.e., whether they had won or lost money)
+consequences of the degradation of well-established concep- (Figure2A).Sincealleightpatternswereconstructed fromthe
+tualrepresentationsarealltooapparentinneurologicalcondi- same four fractals, successful performance required partici-
+tions like semantic dementia (Patterson et al., 2007), little is pantstouseassociative information consisting of shape-loca-
+known about the neural mechanisms underpinning the emer- tionandshape-shapeconjunctionsratherthanelementalinfor-
+genceofconceptualknowledge,itsapplicationinnovelsettings, mation (e.g., single shape) as studied previously (Montague
+anditsinfluenceonhumandecisionmaking(Sheaetal.,2008). etal.,2006;Tonietal.,2001).
+Empiricalresearchtodateinthefieldsofmemoryanddecision Critically, while participants could simply learn the correct
+makinghastendedtofocusondiscoveringtheneuralmecha- response associated with a given pattern in isolation (e.g.,
+Neuron63,889–901,September24,2009ª2009ElsevierInc. 889
+
+--- PAGE 2 ---
+Neuron
+TrackingtheEmergenceofConceptualKnowledge
+Figure1. ExperimentalDesign
+Subjectswereinstructedtoplaytheroleofaweatherforecasterandtrytolearnoverthecourseoftheexperimenthoweachoneofeight‘‘patterns’’ofshapeson
+thescreen(P1–P8)weredeterministicallyassociatedwithoneoftwooutcomes:sunorrain(seeExperimentalProcedures).Sincealleightpatternsweremadeup
+ofthesamefourfractals(F1–F4),subjectswererequiredtouseassociativeinformation(i.e.,shape-location,shape-shapeconjunctions)toperformsuccessfully.
+Importantly,whileparticipantscouldsimplylearnthecorrectresponseassociatedwithagivenpatterninisolation(e.g.,P1=sun;P2=rain),theycouldalso
+acquirespatialandnonspatialconceptualknowledge.Inthisway,participantscouldrecognizethatindividualpatterns(e.g.,P1,P3)constituteinstancesof
+aparticularconcept(i.e.,F1=left),allowingthemtodisregardunimportantdifferencesbetweenthem(i.e.,theidentityofthecentralfractal)andappreciatetheir
+sharedmeaning(i.e.,outcome:sun).Subjectswerenotexplicitlytoldaboutthespatialandnonspatialstructureofthetaskandhadtoacquirethisthrough
+learning.Thereweretwoexperimentalsessions,InitialandNew,whichsharedasimilarunderlyingconceptualstructurebutdifferedintermsofthesetoffractals
+used.Fractalswereusedasstimuli,ratherthanreal-lifeobjects,toinvestigatethelearningofnewconceptswithoutcontaminationfrompreviousexposure(see
+ExperimentalProcedures).
+pattern1=sun,pattern2=rain),therewasalsotheopportunity fashion, participants could generalize successfully when con-
+for them to acquire spatial and nonspatial conceptual knowl- fronted with partial patterns during probe trials (e.g., F1 :
+left
+edge, which was assessed in probe trials at the end of each Figure2C),whichprovideduswithanonlinemeasureofthelevel
+learning block and using a debriefing protocol (Figure 2C). ofconceptualknowledgeacquiredthroughouttheexperiment.
+Specifically,participantscouldlearnthatfractal1predictssun Furthermore, participants could use knowledge of this sort as
+whenontheleft,andrainwhenontheright,irrespectiveofthe an effective guiding framework (i.e., schema) for accelerating
+identityofthecentralshape(i.e.,fractal3or4),byabstracting learninginaNewsession,wherethestimuliwereperceptually
+the commonalities across the relevant patterns, therefore novelbuttheunderlyingconceptualstructuresimilar.
+termed‘‘spatial’’(i.e.,P1–P4)(Figure1).Inasimilarvein,partic- Our experimental design, therefore, incorporated three key
+ipantscouldlearnthattheshape-shapecombinationoffractals2 aspects: the learning of individual associations (i.e., between
+and3predictssun,and2and4rain,regardlessofthepositionof patterns and outcomes), the emergence of conceptual knowl-
+fractal2,byappreciatingtherelationshipbetweentherelevant edge through the abstraction of common features between
+‘‘nonspatial’’ patterns (i.e., P5–P8). In this way, participants patterns related through shared meaning, and a transfer test
+couldrecognizethatindividualpatterns(e.g.,P1,P3)constitute where participants’ ability to use this knowledge as a schema
+instances of a particular concept (i.e., F1 ), allowing them to (Bartlett, 1932;Tse et al., 2007) in a perceptually novel setting
+left
+disregardunimportantdifferencesbetweenthem(i.e.,theiden- (i.e.,theNewsession)wasassessed.Incontrast,previousstudies
+tity of the central fractal) and appreciate their shared meaning haveinvestigatedhowparticipantsclassifystimulibasedontheir
+(i.e.,outcome:sun).Byunderstandingthetaskstructureinthis physical resemblance (Ashby and Maddox, 2005), elemental
+890 Neuron63,889–901,September24,2009ª2009ElsevierInc.
+
+--- PAGE 3 ---
+Neuron
+TrackingtheEmergenceofConceptualKnowledge
+value (e.g., the ‘‘standard’’ weather prediction task [Knowlton NeuroimagingData
+andSquire,1994;Poldracketal.,2001]),orsimpleunidimensional InitialSession:BrainAreasAssociatedwithProficient
+rules(e.g.,color)(AshbyandMaddox,2005)ratherthanahigher- PerformanceduringLearningTrials
+orderconceptualstructure.Ofnote,learninginsuchperceptual Given behavioral evidence that participants had acquired
+categorization tasks, and also artificial grammar paradigms, conceptualknowledge,wenextturnedtothefMRIdataacquired
+proceedslargelyindependentlyofthehippocampusandwider duringtheInitialsession.Sincewedidnotobserveanysignifi-
+MTL,oftenbeingpredominantlyimplicitinnatureandinvolving cant differences as a function of domain (i.e., spatial versus
+regionssuchasthestriatumandlateralPFC(AshbyandMaddox, nonspatial),evenatliberalthresholds(i.e.,p<0.01uncorrected),
+2005;KnowltonandSquire,1993;Knowltonetal.,1994;Poldrack wecollapsedacrossthisfactorforallsubsequentanalyses(see
+etal.,2001;Reber,1967;Strangeetal.,1999). SupplementalResults).Wefirstconductedananalysisdesigned
+to identify the overall brain network associated with proficient
+RESULTSANDDISCUSSION performance on learning trials. As a first step, we set out to
+convertparticipants’binaryperformancedata,where1indexed
+BehavioralData acorrectresponseand0anincorrectresponse,intotrial-by-trial
+At a behavioral level, the improvement in participants’ perfor- estimates of the probability of a correct response for each
+mance on learning trials during the Initial session (Figure 2B) pattern (i.e., a learning curve). To achieve this, we employed
+wasparalleledbytheemergenceofspatialandnonspatialcon- adynamicestimationtechniquethathaspreviouslybeenused
+ceptualknowledgeindexedbyprobetrials (Figure2D).Impor- tocorrelateneuralactivitywithbinaryperformancedataduring
+tantly,conceptualknowledgeexertedasignificantinfluenceon learningexperimentsinmonkeys(Wirthetal.,2003)andduring
+participants’ choices during learning trials, with probe trial human fMRI (Law et al., 2005), termed the state-space model
+performancecorrelatingsignificantlywithparticipants’choices (Smith et al., 2004) (see Supplemental Experimental Proce-
+on a given learning trial (p < 0.01: see below). Further, perfor- dures).Asignificantadvantageofthistechnique,incomparison
+mance on learning trials involving an individual pattern (e.g., torelatedapproaches(e.g.,reinforcementlearning[RL]models),
+P1) showed a greater correlation with performance on other is that it allows variations in the shape of individual learning
+patternswithinadomain(i.e.,spatial:P2–P4),ascomparedto curvestobeeffectivelycaptured.Forinstance,itiswellrecog-
+across domains (i.e., nonspatial: P5–P8) (t = 2.2, p =0.05), as nized that individual learning curves often show an abrupt
+wouldbeexpectedifparticipantsintegratedinformationacross transitionfromlowtoasymptoticlevelsofperformance(e.g.,Fig-
+relevantpatterns(seeExperimentalProcedures). ure2B,upperpanel)(Gallisteletal.,2004),eventhoughgroup-
+Theassertionthatprobetrialperformanceisguidedprimarily averaged curves show gradually increasing performance (e.g.,
+byconceptualknowledge (e.g.,F1 meanssunregardless of Figure2B,lowerpanel).
+left
+the identity of the central fractal) rather than the retrieval of Toverifythatthestate-spacemodelprovidedabetterfittothe
+multipleindividualassociativepairings(i.e.,P1=sun,P3=sun) binary choice data observed in our experiment, we performed
+receives support from several features of the behavioral data. comparisons with a standard RL model (Q-learning; Watkins
+First,probetrialperformanceshowedarobustcorrelationwith andDayan,1992)andthemovingaveragemethod(seeSupple-
+a composite score obtained from a debriefing protocol (r = mentalExperimentalProcedures;Smithetal.,2004)usingastan-
+0.65, p < 0.001: see Supplemental Experimental Procedures), dardapproach(i.e.,bycalculatingmeansquarederrorsforeach
+which assessed participants’ ability to express and deploy model). For our data set, the state-space model generated
+conceptualknowledgeinacontextquitedifferentfromtheorig- closerfitstotheobserveddatacomparedtothesetwootherap-
+inal learning situation. Importantly, in a separate follow-up be- proaches (see Supplemental Experimental Procedures), which
+havioralexperiment,whereparticipantsprovidedverbaldescrip- accords withprevious validations inthecontext ofassociative
+tionsoftheconceptualstructureofthetaskaftereachlearning learningtasks(Smithetal.,2004).
+block (see Supplemental Results and Supplemental Experi- Thestate-spacemodel,therefore,allowedustocreatepartic-
+mentalProcedures),thecorrelationbetweenprobeperformance ipant-specific trial-by-trial parametric regressors (‘‘probability_
+andtaskstructuredescriptionswashighlysignificant(r=0.71, success’’:seeExperimentalProcedures)thatweusedtoregress
+p < 0.001) and remained significant (p < 0.05) after the effect againstthelearningtrialfMRIdata.Ourresultsshowthatactivity
+of learning trial performance had been partialled out (r = 0.55, in brain regions including parahippocampal cortex, amygdala,
+p<0.001).Second,themagnitudeofdifferenceinreactiontimes posteriorcingulatecortex(PCC),ventralstriatum,andventrome-
+betweenprobetrialsandlearningtrialsinthefMRIexperiment dialprefrontalcortex(vMPFC)wassignificantlycorrelatedwith
+was small, though significant (1.52 versus 1.38 s; t = 3.8, p = the probability of success (Table S1 and Figure 3). Given that
+0.001), arguing against the notion that probe performance is participantswererewardedforacorrectpredictiononeachtrial
+supportedbytheretrievalofmultipleindividualassociativepair- inourparadigm,bothwithpositivefeedbackandmoney,these
+ings(e.g.,seeShohamyandWagner,2008).Finally,probetrial findingsareconsistentwithpreviousworksuggestingthatthese
+performanceduringtheInitialsessionalsoshowedasignificant brainregionsformpartofaneuralsystemcodingvaluepredic-
+correlation with participants’ performance in the new session, tions that guide choice behavior (Montague et al., 2006). We
+after initial session performance had been covaried out (r = also conducted a number of supplemental analyses, which
+0.41,p=0.03:seebelow),inlinewiththeassertionthatprobe effectively excluded alternative explanations for the activation
+trials index conceptual knowledge which mediates transfer to of this brain network (see Supplemental Results). Our results,
+aperceptuallynovelsetting. therefore, provide insights into how brain regions traditionally
+Neuron63,889–901,September24,2009ª2009ElsevierInc. 891
+
+--- PAGE 4 ---
+Neuron
+TrackingtheEmergenceofConceptualKnowledge
+Figure2. LearningandProbeTrials:TimelineandBehavioralData
+(A)Learningtrial.Participantsviewedapatternonthescreen(3s),enteredtheirprediction(usingindex/middlefinger),andreceivedfeedbackconcerningactual
+outcome(sunorrain:2s),theircorrectness(correct/incorrect),andreward(i.e.,whethertheyhadwonorlostmoney).Presentationofalleightpatterns(P1–P8)
+waspseudorandomlyintermixedduringlearningtrials.
+(B)Learningtrialbehavioraldata.Upperpanel:anexampleofanindividualparticipant’slearningcurveestimatedbythestate-spacemodel(Smithetal.,2004),
+whichshowstheprobabilityofacorrectresponseforanindividualpatternasafunctionoftrialnumber.Binaryperformanceisshownabove(greencircle=
+correct,redcircle=wrong).Lowerpanel:block-by-blockperformance(percentcorrectresponses)oftheentiregroup(n=25)duringtheInitialsession.Perfor-
+manceonspatialpatterns(P1–P4)isshowningreen,nonspatialpatterns(P5–P8)inblue,andaveragedperformanceinred.Errorbarsdenotestandarddeviation.
+892 Neuron63,889–901,September24,2009ª2009ElsevierInc.
+
+--- PAGE 5 ---
+Neuron
+TrackingtheEmergenceofConceptualKnowledge
+pinning the emergence of conceptual knowledge and its
+influence on choice behavior, we used participants’ perfor-
+manceonprobetrialsasleveragewithwhichtointerrogatethe
+learning trial fMRI data (see Experimental Procedures; Fig-
+ure2D).Wethereforecreatedavector,termed‘‘probe_perform-
+ance,’’ which was entered as a second parametric regressor
+againsttherelevantlearningtrialsduringtheprecedinglearning
+block(seeExperimentalProcedures).Importantly,thistrial-by-
+trial probe_performance vector was a robust indicator at a
+behaviorallevelofwhetheraparticipant’sresponseonagiven
+trial was correct or incorrect (r = 0.42, p < 0.001), even once
+the(highlysignificant:r=0.49,p<0.001)effectoftheprobabili-
+ty_successvectorhadbeencovariedout(p<0.01).
+Wenextsoughttoidentifybrainregionswhereneuralactivity
+onagiventrialselectivelytrackedtheemergenceofconceptual
+knowledge,aboveandbeyondanycorrelationwithprobabilityof
+success. To effect this analysis, we entered both probability_
+Figure 3. Brain Areas Associated with Proficient Performance successandprobe_performancevectorsasparametricregres-
+duringLearningTrialsintheInitialSession sors modulating neural activity during learning trials within the
+Brainareaswhoseactivityduringlearningtrialsshowsasignificantpositive samegenerallinearmodel(seeExperimentalProcedures).Strik-
+correlationwithaparticipant-specificindexofperformance(probability_suc-
+ingly,activationwithinthelefthippocampus,vMPFC,andPCC
+cess).Theprobability_successparametricregressorwascreatedbyconvert-
+showed a robust positive correlation with probe performance,
+ingparticipants’binarychoicedataintoestimatedlearningcurves(Figure2B)
+usingthestate-spacemodel(seeSupplementalExperimentalProcedures). evenafteranyeffectofprobabilityofsuccesshadbeencovaried
+ActivationsareshownontheaveragedstructuralMRIscanofthe25partici- out(Figure4andTableS2).Inmarkedcontrast,nosignificant
+pants,withthecolorbarindicatingthetstatisticassociatedwitheachvoxel activation was observed in other areas previously identified to
+andthezscoreequivalent.ActivationsinvMPFCandPCCareshowninsagittal show a correlation with the probability of success, including
+section(upperleftpanel).Upperrightpanel:coronalsectionshowingactivation
+the parahippocampal cortex, even at liberal thresholds (i.e.,
+inbilateralventralstriatum.Lowerleftpanel:sagittalsectionshowingactivation
+p<0.01uncorrected).Indeed,activityinbilateralparahippocam-
+intheleftparahippocampalcortexextendingintohippocampus.Lowerright
+pal cortex (anatomical region-of-interest [ROI] analysis: see
+panel:coronalsectionshowingactivationinPCC,bilateralparahippocampal
+cortexextendingintohippocampus.SeeTableS1forafulllistofactivations. ExperimentalProcedures)showedasignificantlygreatercorre-
+Activations in left parahippocampal cortex, amygdala, vMPFC, and PCC lation with the probability of success, as compared to probe
+weresignificantatp<0.05FWEcorrected(seeExperimentalProcedures). performance (p < 0.05). As such, our findings are consistent
+Activationsareshownatp<0.005(uncorrected)fordisplaypurposes. withthenotionthatareassuchastheparahippocampalcortex
+playagreaterroleinmemoryforindividualassociativepairings,
+associatedwithmemoryinthemedialtemporallobe(MTL),such perhapsinvolvingtheformationofconfiguralorunitizedrepre-
+astheparahippocampalcortex,becomeengagedinadecision- sentations, as has previously been hypothesized (Cohen and
+makingcontextwhenvaluepredictionsmustbebasedonasso- Eichenbaum, 1993; Haskins et al., 2008; Mayes et al., 2007;
+ciative (i.e., shape-shape, shape-location) rather than more RudyandSutherland,1989).Inthisway,theparahippocampal
+simple elemental information as studied previously (Montague cortexmaysupportthecapacityof patientswithamnesiaand
+etal.,2006). hippocampaldamagetoperformrelativelywell(i.e.,75%correct
+InitialSession:FunctionallyCoupledActivityin responses),thoughnotnormally,onasimilartask,withoutdevel-
+HippocampusandvMPFCduringLearningTrialsTracks oping conceptual knowledge of the task structure (Kumaran
+theEmergenceofConceptualKnowledge etal.,2007).
+While this analysis reveals the overall network engaged when Thus far, our findings provide behavioral evidence that
+participants perform proficiently on learning trials, it does not conceptual knowledge is acquired gradually during learning,
+dissociate between brain regions involved in memory for indi- plays a significant role in guiding participants’ choices, and is
+vidualassociativepairingsandthosesupportingconceptualrep- underpinnedbyneuralactivityinhippocampus,posteriorcingu-
+resentations. To identify the neural circuitry specifically under- late cortex (PCC), and vMPFC. We next set out to test the
+(C)Probetrial.Participantswererequiredtomakeaprediction(index/middlefinger)basedonpartialpatterns(3s).Nofeedbackwasprovided,butparticipants
+wererewardedforcorrectpredictionsattheendoftheexperiment.Participantsalsoprovidedconfidenceratings(2s)byindicatingwhethertheywere‘‘sure’’or
+‘‘not-sure’’bybuttonpress.Inspatialprobetrials(upperpanel),onefractal(i.e.,eitherF1[illustrated]orF2)waspresentedoneithertheleft(illustrated)ortheright.
+Aquestionmarkdisplayedinthecentralpositionindicatedthattheidentityofthecentralfractalwasnotknown.Innonspatialprobetrials(lowerpanel),onefractal
+waspresentedinthecentralposition(F3orF4[illustrated]),withanotherabove(F1orF2[illustrated]).Thequestionmarkindicatedthatthepositionoftheperiph-
+eralfractalwasnotknown.Twovarietiesofprobetrialswereincluded:‘‘outcomedetermined’’and‘‘outcomeundetermined’’(Figure5).Inoutcome-determined
+trials,themaintrialsofinterest,participantscoulddeployconceptualknowledgetomakeaccuratepredictions:e.g.,thepresenceofF1ontheleftinaspatial
+probetrialispredictiveofsun,regardlessoftheidentityofthecentralshape.
+(D)Probetrial.Block-by-blockprobeperformanceofentiregroup(n=25)duringInitialsession.Performanceonspatialprobetrialsshowningreen,nonspatialin
+blue,andaveragedperformanceinred.Errorbarsdenotestandarddeviation.
+Neuron63,889–901,September24,2009ª2009ElsevierInc. 893
+
+--- PAGE 6 ---
+Neuron
+TrackingtheEmergenceofConceptualKnowledge
+trials, then these regions should also guide probe trial perfor-
+mance.Totestthishypothesis,weperformedaregionofinterest
+analysisinthesetwofunctionallydefinedregions,initiallycon-
+trastingactivityduringthetwovarietiesofprobetrials,termed
+‘‘outcomedetermined’’and‘‘outcomeundetermined’’(seeEx-
+perimental Procedures; Figure 5). Critically, in outcome-deter-
+minedtrials,theoutcome(i.e.,sun/rain)couldbeaccuratelypre-
+dictedbasedonconceptualknowledgeofthetaskstructure.In
+contrast,inoutcome-undeterminedtrials,theoutcomecouldnot
+bepredictedbasedontheinformationgiven(i.e.,50%sun,50%
+rain), though these trials were otherwise closely matched to
+outcome-determined trials in terms of visual appearance and
+RT(outcome_determined1.54s,outcome_undetermined1.58s,
+p=0.31).
+Results from this analysis show that activity in the hippo-
+campus, and vMPFC, was significantly greater in outcome_
+determinedtrialsascomparedtooutcome_undeterminedtrials
+Figure 4. Brain Areas Tracking the Emergence of Conceptual
+KnowledgeduringLearningTrialsintheInitialSession (functionally defined lefthippocampus ROI:t =1.83,p =0.04;
+Brainareaswhoseactivityduringlearningtrialsshowedasignificantpositive vMPFC ROI: t = 1.96, p = 0.03). Importantly, neural activity in
+correlationwithaparticipant-specificindexofconceptualknowledgeacquisi- thesebrainregionsshowedasignificantcorrelationwithperfor-
+tion(probe_performance),aftertheeffectofprobability_successhadbeen mance in outcome_determined trials (hippocampus ROI: t =
+covariedout.ActivationsareshownontheaveragedstructuralMRIscanof 1.87, p = 0.04; vMPFC ROI: t = 1.91, p = 0.03). Our findings,
+the 25 participants, with the color bar indicating the t statistic associated
+therefore,provideevidencethatthehippocampusandvMPFC
+witheachvoxelandthezscoreequivalent.Activationinthelefthippocampus
+supportneuralrepresentationsofconceptualknowledge,which
+is shown in axial section (upper right panel) and in close-up in lower left
+(sagittal)andlowerright(coronal)panels.ActivationinvMPFCandPCCare areusedtoguideparticipants’choicesevenintheabsenceof
+showninsagittalsection(upperleftpanel).SeeTableS2forafulllistofactiva- trial-by-trialfeedback,whengeneralizationisrequiredbecause
+tions.Activationinhippocampussignificantatp<0.001uncorrectedandp< theexactsituationhasnotbeenpreviouslyexperiencedduring
+0.05 SVC corrected (see Experimental Procedures). Activation in vMPFC learning.
+significantatp<0.05FWEcorrected.Activationsareshownatp<0.005for
+Taken together, our results show that neural activity in the
+displaypurposes.
+hippocampusandvMPFCtrackstheemergenceofknowledge
+duringtheInitialsessionanditsdeploymentduringconceptual
+hypothesisthatthehippocampusandvMPFC,tworeciprocally decisionmaking.Previousworkhasemphasizedtheroleofthe
+interconnectedbrainregions(Onguretal.,2003),interactduring vMPFC,andcloselysituatedorbitofrontalcortex(OFC),ingoal-
+the emergence of conceptual knowledge during decision directeddecisionmaking(Dawetal.,2005;Rangeletal.,2008;
+making.Toachievethis,weusedapsychophysiologicalinterac- Rudebecketal.,2008),basedonoutcomeexpectancies(Murray
+tion(PPI)analysis,whichassesseswhetherthefunctionalcou- etal.,2007),simpleif-thenrules(e.g.,matchversusnonmatch
+pling of distant brain regions varies according to experimental [Hamptonetal.,2006;Milleretal.,2002;OttoandEichenbaum,
+parameters(Fristonetal.,1997)(seeExperimentalProcedures). 1992]), and the integration of social and reward information
+Thisenabledustoaskwhetherthelefthippocampus,oursource (Behrens et al., 2008). While conceptual knowledge has often
+region,significantlyinfluencedactivityinvMPFC,specificallyin been assumed to influence goal-directed behavior in humans
+relation to the level of conceptual knowledge acquired (i.e., (Shea et al., 2008), our study highlights its profound effect on
+condition 3 probe_performance interaction). We observed participants’behaviorandshowsthatthisisreflectedinneural
+a significant correlation between neural activity in left hippo- activity in vMPFC, adding a further level of abstraction to the
+campus and the functionally defined vMPFC region (t = 1.9, natureofneuralrepresentationsitsustains.
+p = 0.03), but not PCC (p > 0.1), whereby greater conceptual NewSession:HippocampusUnderpinsUse
+knowledgewasassociatedwithstrongercoupling.Thisfinding ofConceptualKnowledgeasaGuidingSchema
+provides evidence that the hippocampus and vMPFC act as inaPerceptuallyNovelSetting
+a circuit during the acquisition and application of conceptual Havingexaminedhowconceptualknowledgeisacquiredduring
+knowledgeduringdecisionmaking. theInitialsession,wenextprobedtheneuralmechanismsun-
+InitialSession:NeuralActivityinHippocampusand derpinningitsapplicationinanewsetting(i.e.,theNewsession),
+vMPFCCorrelateswithPerformanceduringProbeTrials where,unbeknownsttotheparticipants,thetaskstructurewas
+We next turned to the fMRI data acquired during probe trials, thesamebuttheactualshapesnovel.Tosuccessfullytransfer
+whichallowedustotestparticipants’abilitytouseconceptual previously acquired knowledge, participants were required to
+knowledgetogeneralizeundercircumstanceswheretheavail- represent the higher-order task structure in an abstract form
+able information was incomplete (i.e., partial patterns; Figures (i.e.,nottiedtoindividualshapes),reactivatethisabstractcon-
+2Dand5),butdidnotprovideopportunityforlearningthrough ceptualrepresentation(i.e.,schema[Bartlett,1932;Rumelhart,
+feedback. We reasoned that if the hippocampus and vMPFC 1980]) appropriately in the New session, and use it to provide
+track the emergence of conceptual knowledge during learning organizing principles to guide learning and choice behavior.
+894 Neuron63,889–901,September24,2009ª2009ElsevierInc.
+
+--- PAGE 7 ---
+Neuron
+TrackingtheEmergenceofConceptualKnowledge
+Figure5. DesignofProbeTrials
+Weincludedtwovarietiesofprobetrialstermed
+‘‘outcome_determined’’ (labeled ‘‘D’’ and ‘‘out-
+come_undetermined’’(labeled‘‘UD’’).Inoutcome-
+determinedtrials,themaintrialsofinterest,partic-
+ipants could deploy conceptual knowledge to
+makeaccuratepredictions:specifically,inspatial
+probe trials of this type, the presence of F1 on
+theleftispredictiveofsun,regardlessoftheiden-
+tityofthecentralshape.Innonspatialoutcome_
+determinedprobetrials,thepresenceoffractals
+F2andF4onthescreen(shown)isindicativeof
+rain, regardless of the position of F2. In outco-
+me_undeterminedprobetrials,however,concep-
+tualknowledge couldnotbedeployed,andthe
+outcome could not be predicted based on the
+informationgiven(i.e.,50%sun,50%rain).These
+trials,however,wereotherwisecloselymatchedto
+outcome-determined trials, providing an appro-
+priatecomparisonconditionfortheneuroimaging
+analyses,aswellasservingthefunctionofpre-
+venting participants from gaining information
+about the higher-order task structure from the
+probetrialsthemselves.
+Thatparticipantswereabletodothisisevidencedbytheirsupe- Wealsoaskedwhetherthecorrelationofhippocampalactivity
+rior performance during the New session as compared to the withNewsessionperformancereflectsanonspecificmotorskill
+Initialsession(Figure6A;t=4.0,p<0.001).Whilenonspecific effect, indexed by the tendency of participants to be faster to
+skill learning effects are a well-recognized consideration in respondinlearningtrialsduringthefirstblockoftheNewsession
+such circumstances, it is unlikely that they contribute signifi- ascomparedtoInitialsession(InitialRT1.62sSD0.15,NewRT
+cantlytotheperformanceenhancementobserved.Specifically, 1.43s,SD0.16;p<0.05).Nosignificantcorrelationwasfound
+our neural findings argue strongly against this possibility (see between hippocampal activation and reduction in RT across
+below), as does the tight correlation observed at a behavioral sessions(r=0.09,p>0.1).Furthermore,thecorrelationofhippo-
+level between the performance of an individual participant in campalactivitywithperformanceintheNewsessionremained
+the New session and the amount of conceptual knowledge significantonceboththeeffectsofInitialsessionperformance
+acquiredintheInitialsession(r=0.35,p=0.04). andtheeffectofRTspeedinghadbeenpartialledout(r=0.46,
+To discover the neural mechanisms responsible for this p=0.02).
+striking performance enhancement observed in the New ses- We next analyzed the fMRI data obtained from the New
+sion,wenextturnedtothefMRIdata.Wepredictedthatabrain sessioninasimilarwayaspreviously(i.e.,fortheInitialsession).
+region supporting schema representation and application Using a whole-brain analysis, we observed that activity in
+shouldexhibitactivityduringlearningtrialsintheInitialsession anetworkinvolvingthehippocampus,vMPFC,andPCCshowed
+which accounts for the considerable variability shown by indi- a robust correlation with the probability of a correct response
+vidual participants in terms of performance enhancement in (i.e., probability_success) in the New session (Figure S2 and
+theNewsession.Totestthishypothesis,weperformedanROI Table S4). The left posterior hippocampus alone (Figure 6C)
+analysis in left hippocampus and vMPFC (see Experimental showed a significantly stronger correlation with the probability
+Procedures). Strikingly, activity averaged across the whole of ofsuccessonagivenlearningtrialduringtheNewsessionas
+the left hippocampus showed a significant correlation with compared to the Initial session (x, y, z = (cid:2)21 (cid:2)30 (cid:2)6, z =
+performanceintheNewsession(t=2.7,p=0.007;Figure6B, 3.40).Interestingly,theregionoflefthippocampusidentifiedin
+see Experimental Procedures). Importantly, this correlation this analysis is more posterior to that observed in the Initial
+remained significant even once any effect of Initial session session.Previousstudieshaveobservedthatactivationswithin
+performancehadbeencovariedout(p<0.05),arguingagainst the hippocampus, and MTL, tend to be located toward its
+this finding representing a nonspecific effect associated with anterior aspect during encoding, and posterior during retrieval
+good performers in general. In contrast, activity in vMPFC, or (Schacter and Wagner, 1999). As such, our observations are
+indeed a PCC ROI, during the Initial session did not correlate consistentwiththenotionthatactivationoftheposteriorhippo-
+with the performance of participants in the New session (both campus in the New session reflects schema retrieval/applica-
+p>0.1). tion, whereas activation of a more anterior region in the Initial
+Neuron63,889–901,September24,2009ª2009ElsevierInc. 895
+
+--- PAGE 8 ---
+Neuron
+TrackingtheEmergenceofConceptualKnowledge
+Figure6. NewSession:BehavioralandfMRI
+Data
+(A)Group-averaged(n=25)performance(percent
+correctresponses)inthefirstthreeblocksofthe
+Initialsession(redbars)plottedtogetherwithper-
+formanceintheNewsession(greenbars).Partic-
+ipantsperformedsuperiorlyintheNewsession,as
+comparedtotheInitialsession(t=4.0,p<0.001).
+BarsrepresentSEM.
+(B) Between-subjects correlation: the activity in
+lefthippocampusofindividualparticipantsduring
+learningtrialsintheInitialsessioncorrelatedwith
+theirperformanceinNewsession(r=0.51,p=
+0.007),evenoncetheirperformanceinInitialses-
+sionhasbeencovariedout(p<0.01).yaxis:ac-
+tivityaveragedacrosswholeoflefthippocampus
+duringlearningtrialsintheInitialsessioninarbi-
+traryunits(ROIanalysis:seeExperimentalProce-
+dures). x axis: performance (percentcorrect re-
+sponses) averaged across three blocks of the
+Newsession.
+(C) Neural activity in the left posterior hippo-
+campusexhibitsasignificantlystrongercorrela-
+tionwithperformanceduringlearningtrialsinthe
+New session ascompared to the Initial session
+(x,y,z=(cid:2)21,(cid:2)30,(cid:2)6;z=3.40).Activationis
+significant at p < 0.001 uncorrected, and p <
+0.05SVCcorrected.Overallnetworkassociated
+withproficientperformanceintheNewsessionisillustratedinFigureS2anddetailedinTableS4.ActivationisshownontheaveragedstructuralMRIscanof
+the25participants,withcolorreflectingthezstatistic(white>yellow>orange>red).Activationisshownatp<0.005fordisplaypurposes.
+sessionreflectsschemaformation.Inmarkedcontrast,differen- tonneurons[Quirogaetal.,2005])andthegenerationofacquired
+tialactivityinthisanalysiswasnotobservedinvMPFC(p>0.1), equivalencebetweenstimuli(Myersetal.,2003;Shohamyand
+whichtrackedtheprobabilityofsuccessinbothNew(FigureS2) Wagner, 2008), its role in knowledge acquisition, often sub-
+andInitialsessions(Figure3). sumedwithinthebroader notion ofsemantic memory,has re-
+Takentogether,thesefindingssupportamodelinwhichthe mainedcontroversial.Inparticular,ithasbeenunclearwhether
+hippocampus and vMPFC interact during conceptual decision patientswithdamagelimitedtothehippocampusshowdeficits
+makingbutplaydissociableroles.Specifically,ourdata,inlink- in new semantic learning due to impaired episodic memory
+ing hippocampal activity to subjects’ ability to transfer knowl- capacities (Tulving and Markowitsch, 1998), the role of the
+edge to a novel setting, suggest that this region may house hippocampus as a ‘‘teacher’’ replaying individual memories to
+abstractconceptualrepresentationsofthetaskstructure,which enhance knowledge acquisition in the neocortex (McClelland
+endure across time (e.g., across experimental sessions). In etal.,1995),orinsteadduetoitsfunctioninthecreationoflinked
+contrast,thevMPFCmayactprimarilytoguidechoicesonline, networksofrelationalrepresentationswithina‘‘memoryspace’’
+by integrating abstract information received from the hippo- (Cohen and Eichenbaum, 1993; Eichenbaum et al., 1999). Our
+campus with stimulus-bound value information. As such, our results, in revealing how conceptual knowledge emerges
+resultsdovetailwithrecentperspectivesarguingthatthehippo- throughtheabstractionofcommonalitiesamongmultiplerelated
+campus plays a key role in decision making, by passing pro- experiences, provide empirical support for the latter memory
+spective memory signals coding for the available options to spacehypothesisofhippocampalfunction(CohenandEichen-
+downstream valuation modules such as the vMPFC and OFC baum, 1993; Eichenbaum et al., 1999). According to this per-
+(Johnsonetal.,2007).Moregenerally,ourfindingsaccordwith spective, therefore, the hippocampus supports conceptual
+the recent demonstration that hippocampal amnesics, like learning through its unique associative memory capacities,
+patients with vMPFC damage, show decision-making impair- which also explain its critical role in other relational memory
+mentsontheIowagamblingtask(Guptaetal.,2009). domains (e.g., transitive inference paradigm [Preston et al.,
+2004]).
+TheHippocampus,ConceptualLearning,andSemantic Thecurrentstudyalsoshedsnewlightonthenatureofnew
+Memory semantic learning in amnesia. Previous work has shown that
+This study, in demonstrating that the hippocampus underpins whilepatientswithamnesiaperformrelativelywell,orevennor-
+theacquisitionofconceptualknowledge,providesnewinsights mally (Duff et al., 2006), on certain tests of new semantic
+intothetypesofneuralrepresentationsandfunctionsitsupport. learning, information acquired tends to be rigidly organized
+While the hippocampus has been previously implicated in the (Bayleyetal.,2008;CohenandEichenbaum,1993;Duffetal.,
+representationofwell-establishedconcepts(e.g.,JenniferAnis- 2006;Eichenbaum,2004;O’Kaneetal.,2004;Westmacottand
+896 Neuron63,889–901,September24,2009ª2009ElsevierInc.
+
+--- PAGE 9 ---
+Neuron
+TrackingtheEmergenceofConceptualKnowledge
+Moscovitch,2001).Ourfindingssuggestthatakeydeficitinsuch TaskandProcedures
+patientsisthecapacitytosynthesizenewconceptsfromrelated Participantsweretoldtoimaginethemselvesasaweatherforecasterwhohas
+associative experiences, a function mediated by the hippo- topredictifitwillbesunnyorrainyonthebasisofagiven‘‘pattern’’onthe
+screen,whichwassaidtorepresentconstellationsofstarsinthenightsky
+campus and critical in allowing knowledge to be flexibly ac-
+(Figure1)(seeSupplementalInstructionsDocument).
+cessedanddeployed.Inthefuture,itwillbeimportanttounder-
+Participants’taskwastolearnhoweachofeightpatterns(P1–P8),created
+stand why patients with developmental amnesia, who have from different combinations of four fractals (i.e., F1–F4), predicted the
+dysfunctional hippocampi, are able to achieve an apparently weather.Eachpatternwasmadeupoftwofractalshapes:oneinthecenter
+normalconceptualunderstandingoftheworld(Vargha-Khadem ofthescreen,andoneeithertotherightortheleft.AsillustratedinFigure1,
+etal.,1997)andwhetherthisarisesasaconsequenceofneural twofractals(F1andF2)wereonlypresentedoneithertheleft-orright-hand
+sideofthescreen,withtwofractals(i.e.,F3andF4)onlyappearinginthe
+plasticityresultingfromearlybraininjury.
+center of the screen. Since all eight patterns were constructed from the
+samefourfractals,successfulperformancerequiredparticipantstouseasso-
+Conclusions ciativeinformationconsistingofshape-locationandshape-shapeconjunc-
+Whileconceptualknowledgeisthoughttoplayaninfluentialrole tions rather than elemental information (e.g., single shape). Each pattern
+(e.g.,P1)wasassociatedwithagivenoutcome(e.g.,sun)witha100%prob-
+inhumandecisionmaking(Sheaetal.,2008),theneuralmecha-
+ability.Thisprobabilitywasfixedforthedurationoftheexperimentanddid
+nisms underpinning its emergence and influence on choice
+notchange.Theeightpatternsareillustratedwiththeiroutcomes(Figure1).
+behavior have been little studied until now. Here, we reveal
+Notethatthisisanexample,sincetheconstructionofpatternsfromfractals
+that the vMPFC, in concert with the hippocampus, underpins and the mapping of patterns to outcomes was changed between partici-
+conceptual decision making, implying that this neural circuit pants.
+comprises an important, but until now neglected, part of the Duringlearningtrials,participantsviewedagivenpatternonthescreen(e.g.,
+goal-directed system in humans. More generally, our findings, P1),enteredaprediction(e.g.,sun),andreceivedfeedbackregardingcorrect-
+ness(correct/incorrect)andreward(win/losemoney)(Figure2AandSupple-
+in elucidating the conditions under which the hippocampus
+mentalExperimentalProcedures).Probetrials,however,didnotinvolvefeed-
+and vMPFC are recruited into a simple choice scenario, offer
+backandrequiredparticipantstogeneralize,sincetheywereconfrontedwith
+afreshperspectiveontheintriguingquestionofwhythesebrain partialpatterns(i.e.,‘‘asiftheskywaspartiallyobscuredbycloud’’),therefore
+regionsareengagedduringsuchadiverserangeoftasks(e.g., providinguswithanonlinemeasureofthelevelofconceptualknowledge
+spatialnavigation,imagination,autobiographicalmemory,self- acquired throughout the experiment (Figures 2C and 5 and Supplemental
+projection, fear extinction [Bar, 2007; Buckner and Carroll, ExperimentalProcedures).Participantswerealsoaskedtoratetheirconfi-
+dence in their predictions during probe trials, by indicating whether they
+2007; Hassabis and Maguire, 2007; Phelps et al., 2004]). We
+were‘‘sure’’or‘‘notsure’’bybuttonpress.Priortotheexperiment,participants
+suggest,therefore,thatthisneuralcircuitmaysupportacommon
+wereinstructedtoselectasureconfidenceratingonlyiftheyfelt‘‘atleast90%
+core function during goal-directed cognition, regardless of certain’’thattheirpredictionwascorrect.
+whether it is oriented to the past, present, or future, whereby Scanningconsistedoftwomainsessions,theInitialsession(45min)andthe
+the vMPFC mediates the online integration and evaluation of Newsession(15min),whichhadthesamehigher-ordertaskstructurethough
+associativeinformationconveyedbythehippocampus. differingintermsofthesetoffractalsused.Atthestartoftheexperiment,
+participantsweretoldthattheywouldtakepartintwosessions.However,
+theywerenottoldwhatwouldhappenduringthesecond(New)sessionuntil
+EXPERIMENTALPROCEDURES afterthecompletionofthefirst(Initialsession).
+The Initial and New sessions were composed of nine and three blocks,
+Participants respectively.Eachblockwascomprisedofa40trialminiblockmadeupof
+Twenty-seven healthy, right-handed native English speakers, who were 32learningtrialswith8control(i.e.,baseline:seeSupplementalExperimental
+currentlyundertakingorhadrecentlycompletedauniversitydegree,partici- Procedures)trialspseudorandomlyinterspersedinbetween,followedbyan
+patedinthisexperiment(agerange19–31;12female).Twoofthesepartici- eighttrialminiblockofprobetrials.Thestartofeachminiblockwaspreceded
+pantswereexcluded:oneduetoakeypadmalfunctionandtheotherdueto withtherelevantinstruction(i.e.,‘‘Getreadyforlearningtrials,’’‘‘Getreadyfor
+consistently poor task performance (i.e., failure to exceed chance perfor- probetrials’’).IntheInitialsession,participantsweregivenabriefrestafter
+mance of 50% in either the Initial or New session). All participants gave every three blocks, though remained in the scanner. Participants were
+informedwrittenconsenttoparticipationinaccordancewiththelocalresearch removedfromthescanneraftertheInitialsession,debriefed,andreturned
+ethicscommittee. tothescannerafterashortinterval(5min)fortheNewsession.Intotal,there-
+fore,theInitialsessionconsistedof288learningtrials,72controltrials,and
+Stimuli 72probetrials,andtheNewsessionof96learningtrials,24controltrials,
+Picturesoffractals,ratherthanreal-lifeobjects,wereusedinourexperimentto and24probetrials.
+investigatethelearningofnewconceptsuncontaminatedbypreviousexperi-
+enceoutsidetheexperimentalcontext.Twosetsofsixfractalimageswere DebriefingProtocol
+usedduringthemainexperiment:onesetintheInitialsessionandonesetin Following the completion of each experimental session (Initial and New),
+theNewsession.Aseparatesetoffractalswasusedduringapracticesession participants were carefully debriefed in order to evaluate the presence
+priortotheexperimentwhereparticipantswerefamiliarizedwiththetask.In and nature of conceptual knowledge concerning the task structure, and
+eachset,fourfractalswerepresentedduringlearningandprobetrials,and dissociate this from a more specific knowledge of outcomes associated
+afurthertwofractalswereonlyeverseenduringcontroltrials(seebelow).Allo- with each pattern in isolation (see Supplemental Experimental Procedures
+cation of set was randomized across participants. Prior to each scanning and Questionnaire). Information obtained at debriefing was designed to
+session,participantsbrieflyperformedasimpleone-backtaskwherethey provide a measure of explicit (i.e., consciously accessible) conceptual
+viewedeachindividualfractalpicturefivetimes,inordertominimizestimulus knowledge,indexing participants’ ability to accessand deploy conceptual
+novelty effects during scanning. Images were obtained from the internet knowledge in a context quite different from the original learning situation.
+(http://techrepublic.com.com/2346-10878_11-33277-7.html), resized, and As such, the composite debriefing score (see Supplemental Experimental
+placedonasquareblackbackground.Examplesoffractalsusedintheexper- Procedures)complementedonlineindicesofconceptualknowledgeacqui-
+imentareshowninFigure1. sition (i.e., probe trial performance) obtained during task performance. Of
+Neuron63,889–901,September24,2009ª2009ElsevierInc. 897
+
+--- PAGE 10 ---
+Neuron
+TrackingtheEmergenceofConceptualKnowledge
+note,ourdebriefingprotocol,likeprobetrials,wascarefullydesignedsoas regionswhoseactivationpatternduringlearningtrialssignificantlycorrelated
+toavoidtheprovisionofnewinformationconcerning thetaskstructureto withparticipant-specifictrial-by-trialregressors,namelytheprobability_suc-
+participants. cessandprobe_performanceregressors.
+ParametricRegressors
+BehavioralAnalyses (1) Probability_success: for each individual subject, the state-space
+AnalyseswereconductedusingSPSSsoftware(http://www.spss.com),Mat- model was used to estimate learning curves for each pattern (i.e.,
+lab7.0(http://www.mathworks.com/products/matlab),andusingthestate- P1–P8)(seeSupplementalExperimentalProcedures).Theselearning
+spacemodeltoolboxobtainedfromhttp://www.neurostat.mit.edu. curves constituted vectors indexing the probability of a correct
+To evaluate the correlation between performance on different patterns responseonagiventrialandwereusedtocreateparticipant-specific
+(i.e., P1–P8), we first extracted vectors coding for participants’ responses parametricregressors.
+inbinaryfashion(i.e.,correctversusincorrect).Wethencomputedcorrela- (2) Probe_performance: probe trial performance was scored in accor-
+tioncoefficients,asimplemented inMatlab 7.0,betweenpairs ofdifferent dancewiththeinstructionsgiventoparticipantsabouthowtorate
+patterns(e.g.,P1versusP2,P1versusP3,etc.).Foreachindividualpartic- their confidence in their predictions. Correct predictions that were
+ipant, we calculated the average correlation coefficient between perfor- givenasureconfidenceratingwerescoredmorehighlythanthose
+mance on learning trials within a given domain (i.e., spatial [P1–P4] and accorded a not-sure rating, with the former scoring 5 points and
+nonspatial [P5–P8]) and that across domains (e.g., P1–P5, P1–P6, etc.). thelatter2points.Performanceonspatialandnonspatialoutcome_
+We then asked whether, using a paired sample t test across the entire determined probe trials was then used to modulate respective
+group,performanceonlearningtrialswithinadomainshowedasignificantly learning trials (i.e., spatial: P1–P4/nonspatial: P5–P8) during the
+greatercorrelationthanacrossdomains.Thisiswhatwouldbeexpectedif precedingminiblock.Forinstance,performanceonthespatialoutco-
+participants integrated information across relevant patterns (e.g., P1–P4) me_determinedprobetrialillustratedinFigure2C(upperpanel)was
+rather than learning each pattern-outcome association (e.g., P1 = sun) in usedtomodulatethefourlearningtrialsduringtheprecedingmini-
+isolation. block where patterns P1 and P3 were presented. Similarly, perfor-
+manceonthenonspatialoutcome_determinedprobetrialillustrated
+fMRIDesign in Figure 2C (lower panel) was used to modulate the four learning
+The temporal pattern of stimulus presentation was designed to maximize trialsduringtheprecedingminiblockwherepatternsP7andP8were
+statisticalefficiencywhilepreservingpsychologicalvalidity,inlinewithestab- presented.
+lishedprocedure(Frackowiaketal.,2004;Fristonetal.,1998;Josephsand SpecificationofFirst-LevelDesignMatrixandModelEstimation
+Henson,1999).Thetrialonsetasynchrony(TOA)forlearningtrialswas7s Asafirststep,the5speriodduringwhichpatternandoutcomeweredisplayed
+(i.e.,5sduringwhichthepatternandoutcomewerepresentedfollowedby duringlearningtrialswasmodeledasaboxcarfunctionandconvolvedwiththe
+2sfixationcross).GiventhattheTOAisnotasimpleintegermultipleofthe canonical haemodynamic response function (HRF) to create regressors of
+TR(timeforacquisitionofonescanningvolume=4.05s),trialonsetswere interest.Ininitialanalyses,vectorsindexingspatial(i.e.,P1–P4)andnonspatial
+automatically temporally jittered with respect to scan onsets (Frackowiak (i.e.,P5–P8)learningtrialswerecodedseparatelyinthedesignmatrix.Given
+etal.,2004).Importantly,thehaemodynamicresponsetoeventsthatoccur thatnosignificanteffectsofdomain(i.e.,spatialversusnonspatial)werefound,
+afewsecondsapartisexplicitlymodeled(viaahaemodynamicresponsefunc- evenatliberalstatisticalthresholds(p<0.01uncorrected)(seeSupplemental
+tion)andthereforecanbeestimatedseparatelyforeacheventtypebyimple- Results),spatialandnonspatialtrialswereincludedwithinasingleregressorin
+mentingthegenerallinearmodel,asisstandardwhenusingstatisticalpara- allsubsequentanalyses.
+metric mapping software (SPM5) (http://www.fil.ion.ucl.ac.uk/spm/) (also Participant-specific vectors coding for probability_success, probe_per-
+seebelow)(Fristonetal.,1998). formancewerethenincludedasparametricmodulatorsinthedesignmatrix.
+Inthefirstanalysisreported,onlyprobability_successwasincludedasapara-
+ImagingParametersandAcquisition metric regressor. In subsequent analyses set up to identify brain regions
+T2-weightedechoplanarimages(EPI)withBOLD(blood-oxygen-level-depen- whoseactivityspecificallytrackstheemergenceofconceptualknowledge,
+dent)contrastwereacquiredona1.5teslaSiemensSonataMRIscannerusing weincludedtheprobe_performancevectorasanadditional(second)para-
+aspecializedsequencetominimizesignaldropoutinthemedialtemporallobe metricregressorinthedesignmatrix.Ofnote,thecorrelationbetweenthese
+(Deichmann et al., 2003). We used the following scanning parameters to two regressors before inclusion in the first level design matrix was (cid:4)0.42
+achievewholebraincoverage:45obliqueaxialslicesangledat30(cid:3)intheante- across subjects. After the automatic orthogonalization procedure imple-
+rior-posterioraxis,TR4.05s,2mmthickness(1mmgap),TE30ms,in-plane mented in SPM5, the correlation between these two regressors averaged
+resolution333mm,field-of-view192mm,64364matrix.Apreparation acrosssubjectswas(cid:2)0.08.
+pulse(duration1ms,amplitude+1mT/m*ms)wasusedinthesliceselection TheseparametricregressorswerealsoconvolvedwiththeHRF,leading
+directiontocompensateforthrough-planesusceptibilitygradientspredomi- totheheightofthe HRFforagiveneventbeing modulated asafunction
+nantinthehippocampus(Weiskopfetal.,2005).High-resolution(1313 of the probability of success, or probe performance. Thus, these regres-
+1mm)T1-weightedstructuralMRIscanwereacquiredforeachparticipant sors model BOLD signal changes that covary with probability of success,
+after functional scanning. These were coregistered to the functional EPIs orprobeperformanceonagiventrial.Wealsoincludedvectorscodingfor
+andaveragedacrossparticipantstoaidlocalization. outcome_determined, and outcome_undetermined, probe trials, and
+control trials, in the first level design matrix. Probe performance was
+fMRIDataPreprocessing also included as a parametric regressor relating to neural activity during
+Imageswereanalyzedinastandardmannerusingthestatisticalparametric probe trials. Further, participant-specific movement parameters were
+mapping software SPM5 (http://www.fil.ion.ucl.ac.uk/spm/). After the first included as regressors of no interest. A high-pass filter with a cutoff of
+six‘‘dummyvolumes’’werediscardedtopermitT1relaxation,imageswere 180 s was employed. Temporal autocorrelation was modeled using an
+spatiallyrealignedtothefirstvolumeofthefirstsession,followedbyspatial AR(1) process.
+normalizationtoastandardEPItemplate,resultinginafunctionalvoxelsize Modelestimationproceededintwostages.Inthefirststage,condition-
+of33333mm.NormalizedimagesweresmoothedusingaGaussiankernel specificexperimentaleffects(parameterestimates,orregressioncoefficients,
+withfullwidthathalfmaximumof8mm. pertainingtotheheightofthecanonicalHRF)wereobtainedviatheGLMin
+avoxel-wisemannerforeachparticipant.Inthesecond(random-effects)stage,
+fMRIDataAnalysis participant-specificlinearcontrastsoftheseparameterestimates,collapsed
+Followingpreprocessing,theevent-relatedfMRIdatawereanalyzedinSPM5 acrossthethreesessions,wereenteredintoaseriesofone-samplettests
+usingthegenerallinearmodelfollowingestablishedprocedures(Frackowiak (asisstandardwhenusingSPMandafactorialdesign[Frackowiaketal.,
+etal.,2004;Fristonetal.,1998).Wetargetedouranalysestodetectbrain 2004]),eachconstitutingagroup-levelstatisticalparametricmap.
+898 Neuron63,889–901,September24,2009ª2009ElsevierInc.
+
+--- PAGE 11 ---
+Neuron
+TrackingtheEmergenceofConceptualKnowledge
+StatisticalInference SUPPLEMENTALDATA
+Voxel-BasedAnalyses
+Wereportresultsinaprioriregionsofinterest(previouslydefinedinneuroi- SupplementalDataincludeSupplementalResultsrelatingtothemainfMRI
+magingstudiesofdecisionmakingandassociativelearning[Hamptonetal., experiment, aseparate behavioral experiment, SupplementalExperimental
+2006;Lawetal.,2005;O’Doherty,2004]:MTL,vMPFC,PCC,amygdala)where Procedures,fourtables,twofigures,instructionsfortheweatherprediction
+activationsaresignificantatp<0.001uncorrectedformultiplecomparisons task, details of the debriefing protocol, and supplemental references and
+with an extent threshold of 5 voxels, and survive small volume correction can be found with this article online at http://www.cell.com/neuron/
+(SVC)formultiplecomparisons(orfamily-wiseerror[FWE]correctionacross supplemental/S0896-6273(09)00618-7.
+the wholebrain). The SVC procedure, asimplemented in SPM5 using the
+FWEcorrectionprocedure(p<0.05),allowsresultstobecorrectedformultiple
+ACKNOWLEDGMENTS
+nonindependentcomparisonswithadefinedregionofinterest.FortheSVC
+procedure,weusedananatomicalmasksobtainedfromtheMarsBarSPM
+toolbox (hippocampus, amygdala) (http://marsbar.sourceforge.net/), and WethankRayDolan,BenedettoDeMartinoandHugoSpiersforcommentson
+a4mmspherecenteredoncoordinatesderivedfrompreviouswork(vMPFC: the manuscript; Sara Bengtsson, Dick Passingham, and Ben Seymour for
+x,y,z=657(cid:2)6[Hamptonetal.,2006]).Activationsinotherbrainregionswere usefuldiscussions;HannekedenOudenandGuillaumeFlandinformethodo-
+onlyconsideredsignificantiftheysurvivedwhole-brainFWEcorrectionfor logicaladvice;DebbieTalmiforhelpwithstimuli.Theworkwasfundedby
+multiplecomparisonsatp<0.05(inlinewithestablishedprocedures[Fracko- aWellcomeTrustSeniorResearchFellowshipinBasicBiomedicalScience
+wiaketal.,2004]),butarereportedforcompletenessatathresholdofp<0.001 toE.A.M.
+uncorrected for multiple comparisons. All activations are displayed on
+sectionsoftheaveragestructuralimageofalltheparticipants.Reportedvox- Accepted:July22,2009
+elsconformtoMontrealNeurologicalInstitute(MNI)coordinatespace.Right Published:September23,2009
+sideofthebrainisdisplayedontherightside.
+RegionofInterestAnalyses REFERENCES
+Totestwhetherbrainregions,namelythelefthippocampusandvMPFC,which
+tracktheemergenceofconceptualknowledgealsoguideprobetrialperfor- Ashby,F.G.,andMaddox,W.T.(2005).Humancategorylearning.Annu.Rev.
+mance,weperformedanROIanalysisinthesetwofunctionallydefinedregions Psychol.56,149–178.
+(using the MarsBar SPM toolbox: http://marsbar.sourceforge.net/). These
+Bar, M. (2007). The proactive brain: using analogies and associations to
+regionswerefunctionallydefinedfromthegroupstatisticalmappertaining
+generatepredictions.TrendsCogn.Sci.11,280–289.
+tothecorrelationofbrainactivationwithprobe_performanceandthresholded
+atp<0.005uncorrected.Thus,definitionofthisROIisunbiasedwithrespect Bartlett,F.C.(1932).Remembering:AnExperimentalandSocialStudy(Cam-
+toourcontrastofinterest,whichpertainstoneuralactivityduringprobetrials. bridge,UK:CambridgeUniversityPress).
+UsingtheMarsBarSPMtoolbox,weobtainedparameterestimatesforallvox- Bayley,P.J.,O’Reilly,R.C.,Curran,T.,andSquire,L.R.(2008).Newsemantic
+elswithinthisregion,forthegroupasawhole.Theseparameterestimates learninginpatientswithlargemedialtemporallobelesions.Hippocampus18,
+were averaged across the ROI and specific effects tested by one-sample 575–583.
+ttests.
+Behrens,T.E.,Hunt,L.T.,Woolrich,M.W.,andRushworth,M.F.(2008).Asso-
+WealsoperformedanROIanalysistoaskwhetheractivitywithinthehippo-
+ciativelearningofsocialvalue.Nature456,245–249.
+campusduringlearningtrialsintheInitialsessionaccountsfortheconsider-
+able variability shown by individual participants in terms of performance Buckner,R.L.,andCarroll,D.C.(2007).Self-projectionandthebrain.Trends
+enhancementin the New session. Here, we used an anatomically defined Cogn.Sci.11,49–57.
+mask of the (left) hippocampus obtained from the MarsBar SPM toolbox Cohen,N.J.,andEichenbaum,H.(1993).Memory,AmnesiaandtheHippo-
+(http://marsbar.sourceforge.net/).Thisanalysiswasimplemented usingthe campalSystem(Cambridge,MA:MITPress).
+multipleregressionfunctioninSPM5,withtheeffectofperformanceinthe
+Davachi,L.(2006).Item,contextandrelationalepisodicencodinginhumans.
+Initialsessionincludedasacovariateofnointerest.
+Curr.Opin.Neurobiol.16,693–700.
+ItisimportanttonotethattheseanalysestreatdatafromaROIasifitwas
+from a single voxel, and hence no correction for multiple comparisons is Daw, N.D., Niv, Y., and Dayan, P. (2005). Uncertainty-based competition
+necessary. betweenprefrontalanddorsolateralstriatalsystemsforbehavioralcontrol.
+PsychophysiologicalInteractionAnalysis Nat.Neurosci.8,1704–1711.
+APPIanalysisisemployed toidentifythepresenceoffunctional coupling Deichmann,R.,Gottfried,J.A.,Hutton,C.,andTurner,R.(2003).Optimized
+betweendifferentbrainregions,byshowingthatactivityinadistantregion EPIforfMRIstudiesoftheorbitofrontalcortex.Neuroimage19,430–441.
+canbeaccountedforbyaninteractionbetweentheinfluenceofasource
+Duff,M.C.,Hengst,J.,Tranel,D.,andCohen,N.J.(2006).Developmentof
+regionandanexperimentalparameter(Fristonetal.,1997).WeusedaPPI
+shared information in communication despite hippocampal amnesia. Nat.
+analysistoaskwhetherthelefthippocampus,oursourceregion,significantly
+Neurosci.9,140–146.
+influencedactivityinvMPFC(orPCC),specificallyinrelationtothelevelof
+conceptualknowledgeacquired(i.e.,condition3probe_performanceinterac- Eichenbaum,H.(2004).Hippocampus:cognitiveprocessesandneuralrepre-
+tion).Todothis,weusedSPM5tofirstextractthetimeseriesforthepeak sentationsthatunderliedeclarativememory.Neuron44,109–120.
+voxelinthelefthippocampus(i.e.,4mmspherecenteredonpeakcoordinate Eichenbaum,H.,Dudchenko,P.,Wood,E.,Shapiro,M.,andTanila,H.(1999).
+inthegroupanalysisx,y,z,=(cid:2)24,(cid:2)25,(cid:2)21),identifiedinthecorrelationof Thehippocampus,memory,andplacecells:isitspatialmemoryoramemory
+learningtrialrelatedactivitywithprobe_performance(Figure4)(physiological space?Neuron23,209–226.
+effect).ThistimecoursewasthefirstregressorinthePPIanalysis.Next,we
+Eichenbaum, H., Yonelinas, A.P., and Ranganath, C. (2007). The medial
+calculatedtheproductofthetimecourseandtheprobe_performancevector
+temporallobeandrecognitionmemory.Annu.Rev.Neurosci.30,123–152.
+tocreatethePPI(i.e.,psychophysiologicalinteraction)term.Theeffectofthis
+Frackowiak,R.S.,Friston,K.J.,Frith,C.D.,Dolan,R.J.,Price,C.J.,Zeki,S.,
+interactiontermwasassessedforeachparticipantandenteredintoasecond
+Ashburner, J., and Penny, W. (2004). Human Brain Function (New York:
+levelgroup-levelanalysis.Specifically,weperformedanROIanalysisinthe
+AcademicPress).
+functionallydefinedregionofthevMPFC(seeabove)toaskwhetherthisregion
+showssignificantfunctionalcouplingwiththelefthippocampus,themagni- Friston, K.J.,Buechel,C.,Fink,G.R.,Morris, J.,Rolls,E.,andDolan,R.J.
+tudeofwhichspecificallytrackstheamountofconceptualknowledgede- (1997). Psychophysiological and modulatory interactions in neuroimaging.
+ployedduringlearningtrials. Neuroimage6,218–229.
+Neuron63,889–901,September24,2009ª2009ElsevierInc. 899
+
+--- PAGE 12 ---
+Neuron
+TrackingtheEmergenceofConceptualKnowledge
+Friston,K.J.,Fletcher,P.,Josephs,O.,Holmes,A.,Rugg,M.D.,andTurner,R. Norman,K.A.,andO’Reilly,R.C.(2003).Modelinghippocampalandneocor-
+(1998).Event-relatedfMRI:characterizingdifferentialresponses.Neuroimage ticalcontributionstorecognitionmemory:acomplementary-learning-systems
+7,30–40. approach.Psychol.Rev.110,611–646.
+Gallistel,C.R.,Fairhurst,S.,andBalsam,P.(2004).Thelearningcurve:impli- O’Doherty,J.P.(2004).Rewardrepresentationsandreward-relatedlearningin
+cationsofaquantitative analysis.Proc.Natl.Acad.Sci.USA101,13124– the human brain: insights from neuroimaging. Curr. Opin. Neurobiol. 14,
+13131. 769–776.
+Greene, A.J. (2007). Human hippocampal-dependent tasks: is awareness O’Kane,G., Kensinger, E.A., andCorkin, S.(2004).Evidence forsemantic
+necessaryorsufficient?Hippocampus17,429–433. learninginprofoundamnesia:aninvestigationwithpatientH.M.Hippocampus
+14,417–425.
+Gupta,R.,Duff,M.C.,Denburg,N.L.,Cohen,N.J.,Bechara,A.,andTranel,D.
+(2009).Declarativememoryiscriticalforsustainedadvantageouscomplex Ongur,D.,Ferry,A.T.,andPrice,J.L.(2003).Architectonicsubdivisionofthe
+decision-making.Neuropsychologia47,1686–1693. humanorbitalandmedialprefrontalcortex.J.Comp.Neurol.460,425–449.
+Hampton, A.N., Bossaerts,P., and O’Doherty, J.P. (2006). The role ofthe Otto,T.,andEichenbaum,H.(1992).Neuronalactivityinthehippocampus
+ventromedialprefrontalcortexinabstractstate-basedinferenceduringdeci- duringdelayednon-matchtosampleperformanceinrats:evidenceforhippo-
+sionmakinginhumans.J.Neurosci.26,8360–8367. campalprocessinginrecognitionmemory.Hippocampus2,323–334.
+Haskins,A.L.,Yonelinas,A.P.,Quamme,J.R.,andRanganath,C.(2008).Peri- Patterson,K.,Nestor,P.J.,andRogers,T.T.(2007).Wheredoyouknowwhat
+rhinal cortex supports encoding and familiarity-based recognition of novel youknow?Therepresentationofsemanticknowledgeinthehumanbrain.Nat.
+associations.Neuron59,554–560. Rev.Neurosci.8,976–987.
+Hassabis,D.,andMaguire,E.A.(2007).Deconstructingepisodicmemorywith Phelps,E.A.,Delgado,M.R.,Nearing,K.I.,andLeDoux,J.E.(2004).Extinction
+construction.TrendsCogn.Sci.11,299–306. learninginhumans:roleoftheamygdalaandvmPFC.Neuron43,897–905.
+Johnson,A.,vanderMeer,M.A.,andRedish,A.D.(2007).Integratinghippo- Poldrack,R.A.,Clark,J.,Pare-Blagoev,E.J.,Shohamy,D.,CresoMoyano,J.,
+campusandstriatumindecision-making.Curr.Opin.Neurobiol.17,692–697. Myers,C.,andGluck,M.A.(2001).Interactivememorysystemsinthehuman
+brain.Nature414,546–550.
+Josephs,O.,andHenson,R.N.(1999).Event-relatedfunctionalmagneticreso-
+nanceimaging:modelling,inferenceandoptimization.Philos.Trans.R.Soc. Preston,A.R.,Shrager,Y.,Dudukovic,N.M.,andGabrieli,J.D.(2004).Hippo-
+Lond.BBiol.Sci.354,1215–1228. campalcontributiontothenoveluseofrelationalinformationindeclarative
+memory.Hippocampus14,148–152.
+Knowlton,B.J.,andSquire,L.R.(1993).Thelearningofcategories:parallel
+brain systems for item memory and category knowledge. Science 262, Quiroga,R.Q.,Reddy,L.,Kreiman,G.,Koch,C.,andFried,I.(2005).Invariant
+1747–1749. visualrepresentationbysingleneuronsinthehumanbrain.Nature435,1102–
+1107.
+Knowlton,B.J.,andSquire,L.R.(1994).Theinformationacquiredduringarti-
+Rangel,A.,Camerer,C.,andMontague,P.R.(2008).Aframeworkforstudying
+ficialgrammarlearning.J.Exp.Psychol.Learn.Mem.Cogn.20,79–91.
+the neurobiology of value-based decision making. Nat. Rev. Neurosci. 9,
+Knowlton,B.J.,Squire,L.R.,andGluck,M.A.(1994).Probabilisticclassifica-
+545–556.
+tionlearninginamnesia.Learn.Mem.1,106–120.
+Reber, A.S. (1967). Implicit learning of artificial grammar. J. Verbal Learn.
+Kumaran,D.,Hassabis,D.,Spiers,H.J.,Vann,S.D.,Vargha-Khadem,F.,and
+VerbalBehav.6,855–863.
+Maguire,E.A.(2007).Impairedspatialandnon-spatialconfigurallearningin
+Rogers, T.T., and McClelland, J.L. (2004). Semantic Cognition: A Parallel
+patientswithhippocampalpathology.Neuropsychologia45,2699–2711.
+DistributedProcessingApproach(Cambrige,MA:MITPress).
+Law,J.R.,Flanery,M.A.,Wirth,S.,Yanike,M.,Smith,A.C.,Frank,L.M.,Suzuki,
+Rudebeck,P.H.,Bannerman,D.M.,andRushworth,M.F.(2008).Thecontribu-
+W.A.,Brown,E.N.,andStark,C.E.(2005).Functionalmagneticresonance
+tionofdistinctsubregionsoftheventromedialfrontalcortextoemotion,social
+imagingactivityduringthegradualacquisitionandexpressionofpaired-asso-
+behavior,anddecisionmaking.Cogn.Affect.Behav.Neurosci.8,485–497.
+ciatememory.J.Neurosci.25,5720–5729.
+Rudy,J.W.,andSutherland,R.J.(1989).Thehippocampalformationisneces-
+Locke,J.(1690).AnEssayConcerningHumaneUnderstanding(London,UK).
+saryforratstolearnandrememberconfiguraldiscriminations.Behav.Brain
+Martin,A.(2007).Therepresentationofobjectconceptsinthebrain.Annu. Res.34,97–109.
+Rev.Psychol.58,25–45.
+Rumelhart,D.E.(1980).Schemata:Thebuildingblocksofcognition.InTheo-
+Mayes,A.,Montaldi,D.,andMigo,E.(2007).Associativememoryandthe reticalIssuesinReadingComprehension,R.J.Spiro,B.C.Bruce,andW.F.
+medialtemporallobes.TrendsCogn.Sci.11,126–135. Brewer,eds.(Hillsdale,NJ:Erlbaum).
+McClelland,J.L.,McNaughton,B.L.,andO’Reilly,R.C.(1995).Whythereare Schacter,D.L.,andWagner,A.D.(1999).Medialtemporallobeactivationsin
+complementarylearningsystemsinthehippocampusandneocortex:insights fMRIandPETstudiesofepisodicencodingandretrieval.Hippocampus9,
+from the successes and failures of connectionist models of learning and 7–24.
+memory.Psychol.Rev.102,419–457.
+Shea,N.,Krug,K.,andTobler,P.N.(2008).Conceptualrepresentationsin
+Miller,E.K.,Freedman,D.J.,andWallis,J.D.(2002).Theprefrontalcortex: goal-directeddecisionmaking.Cogn.Affect.Behav.Neurosci.8,418–428.
+categories,conceptsandcognition.Philos.Trans.R.Soc.Lond.BBiol.Sci.
+Shohamy,D.,andWagner,A.D.(2008).Integratingmemoriesinthehuman
+357,1123–1136.
+brain: hippocampal-midbrain encoding of overlapping events. Neuron 60,
+Montague,P.R.,King-Casas,B.,andCohen,J.D.(2006).Imagingvaluation 378–389.
+modelsinhumanchoice.Annu.Rev.Neurosci.29,417–448.
+Smith,A.C.,Frank,L.M.,Wirth,S.,Yanike,M.,Hu,D.,Kubota,Y.,Graybiel,
+Murphy,G.L.(2004).TheBigBookofConcepts(Cambridge,MA:MITPress). A.M.,Suzuki,W.A.,andBrown,E.N.(2004).Dynamicanalysisoflearningin
+Murray,E.A.,O’Doherty,J.P.,andSchoenbaum,G.(2007).Whatweknowand behavioralexperiments.J.Neurosci.24,447–461.
+donotknowaboutthefunctionsoftheorbitofrontalcortexafter20yearsof Strange, B.A., Fletcher, P.C., Henson, R.N., Friston, K.J., and Dolan, R.J.
+cross-speciesstudies.J.Neurosci.27,8166–8169. (1999).Segregatingthefunctionsofhumanhippocampus.Proc.Natl.Acad.
+Myers,C.E.,Shohamy,D.,Gluck,M.A.,Grossman,S.,Kluger,A.,Ferris,S., Sci.USA96,4034–4039.
+Golomb, J., Schnirman, G., and Schwartz, R. (2003). Dissociating hippo- Toni,I.,Ramnani,N.,Josephs,O.,Ashburner,J.,andPassingham,R.E.(2001).
+campalversusbasalgangliacontributionstolearningandtransfer.J.Cogn. Learningarbitraryvisuomotorassociations:temporaldynamicofbrainactivity.
+Neurosci.15,185–193. Neuroimage14,1048–1057.
+900 Neuron63,889–901,September24,2009ª2009ElsevierInc.
+
+--- PAGE 13 ---
+Neuron
+TrackingtheEmergenceofConceptualKnowledge
+Tse,D.,Langston,R.F.,Kakeyama,M.,Bethus,I.,Spooner,P.A.,Wood,E.R., Weiskopf,N.,Hutton,C.,Josephs,O.,andDeichmann,R.(2005).OptimalEPI
+Witter,M.P.,andMorris,R.G.(2007).Schemasandmemoryconsolidation. parameters for BOLD sensitivity dropout reduction: a whole brain map.
+Science316,76–82. Proceedingsofthe13thISMRM#1543.
+Tulving,E.,andMarkowitsch,H.J.(1998).Episodicanddeclarativememory: Westmacott, R., and Moscovitch, M. (2001). Names and words without
+roleofthehippocampus.Hippocampus8,198–204. meaning:incidentalpostmorbidsemanticlearninginapersonwithextensive
+Vargha-Khadem, F., Gadian, D.G., Watkins, K.E., Connelly, A., Van Paes- bilateralmedialtemporaldamage.Neuropsychology15,586–596.
+schen,W.,andMishkin,M.(1997).Differentialeffectsofearlyhippocampal Wirth,S.,Yanike,M.,Frank,L.M.,Smith,A.C.,Brown,E.N.,andSuzuki,W.A.
+pathologyonepisodicandsemanticmemory.Science277,376–380. (2003).Singleneuronsinthemonkeyhippocampusandlearningofnewasso-
+Watkins,C.,andDayan,P.(1992).Q-Learning.Mach.Learn.8,279–291. ciations.Science300,1578–1581.
+Neuron63,889–901,September24,2009ª2009ElsevierInc. 901

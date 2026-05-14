@@ -1,0 +1,904 @@
+
+--- PAGE 1 ---
+Neuron
+Review
+Neuroscience-Inspired Artificial Intelligence
+DemisHassabis,1,2,*DharshanKumaran,1,3ChristopherSummerfield,1,4andMatthewBotvinick1,2
+1DeepMind,5NewStreetSquare,London,UK
+2GatsbyComputationalNeuroscienceUnit,25HowlandStreet,London,UK
+3InstituteofCognitiveNeuroscience,UniversityCollegeLondon,17QueenSquare,London,UK
+4DepartmentofExperimentalPsychology,UniversityofOxford,Oxford,UK
+*Correspondence:dhcontact@google.com
+http://dx.doi.org/10.1016/j.neuron.2017.06.011
+Thefieldsofneuroscienceandartificialintelligence(AI)havealongandintertwinedhistory.Inmorerecent
+times, however,communicationandcollaboration betweenthetwo fieldshasbecome less commonplace.
+Inthisarticle,wearguethatbetterunderstandingbiologicalbrainscouldplayavitalroleinbuildingintelligent
+machines.WesurveyhistoricalinteractionsbetweentheAIandneurosciencefieldsandemphasizecurrent
+advancesinAIthathavebeeninspiredbythestudyofneuralcomputationinhumansandotheranimals.We
+concludebyhighlightingsharedthemesthatmaybekeyforadvancingfutureresearchinbothfields.
+In recent years, rapid progress has been made in the related tively.Forexample,ifanalgorithmisnotquiteattainingthelevel
+fields of neuroscience and artificial intelligence (AI). At the ofperformancerequiredorexpected,butweobserveitiscoreto
+dawn of the computer age, work on AI was inextricably inter- thefunctioningofthebrain,thenwecansurmisethatredoubled
+twinedwithneuroscienceandpsychology,andmanyoftheearly engineeringeffortsgearedtomakingitworkinartificialsystems
+pioneers straddled both fields, with collaborations between arelikelytopayoff.
+these disciplines proving highly productive (Churchland and Of course from a practical standpoint of building an AI
+Sejnowski, 1988; Hebb, 1949; Hinton et al., 1986; Hopfield, system,weneednotslavishlyenforceadherencetobiological
+1982; McCulloch and Pitts, 1943; Turing, 1950). However, plausibility. From an engineering perspective, what works is
+morerecently,theinteractionhasbecomemuchlesscommon- ultimately all that matters. For our purposes then, biological
+place, as both subjects have grown enormously in complexity plausibility is a guide, not a strict requirement. What we are
+and disciplinary boundaries have solidified. In this review, we interested in is a systems neuroscience-level understanding
+argue for the critical and ongoing importance of neuroscience of the brain, namely the algorithms, architectures, functions,
+in generating ideas that will accelerate and guide AI research and representations it utilizes. This roughly corresponds to
+(seeHassabiscommentaryinBrooksetal.,2012). the top two levels of the three levels of analysis that Marr
+Webeginwiththepremisethatbuildinghuman-levelgeneral famouslystatedarerequiredto understandanycomplexbio-
+AI (or ‘‘Turing-powerful’’ intelligent systems; Turing, 1936) is a logical system (Marr and Poggio, 1976): the goals of the sys-
+dauntingtask,becausethesearchspaceofpossiblesolutions tem (the computational level) and the process and computa-
+is vast and likely only very sparsely populated. We argue that tions that realize this goal (the algorithmic level). The precise
+this therefore underscores the utility of scrutinizing the inner mechanismsbywhichthisisphysicallyrealizedinabiological
+workings of the human brain— the only existing proof that substrate are less relevant here (the implementation level).
+suchanintelligenceisevenpossible.Studyinganimalcognition Note this is where our approach to neuroscience-inspired AI
+anditsneuralimplementationalsohasavitalroletoplay,asit differs from other initiatives, such as the Blue Brain Project
+canprovideawindowintovariousimportantaspectsofhigher- (Markram, 2006) or the field of neuromorphic computing sys-
+levelgeneralintelligence. tems (Esser et al., 2016), which attempt to closely mimic or
+ThebenefitstodevelopingAIofcloselyexaminingbiological directlyreverseengineerthespecificsofneuralcircuits(albeit
+intelligence are two-fold. First, neuroscience provides a rich withdifferentgoalsinmind).Byfocusingonthecomputational
+sourceofinspirationfornewtypesofalgorithmsandarchitec- andalgorithmiclevels,wegaintransferrableinsightsintogen-
+tures,independentofandcomplementarytothemathematical eral mechanisms of brain function, while leaving room to
+andlogic-basedmethodsandideasthathavelargelydominated accommodate the distinctive opportunities and challenges
+traditionalapproachestoAI.Forexample,wereanewfacetof that arise when building intelligent machines in silico.
+biologicalcomputationfoundtobecriticaltosupportingacogni- Thefollowingsectionsunpackthesepointsbyconsideringthe
+tivefunction,thenwewouldconsideritanexcellentcandidate past, present, and future of the AI-neuroscience interface.
+for incorporation into artificial systems. Second, neuroscience Beforebeginning,weofferaclarification.Throughoutthisarticle,
+can provide validation of AI techniques that already exist. If a we employ the terms ‘‘neuroscience’’ and ‘‘AI.’’ We use these
+known algorithm is subsequently found to be implemented in termsinthewidestpossiblesense.Whenwesayneuroscience,
+thebrain,thenthatisstrongsupportforitsplausibilityasanin- wemeantoincludeallfieldsthatareinvolvedwiththestudyof
+tegral component of an overall general intelligence system. thebrain,thebehaviorsthatitgenerates,andthemechanisms
+Such clues can be critical to a long-term research program bywhichitdoesso,includingcognitiveneuroscience,systems
+when determining where to allocate resources most produc- neuroscienceandpsychology.WhenwesayAI,wemeanwork
+Neuron95,July19,2017ª2017PublishedbyElsevierInc. 245
+
+--- PAGE 2 ---
+Neuron
+Review
+inmachinelearning,statistics,andAIresearchthataimstobuild fromdynamic,distributedinteractionswithinnetworksofsimple
+intelligentmachines(LeggandHutter,2007). neuron-likeprocessingunits,interactionstunedbylearningpro-
+We begin by considering the origins of two fields that are ceduresthatadjustsystemparametersinordertominimizeerror
+pivotalforcurrentAIresearch,deeplearningandreinforcement ormaximizereward.
+learning,bothofwhichtookrootinideasfromneuroscience.We Although thePDPapproachwasatfirstappliedto relatively
+thenturntothecurrentstateofplayinAIresearch,notingmany small-scaleproblems,itshowedstrikingsuccessinaccounting
+cases where inspiration has been drawn (sometimes without forawiderangeofhumanbehaviors(Hintonetal.,1986).Along
+explicitacknowledgment)fromconceptsandfindingsinneuro- theway,PDPresearchintroducedadiversecollectionofideas
+science. In this section, we particularly emphasize instances thathavehadasustainedinfluenceonAIresearch.Forexample,
+wherewehavecombineddeeplearningwithotherapproaches current machine translation research exploits the notion that
+from across machine learning, such as reinforcement learning words and sentences can be represented in a distributed
+(Mnihetal.,2015),MonteCarlotreesearch(Silveretal.,2016), fashion (i.e., as vectors) (LeCun et al., 2015), a principle that
+ortechniquesinvolvinganexternalcontent-addressablemem- wasalreadyingrainedinearlyPDP-inspiredmodelsofsentence
+ory (Graves et al., 2016). Next, we consider the potential for processing(St.JohnandMcClelland,1990).BuildingonthePDP
+neurosciencetosupportfutureAIresearch,lookingatboththe movement’s appeal to biological computation, current state-
+most likely research challenges and some emerging neurosci- of-the-art convolutional neural networks (CNNs) incorporate
+ence-inspired AI techniques. While our main focus will be on several canonical hallmarks of neural computation, including
+the potential for neuroscience to benefit AI, our final section nonlinear transduction, divisive normalization, and maximum-
+willbrieflyconsiderwaysinwhichAImay behelpful toneuro- basedpoolingofinputs(YaminsandDiCarlo,2016).Theseoper-
+science and the broader potential for synergistic interactions ationsweredirectlyinspiredbysingle-cellrecordingsfromthe
+betweenthesetwofields. mammalianvisualcortexthatrevealedhowvisualinputisfiltered
+andpooledinsimpleandcomplexcellsinareaV1(Hubeland
+ThePast Wiesel,1959).Moreover,currentnetworkarchitecturesreplicate
+DeepLearning the hierarchical organization of mammalian cortical systems,
+Asdetailedinanumberofrecentreviews,AIhasbeenrevolu- withbothconvergentanddivergentinformationflowinsucces-
+tionizedoverthepastfewyearsbydramaticadvancesinneural sive, nested processing layers (Krizhevsky et al., 2012; LeCun
+network, or ‘‘deep learning,’’ methods (LeCun et al., 2015; etal.,1989;RiesenhuberandPoggio,1999;Serreetal.,2007),
+Schmidhuber, 2014). As the moniker ‘‘neural network’’ might following ideas first advanced in early neural network models
+suggest, the origins of these AI methods lie directly in neuro- of visual processing (Fukushima, 1980). In both biological and
+science. In the 1940s, investigations of neural computation artificialsystems,successivenon-linearcomputationstransform
+began with the construction of artificial neural networks that raw visual input into an increasingly complex set of features,
+could compute logical functions (McCulloch and Pitts, 1943). permittingobjectrecognitionthatisinvarianttotransformations
+Notlongafter,othersproposedmechanismsbywhichnetworks ofpose,illumination,orscale.
+of neurons might learn incrementally via supervisory feedback AsthefieldofdeeplearningevolvedoutofPDPresearchintoa
+(Rosenblatt,1958)orefficientlyencodeenvironmentalstatistics coreareawithinAI,itwasbolsteredbynewideas,suchasthe
+in an unsupervised fashion (Hebb, 1949). These mechanisms development of deep belief networks (Hinton et al., 2006) and
+opened up the field of artificial neural network research, and theintroductionoflargedatasetsinspiredbyresearchonhuman
+they continue to provide the foundation for contemporary language(Dengetal.,2009).Duringthisperiod,itcontinuedto
+researchondeeplearning(Schmidhuber,2014). drawkeyideasfromneuroscience.Forexample,biologicalcon-
+Not long after this pioneering work, the development of siderationsinformedthedevelopmentofsuccessfulregulariza-
+the backpropagation algorithm allowed learning to occur in tionschemesthatsupportgeneralizationbeyondtrainingdata.
+networks composed of multiple layers (Rumelhart etal., 1985; Onesuchscheme,inwhichonlyasubsetofunitsparticipatein
+Werbos, 1974). Notably, the implications of this method for the processing of a given training example (‘‘dropout’’), was
+understanding intelligence, including AI,were firstappreciated motivatedbythestochasticitythatisinherentinbiologicalsys-
+byagroupofneuroscientistsandcognitivescientists,working temspopulatedbyneuronsthatfirewithPoisson-likestatistics
+under the banner of parallel distributed processing (PDP) (Hinton et al., 2012). Here and elsewhere, neuroscience has
+(Rumelhart et al., 1986). At the time, most AI research was provided initial guidance toward architectural and algorithmic
+focusedonbuildinglogicalprocessingsystemsbasedonserial constraintsthatleadtosuccessfulneuralnetworkapplications
+computation, an approach inspired in part by the notion that forAI.
+humanintelligenceinvolvesmanipulationofsymbolicrepresen- ReinforcementLearning
+tations(Haugeland,1985).However,therewasagrowingsense Alongsideitsimportantroleinthedevelopmentofdeeplearning,
+insomequartersthatpurelysymbolicapproachesmightbetoo neurosciencewasalsoinstrumentalinerectingasecondpillarof
+brittleandinflexibletosolvecomplexreal-worldproblemsofthe contemporaryAI,stimulatingtheemergenceofthefieldofrein-
+kindthathumansroutinelyhandle.Instead,agrowingfoundation forcement learning (RL). RL methods address the problem of
+ofknowledgeaboutthebrainseemedtopointinaverydifferent howtomaximizefuturerewardbymappingstatesintheenviron-
+direction,highlightingtheroleofstochasticandhighlyparallel- menttoactionsandareamongthemostwidelyusedtoolsinAI
+ized information processing. Building on this, the PDP move- research (Sutton and Barto, 1998). Although it is not widely
+ment proposed that human cognition and behavior emerge appreciatedamongAIresearchers,RLmethodswereoriginally
+246 Neuron95,July19,2017
+
+--- PAGE 3 ---
+Neuron
+Review
+inspired by research into animal learning. In particular, the scene,allowingittoperformwellinchallengingobjectclassifica-
+development of temporal-difference (TD) methods, a critical tiontasksinthepresenceofclutter(Mnihetal.,2014).Further,
+component of many RL models, was inextricably intertwined the attentional mechanism allowed the computational cost
+withresearchintoanimalbehaviorinconditioningexperiments. (e.g., number of network parameters) to scale favorably with
+TD methods are real-time models that learn from differences the size of the input image. Extensions of this approach were
+betweentemporallysuccessivepredictions,ratherthanhaving subsequentlyshowntoproduceimpressiveperformanceatdiffi-
+towaituntiltheactualrewardisdelivered.Ofparticularrelevance cultmulti-objectrecognitiontasks,outperformingconventional
+wasaneffectcalledsecond-orderconditioning,whereaffective CNNs that process the entirety of the image, both in terms of
+significanceisconferredonaconditionedstimulus(CS)through accuracyandcomputationalefficiency(Baetal.,2015),aswell
+associationwithanotherCSratherthandirectlyviaassociation asenhancingimage-to-captiongeneration(Xuetal.,2015).
+with the unconditioned stimulus (Sutton and Barto, 1981). TD Whileattentionistypicallythoughtofasanorientingmecha-
+learningprovidesanaturalexplanationforsecond-ordercondi- nism for perception, its ‘‘spotlight’’ can also be focused inter-
+tioningandindeedhasgoneontoexplainamuchwiderrange nally,towardthecontentsofmemory.Thisidea,arecentfocus
+offindingsfromneuroscience,aswediscussbelow. in neuroscience studies (Summerfield et al., 2006), has also
+Here, as in the case of deep learning, investigations initially inspired work in AI. In some architectures, attentional mecha-
+inspiredbyobservationsfromneuroscienceledtofurtherdevel- nisms have been used to select information to be read out
+opmentsthathavestronglyshapedthedirectionofAIresearch. fromtheinternalmemoryofthenetwork.Thishashelpedprovide
+From their neuroscience-informed origins, TD methods and recentsuccessesinmachinetranslation(Bahdanauetal.,2014)
+relatedtechniqueshavegoneontosupplythecoretechnology andledtoimportantadvancesonmemoryandreasoningtasks
+forrecentadvancesinAI,rangingfromroboticcontrol(Hafner (Graves et al., 2016). These architectures offer a novel imple-
+andRiedmiller,2011)toexpertplayinbackgammon(Tesauro, mentation of content-addressable retrieval, which was itself a
+1995)andGo(Silveretal.,2016). conceptoriginallyintroducedtoAIfromneuroscience(Hopfield,
+1982).
+ThePresent One further area of AI where attention mechanisms have
+Reading the contemporary AI literature, one gains the impres- recentlyprovenusefulfocusesongenerativemodels,systems
+sionthattheearlierengagementwithneurosciencehasdimin- thatlearntosynthesizeor‘‘imagine’’images(orotherkindsof
+ished.However,ifonescratchesthesurface,onecanuncover data) that mimic the structure of examples presented during
+manycasesinwhichrecentdevelopmentshavebeeninspired training.Deepgenerativemodels(i.e.,generativemodelsimple-
+andguidedbyneuroscientificconsiderations.Here,welookat mentedasmulti-layeredneuralnetworks)haverecentlyshown
+fourspecificexamples. strikingsuccessesinproducing syntheticoutputsthatcapture
+Attention theformandstructureofrealvisualscenesviatheincorporation
+Thebraindoesnotlearnbyimplementingasingle,globaloptimi- of attention-like mechanisms (Hong et al., 2015; Reed et al.,
+zation principle within a uniform and undifferentiated neural 2016). For example, in one state-of-the-art generative model
+network (Marblestone et al., 2016). Rather, biological brains knownasDRAW,attentionallowsthesystemtobuildupanim-
+aremodular,withdistinctbutinteractingsubsystemsunderpin- ageincrementally,attendingtooneportionofa‘‘mentalcanvas’’
+ning key functions such as memory, language, and cognitive atatime(Gregoretal.,2015).
+control(Andersonetal.,2004;Shallice,1988).Thisinsightfrom EpisodicMemory
+neuroscience has been imported, often in an unspoken way, A canonical theme in neuroscience is that that intelligent
+intomanyareasofcurrentAI. behavior relies on multiple memory systems (Tulving, 1985).
+OneillustrativeexampleisrecentAIworkonattention.Upuntil These will include not only reinforcement-based mechanisms,
+quitelately,mostCNNmodelsworkeddirectlyonentireimages whichallowthevalueofstimuliandactionstobelearnedincre-
+orvideoframes,withequalprioritygiventoallimagepixelsatthe mentally and through repeated experience, but also instance-
+earliest stage of processing. The primate visual system works based mechanisms, which allow experiences to be encoded
+differently. Rather than processing all input in parallel, visual rapidly(in‘‘oneshot’’)inacontent-addressablestore(Gallistel
+attention shifts strategically among locations and objects, andKing,2009).Thelatterformofmemory,knownasepisodic
+centering processing resources and representational coordi- memory (Tulving, 2002), is most often associated with circuits
+nates on a series of regions in turn (Koch and Ullman, 1985; in the medial temporal lobe, prominently including the hippo-
+MooreandZirnsak,2017;PosnerandPetersen,1990).Detailed campus(Squireetal.,2004).
+neurocomputational models have shown how this piecemeal OnerecentbreakthroughinAIhasbeenthesuccessfulinte-
+approachbenefitsbehavior,byprioritizingandisolatingthein- grationofRLwithdeeplearning(Mnihetal.,2015;Silveretal.,
+formation that is relevant at any given moment (Olshausen 2016).Forexample,thedeepQ-network(DQN)exhibitsexpert
+et al., 1993; Salinas and Abbott, 1997). As such, attentional playonAtari2600videogamesbylearningtotransformavector
+mechanismshavebeenasourceofinspirationforAIarchitec- ofimagepixelsintoapolicyforselectingactions(e.g.,joystick
+tures that take ‘‘glimpses’’ of the input image at each step, movements).OnekeyingredientinDQNis‘‘experiencereplay,’’
+updateinternalstaterepresentations,andthenselectthenext wherebythenetworkstoresasubsetofthetrainingdatainan
+location to sample (Larochelle and Hinton, 2010; Mnih et al., instance-based way, and then ‘‘replays’’ it offline, learning
+2014)(Figure1A).Onesuchnetworkwasabletousethisselec- anewfromsuccessesorfailuresthatoccurredinthepast.Expe-
+tive attentional mechanism to ignore irrelevant objects in a riencereplayiscriticaltomaximizingdataefficiency,avoidsthe
+Neuron95,July19,2017 247
+
+--- PAGE 4 ---
+Neuron
+Review
+Figure1. ParallelsbetweenAISystemsandNeuralModelsofBehavior
+(A)Attention.Schematicofrecurrentattentionmodel(Mnihetal.,2014).Givenaninputimage(xt)andfoveallocation(lt(cid:1)1),theglimpsesensorextractsamulti-
+resolution‘‘retinal’’representation(r(x t ,l t(cid:1)1 )).Thisistheinputtoaglimpsenetwork,whichproducesarepresentationthatispassedtotheLSTMcore,which
+definesthenextlocationtoattendto(lt)(andclassificationdecision).
+(B)Schematicofcomplementarylearningsystemsandepisodiccontrol.Top:non-parametricfastlearninghippocampalsystemandparametricslow-learning
+neocorticalsystem(i.e.,parametric:afixednumberofparameters;non-parametric:thenumberofparameterscangrowwiththeamountofdata).Hippocampus/
+instance-basedsystemsupportsrapidbehavioraladjustment(i.e.,episodiccontrol;Blundelletal.,2016)andexperiencereplay,whichsupportsinterleaved
+training(i.e.,onrandomsubsetsofexperiences)ofdeepneuralnetwork(Mnihetal.,2015)orneocortex.Bottom:episodiccontrol(fromBlundelletal.,2016).
+Gamestates(Atarishown)arestoredwithinbuffers(oneforeachpossibleaction)togetherwiththehighest(discounted)returnexperiencedfromthatstate(i.e.,
+Q-value).Whenexperiencinganewstate,thepolicy(p)isdeterminedbyaveragingtheQ-valueacrosstheknearestneighborsineachactionbufferandselecting
+theactionwiththehighestexpectedreturn.
+(C)Illustrationofparallelsbetweenmacroscopicorganizationofmodelsofworkingmemoryandthedifferentiableneuralcomputer(Gravesetal.,2016)(orNeural
+TuringMachine).Thenetworkcontroller(typicallyrecurrent)isanalogoustothecentralexecutive(typicallyviewedtobeinstantiatedintheprefrontalcortex)and
+attends/reads/writestoanexternalmemorymatrix(phonologicalloo/sketchpadinworkingmemorymodel).Architectureisshownperformingcopytask.
+(D)Illustrationofparallelbetweenneurobiologicalmodelsofsynapticconsolidationandtheelasticweightconsolidation(EWC)algorithm.Left:two-photon
+structuralimagingdatashowinglearning-relatedincreaseinsizeofdendrites(eachcorrespondingapproximatelytoasingleexcitatorysynapse)thatpersistsfor
+months(fromYangetal.,2009).Middle:schematicofCascademodelofsynapticconsolidation(adaptedwithpermissionfromFusietal.,2005).Binarysynapses
+transitionbetweenmetaplasticstateswhicharemore/lessplastic(leastplasticstatesatbottomofdiagram),asafunctionofpriorpotentiation/depressionevents.
+Rightpanel:schematicofelasticweightconsolidation(EWC)algorithm.Aftertrainingonthefirsttask(A),networkparametersareoptimizedforgoodperfor-
+mance:singleweight(w1 A*illustrated).EWCimplementsaconstraintanalogoustoaspringthatanchorsweightstothepreviouslyfoundsolution(i.e.,fortaskA),
+whentrainingonanewtask(e.g.,taskB),withthestiffnessofthespringproportionaltotheimportanceofthatparameterfortaskAperformance(Kirkpatrick
+etal.,2017).
+destabilizingeffectsoflearningfromconsecutivecorrelatedex- shotlearning),butthisinformationisgraduallyconsolidatedto
+periences,andallowsthenetworktolearnaviablevaluefunction the neocortex in sleep or resting periods that are interleaved
+evenincomplex,highlystructuredsequentialenvironmentssuch with periods of activity. This consolidation is accompanied by
+asvideogames. replay in the hippocampus and neocortex, which is observed
+Critically,experiencereplaywasdirectlyinspiredbytheories as a reinstatement of the structured patterns of neural activity
+that seek to understand how the multiple memory systems in thataccompaniedthelearningevent(O’Neilletal.,2010;Skaggs
+themammalianbrainmightinteract.Accordingtoaprominent andMcNaughton,1996)(Figure1B).Thistheorywasoriginally
+view,animal learningissupportedbyparallelor‘‘complemen- proposedasasolutiontothewell-knownproblemthatincon-
+tary’’learningsystemsinthehippocampusandneocortex(Ku- ventional neural networks, correlated exposure to sequential
+maranetal.,2016;McClellandetal.,1995).Thehippocampus task settings leads to mutual interference among policies, re-
+actstoencodenovelinformationafterasingleexposure(one- sulting in catastrophic forgetting of one task as a new one is
+248 Neuron95,July19,2017
+
+--- PAGE 5 ---
+Neuron
+Review
+learned.ThereplaybufferinDQNmightthusbethoughtofasa (Elman, 1990; Hopfield and Tank, 1986; Jordan, 1997). This
+veryprimitivehippocampus,permittingcomplementarylearning work enabled later, more detailed modeling of human working
+in silico much as is proposed for biological brains. Later work memory(BotvinickandPlaut,2006;Durstewitzetal.,2000),but
+showed that the benefits of experience replay in DQN are it also laid the foundation for further technical innovations that
+enhancedwhenreplayofhighlyrewardingeventsisprioritized haveprovedpivotalinrecentAIresearch.Inparticular,onecan
+(Schauletal.,2015),justashippocampalreplayseemstofavor seecloseparallelsbetweenthelearningdynamicsintheseearly,
+events that lead to high levels of reinforcement (Singer and neuroscience-inspired networks and those in long-short-term
+Frank,2009). memory (LSTM) networks, which subsequently achieved state
+Experiencesstoredinamemorybuffercannotonlybeusedto oftheartperformanceacrossavarietyofdomains.LTSMsallow
+gradually adjust the parameters of a deep network toward an informationtobegatedintoafixedactivitystateandmaintained
+optimalpolicy,asinDQN,butcanalsosupportrapidbehavioral untilanappropriateoutputisrequired(HochreiterandSchmid-
+change basedon anindividual experience. Indeed, theoretical huber,1997).Variantsofthistypeofnetworkhaveshownsome
+neuroscience has argued for the potential benefits of episodic striking behaviors in challenging domains, such as learning to
+control,wherebyrewardedactionsequencescanbeinternally respondtoqueriesaboutthelatentstateofvariablesaftertraining
+re-enacted from a rapidly updateable memory store, imple- oncomputercode(ZarembaandSutskever,2014).
+mented in the biological case in the hippocampus (Gershman InordinaryLSTMnetworks,thefunctionsofsequencecontrol
+andDaw,2017).Further,normativeaccountsshowthatepisodic andmemorystoragearecloselyintertwined.Thiscontrastswith
+controlisparticularlyadvantageousoverotherlearningmecha- classicmodelsofhumanworkingmemory,which,asmentioned
+nisms when limited experience of the environment has been above, separate these two. This neuroscience-based schema
+obtained(LengyelandDayan,2007). hasrecentlyinspiredmorecomplexAIarchitectureswherecon-
+RecentAIresearchhasdrawnontheseideastoovercomethe trolandstoragearesupportedbydistinctmodules(Gravesetal.,
+slow learning characteristics of deep RL networks, developing 2014, 2016; Weston et al., 2014). For example, the differential
+architectures that implement episodic control (Blundell et al., neural computer (DNC) involves a neural network controller
+2016).Thesenetworksstorespecificexperiences(e.g.,actions thatattendstoandreads/writesfromanexternalmemorymatrix
+and reward outcomes associated with particular Atari game (Graves et al., 2016). This externalization allows the network
+screens)andselectnewactionsbasedonthesimilaritybetween controllertolearnfromscratch(i.e.,viaend-to-endoptimization)
+the current situation input and the previous events stored in toperformawiderangeofcomplexmemoryandreasoningtasks
+memory,takingtherewardassociatedwiththosepreviousevents that currently elude LSTMs, such as finding the shortest
+intoaccount(Figure1B).Aspredictedfromtheinitial,neurosci- paththroughagraph-likestructure,suchasasubwaymap,or
+ence-based work (Lengyel and Dayan, 2007), artificial agents manipulating blocks in a variant of the Tower of Hanoi task
+employing episodic control show striking gainsin performance (Figure 1C). These types of problems were previously argued
+overdeepRLnetworks,particularlyearlyonduringlearning(Blun- to depend exclusively on symbol processing and variable
+delletal.,2016).Further,theyareabletoachievesuccessontasks binding and therefore beyond the purview of neural networks
+thatdependheavilyonone-shotlearning,wheretypicaldeepRL (Fodor and Pylyshyn, 1988; Marcus, 1998). Of note, although
+architecturesfail.Moreover,episodic-likememorysystemsmore bothLSTMsandtheDNCaredescribedhereinthecontextof
+generallyhaveshownconsiderablepromiseinallowingnewcon- workingmemory,theyhavethepotentialtomaintaininformation
+ceptstobelearnedrapidlybasedononlyafewexamples(Vinyals over many thousands of training cycles and so may thus be
+et al., 2016). In the future, it will be interesting to harness the suited to longer-term forms of memory, such as retaining and
+benefits of rapid episodic-like memory and more traditional understandingthecontentsofabook.
+incremental learning in architectures that incorporate both of ContinualLearning
+thesecomponentswithinaninteractingframeworkthatmirrors Intelligent agents must be able to learn and remember many
+the complementary learning systems in mammalian brain. We different tasks that are encountered over multiple timescales.
+discussthesefutureperspectivesbelowinmoredetaillater, in Bothbiological andartificialagentsmustthushaveacapacity
+‘‘Imaginationandplanning.’’ for continual learning, that is, an ability to master new tasks
+WorkingMemory withoutforgettinghowtoperformpriortasks(ThrunandMitchell,
+Human intelligence is characterized by a remarkable ability to 1995). While animals appear relatively adept at continual
+maintain and manipulate information within an active store, learning,neuralnetworkssufferfromtheproblemofcatastrophic
+knownasworkingmemory,whichisthoughttobeinstantiated forgetting(French,1999;McClellandetal.,1995).Thisoccursas
+within the prefrontal cortex and interconnected areas (Gold- the networkparameters shifttoward the optimalstate forper-
+man-Rakic, 1990). Classic cognitive theories suggest that this forming the second of two successive tasks, overwriting the
+functionalitydependsoninteractionsbetweenacentralcontroller configuration that allowed them to perform the first. Given the
+(‘‘executive’’) and separate, domain-specific memory buffers importanceofcontinuallearning,thisliabilityofneuralnetworks
+(e.g., visuo-spatial sketchpad) (Baddeley, 2012). AI research remainsasignificantchallengeforthedevelopmentofAI.
+has drawn inspirationfrom thesemodels,bybuilding architec- In neuroscience, advanced neuroimaging techniques (e.g.,
+turesthat explicitly maintain information over time. Historically, two-photon imaging) now allow dynamic in vivo visualization
+such efforts began with the introduction of recurrent neural of the structure and function of dendritic spines during
+network architectures displaying attractor dynamics and rich learning, at the spatial scale of single synapses (Nishiyama
+sequential behavior, work directly inspired by neuroscience and Yasuda, 2015). This approach can be used to study
+Neuron95,July19,2017 249
+
+--- PAGE 6 ---
+Neuron
+Review
+neocortical plasticity during continual learning (Cichon and lacking in most AI systems (Gilmore et al., 2007; Gopnik and
+Gan, 2015; Hayashi-Takagi et al., 2015; Yang et al., 2009). Schulz, 2004; Lake et al., 2016). Among these capabilities are
+There is emerging evidence for specialized mechanisms that knowledge of core concepts relating to the physical world,
+protect knowledge about previous tasks from interference suchasspace,number,andobjectness,whichallowpeopleto
+during learning on a new task. These include decreased syn- constructcompositionalmentalmodelsthatcanguideinference
+aptic lability (i.e., lower rates of plasticity) in a proportion of andprediction(Battagliaetal.,2013;SpelkeandKinzler,2007).
+strengthened synapses, mediated by enlargements to den- AIresearchhasbeguntoexploremethodsforaddressingthis
+dritic spines that persist despite learning of other tasks challenge.Forexample,novelneuralnetworkarchitectureshave
+(Cichon and Gan, 2015; Yang et al., 2009) (Figure 1D). These been developed that interpret and reason about scenes in a
+changes are associated with retention of task performance humanlike way, by decomposing them into individual objects
+over several months, and indeed, if they are ‘‘erased’’ with and their relations (Battaglia et al., 2016; Chang et al., 2016;
+synaptic optogenetics, this leads to forgetting of the task Eslami et al., 2016) (Figures 2A and 2B). In some cases, this
+(Hayashi-Takagi et al., 2015). These empirical insights are has resulted in human-level performance on challenging
+consistentwiththeoreticalmodelsthatsuggestthatmemories reasoning tasks (Santoro et al., 2017). In other work, deep RL
+can be protected from interference through synapses that has been used to capture the processes by which children
+transition between a cascade of states with different levels gaincommonsenseunderstandingoftheworldthroughinterac-
+of plasticity (Fusi et al., 2005) (Figure 1D). tiveexperiments(Deniletal.,2016).Relatedly,deepgenerative
+Together,thesefindingsfromneurosciencehaveinspiredthe models have been developed that are able to construct rich
+development of AI algorithms that address the challenge of object models from raw sensory inputs (Higgins et al., 2016).
+continuallearningindeepnetworksbyimplementingofaform These leverage constraints first identified in neuroscience,
+of ‘‘elastic’’ weight consolidation (EWC) (Kirkpatrick et al., suchasredundancyreduction(Barlow,1959),whichencourage
+2017), which acts by slowing down learning in a subset of theemergenceofdisentangledrepresentationsofindependent
+network weights identified as important to previous tasks, factors such as shape and position (Figure 2C). Importantly,
+thereby anchoring these parameters to previously found solu- the latent representations learned by such generative models
+tions(Figure1D).Thisallowsmultipletaskstobelearnedwithout exhibitcompositionalproperties,supportingflexibletransferto
+anincreaseinnetworkcapacity,withweightssharedefficiently novel tasks (Eslami et al., 2016; Higgins et al., 2016; Rezende
+betweentaskswithrelatedstructure.Inthisway,theEWCalgo- etal.,2016a).InthecaptionassociatedwithFigure2,weprovide
+rithmallowsdeepRLnetworkstosupportcontinuallearningat moredetailedinformationaboutthesenetworks.
+largescale. EfficientLearning
+Human cognition is distinguished by its ability to rapidly learn
+TheFuture aboutnewconceptsfromonlyahandfulofexamples,leveraging
+InAI,thepaceofrecentresearchhasbeenremarkable.Artificial priorknowledgetoenableflexibleinductiveinferences.Inorder
+systems nowmatchhuman performancein challengingobject tohighlightthishumanabilityasachallengeforAI,Lakeandcol-
+recognitiontasks(Krizhevskyetal.,2012)andoutperformexpert leagues recently posed a ‘‘characters challenge’’ (Lake et al.,
+humans in dynamic, adversarial environments such as Atari 2016). Here, an observer must distinguish novel instances of
+videogames(Mnihetal.,2015),theancientboardgameofGo anunfamiliarhandwrittencharacterfromother,similaritemsaf-
+(Silver et al., 2016), and imperfect information games such as terviewingonlyasingleexemplar.Humanscanperformthistask
+heads-uppoker(Moravc(cid:1)ı´ketal.,2017).Machinescanautono- well,butitisdifficultforclassicalAIsystems.
+mously generate synthetic natural images and simulations of Encouragingly, recent AI algorithms have begun to make
+humanspeechthatarealmostindistinguishablefromtheirreal- progress on tasks like the characters challenge, through both
+world counterparts (Lake et al., 2015; van den Oord et al., structured probabilistic models (Lake et al., 2015) and deep
+2016), translate between multiple languages (Wu et al., 2016), generative models based on the abovementioned DRAW
+andcreate‘‘neuralart’’inthestyleofwell-knownpainters(Gatys model (Rezende et al., 2016b). Both classes of system can
+etal.,2015). make inferences about a new concept despite a poverty of
+However,muchworkisstillneededtobridgethegapbetween dataandgeneratenewsamplesfromasingleexampleconcept
+machineandhuman-levelintelligence.Inworkingtowardclosing (Figure2D).Further,recentAIresearchhasdevelopednetworks
+this gap, we believe ideas from neuroscience will become that ‘‘learn to learn,’’ acquiring knowledge on new tasks by
+increasinglyindispensable.Inneuroscience,theadventofnew leveraging prior experience with related problems, to support
+toolsforbrainimagingandgeneticbioengineeringhavebegun one-shot concept learning (Santoro et al., 2016; Vinyals et al.,
+toofferadetailedcharacterizationofthecomputationsoccurring 2016)andacceleratinglearninginRLtasks(Wangetal.,2016).
+inneuralcircuits,promisingarevolutioninourunderstandingof Onceagain,thisbuildsonconceptsfromneuroscience:learning
+mammalianbrainfunction(DeisserothandSchnitzer,2013).The tolearnwasfirstexploredinstudiesofanimallearning(Harlow,
+relevance of neuroscience, both as a roadmap for the AI 1949), and has subsequently been studied in developmental
+research agenda and as a source of computational tools is psychology(Adolph,2005;Kempetal.,2010;Smith,1995).
+particularlysalientinthefollowingkeyareas. TransferLearning
+IntuitiveUnderstandingofthePhysicalWorld Humans also excel at generalizing or transferring generalized
+Recentperspectivesemphasizekeyingredientsofhumanintel- knowledgegainedinonecontexttonovel,previouslyunseendo-
+ligence that are already well developed in human infants but mains(BarnettandCeci,2002;HolyoakandThagard,1997).For
+250 Neuron95,July19,2017
+
+--- PAGE 7 ---
+Neuron
+Review
+Figure2. ExamplesofRecentAISystemsthatHaveBeenInspiredbyNeuroscience
+(A)Intuitivephysicsknowledge.Illustrationoftheabilityoftheinteractionnetwork(Battagliaetal.,2016)toreasonandmakepredictionsaboutthephysical
+interactionbetweenobjectsinthebouncingballproblem(top)andspaceshipproblem(bottom:Hamricketal.,2017).Thenetworktakesasinputobjectsandtheir
+relationsandaccuratelysimulatestheirtrajectoriesbymodelingcollisions,gravitationalforces,etc.,effectivelyactingasalearnedphysicsengine.
+(B)Sceneunderstandingthroughstructuredgenerativemodels(Eslamietal.,2016).Top:iterativeinferenceinavariationalauto-encoderarchitecture.The
+recurrentnetworkattendstooneobjectatatime,infersitsattributes,andperformstheappropriatenumberofinferencestepsforeachinputimage(x).Scenesare
+describedintermsofgroupsoflatentvariables(Z)thatspecifypresence/absence(z ),propertiessuchasposition(z ),andshape(z ).Inferencenetwork
+pres where what
+(blackconnections),andthegeneratornetwork(redarrow),whichproducesreconstructedimage(y).Bottom:illustrationofiterativeinferenceinmultipleMNIST
+images(greenindicatesthefirststepandredthesecondstep).Right:inferenceabouttheposition/shapeofmultipleobjectsinrealisticscene(notethatinference
+isaccurate,andhenceitisdifficulttodistinguishinferredpositions[redline]fromgroundtruth).Latentrepresentationsinthisnetworkspeedlearningon
+downstreamtasks(e.g.,additionofMNISTdigits)(notdepicted;seeEslamietal.,2016).
+(C)Unsupervisedlearningofcoreobjectproperties(Higginsetal.,2016)isshown.Left:schematicillustratinglearningofdisentangledfactorsofsensoryinputby
+deepgenerativemodel(left:variationalauto-encoder[VAE]),whoserepresentationscanspeedlearningondownstreamtasks(Eslamietal.,2016),ascompared
+torelativelyentangledrepresentationlearnedbytypicaldeepnetwork(e.g.,DQN:right).RightpanelillustrateslatentrepresentationofVAE;latentunitscodingfor
+factorsofvariation,suchasobjectposition,rotation,andscale,areshownbyeffectofindependentlychangingtheactivityofonelatentunit.Suchnetworkscan
+learnintuitiveconceptssuchas‘‘objectness,’’beingabletosupportzero-shottransfer(i.e.,reasoningaboutpositionorscaleofanunseenobjectwithanovel
+shape;Higginsetal.,2016).
+(D)One-shotgeneralizationindeepsequentialgenerativemodels(Rezendeetal.,2016b)isshown.Deepgenerativemodelsspecifyacausalprocessfor
+generatingtheobserveddatausingahierarchyoflatentvariables,withattentionalmechanismssupportingsequentialinference.Illustratedaregenerated
+samplesfromtheRezendeetal.model,conditionedonasinglenovelcharacterfromaheld-outalphabetfromtheOmniglotdataset(Lakeetal.,2015),
+demonstratingabilitiesthatmirrorhumanabilitiestogeneralizefromasingleconcept.
+(E)Imaginationofrealisticenvironmentsindeepnetworks(Chiappaetal.,2017)isshown.Generated(left)andreal(right)framesfromproceduralmazes(i.e.,new
+mazelayoutoneachepisode)producedbyanaction-conditionalrecurrentnetworkmodel(cid:3)150and200framesafterthelastobservedimage,respectively.
+example,ahumanwhocandriveacar,usealaptopcomputer, learnrapidlyinanother,promisingthesortof‘‘fartransfer’’that
+orchairacommitteemeetingisusuallyableacteffectivelywhen ischaracteristicofhumanskillacquisition(Rusuetal.,2016a).
+confrontedwithanunfamiliarvehicle,operatingsystem,orsocial Progressive networks have also been successfully employed
+situation.ProgressisbeingmadeindevelopingAIarchitectures totransferknowledgeforasimulatedroboticenvironmenttoa
+capable of exhibiting strong generalization or transfer, for real robot arm, massively reducing the training time required
+example byenabling zero-shot inferences about novel shapes ontherealworld(Rusuetal.,2016b).Intriguingly,theproposed
+outsidethetrainingdistributionbasedoncompositionalrepre- architecturebearssomeresemblancetoasuccessfulcomputa-
+sentations(Higginsetal.,2016;Figure2C).Othershaveshown tionalmodelofsequentialtasklearninginhumans(Collinsand
+that a new class of architecture, known as a progressive Koechlin,2012;Donosoetal.,2014).Intheneurosciencelitera-
+network,canleverageknowledgegainedinonevideogameto ture, one hallmark of transfer learning has been the ability to
+Neuron95,July19,2017 251
+
+--- PAGE 8 ---
+Neuron
+Review
+reasonrelationally,andAIresearchershavealsobeguntomake humanlearning(Craik,1943).Bynow,alargevolumeofliterature
+progressinbuildingdeepnetworksthataddressproblemsofthis exists on AI planning techniques, including model-based RL
+nature, for example by solving visual analogies (Reed et al., methods,whichseektoimplementthisforecast-basedmethod
+2015). More generally however, how humans or other animals of action selection. Furthermore, simulation-based planning,
+achievethissortofhigh-leveltransferlearningisunknown,and particularly Monte Carlo tree search (MCTS) methods, which
+remains a relatively unexplored topic in neuroscience. New use forward search to update a value function and/or policy
+advancesonthisfrontcouldprovidecriticalinsightstospurAI (Browneetal.,2012),playedakeyroleinrecentworkinwhich
+researchtowardthegoaloflifelonglearninginagents,andwe deep RL attained expert-level performance in the game of Go
+encourage neuroscientists to engage more deeply with this (Silveretal.,2016).
+question. AIresearchonplanning,however,hasyettocapturesomeof
+Atthelevelofneuralcoding,thiskind oftransferofabstract the key characteristics that give human planning abilities their
+structured knowledge may rely on the formation of conceptual power.Inparticular,wesuggestthatageneralsolutionto this
+representations that areinvariant to the objects,individuals, or problem will require understanding how rich internal models,
+sceneelementsthatpopulateasensorydomainbutcodeinstead whichinpracticewillhavetobeapproximatebutsufficientlyac-
+forabstract,relationalinformationamongpatternsofinputs(Dou- curatetosupportplanning,canbelearnedthroughexperience,
+masetal.,2008).However,wecurrentlylackdirectevidencefor withoutstrongpriorsbeinghandcraftedintothenetworkbythe
+theexistenceofsuchcodesinthemammalianbrain.Neverthe- experimenter. Wealso arguethat AIresearch willbenefit from
+less,onerecentreportmadetheveryinterestingclaimthatneural aclosereadingoftherelatedliteratureonhowhumansimagine
+codesthoughttobeimportantintherepresentationofallocentric possiblescenarios,envisionthefuture,andcarryoutsimulation-
+(map-like)spacesmightbecriticalforabstractreasoninginmore based planning, functions that depend on a common neural
+generaldomains(Constantinescuetal.,2016).Inthemammalian substrate in the hippocampus (Doll et al., 2015; Hassabis and
+entorhinalcortex,cellsencodethegeometryofallocentricspace Maguire,2007,2009;Schacteretal.,2012).Althoughimagina-
+withaperiodic‘‘grid’’code,withreceptivefieldsthattilethelocal tion has an intrinsically subjective, unobservable quality, we
+spaceinahexagonalpattern(Rowlandetal.,2016).Gridcodes have reason to believe that it has a conserved role in simula-
+maybeanexcellentcandidatefororganizingconceptualknowl- tion-based planning across species (Hassabis and Maguire,
+edge, because they allow state spaces to be decomposed 2009; Schacter et al., 2012). For example, when paused at a
+efficiently, in a way that could support discovery of subgoals choice point, ripples of neural activity in the rat hippocampus
+andhierarchicalplanning(Stachenfeldetal.,2014).Usingfunc- resemble those observed during subsequent navigation of the
+tional neuroimaging, the researchers provide evidence for the available trajectories (‘‘preplay’’), as if the animal were ‘‘imag-
+existence of such codes while humans performed an abstract ining’’ each possible alternative (Johnson and Redish, 2007;
+categorizationtask,supportingtheviewthatperiodicencoding O´lafsdo´ttiretal.,2015;PfeifferandFoster,2013).Further,recent
+is a generalized hallmark of human knowledge organization workhassuggestedasimilarprocessduringnon-spatialplan-
+(Constantinescu et al., 2016). However, much further work is ning in humans (Doll et al., 2015; Kurth-Nelson et al., 2016).
+requiredtosubstantiatethisinterestingclaim. We have discussed above the ways in which the introduction
+ImaginationandPlanning of mechanisms that replay and learn offline from past experi-
+Despitetheirstrongperformanceongoal-directedtasks,deep ences can improve the performance of deep RL agents such
+RL systems such as DQN operate mostly in a reactive way, asDQN(asdiscussedaboveinEpisodicMemory).
+learning the mapping from perceptual inputs to actions that Some encouraging initial progress toward simulation-based
+maximizefuturevalue.This‘‘model-free’’RLiscomputationally planninghasbeenmadeusingdeepgenerativemodels(Eslami
+inexpensivebutsuffersfromtwomajordrawbacks:itisrelatively etal.,2016;Rezendeetal.,2016a,2016b)(Figure2).Inpartic-
+datainefficient,requiringlargeamountsofexperiencetoderive ular, recent work has introduced new architectures that have
+accurate estimates, and it is inflexible, being insensitive to the capacity to generate temporally consistent sequences of
+changesinthevalueofoutcomes(Dawetal.,2005).Bycontrast, generated samples that reflect the geometric layout of newly
+humanscanmoreflexiblyselectactionsbasedonforecastsof experienced realistic environments (Gemici et al., 2017; Oh
+long-termfutureoutcomesthroughsimulation-basedplanning, et al., 2015) (Figure 2E), providing a parallel to the function of
+whichusespredictionsgeneratedfromaninternalmodelofthe the hippocampus in binding together multiple components to
+environmentlearnedthroughexperience(Dawetal.,2005;Dolan create an imagined experience that is spatially and temporally
+and Dayan, 2013; Tolman, 1948). Moreover, planning is not a coherent (Hassabis and Maguire, 2007). Deep generative
+uniquely human capacity. For example, when caching food, modelsthusshowthepotentialtocapturetherichdynamicsof
+scrubjaysconsiderthefutureconditionsunderwhichitislikely complex realistic environments, but using these models for
+to be recovered (Raby et al., 2007), and rats use a ‘‘cognitive simulation-based planning in agents remains a challenge for
+map’’ when navigating, allowing inductive inferences during futurework.
+wayfinding and facilitating one-shot learning behaviors in Insightsfromneurosciencemayprovideguidancethatfacili-
+maze-like environments (Daw et al., 2005; Tolman, 1948). Of tates the integration of simulation with control. An emerging
+course,thispointhasnotbeenlostonAIresearchers;indeed, picture from neuroscience research suggests that the hippo-
+early planning algorithms such as Dyna (Sutton, 1991) were campussupportsplanningbyinstantiatinganinternalmodelof
+inspiredbytheoriesthatemphasizedtheimportanceof‘‘mental the environment, with goal-contingent valuation of simulated
+models’’ in generating hypothetical experiences useful for outcomesoccurringinareasdownstreamofthehippocampus
+252 Neuron95,July19,2017
+
+--- PAGE 9 ---
+Neuron
+Review
+suchtheorbitofrontalcortexorstriatum(Redish,2016).Notably, to generate synthetic images by maximizing the activity of
+however, the mechanisms that guide the rolling forward of an certain classes of unit (Nguyen et al., 2016; Simonyan et al.,
+internal model of the environment in the hippocampus remain 2013).Elsewhere,neuroscience-inspiredanalysesoflinearized
+uncertain and merit future scrutiny. One possibility is that this networks have uncovered important principles that may be of
+processisinitiatedbytheprefrontalcortexthroughinteractions generalbenefitinoptimizinglearningthesenetworks,andunder-
+withthehippocampus.Indeed,thisnotionhasdistinctparallels standing the benefits of network depth and representational
+withproposalsfromAIresearchthataseparatecontrollerinter- structure(McClellandandRogers,2003;Saxeetal.,2013).
+actswithaninternalmodeloftheenvironmentinabidirectional While this initial progress is encouraging, more work is
+fashion, querying the model based on task-relevant goals and needed. It remains difficult to characterize the functioning of
+receiving predicted simulated states as input (Schmidhuber, complexarchitecturessuchasnetworkswithexternalmemory
+2014).Further,recenteffortstodevelopagentshaveemployed (Graves et al., 2016). Nevertheless, AI researchers are in the
+architectures that instantiate a separation between controller uniquepositionofhavinggroundtruthknowledgeofallcompo-
+and environmental model to effect simulation-based planning nents of the system, together with the potential to causally
+inproblems involving theinteraction between physicalobjects manipulate individual elements, an enviable scenario from the
+(Hamricketal.,2017). perspective of experimental neuroscientists. As such, we
+Inenhancingagentcapabilitiesinsimulation-basedplanning, encourageAIresearcherstouseapproachesfromneuroscience
+it will also be important to consider other salient properties of to explore properties of network architectures and agents
+this process in humans (Hassabis and Maguire, 2007, 2009). throughanalysis,visualization,causalmanipulation,notforget-
+Research into human imagination emphasizes its constructive ting the need for carefully designed hypothesis-driven experi-
+nature,withhumansabletoconstructfictitiousmentalscenarios ments(JonasandKording,2017;Krakaueretal.,2017).Wethink
+by recombining familiar elements in novel ways, necessitating thatvirtualbrainanalyticsislikelytobeanincreasinglyintegral
+compositional/disentangledrepresentationsoftheformpresent partofthepipelineofalgorithmicdevelopmentasthecomplexity
+incertaingenerativemodels(Eslamietal.,2016;Higginsetal., ofarchitecturesincreases.
+2016;Rezendeetal.,2016a).Thisfitswellwiththenotionthat
+planninginhumansinvolvesefficientrepresentationsthatsup- FromAItoNeuroscience
+port generalization and transfer, so that plans forged in one Thusfar,ourreviewhasfocusedprimarilyontheroleofneurosci-
+setting(e.g.,goingthroughadoortoreacharoom)canbelever- enceinacceleratingAIresearchratherthanviceversa.Histori-
+aged in novel environments that share structure. Further, cally, however, the flow of information between neuroscience
+planningandmentalsimulationinhumansare‘‘jumpy,’’bridging and AI has been reciprocal. Machine learning techniques
+multipletemporalscalesatatime;forexample,humansseemto have transformed the analysis of neuroimaging datasets—for
+planhierarchically,byconsideringinparallelterminalsolutions, example,inthemultivariateanalysisoffMRIandmagnetoence-
+interim choice points, and piecemeal steps toward the goal phalographic(MEG)data(Cichyetal.,2014;C¸ukuretal.,2013;
+(Balaguer et al., 2016; Solway et al., 2014; Huys et al., 2012). KriegeskorteandKievit,2013)—withpromiseforexpeditingcon-
+Wethinkthatultimatelytheseflexible,combinatorialaspectsof nectomicanalysis(Glasseretal.,2016),amongothertechniques.
+planningwillformacriticalunderpinningofwhatisperhapsthe Goingfurther,webelievethatbuildingintelligentalgorithmshas
+hardest challenge for AI research: to build an agent that can thepotentialtooffernewideasabouttheunderpinningsofintel-
+planhierarchically,istrulycreative,andcangeneratesolutions ligenceinthebrainsofhumansandotheranimals.Inparticular,
+tochallengesthatcurrentlyeludeeventhehumanmind. psychologists and neuroscientists often have only quite vague
+VirtualBrainAnalytics notionsofthemechanismsthatunderlietheconceptstheystudy.
+OneratherdifferentwayinwhichneurosciencemayserveAIis AIresearchcanhelp,byformalizingtheseconceptsinaquanti-
+byfurnishingnewanalytictoolsforunderstandingcomputation tativelanguageandofferinginsightsintotheirnecessityandsuf-
+in AI systems. Due to their complexity, the products of AI ficiency(orotherwise)forintelligentbehavior.
+researchoftenremain‘‘blackboxes’’;weunderstandonlypoorly AkeyillustrationofthispotentialisprovidedbyRL.Afterideas
+the nature of the computations that occur, or representations from animal psychology helped to give birth to reinforcement
+thatareformed,duringlearningofcomplextasks.However,by learning research, key concepts from the latter fed back to
+applyingtoolsfromneurosciencetoAIsystems,syntheticequiv- inform neuroscience. In particular, the profile of neural signals
+alents of single-cell recording, neuroimaging, and lesion tech- observed in midbrain dopaminergic neurons in conditioning
+niques,wecan gaininsightsintothe keydrivers ofsuccessful paradigms was found to bear a striking resemblance to TD-
+learninginAIresearchandincreasetheinterpretabilityofthese generatedpredictionerrors,providingneuralevidencethatthe
+systems.Wecallthis‘‘virtualbrainanalytics.’’ brainimplementsaformofTDlearning(O’Dohertyetal.,2003;
+Recentworkhasmadesomeprogressalongtheselines.For Schultzetal.,1997).Thisoverallnarrativearcprovidesanexcel-
+example,visualizingbrainstatesthroughdimensionalityreduc- lent illustration of how the exchange of ideas between AI
+tion is commonplace in neuroscience, and has recently been andneurosciencecancreatea‘‘virtuouscircle’’advancingthe
+appliedtoneuralnetworks(Zahavyetal.,2016).Receptivefield objectivesofbothfields.
+mapping, another standard tool in neuroscience, allows AI In another domain, work focused on enhancing the perfor-
+researchers to determine the response properties of units in a mance of CNNs has also yielded new insights into the nature
+neuralnetwork.Oneinterestingapplicationofthisapproachin of neural representations in high-level visual areas (Khaligh-
+AIisknownasactivitymaximization,inwhichanetworklearns RazaviandKriegeskorte,2014;YaminsandDiCarlo,2016).For
+Neuron95,July19,2017 253
+
+--- PAGE 10 ---
+Neuron
+Review
+example,onegroupsystematicallycomparedtheabilityofmore nections,evenwhenheldfixedthroughoutnetworktraining,are
+than30networkarchitecturesfromAItoexplainthestructureof sufficient to allow the backpropagation algorithm to function
+neuralrepresentationsobservedintheventralvisualstreamof effectivelythroughaprocesswherebyadjustmentoftheforward
+humans and monkeys, finding favorable evidence for deep weightsallowsbackwardprojectionstotransmitusefulteaching
+supervised networks (Khaligh-Razavi and Kriegeskorte, 2014). signals(Lillicrapetal.,2016).
+Further,thesedeepconvolutionalnetworkarchitecturesoffera Asecondcoreobjectiontothebiologicalplausibilityofback-
+computational account of recent neurophysiological data propagation is that weight updates in multi-layered networks
+demonstratingthatthecodingofcategory-orthogonalproperties requireaccesstoinformationthatisnon-local(i.e.,errorsignals
+of objects (e.g., position, size) actually increases as one pro- generated by units many layers downstream) (for review, see
+gresseshigheruptheventralvisualstream(Hongetal.,2016). Bengioetal.,2015).Incontrast,plasticityinbiologicalsynapses
+Whilethesefindingsarefarfromdefinitiveasyet,itshowshow dependsprimarilyonlocalinformation(i.e.,pre-andpost-syn-
+state-of-the-artneuralnetworksfromAIcanbeusedasplausible apticneuronalactivity)(BiandPoo,1998).AIresearchhasbegun
+simulacraofbiologicalbrains,potentiallyprovidingdetailedex- toaddressthisfundamentalissue.Inparticular,recentworkhas
+planations of the computations occurring therein (Khaligh-Ra- shown that hierarchical auto-encoder networks and energy-
+zaviandKriegeskorte,2014;YaminsandDiCarlo,2016).Relat- based networks (e.g., continuous Hopfield networks) (Scellier
+edly, properties of the LSTM architecture have provided key and Bengio, 2016; Whittington and Bogacz, 2017)—models
+insights that motivated the development of working memory thathavestrongconnectionstotheoreticalneuroscienceideas
+models that afford gating-based maintenance of task-relevant about predictive coding (Bastos et al., 2012)—are capable of
+informationintheprefrontalcortex(Lloydetal.,2012;O’Reilly approximatingthebackpropagationalgorithm,basedonweight
+andFrank,2006). updatesthatinvolvepurelylocalinformation.Indeed,concrete
+WealsohighlighttworecentstrandsofAIresearchthatmay connections have been drawn between learning in such net-
+motivate new research in neuroscience. First, neural networks worksandspike-timingdependentplasticity(ScellierandBen-
+withexternalmemorytypicallyallowthecontrollertoiteratively gio, 2016), a Hebbian mechanism instantiated widely across
+query or ‘‘hop through’’ the contents of memory. This mecha- thebrain(BiandPoo,1998).Adifferentclassoflocallearning
+nismiscriticalforreasoningovermultiplesupportinginputstate- rulehasbeenshowntoallowhierarchicalsupervisednetworks
+mentsthatrelatetoaparticularquery(Sukhbaataretal.,2015). to generate high-level invariances characteristic of biological
+Previous proposals in neuroscience have argued for a similar systems, including mirror-symmetric tuning to physically sym-
+mechanism in human cognition, but any potential neural sub- metricstimuli,suchasfaces(Leiboetal.,2017).Takentogether,
+strates,potentiallyinthehippocampus,remaintobedescribed recent AI research offers the promise of discovering mecha-
+(Kumaran and McClelland, 2012). Second, recent work high- nisms by which the brain may implement algorithms with the
+lights the potential benefits of ‘‘meta-reinforcement learning,’’ functionality of backpropagation. Moreover, these develop-
+whereRLisusedtooptimizetheweightsofarecurrentnetwork mentsillustratethepotentialforsynergisticinteractionsbetween
+suchthatthelatterisabletoimplementasecond,emergentRL AI and neuroscience: research aimed to develop biologically
+algorithmthatisabletolearnfasterthantheoriginal(Duanetal., plausible forms of backpropagation have also been motivated
+2016;Wangetal.,2016).Intriguingly,theseideasconnectwitha by the search for alternative learning algorithms. Given the
+growingneuroscienceliteratureindicatingarolefortheprefron- increasinglydeepnetworks(e.g.,>20layer)usedinAIresearch,
+tal cortex in RL, alongside more established dopamine-based factorssuchasthecompoundingofsuccessivenon-linearities
+mechanisms (Schultz et al., 1997). Specifically, they indicate posechallengesforoptimizationusingbackpropagation(Bengio
+how arelatively slow-learning dopaminergic RL algorithm may etal.,2015).
+supporttheemergenceofafreestandingRLalgorithminstanti-
+atedwiththerecurrentactivitydynamicsoftheprefrontalcortex Conclusions
+(Tsutsuietal.,2016). Inthisperspective,wehavereviewedsomeofthemanyways
+Insights from AI research are also providing novel perspec- inwhichneurosciencehasmadefundamentalcontributionsto
+tivesonhowthebrainmightimplementanalgorithmicparallel advancingAIresearch,andarguedforitsincreasinglyimpor-
+to backpropagation, the key mechanism that allows weights tantrelevance.Instrategizingforthefutureexchangebetween
+withinmultiplelayersofahierarchicalnetworktobeoptimized thetwofields,itisimportanttoappreciatethatthepastcon-
+toward an objective function (Hinton et al., 1986; Werbos, tributionsofneuroscience toAI have rarely involved a simple
+1974).Backpropagationoffersapowerfulsolutiontotheprob- transfer of full-fledged solutions that could be directly re-im-
+lemofcreditassignmentwithindeepnetworks,allowingefficient plemented in machines. Rather, neuroscience has typically
+representationstobelearnedfromhighdimensionaldata(LeCun been useful in a subtler way, stimulating algorithmic-level
+etal.,2015).However,untilrecently,severalaspectsoftheback- questions about facets of animal learning and intelligence of
+propagation algorithm were viewed to be biologically implau- interest to AI researchers and providing initial leads toward
+sible(e.g.,seeBengioetal.,2015).Oneimportantfactoristhat relevantmechanisms.Assuch,ourviewisthatleveragingin-
+backpropagationhastypicallybeenthoughttorequireperfectly sightsgainedfromneuroscienceresearchwillexpediteprog-
+symmetricfeedbackandfeedforwardconnectivity,aprofilethat ress in AI research, and this will be most effective if AI re-
+is not observed in mammalian brains. Recent work, however, searchers actively initiate collaborations with neuroscientists
+has demonstrated that this constraint can in fact be relaxed tohighlightkeyquestionsthatcouldbeaddressedbyempir-
+(Liaoetal.,2015;Lillicrapetal.,2016).Randombackwardcon- icalwork.
+254 Neuron95,July19,2017
+
+--- PAGE 11 ---
+Neuron
+Review
+Thesuccessfultransferofinsightsgainedfromneuroscience Blundell,C.,Uria,B.,Pritzel,A.,Yazhe,L.,Ruderman,A.,Leibo,J.Z.,Rae,J.,
+to the development of AI algorithms is critically dependent on Wierstra, D., and Hassabis, D. (2016). Model-free episodic control. arXiv,
+arXiv:160604460.
+the interaction between researchers working in both these
+fields,withinsightsoftendevelopingthroughacontinualhand- Botvinick,M.M.,andPlaut,D.C.(2006).Short-termmemoryforserialorder:a
+recurrentneuralnetworkmodel.Psychol.Rev.113,201–233.
+ing back and forth of ideas between fields. In the future, we
+hopethat greater collaboration between researchersin neuro- Brooks,R.,Hassabis,D.,Bray,D.,andShashua,A.(2012).Turingcentenary:is
+science and AI, and the identification of a common language
+thebrainagoodmodelformachineintelligence?Nature482,462–463.
+betweenthetwofields(Marblestoneetal.,2016),willpermita Browne, C., Powley, E., Whitehouse, D., Lucas, S.M., Cowling, P.I.,
+virtuouscirclewherebyresearchisacceleratedthroughshared Rohlfshagen, P., Tavener, S., Perez, D., Samothrakis, S., and Colton, S.
+(2012).AsurveyofMonte-Carlotreesearchmethods.IEEETrans.Comput.
+theoretical insights and common empirical advances. We
+Intell.AIGames4,1–43.
+believethatthequesttodevelopAIwillultimatelyalsoleadto
+a better understanding of our own minds and thought pro- Chang, M.B., Ullman, T., Torralba, A., and Tenenbaum, J.B. (2016). A
+compositionalobject-basedapproachtolearningphysicaldynamics.arXiv,
+cesses.Distilling intelligence into analgorithmic construct and
+arXiv:161200341.
+comparing it to the human brain might yield insights into
+some of the deepest and the most enduring mysteries of the Chiappa,S.,Racaniere,S.,Wierstra,D.,andMohamed,S.(2017).Recurrent
+environment simulators. Proceedings of the 32nd International Conference
+mind, such as the nature of creativity, dreams, and perhaps onMachineLearning,pp.1–61.
+oneday,evenconsciousness.
+Churchland,P.S.,andSejnowski,T.J.(1988).Perspectivesoncognitiveneuro-
+science.Science242,741–745.
+ACKNOWLEDGMENTS
+Cichon, J., and Gan, W.B. (2015). Branch-specific dendritic Ca(2+) spikes
+causepersistentsynapticplasticity.Nature520,180–185.
+WethankPeterBattaglia,KorayKavukcuoglu,NeilRabinowitz,AdamSantoro,
+GregWayne,DaanWierstra,JaneWang,MartinChadwick,JoelLeibo,and Cichy,R.M.,Pantazis,D.,andOliva,A.(2014).Resolvinghumanobjectrecog-
+DavidBarrettforusefuldiscussionsandcomments. nitioninspaceandtime.Nat.Neurosci.17,455–462.
+Collins,A.,andKoechlin,E.(2012).Reasoning,learning,andcreativity:frontal
+REFERENCES lobefunctionandhumandecision-making.PLoSBiol.10,e1001293.
+Adolph,K.(2005).Learningtolearninthedevelopmentofaction.InActionas Constantinescu,A.O.,O’Reilly,J.X.,andBehrens,T.E.(2016).Organizingcon-
+anorganizerofperceptionandcognitionduringlearninganddevelopment,J.
+ceptualknowledgeinhumanswithagridlikecode.Science352,1464–1468.
+Lockman,J.Reiser,andC.A.Nelson,eds.(ErlbaumPress),pp.91–122.
+Craik,K.(1943).TheNatureofExplanation(CambridgeUniversityPress).
+Anderson,J.R.,Bothell,D.,Byrne,M.D.,Douglass,S.,Lebiere,C.,andQin,Y.
+(2004).Anintegratedtheoryofthemind.Psychol.Rev.111,1036–1060. C¸ukur,T.,Nishimoto,S.,Huth,A.G.,andGallant,J.L.(2013).Attentionduring
+naturalvisionwarpssemanticrepresentationacrossthehumanbrain.Nat.
+Ba,J.L.,Mnih,V.,andKavukcuoglu,K.(2015).Multipleobjectrecognitionwith
+Neurosci.16,763–770.
+visualattention.arXiv,arXiv:14127755.
+Daw,N.D.,Niv,Y.,andDayan,P.(2005).Uncertainty-basedcompetitionbe-
+Baddeley,A.(2012).Workingmemory:theories,models,andcontroversies. tweenprefrontalanddorsolateralstriatalsystemsforbehavioralcontrol.Nat.
+Annu.Rev.Psychol.63,1–29. Neurosci.8,1704–1711.
+Bahdanau,D.,Cho,K.,andBengio,Y.(2014).Neuralmachinetranslationby Deisseroth,K.,andSchnitzer,M.J.(2013).Engineeringapproachestoillumi-
+jointlylearningtoalignandtranslate.arXiv,arXiv:14090473. natingbrainstructureanddynamics.Neuron80,568–577.
+Balaguer, J., Spiers, H.,Hassabis, D.,andSummerfield, C.(2016).Neural Deng,J.,Dong,W.,Socher,R.,Li,L.J.,Li,K.,andFei-Fei,L.(2009).Imagenet:
+MechanismsofHierarchicalPlanninginaVirtualSubwayNetwork.Neuron alarge-scalehierarchicalimagedatabase.InComputerVisionandPattern
+90,893–903. Recognition,pp.1–8.
+Barlow,H.(1959).Sensorymechanisms,thereductionofredundancy,and Denil,M.,Agrawal,P.,Kulkarni,T.D.,Erez,T.,Battaglia,P.,anddeFreitas,N.
+intelligence.InTheMechanisationofThoughtProcesses(NationalPhysical (2016). Learning to perform physics experiments via deep reinforcement
+Laboratory,UK:H.M.StationeryOffice),pp.535–539. learning.arXiv,arXiv:161101843.
+Barnett,S.M.,andCeci,S.J.(2002).Whenandwheredoweapplywhatwe Dolan,R.J.,andDayan,P.(2013).Goalsandhabitsinthebrain.Neuron80,
+learn?Ataxonomyforfartransfer.Psychol.Bull.128,612–637. 312–325.
+Bastos,A.M.,Usrey,W.M.,Adams,R.A.,Mangun,G.R.,Fries,P.,andFriston, Doll,B.B.,Duncan,K.D.,Simon,D.A.,Shohamy,D.,andDaw,N.D.(2015).
+K.J. (2012). Canonical microcircuits for predictive coding. Neuron 76, Model-basedchoicesinvolveprospectiveneuralactivity.Nat.Neurosci.18,
+695–711. 767–772.
+Battaglia,P.W.,Hamrick,J.B.,andTenenbaum,J.B.(2013).Simulationasan Donoso,M.,Collins,A.G.,andKoechlin,E.(2014).Humancognition.Founda-
+engine of physical scene understanding. Proc. Natl. Acad. Sci. USA 110, tionsofhumanreasoningintheprefrontalcortex.Science344,1481–1486.
+18327–18332.
+Doumas,L.A.,Hummel,J.E.,andSandhofer,C.M.(2008).Atheoryofthedis-
+Battaglia,P.,Pascanu,R.,Lai,M.,Rezende,D.,andKavukcuoglu,K.(2016). coveryandpredicationofrelationalconcepts.Psychol.Rev.115,1–43.
+Interactionnetworksforlearningaboutobjects,relationsandphysics.arXiv,
+arXiv:161200222. Duan,Y.,Schulman,J.,Chen,X.,Bartlett,P.L.,Sutskever,I.,andAbbeel,P.
+(2016). RL^2: fast reinforcement learning via slow reinforcement learning.
+Bengio,Y.,Lee,D.H.,Bornschein,J.,Mesnard,T.,andLin,Z.(2015).Towards arXiv,arXiv:1611.02779.
+biologicallyplausibledeeplearning.arXiv,arXiv:150204156.
+Durstewitz,D.,Seamans,J.K.,andSejnowski,T.J.(2000).Neurocomputa-
+Bi, G.Q., and Poo, M.M. (1998). Synaptic modifications in cultured hippo- tionalmodelsofworkingmemory.Nat.Neurosci.3(Suppl),1184–1191.
+campalneurons:dependenceonspiketiming,synapticstrength,andpostsyn-
+apticcelltype.J.Neurosci.18,10464–10472. Elman,J.L.(1990).Findingstructureintime.Cogn.Sci.14,179–211.
+Neuron95,July19,2017 255
+
+--- PAGE 12 ---
+Neuron
+Review
+Eslami,A.,Heess,N.,Weber,T.Y.T.,Szepesvari,D.,Kavukcuoglu,K.,and andopticalerasureofsynapticmemorytracesinthemotorcortex.Nature
+Hinton,G.(2016).Attend,infer,repeat:fastsceneunderstandingwithgenera- 525,333–338.
+tivemodels.arXiv,arXiv:160308575.
+Hebb,D.O.(1949).TheOrganizationofBehavior(JohnWiley&Sons).
+Esser,S.K.,Merolla,P.A.,Arthur,J.V.,Cassidy,A.S.,Appuswamy,R.,Andreo-
+poulos,A.,Berg,D.J.,McKinstry,J.L.,Melano,T.,Barch,D.R.,etal.(2016). Higgins,I.,Matthey,L.,Glorot,X.,Pal,A.,Uria,B.,Blundell,C.,Mohamed,S.,
+Convolutional networks for fast, energy-efficient neuromorphic computing. andLerchner,A.(2016).Earlyvisualconceptlearningwithunsuperviseddeep
+Proc.Natl.Acad.Sci.USA113,11441–11446. learning.arXiv,arXiv:160605579.
+Fodor,J.A.,andPylyshyn,Z.W.(1988).Connectionismandcognitivearchitec- Hinton,G.E.,McClelland,J.L.,andRumelhart,D.E.(1986).DistributedRepre-
+ture:acriticalanalysis.Cognition28,3–71. sentations. In Explorations in the Microstructure of Cognition (MIT Press),
+pp.77–109.
+French,R.M.(1999).Catastrophicforgettinginconnectionistnetworks.Trends
+Cogn.Sci.3,128–135. Hinton,G.E.,Osindero,S.,andTeh,Y.W.(2006).Afastlearningalgorithmfor
+deepbeliefnets.NeuralComput.18,1527–1554.
+Fukushima,K.(1980).Neocognitron:aselforganizingneuralnetworkmodel
+foramechanismofpatternrecognitionunaffectedbyshiftinposition.Biol. Hinton,G.E.,Srivastava,N.,Krizhevsky,A.,Sutskever,I.,andSalakhutdinov,
+Cybern.36,193–202. R.R.(2012).Improvingneuralnetworksbypreventingco-adaptationoffeature
+detectors.arXiv,arXiv:12070580.
+Fusi,S.,Drew,P.J.,andAbbott,L.F.(2005).Cascademodelsofsynaptically
+storedmemories.Neuron45,599–611. Hochreiter,S.,andSchmidhuber,J.(1997).Longshort-termmemory.Neural
+Comput.9,1735–1780.
+Gallistel,C.,andKing,A.P.(2009).MemoryandtheComputationalBrain:Why
+CognitiveSciencewillTransformNeuroscience(Wiley-Blackwell). Holyoak, K.J., and Thagard, P. (1997). The analogical mind. Am. Psychol.
+52,35–44.
+Gatys,L.A.,Ecker,A.S.,andBethge,M.(2015).Aneuralalgorithmofartistic
+style.arXiv,arXiv:1508.06576. Hong, S., Oh, J., Bohyung, H., and Lee, H. (2015). Learning transferrable
+knowledge for semantic segmentation with deep convolutional neural
+Gemici,M.,Hung,C.,Santoro,A.,Wayne,G.,Mohamed,S.,Rezende,D., network.arXiv,arXiv:151207928.
+Amos,D.,andLillicrap,T.(2017).Generativetemporalmodelswithmemory.
+arXiv,arXiv:170204649. Hong,H.,Yamins,D.L.,Majaj,N.J.,andDiCarlo,J.J.(2016).Explicitinforma-
+tion for category-orthogonal object properties increases along the ventral
+Gershman,S.J.,andDaw,N.D.(2017).Reinforcementlearningandepisodic stream.Nat.Neurosci.19,613–622.
+memoryinhumansandanimals:anintegrativeframework.Annu.Rev.Psy-
+chol.68,101–128. Hopfield,J.J.(1982).Neuralnetworksandphysicalsystemswithemergent
+collectivecomputationalabilities.Proc.Natl.Acad.Sci.USA79,2554–2558.
+Gilmore,C.K.,McCarthy,S.E.,andSpelke,E.S.(2007).Symbolicarithmetic
+knowledgewithoutinstruction.Nature447,589–591. Hopfield,J.J.,andTank,D.W.(1986).Computingwithneuralcircuits:amodel.
+Science233,625–633.
+Glasser,M.F.,Smith,S.M.,Marcus,D.S.,Andersson,J.L.,Auerbach,E.J.,
+Behrens,T.E.,Coalson,T.S.,Harms,M.P.,Jenkinson,M.,Moeller,S.,etal. Hubel,D.H.,andWiesel,T.N.(1959).Receptivefieldsofsingleneuronesinthe
+(2016). The Human Connectome Project’s neuroimaging approach. Nat. cat’sstriatecortex.J.Physiol.148,574–591.
+Neurosci.19,1175–1187.
+Huys,Q.J.,Eshel,N.,O’Nions,E.,Sheridan,L.,Dayan,P.,andRoiser,J.P.
+Goldman-Rakic,P.S.(1990).Cellularandcircuitbasisofworkingmemoryin (2012).Bonsaitreesinyourhead:howthepavloviansystemsculptsgoal-
+prefrontalcortexofnonhumanprimates.Prog.BrainRes.85,325–335. directedchoicesbypruningdecisiontrees.PLoSComput.Biol.8,e1002410.
+Gopnik,A.,andSchulz,L.(2004).Mechanismsoftheoryformationinyoung Johnson,A.,andRedish,A.D.(2007).NeuralensemblesinCA3transiently
+children.TrendsCogn.Sci.8,371–377. encode paths forward of the animal at a decision point. J. Neurosci. 27,
+12176–12189.
+Graves,A.,Wayne,G.,andDanihelka,I.(2014).Neuralturingmachines.arXiv,
+arXiv:1410.5401. Jonas, E., and Kording, K.P. (2017). Could a neuroscientist understand a
+microprocessor?PLoSComput.Biol.13,e1005268.
+Graves,A.,Wayne,G.,Reynolds,M.,Harley,T.,Danihelka,I.,Grabska-Bar-
+win(cid:3)ska, A., Colmenarejo, S.G., Grefenstette, E., Ramalho, T., Agapiou, J., Jordan,M.I.(1997).Serialorder:aparalleldistributedprocessingapproach.
+etal.(2016).Hybridcomputingusinganeuralnetworkwithdynamicexternal Adv.Psychol.121,471–495.
+memory.Nature538,471–476.
+Kemp,C.,Goodman,N.D.,andTenenbaum,J.B.(2010).Learningtolearn
+Gregor,K.,Danihelka,I.,Graves,A.,Renzende,D.,andWierstra,D.(2015). causalmodels.Cogn.Sci.34,1185–1243.
+DRAW: a recurrent neural network for image generation. arXiv,
+arXiv:150204623. Khaligh-Razavi,S.M.,andKriegeskorte,N.(2014).Deepsupervised,butnot
+unsupervised,modelsmayexplainITcorticalrepresentation.PLoSComput.
+Hafner,R.,andRiedmiller,M.(2011).Reinforcementlearninginfeedbackcon- Biol.10,e1003915.
+trol.Mach.Learn.84,137–169.
+Kirkpatrick,J.,Pascanu,R.,Rabinowitz,N.,Veness,J.,Desjardins,G.,Rusu,
+Hamrick,J.B.,Ballard,A.J.,Pascanu,R.,Vinyals,O.,Heess,N.,andBattaglia, A.A.,Milan,K.,Quan,J.,Ramalho,T.,Grabska-Barwinska,A.,etal.(2017).
+P.W.(2017).Metacontrolforadaptiveimagination-basedoptimization.Pro- Overcoming catastrophic forgetting in neural networks. Proc. Natl. Acad.
+ceedings of the 5th International Conference on Learning Representations Sci.USA114,3521–3526.
+(ICLR2017),pp.1–21.
+Koch,C.,andUllman,S.(1985).Shiftsinselectivevisualattention:towardsthe
+Harlow,H.F.(1949).Theformationoflearningsets.Psychol.Rev.56,51–65. underlyingneuralcircuitry.Hum.Neurobiol.4,219–227.
+Hassabis,D.,andMaguire,E.A.(2007).Deconstructingepisodicmemorywith Krakauer, J.W., Ghazanfar, A.A., Gomez-Marin, A., MacIver, M.A., and
+construction.TrendsCogn.Sci.11,299–306. Poeppel,D.(2017).Neuroscienceneedsbehavior:correctingareductionist
+bias.Neuron93,480–490.
+Hassabis,D.,andMaguire,E.A.(2009).Theconstructionsystemofthebrain.
+Philos.Trans.R.Soc.Lond.BBiol.Sci.364,1263–1271. Kriegeskorte, N., and Kievit, R.A. (2013). Representational geometry: inte-
+gratingcognition,computation,andthebrain.TrendsCogn.Sci.17,401–412.
+Haugeland,J.(1985).ArtificialIntelligence:TheVeryIdea(MITPress).
+Krizhevsky,A.,Sutskever,I.,andHinton,G.(2012).ImageNetclassification
+Hayashi-Takagi, A., Yagishita, S., Nakamura, M., Shirai, F., Wu, Y.I., withdeepconvolutionalneuralnetworks.InAdvancesinNeuralInformation
+Loshbaugh,A.L.,Kuhlman,B.,Hahn,K.M.,andKasai,H.(2015).Labelling ProcessingSystems25,pp.1097–1105.
+256 Neuron95,July19,2017
+
+--- PAGE 13 ---
+Neuron
+Review
+Kumaran,D.,andMcClelland,J.L.(2012).Generalizationthroughtherecurrent Moore,T.,andZirnsak,M.(2017).Neuralmechanismsofselectivevisualatten-
+interactionofepisodicmemories:amodelofthehippocampalsystem.Psy- tion.Annu.Rev.Psychol.68,47–72.
+chol.Rev.119,573–616.
+Moravc(cid:1)ı´k,M.,Schmid,M.,Burch,N.,Lisy´,V.,Morrill,D.,Bard,N.,Davis,T.,
+Kumaran,D.,Hassabis,D.,andMcClelland,J.L.(2016).Whatlearningsys- Waugh,K.,Johanson,M.,andBowling,M.(2017).DeepStack:expert-level
+tems do intelligent agents need? Complementary learning systems theory artificialintelligenceinheads-upno-limitpoker.Science356,508–513.
+updated.TrendsCogn.Sci.20,512–534.
+Nguyen,A.,Dosovitskiy,A.,Yosinski,J.,Borx,T.,andClune,J.(2016).Synthe-
+Kurth-Nelson,Z.,Economides,M.,Dolan,R.J.,andDayan,P.(2016).Fast sizingthepreferredinputsforneuronsinneuralnetworksviadeepgenerator
+sequences of non-spatial state representations in humans. Neuron 91, networks.arXiv,arXiv:160509304.
+194–204.
+Nishiyama, J., and Yasuda, R. (2015). Biochemical computation for spine
+Lake, B.M., Salakhutdinov, R., and Tenenbaum, J.B. (2015). Human-level structuralplasticity.Neuron87,63–75.
+concept learning through probabilistic program induction. Science 350,
+1332–1338. O’Doherty,J.P.,Dayan,P.,Friston,K.,Critchley,H.,andDolan,R.J.(2003).
+Temporaldifferencemodelsandreward-relatedlearninginthehumanbrain.
+Lake, B.M., Ullman, T.D., Tenenbaum, J.B., and Gershman, S.J. (2016). Neuron38,329–337.
+Buildingmachinesthatlearnandthinklikepeople.arXiv,arXiv:1604.00289.
+O’Neill,J.,Pleydell-Bouverie,B.,Dupret,D.,andCsicsvari,J.(2010).Playit
+Larochelle,H.,andHinton,G.(2010).Learningtocombinefovealglimpses again:reactivationofwakingexperienceandmemory.TrendsNeurosci.33,
+withathird-orderBoltzmannmachine.NIPS’10ProceedingsoftheInterna- 220–229.
+tionalConferenceonNeuralInformationProcessingSystems,pp.1243–1251.
+O’Reilly, R.C., and Frank, M.J. (2006). Making working memory work: a
+LeCun,Y.,Boser,B.,Denker,J.S.,Henderson,D.,Howard,R.E.,Hubbard,W., computationalmodeloflearningintheprefrontalcortexandbasalganglia.
+andJackel,L.D.(1989). Backpropagation applied to handwrittenzip code NeuralComput.18,283–328.
+recognition.NeuralComput.1,541–551.
+Oh,J.,Guo,X.,Lee,H.,Lewis,R.,andSingh,S.(2015).Action-conditional
+LeCun, Y., Bengio, Y., and Hinton, G. (2015). Deep learning. Nature 521, videopredictionusingdeepnetworksinAtarigames.arXiv,arXiv:150708750.
+436–444.
+O´lafsdo´ttir,H.F.,Barry,C.,Saleem,A.B.,Hassabis,D.,andSpiers,H.J.(2015).
+Leibo,J.Z.,Liao,Q.,Anselmi,F.,Freiwald,W.A.,andPoggio,T.(2017).View- Hippocampalplacecellsconstructrewardrelatedsequencesthroughunex-
+tolerantfacerecognitionandHebbianLearningimplymirror-symmetricneural ploredspace.eLife4,e06063.
+tuningtoheadorientation.Curr.Biol.27,62–67.
+Olshausen,B.A.,Anderson,C.H.,andVanEssen,D.C.(1993).Aneurobiolog-
+Legg,S.,andHutter,M.(2007).Acollectionofdefinitionsofintelligence.In icalmodelofvisualattentionandinvariantpatternrecognitionbasedondy-
+AdvancesinArtificialGeneralIntelligence:Concepts,ArchitecturesandAlgo- namicroutingofinformation.J.Neurosci.13,4700–4719.
+rithms—ProceedingsoftheAGIWorkshop,B.GoertzelandP.Wang,eds.
+(AmsterdamIOS),pp.17–24. Pfeiffer, B.E., and Foster, D.J. (2013). Hippocampal place-cell sequences
+depictfuturepathstorememberedgoals.Nature497,74–79.
+Lengyel,M.,andDayan,P.(2007).Hippocampalcontributionstocontrol:the
+third way. In Advances in Neural Information Processing Systems 20, pp. Posner,M.I.,andPetersen,S.E.(1990).Theattentionsystemofthehuman
+889–896. brain.Annu.Rev.Neurosci.13,25–42.
+Liao,Q.,Leibo,J.Z.,andPoggio,T.(2015).Howimportantisweightsymmetry Raby,C.R.,Alexis,D.M.,Dickinson,A.,andClayton,N.S.(2007).Planningfor
+inbackpropagation?arXiv,arXiv:151005067. thefuturebywesternscrub-jays.Nature445,919–921.
+Lillicrap,T.P.,Cownden,D.,Tweed,D.B.,andAkerman,C.J.(2016).Random Redish,A.D.(2016).Vicarioustrialanderror.Nat.Rev.Neurosci.17,147–159.
+synapticfeedbackweightssupporterrorbackpropagationfordeeplearning.
+Nat.Commun.7,13276. Reed, S., Zhang, Y., Zhang, Y., and Lee, S. (2015). Deep visual analogy-
+making.InNIPS’15Proceedingsofthe28thInternationalConferenceonNeural
+Lloyd,K.,Becker,N.,Jones,M.W.,andBogacz,R.(2012).Learningtouse InformationProcessingSystems,pp.1252–1260.
+workingmemory:areinforcementlearninggatingmodelofruleacquisitionin
+rats.Front.Comput.Neurosci.6,87. Reed,S.,Akata,Z.,Mohan,S.,Tenka,S.,Schiele,B.,andLee,H.(2016).
+Learningwhatandwheretodraw.arXiv,arXiv:161002454.
+Marblestone,A.H.,Wayne,G.,andKording,K.P.(2016).Towardanintegration
+ofdeeplearningandneuroscience.Front.Comput.Neurosci.10,94. Rezende, D., Eslami, A., Mohamed, S., Battaglia, P., Jaderberg, M., and
+Heess,N.(2016a).Unsupervisedlearningof3Dstructurefromimages.arXiv,
+Marcus,G.F.(1998).Rethinkingeliminativeconnectionism.Cognit.Psychol. arXiv:160700662.
+37,243–282.
+Rezende,D.,Mohamed,S.,Danihelka,I.,Gregor,K.,andWierstra,D.(2016b).
+Markram,H.(2006).Thebluebrainproject.Nat.Rev.Neurosci.7,153–160. One-shotgeneralizationindeepgenerativemodels.arXiv,arXiv:160305106.
+Marr,D.,andPoggio,T.(1976).Fromunderstandingcomputationtounder- Riesenhuber,M.,andPoggio,T.(1999).Hierarchicalmodelsofobjectrecog-
+standingneuralcircuitry.A.I.Memo357,1–22. nitionincortex.Nat.Neurosci.2,1019–1025.
+McClelland,J.L.,andRogers,T.T.(2003).Theparalleldistributedprocessing Rosenblatt,F.(1958).Theperceptron:aprobabilisticmodelforinformation
+approachtosemanticcognition.Nat.Rev.Neurosci.4,310–322. storageandorganizationinthebrain.Psychol.Rev.65,386–408.
+McClelland,J.L.,McNaughton,B.L.,andO’Reilly,R.C.(1995).Whythereare Rowland,D.C.,Roudi,Y.,Moser,M.B.,andMoser,E.I.(2016).Tenyearsof
+complementarylearningsystemsinthehippocampusandneocortex:insights gridcells.Annu.Rev.Neurosci.39,19–40.
+fromthesuccessesandfailuresofconnectionistmodelsoflearningandmem-
+ory.Psychol.Rev.102,419–457. Rumelhart,D.E.,Hinton,G.,andWilliams,R.J.(1985).Learninginternalrepre-
+sentationsbyerrorpropagation.InParallelDistributedProcessing:Explora-
+McCulloch,W.,andPitts,W.(1943).Alogicalcalculusofideasimmanentin tionsintheMicrostructureofCognition,Volume1(MITPress),pp.318–362.
+nervousactivity.Bull.Math.Biophys.5,115–133.
+Rumelhart,D.E.,McClelland,J.L.,andGroup,P.R.(1986).ParallelDistributed
+Mnih,V.,Heess,N.,Graves,A.,andKavukcuoglu,K.(2014).Recurrentmodels Processing: Explorations in the Microstructures of Cognition, Volume 1
+ofvisualattention.arXiv,arXiv:14066247. (MITPress).
+Mnih,V.,Kavukcuoglu,K.,Silver,D.,Rusu,A.A.,Veness,J.,Bellemare,M.G., Rusu,A.A.,Rabinowitz,N.,Desjardins,G.,Soyer,H.,Kirkpatrick,J.,Kavuk-
+Graves,A.,Riedmiller,M.,Fidjeland,A.K.,Ostrovski,G.,etal.(2015).Human- cuoglu,K.,Pascanu,R.,andHadsell,R.(2016a).Progressiveneuralnetworks.
+levelcontrolthroughdeepreinforcementlearning.Nature518,529–533. arXiv,arXiv:160604671.
+Neuron95,July19,2017 257
+
+--- PAGE 14 ---
+Neuron
+Review
+Rusu,A.A.,Vecerik,M.,Rothorl,T.,Heess,N.,Pascanu,R.,andHadsell,R. Summerfield,J.J.,Lepsien,J.,Gitelman,D.R.,Mesulam,M.M.,andNobre,
+(2016b).Sim-to-realrobotlearningfrompixelswithprogressivenets.arXiv, A.C. (2006). Orienting attention based on long-term memory experience.
+arXiv:161004286. Neuron49,905–916.
+Salinas,E.,andAbbott,L.F.(1997).Invariantvisualresponsesfromattentional Sutton,R.S.(1991).Dyna,anintegratedarchitectureforlearning,planning,
+gainfields.J.Neurophysiol.77,3267–3272. andreacting.ACMSIGARTBull.2,160–163.
+Santoro,A.,Bartunov,S.,Botvinick,M.,Wierstra,D.,andLillicrap,T.(2016). Sutton,R.S.,andBarto,A.G.(1981).Towardamoderntheoryofadaptivenet-
+One-shot Learning with Memory-Augmented Neural Networks. arXiv, works:expectationandprediction.Psychol.Rev.88,135–170.
+arXiv:160506065.
+Sutton,R.,andBarto,A.(1998).ReinforcementLearning(MITPress).
+Santoro,A.,Raposo,D.,Barrett,D.G.T.,Malinowski,M.,Pascanu,R.,Batta-
+glia,P.,andLillicrap.T.(2017).Asimpleneuralnetworkmoduleforrelational
+Tesauro,G.(1995).TemporaldifferencelearningandTD-Gammon.Commun.
+reasoning.arXiv,arXiv:1706.01427,https://arxiv.org/abs/1706.01427. ACM38,58–68.
+Saxe, A.M., Ganguli, S., and McClelland, J.L. (2013). Exact solutions to
+Thrun,S.,andMitchell,T.M.(1995).Lifelongrobotlearning.Robot.Auton.
+the nonlinear dynamics of learning in deep linear neural networks. arXiv, Syst.15,25–46.
+arXiv:13126120v3.
+Scellier,B.,andBengio,Y.(2016).Equilibriumpropagation:bridgingthegap Tolman, E.C. (1948). Cognitive maps in rats and men. Psychol. Rev. 55,
+betweenenergy-basedmodelsandbackpropagation.arXiv,arXiv:160205179. 189–208.
+Schacter, D.L., Addis, D.R., Hassabis, D., Martin, V.C., Spreng, R.N., and Tsutsui,K.,Grabenhorst,F.,Kobayashi,S.,andSchultz,W.(2016).Adynamic
+Szpunar,K.K.(2012).The futureofmemory: remembering,imagining,and code for economic object valuation in prefrontal cortex neurons. Nat.
+thebrain.Neuron76,677–694. Commun.7,12554.
+Schaul,T.,Quan,J.,Antonoglou,I.,andSilver,D.(2015).Prioritizedexperi- Tulving,E.(1985).Howmanymemorysystemsarethere?AmericanPsychol-
+encereplay.bioRxiv,arXiv:1511.05952. ogist40,385–398.
+Schmidhuber,J.(2014).Deeplearninginneuralnetworks:anoverview.arXiv, Tulving,E.(2002).Episodicmemory:frommindtobrain.Annu.Rev.Psychol.
+14047828. 53,1–25.
+Schultz,W.,Dayan,P.,andMontague,P.R.(1997).Aneuralsubstrateofpre- Turing, A.M. (1936). On computable numbers, with an application to the
+dictionandreward.Science275,1593–1599. Entscheidungsproblem.Proc.Lond.Math.Soc.2,230–265.
+Serre,T.,Wolf,L.,Bileschi,S.,Riesenhuber,M.,andPoggio,T.(2007).Robust Turing,A.(1950).Computingmachineryandintelligence.Mind236,433–460.
+object recognition with cortex-like mechanisms. IEEE Trans. Pattern Anal.
+Mach.Intell.29,411–426.
+vandenOord,A.,Dieleman,S.,Zen,H.,Simonyan,K.,Vinyals,O.,Graves,A.,
+Kalchbrenner,N.,Senior,A.,andKavukcuoglu,K.(2016).WaveNet:agener-
+Shallice,T.(1988).FromNeuropsychologytoMentalStructure(Cambridge
+ativemodelforrawaudio.arXiv,arXiv:160903499.
+UniversityPress).
+Silver,D.,Huang,A.,Maddison,C.J.,Guez,A.,Sifre,L.,vandenDriessche,G., Vinyals,O.,Blundell,C.,Lillicrap,T.,Kavukcuoglu,K.,andWierstra,D.(2016).
+Schrittwieser,J.,Antonoglou,I.,Panneershelvam,V.,Lanctot,M.,etal.(2016). Matchingnetworksforoneshotlearning.arXiv,arXiv:160604080.
+MasteringthegameofGowithdeepneuralnetworksandtreesearch.Nature
+529,484–489. Wang,J.,Kurth-Nelson,Z.,Tirumala,D.,Soyer,H.,Leibo,J.Z.,Munos,R.,
+Blundell,C.,Kumaran,D.,andBotvinick,M.M.(2016).Learningtoreinforce-
+Simonyan,K.,Vedaldi,A.,andZisserman,A.(2013).Deepinsideconvolutional mentlearn.arXiv,arXiv:161105763.
+networks:visualisingimageclassificationmodelsandsaliencymaps.arXiv,
+arXiv:13126034. Werbos,P.J.(1974).BeyondRegression:NewToolsforPredictionandAnal-
+ysisintheBehavioralSciences(HarvardUniversity).
+Singer,A.C.,andFrank,L.M.(2009).Rewardedoutcomesenhancereactiva-
+tionofexperienceinthehippocampus.Neuron64,910–921. Weston, J., Chopra, S., and Bordes, A. (2014). Memory networks. arXiv,
+arXiv:14103916.
+Skaggs, W.E., and McNaughton, B.L. (1996). Replay of neuronal firing
+sequences in rat hippocampus during sleep following spatial experience. Whittington, J.C.R., and Bogacz, R. (2017). An approximation of the error
+Science271,1870–1873. backpropagationalgorithminapredictivecodingnetworkwithlocalHebbian
+synapticplasticity.NeuralComput.29,1229–1262.
+Smith,L.B.(1995).Self-organizingprocessesinlearningtolearnwords:devel-
+opment is not induction. In Basic and Applied Perspectives on Learning, Wu,Y.,Schuster,M.,Chen,Z.,Le,Q.V.,Norouzi,M.,Macherey,W.,Krikun,
+Cognition,andDevelopment.TheMinnesotaSymposiaonChildPsychology M.,Cao,Y.,Gao,Q.,Macherey,K.,etal.(2016).Google’sneuralmachine
+(LawrenceErlbaumAssociates),pp.1–32. translationsystem:bridgingthegapbetweenhumanandmachinetranslation.
+arXiv,arXiv:160908144.
+Solway,A.,Diuk,C.,Co´rdova,N.,Yee,D.,Barto,A.G.,Niv,Y.,andBotvinick,
+M.M.(2014).Optimalbehavioralhierarchy.PLoSComput.Biol.10,e1003779.
+Xu,K.,Kiros,J.,Courville,A.,Salakhutdinov,R.,andBengio,Y.(2015).Show,
+Spelke,E.S.,andKinzler,K.D.(2007).Coreknowledge.Dev.Sci.10,89–96. attendandtell:neuralimagecaptiongenerationwithvisualattention.arXiv,
+arXiv:150203044.
+Squire,L.R.,Stark,C.E.,andClark,R.E.(2004).Themedialtemporallobe.
+Annu.Rev.Neurosci.27,279–306. Yamins,D.L.,andDiCarlo,J.J.(2016).Usinggoal-drivendeeplearningmodels
+tounderstandsensorycortex.Nat.Neurosci.19,356–365.
+St.John,M.F.,andMcClelland,J.L.(1990).Learningandapplyingcontextual
+constraintsinsentencecomprehension.Artif.Intell.46,217–257. Yang,G.,Pan,F.,andGan,W.B.(2009).Stablymaintaineddendriticspinesare
+associatedwithlifelongmemories.Nature462,920–924.
+Stachenfeld,K.,Botvinick,M.M.,andGershman,S.J.(2014).Designprinciples
+ofhippocampalcognitivemaps.InAdvancesinNeuralInformationProcessing Zahavy,T.,Zrihem,N.B.,andMannor,S.(2016).Grayingtheblackbox:under-
+Systems27,pp.2528–2536. standingDQNs.arXiv,arXiv:160202658.
+Sukhbaatar, S., Szlam, A., Weston, J., and Fergus, R. (2015). End-to-end Zaremba, W., and Sutskever, I. (2014). Learning to execute. arXiv,
+memorynetworks.arXiv,arXiv:150308895. arXiv:1410.4615.
+258 Neuron95,July19,2017
+
+--- PAGE 15 ---
+Reproduced with permission of copyright owner.
+Further reproduction prohibited without permission.

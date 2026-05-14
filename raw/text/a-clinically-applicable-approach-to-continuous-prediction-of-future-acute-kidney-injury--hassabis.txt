@@ -1,0 +1,3440 @@
+
+--- PAGE 1 ---
+A Clinically Applicable Approach to
+1
+Continuous Prediction of Future
+2
+Acute Kidney Injury
+3
+NenadTomašev1,XavierGlorot1,JackW.Rae1,2,MichalZielinski1,HarryAskham1,
+4
+AndreSaraiva1,AnneMottram1,ClemensMeyer1,SumanRavuri1,IvanProtsyuk1,
+5
+AlistairConnell1,CíanO.Hughes1,AlanKarthikesalingam1,JulienCornebise1,3,
+6
+HughMontgomery4,GeraintRees5,ChrisLaing6,CliftonR.Baker7,KellyPeterson8,9,
+7
+RuthReeves7,DemisHassabis1,DominicKing1,MustafaSuleyman1,TrevorBack1*,
+8
+ChristopherNielson7,10*,JosephR.Ledsam1*,andShakirMohamed1*
+9
+10 1DeepMind,London,UK
+11 2CoMPLEX,ComputerScience,UniversityCollegeLondon,London,UK
+12 3Presentaddress:UniversityCollegeLondon,London,UK
+13 4InstituteforHumanHealthandPerformance,UniversityCollegeLondon,London,UK
+14 5InstituteofCognitiveNeuroscience,UniversityCollegeLondon,London,UK
+15 6UniversityCollegeLondonHospitals,London,UK
+16 7DepartmentofVeteransAffairs,USA
+17 8VASaltLakeCityHealthcareSystem,USA
+18 9DivisionofEpidemiology,UniversityofUtah,USA
+19 10UniversityofNevadaSchoolofMedicine,USA
+20 *Theseauthorscontributedequallytothiswork
+Early prediction of deterioration could play an important role in supporting healthcare pro-
+21
+fessionalsasanestimated11%ofin-hospitaldeathsfollowafailuretopromptlyrecogniseand
+22
+1
+
+--- PAGE 2 ---
+2
+treat deteriorating patients [1]. To achieve this goal requires predictions of patient risk that are
+23
+continuously-updatedandaccurate,andwhicharedeliveredatanindividuallevelwithsufficient
+24
+context,andwithenoughtimetoact. Buildinguponrecentworkmodellingadverseeventsfrom
+25
+electronichealthrecords(EHR)[2–18],andtakingthecommonandpotentiallylife-threatening
+26
+condition of Acute Kidney Injury (AKI) [19] as an exemplar, we have developed a novel deep
+27
+learning approach for continuous risk prediction of future AKI. The model was developed on
+28
+a large, longitudinal EHR dataset covering diverse clinical environments, comprising 703,782
+29
+adult patients across 172 inpatient and 1,062 outpatient sites. Our model predicts 55.8% of all
+30
+inpatient AKI episodes, and 90.2% of all AKI that requires subsequent administration of dial-
+31
+ysis, with a lead time of up to 48 hours and a ratio of two false alerts for every true alert. In
+32
+additiontopredictingfutureAKI,ourmodelprovidesconfidenceassessmentsandalistofclin-
+33
+icalfeaturesmostsalienttoeachprediction,alongsidepredictedfuturetrajectoriesforclinically
+34
+relevant blood tests [9]. While the recognition and prompt treatment of AKI are known to be
+35
+challenging,ourapproachmayoffernewopportunitiestoidentifypatientsatriskwithinatime
+36
+windowthatallowsearlytreatment.
+37
+Adverse events and clinical complications are a major cause of mortality and poor patient
+38
+outcomes,andsubstantialefforthasbeenmadetoimprovetheirrecognition[19,20]. Fewpre-
+39
+dictors have found their way into routine clinical practice, either because they lack effective
+40
+sensitivityandspecificity,orbecausetheyreportalreadyexistingdamage[21]. Oneexamplere-
+41
+latestoAKI,apotentiallylifethreateningconditionaffectingapproximately1in5USinpatient
+42
+admissions [22]. Although a significant proportion of cases are thought to be preventable with
+43
+early treatment [23], current AKI detection algorithms depend on changes in serum creatinine
+44
+as a marker of acute decline in renal function. Elevation of serum creatinine lags significantly
+45
+behind renal injury, resulting in delayed access to treatment [24]. This supports a case for pre-
+46
+ventative ‘screening’ type alerts, but there is no evidence that current rule based alerts improve
+47
+outcomes [25, 26]. For predictive alerts to be effective they must empower clinicians to act
+48
+before major clinical decline has occurred by: (i) delivering actionable insights on preventable
+49
+
+--- PAGE 3 ---
+3
+conditions;(ii)beingpersonalisedforspecificpatients;(iii)offeringsufficientcontextualinfor-
+50
+mation to inform clinical decision-making; and (iv) being generally applicable across patient
+51
+populations[27].
+52
+Promising recent work on modelling adverse events from EHR [2–18] suggests that the in-
+53
+corporation of machine learning may enable early prediction of AKI. Existing examples of se-
+54
+quentialAKIriskmodelshaveeithernotdemonstratedaclinically-applicablelevelofpredictive
+55
+performance[28]orhavefocusedonpredictionsacrossashorttimehorizon,leavinglittletime
+56
+forclinicalassessmentandintervention[29].
+57
+Ourproposedsystemisarecurrentneuralnetwork(RNN)thatoperatessequentiallyoverthe
+58
+EHR,processingthedataonestepatatimeandbuildinganinternalmemorythatkeepstrackof
+59
+relevant information seen up to that point. At each time point the model outputs a probability
+60
+of AKI occurring at any stage of severity within the next 48 hours, although our approach can
+61
+be extended to other time windows or AKI severities (see Extended Data Tables 2, 3 and 4).
+62
+When the predicted probability exceeds a specified operating point threshold, the prediction is
+63
+considered positive. This model was trained using data curated from a multisite retrospective
+64
+datasetof703,782adultpatientsfromallavailablesitesattheUSDepartmentofVeteransAffairs
+65
+(VA)—the largest integrated health care system in the United States. The dataset consisted of
+66
+informationavailablefromthehospitalEHRindigitalformat. Thetotalnumberofindependent
+67
+entries in the dataset was approximately 6 billion, including 620,000 features. Patients were
+68
+randomisedacrosstraining(80%),validation(5%),calibration(5%)ortest(10%)sets. Aground
+69
+truthlabelforthepresenceofAKIatanygivenpointintimewasaddedusingtheinternationally
+70
+accepted "Kidney Disease: Improving Global Outcomes (KDIGO)" criteria [19]; the incidence
+71
+of KDIGO AKI was 13.4% of admissions. (Detailed descriptions of the model and dataset are
+72
+providedintheMethods.)
+73
+Figure 1 shows the use of our model. At every point throughout an admission the model
+74
+provides updated estimates of future AKI risk, along with an associated degree of uncertainty.
+75
+Demonstrating prediction uncertainty may help clinicians distinguish ambiguous cases from
+76
+
+--- PAGE 4 ---
+4
+predictions fully supported by the available data. Identifying an increased risk of future AKI
+77
+sufficientlyinadvanceiscritical,aslongerleadtimesmayallowpreventativeactiontobetaken.
+78
+This is possible even when clinicians may not be actively intervening with, or monitoring a
+79
+patient.
+80
+Figure1 Illustrativeexampleofriskprediction,uncertaintyandpredictedfuturelaboratoryval-
+ues. Avisualrepresentationofan11dayadmissionfora65yearoldmalepatientwithahistoryofchronic
+obstructivepulmonarydisease. (a)Thecreatininemeasurementsthroughouttheadmission,showingan
+AKIeventoccurringonthe5thdayofadmission. (b)Themodel’scontinuousriskpredictions,wherethe
+modelpredictedanincreaseinriskofAKIonset48hoursbeforeitwasdetectedaccordingtotheKDIGO
+criteria. Ariskabove0.2,correspondingtoprecisionof33%,wastakenasthethresholdforwhichanAKI
+ispredictedtooccur. Thelightergreenbordersontheriskcurveindicateuncertainty,takenastherange
+of100ensemblepredictionsoncetrimmedforthehighestandlowest5values.(c)Predictionsmadeinthe
+4th day of admission of the maximum future observed values of serum creatinine, serum urea nitrogen,
+andserumpotassiumupto72hoursaheadoftime.
+Withourapproach,55.8%ofinpatientAKIeventsofanyseveritywerepredictedearlywithin
+81
+a window of up to 48 hours in advance, with a ratio of two false predictions for every true
+82
+positive. This corresponds to an area under the receiver operating characteristic curve (ROC
+83
+
+--- PAGE 5 ---
+5
+AUC) of 92.1% and an area under the precision-recall curve (PR AUC) of 29.7%. Set at this
+84
+threshold our predictive model would, if operationalised, trigger a daily clinical assessment in
+85
+2.7% of hospitalised patients in this cohort (Extended Data 7). Sensitivity was particularly
+86
+high in patients who went on to develop lasting complications as a result of AKI. The model
+87
+providedearlypredictionscorrectlyin84.3%ofepisodeswhereadministrationofin-hospitalor
+88
+outpatientdialysis wasrequired within30 daysof theonsetof AKIof anystage, and90.2% of
+89
+cases where regular outpatient administration of dialysis was scheduled within 90 days of the
+90
+onset of AKI (Extended Data 12). Figure 2 shows the corresponding ROC and PR curves, as
+91
+wellasaspectrumofdifferentoperatingpointsofthemodel. Anoperatingpointcanbechosen
+92
+to either further increase the proportion of AKI predicted early, or reduce the percentage of
+93
+falsepredictionsateachstep, accordingtoclinicalpriority(Figure3). Appliedtostage3AKI,
+94
+84.1% of inpatient events were predicted up to 48 hours in advance, with a ratio of two false
+95
+predictionsforeverytruepositive(ExtendedDataTable6). Torespondtothesealertsonadaily
+96
+basis, clinicians would need to attend to approximately 0.8% of in-hospital patients (Extended
+97
+Data7).
+98
+Themodelcorrectlyidentifiessubstantialfutureincreasesinsevenauxiliarybiochemicaltests
+99
+in88.5%ofcases(SupplementaryTable3),andprovidesinformationaboutthefactorsthatare
+100
+mostsalienttothecomputationofeachriskprediction. Thegreatestsaliencywasidentifiedfor
+101
+laboratorytestsknowntoberelevanttorenalfunction(seeSupplementaryTable1). Thepredic-
+102
+tive performance of our model was maintained across time and hospital sites, demonstrated by
+103
+additionalexperimentsthatshowgeneralisabilitytodataacquiredattimepointsafterthemodel
+104
+wastrained(ExtendedDataTables8,9and10).
+105
+Our approach significantly outperformed (p < 0.001) established state-of-the-art baseline
+106
+models(SupplementH).Forexample,abaselinemodelwascreatedwithgradientboostedtrees
+107
+(GBT)usingmanually-curatedfeaturesknowntoberelevantformodellingkidneyfunctionand
+108
+inroutinecaredelivery(SupplementsKandE.1),plusaggregatestatisticalinformationontrends
+109
+observedinrecentpatienthistory. Thisyielded3599clinicallyrelevantfeaturesprovidedtothe
+110
+
+--- PAGE 6 ---
+6
+baselines at each step (see Methods). For the same level of precision the baseline model was
+111
+able to detect 36.0% of all inpatient AKI episodes up to 48 hours ahead of time, compared to
+112
+55.8%forourmodel.
+113
+
+--- PAGE 7 ---
+7
+(a) (b)
+100
+80
+Operatingpoints
+Operating Precision TP: Sensitivity Sensitivity Specificity 60
+Point FP (AKIepisode) (step) (step)
+A 20.0% 1:4 76.7%[75.6,77.8] 58.3%[56.9,59.8] 94.8%[94.6,95.1]
+B 25.0% 1:3 68.2%[66.9,69.7] 47.7%[46.1,49.4] 96.8%[96.6,97.0]
+C 33.0% 1:2 55.8%[53.9,57.7] 35.0%[33.3,36.7] 98.4%[98.3,98.5] 40
+D 40.0% 2:3 46.6%[44.5,49.0] 27.1%[25.2,28.9] 99.1%[99.0,99.2]
+E 50.0% 1:1 34.7%[32.0,37.2] 18.5%[16.7,20.3] 99.6%[99.5,99.6]
+F 60.0% 3:2 24.7%[21.8,27.3] 12.4%[10.5,13.9] 99.8%[99.8,99.8]
+G 75.0% 3:1 12.0%[9.3,14.6] 5.5%[3.9,7.0] 100.0%[99.9,100.0] 20
+(c) 0
+0.0 0.2 0.4 0.6 0.8 1.0
+Model prediction
+)%(
+sevitisop
+fo
+noitcarF
+Perfectly calibrated
+(d)
+Figure 2 Model performance illustrated by Receiver Operating Characteristic (ROC) and Preci-
+sion/Recall(PR)curves.(a)ROCand(b)PRcurvesfortheprimaryoutcomeofpredictingtheriskthatan
+AKIofanyseveritywilloccurwithinthenext48hours. Bluedotscorrespondtooperatingpointsfrom(c).
+The grey hatched area covers the portions of ROC and PR curves that correspond to operating points
+withgreaterthanfourfalsepositivesforeachtruepositive. Theblueareacapturestheperformanceinthe
+moreclinicallyapplicablepartoftheoperatingspace;illustratingthehigherapplicabilityofPRAreaUnder
+Curve(AUC)forreportingmodelperformance. Themodelsignificantly(p-valueof<0.001)outperformed
+thegradientboostedtreesbaseline,shownin(b)foroperatingpointCusingtwo-sidedMann–WhitneyU
+teston200samplespermodel(seeEvaluation). (c)Differentmodeloperatingpointsgivenasafractionof
+AKIepisodessuccessfullydetectedfordifferentprecisionlevels(orequivalentlytheTP:FPratio)interms
+ofindividualpredictionsmadeateachstep. (d)Resultingcalibrationcurveafterisotonicregressionfor48
+hoursaheadany-AKIseveritypredictions.Modelpredictionsaregroupedintotwentybuckets,withamean
+modelriskpredictionplottedagainstthepercentageofpositivelabelsinthatbucket. Thediagonaldotted
+linedemonstratestheidealcalibration.
+
+--- PAGE 8 ---
+8
+100
+90
+80 70
+60
+50
+40
+30
+20
+10
+0
+<1-48 6-48 12-48 18-48 24-48 30-48 36-48 42-48
+Time between prediction and AKI onset (hours)
+)%(
+sIKA
+fo egatnecrep
+evitalumuC
+Any AKI: suggested operating point
+Not detected 100
+Detected with 33% precision 90
+80 70
+60
+50
+40
+30
+20
+10
+0
+<1-48 6-48 12-48 18-48 24-48 30-48 36-48 42-48
+Time between prediction and AKI onset (hours)
+(a)
+)%(
+sIKA
+fo egatnecrep
+evitalumuC
+Any AKI: multiple operating points
+Not detected
+Detected with 20% precision
+Detected with 33% precision Detected with 50% precision
+(b)
+100
+90
+80 70
+60
+50
+40
+30
+20
+10
+0
+<1-48 6-48 12-48 18-48 24-48 30-48 36-48 42-48
+Time between prediction and AKI onset (hours)
+)%(
+sIKA
+fo egatnecrep
+evitalumuC
+AKI stages 2 and 3: multiple operating points
+Not detected 100
+Detected with 20% precision 90
+Detected with 33% precision Detected with 50% precision 80 70
+60
+50
+40
+30
+20
+10
+0
+<1-48 6-48 12-48 18-48 24-48 30-48 36-48 42-48
+Time between prediction and AKI onset (hours)
+(c)
+)%(
+sIKA
+fo egatnecrep
+evitalumuC
+AKI stage 3: multiple operating points
+Not detected
+Detected with 20% precision
+Detected with 33% precision Detected with 50% precision
+(d)
+Figure3 ThetimebetweenmodelpredictionandactualAKIevent. Themodelspredicttheriskof
+certainstagesofAKIoccurringwithinaparticulartimewindow. Withinthiswindowtheactualtimeinhours
+betweenpredictionandAKIeventcanvary. Theerrorbarsinallpanelsindicate95%confidenceintervals.
+(a)Forthemaintimewindowstudied(48hoursaheadoftime)agreaterproportionwerecorrectlypredicted
+asimpendingAKIeventsgetclosertothetimestepimmediatelypriortotheAKI.AsAKIeventsoftenoccur
+shortly after admission, and there is not the opportunity to predict an episode until the patient presents
+to hospital, the available time window in which to predict is shortened. While 100% of inpatient AKIs of
+each stage are possible to predict at the point of admission, fewer than 60% of all AKI events occurred
+morethan48hoursintoanadmission. (b-d)Modelextensibility. WhenpredictingmoresevereAKIstages
+(blue,allAKIstages;yellow,AKIstages2&3;red,AKIstage3),themodelachievedhighersensitivityfor
+thesameprecision. Differentoperatingpoints(shownhereasbarsofdifferenttexture)canbeconfigured
+suchthatmoreAKIsaredetectedearly;thisisdemonstratedatthreedifferentprecisionoperatingpoints,
+from20%to50%.
+Of the false positive alerts made by our model, 24.9% were positive predictions made even
+114
+earlier than the 48 hour window in patients where AKI subsequently occurred (Extended Data
+115
+Figure 3). 57.1%oftheseoccurredinpatientswithpre-existingchronickidneydisease(CKD),
+116
+who are at a higher risk of developing AKI. Of the remaining false positive alerts, 24.1% were
+117
+trailing predictions that occurred after an AKI episode had already begun; such alerts can be
+118
+filtered out in clinical practice. For positive risk predictions where no AKI was subsequently
+119
+observed in this retrospective dataset, it is probable that many occurred in patients at risk of
+120
+
+--- PAGE 9 ---
+9
+AKIwhereappropriatepreventativetreatmentwasadministeredwhichavertedsubsequentAKI.
+121
+In addition to these early and trailing predictions, 88% of the remaining false positive alerts
+122
+occurred in patients with severe renal impairment, known renal pathology, or evidence in the
+123
+EHRthatthepatientrequiredclinicalreview(ExtendedDataTable11).
+124
+Ouraimistoprovideriskpredictionsthatenablepersonalisedpreventativeactiontobedeliv-
+125
+ered at scale. The way these predictions are used may vary by clinical setting: a trainee doctor
+126
+could be alerted in real time to each patient under their care, while a specialist nephrologist or
+127
+rapidresponseteams[30]canidentifyhighriskpatientstoprioritisetheirresponse. Thisispos-
+128
+sible because performance was consistent across multiple clinically important groups, notably
+129
+thoseatanelevatedriskofAKI(SupplementaryTable4). Ourmodelisdesignedtocomplement
+130
+existingroutinecare,asitistrainedspecificallytopredictAKIthathappenedinthisretrospec-
+131
+tivedatasetdespiteexistingbestpractices.
+132
+Although we demonstrate a model trained and evaluated on a clinically representative set of
+133
+patients from the entire VA health care system, the demographic is not representative of the
+134
+global population. Female patients comprised 6.38% of patients in the dataset, and model per-
+135
+formance was lower for this demographic (Extended Data Table 1). Validating the predictive
+136
+performance of the proposed system on a general population would require training and eval-
+137
+uating the model on additional representative datasets. Future work will need to address the
+138
+under-representation of sub-populations in the training data [31] and overcome the impact of
+139
+potentialconfoundingfactorsrelatedtohospitalprocesses[32]. KDIGOisanindicatorofAKI
+140
+that lags long after the initial renal impairment, and model performance could be enhanced by
+141
+improvementsinground-truthAKIdefinitionanddataquality.[33].
+142
+Despitestate-of-the-artretrospectiveperformancecomparedtoexistingliterature,toestablish
+143
+clinical utility and effect on patient outcomes future work should now prospectively evaluate
+144
+and independently validate the proposed model, alongside exploring its role in research into
+145
+newstrategiestowardsdeliveringpreventativecareforAKI.
+146
+In summary, we demonstrate a deep learning approach for the continuous prediction of AKI
+147
+
+--- PAGE 10 ---
+10
+within a clinically-actionable window of up to 48 hours in advance. We report performance on
+148
+aclinicallydiversepopulationandacrossalargenumberofsitestoshowthatourapproachmay
+149
+allowforthedeliveryofpotentiallypreventativetreatment,priortothephysiologicalinsultitself
+150
+inalargenumberofthecases. Ourresultsopenupthepossibilityfordeeplearningtoguidethe
+151
+preventionofclinicallyimportantadverseevents. Withthepossibilityofriskpredictionsdeliv-
+152
+eredinclinically-actionablewindowsalongsidetheincreasingsizeandscopeofEHRdatasets,
+153
+we now shift to a regime where the role for machine learning in clinical care can grow rapidly,
+154
+supplyingnewtoolstoenhancethepatientandclinicianexperience,andpotentiallybecominga
+155
+ubiquitousandintegralpartofroutineclinicalpathways.
+156
+Acknowledgements
+157
+We thank the Veterans and their families under the care of the US Department of Veterans Af-
+158
+fairs. We would also like to thank A. Graves, O. Vinyals, K. Kavukcuoglu, S. Chiappa, T. Lil-
+159
+licrap, R. Raine, P. Keane, A. Schlosberg, O. Ronneberger, J. De Fauw, K. Ruark, M. Jones,
+160
+J. Quinn, D. Chou, C. Meaden, G. Screen, W. West, R. West, P. Sundberg and the Google AI
+161
+team,J.Besley,M.Bawn,K.AyoubandR.Ahmed. Finally,wethankthemanyVAphysicians,
+162
+administratorsandresearcherswhoworkedonthedatacollection,andtherestoftheDeepMind
+163
+teamfortheirsupport,ideasandencouragement.
+164
+G.R. & H.M. were supported by University College London and the National Institute for
+165
+Health Research (NIHR) University College London Hospitals Biomedical Research Centre.
+166
+The views expressed are those of these author(s) and not necessarily those of the NHS, the
+167
+NIHRortheDepartmentofHealth.
+168
+Author contributions
+169
+M.S.,T.B.,J.C.,J.L.,N.T.,C.N.,D.H.&R.R.initiatedtheproject.
+170
+N.T.,X.G.,H.A.,J.L.,C.N.,C.B.&K.P.createdthedataset.
+171
+
+--- PAGE 11 ---
+11
+N.T.,X.G.,A.S.,H.A.,J.R.,M.Z.,A.M.,I.P.&S.M.contributedtosoftwareengineering.
+172
+N.T.,X.G.,A.M.,J.R.,M.Z.,A.S.,S.M.,X.G.,J.L.,C.N.&C.B.analysedtheresults.
+173
+N.T.,X.G.,A.M.,J.R.,M.Z.,S.R.&S.M.designedthemodelarchitectures.
+174
+J.L.,G.R.,H.M.,C.L.,A.C.,A.K.,C.H.,D.K.&C.N.contributedclinicalexpertise.
+175
+C.M.,J.L.,T.B.,S.M.&C.N.managedtheproject.
+176
+N.T.,J.L.,J.R.,M.Z.,A.M.,H.M.,C.B.,S.M.&G.R.wrotethepaper.
+177
+Competing financial interests
+178
+G.R., H.M. and C.L. are paid contractors of DeepMind. The authors have no other competing
+179
+intereststodisclose.
+180
+
+--- PAGE 12 ---
+12
+Methods
+181
+Data Description
+182
+TheclinicaldatausedinthisstudywascollectedbytheUSDepartmentofVeteransAffairsand
+183
+transferred to DeepMind in de-identified format. No personal information was included in the
+184
+dataset,whichmetHIPAA“SafeHarbor”criteriaforde-identification.
+185
+TheVeteransAffairs(VA)servesapopulationofoverninemillionveteransandtheirfamilies
+186
+across the entire United States of America. The VA is composed of 1,243 health care facilities
+187
+(sites), including172VAMedicalCentersand1,062outpatientfacilities[34]. Datafromthese
+188
+sitesisaggregatedinto130datacentres,ofwhich114haddataofinpatientadmissionsthatwe
+189
+used in this study. Four sites were excluded since they had fewer than 250 admissions during
+190
+thefiveyeartimeperiod. Nootherpatientswereexcludedbasedonlocation.
+191
+Thedatacomprisedallpatientsagedbetween18and90admittedforsecondarycaretomed-
+192
+ical or surgical services from the beginning of October 2011 to the end of September 2015,
+193
+includinglaboratorydata,andwheretherewasatleastoneyearofEHRdatapriortoadmission.
+194
+Thedataincludedmedicalrecordswithentriesupto10yearspriortoeachadmissiondateand
+195
+uptotwoyearsafterwards,whereavailable. WhereavailableintheVAdatabase,dataincluded
+196
+outpatientvisits,admissions,diagnosesasInternationalStatisticalClassificationofDiseasesand
+197
+Related Health Problems (ICD9) codes, procedures as Current Procedural Terminology (CPT)
+198
+codes,laboratoryresults(includingbutnotlimitedtobiochemistry,haematology,cytology,tox-
+199
+icology, microbiology and histopathology), medications and prescriptions, orders, vital signs,
+200
+health factors and note titles. Free text, and diagnoses that were rare (fewer than 12 distinct
+201
+patients with at least one occurrence in the VA database), were excluded to ensure all potential
+202
+privacy concerns were addressed. In addition, conditions that were considered sensitive were
+203
+excluded prior to transfer, such as patients with HIV/AIDS, sexually transmitted diseases, sub-
+204
+stanceabuse,andthoseadmittedtomentalhealthservices.
+205
+Followingthissetofinclusioncriteria,thefinaldatasetcomprised703,782patients,providing
+206
+
+--- PAGE 13 ---
+13
+6,352,945,637clinicalevententries. Eachclinicalentrydenotedasingularprocedure,labora-
+207
+torytestresult,prescription,diagnosisetc,with3,958,637,494comingfromoutpatientevents
+208
+andtheremaining2,394,308,143eventsfromadmissions. ExtendedDataTable1containsan
+209
+overviewofpatientdemographicsinthedataaswellasprevalenceofconditionsassociatedwith
+210
+acute kidney injury across the data splits. The final dataset was randomly divided into training
+211
+(80% of observations), validation (5%), calibration (5%) and testing (10%) sets. All data for a
+212
+singlepatientwasassignedtoexactlyoneofthesesplits.
+213
+Data Preprocessing
+214
+Feature Representation
+215
+Every patient in the dataset was represented by a sequence of events, with each event provid-
+216
+ing the patient information that was recorded within a 6 hour period, i.e. each day was broken
+217
+into four 6 hour periods and all records occurring within the same 6 hour period were grouped
+218
+together. Theavailabledatawithinthese6hourwindows,alongwithadditionalsummarystatis-
+219
+tics and augmentations, formed a feature set that formed the input to our predictive models.
+220
+Extended Data Figure 1 provides a diagrammatic view of a patient sequence and its temporal
+221
+structure.
+222
+Wedidnotperformanyimputationofmissingnumericalvalues,sinceexplicitmissingvalue
+223
+imputation in EHR predictive models does not always provide consistent improvements [35].
+224
+Instead, we associated each numerical feature with one or more discrete presence features to
+225
+enable our models to distinguish between the absence of a numerical value and an actual value
+226
+of zero. Additionally, these presence features encoded whether a particular numerical value is
+227
+considered to be normal, low, high, very low or very high. For some data points, the explicit
+228
+numericalvalueswerenotrecorded,usuallywhenthevalueswereconsiderednormal,andpro-
+229
+viding this encoding of the numerical data allowed our models to process these measurements
+230
+evenintheirabsence. Discretefeatureslikediagnosticsorproceduralcodeswerealsoencoded
+231
+
+--- PAGE 14 ---
+14
+asbinarypresencefeatures.
+232
+Allnumericalfeatureswerenormalisedtothe[0,1]rangeaftercappingtheextremevaluesat
+233
+the1stand99thpercentile. Thispreventsthenormalisationfrombeingdominatedbypotentially
+234
+largedataentryerrorswhilepreservingmostofthesignal.
+235
+Eachclinicalfeaturewasmappedontoacorrespondinghigh-levelconcept,suchasprocedure,
+236
+diagnosis,prescription,labtest,vitalsign,admission,transferetc. Atotalof29suchhigh-level
+237
+concepts were present in the data. At each step, a histogram of frequencies of these concepts
+238
+amongtheclinicalentriesthattakeplaceatthatstepwasprovidedtothemodelsalongwiththe
+239
+numericalandbinarypresencefeatures.
+240
+Theapproximateageofeachpatientindays,aswellaswhich6hourperiodinthedaythedata
+241
+is associated with, were provided as explicit features to the models. In addition, we provided
+242
+some simple features that make it easier for the models to predict the risk of developing AKI.
+243
+In particular, we provided the median yearly creatinine baseline and the minimum 48 hours
+244
+creatininebaselineasadditionalnumericalfeatures. Thesearethebaselinevaluesthatareused
+245
+in the KDIGO criteria and help give important context to the models on how to interpret new
+246
+serumcreatininemeasurementsastheybecomeavailable.
+247
+Weadditionallycomputedthreehistoricalaggregatefeaturerepresentationsateachstep: one
+248
+forthepast48hours,oneforthepast6months,andoneforthepast5years. Allhistorieswere
+249
+optionally provided to the models and the decision on which combination of historical data to
+250
+includewasbasedonthemodelperformanceonthevalidationset. Wedidthishistoricalaggre-
+251
+gationfordiscretefeaturesbyincludingwhethertheywereobservedinthehistoricalintervalor
+252
+not. Fornumericalfeaturesweincludedthecount,mean,median,standarddeviation,minimum
+253
+andmaximumvalueobservedintheinterval,aswellassimpletrendfeatureslikethedifference
+254
+betweenthelastobservedvalueandtheminimum/maximumandtheaveragedifferencebetween
+255
+subsequentstepsthatmeasuresthetemporalshort-termvariabilityofthemeasurement.
+256
+Becausepatientmeasurementsaremadeirregularly,notall6-hourtimeperiodsinadaywill
+257
+have new data associated with them. Our models still operate at regular time intervals, and all
+258
+
+--- PAGE 15 ---
+15
+timeperiodswithoutnewmeasurementsincludeonlytheavailablemetadata,andoptionallythe
+259
+historical aggregate features. This approach makes continuous risk predictions possible, and
+260
+allowsourmodelstoutilisethepatternsofmissingnessinthedataduringthetrainingprocess.
+261
+Forabout35%ofallentries,thedayonwhichtheyoccurredwasknown,butnotthespecific
+262
+time during the day. For each day in the sequence of events, we aggregated these unknown-
+263
+time entries into a specific bucket that was appended to the end of the day. This ensured that
+264
+ourmodelscoulditerateoverthisinformationwithoutpotentiallyleakinginformationfromthe
+265
+future. Our models were not allowed to make predictions from these surrogate points and they
+266
+were not factored into the evaluation. The models can utilise the information contained within
+267
+the surrogate points on the next time step, corresponding to the first interval of the following
+268
+day.
+269
+DiagnosesinthedataaresometimesknowntoberecordedintheEHRpriortothetimewhen
+270
+anactualdiagnosiswasmadeclinically. Toavoidleakingfutureinformationtothemodels, we
+271
+shifted all of the diagnoses within each admission to the very end of that admission and only
+272
+provided them to the models at that point, where they can be factored in for future admissions.
+273
+Thisdiscardspotentiallyusefulinformation,sotheperformanceobtainedinthiswayisconser-
+274
+vativebydesignanditispossiblethatinrealitythemodelswouldbeabletoperformbetterwith
+275
+thisinformationprovidedinaconsistentway.
+276
+Ground Truth Labels using KDIGO
+277
+The patientAKI states werecomputed at eachtime step basedon the KDIGO[19] criteria, the
+278
+recommendations of which are based on systematic reviews of relevant trials. KDIGO accepts
+279
+three definitions of AKI: an increase in serum creatinine of 0.3mg/dl (26.5µmol/l) within 48
+280
+hours; an increase in serum creatinine of 1.5 times a patient’s baseline creatinine level, known
+281
+or presumed to have occurred within the prior 7 days; or a urine output of <0.5 ml/kg/h over 6
+282
+hours [19]. The first two definitions were used to provide ground truth labels for the onset of
+283
+an AKI; the third definition could not be used as urine output was not recorded digitally in the
+284
+
+--- PAGE 16 ---
+16
+majorityofsitesthatformedpartofthiswork. Abaselineofmedianannualisedcreatininewas
+285
+used where previous measurements where available; where these were not present the Modifi-
+286
+cationofDietinRenalDisease(MDRD)formulawasappliedtoestimateabaselinecreatinine.
+287
+Using the KDIGO criteria based on serum creatinine and its corresponding definitions for AKI
+288
+severity, three AKI categories were obtained: ‘all AKI’ (KDIGO stages 1, 2 & 3), ‘moderate
+289
+andsevereAKI’(KDIGOstages2&3),and‘severeAKI’(KDIGOstage3).
+290
+The AKI stages were computed at times when there was a serum creatinine measurement
+291
+presentinthesequenceandthencopiedforwardintimeuntilthenextcreatininemeasurement,
+292
+at which time the ground truth AKI state was updated accordingly. In order to avoid basing
+293
+the current estimate of the KDIGO AKI stage on an old measurement that may no longer be
+294
+reliable, the AKI states were propagated for at most 4 days forward in case no new creatinine
+295
+measurementswereobserved. Fromthatpointonwardstheyweremarkedasunknown. Patients
+296
+experiencingacutekidneyinjurytendtobecloselymonitoredandtheirlevelsofserumcreatinine
+297
+aremeasuredregularly,soanabsenceofameasurementformultipledaysinsuchcasesisquite
+298
+uncommon. A gap of 4 days between subsequent creatinine measurements represents the 95th
+299
+percentileinthedistributionoftimebetweentwoconsecutivecreatininemeasurements.
+300
+The prediction target at each point in time is a binary variable that is positive if the AKI
+301
+category of interest (e.g., all AKI) occurs within a chosen future time horizon. If no AKI state
+302
+wasrecordedwithinthechosenhorizon,thiswasinterpretedasanegative. Weuseeightfuture
+303
+time horizons, 6h,12h,18h,24h,36h,48h,60h, and72h ahead, which are all available at each
+304
+timepoint.
+305
+Eventsequencesofpatientsundergoingrenalreplacementtherapy(RRT)wereexcludedfrom
+306
+the target labels heuristically based on the data entries of RRT procedures being performed in
+307
+the EHR, for the duration of dialysis administration. We have excluded entire subsequences of
+308
+eventsbetweenRRTprocedureentriesthatoccurwithinaweekofeachother. Theedgesofthe
+309
+subsequencewerealsoappropriatelyexcludedfromlabelcomputations.
+310
+
+--- PAGE 17 ---
+17
+Predictive Models of AKI
+311
+Ourpredictivesystemoperatessequentiallyovertheelectronichealthrecord. Ateachtimepoint,
+312
+input features, which we described above, were provided to a statistical model whose output is
+313
+a probability of any-severity stage of AKI occurring in the next 48 hours. If this probability
+314
+exceeds a chosen operating threshold, we make a positive prediction that can then trigger an
+315
+alert. Thisisageneralframeworkwithinwhichexistingapproachesalsofit,andwedescribethe
+316
+baselinemethodsinthenextsection. Thenoveltyofthisworkisinthedesignoftheparticular
+317
+model that is used and its training procedure, and the demonstration of its effectiveness—on
+318
+a large-scale EHR dataset and across many different regimes—in making useful predictions of
+319
+futureAKI.
+320
+ExtendedDataFigure2givesaschematicviewofourmodel,whichmakespredictionsbyfirst
+321
+transformingtheinputfeaturesusinganembeddingmodule. Thisembeddingisfedintoamulti-
+322
+layer recurrent neural network, the output of which at every time point is fed into a prediction
+323
+modulethatprovidestheprobabilityoffutureAKIatthetimehorizonforwhichthemodelwill
+324
+betrained. Theentiremodelcanbetrainedend-to-end,i.e. theparameterscanbelearnedjointly
+325
+withoutpretraininganypartsofthemodel. Toprovideusefulpredictions,wetrainanensemble
+326
+ofpredictorstoestimatethemodel’sconfidence,andtheresultingensemblepredictionsarethen
+327
+calibratedusingisotonicregressiontoreflectthefrequencyofobservedoutcomes[36].
+328
+Embedding modules. The embedding layers transform the high-dimensional and sparse in-
+329
+put features into a lower-dimensional continuous representation that makes subsequent predic-
+330
+tion easier. We use a deep multilayer perceptron with residual connections and rectified-linear
+331
+(ReLU) activations. We use L regularisation on the embedding parameters to prevent overfit-
+332 1
+ting and to ensure that our model focuses on the most salient features. We compared simpler
+333
+linear transformations, which did not perform as well as the multi-layer version we used. We
+334
+also compared unsupervised approaches such as factor analysis, standard auto-encoders and
+335
+variationalauto-encoders,butdidnotfindanysignificantadvantagesinusingthesemethods.
+336
+RNNcore. Recurrentneuralnetworks(RNNs)runsequentiallyovertheEHRentriesandare
+337
+
+--- PAGE 18 ---
+18
+able to implicitly model the historical context of a patient by modifying an internal representa-
+338
+tion (or state) through time. We use a stacked multiple-layer recurrent network with highway
+339
+connectionsbetweeneachlayer[37],whichateachtimesteptakestheembeddingvectorasan
+340
+input. We use the Simple Recurrent Unit (SRU) network as the RNN architecture, with tanh
+341
+activations. WechosethisfromabroadrangeofalternativeRNNarchitectures,specificallythe
+342
+longshort-termmemory(LSTM)[38],updategateRNN(UGRNN)andIntersectionRNN [39],
+343
+simplerecurrentunits(SRU)[40,41],gatedrecurrentunits(GRU)[42],theNeuralTuringMa-
+344
+chine(NTM)[43],memory-augmentedneuralnetwork(MANN)[44],theDifferentiableNeural
+345
+Computer(DNC)[45],andtheRelationalMemoryCore(RMC)[46]. Thesealternativesdidnot
+346
+providesignificantperformanceimprovementsovertheSRUarchitecture(seeSupplementH).
+347
+Prediction targets and training objectives. The output of the RNN is fed to a final linear
+348
+prediction layer that makes predictions over all 8 future prediction windows (6 hour windows
+349
+from 6 hours ahead to 72 hours ahead). We use a cumulative distribution function layer (CDF)
+350
+across different time windows to encourage monotonicity, since the presence of AKI within
+351
+a shorter time window implies a presence of AKI within a longer time window. Each of the
+352
+resulting eight outputs provides a binary prediction for AKI severity at a specific time window
+353
+and is compared to the ground truth label using the cross-entropy loss function (Bernoulli log-
+354
+likelihood).
+355
+Wealsomakeasetofauxiliarynumericalpredictions,whereateachstepwealsopredictthe
+356
+maximum future observed value of a set of laboratory tests over the same set of time intervals
+357
+as used to make the future AKI predictions. The laboratory tests predicted are ones known to
+358
+berelevanttokidneyfunction, specifically: creatinine, ureanitrogen, sodium, potassium, chlo-
+359
+ride, calcium and phosphate. This multitask approach results in better generalisation and more
+360
+robust representations, especially under class imbalance [47–49]. The overall improvement we
+361
+observedfromincludingtheauxiliarytaskwasaround3%PRAUCinmostcases(seeSupple-
+362
+mentaryTable10formoredetails).
+363
+Our overall loss function is the weighted sum of the cross-entropy loss from the AKI-
+364
+
+--- PAGE 19 ---
+19
+predictions and the squared loss for each of the seven laboratory test predictions. We inves-
+365
+tigated the use of oversampling and overweighting of the positive labels to account for class
+366
+imbalance. Foroversampling,eachmini-batchcontainsalargerpercentageofpositivesamples
+367
+than average in the entire dataset. For overweighting, prediction for positive labels contributes
+368
+proportionallymoretothetotalloss.
+369
+Training and hyperparameters. We selected our proposed model architecture among sev-
+370
+eral alternatives based on the validation set performance (see Supplement G) and have subse-
+371
+quently performed an ablation analysis of the design choices (see Supplement I). All variables
+372
+are initialised via normalised (Xavier) initialisation [50] and trained using the Adam optimisa-
+373
+tionscheme[51]. Weemployexponentiallearningratedecayduring training. Thebestvalida-
+374
+tion results were achieved using an initial learning rate of 0.001 decayed every 12,000 training
+375
+steps by a factor of 0.85, with a batch size of 128 and a backpropagation through time win-
+376
+dow of 128. The embedding layer is of size 400 for each of the numerical and presence input
+377
+features (800 in total when concatenated) and uses 2 layers. The best performing RNN archi-
+378
+tecture used a cell size of 200 units per layer and 3 layers. A detailed overview of different
+379
+hyperparameter combinations evaluated in the experiments is available in Supplementary Ta-
+380
+ble8. Weconductedextensivehyperparameterexplorationsofdropoutratesfordifferentkinds
+381
+ofdropouttodeterminethebestmodelregularisation. Wehaveconsideredinputdropout,output
+382
+dropout, embedding dropout, cell state dropout and variational dropout. None of these had led
+383
+toimprovements,sodropoutisnotincludedinourmodel.
+384
+Competitive Baseline Methods
+385
+Established models for future AKI prediction make use of L -regularised logistic regression
+386 1
+or gradient boosted trees (GBTs), trained on a clinically relevant set of features known to be
+387
+importanteitherforroutineclinicalpracticeorthemodellingofkidneyfunction. Acuratedset
+388
+of clinically-relevant features was chosen using existing AKI literature (see Supplement E.1)
+389
+and the consensus opinion of six clinicians: three senior attending physicians with over twenty
+390
+
+--- PAGE 20 ---
+20
+yearsexpertise, onenephrologistandtwointensivecarespecialists; andthreeclinicalresidents
+391
+with expertise in nephrology, internal medicine and surgery. This set was further extended to
+392
+include 36 of the most salient features discovered by our deep learning model that were not
+393
+in the original list, to give further predictive signal to the baseline. The final curated dataset
+394
+contained315basefeaturesofdemographics, admissioninformation, vitalsignmeasurements,
+395
+selectlaboratorytestsandmedications,anddiagnosesofchronicconditionsdirectlyassociated
+396
+with an increased risk of AKI. The full feature set is listed in Supplement K. We additionally
+397
+computed a set of manually-engineered features (creatinine yearly and 48-hourly baselines in
+398
+linewithKDIGOguidelines,ratioofbloodureanitrogentoserumcreatinine,groupedseverely
+399
+reduced GFR corresponding to stages 3a - 5, flagging diabetic patients by combining ICD9
+400
+codes and values of measured haemoglobin A1c) and a representation of the patient’s short-
+401
+termandlong-termhistory(seeSectionFeatureRepresentation). Thesefeatureswereprovided
+402
+explicitly, since the interaction terms and historical trends might not have been recovered by
+403
+simpler models. This resulted in a total of 3599 possible features for the baseline model. We
+404
+provideatablewithafullsetofbaselinecomparisoninsupplementH.
+405
+Evaluation
+406
+Thedatawassplitintotraining,validation,calibrationandtestsetsinsuchawaythatinforma-
+407
+tion from a given patient is present only in one split. The training split was used to train the
+408
+proposedmodels. Thevalidationsetwasusedtoiterativelyimprovethemodelsbyselectingthe
+409
+bestmodelarchitecturesandhyperparameters.
+410
+The models selected on the validation set were recalibrated on the calibration set in order to
+411
+furtherimprovethequalityoftheriskpredictions. Deeplearningmodelswithsoftmax/sigmoid
+412
+outputtrainedwithcross-entropylossarepronetomiscalibration,andrecalibrationensuresthat
+413
+consistent probabilistic interpretations of the model predictions can be made [52]. For calibra-
+414
+tion we considered Platt scaling [53] and Isotonic Regression [36]. To compare uncalibrated
+415
+predictions to recalibrated ones we used the Brier score [54] and reliability plots [55]. The
+416
+
+--- PAGE 21 ---
+21
+best models were finally evaluated on the independent test set that was held out during model
+417
+development.
+418
+The main metrics used in model selection and the final report are: the AKI episode sensitiv-
+419
+ity, the area under the precision-recall curve (PR AUC), the area under the receiver-operating
+420
+curve (ROC AUC), and the per-step precision, per-step sensitivity and per-step specificity. The
+421
+AKI episode sensitivity corresponds to the percentage of all AKI episodes that were correctly
+422
+predicted ahead of time within the corresponding time windows of up to 48 hours. In contrast,
+423
+theprecisioniscomputedper-stepsincethepredictionsaremadeateachstep,toaccountforthe
+424
+rateoffalsealertsovertime.
+425
+Duetothesequentialnatureofmakingpredictions,thetotalnumberofpositivestepsdoesnot
+426
+directlycorrespondtothetotalnumberofdistinctAKIepisodes. Multiplepositivealertingop-
+427
+portunitiesmaybeassociatedwithasingleAKIepisodeanddifferentAKIepisodesmayoffera
+428
+differentnumberofsuchearlyalertingstepsdependingonhowlatetheyoccurwithintheadmis-
+429
+sion. AKIsoccurringlaterduringin-hospitalstaycanbepredictedearlierthanthosethatoccur
+430
+immediately upon admission. To better assess the clinical applicability of the proposed model
+431
+weexplicitlycomputetheAKIepisodesensitivityfordifferentlevelsofstep-wiseprecision.
+432
+Giventhatthemodelsweredesignedforcontinuousmonitoringandriskprediction,theywere
+433
+evaluated at each 6-hour time step within all of the admissions for each patient except for the
+434
+steps within AKI episodes which were ignored. The models were not evaluated on outpatient
+435
+events. AllstepswheretherewasnorecordofAKIoccurringintherelevantfuturetimewindow
+436
+wereconsideredasnegativeexamples.
+437
+Approximately 2% of individual time steps presented to the models sequentially were asso-
+438
+ciated with a positive AKI label, so the AKI prediction task is class-imbalanced. For per-step
+439
+performance metrics, we report both the area under the receiver operating characteristic curve
+440
+(ROCAUC)aswellastheareaundertheprecision-recallcurve(PRAUC).PRAUCisknownto
+441
+bemoreinformativeforclass-imbalancedpredictivetasks[56],asitismoresensitivetochanges
+442
+inthenumberoffalsepositivepredictions.
+443
+
+--- PAGE 22 ---
+22
+To gauge uncertainty on a trained model’s performance we calculated 95% confidence inter-
+444
+vals with the pivot bootstrap estimator [57]. This was done by sampling the entire validation
+445
+andtestdatasetwithreplacement200times. Becausebootstrappingassumestheresamplingof
+446
+independentevents,weresampleentirepatientsinsteadofresamplingindividualadmissionsor
+447
+timesteps. WhereappropriatewealsocomputeaMann–WhitneyUtest(two-sided)[58]onthe
+448
+samplesfortherespectivemodels.
+449
+Toquantifytheuncertaintyonmodelpredictions(versusoverallperformance)wetrainedan
+450
+ensemble of 100 models with a fixed set of hyperparameters but different initial seeds. This
+451
+follows similar uncertainty approaches in supervised learning [59] and medical imaging pre-
+452
+dictions [60]. The prediction confidence was assessed by inspecting the variance over the 100
+453
+modelpredictionsfromtheensemble. Thisconfidencereflectedtheaccuracyofaprediction: the
+454
+mean standard deviation of false positive predictions was higher than the mean standard devia-
+455
+tionoftruepositivepredictionsandsimilarlyforfalsenegativeversustruenegativepredictions
+456
+(p-value<0.01,seeSupplementB).
+457
+Reporting Summary
+458
+FurtherinformationonexperimentaldesignisavailableintheNatureResearchReportingSum-
+459
+marylinkedtothisarticle.
+460
+Ethics and Information Governance
+461
+Thiswork,andthecollectionofdataonimpliedconsent,receivedTennesseeValleyHealthcare
+462
+SystemInstitutionalReviewBoard(IRB)approvalfromtheUSDepartmentofVeteransAffairs.
+463
+De-identificationwasperformedinlinewiththeHealthInsurancePortabilityandAccountability
+464
+Act(HIPAA),andvalidatedbytheUSDepartmentofVeteransAffairsCentralDatabaseandIn-
+465
+formationGovernancedepartments. Onlyde-identifiedretrospectivedatawasusedforresearch,
+466
+withouttheactiveinvolvementofpatients.
+467
+
+--- PAGE 23 ---
+23
+Code Availability
+468
+We make use of several open-source libraries to conduct our experiments, namely the machine
+469
+learning framework TensorFlow1 along with the TensorFlow library Sonnet2 which provides
+470
+implementationsofindividualmodelcomponents[61]. Ourexperimentalframeworkmakesuse
+471
+ofproprietarylibrariesandweareunabletopubliclyreleasethiscode. Wedetailtheexperiments
+472
+andimplementationdetailsinthemethodssectionandinthesupplementaryfigurestoallowfor
+473
+independentreplication.
+474
+Data Availability
+475
+The clinical data used for the training, validation and test sets was collected at the US Depart-
+476
+ment of Veterans Affairs and transferred to a secure data centre with strict access controls in
+477
+de-identified format. Data was used with both local and national permissions. It is not pub-
+478
+licly available and restrictions apply to its use. The de-identified dataset, or a test subset, may
+479
+be available from the US Department of Veterans Affairs subject to local and national ethical
+480
+approvals.
+481
+1https://github.com/tensorflow/tensorflow
+2https://github.com/deepmind/sonnet
+
+--- PAGE 24 ---
+24
+Abbreviations
+482
+Abbreviation Description
+AE Autoencoder
+AKI AcuteKidneyInjury
+AKIN AcuteKidneyInjuryNetwork
+AUC AreaUnderCurve
+BIDMC BethIsraelDeaconessMedicalCenter
+CDF CumulativeDistributionFunction
+CKD ChronicKidneyDisease
+CNN ConvolutionalNeuralNetwork
+COPD ChronicObstructivePulmonaryDisease
+CPT CurrentProceduralTerminology
+DNC DifferentiableNeuralComputer
+ED EmergencyDepartment
+EHR ElectronicHealthRecord
+ER EmergencyRoom
+GAM GeneralisedAdditiveModel
+GBT GradientBoostedTrees
+GFR GlomerularFiltrationRate
+GRU GatedRecurrentUnit
+GP GaussianProcesses
+HIPAA HealthInsurancePortabilityandAccountabilityAct
+ICD-9 InternationalStatisticalClassificationofDiseasesandRelatedHealthProblems
+ICU IntensiveCareUnit
+IRB InstitutionalReviewBoard
+ITU IntensiveTreatmentUnit
+IV IntravenousTherapy
+KDIGO KidneyDisease:ImprovingGlobalOutcomesguidelines
+LOINC LogicalObservationIdentifiersNamesandCodes
+LR LogisticRegression
+LSTM LongShort-TermMemoryNetwork
+MANN Memory-AugmentedNeuralNetwork
+MDP MarkovDecisionProcess
+MLP MultilayerPerceptron
+NHSE NationalHealthServiceEngland
+NPV NegativePredictiveValue
+NTM NeuralTuringMachine
+PPV PositivePredictiveValue
+PR Precision/Recall
+ReLU RectifiedLinearUnit
+RF RandomForest
+RIFLE Risk,Injury,Failure,Lossofkidneyfunction,andEnd-stagekidneydisease
+RNN RecurrentNeuralNetwork
+RMC RelationalMemoryCore
+ROC ReceiverOperatingCharacteristic
+RRT RenalReplacementTherapy
+SMC StanfordMedicalCentre
+SRU SimpleRecurrentUnit
+TRIPOD TransparentReportingofamultivariablepredictionmodelforIndividualPrognosis
+OrDiagnosis
+UGRNN UpdateGateRecurrentNeuralNetwork
+VA USDepartmentofVeteransAffairs
+VAE VariationalAutoencoder
+WCC WhiteCellCount
+
+--- PAGE 25 ---
+25
+Extended data legends
+483
+Extended Data Figure 1 | The sequential representation of EHR data. All EHR data
+484
+available for each patient was structured into a sequential history for both inpatient and
+485
+outpatient events in six hourly blocks, shown here as circles. In each 24 hour period events
+486
+withoutarecordedtimewereincludedinafifthblock. Apartfromthedatapresentatthecurrent
+487
+time step, the models optionally receive an embedding of the previous 48 hours and the longer
+488
+historyof6monthsor5years.
+489
+490
+Extended Data Figure 2 | The proposed model architecture. The best performance was
+491
+achievedbyamultitaskdeeprecurrenthighwaynetworkarchitectureontopofanL1-regularised
+492
+deepresidualembeddingcomponentthatlearnsthebestdatarepresentationend-to-endwithout
+493
+pre-training.
+494
+495
+Extended Data Figure 3 | Early and trailing positive predictions. For the prediction of
+496
+AKIwithin48hours,nearlyhalfofallpredictionsaremadeeither(a)aftertheAKIhasalready
+497
+occurred,or(b)morethan48hourspriortotheAKI.Thehistogramshowsthefulldistribution
+498
+of these trailing and early false positive predictions, for prediction of any AKI within 48 hours
+499
+at 33% precision. Incorrect predictions above the set alerting threshold are mapped to their
+500
+closest preceding/following AKI episode (whichever is closer) if there is one in an admission.
+501
+For ±1 day 15.2% of false positives correspond to observed AKI events within 1 day after the
+502
+prediction(modelreactedtooearly)and2.9%correspondtoobservedAKIeventswithin1day
+503
+priortotheprediction(modelreactedtoolate).
+504
+505
+ExtendedDataTable1|Summarystatisticsforthedata. Abreakdownoftraining(80%),
+506
+validation(5%),calibration(5%)andtest(10%)datasetsbybothuniquepatientsandindividual
+507
+admissions. Where appropriate, percent of total dataset size is reported in parentheses. The
+508
+
+--- PAGE 26 ---
+26
+datasetwasrepresentativeoftheoverallVApopulationforclinicallyrelevantdemographicsand
+509
+diagnosticgroupsassociatedwithrenalpathology.
+510
+511
+Extended Data Table 2 | Model performance for predicting any severity of AKI within
+512
+the full range of possible prediction windows from 6-72 hours. On shorter time windows,
+513
+closer to the actual onset of AKI, the model achieves a higher ROC AUC but lower PR AUC.
+514
+This difference in the metrics stems from the different number of positive steps within the
+515
+windows ofdifferent length. For longer windows, thereare more time stepswhere AKI occurs
+516
+withinthetimewindow. Thesedifferencesaffectboththemodelprecisionandthefalsepositive
+517
+rate. When making predictions across shorter time windows there is more uncertainty in the
+518
+exact time of the AKI onset due to minor physiological fluctuations and this results in a lower
+519
+precisionbeingneededinordertoachievehighsensitivity.
+520
+521
+Extended Data Table 3 | Model ROC AUC performance. ROC AUC performance when
+522
+predictingtheriskoffutureAKI,forallAKIseveritiesacrossdifferenttimewindows.
+523
+524
+Extended Data Table 4 | Model PR AUC performance. PR AUC performance when
+525
+predictingtheriskoffutureAKI,forallAKIseveritiesacrossdifferenttimewindows.
+526
+527
+Extended Data Table 5 | Example operating points for predicting AKI stages 2 and 3
+528
+up to 48 hours ahead of time. The model correctly identifies 71.4% of all AKI stage 2 or 3
+529
+episodes early if allowing for two false positives for every true positive, and 56.2% if allowing
+530
+foronefalsepositiveforeverytruepositive. FormoresevereAKIstagesitispossibletoachieve
+531
+ahighersensitivityforanyfixedlevelofprecision.
+532
+533
+Extended Data Table 6 | Operating points for predicting AKI stage 3 up to 48 hours
+534
+ahead of time. The model identifies 84.1% of all AKI stage 3 episodes early if allowing for
+535
+
+--- PAGE 27 ---
+27
+two false positives for every true positive, and 71.3% when allowing for one false positive for
+536
+everytruepositive.
+537
+538
+ExtendedDataTable7|Dailyfrequencyoftrueandfalsepositivealertswhenpredicting
+539
+differentstagesofAKI.Thefrequencyofalertsanditsstandarddeviationareshownforatime
+540
+window of 48 hours an operating point corresponding to a 1:2 TP:FP ratio (N=5101 days). On
+541
+an average day, clinicians would receive true positive alerts of AKI predicted to occur within a
+542
+windowof48hoursaheadin0.85%ofallin-hospitalpatients,andafalsepositivepredictionof
+543
+a future AKI in 1.89% of patients, when predicting the future AKI of any severity. Assuming
+544
+noneofthefalsepositivescanbefilteredoutandimmediatelydiscarded,clinicianswouldneed
+545
+to attend to approximately 2.7% of all in-hospital patients. For the most severe stages of AKI,
+546
+themodelalertsonanaveragedayin0.8%ofallpatients. Ofthose,0.27%aretruepositivesand
+547
+0.56% are false positives. Note that there are multiple time steps at which the predictions are
+548
+made within each day, so the TP:FP ratio of the daily alerts differs slightly from the step-wise
+549
+ratio.
+550
+551
+ExtendedDataTable8|Generalisabilitytofuturedata. Modelperformancewhentrained
+552
+beforethetimepointt andtestedaftert ,bothontheentiretyofthefuturepatientpopulation
+553 P P
+as well as subgroups of patients for which the model has or hasn’t seen historical information
+554
+duringtraining. Themodelmaintainsacomparablelevelofperformanceonunseenfuturedata,
+555
+with a higher level of sensitivity of 59% for a time window of 48 hours ahead of time and a
+556
+precisionoftwofalsepositivesperstepforeachtruepositive. Notethatthisexperimentisnota
+557
+replacementforaprospectiveevaluationofthemodel.
+558
+559
+Extended Data Table 9 | Cohort statistics for Extended Data Table 8. Dataset statistics
+560
+are shown for both before and after the temporal split t that was used to simulate model
+561 P
+performanceonfuturedata.
+562
+
+--- PAGE 28 ---
+28
+563
+Extended Data Table 10 | Cross-site generalisability. Comparison of mode performance
+564
+when applied to data from previously unseen hospital sites. Data was split across sites so that
+565
+80%ofthedatawasingroupAand20%ingroupB.NositefromgroupBwaspresentingroup
+566
+A and vice versa. The data was split into training, validation, calibration and test in the same
+567
+way as in the other experiments. The table reports model performance when trained on site
+568
+groupAwhenevaluatingonthetestsetwithinsitegroupAversusthetestsetwithinsitegroup
+569
+B for predicting all AKI severities up to 48 hours ahead of time. No statistically significant
+570
+difference in performance was seen across most of the key metrics. Note that the model would
+571
+still need to be retrained to generalise outside of the VA population to a different demographic
+572
+andadifferentsetofclinicalpathwaysandhospitalprocesseselsewhere.
+573
+574
+Extended Data Table 11 | Subgroup analysis for all false positive alerts. In addition to
+575
+the 49% made in admissions during which there was at least one AKI episode many of the
+576
+remaining false positive alerts were made in patients with evidence of clinical risk factors
+577
+present in the EHR data available. These risk factors are shown here for the proposed model
+578
+predictinganystageofAKIwithinthenext48hours.
+579
+580
+ExtendedDataTable12|Modelperformanceonpatientsrequiringsubsequentdialysis.
+581
+Model performance only in AKI cases where either in-hospital or outpatient administration of
+582
+dialysisisrequiredwithin30daysoftheonsetofAKI,orwhereregularoutpatientadministra-
+583
+tionofdialysisisscheduledwithin90days. Themodelsuccessfullypredictsalargeproportion
+584
+of these AKI cases early, 84.3% of AKI cases where there is any dialysis administration
+585
+occurringwithin30daysand90.2%ofcaseswhereregularoutpatientadministrationofdialysis
+586
+occurswithin90days.
+587
+588
+
+--- PAGE 29 ---
+29
+Extended data
+589
+Extended data figures
+590
+Model
+AKI predicted
+Optional longer history Data used by the model 24h 48h 72h
+48h history New entry
+6h un T k im no e w n
+24h
+Outpatient events Admission
+ExtendedDataFigure1 ThesequentialrepresentationofEHRdata. AllEHRdataavailableforeach
+patientwasstructuredintoasequentialhistoryforbothinpatientandoutpatienteventsinsixhourlyblocks,
+shownhereascircles.Ineach24hourperiodeventswithoutarecordedtimewereincludedinafifthblock.
+Apartfromthe datapresentatthe current timestep, themodels optionallyreceiveanembeddingof the
+previous48hoursandthelongerhistoryof6monthsor5years.
+
+--- PAGE 30 ---
+30
+RNN RNN cell
+Main targets Auxillary targets
+L + L
+Fully-connected layer
+Main predictions Auxillary predictions
+Cumulative
+distribution function
+layer
++ Sum operation
+L Loss function
+RNN
+RNN Deep model
+RNN
+Deep embedding
+Historical data Current step
+Extended Data Figure 2 The proposed model architecture. The best performance was achieved
+by a multitask deep recurrent highway network architecture on top of an L1-regularised deep residual
+embeddingcomponentthatlearnsthebestdatarepresentationend-to-endwithoutpre-training.
+
+--- PAGE 31 ---
+31
+10
+8
+6
+4
+2
+0
+0 100 200 300 400 500
+Hours after last positive target
+for a trailing prediction
+)%(
+sevitisop
+eslaf
+fo
+noitcarF
+10
+8
+6
+4
+2
+0
+0 100 200 300 400 500
+Hours before first positive target
+for a too early prediction
+(a) (b)
+ExtendedDataFigure3 Earlyandtrailingpositivepredictions. ForthepredictionofAKIwithin48
+hours,nearlyhalfofallpredictionsaremadeeither(a)aftertheAKIhasalreadyoccurred,or(b)morethan
+48hourspriortotheAKI.Thehistogramshowsthefulldistributionofthesetrailingandearlyfalsepositive
+predictions, for prediction of any AKI within 48 hours at 33% precision. Incorrect predictions above the
+set alerting threshold are mapped to their closest preceding/following AKI episode (whichever is closer)
+ifthereisoneinanadmission. For±1day15.2%offalsepositivescorrespondtoobservedAKIevents
+within 1day afterthe prediction(model reactedtoo early)and 2.9% correspondto observedAKI events
+within1daypriortotheprediction(modelreactedtoolate).
+
+--- PAGE 32 ---
+32
+Extended data tables
+591
+ExtendedDataTable1 Summarystatisticsforthedata. Abreakdownoftraining(80%), validation
+(5%),calibration(5%)andtest(10%)datasplitsbybothuniquepatientsandindividualadmissions.Where
+appropriate,percentoftotaldatasizeisreportedinparentheses. Thetotaldatasetwasrepresentativeof
+theoverallVApopulationforclinicallyrelevantdemographicsanddiagnosticgroupsassociatedwithrenal
+pathology.
+Training Validation Calibration Test
+Patients
+Uniquepatients 562,507 35,277 35,317 70,681
+Averageage* 62.4 62.5 62.4 62.3
+Ethnicity Black 106,299(18.9%) 6,544(18.6%) 6,675(18.6%) 13,183(18.7%)
+Other 456,208(81.1%) 28,733(81.4%) 28,642(81.4%) 57,498(81.3%)
+Gender Female 35,855(6.4%) 2,300(6.5%) 2,252(6.4%) 4,519(6.4%)
+Male 526,652(93.6%) 32,977(93.5%) 33,065(93.6%) 66,162(93.6%)
+Diabetes 56,958(10.1%) 3,599(10.2%) 3,702(10.5%) 7,093(10.0%)
+Admissionswithinafiveyearperiod
+Datacentersites 130*** 130*** 130*** 130***
+Uniqueadmissions 2,004,217 124,255 125,928 252,492
+-perpatient Average 3.6 3.5 3.6 3.6
+Median 2 2 2 2
+Duration(days) Average 9.6 9.6 9.6 9.6
+Median 3.2 3.2 3.2 3.2
+ICUadmissions 214,644(10.7%) 13,161(10.6%) 13,411(10.6%) 26,739(10.6%)
+Medicaladmissions 971,527(48.5%) 60,762(48.9%) 61,281(48.7%) 121,675(48.2%)
+Surgicaladmissions 354,008(17.7%) 21,857(17.6%) 22,093(17.5%) 44,766(17.7%)
+Renalreplacement 22,284(1.1%) 1,367(1.1%) 1,384(1.1%) 2,784(1.1%)
+therapy
+Nocreatininemeasured 408,927(20.4%) 25,162(20.3%) 25,503(20.3%) 51,484(20.4%)
+ChronicKidneyDisease Any 746,692(37.3%) 46,677(37.5%) 46,622(37.0%) 94,105(37.3%)
+Stage1** 8,409(0.4%) 515(0.4%) 576(0.5%) 1,103(0.4%)
+Stage2 429,990(21.5%) 27,162(21.9%) 26,927(21.4%) 54,476(21.6%)
+Stage3A 156,720(7.8%) 9,837(7.9%) 9,803(7.8%) 19,548(7.7%)
+Stage3B 77,801(3.9%) 4,675(3.8%) 4,823(3.7%) 9,760(3.9%)
+Stage4 50,535(2.5%) 3,004(2.5%) 3,066(2.5%) 6,223(2.5%)
+Stage5 31,646(1.6%) 1,999(1.6%) 2,003(1.6%) 4,098(1.6%)
+AKIpresent AnyAKI 267,396(13.3%) 16,671(13.4%) 16,760(13.3%) 33,759(13.4%)
+Stage1 207,441(10.4%) 12,794(10.3%) 12,951(10.3%) 26,215(10.4%)
+Stage2 43,446(2.2%) 2,780(2.2%) 2,783(2.2%) 5,575(2.2%)
+Stage3 66,734(3.3%) 4,267(3.4%) 4,162(3.3%) 8,453(3.3%)
+*AverageageaftertakingintoaccountexclusioncriteriaandstatisticalnoiseaddedtomeetHIPAASafeHarborcriteria**CKDstage1isevidenceofrenal
+parenchymaldamagewithanormalglomerularfiltrationrate(GFR).Thisisrarelyrecordedinourdataset;insteadthenumbersforstage1CKDhavebeen
+estimatedfromadmissionsthatcarriedanICD-9codeforCKD,butwhereGFRwasnormal.Forthisreasonthesenumbersmayunder-representthetrue
+prevalenceinthepopulation.
+***172VAinpatientsitesand1,062outpatientsiteswereeligibleforinclusion.130datacentresaggregatedatafromoneormoreofthesefacilities,ofwhich
+114suchdatacentreshaddataforinpatientadmissionsusedinthisstudy.Whiletheexactnumberofsitesincludedwasnotprovidedinthedatasetforthis
+work,nopatientswereexcludedbasedonlocation.
+
+--- PAGE 33 ---
+33
+ExtendedDataTable2 ModelperformanceforpredictinganyseverityofAKIwithinthefullrange
+ofpossiblepredictionwindowsfrom6-72hours.Onshortertimewindows,closertotheactualonsetof
+AKI,themodelachievesahigherROCAUCbutlowerPRAUC.Thisdifferenceinthemetricsstemsfrom
+the different number of positive steps within the windows of different length. For longer windows, there
+are more time steps where AKI occurs within the time window. These differences affect both the model
+precisionandthefalsepositiverate. Whenmakingpredictionsacrossshortertimewindowsthereismore
+uncertaintyintheexacttimeoftheAKIonsetduetominorphysiologicalfluctuationsandthisresultsina
+lowerprecisionbeingneededinordertoachievehighsensitivity.
+Predictionwindow ROCAUC[95%CI] PRAUC[95%CI]
+6hours 95.9%[95.8,96.0] 13.8%[13.0,14.5]
+12hours 94.9%[94.8,95.1] 20.5%[19.5,21.5]
+18hours 94.1%[94.0,94.3] 23.8%[22.7,24.9]
+24hours 93.4%[93.3,93.6] 25.9%[24.6,27.0]
+36hours 92.8%[92.6,92.9] 28.5%[27.3,29.6]
+48hours 92.1%[91.9,92.3] 29.7%[28.5,30.8]
+60hours 91.7%[91.5,91.9] 30.9%[29.8,32.0]
+72hours 91.4%[91.1,91.6] 31.7%[30.6,32.8]
+ExtendedDataTable3 ModelROCAUCperformance. ROCAUCperformancewhenpredictingthe
+riskoffutureAKI,forallAKIseveritiesacrossdifferenttimewindows.
+ROCAUC[95%CI]
+Timewindows AnyAKI AKIstages2and3 AKIstage3
+24h 93.4%[93.3,93.6] 97.1%[96.9,97.3] 98.8%[98.7,98.9]
+48h 92.1%[91.9,92.3] 95.7%[95.5,96.0] 98.0%[97.8,98.2]
+72h 91.4%[91.1,91.6] 94.7%[94.4,95.0] 97.3%[97.2,97.6]
+ExtendedDataTable4 ModelPRAUCperformance. PRAUCperformancewhenpredictingtherisk
+offutureAKI,forallAKIseveritiesacrossdifferenttimewindows.
+PRAUC[95%CI]
+Timewindows AnyAKI AKIstages2and3 AKIstage3
+24h 25.9%[24.6,27.0] 36.8%[35.1,38.7] 47.6%[45.1,49.7]
+48h 29.7%[28.5,30.8] 37.8%[36.1,39.6] 48.7%[46.4,51.1]
+72h 31.7%[30.6,32.8] 37.4%[35.6,39.1] 48.0%[46.1,49.9]
+
+--- PAGE 34 ---
+34
+ExtendedDataTable5 ExampleoperatingpointsforpredictingAKIstages2and3upto48hours
+aheadoftime. Themodelcorrectlyidentifies71.4%ofallAKIstage2or3episodesearlyifallowingfor
+twofalsepositivesforeverytruepositive,and56.2%ifallowingforonefalsepositiveforeverytruepositive.
+FormoresevereAKIstagesitispossibletoachieveahighersensitivityforanyfixedlevelofprecision.
+Operatingpoints
+Precision Truepositive/ Sensitivity[95%CI] Sensitivity[95%CI] Specificity[95%CI]
+Falsepositive (AKIepisode) (step) (step)
+20.0% 1:4 82.0%[80.6,83.5] 65.8%[64.0,67.9] 98.5%[98.4,98.6]
+25.0% 1:3 77.8%[76.3,79.7] 60.4%[58.3,62.8] 99.0%[98.9,99.1]
+33.0% 1:2 71.4%[69.6,73.7] 51.8%[49.6,54.8] 99.4%[99.4,99.5]
+40.0% 2:3 65.2%[63.0,67.7] 44.6%[42.1,47.3] 99.6%[99.6,99.7]
+50.0% 1:1 56.2%[54.0,59.2] 35.8%[33.5,38.9] 99.8%[99.8,99.8]
+60.0% 3:2 45.1%[42.2,48.6] 26.3%[23.8,29.4] 99.9%[99.9,99.9]
+75.0% 3:1 27.5%[24.2,31.5] 13.8%[11.7,16.3] 100.0%[100.0,100.0]
+ExtendedDataTable6 OperatingpointsforpredictingAKIstage3upto48hoursaheadoftime.
+The model identifies 84.1% of all AKI stage 3 episodes early if allowing for two false positives for every
+truepositive,and71.3%whenallowingforonefalsepositiveforeverytruepositive.
+Operatingpoints
+Precision Truepositive/ Sensitivity[95%CI] Sensitivity[95%CI] Specificity[95%CI]
+Falsepositive (AKIepisode) (step) (step)
+20.0% 1:4 91.2%[90.4,92.3] 80.3%[78.4,82.4] 98.8%[98.7,98.9]
+25.0% 1:3 88.8%[87.7,90.1] 75.8%[73.7,78.3] 99.1%[99.0,99.2]
+33.0% 1:2 84.1%[82.4,85.9] 68.3%[65.7,71.0] 99.5%[99.4,99.5]
+40.0% 2:3 79.5%[77.4,81.8] 61.1%[57.9,64.5] 99.7%[99.6,99.7]
+50.0% 1:1 71.3%[68.3,74.4] 50.2%[46.4,53.8] 99.8%[99.8,99.8]
+60.0% 3:2 61.2%[57.6,64.9] 39.9%[35.7,43.8] 99.9%[99.9,99.9]
+75.0% 3:1 40.5%[36.5,46.1] 23.2%[19.6,27.2] 100.0%[100.0,100.0]
+
+--- PAGE 35 ---
+35
+ExtendedDataTable7 Dailyfrequencyoftrueandfalsepositivealertswhenpredictingdifferent
+stagesofAKI.Thefrequencyofalertsanditsstandarddeviationareshownforatimewindowof48hours
+anoperatingpointcorrespondingtoa1:2TP:FPratio(N=5101days). Onanaverageday,clinicianswould
+receive true positive alerts of AKI predicted to occur within a window of 48 hours ahead in 0.85% of all
+in-hospital patients, and a false positive prediction of a future AKI in 1.89% of patients, when predicting
+the future AKI of any severity. Assuming none of the false positives can be filtered out and immediately
+discarded,clinicianswouldneedtoattendtoapproximately2.7%ofallin-hospitalpatients. Forthemost
+severestagesofAKI,themodelalertsonanaveragedayin0.8%ofallpatients. Ofthose,0.27%aretrue
+positives and 0.56% are false positives. Note that there are multiple time steps at which the predictions
+aremadewithineachday,sotheTP:FPratioofthedailyalertsdiffersslightlyfromthestep-wiseratio.
+(a) Daily frequency of true and false positive (b) Daily frequency of true and false positive
+alertswhenpredictinganystageofAKI alerts when predicting KDIGO AKI stages two
+andabove
+Alerttype Frequency
+Alerttype Frequency
+Truepositivealerts 0.85%±0.71
+Falsepositivealerts 1.89%±1.20 Truepositivealerts 0.30%±0.35
+Noalerts 97.26%±1.63 Falsepositivealerts 0.64%±0.55
+Noalerts 99.06%±0.75
+(c) Daily frequency of true and false positive
+alertswhenpredictingthemostseverestageof
+AKI-KDIGOAKIstage3
+Alerttype Frequency
+Truepositivealerts 0.27%±0.33
+Falsepositivealerts 0.56%±0.85
+Noalerts 99.17%±0.96
+Extended Data Table 8 Generalisability to future data. Model performance when trained before
+the time point t and tested after t , both on the entirety of the future patient population as well as
+P P
+subgroups of patients for which the model has or hasn’t seen historical information during training. The
+modelmaintainsacomparablelevelofperformanceonunseenfuturedata,withahigherlevelofsensitivity
+of59%foratimewindowof48hoursaheadoftimeandaprecisionoftwofalsepositivesperstepforeach
+truepositive. Notethatthisexperimentisnotareplacementforaprospectiveevaluationofthemodel.
+Patientcohorts
+Metric[95%CI] BeforetP (test) Newadmissions Subsequentadmissions Allpatients
+aftertP (test) aftertP aftertP
+Sensitivity(AKIepisode) 55.09[54.01,56.06] 59[57.11,60.71] 59.04[58.38,59.63] 58.97[58.33,59.52]
+ROCAUC 92.25[92.01,92.42] 90.19[89.76,90.77] 89.98[89.83,90.17] 89.98[89.81,90.14]
+PRAUC 29.97[28.61,31.15] 30.75[28.65,32.81] 31.54[30.87,32.30] 31.28[30.44,32.02]
+Sensitivity(step) 34.26[33.17,35.28] 36.87[35.2,38.85] 37.23[36.67,37.88] 37.08[36.40,37.65]
+Specificity(step) 98.55[98.50,98.60] 97.66[97.54,97.76] 97.63[97.58,97.68] 97.64[97.59,97.68]
+Precision 32.51[31.44,33.21] 32.66[31.2,34.03] 32.97[32.52,33.47] 32.84[32.28,33.33]
+
+--- PAGE 36 ---
+36
+ExtendedDataTable9 CohortstatisticsforExtendedDataTable8. Datasetstatisticsareshownfor
+bothbeforeandafterthetemporalsplitt thatwasusedtosimulatemodelperformanceonfuturedata.
+P
+BeforetP AftertP
+Patients
+Numberofpatients 599,871 246,406
+Averageage* 61.3 64.2
+Admissionswithinagivenperiod
+Uniqueadmissions 2,134,544 364,778
+ICUadmissions 226,585(10.62%) 40,102(10.99%)
+Medicaladmissions 1,040,923(48.77%) 170,383(46.71%)
+Surgicaladmissions 373,823(17.51%) 67,617(18.54%)
+Nocreatininemeasured 458,486(21.48%) 52,115(14.29%)
+ChronicKidneyDisease Any 774,883(36.30%) 156,181(42.82%)
+AKIpresent AnyAKI 282,398(13.23%) 41,950(14.59%)
+*AverageageaftertakingintoaccountexclusioncriteriaandstatisticalnoiseaddedtomeetHIPAASafeHarborcriteria
+ExtendedDataTable10 Cross-sitegeneralisability.Comparisonofmodelperformancewhenapplied
+todatafrompreviouslyunseenhospitalsites. Datawassplitacrosssitessothat80%ofthedatawasin
+groupAand20%ingroupB.NositefromgroupB waspresentingroupAandviceversa. Thedatawas
+splitintotraining, validation, calibrationandtestinthesamewayasintheotherexperiments. Thetable
+reportsmodelperformancewhentrainedonsitegroupAwhenevaluatingonthetestsetwithinsitegroup
+AversusthetestsetwithinsitegroupB forpredictingallAKIseveritiesupto48hoursaheadoftime. No
+statisticallysignificantdifferenceinperformancewasseenacrossmostofthekeymetrics. Notethatthe
+modelwouldstillneedtoberetrainedtogeneraliseoutsideoftheVApopulationtoadifferentdemographic
+andadifferentsetofclinicalpathwaysandhospitalprocesseselsewhere.
+Metric[95%CI] SitegroupA SitegroupB
+Sensitivity(AKIepisode) 55.6%[54.5,56.6] 54.6%[52.8,56.3]
+ROCAUC 91.8%[91.6,92.1] 91.3%[90.8,91.7]
+PRAUC 30.0%[28.6,31.2] 30.6%[28.3,32.7]
+Sensitivity(step) 34.3%[33.1,35.2] 34.7%[32.6,36.2]
+Specificity(step) 98.5%[98.4,98.5] 98.3%[98.2,98.4]
+ExtendedDataTable11 Subgroupanalysisforallfalsepositivealerts. Inadditiontothe49%made
+inadmissionsduringwhichtherewasatleastoneAKIepisodemanyoftheremainingfalsepositivealerts
+weremadeinpatientswithevidenceofclinicalriskfactorspresentintheEHRdataavailable. Theserisk
+factorsareshownherefortheproposedmodelpredictinganystageofAKIwithinthenext48hours.
+Reason Percentofallfalsepositivealerts
+PatientswhoexperienceAKIduringadmissioninwhichthemodelalerts
+Modelalerts>48hoursbeforeAKIevent 25%
+ModelalertsafterAKIevent 24%
+PatientswhodonotexperienceAKIduringadmissioninwhichmodelalerts
+Knownrenalpathology 28%
+EHRevidenceofclinicalrisk 17%
+NoclearriskfactorsfromEHR 6%
+Total 100%
+
+--- PAGE 37 ---
+37
+Extended Data Table 12 Model performance on patients requiring subsequent dialysis. Model
+performanceonlyinAKIcaseswhereeitherin-hospitaloroutpatientadministrationofdialysisisrequired
+within30daysoftheonsetofAKI,orwhereregularoutpatientadministrationofdialysisisscheduledwithin
+90days. ThemodelsuccessfullypredictsalargeproportionoftheseAKIcasesearly,84.3%ofAKIcases
+where there is any dialysis administration occurring within 30 days and 90.2% of cases where regular
+outpatientadministrationofdialysisoccurswithin90days.
+Subgroupname Sensitivity PRAUC ROCAUC Sensitivity Specificity
+(AKIepisode) (step) (step)
+In-hospital/outpatientdialysiswithin30days 84.3% 70.5% 83.5% 67.7% 83.3%
+Outpatientdialysiswithin90days 90.2% 71.9% 83.8% 76.5% 76.3%
+
+--- PAGE 38 ---
+38
+Further Supplementary Information
+592
+A Clinically Applicable Approach to the Continuous Prediction of
+593
+Future Acute Kidney Injury
+594
+595
+The aim of this supplementary information is to provide further information to support
+596
+the claims made in the letter "A Clinically Applicable Approach to Continuous Prediction of
+597
+FutureAcuteKidneyInjury. Itisthehopeoftheauthorsthatbyprovidingthesesupplementary
+598
+results and associated discussion that the conclusions of the letter are strengthened, along with
+599
+thereproducibilityofthework.
+600
+InadditiontotheExtendedDatawepresentthefollowingsupplementarymaterial:
+601
+• Supplements A - C provide an analysis of the additional information provided by our
+602
+proposedmodeltoaidinterpretationoftheAKIpredictions.
+603
+• SupplementDshowsmodelperformanceacrossmultipleclinicallyimportantgroups.
+604
+• SupplementEprovidesandanextensivereviewoftheliteratureintoAKIriskmodelsand
+605
+machinelearninganddeeplearningforelectronichealthrecords.
+606
+• SupplementFshowssystematicallyselectedcaseexamplesforbothcorrectandincorrect
+607
+modelpredictions.
+608
+• Supplements G-K provide additional technical information of interest to those wishing
+609
+to reproduce the findings reported in not suitable for inclusion in the letter "A Clinically
+610
+Applicable Approach to Continuous Prediction of Future Acute Kidney Injury. These
+611
+supplements are included only for editorial review, and will be removed to feature only
+612
+inanaccompanyingprotocolpaper,alongsidefurtherdiscussionofpartsoftheExtended
+613
+Data.
+614
+
+--- PAGE 39 ---
+39
+A. Feature saliency
+615
+Knowing that the predictions of future AKI risk are derived from clinical entries that can be
+616
+meaningfullyassociatedwithfutureacutekidneyinjuryincreasesconfidenceinthecorrectness
+617
+ofthepredictivemodelsandtheirrobustnesstopotentialconfoundersinthedata.
+618
+We have investigated the significance of individual features in our trained models based on
+619
+occlusion analysis [62]. Masking out individual features can lead to either an increase or a
+620
+decrease in the predicted risk of future AKI. The results are shown in Supplementary Table 1.
+621
+Thereexistotherwaysoflookingatfeaturesaliencyandpriorstudieshadoftenapproachedthis
+622
+problembylookingatthemagnitudesofmodelparametersrelatingtofeatures,orlookingatthe
+623
+gradientofthemodel’sriskoutputwithrespecttotheinputfeatures[63]. Theseapproachesare
+624
+notwelldefinedwhencomparingacrossbothnumericalandcategoricalfeatures,whichiswhy
+625
+we have opted for the occlusion approach instead, as it is a more principled way of handling
+626
+suchdataaspresentinourEHRfeaturerepresentationateachstep.
+627
+Supplementary Table 1 The significance of individual features in our proposed model. The ten
+mostsalientfeaturesacrossallpredictionsareshownasdeterminedbyocclusionanalysis. Manysalient
+features come from laboratory tests associated with renal function, vital signs, as well as procedures
+associated with an increased risk of renal complications. As could be expected when predicting future
+AKI,changesincreatininewerethemostsalientamongstthefrequentlysampledfeatures.
+Featurename Featuretype Correlationdirection
+Serumcreatinineyearlybaseline numerical negative
+Serumcreatinine48hbaseline numerical negative
+Lowserumcalcium presence positive
+Labresultsavailable aggregatecount negative
+Malignantneoplasmofkidney presence positive
+Emergencydepartmentvisit presence negative
+Procedure:rechannelingofartery presence positive
+Serumcreatinine numerical negative
+pH(arterialbloodgas) numerical positive
+Totalkneearthroplasty presence positive
+Many salient features come from laboratory tests associated with renal function, vital signs,
+628
+as well as procedures associated with an increased risk of renal complications. As could be
+629
+expected when predicting future AKI, changes in creatinine were the most salient amongst the
+630
+frequently sampled features. The negative correlation of an increase in values of serum crea-
+631
+
+--- PAGE 40 ---
+40
+tinine baselines shown in Supplementary Table 1 is indicative of the fact that KDIGO is less
+632
+likely to interpret a given increase in creatinine as an AKI if the baselines are higher, as it is
+633
+based on relative increases over the baselines. Concentrations of serum calcium that are either
+634
+substantially higher or lower than normal are known to be associated with kidney disease. The
+635
+number of laboratory tests being taken is negatively correlated with AKI risk, which may indi-
+636
+cate that closer patient monitoring is more likely to identify issues early and provide treatment
+637
+thatreducestheriskofAKI.
+638
+HigherconcentrationsofserumcreatinineareindicativeofanincreasedriskoffutureAKIin
+639
+caseswhenthemodelsaremakingpositivepredictions. Itisthereforeinterestingtoobservethe
+640
+negativeaveragecorrelationreportedinSupplementaryTable1. Higherbaselinelevelsofserum
+641
+creatinine may be associated with a lower risk of KDIGO AKI in patients that do not go on to
+642
+developAKIwithintheadmission.
+643
+B. Prediction uncertainty
+644
+The ability to provide a measure of confidence in model predictions has important practical
+645
+consequences. This additional information can help clinicians interpret the individual model
+646
+predictions and the variance contained within them. Here we demonstrate that the predictions
+647
+themodelismoreconfidentinaremorelikelytobecorrect.
+648
+SupplementaryFigure1illustratestherelationshipbetweenmodelconfidenceandprediction
+649
+accuracy. Themodelisgenerallylessconfidentwhenitmakesmistakes: theconfidenceislower
+650
+(p-value<0.01)infalsepositivepredictionsthantruepositivepredictionsandfalsenegativepre-
+651
+dictionsthantruenegativepredictions,asmeasuredbythemeanstandarddeviationofensemble
+652
+risk.
+653
+
+--- PAGE 41 ---
+41
+(a)
+40%
+35%
+30%
+25%
+20%
+15%
+10%
+5%
+0%
+0 - 2.5% 2.5 - 5% 5 - 7.5% 7.5 - 10% 10 - 12.5% 12.5 - 15% 15 - 17.5% 17.5 - 20% >20%
+Standard deviation of ensemble predictions
+snoitciderp
+fo
+%
+True positives
+False positives
+(b)
+100%
+80%
+60%
+40%
+20%
+0%
+0-2.5% 2.5-5% 5-7.5% 7.5-10% 10-12.5% 12.5-15% 15-17.5% 17.5-20% >20%
+Standarddeviationofensemblepredictions
+snoitciderpfo%
+Truenegatives
+Falsenegatives
+Supplementary Figure 1 The relationship between model confidence and prediction accuracy.
+The two histograms demonstrate the standard deviation in predictions from an ensemble for different
+outcomes, shown here for an ensemble of models predicting the occurrence of an AKI of any severity
+withinthenext48hours. Figureashowsthatfortruepositivepredictions(N=67,546),themeanstandard
+deviation(95%confidenceinterval: [0.880,0.882])issignificantlylowerthanthemeanstandarddeviation
+(95%confidenceinterval: [0.966,0.968])forfalsepositives(N=128,292)asevidencedbya2-sidedT-test
+(p-value < 0.01). Figure b shows that for true negative predictions (N=8,907,932), the mean standard
+deviation(95%confidenceinterval: [0.005,0.005])issignificantlylowerthanthemeanstandarddeviation
+(95%confidenceinterval:[0.026,0.026])forfalsenegatives(N=127,062)asevidencedbya2-sidedT-test
+(p-value<0.01).
+C. Performance on auxiliary tasks
+654
+Inourexperimentweusedasetofauxiliarynumericalpredictiontasksalongwiththemaintask
+655
+ofpredictingKDIGOAKIaheadoftime. Inparticular,ateachstepthemodelswerealsoasked
+656
+to predict the maximum future observed values of seven biochemical tests of renal function
+657
+for the same set of time intervals as used to make future AKI predictions. For these lab tests,
+658
+
+--- PAGE 42 ---
+42
+anincreaseinvalueusuallysignifiesaworseningofkidneyfunction,andiswhypredictingthe
+659
+maximumfuturevaluesbecomesrelevantinunderstandingtheevolutionofkidneyfunctionover
+660
+time.
+661
+Supplementary Table 2 shows the prediction performance as the relative and absolute L1
+662
+errorformodelpredictionsoftheselectedlaboratoryvalues48hoursaheadoftime. Themean
+663
+absolute error is substantially lower than the standard deviation of the measurements for all
+664
+laboratory values being predicted. The performance of the proposed recurrent neural network
+665
+architecture is substantially higher than the performance of the logistic regression baseline in
+666
+predictingthesefuturelabvalues.
+667
+Supplementary Table 3 shows the accuracy of the model in predicting the trajectory of the
+668
+selected laboratory values 48 hours ahead of time. Supplementary Figure 2 shows an example
+669
+ofthesepredictionsforagivenadmission.
+670
+
+--- PAGE 43 ---
+43
+Supplementary Table 2 Model performance for the auxiliary task of predicting the maximum future
+observedvaluesofasetofsevenlaboratoryvalueswithin48hours. Acomparisonismadebetweenthe
+relative prediction error for a logistic regression baseline model and a chosen recurrent neural network
+(SRU).Rangesindicatethe95%confidenceinterval.
+Laboratory Units Subgroup Number Subgroup Subgroup Absolute Relative Relative
+test samples mean standard error error(%) error(%)
+(000s) deviation (SRU) (SRU) (LR)
+Serum mg/dL Population 2912.4 21.6 14.5 3.4 18.7 89.7
+urea [18.6,18.7] [69.0,101.6]
+nitrogen AKIin48hours 188.9 36.4 19.8 7.6 21.3
+>25mg/dL 796.0 40.0 15.2 5.5 14.0
+in48hours
+>25mg/dLand 124.7 46.2 13.1 9.6 21.3
+AKIin48hours
+Serum µmol/L Population 2795.3 103.3 56.7 10.9 10.4 73.7
+creatinine [10.4,10.5] [68.2,78.9]
+AKIin48hours 194.4 113.2 40.5 21.0
+>132.6µmol/L 479.0 78.0 23.6 11.4
+in48hours
+>132.6µmol/L 129.1 116.5 50.0 21.3
+andAKIin
+48hours
+Serum mEq/L Population 2993.4 4.2 0.5 0.3 6.6 62.8
+potassium [6.6,6.6] [56.0,68.5]
+AKIin48hours 191.1 4.4 0.6 0.4 7.9
+>5mEq/dLin 191.6 5.3 0.2 0.6 6.3
+48hours
+>5mEq/dLand 34.7 5.4 0.8 0.7 13.3
+AKIin48hours
+Serum mEq/L Population 2995.2 138.2 3.7 1.7 1.2 58.9
+sodium [1.2,1.2] [41.4,71.0]
+Serum mEq/L Population 2939.0 103.6 4.9 2.0 1.9 64.4
+chloride [1.9,1.9] [16.0,96.2]
+Serum mEq/L Population 2576.4 8.8 0.6 0.3 3.0 44.8
+calcium [2.9,3.0] [39.1,49.7]
+Serum mg/dL Population 1282.6 3.6 0.9 0.5 14.1 62.3
+P04 [14.0,14.2] [54.3,68.7]
+
+--- PAGE 44 ---
+44
+Supplementary Table 3 Model accuracy in predicting whether a laboratory value will increase in the
+next 48 hours for a set of seven laboratory test values. When the laboratory test value is substantially
+increasing(byanamountmorethanthemedianincreaseforthattest), themodelcorrectlypredictsthat
+thevaluewillincreasein48hoursin88.5%ofcases.
+%predictionscorrectlypredictinganincreaseinvaluein48hours
+Laboratorytest Cases where the value Cases where the value
+isincreasing isincreasing
+byanamountmorethan
+themedian
+Serumureanitrogen 83.7% 90.8%
+Serumcreatinine 83.6% 86.3%
+Serumpotassium 85.2% 90.5%
+Serumsodium 79.4% 88.5%
+Serumchloride 76.9% 86.5%
+Serumcalcium 84.8% 90.8%
+SerumP04 85.2% 91.1%
+Weightedaverage 82.5% 88.5%
+
+--- PAGE 45 ---
+45
+(a)Serumcreatinine (b)Serumureanitrogen
+(c)Serumcalcium (d)Serumsodium
+(e)Serumchloride (f)Serumpotassium
+(g)Serumphosphate
+Supplementary Figure 2 Examples of predictions from the auxiliary task. Each figure shows model
+predictions for the maximum future observed values of a laboratory test value from 6-72 hours in the
+futurefromthesamefixedpointintime,5daysintoapatientadmission. Thelightergreenbordersonthe
+predictioncurveindicateuncertainty,takenastherangeof100ensemblepredictionsoncetrimmedforthe
+highestandlowest5values.
+
+--- PAGE 46 ---
+46
+D. Subgroup analysis
+671
+The performance of predictive models is not uniform across the entire patient population and
+672
+understanding how it differs across different clinical subpopulations can help inform choices
+673
+aroundfuturepracticaldeployments.
+674
+SupplementaryTable4outlinesdifferencesinPRAUC,ROCAUC,sensitivityandspecificity
+675
+fordifferentsubgroupsoftheVApatientpopulation. PRandROCAUCdonotalwaysincrease
+676
+or decrease at the same time, which is largely due to the differences in the underlying AKI
+677
+prevalenceindifferentclinicalsubgroups.
+678
+To better understand model performance across different subgroups regardless of the under-
+679
+lying AKI prevalence, we employ error regression. For every observation we computed the
+680
+expected error given by the logarithmic loss, and fitted a linear regression of the error as an
+681
+endogenous variable and population subgroups as exogenous variables. A positive computed
+682
+coefficient points towards a larger model error due to the loss being non-negative. Supplemen-
+683
+taryTable5presentstheresultsoftheregressiononasubsetofpredictionswithpositiveprimary
+684
+outcome(AKIofanyseveritywithin48hours).
+685
+Inerrorregressionthesubgroupperformanceismodelledjointly,unliketheindependentcom-
+686
+putations of performance presented in Supplementary Table 4. To avoid collinearity in the re-
+687
+gressionmodelweremovedasetofsubgroupscorrespondingtothemostcommoncasesinthe
+688
+data(e.g. agegroup50to60,unknownethnicity,malegender,newincominginformationinthe
+689
+model, unknown GFR). As the default risk can be taken as constant, the coefficients computed
+690
+representaceterisparibusdeviationfromadefaultriskforagivensubgroup.
+691
+The effect of subgroups on the magnitude of errors is jointly significant, as evidenced by
+692
+F-test (p-value <0.001), as are most of the individual variables corresponding to subgroups.
+693
+For each such variable this indicates that the magnitude of error is ceteris paribus statistically
+694
+larger/smallerbasedonthesignthaninthedefaultpopulation. Forexampleforadmissionswith
+695
+ICU transfers, in the presence of AKI the errors in the model are on average smaller compared
+696
+
+--- PAGE 47 ---
+47
+tootheradmissions. Thismaysuggesteitherahigherpercentageofcorrectpredictions,ahigher
+697
+confidenceinmakingcorrectpredictions,oralowerconfidenceinmakingincorrectpredictions.
+698
+This conclusion is supported by the higher PR AUC performance of the models on the ICU
+699
+transferpatientsubpopulationinSupplementaryTable4.
+700
+
+--- PAGE 48 ---
+48
+Supplementary Table 4 Model performance across different clinical subgroups. Performance
+across multiple clinically important groups when predicting AKI of any severity up to 48 hours ahead of
+time. Operating points for sensitivity/specificity calculations have been chosen to allow for precision of
+33%,whichtranslatestohavingtwofalsepositivesforeachtruepositive.
+Subgroupname PRAUC ROCAUC Sensitivity Sensitivity Specificity Positives
+(AKIepisode) (step) (step) ratio(step)
+Patient Agegroup20-30 11.0% 93.4% 27.5% 18.2% 99.7% 0.39%
+demographics Agegroup30-40 20.7% 94.4% 36.7% 22.3% 99.7% 0.58%
+Agegroup40-50 18.0% 95.1% 40.8% 24.2% 99.6% 0.62%
+Agegroup50-60 26.8% 93.6% 52.6% 33.1% 99.0% 1.35%
+Agegroup60-70 31.8% 90.4% 57.6% 36.7% 97.9% 2.75%
+Agegroup70-80 31.6% 89.3% 58.2% 36.6% 97.5% 3.15%
+Agegroup80-90 28.4% 89.5% 55.7% 32.6% 98.0% 2.76%
+Ethnicity:Black 34.9% 93.9% 60.4% 39.7% 98.5% 1.99%
+Ethnicity:Unknown 28.0% 91.5% 54.1% 33.3% 98.4% 2.09%
+Gender:Female 24.1% 93.1% 44.8% 28.5% 99.2% 1.29%
+Gender:Male 29.9% 92.0% 56.0% 35.1% 98.4% 2.16%
+Admissions Medicaladmissions 31.1% 88.6% 57.2% 35.7% 97.5% 3.24%
+Surgeryadmissions 33.2% 88.5% 58.5% 36.5% 97.6% 3.42%
+ICUtransfers 36.3% 87.8% 64.3% 40.4% 96.4% 4.68%
+ERvisits 30.4% 92.1% 56.7% 34.9% 98.5% 2.00%
+Adm.duration>7days 32.4% 93.6% 58.6% 36.0% 98.7% 1.89%
+Patientswith AllCKD 42.6% 89.3% 70.8% 48.8% 95.1% 5.34%
+CKD CKDstage1* 18.3% 90.0% 42.8% 22.0% 99.0% 1.52%
+CKDstage2 24.5% 90.9% 49.3% 29.4% 98.4% 2.19%
+CKDstage3A 29.3% 86.2% 57.8% 36.4% 95.7% 4.88%
+CKDstage3B 48.1% 86.1% 73.1% 54.2% 91.4% 8.68%
+CKDstage4 60.1% 85.8% 83.9% 68.5% 84.1% 13.9%
+CKDstage5 69.4% 89.2% 85.6% 70.0% 90.4% 13.75%
+Otheratrisk Diabeticpatients 32.2% 91.1% 60.3% 39.1% 97.6% 2.88%
+groups Deathwithin30daysofadm. 41.8% 90.4% 69.9% 45.3% 96.3% 4.94%
+Deathwithin7daysofadm. 44.0% 91.1% 71.7% 46.4% 96.3% 5.21%
+Haemoglobin<80g/L 42.3% 88.0% 67.8% 44.2% 96.2% 5.31%
+Haemoglobin<80g/L
+inthefirst2days 42.0% 87.9% 69.3% 46.4% 95.8% 5.31%
+WCC>12or<3.5x109/L 33.5% 89.2% 58.9% 36.4% 97.6% 3.44%
+WCC>12or<3.5x109/L
+inthefirst2days 32.4% 87.8% 58.0% 36.3% 97.1% 3.82%
+PostIVContrast
+administration 33.5% 90.0% 57.0% 34.5% 98.3% 2.68%
+*CKDstage1isevidenceofrenalparenchymaldamagewithanormalglomerularfiltrationrate(GFR).Thisisrarelyrecordedinourdataset;insteadthe
+numbersforstage1CKDhavebeenestimatedfromadmissionsthatcarriedanICD-9codeforCKD,butwhereGFRwasnormal.Forthisreasonthese
+numbersmayunder-representthetrueprevalenceinthepopulation.
+
+--- PAGE 49 ---
+49
+Supplementary Table 5 Regression of model errors on population subgroups for N=194,922 positive
+primaryoutcomes. TheR-squaredis22.9%,andtheF-statistic(p-value<0.001)isevidencetowardsjoint
+significanceofthesetof31covariates.
+Variable Coefficient Standarddeviation p-value 95%confidenceintervals
+Default(constant) 3.98 0.02 <0.001 [3.93,4.03]
+Agegroup20to30 0.64 0.05 <0.001 [0.54,0.75]
+Agegroup30to40 0.30 0.03 <0.001 [0.24,0.36]
+Agegroup40to50 0.26 0.02 <0.001 [0.23,0.30]
+Agegroup60to70 -0.06 0.01 <0.001 [-0.07,-0.04]
+Agegroup70to80 0.01 0.01 0.20 [-0.01,0.03]
+Agegroup80to90 0.19 0.01 <0.001 [0.17,0.22]
+Ethnicity:Black -0.14 0.01 <0.001 [-0.15,-0.13]
+Gender:Female 0.15 0.02 <0.001 [0.12,0.19]
+PatientswithCKD -0.62 0.01 <0.001 [-0.64,-0.61]
+CKDstage1 0.16 0.01 <0.001 [0.14,0.18]
+CKDstage2 -0.08 0.01 <0.001 [-0.11,-0.06]
+CKDstage3a -0.23 0.01 <0.001 [-0.25,-0.21]
+CKDstage3b -0.56 0.01 <0.001 [-0.59,-0.54]
+CKDstage4 -0.95 0.01 <0.001 [-0.98,-0.93]
+CKDstage5 -1.09 0.03 <0.001 [-1.14,-1.05]
+Medicaladmissions -0.16 0.01 <0.001 [-0.17,-0.15]
+Surgeryadmissions -0.19 0.01 <0.001 [-0.20,-0.17]
+ICUtransfers -0.31 0.01 <0.001 [-0.33,-0.30]
+ERvisits 0.09 0.01 <0.001 [0.08,0.11]
+Diabeticpatients -0.11 0.01 <0.001 [-0.12,-0.09]
+Deathwithin30daysofadmission -0.17 0.02 <0.001 [-0.20,-0.14]
+Deathwithin7daysofadmission -0.14 0.02 <0.001 [-0.17,-0.10]
+Haemoglobin<80g/L -0.23 0.01 <0.001 [-0.25,-0.22]
+Haemoglobin<80g/Linfirst2days 0.02 0.01 0.11 [-0.00,0.04]
+WCC>12or<3.5x109/L -0.01 0.01 0.30 [-0.03,0.01]
+WCC>12or<3.5x109/Linfirst2days -0.15 0.01 <0.001 [-0.17,-0.14]
+Admissionduration>7days 0.11 0.01 <0.001 [0.10,0.13]
+PostIVcontrastadministration -0.04 0.01 <0.001 [-0.05,-0.03]
+PostIVsalineadministration -0.23 0.02 <0.001 [-0.27,-0.20]
+Oldinformationaggregationonly 0.30 0.01 <0.001 [0.29,0.31]
+Admissionwithatleast1AKI -0.93 0.02 <0.001 [-0.97,-0.89]
+
+--- PAGE 50 ---
+50
+E. Literature review
+701
+E.1. AKI risk models
+702
+SupplementaryTable6 ResultsfromaliteraturereviewofpapersinvestigatingtheriskpredictionofAKI
+Author/Year Country Num.sites Patientsubgroup Num. Num. AKIdefinition Time of predic- Independent Bestperformingmodelar- ROCAUC Otherperf.measures
+patients admissions tion testset chitecture(s)
+Drawz2008[64] U.S. 3 Adults admitted 540 - AKINcriteriaAKIduringad- Point of admis- Y LogisticRegression 66% -
+to medicine, mission sion
+surgery or ob-
+stetrics
+Matheny2010[65] U.S. 1 Adults with ad- 21,074 26,107 RIFLEcriteriaRiskorInjury Point of admis- N LogisticRegression Risk:75% -
+missions of ≥2 betweendays2and30ofad- sion Injury:78%
+daysduration mission
+Forni2013[66] U.K. 1 Patientsadmitted 1,314 - KDIGOcriteriaAKIwithin7 Point of admis- Y LogisticRegression 72% -
+to Acute Admis- daysofadmission siontoAcuteAd-
+sionsUnit missionsUnit
+Cronin2015[67] U.S. 116 Admissions 2-30 1,620,898 - KDIGOcriteriaAKIbetween 48hoursafterad- N LogisticRegression AKIStages1-3:76% -
+daysinlength days2and9ofadmission mission AKIStages2-3:72%
+Bedford2016[68] U.K. 3 Alladmissions - 775to NewKDIGOcriteriaAKIat(i) (i) Point of ad- Y LogisticRegression AKIStages1-3:75% -
+91572 admission,(ii)72hoursafter mission, (ii) 24 AKIStages2-3:75%
+admission,(iii)worseningof hours after ad-
+KDIGOAKIstageforpatients mission,(iii)Point
+withstage1or2atpresenta- ofadmission
+tion,72hoursafteradmission
+Kate2016[69] U.S. 15 Patients ≥60 17,044 - New AKIN AKI between 24hoursafterad- N LogisticRegression, LR:66% -
+yearsold 24 hours after hospital mission Ensemble Ensemble:66%
+discharge5
+Koyner2016[4] U.S. 5 All adult inpa- - 202,961 KDIGOAKIwithin24hours6 Every12hours Y LogisticRegression AKI1+:74% -
+tients AKI2+:76%
+AKI3:83%
+Thottakkara2016[70] U.S. 1 Patientsundergo- 50,318 - KDIGOAKIwithin7daysof Point of proce- Y LogisticRegression, LR:82% LRPPV:73%
+ing surgical pro- procedure dure Generalised GAM:83% GAMPPV:72%
+cedures AdditiveModel
+Cheng2017[5] U.S. 1 Patientsaged18- 33,703 48,955 KDIGOAKIwithin24hours Various time N RandomForest, RF:76.5% RFPrecision:69.2%
+64yearsold points LogisticRegression LR:76.3% RFRecall:0.711%
+LRPrecision:70.4%
+LRRecall:71.1%
+Davis2017[71] U.S. AllVAhospitals Alladmissions2- - 1,841,951 NewKDIGOAKIbetween48 48hoursafterad- Y RandomForest 73% -
+30daysinlength hoursand9daysofadmis- mission
+sion
+Hodgson2017[72] U.K. 1 Adult medical - 12,554 KDIGOAKIwithin7days7 Point of hospital N/A3 LogisticRegression Medicalpatients: -
+andgeneralsur- admission Baseline:64%
+gicaladmissions Nobaseline:71%
+Surgicalpatients:
+Baseline:66%
+Nobaseline:67%
+Mohamadlou2017[28] U.S. 21 Allpatients - 68,319 NHSEalgorithmAKIatvari- 12,24,48and72 Y GradientBoostedTrees BIDMC(ITUonly): BIDMC(ITUonly):
+oustimepointsbeforeonset hoursbeforeon- 12h:74.9% Sens77%-83%
+set 24h:75.8% Spec45%-75%
+48h:70.7% SMC(inpatients):
+72h:67.4% Sens75%-85%
+SMC(inpatients): Spec51%-82%
+12h:80%
+24h:79.5%
+48h:76.1%
+72h:72.8%
+Weisenthal2017[73] U.S.. 1 Readmissions 12,491 - ICD-9codeORKDIGOAKI Point of hospital Y MLP 92% PRAUC:70%
+duringadmission readmission
+Adhikari2018[74] U.S. 1 Patientsundergo- 2,911 - KDIGOAKIwithin(i)3post- Beforeandafter Y RandomForest Pre-operativemodels: Pre-operativemodel:
+ingsurgery operativedays,(ii)7postop- indexsurgery 3day:83.37% 3day:
+erativedays,and(iii)uptothe 1day84.4% Sens:82.4%
+pointofhospitaldischarge admission:83.7% Spec:63.8%
+Post-operativemodels: PPV:55.1%
+3day:84.57% NPV:87%
+1day:86.0%
+Admission:85.4%
+Bihorac2018[18] U.S. 1 Patientsundergo- 51,457 - RIFLEAKIduringadmission Before index N6 Generalised 88% Sens80%
+ingsurgery surgery AdditiveModel Spec79%
+PPV72%
+NPV85%
+Accuracy80%
+Koyner2018[6] U,S. 1 Allpatients - 121,158 KDIGOAKIwithin48hours First creatinine Y RandomForest AKIStages1-3:73% NPVandPPVpresented
+measurement AKIStages2-3:87% foravarietyofpredicted
+afteradmission AKIStage3:93% probabilitycut-offs
+Park2018[75] Korea 1 Cancerpatients 21,022 - Adjusted baseline KDIGO Inpatient creati- Y RandomForest - Precision:78.9%
+AKIwithin14days nine measure- Recall:75.1%
+ment F-measure:75.8%
+Weisenthal2018[76] U.S. 1 Re-admissions 34,505 - ICD-9codeORKDIGOdur- Point of hospital Y GradientBoosted 86.7% PRAUC:32.6%
+ingadmission re-entry Trees
+Li2018[77] U.S. 1 ICUpatients ∼40,000 - KDIGO 24hafteradmis- Y Convolutional 77.9% Precision:40.7%
+sion NeuralNetwork Recall:65.4%
+Pan2019[29] U.S. 1 ICUpatients 40,000 58,000 RIFLEAKIduringadmission Inpatient Various Y Recurrentneuralnetwork - ROC AUC: 88.9% and
+timepoints 83.7%
+1ITUonly(BIDMC)andInpatients(SMC);2Modeldependent;3ExternalvalidationofForni2013;4TRIPOD1b;5ExcludedthosewithdiagnosisofAKIwithin24hoursofadmissionandthosewithCKDstage3-5
+6Discretetimesurvivalmodel.ExcludedpatientswithinitialSCr>3mg/dlorwhodevelopedAKIpriortowardadmission;7ExcludedpatientsadmittedtoITUfromED
+
+--- PAGE 51 ---
+51
+E.2. Literature: Machine Learning Models for EHR
+703
+Therehasbeensignificantrecentprogressinapplicationsofmachinelearningtomodellingclin-
+704
+ical data based on electronic health records [78]. We provide a systematic overview of these
+705
+achievements in Supplementary Table 7. Machine learning models have shown promise when
+706
+usedforpredictingmortality[3,9,79],sepsis[10,70,80],post-operativecomplications[18,81],
+707
+readmission risk [11], for providing treatment recommendations [82], modelling treatment re-
+708
+sponse [15, 32], detecting early signs of heart failure [83–85] and in planning for palliative
+709
+care [8]. Most of the deep learning approaches involve improvements in representation learn-
+710
+ing [12] or apply recurrent neural networks (RNN) [9, 10, 13, 83, 86, 87] or convolutional
+711
+models[11,14,35,88].
+712
+Despitetheserecentadvances,buildingrobustclinicallyapplicableriskmodelsfromroutinely
+713
+collected EHR data remains a challenge [89]. Clinically applicable models need to be able to
+714
+reliablydeliverpersonalisedinsightsonpreventableconditions, earlyenoughtoenableclinical
+715
+intervention and providing enough information to inform decision making. Models need to
+716
+be evaluated on large representative datasets and be capable of integrating all of the available
+717
+relevant medical information. The evaluation needs to be performed with the application in
+718
+mind, and good levels of sensitivity need to be achieved under clinically applicable levels of
+719
+precision. Thesechallengesprovideabarriertoimplementation.
+720
+
+--- PAGE 52 ---
+52
+SupplementaryTable7 Resultsfromaliteraturereviewofpapersproposingmachinelearningmodelsformodellingelectronichealthrecords
+Num. Num. Num. Clinical Model
+Author/Year
+patients admissions features tasks architecture
+Mortality,cysticfibrosis,
+Lim2018[9] 10,980 - 87 LSTM+additionallayers
+comorbidities
+allavailable Mortality,readmission, LSTM,TANN,
+Rajkomar2018[3] 114,003 216,221
+data longlengthofstay,dischargediagnosis boosteddecisionstumps
+Futoma2017[10] - 49,312 77 Sepsis GP+LSTM
+diagnoses,
+Nguyen2016[11] ∼300,000 590,546 Readmission CNN
+procedures
+Wang2018[82] ∼43,000 22,865 - Treatmentoptimisation SRL-RNN
+Avati2017[8] 221,284 - 13,654 (3-12month)Mortality MLP
+Miotto2016[12] ∼700,000 - 41,072 Diseaseprediction stackeddenoisingAEs
+Lipton2017[13] 10,401 13 Diagnosisclassification LSTM
+Predictingpropertiesof
+Choi2016[86] 263,706 - 1,778 GRU
+subsequentvisits
+diagnoses,
+Choi2016[83] 32,787 - procedures, Heartfailuredetection GRU
+medication
+Che2016[87] - 58,000 99 Mortality,diagnosiscategory GRU-D
+Razavian2016[88] ∼298,000 - 44 CKDprogression CNN,LSTM
+Congestiveheartfailure,
+Cheng2016[14] 319,650 - diagnoses CNN
+chronicobstructivepulmonarysyndrome
+Komorowski2018[7] 96,156 - 48 Sepsistreatment MDP
+DeepPoisson
+Henao2016[79] 240,000 4,400,000 24,567 Mortalityandmorbidity
+factormodels
+Soleimani2017[15] 67 - 5 Dialysistreatmentresponse Gaussianprocesses
+Schulam2017[32] 428 - 4 Dialysistreatmentresponse Gaussianprocesses
+Hierarchicallatentclassmodel
+Alaa2016[16] 6,313 - 12 Riskofadverseevents
+andGaussianprocesses
+Thottakkara2016[70] 50,318 - 285 Post-operativeAKIandsepsis NaiveBayesandSVM
+Bihorac2018[18] 51,457 - - Post-operativecomplications Generalisedadditivemodel
+Kalmanfilterand
+Perotte2015[17] 2,908 - 106 CKDprogression
+Coxproportionalhazards
+demographics,
+diagnoses,
+Hu2015[81] 6,258 - orders, Surgicalsiteinfections Logisticregression
+labs,vitals,
+medications
+demographics,
+Sideris2015[84] 3,041 - diagnoses, Heartfailure SVM+clustering
+labs
+Goldstein2014[85] 1,718 - 72 Suddencardiacdeath Randomforests
+Randomforests
+SVM
+Mani2014[80] 299 1826 811 Neonatalsepsis
+CART
+Logisticregression
+Henry2015[2] 16,234 - 54 Sepsis Coxproportionalhazardsmodel
+
+--- PAGE 53 ---
+53
+F. Success and failure cases
+721
+To demonstrate examples of how the model perceives the risk of AKI during an admission we
+722
+provide a visual representation in Figure 1 in the main text that this supplementary material
+723
+accompanies.
+724
+To avoid demonstrating the performance of the model by ‘cherry picking’ a single exam-
+725
+ple, we present an additional set of five systematically selected success and failure cases of the
+726
+predictive model. In each of these examples, the first plot shows the creatinine measurements
+727
+throughouttheadmissionfromtheEHR,andthesecondplotshowsthemodel’scontinuousrisk
+728
+predictions from an ensemble of 100 predictive models. In each case the risk curve represents
+729
+themeanpredictionacrosstheensembleandthelightergreenbordersontheriskcurveindicate
+730
+uncertainty, taken as the range of 100 ensemble predictions once trimmed for the highest and
+731
+lowest5values.
+732
+Thesecaseswereselectedsystematicallyasthe‘best’successcases,maximisingfirstforthe
+733
+numberofcorrectpositivepredictionsandthenforcorrectnegativepredictionswhileallowingat
+734
+mostoneincorrectprediction,andthe‘worst’failurecases,maximisingforthenumberoffalse
+735
+positiveorfalsenegativepredictionsduringanadmission. Theywereselectedafterfilteringout
+736
+exampleswhererenalreplacementtherapyhadoccurredpriortoanAKI,orwheresevereCKD
+737
+hadbeenrecognisedpriortoanAKI.
+738
+
+--- PAGE 54 ---
+54
+F.1. Success case examples
+739
+SupplementaryFigure3 Visualrepresentationofa15daysurgicaladmissionfora77yearoldmale
+patientwithahistoryofcongestiveheartfailure. ThepatientdevelopedAKI3daysafteradmission,with
+accompanyingevidenceofsepsis. Themodelcorrectlypredictsthepatientisatrisk48hoursbeforethe
+AKIisdetectedaccordingtoKDIGOcriteria.
+Supplementary Figure 4 Visual representation of a 9 day intensive care admission for a 57 year old
+malewithahistoryofdiabetes. ThefirstonsetofAKIoccursduringtheseconddayofadmission;fromthe
+beginningoftheadmissionthemodelpredictstheriskatabovethe0.2threshold. Ultimatelythepatient
+wentontodevelopchronickidneydiseaseafterdischarge.
+
+--- PAGE 55 ---
+55
+Supplementary Figure 5 A 19 day section of an 8 week admission of a 59 year old male with past
+history of diabetes. Despite normal renal function, the model correctly predicts an impending AKI, 48
+hoursbeforetheeventoccursonthe36thdayofadmission. TheAKIprogressedtorequireanintensive
+careadmissionandhaemofiltration;thepatientpassedawayattheendofadmission.
+SupplementaryFigure6 Visualrepresentationofanadmissionunderthemedicalteamofa64yearold
+malewithahistoryofCKDandcongestiveheartfailure. Afteralongperiodwithoutbloodmeasurements,
+thepatientdevelopedanAKIonthe22nddayofadmission,whichwascorrectlyanticipatedbythemodel.
+
+--- PAGE 56 ---
+56
+SupplementaryFigure7 Avisualrepresentationofa10daymedicaladmissionofa60yearoldmale
+withahistoryofcongestiveheartfailure. Themodelcorrectlypredictsthegradualincreaseofcreatinine
+beinglabelledasAKIbyKDIGOcriteria.
+F.2. Failure case examples
+740
+SupplementaryFigure8 A59yearoldmalewithahistoryofCKD,admittedunderthemedicalteamwith
+evidence of sepsis and transferred to the intensive care unit 2 days after admission. Despite infrequent
+creatininemeasurementsinthepatientrecords,e-GFRisconsistentlymeasured,suggestinginformation
+ismissingintherecords. ThemodelincorrectlysuggestsaraisedriskofAKIduringtheadmissionwhich
+was not followed by an AKI event, though later on in the admission the creatinine rises well above the
+patientspre-admissionbaselinelevels. Duetothelongerperiodoverwhichthecreatininehasincreased,
+the KDIGO calculated baseline has adjusted and this event is no longer labelled as an AKI event in the
+dataset.
+
+--- PAGE 57 ---
+57
+Supplementary Figure 9 A 57 year old male with multiple previous AKI episodes in previous admis-
+sions, admitted here with evidence of infection. Despite a long 35 day admission with frequently raised
+inflammatorymarkersthepatientsrenalfunctionremainedstable; themodelprovidesraisedriskscores
+throughoutthisadmission.
+Supplementary Figure 10 A lengthy 27 week admission of a 45 year old male with a history of dia-
+betes,admitteddirectlyadmittedintotheintensivecareunit. Thepatienthasaconsistentlylowcreatinine,
+possiblyduetolowmusclemass, whichresultsinarisefrom26to44µmol/Loverseveralweeksbeing
+categorised by KDIGO criteria as an AKI. While cases such as this are reported in our results as false
+negativepredictions,theclinicalrelevanceofsuchafailureisnegligible.
+
+--- PAGE 58 ---
+58
+SupplementaryFigure11 A64yearoldmalewithahistoryofchronicobstructivepulmonarydisease
+(COPD) and diabetes, admitted directly to intensive care with evidence of an infective exacerbation of
+COPD.Thepatientwastransferredtointensivecaretwofurthertimesduringthesixweekadmission. The
+modelincorrectlyprovidesaraisedriskofAKIduringtheearlystagesoftheadmission;howeverthefirst
+AKI event occurs much later on day 28 which is then correctly predicted by the model, 18 hours ahead
+of time. Though this resolves a more severe AKI occurs later in the admission. The patient ultimately
+deterioratesandpassesawayduringthisinpatientstay.
+SupplementaryFigure12 Thefirst100daysofanotherlengthyadmission,thistimelasting7months.
+A 73 year old male with a history of diabetes is admitted directly to the intensive care unit. The model
+raisestheriskofAKIearlyonintheadmission,andthoughthisisaccompaniedbyanincreasefrom60to
+111µmol/Lofcreatinine, thedurationoverwhichitincreasesdoesnotmeetKDIGOcriteria. Muchlater
+onintheadmission,similarrisesoccurwherethemodeldoesnotprovideaproactiveincreaseinrisk. The
+secondofthesemeetsKDIGOcriteria.
+
+--- PAGE 59 ---
+59
+G. Hyperparameter sweeps
+741
+Finding the best AKI risk model architecture was an iterative process that involved trying dif-
+742
+ferent design choices and model parameters and evaluating the model performance on the val-
+743
+idation set. This resulted in the final set of parameters reported in Methods. The full range of
+744
+hyperparameteroptionsconsideredinourexperimentsduringthemodeldevelopmentprocessis
+745
+displayedinSupplementaryTable8.
+746
+SupplementaryTable8 Hyperparametercombinationsevaluatedintheexperiments
+Hyperparameter Valuesconsidered
+RNNcelltype LSTM,GRU,UGRNN,SRU,IntersectionRNN,
+MANN,NTM,DNC,RMC
+RNNcellsize 100,150,200,250,300,400,500
+RNNnum.layers 1,2,3
+Embeddingnum.layers 1,2,3
+Embeddingdim.perfeaturetype 200,250,300,400,500
+Embeddingcombination concatenate,sum
+Embeddingarchitecturetype MLP,AE,VAE
+Embeddingreconstructionlossweight 1e-2,1e-3,1e-4
+Embeddingreconstructionsamplingratio 1,2,5,10
+OptimisedirectlyforPRAUC on,off
+Highwayconnections on,off
+Residualembeddingconnections on,off
+Inputdropout 0,0.1,0.2,0.3
+Outputdropout 0,0.1,0.2,0.3
+Embeddingdropout 0,0.1,0.2,0.3
+Variationaldropout 0,0.1,0.2,0.3
+Inputregularisationtype None,L1,L2
+Inputregularisationtermweight 1e-3,1e-4,1e-5
+BPTTWindow 32,64,128,256,512
+Embeddingactivationfunctions Tanh,ReLU[90],LeakyReLu[91],Swish[92],
+ELU[93],SELU[94],ELiSH[95],
+HardELiSH[95],Sigmoid,HardSigmoid
+Auxiliarytasklossweight 0.,0.1,0.5,1,5,10
+Learningrate 1e-2,1e-3,1e-4,1e-5
+Learningratedecayscheduling on,off
+Learningratedecaynum.steps 6000,8000,12000,15000,20000
+Learningratedecaybase 0.7,0.8,0.85,0.9,0.95
+Batchsize 32,64,128,256,512
+NTM/DNCmemorycapacity 64,128,256
+NTM/DNCmemorywordsize 16,32,64
+NTM/DNCmemorynum.reads 6,10
+NTM/DNCmemorynum.writes 1,2,3
+
+--- PAGE 60 ---
+60
+H. Model comparison
+747
+We have conducted a broad comparison of available models on the AKI prediction task. We
+748
+consideredthreebroadclassesofmodelsandfoundthat:
+749
+• Recurrentneuralnetworks(SRU,NTM,LSTM,MANN,DNC,UGRNN,GRU,Intersec-
+750
+tionRNN,RMC)achievethehighestperformanceforbothPRAUCandROCAUC,with
+751
+minimal difference between each other. They also require the fewest training features:
+752
+they are able to achieve the same performance only with sequential information and the
+753
+last48hoursofpatienthistoryandcanaggregatethepatientinformationwhiletraversing
+754
+thesequence.
+755
+• Feed-forward models (deep MLP, shallow MLP, Logistic Regression, Random Forest,
+756
+GradientBoostedTrees)donothavethecapacitytoaggregatetheinformationaboutapa-
+757
+tientovertime,whichnecessitatesmanualcollectionandengineeringofpatienthistorical
+758
+features. Inthesemodelswehaveexperimentedwithusingeither6monthsof5yearsof
+759
+historicalinformationandwearereportingthebetterperformingofthetwoforeach.
+760
+• Gradient Boosted Trees (GBTs) benefited from heavy overweighting of observations
+761
+withpositive-labelswhileequivalentoversamplingforrandomforestandneural-network-
+762
+basedmodelsdidnotbringasimilarimprovement.
+763
+• Since tree-based methods are batch methods that cannot fit all data in memory – and
+764
+online variants typically underperform standard ones – they were trained on one-third of
+765
+the patient data. To establish whether training these baselines on a third of the training
+766
+datahadanadverseimpactonperformance,weconductedexperimentstoassesshowthe
+767
+modelperformancechangesuponfurtherreduction. Afurtherreductioninthenumberof
+768
+patientsinthetrainingdataof40%resultedinonlyminorchangesinROCAUCandPR
+769
+AUC whichdegraded by0.2% and0.8% respectively. Thissuggests thatpotential minor
+770
+improvements in the tree baseline performance could have been obtained if it had been
+771
+
+--- PAGE 61 ---
+61
+possible to provide the entirety of the data, but that these would have still fallen short of
+772
+theRNNperformancebyalargemargin.
+773
+
+--- PAGE 62 ---
+62
+SupplementaryTable9 ComparisonofdifferentpredictivemodelsandRNNcells. *SRUsignificantly
+outperformstheLogisticRegression,GradientBoostedTreesandRandomForestbaselinesintermsofPR
+AUCforthemaintaskofpredictinganyAKIupto48hoursaheadoftime;usingtwo-sidedMann–Whitney
+Uteston200samplespermodel(seeEvaluation)SRUissignificantlybetterwithap-valueof<0.001.
+AKItask Model PRAUC(%)[95%CI] ROCAUC(%)[95%CI]
+AnyAKI SRU 29.7[28.5,30.8] 92.1[91.9,92.3]
+upto48hoursearly IntersectionRNN 29.6[28.5,30.7] 91.9[91.7,92.1]
+NTM 29.0[27.6,30.0] 91.9[91.5,91.9]
+MANN 28.9[27.8,30.0] 92.0[91.8,92.2]
+LSTM 28.8[27.7,30.0] 92.1[91.8,92.2]
+UGRNN 28.3[27.2,29.5] 91.9[91.7,92.1]
+GRU 27.8[26.7,28.8] 92.0[91.8,92.2]
+RMC 26.2[25.0,27.3] 91.3[91.1,91.5]
+DNC 26.5[25.4,27.4] 91.9[91.7,92.1]
+DeepMLP 25.1[23.9,26.1] 90.3[90.0,90.6]
+CNN 23.8[22.8,24.8] 90.1[89.9,90.4]
+ShallowMLP 22.3[21.1,23.2] 89.9[89.6,90.1]
+GradientBoostedTrees* 22.0[21.0,22.9] 88.9[88.6,89.2]
+RandomForest* 19.8[18.8,20.9] 87.1[86.7,87.4]
+LogisticRegression* 17.3[16.2,18.2] 86.3[86.0,86.7]
+AKI IntersectionRNN 37.8[35.7,40.0] 95.7[95.5,96.0]
+stages2and3 UGRNN 37.3[35.1,39.2] 95.6[95.3,95.9]
+upto48hoursearly LSTM 37.1[35.4,39.1] 95.5[95.2,95.8]
+NTM 36.9[35.1,39.0] 95.5[95.2,95.7]
+GRU 36.2[34.2,38.1] 95.5[95.2,95.8]
+MANN 36.2[34.6,38.1] 95.4[95.1,95.7]
+DNC 35.7[33.6,37.5] 95.5[95.2,95.8]
+DeepMLP 32.2[30.2,33.9] 94.9[94.5,95.2]
+SRU 29.0[27.1,30.6] 94.7[94.4,95.0]
+CNN 27.2[25.3,28.9] 94.3[93.9,94.6]
+ShallowMLP 25.3[23.9,26.8] 93.7[93.4,94.1]
+GradientBoostedTrees 25.1[23.3,26.8] 92.5[92.2,92.9]
+RandomForest 25.1[22.9,26.6] 91.1[90.6,91.5]
+RMC 21.9[20.5,23.2] 91.1[90.6,91.6]
+LogisticRegression 16.7[15.2,18.1] 87.0[86.3,87.6]
+AKI NTM 48.7[46.4,51.1] 98.0[97.8,98.2]
+stage3 MANN 47.9[45.8,50.0] 98.0[97.7,98.1]
+upto48hoursearly IntersectionRNN 47.8[45.3,50.2] 98.0[97.8,98.2]
+GRU 47.5[45.6,49.9] 98.0[97.8,98.2]
+UGRNN 47.1[45.1,49.1] 98.1[97.9,98.2]
+LSTM 46.8[44.7,49.3] 98.0[97.8,98.2]
+SRU 46.6[44.4,48.9] 98.0[97.8,98.2]
+DNC 45.0[42.0,47.5] 97.8[97.6,98.0]
+DeepMLP 40.9[38.8,42.9] 97.5[97.3,97.8]
+CNN 38.8[36.8,41.0] 97.3[97.1,97.5]
+RandomForest 34.6[31.9,37.2] 95.5[95.2,95.9]
+GradientBoostedTrees 32.9[30.9,35.0] 96.2[95.9,96.5]
+ShallowMLP 32.7[30.8,34.6] 96.7[96.4,96.9]
+RMC 24.7[22.2,26.4] 93.8[93.3,94.3]
+LogisticRegression 24.5[23.1,25.9] 93.0[92.5,93.6]
+
+--- PAGE 63 ---
+63
+I. Ablation study
+774
+We analyse the contribution of the aspects of our model’s design to its overall performance,
+775
+conductinganablationstudythatremovesspecificcomponentsofthemodel,trainingitfully,and
+776
+thencomparingthesimplifiedmodel’sPRAUConthevalidationset. Weshowtheresultofthis
+777
+analysis in Supplementary Table 10. We investigate the effect of making the input embeddings
+778
+shallow,i.e. onlyusingoneneuralnetworklayerinsteadofseveral. Wealsoinspecttheeffectof
+779
+removing embedding regularisation. In all cases we see a non-trivial reduction in performance
+780
+when each of these components are removed. The removal of the auxiliary prediction loss and
+781
+theremovalofregularisationresultedinsomeofthelargestdropsinmodelperformance.
+782
+Wealsocomparemodelstrainedononlythesequentialinformationtomodelsaugmentedwith
+783
+historicalfeaturesovershort-term(last48hours)andlong-term(last6months)timeframes. The
+784
+resultsarepresentedinSupplementaryTable11. TheRNNmodelisabletoaggregateinforma-
+785
+tion across time and there is a smaller difference in performance than for logistic regression
+786
+whichbenefitsheavilyfromhand-craftedhistoricalfeatures.
+787
+SupplementaryTable10 Modelperformancewithablations. PerformanceisexpressedinPRAUC.
+We compare the performance for a recurrent model (SRU) and feed-forward model (MLP) on predicting
+anyAKIwithin48hours. 95%confidenceintervalsarecalculatedfromanun-pairedz-test,with50models
+trainedfromrandominitialisationperconfiguration.
+PRAUC SRU MLP
+Fullmodel 29.7±1.2 25.1±1.1
+Shallowmodel 23.1±0.7 22.9±0.1
+Withoutregularisation 22.5±1.3 23.3±0.1
+Withoutauxiliaryregression 26.6±1.4 24.3±0.1
+Withoutnumericalfeatures 20.6±0.6 16.7±0.5
+Withoutpresencefeatures 22.4±0.9 18.6±0.2
+Supplementary Table 11 Model PR AUC performance for models using sequential and short-term
+informationandoptionallybeingaugmentedwithlong-termhistoryaggregation.
+PRAUC[95%CI] IntersectionRNN LogisticRegression
+Sequentialinformationonly 28.5[27.3,29.4] 14.7[13.9,15.4]
+Sequential+historicalaggregations 28.7[27.5,29.7] 17.3[16.3,18.1]
+
+--- PAGE 64 ---
+64
+J. Influence of data recency on model performance
+788
+MakingcorrectpredictionsoftheriskoffutureAKIisnotalwayspossiblebasedontheroutinely
+789
+available data and there will be cases where the models do not have access to the information
+790
+thatisneededtomakereliablepredictions.
+791
+For the models to be able to correctly identify developing AKI, the relevant physiological
+792
+markers need to be available at the critical point when the predictions are being made. If the
+793
+signal is absent from the EHR, the model can potentially miss cases of AKI that could have
+794
+otherwisebeendetectedhadtherelevantbloodtestsbeentaken.
+795
+To quantify this effect in our experiments, we compare the average volume and recency of
+796
+data in cases when the model was correctly predicting future AKI to cases in which it missed
+797
+predicting future AKI episodes (Supplementary Table 12). We compare the availability of the
+798
+data in 12 and 24 hours prior to the true positive and false negative predictions. The results
+799
+strongly suggest that the model errors occur more often when there is less data available to
+800
+informthemodel. Thisimpliesthatonewayoffurtherimprovingtheperformanceofthecurrent
+801
+predictive models would be to improve the frequency of measurements for the most relevant
+802
+biochemicaltestsinthosepatientsthatareknowntobeatagenerallyhigherriskofdeveloping
+803
+AKIinthefuture.
+804
+Supplementary Table 12 Influence of data recency on model performance. Comparison of per-
+formanceforthemeannumberofEHRentriesandthemeannumberofcreatininemeasurementsinthe
+clinical data available to the model at prediction time for true positive (N=7,140) versus false negative
+(N=12,391) predictions made prior to the first AKI in an admission. The mean number of entries in the
+24hourspriortopredictionislowerforfalsenegativepredictionsthanfortruepositivepredictionsusinga
+2-sidedT-test. Themeannumberofcreatininemeasurementsintheprior24hoursisalsolowerforfalse
+negativepredictionsthanfortruepositivepredictionsusinga2-sidedT-test. Theresultssuggestthatthe
+modelerrorsoccurmoreoftenwhenthereislessdataavailabletoinformthemodel.
+Truepositives Falsenegatives
+Entrytype Timebefore Meannumber 95%Confidence Meannumber 95%Confidence p-value
+prediction ofentries interval ofentries interval
+Allentries ≤12hours 135.0 [134.5,136.2] 105.5 [105.3,106.0] <0.01
+Allentries ≤24hours 206.3 [205.2,207.5] 168.8 [168.3,169.3] <0.01
+Serumcreatinine ≤12hours 0.83 [0.82,0.84] 0.64 [0.64,0.65] <0.01
+Serumcreatinine ≤24hours 1.25 [1.24,1.26] 1.00 [1.00,1.01] <0.01
+
+--- PAGE 65 ---
+65
+K. Clinically relevant feature set for the baselines
+805
+Wecomparedourperformancetobaselinemodelstrainedonfeaturesthathavebeenchosenby
+806
+clinicians as being relevant for modelling kidney function. The initial set of clinically relevant
+807
+featureswaschosenontheconsensusopinionofsixclinicians: threeseniorattendingphysicians
+808
+with over twenty years expertise, one from nephrology and two from intensive care; and three
+809
+clinicalresidentswithexpertiseinnephrology,internalmedicineandsurgery. Thissetoffeatures
+810
+was further extended by 36 additional features that were discovered as relevant by our deep
+811
+learningmodel,inordertofurtherimprovethepredictivepowerofthebaselinemodel.
+812
+Thefollowingfeaturesformthefinalclinicallyrelevantfeatureset:
+813
+• Demographicinformation(age,gender,ethnicity);
+814
+• Admission information (admission from the Emergency Room, medical or surgical ad-
+815
+mission,transfertoICU);
+816
+• Vital sign measurements (pulse, systolic and diastolic blood pressure, respiratory rate,
+817
+oxygensaturation);
+818
+• Logical Observation Identifiers Names and Codes (LOINC) for specific laboratory tests
+819
+(serumcreatinine,ureanitrogen,estimatedGFR,serumpotassium,serumsodium,serum
+820
+phosphate,serumchloride,serumcalcium,haemoglobin,haematocrit,haemoglobinA1C,
+821
+white cell count, Westergren (ESR), C-reactive protein, total serum protein, serum albu-
+822
+min,serumalkalinephosphatase,serumglutamicpyruvictransaminase,serumglutamic-
+823
+oxaloacetic transaminase, serum direct bilirubin, serum total bilirubin, serum glucose,
+824
+serum CO2, serum anion gap, serum vancomycin level, arterial blood gas pH, creatine
+825
+kinase,24hrurinaryprotein);
+826
+• ICD-9 subcodes for acute and chronic conditions directly associated with an increased
+827
+risk of AKI (sepsis, dehydration/hypovolaemia, haemorrhage, liver disease, renal tract
+828
+obstruction,priorAKI,hypertension,chronicorend-stagerenaldisease,renalcancer,re-
+829
+nal transplant, myocardial infarction, diabetes, vascular disease, gout, congestive cardiac
+830
+
+--- PAGE 66 ---
+66
+failure,cardiacarrest,ChronicObstructivePulmonaryDisease);
+831
+• Selected medications (intravenous contrast, intravenous saline, non-steroidal anti-
+832
+inflammatories, diuretics, angiotensin-converting enzyme (ACE) inhibitors, angiotensin
+833
+receptor blockers (ARB), aminoglycoside antibiotics, beta lactam antibiotics, glycopep-
+834
+tide antibiotics, quinolone antibiotics, cephalosporin antibiotics, certain chemotherapeu-
+835
+tic agents, calcineurin inhibitors, proton pump inhibitors, H2 receptor antagonists, se-
+836
+lected antivirals, cyanocobalamin, calcitriol, bisphosphonates, phosphate binders, cal-
+837
+cium,methotrexate,sulfonamides,paracetamol,acetylcysteine);
+838
+• CPTcodesassociatedwithhaemodialysis/haemofiltration.
+839
+In contrast, the entire feature set available in the EHR totals 366 856 distinct features corre-
+840
+spondingtodifferenttypesofentries. Oneoftheadvantagesofdeeplearningmodelsingeneral
+841
+is that they are capable of automatically determining which are the relevant features for any
+842
+predictivetask.
+843
+
+--- PAGE 67 ---
+67
+References
+844
+[1] R. Thomson, D. Luettel, F. Healey, and S. Scobie, “Safer care for the acutely ill patient:
+845
+Learningfromseriousincidents,”NationalPatientSafetyAgency,2007.
+846
+[2] K. E. Henry, D. N. Hager, P. J. Pronovost, and S. Saria, “A targeted real-time early warn-
+847
+ing score (trewscore) for septic shock,” Science Translational Medicine, vol. 7, no. 299,
+848
+pp.299ra122–299ra122,2015.
+849
+[3] A.Rajkomar,E.Oren,K.Chen,A.M.Dai,N.Hajaj,M.Hardt,P.J.Liu,X.Liu,J.Marcus,
+850
+M. Sun, P. Sundberg, H. Yee, K. Zhang, Y. Zhang, G. Flores, G. E. Duggan, J. Irvine,
+851
+Q.Le,K.Litsch,A.Mossin,J.Tansuwan,D.Wang,J.Wexler,J.Wilson,D.Ludwig,S.L.
+852
+Volchenboum, K. Chou, M. Pearson, S. Madabushi, N. H. Shah, A. J. Butte, M. Howell,
+853
+C. Cui, G. Corrado, and J. Dean, “Scalable and accurate deep learning with electronic
+854
+healthrecords,”NPJDigitalMedicine,vol.1,no.1,2018.
+855
+[4] J. L. Koyner, R. Adhikari, D. P. Edelson, and M. M. Churpek, “Development of a mul-
+856
+ticenter ward based AKI prediction model,” Clinical Journal of the American Society of
+857
+Nephrology,pp.1935–1943,2016.
+858
+[5] P.Cheng,L.R.Waitman,Y.Hu,andM.Liu,“Predictinginpatientacutekidneyinjuryover
+859
+different time horizons: How early and accurate?,” in AMIA Annual Symposium Proceed-
+860
+ings,vol.2017,p.565,AmericanMedicalInformaticsAssociation,2017.
+861
+[6] J. L. Koyner, K. A. Carey, D. P. Edelson, and M. M. Churpek, “The development of a
+862
+machinelearninginpatientacutekidneyinjurypredictionmodel,”CriticalCareMedicine,
+863
+vol.46,no.7,pp.1070–1077,2018.
+864
+[7] M. Komorowski, L. A. Celi, O. Badawi, A. Gordon, and A. Faisal, “The artificial intel-
+865
+ligence clinician learns optimal treatment strategies for sepsis in intensive care,” Nature
+866
+Medicine,vol.24,pp.1716–1720,2018.
+867
+
+--- PAGE 68 ---
+68
+[8] A.Avati, K.Jung, S.Harman, L.Downing, A.Y.Ng, andN.H.Shah, “Improvingpallia-
+868
+tivecarewithdeeplearning,”2017IEEEInternationalConferenceonBioinformaticsand
+869
+Biomedicine(BIBM),pp.311–316,2017.
+870
+[9] B. Lim and M. van der Schaar, “Disease-Atlas: Navigating disease trajectories with deep
+871
+learning,”ProceedingsofMachineLearningResearch,vol.85,2018.
+872
+[10] J.Futoma,S.Hariharan,andK.A.Heller,“Learningtodetectsepsiswithamultitaskgaus-
+873
+sian process RNN classifier,” in Proceedings of the International Conference on Machine
+874
+Learning(D.PrecupandY.W.Teh,eds.),pp.1174–1182,2017.
+875
+[11] P. Nguyen, T. Tran, N. Wickramasinghe, and S. Venkatesh, “Deepr: A convolutional net
+876
+for medical records,” IEEE Journal of Biomedical and Health Informatics, vol. 21, no. 1,
+877
+pp.22–30,2017.
+878
+[12] R.Miotto,L.Li,B.Kidd,andJ.T.Dudley,“DeepPatient: Anunsupervisedrepresentation
+879
+to predict the future of patients from the electronic health records,” Scientific Reports,
+880
+vol.6,no.26094,2016.
+881
+[13] Z. C. Lipton, D. C. Kale, C. Elkan, and R. Wetzel, “Learning to diagnose with LSTM
+882
+recurrentneuralnetworks,”InternationalConferenceonLearningRepresentations,2016.
+883
+[14] P. Z. J. H. Yu Cheng, Fei Wang, “Risk prediction with electronic health records a deep
+884
+learningapproach,”inProceedingsoftheSIAMInternationalConferenceonDataMining,
+885
+pp.432–440,2016.
+886
+[15] H. Soleimani, A. Subbaswamy, and S. Saria, “Treatment-response models for counter-
+887
+factual reasoning with continuous-time, continuous-valued interventions,” arXiv Preprint
+888
+arXiv:1704.02038,2017.
+889
+[16] A. M. Alaa, J. Yoon, S. Hu, and M. van der Schaar, “Personalized risk scoring
+890
+
+--- PAGE 69 ---
+69
+for critical care patients using mixtures of gaussian process experts,” arXiv Preprint
+891
+arXiv:1605.00959,2016.
+892
+[17] A. Perotte, N. Elhadad, J. S. Hirsch, R. Ranganath, and D. Blei, “Risk prediction for
+893
+chronic kidney disease progression using heterogeneous electronic health record data and
+894
+time series analysis,” Journal of the American Medical Informatics Association, vol. 22,
+895
+no.4,pp.872–880,2015.
+896
+[18] A.Bihorac,T.Ozrazgat-Baslanti,A.Ebadi,A.Motaei,M.Madkour,P.M.Pardalos,G.Li-
+897
+pori, W. R. Hogan, P. A. Efron, F. Moore, et al., “MySurgeryRisk: Development and
+898
+validation of a machine-learning risk algorithm for major complications and death after
+899
+surgery,”AnnalsofSurgery,2018.
+900
+[19] A.Khwaja,“KDIGOclinicalpracticeguidelinesforacutekidneyinjury,”NephronClinical
+901
+Practice,vol.120,no.4,pp.c179–c184,2012.
+902
+[20] C. Stenhouse, S. Coates, M. Tivey, P. Allsop, and T. Parker, “Prospective evaluation of a
+903
+modifiedearlywarningscoretoaidearlierdetectionofpatientsdevelopingcriticalillness
+904
+on a general surgical ward,” The British Journal of Anaesthesia, vol. 84, no. 5, p. 663P,
+905
+2000.
+906
+[21] J. L. Alge and J. M. Arthur, “Biomarkers of AKI: A review of mechanistic relevance and
+907
+potential therapeutic implications,” Clinical Journal of the American Society of Nephrol-
+908
+ogy,vol.10,no.1,pp.147–155,2015.
+909
+[22] H. E. Wang, P. Muntner, G. M. Chertow, and D. G. Warnock, “Acute kidney injury and
+910
+mortalityinhospitalizedpatients,”AmericanJournalofNephrology,vol.35,pp.349–355,
+911
+2012.
+912
+[23] A. MacLeod, “NCEPOD report on acute kidney injury—must do better,” The Lancet,
+913
+vol.374,no.9699,pp.1405–1406,2009.
+914
+
+--- PAGE 70 ---
+70
+[24] M. E. Thomas, C. Blaine, A. Dawnay, M. A. Devonald, S. Ftouh, C. Laing, S. Latchem,
+915
+A. Lewington, D. V. Milford, and M. Ostermann, “The definition of acute kidney injury
+916
+anditsuseinpractice,”KidneyInternational,vol.87,no.1,pp.62–73,2015.
+917
+[25] W.A.CheungpasitpornandK.Kashani,“Electronicdatasystemsandacutekidneyinjury,”
+918
+ContributionstoNephrology,vol.187,pp.73–83,2016.
+919
+[26] F.P.Wilson,M.G.S.Shashaty,J.M.Testani,I.Aqeel,Y.Borovskiy,S.S.Ellenberg,H.I.
+920
+Feldman, H. E. Fernandez, Y. Gitelman, J. Lin, D. Negoianu, C. R. Parikh, P. P. Reese,
+921
+R.Urbani,andB.D.Fuchs,“Automated,electronicalertsforacutekidneyinjury: asingle-
+922
+blind, parallel-group, randomised controlled trial,” The Lancet, vol. 385, pp. 1966–1974,
+923
+2015.
+924
+[27] A. E. W. Johnson, M. M. Ghassemi, S. Nemati, K. E. Niehaus, D. A. Clifton, and G. D.
+925
+Clifford,“Machinelearninganddecisionsupportincriticalcare,”ProceedingsoftheIEEE,
+926
+vol.104,no.2,pp.444–466,2016.
+927
+[28] H. Mohamadlou, A. Lynn-Palevsky, C. Barton, U. Chettipally, L. Shieh, J. Calvert, N. R.
+928
+Saber, and R. Das, “Prediction of acute kidney injury with a machine learning algorithm
+929
+using electronic health record data,” Canadian Journal of Kidney Health And Disease,
+930
+vol.5,2018.
+931
+[29] Z. Pan, H. Du, K. Yuan Ngiam, F. Wang, P. Shum, and M. Feng, “A self-correcting
+932
+deep learning approach to predict acute conditions in critical care,” arXiv Preprint
+933
+arXiv:1901.04364,2019.
+934
+[30] S.Park,S.H.Baek,S.Ahn,K.-H.Lee,H.Hwang,J.Ryu,S.Y.Ahn,H.J.Chin,K.Y.Na,
+935
+D.-W.Chae,andS.Kim,“Impactofelectronicacutekidneyinjury(AKI)alertswithauto-
+936
+matednephrologistconsultationondetectionandseverityofAKI:Aqualityimprovement
+937
+study,”AmericanJournalofKidneyDiseases,vol.71,no.1,pp.9–19,2018.
+938
+
+--- PAGE 71 ---
+71
+[31] I. Chen, F. D. Johansson, and D. Sontag, “Why is my classifier discriminatory?,” arXiv
+939
+PreprintarXiv:1805.12002,2018.
+940
+[32] P. Schulam and S. Saria, “Reliable decision support using counterfactual models,” in Ad-
+941
+vances in Neural Information Processing Systems (I. Guyon, U. Luxburg, S. Bengio,
+942
+H. Wallach, R. Fergus, S. Vishwanathan, and R. Garnett, eds.), vol. 30, pp. 1697–1708,
+943
+2017.
+944
+[33] A.Telenti, S.R.Steinhubl, andE.J.Topol, “Rethinkingthemedicalrecord,” TheLancet,
+945
+vol.391,no.10125,p.1013,2018.
+946
+[34] Department of Veterans Affairs, “Veterans Health Administration: Providing health care
+947
+forVeterans.”https://www.va.gov/health/,2018(accessedNovember9,2018).
+948
+[35] N. Razavian and D. Sontag, “Temporal convolutional neural networks for diagnosis from
+949
+labtests,”arXivPreprintarXiv:1511.07938,2015.
+950
+[36] B. Zadrozny and C. Elkan, “Transforming classifier scores into accurate multiclass prob-
+951
+ability estimates,” in Proceedings of the 8th ACM SIGKDD International Conference on
+952
+KnowledgeDiscoveryandDataMining,pp.694–699,ACM,2002.
+953
+[37] J. G. Zilly, R. K. Srivastava, J. Koutník, and J. Schmidhuber, “Recurrent highway net-
+954
+works,” in Proceedings of the International Conference on Machine Learning (D. Precup
+955
+andY.W.Teh,eds.),vol.70,pp.4189–4198,2017.
+956
+[38] S.HochreiterandJ.Schmidhuber,“Longshort-termmemory,”NeuralComputation,vol.9,
+957
+no.8,pp.1735–1780,1997.
+958
+[39] J.Collins,J.Sohl-Dickstein,andD.Sussillo,“Capacityandlearnabilityinrecurrentneural
+959
+networks,”InternationalConferenceonLearningRepresentations,2017.
+960
+[40] J.Bradbury,S.Merity,C.Xiong,andR.Socher,“Quasi-recurrentneuralnetworks,”Inter-
+961
+nationalConferenceonLearningRepresentations,2017.
+962
+
+--- PAGE 72 ---
+72
+[41] T.LeiandY.Zhang,“TrainingRNNsasfastasCNNs,”arXivPreprintarXiv:1709.02755,
+963
+2017.
+964
+[42] J. Chung, C. Gulcehre, K. Cho, and Y. Bengio, “Empirical evaluation of gated recurrent
+965
+neuralnetworksonsequencemodeling,”arXivPreprintarXiv:1412.3555,2014.
+966
+[43] A. Graves, G. Wayne, and I. Danihelka, “Neural turing machines,” arXiv Preprint
+967
+arXiv:1410.5401,2014.
+968
+[44] A.Santoro,S.Bartunov,M.Botvinick,D.Wierstra,andT.Lillicrap,“Meta-learningwith
+969
+memory-augmented neural networks,” in Proceedings of the International Conference on
+970
+MachineLearning(M.F.BalcanandK.Q.Weinberger,eds.),pp.1842–1850,2016.
+971
+[45] A.Graves,G.Wayne,M.Reynolds,T.Harley,I.Danihelka,A.Grabska-Barwin´ska,S.G.
+972
+Colmenarejo, E. Grefenstette, T. Ramalho, J. Agapiou, et al., “Hybrid computing using a
+973
+neuralnetworkwithdynamicexternalmemory,”Nature,vol.538,no.7626,pp.471–476,
+974
+2016.
+975
+[46] A. Santoro, R. Faulkner, D. Raposo, J. Rae, M. Chrzanowski, T. Weber, D. Wierstra,
+976
+O. Vinyals, R. Pascanu, and T. Lillicrap, “Relational recurrent neural networks,” arXiv
+977
+PreprintarXiv:1806.01822,2018.
+978
+[47] R. Caruana, S. Baluja, and T. Mitchell, “Using the future to "sort out" the present:
+979
+Rankpropandmultitasklearningformedicalriskevaluation,”inAdvancesinNeuralInfor-
+980
+mation Processing Systems (M. Mozer, M. Jordan, and T. Petsche, eds.), vol. 9, pp. 959–
+981
+965,1996.
+982
+[48] J. Wiens, J. Guttag, and E. Horvitz, “Patient risk stratification with time-varying param-
+983
+eters: A multitask learning approach,” Journal of Machine Learning Research, vol. 17,
+984
+no.1,pp.2797–2819,2016.
+985
+
+--- PAGE 73 ---
+73
+[49] D.Y.Ding,C.Simpson,S.Pfohl,D.C.Kale,K.Jung,andN.H.Shah,“Theeffectiveness
+986
+of multitask learning for phenotyping with electronic health records data,” arXiv Preprint
+987
+arXiv:1808.03331,2018.
+988
+[50] X.GlorotandY.Bengio,“Understandingthedifficultyoftrainingdeepfeedforwardneural
+989
+networks,” inInternationalConferenceonArtificialIntelligenceandStatistics(Y.W.Teh
+990
+andM.Titterington,eds.),vol.9,pp.249–256,2010.
+991
+[51] D. P. Kingma and J. Ba, “Adam: A method for stochastic optimization,” International
+992
+ConferenceonLearningRepresentations,2015.
+993
+[52] C. Guo, G. Pleiss, Y. Sun, and K. Q. Weinberger, “On calibration of modern neural net-
+994
+works,” in Proceedings of the International Conference on Machine Learning (D. Precup
+995
+andY.W.Teh,eds.),pp.1321–1330,2017.
+996
+[53] J.C.Platt,“Probabilisticoutputsforsupportvectormachinesandcomparisonstoregular-
+997
+izedlikelihoodmethods,”inAdvancesinLarge-MarginClassifiers,pp.61–74,MITPress,
+998
+1999.
+999
+[54] G.W.Brier,“Verificationofforecastsexpressedintermsofprobability,”MonthlyWeather
+1000
+Review,vol.78,no.1,pp.1–3,1950.
+1001
+[55] A.Niculescu-MizilandR.Caruana,“Predictinggoodprobabilitieswithsupervisedlearn-
+1002
+ing,” in Proceedings of the International Conference on Machine Learning (L. D. Raedt
+1003
+andS.Wrobel,eds.),pp.625–632,ACM,2005.
+1004
+[56] T.SaitoandM.Rehmsmeier,“TheprecisionrecallplotismoreinformativethantheROC
+1005
+plotwhenevaluatingbinaryclassifiersonimbalanceddatasets,”PLOSOne,vol.10,no.3,
+1006
+2015.
+1007
+[57] B.EfronandR.J.Tibshirani,Anintroductiontothebootstrap. CRCpress,1994.
+1008
+
+--- PAGE 74 ---
+74
+[58] H. B. Mann and D. R. Whitney, “On a test of whether one of two random variables is
+1009
+stochasticallylargerthantheother,”TheAnnalsofMathematicalStatistics,vol.18,no.1,
+1010
+pp.50–60,1947.
+1011
+[59] B.Lakshminarayanan,A.Pritzel,andC.Blundell,“Simpleandscalablepredictiveuncer-
+1012
+tainty estimation using deep ensembles,” in Advances in Neural Information Processing
+1013
+Systems (I. Guyon, U. Luxburg, S. Bengio, H. Wallach, R. Fergus, S. Vishwanathan, and
+1014
+R.Garnett,eds.),vol.30,pp.6402–6413,2017.
+1015
+[60] J. D. Fauw, J. R. Ledsam, B. Romera-Paredes, S. Nikolov, N. Tomasev, S. Blackwell,
+1016
+H. Askham, X. Glorot, B. O’Donoghue, D. Visentin, G. van den Driessche, B. Laksh-
+1017
+minarayanan, C. Meyer, F. Mackinder, S. Bouton, K. W. Ayoub, R. Chopra, D. King,
+1018
+A. Karthikesalingam, C. O. Hughes, R. A. Raine, J. C. Hughes, D. A. Sim, C. A. Egan,
+1019
+A. Tufail, H. Montgomery, D. Hassabis, G. Rees, T. Back, P. T. Khaw, M. Suleyman,
+1020
+J. Cornebise, P. A. Keane, and O. Ronneberger, “Clinically applicable deep learning for
+1021
+diagnosisandreferralinretinaldisease,”NatureMedicine,vol.24,pp.1342–1350,2018.
+1022
+[61] M.Abadi,A.Agarwal,P.Barham,E.Brevdo,Z.Chen,C.Citro,G.S.Corrado,A.Davis,
+1023
+J. Dean, M. Devin, S. Ghemawat, I. J. Goodfellow, A. Harp, G. Irving, M. Isard, Y. Jia,
+1024
+R. Józefowicz, L. Kaiser, M. Kudlur, J. Levenberg, D. Mané, R. Monga, S. Moore,
+1025
+D. G. Murray, C. Olah, M. Schuster, J. Shlens, B. Steiner, I. Sutskever, K. Talwar, P. A.
+1026
+Tucker,V.Vanhoucke,V.Vasudevan,F.B.Viégas,O.Vinyals,P.Warden,M.Wattenberg,
+1027
+M.Wicke, Y.Yu, andX.Zheng, “Tensorflow: Large-scalemachinelearningonheteroge-
+1028
+neousdistributedsystems,”2015.
+1029
+[62] M.D.ZeilerandR.Fergus,“Visualizingandunderstandingconvolutionalnetworks,”Eu-
+1030
+ropeanConferenceonComputerVision,2014.
+1031
+[63] J.M.SteppeandK.W.BauerJr,“Featuresaliencymeasures,”Computers&Mathematics
+1032
+WithApplications,vol.33,no.8,pp.109–126,1997.
+1033
+
+--- PAGE 75 ---
+75
+[64] P. E. Drawz, R. T. Miller, and A. R. Sehgal, “Predicting hospital acquired acute kidney
+1034
+injury-Acasecontrolledstudy,”RenalFailure,vol.30,no.9,pp.848–855,2008.
+1035
+[65] M. E. Matheny, R. A. Miller, T. A. Ikizler, L. R. Waitman, J. C. Denny, J. S. Schildcrout,
+1036
+R. S. Dittus, and J. F. Peterson, “Development of inpatient risk stratification models of
+1037
+acutekidneyinjuryforuseinelectronichealthrecords,”MedicalDecisionMaking,vol.30,
+1038
+no.6,pp.639–650,2010.
+1039
+[66] L. G. Forni, T. Dawes, H. Sinclair, E. Cheek, V. Bewick, M. Dennis, and R. Venn, “Iden-
+1040
+tifying the patient at risk of acute kidney injury a predictive scoring system for the de-
+1041
+velopment of acute kidney injury in acute medical patients,” Nephron Clinical Practice,
+1042
+vol.123,no.3-4,pp.143–150,2013.
+1043
+[67] R. M. Cronin, J. P. VanHouten, E. D. Siew, S. K. Eden, S. D. Fihn, C. D. Nielson, J. F.
+1044
+Peterson, C. R. Baker, T. A. Ikizler, T. Speroff, and M. E. Matheny, “National Veter-
+1045
+ans Health Administration inpatient risk stratification models for hospital acquired acute
+1046
+kidney injury,” Journal of the American Medical Informatics Association, vol. 22, no. 5,
+1047
+pp.1054–1071,2015.
+1048
+[68] M.Bedford,P.Stevens,S.Coulton,J.Billings,M.Farr,T.Wheeler,M.Kalli,T.Mottishaw,
+1049
+andC.Farmer,“Developmentofriskmodelsforthepredictionofneworworseningacute
+1050
+kidneyinjuryonorduringhospitaladmission: Acohortandnestedstudy,”HealthService
+1051
+DeliveryResearch,vol.4,no.6,2016.
+1052
+[69] R. J. Kate, R. M. Perez, D. Mazumdar, K. S. Pasupathy, and V. Nilakantan, “Prediction
+1053
+and detection models for acute kidney injury in hospitalized older adults,” BMC Medical
+1054
+InformaticsandDecisionMaking,vol.16,no.1,p.39,2016.
+1055
+[70] P. Thottakkara, T. Ozrazgat-Baslanti, B. B. Hupf, P. Rashidi, P. Pardalos, P. Momcilovic,
+1056
+andA.Bihorac,“Applicationofmachinelearningtechniquestohighdimensionalclinical
+1057
+datatoforecastpostoperativecomplications,”PLOSOne,vol.11,no.5,2016.
+1058
+
+--- PAGE 76 ---
+76
+[71] S. E. Davis, T. A. Lasko, G. Chen, E. D. Siew, and M. E. Matheny, “Calibration drift in
+1059
+regressionandmachinelearningmodelsforacutekidneyinjury,”JournaloftheAmerican
+1060
+MedicalInformaticsAssociation,vol.24,no.6,pp.1052–1061,2017.
+1061
+[72] L.Hodgson,B.Dimitrov,P.Roderick,R.Venn,andL.G.Forni,“PredictingAKIinemer-
+1062
+gencyadmissions: Anexternalvalidationstudyoftheacutekidneyinjurypredictionscore
+1063
+(APS),”BMJOpen,vol.7,no.3,p.e013511,2017.
+1064
+[73] S.J.Weisenthal,H.Liao,P.Ng,andM.S.Zand,“Sumofpreviousinpatientserumcreati-
+1065
+ninemeasurementspredictsacutekidneyinjuryinrehospitalizedpatients,”arXivPreprint
+1066
+arXiv:1712.01880,2017.
+1067
+[74] L. Adhikari, T. Ozrazgat-Baslanti, P. Thottakkara, A. Ebadi, A. Motaei, P. Rashidi, X. Li,
+1068
+and A. Bihorac, “Improved predictive models for acute kidney injury with IDEAs: Intra-
+1069
+operativedataembeddedanalytics,”arXivPreprintarXiv:1805.05452,2018.
+1070
+[75] N. Park, E. Kang, M. Park, H. Lee, H.-G. Kang, H.-J. Yoon, and U. Kang, “Predicting
+1071
+acutekidneyinjuryincancerpatientsusingheterogeneousandirregulardata,”PLOSOne,
+1072
+vol.13,no.7,2018.
+1073
+[76] S.J.Weisenthal, C.Quill, S. Farooq, H.Kautz, and M.S.Zand, “Predicting acutekidney
+1074
+injury at hospital re-entry using high-dimensional electronic health record data,” arXiv
+1075
+PreprintarXiv:1807.09865,2018.
+1076
+[77] Y. Li, L. Yao, C. Mao, A. Srivastava, X. Jiang, and Y. Luo, “Early prediction of acute
+1077
+kidneyinjuryincriticalcaresettingusingclinicalnotes,”inProceedingsofthe2018IEEE
+1078
+InternationalConferenceonBioinformaticsandBiomedicine,2018.
+1079
+[78] B. Shickel, P. J. Tighe, A. Bihorac, and P. Rashidi, “Deep EHR: A survey of recent ad-
+1080
+vances in deep learning techniques for electronic health record (EHR) analysis,” IEEE
+1081
+JournalofBiomedicalandHealthInformatics,vol.22,no.5,pp.1589–1604,2018.
+1082
+
+--- PAGE 77 ---
+77
+[79] R.Henao,J.T.Lu,J.E.Lucas,J.Ferranti,andL.Carin,“Electronichealthrecordanalysis
+1083
+via deep poisson factor models,” Journal of Machine Learning Research, vol. 17, no. 1,
+1084
+pp.6422–6453,2016.
+1085
+[80] R. Carnevale, S. Mani, A. Ozdas, Y. Chen, Q. Chen, C. Aliferis, H. A. Varol, H. Nian,
+1086
+J. Romano-Keeler, and J.-H. Weitkamp, “Medical decision support using machine learn-
+1087
+ing for early detection of late-onset neonatal sepsis,” Journal of the American Medical
+1088
+InformaticsAssociation,vol.21,no.2,pp.326–336,2013.
+1089
+[81] Z.Hu,G.JSimon,E.GArsoniadis,Y.Wang,M.RKwaan,andG.BMelton,“Automated
+1090
+detectionofpostoperativesurgicalsiteinfectionsusingsupervisedmethodswithelectronic
+1091
+health record data,” Studies in Health Technology and Informatics, vol. 216, pp. 706–10,
+1092
+082015.
+1093
+[82] L. Wang, W. Zhang, X. He, and H. Zha, “Supervised reinforcement learning with re-
+1094
+current neural network for dynamic treatment recommendation,” in Proceedings of the
+1095
+24thACMSIGKDDInternationalConferenceonKnowledgeDiscoveryandDataMining,
+1096
+ACM,2018.
+1097
+[83] E. Choi, A. Schuetz, W. Stewart, and J. Sun, “Using recurrent neural network models
+1098
+for early detection of heart failure onset,” Journal of the American Medical Informatics
+1099
+Association,vol.24,p.112,2016.
+1100
+[84] C. Sideris, N. Alshurafa, M. Pourhomayoun, F. Shahmohammadi, L. Samy, and M. Sar-
+1101
+rafzadeh,“Adata-drivenfeatureextractionframeworkforpredictingtheseverityofcondi-
+1102
+tion of congestive heart failure patients,” in 37th Annual International Conference of the
+1103
+IEEEEngineeringinMedicineandBiologySociety(EMBC),pp.2534–2537,Aug2015.
+1104
+[85] B.A.Goldstein,T.I.Chang,A.A.Mitani,T.L.Assimes,andW.C.Winkelmayer,“Near-
+1105
+term prediction of sudden cardiac death in older hemodialysis patients using electronic
+1106
+
+--- PAGE 78 ---
+78
+health records,” Clinical Journal of the American Society of Nephrology, vol. 9, no. 1,
+1107
+pp.82–91,2014.
+1108
+[86] E. Choi, M. T. Bahadori, A. Schuetz, W. F. Stewart, and J. Sun, “Doctor AI: Predicting
+1109
+clinicaleventsviarecurrentneuralnetworks,”inProceedingsofthe1st MachineLearning
+1110
+forHealthcareConference(F.Doshi-Velez,J.Fackler,D.Kale,B.Wallace,andJ.Wiens,
+1111
+eds.),vol.56,pp.301–318,PMLR,2016.
+1112
+[87] Z.Che,S.Purushotham,K.Cho,andD.Sontag,“Recurrentneuralnetworksformultivari-
+1113
+atetimeserieswithmissingvalues,”ScientificReports,vol.8,no.1,p.6085,2018.
+1114
+[88] N.Razavian,J.Marcus,andD.Sontag,“Multi-taskpredictionofdiseaseonsetsfromlon-
+1115
+gitudinal laboratory tests,” in Proceedings of the 1st Machine Learning for Healthcare
+1116
+Conference (F. Doshi-Velez, J. Fackler, D. Kale, B. Wallace, and J. Wiens, eds.), vol. 56,
+1117
+pp.73–100,PMLR,2016.
+1118
+[89] C. Paxton, S. Saria, and A. Niculescu-Mizil, “Developing predictive models using elec-
+1119
+tronic medical records: Challenges and pitfalls,” AMIA Annual Symposium Proceedings,
+1120
+vol.2013,pp.1109–1115,2013.
+1121
+[90] X.Glorot,A.Bordes,andY.Bengio,“Deepsparserectifierneuralnetworks,”inProceed-
+1122
+ingsofthe14thInternationalConferenceonArtificialIntelligenceandStatistics(G.Gor-
+1123
+don,D.Dunson,andM.Dudík,eds.),vol.15,pp.315–323,PMLR,2011.
+1124
+[91] A.L.Maas,A.Y.Hannun,andA.Y.Ng,“Rectifiernonlinearitiesimproveneuralnetwork
+1125
+acoustic models,” in Proceedings of the International Conference on Machine Learning
+1126
+(S.DasguptaandD.McAllester,eds.),vol.30,p.3,2013.
+1127
+[92] P. Ramachandran, B. Zoph, and Q. V. Le, “Searching for activation functions,” Interna-
+1128
+tionalConferenceonLearningRepresentations,2018.
+1129
+
+--- PAGE 79 ---
+79
+[93] D.Clevert,T.Unterthiner,andS.Hochreiter,“Fastandaccuratedeepnetworklearningby
+1130
+exponential linear units (ELUs),” International Conference on Learning Representations,
+1131
+2016.
+1132
+[94] G. Klambauer, T. Unterthiner, A. Mayr, and S. Hochreiter, “Self-normalizing neural net-
+1133
+works,” in Advances in Neural Information Processing Systems (I. Guyon, U. Luxburg,
+1134
+S.Bengio,H.Wallach,R.Fergus,S.Vishwanathan,andR.Garnett,eds.),vol.30,pp.971–
+1135
+980,2017.
+1136
+[95] M. Basirat and P. M. Roth, “The quest for the golden activation function,” arXiv Preprint
+1137
+arXiv:1808.00783,2018.
+1138

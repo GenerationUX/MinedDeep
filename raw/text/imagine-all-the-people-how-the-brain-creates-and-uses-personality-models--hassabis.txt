@@ -1,0 +1,633 @@
+
+--- PAGE 1 ---
+CerebralCortexAugust2014;24:1979–1987
+doi:10.1093/cercor/bht042
+AdvanceAccesspublicationMarch5,2013
+Imagine All the People: How the Brain Creates and Uses Personality Models
+to Predict Behavior
+DemisHassabis1,*,R.NathanSpreng2,*,AndreiA.Rusu3,CliffordA.Robbins4,RaymondA.Mar5andDanielL.Schacter4
+1GatsbyComputationalNeuroscienceUnit,UniversityCollegeLondon,LondonWC1N3AR,UK,2LaboratoryofBrainand
+Cognition,DepartmentofHumanDevelopment,CornellUniversity,Ithaca,NY14853,USA,3DepartmentofComputerScience,
+VrijeUniversiteit,Amsterdam,TheNetherlands,4DepartmentofPsychology,HarvardUniversity,Cambridge,MA02138,USA
+and5DepartmentofPsychology,YorkUniversity,Toronto,ON,CanadaM3J1P3
+*Boththeauthorscontributedequallytothiswork.
+Addresscorrespondenceto:R.N.Spreng,LaboratoryofBrainandCognition,DepartmentofHumanDevelopment,CornellUniversity,Ithaca,NY
+14853,USA.Email:nathan.spreng@gmail.com
+The behaviors of other people are often central to envisioning the Wepropose that, whenpredicting or imagining the behav-
+future. The ability to accurately predict the thoughts and actions ior of others based on their personality, the brain is likely to
+of others is essential for successful social interactions, with far- relyonthesamenetworkofregionsthatsupportotherforms
+reaching consequences. Despite its importance, little is known ofmentalsimulation,suchasrememberingthepastandplan-
+abouthowthebrainrepresentspeopleinordertopredictbehavior. ning for the future (Buckner and Carroll 2007; Hassabis and
+In this functional magnetic resonance imaging study, participants Maguire2007;Schacteretal.2007,2008,2012).Becauseauto-
+learnedthe uniquepersonalityof4 protagonists and imaginedhow biographical memories and future plans are both character-
+eachwouldbehaveindifferentscenarios.Theprotagonists’person- ized by social events (Larocque and Oatley 2006), social
+alities were composedof2 traits: AgreeablenessandExtraversion. information is a key component of event simulation (Spreng
+Which protagonist was being imagined was accurately inferred et al. 2009). Both planned and remembered events often
+based solely on activity patterns in the medial prefrontal cortex involve the presence of other people, their thoughts, and
+using multivariate pattern classification, providing novel evidence their behaviors. Autobiographical recollection (remembering
+that brain activity can reveal whom someone is thinking about. the past) involves reconstructing the spatial, temporal, and
+Lateral temporal and posterior cingulate cortex discriminated oftensocialelementsfromapasteventinone’slife.Thisform
+between different degrees of agreeableness and extraversion, ofmentalsimulationislikelylinkedtopersonalitymodels,as
+respectively. Functional connectivity analysis confirmed that itisthroughpreviousexperienceswithothersthatonelearns
+regions associated with trait-processing and individual identities of their personality traits. These traits are then combined to
+werefunctionallycoupled.Activityduringtheimaginationtask,and build a model of that person’s overall personality. However,
+revealedbyfunctionalconnectivity,wasconsistentwiththedefault predicting the future behavior of others differs from remem-
+network. Our results suggest that distinct regions code for person- bering in that it involves mentally simulated events that have
+ality traits, and that the brain combines these traits to represent yet to occur. This feature makes predicting behavior more
+individuals. The brain then usesthis “personality model” to predict akin to simulating a future event. Nevertheless, future event
+thebehaviorofothersinnovelsituations. simulation engages many of the same core processes as re-
+membering(BucknerandCarroll2007;HassabisandMaguire
+Keywords:defaultmodenetwork,fMRI,MVPA,personalitytraits, 2007; Schacteret al. 2007, 2008, 2012). This overlap includes
+simulation,socialneuroscience the shared need to construct a scene, generating and main-
+tainingaspatialcontextwithinwhichthefutureorpastevent
+unfolds (Hassabis and Maguire 2007; Hassabis, Kumaran,
+Introduction Maguire 2007; Hassabis, Kumaran, Vann, et al. 2007). We
+Akeyaspecttosuccessfullynavigatingthesocialworldisthe would therefore expect these same core regions to be acti-
+ability to predict how people will behave in different situ- vatedwhenpredictingsomeone’sbehavior,assceneconstruc-
+ations. Individual differences in behavior can be predicted tion is also required for mental simulating how someone
+from an individual’s personality traits, which encompass might behave. These core areas include the posterior cingu-
+broadcognitiveandbehavioraltendencies(CostaandMcCrae latecortex(pCC),themedialtemporallobes(MTLs),thepos-
+1992; Roberts et al. 2007; Fleeson and Gallagher 2009). To terior inferior parietal lobule (IPL), and ventral medial
+makeaccuratepredictions,apreciserepresentationofanindi- prefrontal cortex (mPFC) (Hassabis, Kumaran, Maguire 2007;
+vidual’s personality traits must be created and this is known Hassabis, Kumaran, Vann, et al. 2007; Andrews-Hanna et al.
+as a personality model (Park 1986; Park et al. 1994). Studies 2010),allcomponentsofthedefaultnetwork.
+have shownthat personalitymodelscanbequiteaccurate.In Boththeconstructionandapplicationofpersonalitymodels
+fact, close friends are as accurate at predicting each other’s are a key component of social processing, because these
+daily behavior as they are at predicting their own behavior models are essential for predicting and comprehending the
+(Vazire and Mehl 2008). Although there is a growing under- behaviorofothers.Identifyingtraittendenciesinothersrelies
+standingofhowanindividual’spersonalityistiedtothestruc- onanabilitytoaccuratelyreadandinterpretsocialcues,then
+ture and function of his or her own brain (DeYoung 2010), linking these to broadercognitive and behavioral tendencies.
+little is known about how the personalities of other people Themajorityofresearchontheneuroscienceofsocialproces-
+arerepresentedinordertopredictbehavior. singhasfocusedontheabilitytoinferthemomentarymental
+©TheAuthor2013.PublishedbyOxfordUniversityPress.Allrightsreserved.
+ForPermissions,pleasee-mail:journals.permissions@oup.com
+Downloaded
+from
+http://cercor.oxfordjournals.org/
+at
+York
+University
+Libraries
+on
+July
+14,
+2014
+
+--- PAGE 2 ---
+statesofothers,oftenreferredtoasmentalizing(Premackand eventforvividnessandconfidenceinportrayingtheprotagonist
+Woodruff 1978; Carruthers and Smith 1996; Frith and Frith accurately.Twoadditionalcontrolconditionsfollowedasimilar
+2003). Currently, little is known about how the brain rep- format: (1) a “Self” condition where the participants imagined
+resentsthebroadcognitiveandbehavioraltendenciesofother themselves as the main character, and (2) an “Empty Scene”
+people, beyond momentary mental inferences. Based on past condition, which involved simulating just the spatial scene,
+work,itappearsthatregionswithinthemPFCareinvolvedin devoidofpeopleandevents.Afinalbaselineconditioninvolved
+makingtraitinferencesaboutothers(Harrisetal.2005;Mitch- counting the number of syllables in the text cue (the “Count”
+elletal.2006;Maetal.2011,2012;Wagneretal.2012).What condition)yielding84trialsinall(7conditions×12trials).
+is not known is how the brain models personality and how Toassesstheengagementofthedefaultnetworkacrossthe
+thesepersonalitymodelsareemployedtopredictthebehavior 3 imagination tasks, we compared these conditions to the
+ofothers.Unlikethetransientnatureofmentalstates,person- baseline syllable Count condition. To examine how the brain
+ality traits are more enduring and generalize across time and generates and applies personality models, we compared the
+situations.Moreover,ourmodelsofaperson’spersonalityare SelfandProtagonistconditions withthe EmptyScenecontrol
+far more flexible and have broader utility. For example, per- condition.Thiscomparisonallowedustoisolatetheinterper-
+sonality models allow us to make predictions about people sonal components of imagining an event from scene-
+whoarenotcurrentlypresent,ortopredictaperson’sreaction construction processes (Hassabis and Maguire 2007). More-
+toanentirelynovelscenario.Wecanalsoconstructpersonality over, to determine whether the brain represents unique per-
+models based on second-hand information, allowing us to sonality profiles with different brain areas, we employed
+makepredictionsaboutindividualswehaveonlyheardabout. multivariate pattern analysis (MVPA) (Haynes and Rees 2006;
+Itremainsunknownhowthebrainconstructsandappliesper- Norman et al. 2006). Doing so allowed us to determine
+sonality models, and what role the default network may play whether spatially localized brain activity was reliable enough
+intheseprocesses. acrossindividualstoinferwhoisbeingthoughtabout,based
+To address these questions, we employed functional mag- solely on the pattern of brain activation. An additional func-
+netic resonance imaging (fMRI) to scan participants while tional connectivity analysis provided further clues as to how
+they imagined short events, each involving 1 of 4 possible personality information is integrated in order to produce a
+protagonistswithdistinctpersonalitytraits,inavarietyoffic- model for behavioral predictions. Taken together, our results
+tional situations. Prior to scanning, participants learned the reveal the role of the default network in the representation
+distinct personalities of the protagonists using a “thin slice” and integration of social and personality information when
+approach(Borkenauetal.2004).Participantswerepresented predictingthefuturebehaviorofotherpeople.
+withprofilesfor4ostensiblyrealpeople,whichincludedthat
+person’s name,a photographoftheir face, and12 statements
+about their personality; order was counterbalanced across MaterialsandMethods
+participants. The 12 statements were created by modifying
+the items from 2 “Big Five” personality trait questionnaires Participants
+Participants were 19 healthy right-handed young adults (10 females;
+(Costa and McCrae 1992; DeYoung et al. 2007). In this study,
+mean age=21.4±3.2 years) who gave written informed consent in
+we focused on 2 of the 5 main personality traits: Agreeable-
+accordancewiththeHarvardInstitutionalReviewBoard.
+ness and Extraversion. Agreeableness reflects a tendency
+towardaltruism,cooperation,andavaluingofharmonyinin-
+terpersonalrelationshipsas opposed toantisocial andexploi- PrescanTraining
+tative behaviors (Costa and McCrae 1992). Extraversion, on
+ProtagonistTraining theotherhand,reflectsatendencytowardthedisplayofposi-
+Participants learned the 4 protagonists’ personalities prior to scan-
+tive emotions and social affiliation as opposed to social with- ning,throughacombinationoftrainingandtestingforbothcompre-
+drawal and reserve (Costa and McCrae 1992). We selected hensionandrecall(LandauerandBjork1978;RoedigerandKarpicke
+agreeableness and extraversion, because these traits are 2006). Participants were introduced to each of the protagonists on
+rotatedvariantsofthemajoraxesoftheinterpersonalcircum- paper. They were informed that the experimenters knew quite a lot
+about the 4 individuals, derived from interviews with them, their
+plex.Thesetraitsthereforecaptureabroadspectrumofsocial
+friends,andfamily.Participantsweretoldthattheywouldbegivena
+behaviors and tendencies (e.g., McCrae and Costa 1989;
+little bit of information about each individual, and that the exper-
+DeYoung etal.2012). The 4protagonists wereeitherhighor imenters were interested in seeing how well the participant could
+lowonthese2dimensions,producinga2×2factorialdesign predicthowtheindividualswouldbehavebasedonthatinformation.
+(Fig. 1A). After training, participants were capable of recog- Protagonists were gender matched to the participant. Common
+nizing each protagonist and verbally describing that individ- popularnamesfortheprotagonistswereselectedfromtheUSsocial
+ual’s personality. Participants were then asked to vividly securitywebsite(http://www.ssa.gov/cgi-bin/namesbystate.cgi)listof
+thetop10most popular namesgiventochildrenborninMassachu-
+imagine and to describe 12 novel locations for later recall in setts in 1990. Men’s names were Mike, Chris, Dave, and Nick.
+thescanner(e.g.,abar,restaurant,bank;Hassabis,Kumaran, Women’snameswereAshley,Sarah,Nicole,andJenny.Noparticipant
+Maguire2007;Hassabis,Kumaran,Vann,etal.2007). sharedthesamenameastheprotagonist.Eachnamewaspairedwith
+In the subsequent scanning session, 12 text cues were pre- 12personalitystatements,6relatedtoagreeablenessand6relatedto
+sented,eachdescribingashorteventinvolvingoneoftheprota- extraversion, from items of the Big Five Aspect Scales (DeYoung
+gonistsinapreimaginedlocation(“Protagonist”conditions).For 2010) and the Revised Neuroticism-Extraversion-Openness Personal-
+example:“Inabar—someonespillstheirdrink—Dave.”Partici- ity Inventory (Costa and McCrae 1992). Personality statements for
+agreeableness included statements worded positively (e.g., “Likes to
+pantswereinstructedtomentallyplayoutthese“vignettes”over
+cooperatewithothers”)andnegatively(e.g.“Canbecoldandaloof”).
+a 10-s period, concentrating on the actions, thoughts, and feel- Likewise,statementsforextraversionwerebothpositiveandnegative
+ings of the protagonist. Participants then rated the imagined (e.g., “Is outgoing, sociable”; “Is sometimes shy, inhibited”). While
+1980 PredictingBehaviorUsingPersonalityModels (cid:129) Hassabisetal.
+Downloaded
+from
+http://cercor.oxfordjournals.org/
+at
+York
+University
+Libraries
+on
+July
+14,
+2014
+
+--- PAGE 3 ---
+Figure1. Studydesign.(A)Thepersonalities ofthe4protagonistswere variedhighlowon2 traitdimensions,extraversionandagreeableness, tocreatea2×2factorial
+relationshipbetweenthe4personalities.(B)Timelineshowingtheexperimentaldesignofasingletrial.Thetextinstructioncueispresentedfor5scontainingthelocationand
+vignette information. The name of the protagonist isthen displayed (“Dave” in this example trial), and the participant imaginesthat event happeningto that person in that
+locationfor10s.Finally,participantsgivefeedbackontheirimaginedeventsviavividnessandaccuracyratingsfollowedbyarestperiod.
+looking at the 12 statements, photograph, and name, participants mental simulation period (10s); vividness and confidence ratings
+rated 18 items about each protagonist, 1 protagonist at a time, as (7.5s);andarestperiod(2.5s).DuringtheCountcondition,thefol-
+either true or false (72 items in total; e.g. “Likes the idea of being lowinginformationwasdisplayed:Atextcue(5s);acountingperiod
+givenasurpriseparty,TRUEorFALSE”).Participantswerethengiven allowing the participant to determine the numberof syllables in the
+the opportunity to study the 12 statements prior to a free recall test verbal information (10s); a question regarding whether the number
+wherethe12statementswouldbeinaccessible.Oneatatime,partici- of syllables was even orodd and a confidence rating for their judg-
+pants were then instructed to “Describe your general thoughts and ment(7.5s);andfollowedbyarestperiod(2.5s).Thetrialorderwas
+impressions of this individual in 3–4 sentences.” Order of presen- counterbalanced across participants, with no 2 adjacent trials invol-
+tation, as well as personality, name, and photograph pairings, was vingeitherthesamelocationorthesamecondition.Trialswithvivid-
+randomizedacrossparticipants. ness and confidence scores over 3 (on the 5-point scale) were
+retainedforsubsequentfMRIanalysis.Thenumberoftrialspercon-
+dition were M(self)=10.1±2.7; M(high extra–high agree)=9.6±2.8;
+ImaginingScenesTraining M(high extra–low agree)=9.5±2.8; M(low extra–high agree)=9.4±
+Participantswerethenaskedtovividlyimagine12commoneveryday 3.0; M(low extra–low agree)=8.4±3.1; and M(empty room)=10.0±
+locationssuchasabar,restaurant,orbank,andtodescribethemin 2.8. Two additional conditions involving trait judgments were con-
+asmuchdetailaspossible(Hassabis,Kumaran,Maguire2007;Hassa- ducted, but are not germane to the current aims and are thus not
+bis,Kumaran,Vann,etal.2007).Theywereexplicitlytoldnottogive reported.
+anactualmemoryofarealplace(oranypartofone),buttoinstead
+constructsomethingentirelynovel.Theywereinformedthatinstruc-
+tions to reimagine these locations would appear multiple times ImageAcquisition
+during the scanning session, and that each time in response they Brain imaging data were acquired at the Harvard Center for Brain
+wererequiredtoalwaysthinkoftheexactsamelocationascloselyas Sciencewith a 3-T Siemens TimTrio MRI scanner with a 12-channel
+possible. These types of imagination tasks exemplify mental simu- headcoil.AnatomicalscanswereacquiredusingaT 1 -weightedmulti-
+lation(Hassabis,Kumaran,Maguire2007;Hassabis,Kumaran,Vann, echo volumetric MRI (time repetition [TR]=2530ms; time echos
+et al. 2007). Unlike autobiographical recollection, imagined events [TE’s]=1.64, 3.5, 5.36, 7.22ms; 7° flip angle; 1-mm voxel). Two
+canbeexperimentallymanipulatedandsystematized.Allparticipants 30min 20s blood oxygen level-dependent (BOLD) functional scans
+imagine the same scenarios and can do so multiple times, and the were acquired with a T 2 *-weighted echo planar imaging (EPI) pulse
+contentcanbetightlycontrolled(Hassabis,Kumaran,Maguire2007; sequence (TR=2500; TE=30ms; 85° flip angle; 39 axial slices;
+Hassabis,Kumaran,Vann,etal.2007;Addisetal.2009). 3×3×3mmvoxels).
+Immediatelypriortoscanning,participantswerepresentedwitha
+photograph for each protagonist and required to state the person’s fMRIAnalysis
+nameand3wordsdescribingthatperson’spersonality.Followingthe
+scan, participants were shown the photos and again asked to name PartialLeastSquaresPreprocessingandAnalysis
+the person and provide 3 words to describe his or her personality; Forthe5pairwisecontrastsandfunctionalconnectivityanalysis,fMRI
+this process ensured the stability of the personality representation data were subjected to standard preprocessing steps and analyzed
+throughout the scanning interval. Participants also recounted the withpartialleastsquares(PLS;McIntosh1999;Krishnanetal.2011).
+content of their imagined event for 2 randomly selected scenes for fMRIdatawerepreprocessedusingSPM2(WellcomeTrustCenterfor
+eachofthe4protagonists,aswellastheself;thisprocedureallowed Neuroimaging, London, UK). The first 4 volumes in each run were
+ustoconfirmtaskcompliance.
+excluded from analyses to allow for T -equilibration effects. Data
+1
+were corrected for slice-dependent time shifts and for head motion
+within and across runs using a rigid-body correction. Images were
+TaskandProcedure then spatially normalized to the standard space of the Montreal
+During the scanning session, participants were presented with text Neurological Institute (MNI) atlas. The volumetric time series was
+cues describing a short event unfolding in each of the preimagined then spatially smoothed with a 6-mm full-width at half-maximum
+locations,with1ofthe4peoplenamedasthemainprotagonist.For (FWHM)Gaussiankernelresultingin4-mmcubicvoxels.Allcoordi-
+example: “in the street—sees a homeless vet asking for change— natesarereportedinMNIspace.
+Sarah.” Participants were instructed to mentally playout 12 of these PLS was utilized to examine BOLD signal changes at the group
+vignettes,eachlastingthedurationofa10-speriod,concentratingon level.Themethodissensitivetocovarianceinvoxelresponseassoci-
+the actions, thoughts, and feelings of the protagonist. Participants atedwithtasks,makingitwellsuitedtostudydistributedpatternsof
+then rated the imagined event for vividness and confidence in accu- activity.Additionally,PLSisimpervioustoscannerdrift.Thiswases-
+rately portraying the protagonist, both on a scale of 1–5. Each trial sential as the longer runs needed for optimal MVPA analyses that
+lasted25s,consistingof:Atextcuecontaininginformationregarding exacerbated the potential for scanner drift. For the current analysis,
+thelocation,event,andprotagonist(or“Self”or“Empty”cue)(5s);a weusedthenonrotatedversionoftaskspatiotemporalPLS(ST-PLS),
+CerebralCortexAugust2014,V24N8 1981
+Downloaded
+from
+http://cercor.oxfordjournals.org/
+at
+York
+University
+Libraries
+on
+July
+14,
+2014
+
+--- PAGE 4 ---
+enabling usto specify a priori nonorthogonal contrasts (as opposed
+Table1
+to the data-driven version of rotated ST—PLS that identifies orthog-
+Behavioralresults
+onal latent variables). Five pairwise sets of contrasts were specified.
+Priortoanalysis,activityateachtimepoint,relativetotrialonset,for Vividness Confidence
+eachvoxelisaveragedacrosstrialsofagivenconditionandnormal-
+izedtoactivityinthefirstTRofthetrial.Thedatamatrixisthenex- Mean SD Mean SD
+pressed as voxel-by-voxel deviation from the grand mean acrossthe Highextraversion–highagreeableness 4.22 0.45 4.52 0.33
+entire experiment. This matrix is analyzed with singular value Highextraversion–lowagreeableness 4.07 0.39 4.28 0.46
+Lowextraversion–highagreeableness 4.17 0.53 4.36 0.46
+decomposition to derive the contrast effects in the data. Here, we
+Lowextraversion–lowagreeableness 4.00 0.50 4.19 0.60
+applied PLS analysis to event-related fMRI data, and the results Allprotagonists 4.11 0.37 4.34 0.39
+provideasetofbrainregionswhereinactivityisreliablyrelatedtothe Self 4.34 0.33 4.61 0.29
+task conditions at 8 poststimulus time points. Each voxel is given a Emptyscene 4.34 0.46 — —
+singularvalueweight,knownasasalience,whichisproportionalto
+thecovarianceofactivitywiththetaskcontrastateachtimepointfor
+mapsforeachparticipantwerethennormalizedtotheMNIspaceand
+thecontrast.The significanceof each contrast as awholewas deter-
+smoothed with a 3-dimensional Gaussian kernel (cut at edges), to
+minedbypermutationtesting,using500permutations.Thisanalysis
+compensate for errors in normalization. Since optimal levels of
+was accomplished by randomly reassigning the order of the con- smoothing can only be determined empirically (Hopfinger et al.
+ditionsforeachparticipant.PLSisrecalculatedforeachpermutation
+2000), several levels of smoothing may be used to analyze the data
+sample, and the frequency with which the permuted singular value
+(Worsleyetal.1996).Inthiscase,weused11-mmFWHMforthepro-
+exceedstheobservedsingularvaluesisdeterminedandexpressedas
+tagonistandagreeablenessconditions,anda16-mmFWHMforextra-
+a probability. All task contrasts were significant at P=0.002. In a
+version.Atasecond-levelanalysis,voxel-wiset-valueswerecomputed
+second,independentstep,thereliabilityofthesaliencesforthebrain acrosstheseindividualsubjectaccuracymaps,yielding afinal group
+voxelsacrosssubjectswasdeterminedbybootstrapresampling,using level “information heatmap”, which illustrates the brain regions that
+100iterations,toestimatethestandarderrorsforeachvoxel.Clusters carrysufficientinformationtodiscriminatebetweenconditions.
+>100mm3comprisingvoxelswitharatioofthesaliencetotheboot-
+Weestablishedthestatisticalsignificanceofourfindingsusingthe
+strap standard error values (i.e., the “bootstrap ratio”; BSR) >3
+standardapproachofpermutationtesting(NicholsandHolmes2002).
+(P<0.005) were reported. The local maximum for each cluster was Foreachclassificationproblem,thewholeproceduredescribedabove
+definedasthevoxelwithaBSRhigherthananyothervoxelina2-cm
+was repeated 20timesbut withrandompermutations ofclasslabels
+cube centered on that voxel. PLS identifies whole-brain patterns of
+forthetrials,andthemaximumt-valueinthewholebraincomputed.
+activityinasingleanalyticstepand,thus,nocorrectionformultiple
+Then in accordance with standard practice (Nichols and Holmes
+comparisonsisrequired.Althoughmostofthebrainregionsshowed
+2002), the 0.95-quantile of this maximum t-statistic sample obtained
+reliableactivationsacrossmultipletimepoints,wereporttheBSRfor from the permutation testing was selected as the significance
+the third TR (i.e., 7.5s after the name appeared on the screen) as a
+threshold. The corresponding t-value map (computed with correct
+representativeindexofbrainactivityintime.
+trial labels) was cut off below that value (t-value thresholds: 4.28,
+The functional connectivity analysis was performed using “seed” 2.82, 3.32 for agreeableness, extraversion, and protagonists classifi-
+PLS, a multivariate task-related functional connectivity analysis tech- cations,respectively) yielding resultssignificant at P<0.05 corrected
+nique used to investigate the relationship between the activity of a
+formultiplecomparisons.
+seed region and the activity in the rest of the brain (McIntosh1999;
+Krishnanetal.2011).WeusedtheBOLDsignalinthemPFC(0,50,
+22)derivedfromtheMVPAanalysis,asseeds.Wethenassessedthe
+task-related functional connectivity with the rest of the brain during Results
+thesimulationofeachofthe4protagonistswithinthesameanalysis.
+Individually defined seed activity from the peak activation and 26 BehavioralData
+neighboringvoxelsinthethirdTRwascorrelatedwithactivityinall Overall, participants’ vividness and confidence ratings were
+brain voxels, across participants. This matrix was then analyzed as
+above.MeanBSRvaluesfromthepeakpersonalityclassifieranalyses high(averageratings>4of5;fordetails,seeTable1),indicat-
+in lateral temporal cortex (LTC) (−60, −34, −17), dorsal mPFC (−3, ing task compliance. The assessment of vividness ratings
+41,49),andpCC(−6,−49,31),includingthe26neighboringvoxels, when imagining the 4 protagonists, the self, and the empty
+wereusedtoassessthesignificanceofconnectivitywiththeseeds. roomrevealedasignificantmaineffect (F =3.87,P<0.05).
+5,14
+However, no pairwise differences were observed when cor-
+MVPAPreprocessingandAnalysis recting for multiple comparisons (Bonferroni correction,
+The first 4 volumes were excluded from analysis to allow for T α<0.05). The trend was toward a significant difference in
+1-
+-equilibrationeffects.UsingSPM8,theremainingvolumesforindivid- vividnessbetweentheselfconditionandthe2lowagreeable-
+ualsubjectswererealignedtothemean,resliced,andsmoothedwith ness protagonists. There was a statistically significant differ-
+an 8-mm FWHM kernel, and the first 5s of each trial were selected ence in confidence ratings for how the participants and 4
+forfurtheranalysis.Eachtrialwasmodeledwithaseparateregressor
+protagonists would act (F =5.16, P<0.01). Participants’
+asaboxcarfunctionandconvolvedwiththecanonicalhemodynamic 4,15
+response function. A high-pass filter with a cutoff of 128s was em- confidence in imagining their own behavior was higher than
+ployed.Modelestimationresultedina“betamap”foreachtrial(Soon for the 2 low agreeableness protagonists (Bonferroni correc-
+et al. 2008), which were then z-scored (Pereira et al. 2009) and tion, α<0.05). Importantly, however, no significant differ-
+inputtedasthetrainingdatatotheclassifier.
+ences were observed between the 4 protagonists. In
+Subsequent analyses were performed using multivariate pattern
+determiningwhetheranevenoroddnumberofsyllableswere
+analysisinpython(PyMVPA)(Hankeetal.2009).Weusedawhole-
+presented in the verbal material, participants performed at
+brain“searchlight”MVPAapproach(Kriegeskorteetal.2006;Hassabis
+better-than-chance levels (mean percent accuracy=60±16,
+etal.2009),whichinvolvedsteppingvoxelbyvoxelthrougheachsub-
+ject’sbrain,lookingatlocalizedpatternsofactivityinsmallspherical onesamplet
+(18)
+=2.55,P<0.05).
+arrays of voxels(radius=3 voxels)to yield an “accuracy”map. Stan-
+dard linear Support Vector Machines (“libsvm” backend; Chang and
+NeuroimagingData
+Lin 2011) were trained (with the cost parameter C set to 1) using a
+leave-one-out cross-validation procedure to produce accuracy esti-
+Toconfirmtheengagementofthedefaultnetworkacrossthe
+mates across the brain (Pereira et al. 2009). The resulting accuracy 3 imagination tasks, we compared these conditions to the
+1982 PredictingBehaviorUsingPersonalityModels (cid:129) Hassabisetal.
+Downloaded
+from
+http://cercor.oxfordjournals.org/
+at
+York
+University
+Libraries
+on
+July
+14,
+2014
+
+--- PAGE 5 ---
+syllablecountingtask,inwhichparticipantsonlyengagedthe high and low agreeableness. Protagonists with high and low
+surface features of verbally presented information. In 3 pair- extraversion were discriminated by differences in pCC
+wise contrasts, imagining the protagonists, the self, and an response (Fig. 3B). To locate where identity information for
+emptyscenewerecomparedwiththisbaselinecondition.The the protagonists was represented, a 4-way classification was
+imaginationtaskswereallassociatedwithanincreasedBOLD performed to discriminate between the 4 protagonists. Clus-
+signal in default network regions, including the mPFC, pCC, tersinanterioranddorsalmPFC(superiortothatobservedfor
+MTL, LTC, temporal pole, IPL, and the superior and inferior agreeableness) reliably discriminated between the 4 protago-
+frontal gyri (Fig. 2A–C, Supplementary Table 1). This pattern nists (Fig. 3C). Different personality models are therefore
+of activity is consistent with the activity observed when associated with unique and detectable patterns of brain
+constructing a scene (Hassabis, Kumaran, Maguire 2007; activityinthemPFC.Inotherwords,basedonbrainactivation
+Hassabis,Kumaran,Vann,etal.2007)andimaginingpossible patterns alone, wewere able to infer which of the 4 protago-
+futureevents(Schacteretal.2007,2012). niststheparticipantswereimagining.
+Next, we parsed out the individual contributions of spatial Finally, we sought to evaluate the hypothesis that anterior
+and social processing to default network activity by conduct- mPFC assembles and updates the models of other people’s
+ing2contrasts:(A)imaginingtheprotagonists>imaginingan personality traits processed by the LTC, dorsal mPFC, and
+empty scene without people, and (B) imagining oneself> pCC. To evaluate this hypothesis further, we conducted a
+imagining an empty scene. Relative to imagining an empty functional connectivity analysis to determine whether the
+scene,thecontrastsforimaginingtheprotagonistsandtheself anterior mPFC was functionally connected with the LTC, the
+revealed regions in the ventral, dorsal, and anterior mPFC, dorsal mPFC, and the pCC during mental simulation of the 4
+pCC,thetemporalpoles,andoccipitalcortex(Fig.2D,E,Sup- protagonists.Inthisanalysis,weassessedthetask-dependent
+plementary Table 1). These brain regions are more engaged functionalconnectivityoftheanteriormPFCinthe4protago-
+by social processing during the simulation of a social inter- nist conditions. Across all 4 protagonists, activity in the
+action relative to those required to construct the scene. The anterior mPFC was significantly correlated with a distributed
+contrastcomparingimaginingtheselfwithimaginingthepro- pattern of voxel response (Fig. 4). Functional connectivity
+tagonistsrevealedgreateractivityinhippocampus,mPFC,and with the anterior mPFC was significant for the LTC (mean
+otherregions(seeSupplementaryTable1andSupplementary BSR=3.5, P<0.001), dorsal mPFC (mean BSR=4.1,
+Fig.1forfullresults).Nobrainregionsdemonstratedagreater P<0.001), and pCC (mean BSR=3.2, P<0.002). During ima-
+BOLD response for imagining the protagonists relative to gined social simulations, the brain regions that code for per-
+theself. sonality information are therefore functionally coupled with
+Two key questions were then addressed: (A) Where in the the region that codes for individual identities. Further, mPFC
+brain is the personality information for protagonists rep- connectivity also extended to the entire default network, in-
+resented?and(B)whereisidentityinformationforeachofthe cludingtheIPL,retrosplenialcortex,andhippocampus(Fig.4
+4protagonistsrepresented?Toanswerthesequestions,weuti- andSupplementaryTable1).
+lizedMVPAtodeterminewhetherbrainregionscarriedinfor-
+mation sufficient to discriminate between conditions. To GenderControlAnalysis
+examine where personality information was represented, a Given gender differences in social behavior, we reanalyzed
+2-wayclassificationwasperformedwithtrialsinvolvingprota- our data to assess the effect of gender on our results. In the
+goniststhatsharedatrait (e.g.,highagreeableness)collapsed group analysis using PLS, brain activity for both gender
+intoonecondition.WefoundclustersinthedorsalmPFCand groups covaried together, and there were no significant task
+left LTC (Fig. 3A) that distinguished between protagonists of by gender interactions. For the MVPA, we used gender as a
+Figure 2. Pairwise contrasts of the experimental conditions. (A) Self>Count; (B) Protagonists>Count; and (C) Empty Scene>Count all demonstrate default network
+engagementacrosssimulationconditions.(D)Self>EmptySceneand(E)Protagonists>EmptySceneshowspecificactivityforsocialsimulations.Imagesaredisplayedfrom
+TR3(7.5s)andthresholdedatP<0.005(PLSidentifieswhole-brainpatternsofactivityinasingleanalyticstepand,thus,nocorrectionformultiplecomparisonsisrequired).
+SeeSupplementaryTable1forpeakcoordinates.
+CerebralCortexAugust2014,V24N8 1983
+Downloaded
+from
+http://cercor.oxfordjournals.org/
+at
+York
+University
+Libraries
+on
+July
+14,
+2014
+
+--- PAGE 6 ---
+Figure3. MVPAresultsshowingsignificantvoxelsatthegrouplevelaftertheapplicationofwhole-brainsearchlightclassificationtechniques,overlaidonanaveragedstructural
+image.(A)LeftLTCanddorsalmPFCdiscriminatebetweenprotagonistswithhighorlowagreeableness.(B)pCCdiscriminatesbetweenprotagonistswithhighorlowextraversion.
+(C)mPFCdiscriminatesbetweenthe4protagonists.AllvoxelssignificantatP<0.05correctedformultiplecomparisons.SeeSupplementaryTable1forpeakcoordinates.
+Figure 4. Functional connectivityanalysis. (A) Whole-brain pattern of functional connectivity with the mPFC seed region identified by the MVPA analysis as discriminating
+betweenthe4protagonists.Seedregioniscircledinblue.Blackcirclesdesignatethatregionsidentifiedbythepersonalityclassificationarefunctionallyconnectedwiththe
+mPFCregion.ResultsdisplayedfromTR3(7.5s)andthresholdedatP<0.005(PLSidentifieswhole-brainpatternsofactivityinasingleanalyticstepand,thus,nocorrection
+formultiplecomparisonsisrequired).(B)BOLDsignalchange,relativetothetrialonset,forthe4protagonistconditions(errorbarsarethewithin-subjectSEM).(C)Correlation
+betweenmPFCseedactivityandcompositemeasuresofthedistributedvoxel responseacrossthebrain(confidenceintervalswerederivedfrombootstrapresampling).See
+SupplementaryTable1forpeakcoordinates.
+1984 PredictingBehaviorUsingPersonalityModels (cid:129) Hassabisetal.
+Downloaded
+from
+http://cercor.oxfordjournals.org/
+at
+York
+University
+Libraries
+on
+July
+14,
+2014
+
+--- PAGE 7 ---
+covariateofnointerestinthesecond-levelanalysisandfound social and spatial aspects of mental simulation, we controlled
+the same pattern of results. Next, we assessed whether there for scene construction to isolate the brain activity specific to
+whereanyreliablewhole-braindifferencesintheregionsthat interpersonal imagining. After doing so, imagining social
+discriminate between levels of agreeableness and extraver- elements was uniquely associated with the mPFC, pCC, and
+sion, as well as the 4 protagonists. No significant patterns thetemporalpoles.Theseregionsarereliablyobservedduring
+were observed. Although we recognize that there are many studiesofmentalinference(Mar2011)andareconsistentwith
+reported gender differences in social cognition, we are unli- the observed overlap between autobiographical memory and
+kely to have the statistical power to observe them in our mentalizing(Sprengetal.2009;Rabinetal.2010;Sprengand
+currentsample. Grady 2010). They might also facilitate the integration of
+personalandinterpersonalinformationforthestrategicuseof
+socialconceptualknowledge(SprengandMar2012).Integrat-
+Discussion
+ing social knowledge could also support the generation of
+Personality models describe broad cognitive and behavioral behavioralpredictionsbasedonpersonalitymodels.
+tendencies, which are immensely useful for predicting how Event simulations consist of a rich spatial context within
+peoplewillbehaveandreact. Thus,thesemodelsareessential whichcomplexsocialinteractionscantakeplace.Thesesimu-
+for successful navigation of the social world. In this study, we lations reliablyengage the default network,with recentwork
+examined how the brain constructs and applies personality exposing 2 core regions of the default network: mPFC and
+models. Default network activity was observed across 3 pCC (Andrews-Hanna et al. 2010). Both of these regions are
+imagination tasks (consistent with this network’s involvement densely interconnected with 2 distinct subsystems: (1) the
+ininternallyfocusedthoughts;Andrews-Hanna2012),butsub- MTL subsystem, including the hippocampus, parahippocam-
+regionsofthisnetworkweremoreinvolvedinsocialandinter- pus, restrosplenial cortex, the posterior IPL, and ventral
+personal information processing. Our results also identified mPFC, and (2) the dorsal mPFC subsystem, including dorsal
+specific brain regions where personality models are coded, as mPFC, LTC, the temporal parietal junction, and the temporal
+well as where individual trait information is represented in pole (Andrews-Hanna et al. 2010). Generating the spatial
+the brain. Connectivity analyses examined how protagonist context for an event simulation appears to be supported by
+identityandtraitinformationinteract,orhowthebrainassoci- the MTL subsystem of the default network (Andrews-Hanna
+ates specific personality traits with a given protagonist. These et al. 2010; i.e., the “scene construction” network, Hassabis
+resultssuggestthatpersonalityinformationisintegratedinthe and Maguire 2007). Generating the social components of an
+mPFC,producingamodelforbehavioralpredictions. event simulation, including the application of personality
+A key question of interest was how personality models models, is supported by the core default structures and the
+for different people are represented in the brain. Different dorsalmPFCsubsystem(Wagneretal.2012).Further,individ-
+patterns of activation in the anterior mPFC could reliably ual regions of the dorsal mPFC subsystem differentially code
+distinguishbetweenthedifferentpeoplewhosebehaviorwas for personality traits and the unique identityof other people.
+being imagined. We hypothesize that this region is respon- During the process of simulation, these discrete regions are
+sible for assembling and updating personality models. We functionallycoupledwitheachotherandtheMTLsubsystem,
+thenexaminedhowthebrainrepresents2majortraits:Agree- withtheseassociationssuggestinganintegrationofsocialand
+ablenessandextraversion.Agreeablenesswasassociatedwith personalityfeaturesintoaspatialcontext.
+unique patterns of BOLD response in the dorsal mPFC and It has been suggested that mental simulations bestow an
+LTC, whereas extraversion was associated with the pCC. adaptive advantage on humans by allowing them to prepare
+These results provide a novel neuroscientific demonstration forupcomingsituations(Ingvar1979;Tayloretal.1998;Has-
+that discriminable brain regions code for the specific person- sabis and Maguire 2007; Suddendorf and Corballis 2007;
+ality traits of other people. Given the novelty of our obser- Schacter2012).Planningforsocialsituationsbyimaginingthe
+vations, we encourage replication to increase confidence in likely behavior of others may be especially critical for the
+these results. Notably, these brain regions are also reliably success of a highly social species, such as humans. Interest-
+engagedwhenpeopleareinferringwhatapersonismomen- ingly, the anterior mPFC has been implicated in social cogni-
+tarily thinking and feeling (Mar 2011) as well as when spon- tion disorders, such as autism (von dem Hagen et al.
+taneous and intentional trait inferences are being made (Ma forthcoming), and our results point to a possible inability to
+et al. 2011). During these moments, a subprocess may be build accurate personality models of others for those with
+linking inferred mental states to broader personality traits. such disorders. Futurework in this direction should examine
+This idea is consistent with past behavioral work, showing how models of others are constructed, how personality
+that traits are rapidly and spontaneously inferred from beha- models are updated based on new information (Rapp and
+viors(Ulemanetal.2008).Aswegettoknowapersonbetter, Gerrig2001),andhowdysfunctionmightbetreated.
+individualpersonalitytraitsarecombinedtoformamoreholis-
+tic representation of the person’s character—a personality
+model—which can be used to imagine and therefore predict SupplementaryMaterial
+the behavior and thoughts of individuals in hypothetical situ- Supplementary material can be found at: http://www.cercor.
+ations.Aswehypothesized,thebrainregionsthatcodeforper- oxfordjournals.org/.
+sonalitytraitswerefunctionallycoupledwiththemPFC,which
+codesforindividualidentitiesduringmentalsimulation.
+Funding
+Mentally simulated events are often composed of both
+social and spatial elements. To determine whether different This work was supported bya Wellcome Trust grant to D.H.,
+components of the default network are associated with the NIHgrantMH060941toD.L.S.,andSSHRCgranttoRAM.
+CerebralCortexAugust2014,V24N8 1985
+Downloaded
+from
+http://cercor.oxfordjournals.org/
+at
+York
+University
+Libraries
+on
+July
+14,
+2014
+
+--- PAGE 8 ---
+Notes Krishnan A, Williams LJ, McIntosh AR, Abdi H. 2011. Partial Least
+Squares (PLS) methods for neuroimaging: a tutorial and review.
+WethankJasonMitchellforsharingmentalinferencestatementsand
+Neuroimage.56:455–475.
+KarenSprengforcommentsonanearlierdraftofthismanuscriptand
+Zoltan Szlavik for helpful analysis advice. Conflict of Interest: None Landauer TK, Bjork RA. 1978. Optimum rehearsal patterns and
+namelearning.In: GrunebergMM,MorrisPE, SykesRN,editors.
+declared.
+Practical aspects of memory. New York: Academic Press. pp.
+625–632.
+LarocqueL,OatleyK.2006.Jointplans,emotions,andrelationships:
+adiarystudyoferrors.JCulturEvolPsychol.4:245–265.
+References MaN,VandekerckhoveM,VanHoeckN,VanOverwalleF.2012.Dis-
+Addis DR, Pan L, Vu MA, Laiser N, Schacter DL. 2009. Constructive tinctrecruitmentoftemporo-parietaljunctionandmedialprefron-
+episodicsimulationofthefutureandthepast:distinctsubsystems tal cortex in behavior understanding and trait identification. Soc
+of a core brain network mediate imagining and remembering.
+Neurosci.7:591–605.
+Neuropsychologia.47:2222–2238. MaN,VandekerckhoveM,VanOverwalleF,SeurinckR,FiasW.2011.
+Andrews-HannaJR.2012.Theadaptiveroleofthedefaultnetworkin Spontaneous and intentional trait inferences recruit a common
+internalmentation.Neuroscientist.18:251–270. mentalizingnetworktoadifferentdegree:spontaneousinferences
+Andrews-Hanna JR, Reidler JS, Sepulcre J, Poulin R, Buckner RL.
+activateonlyitscoreareas.SocNeurosci.6:123–138.
+2010. Functional-anatomic fractionation of the brain’s default MarRA.2011.Theneuralbasesofsocialcognitionandstorycompre-
+network.Neuron.65:550–562. hension.AnnuRevPsychol.62:103–134.
+Borkenau P, Mauer N, Riemann R, Spinath FM, Angleitner A. 2004. McCraeRR,CostaPT.1989.Thestructureofinterpersonaltraits:Wig-
+Thin slices of behavior as cues of personality and intelligence. gins’s circumplex and the five-factor model. J Pers Soc Psychol.
+JPersSocPsychol.86:599–614. 56:586–595.
+Buckner RL, Carroll DC. 2007. Self-projection and the brain. Trends McIntosh AR. 1999. Mapping cognition to the brain through neural
+CognSci.11:49–57. interactions.Memory.7:523–548.
+Carruthers P, Smith P, editors. 1996. Theories of theories of mind. Mitchell JP, Cloutier J, Banaji MR, Macrae CN. 2006. Medial
+Cambridge(MA):CambridgeUniversityPress. prefrontal dissociations during processing of trait diagnostic and
+Chang CC, Lin CJ. 2011. LIBSVM: a library for support vector nondiagnostic person information. Soc Cogn Affect Neurosci.
+machines.ACMTransIntSystTechnol.2:1–27. 1:49–55.
+Costa PTJ, McCraeRR.1992. NEOPI-Rprofessionalmanual.Odessa Nichols TE, Holmes AP. 2002. Nonparametric permutation tests for
+(FL):PsychologicalAssessmentResources,Inc. functional neuroimaging: A primer with examples. Hum Brain
+DeYoung CG. 2010. Personality neuroscience and the biology of
+Mapp.15:1–25.
+traits.SocialPersonalityPsycholCompass.4:1165–1180. Norman KA, Polyn SM, Detre GJ, Haxby JV. 2006. Beyond mind-
+DeYoung CG, Quilty LC, Peterson JB. 2007. Between facets and reading: multi-voxel pattern analysis of fMRI data. Trends Cogn
+domains:10aspectsoftheBigFive.JPersSocPsychol.93:880–896. Sci.10:424–430.
+DeYoungCG,WeisbergYJ,QuiltyLC,PetersonJB.forthcoming2012. ParkB.1986.Amethodforstudyingthedevelopmentofimpressions
+UnifyingtheaspectsoftheBigFive,theinterpersonalcircumplex,
+ofrealpeople.JPersSocPsychol.51:907–917.
+andtraitaffiliation.JPers.doi:10.1111/jopy.12020. Park B, DeKay ML, Kraus S. 1994. Aggregating social behavior into
+FleesonW, GallagherP. 2009. The implications of Big Five standing personmodels:perceiver-inducedconsistency.JPersSocPsychol.
+for the distribution of trait manifestation in behavior: fifteen 66:437–459.
+experience-sampling studies and a meta-analysis. J Pers Soc Pereira F,MitchellT,BotvinickM.2009.Machine learning classifiers
+Psychol.97:1097–1114. andfMRI:atutorialoverview.Neuroimage.45:S199–209.
+FrithU,FrithCD.2003.Developmentandneurophysiologyofmenta- PremackD,WoodruffG.1978.Doesthechimpanzeehaveatheoryof
+lizing.PhilosTransRSocLondBBiolSci.358:459–473. mind?BehavBrainSci.1:515–526.
+Hanke M, Halchenko YO, Sederberg PB, Olivetti E, Fründ I, Reiger RabinJS,GilboaA,StussDT,MarRA,RosenbaumRS.2010.Common
+JW, Herrmann CS, Haxby JV, Hanson SJ, Pollman S. 2009. and unique neural correlates of autobiographical memory and
+PyMVPA: a unifying approach to the analysis of neuroscientific theoryofmind.JCognNeurosci.22:1095–1111.
+data.FrontNeuroinfor.3:3. Rapp DN, Gerrig RJ. 2001. Readers’ trait-based models of characters
+HarrisLT,TodorovA,FiskeST.2005.Attributionsonthebrain:neu- innarrativecomprehension.JMemLang.45:737–750.
+roimagingdispositionalinferencesbeyondtheoryofmind.Neuro- RobertsBW,Kuneel NR, ShinerR, CaspiA, Goldberg LR.2007. The
+image.28:763–769. powerofpersonality:thecomparativevalidityofpersonalitytraits,
+HassabisD,ChuC,ReesG,WeiskopfN,MolyneuxPD,MaguireEA. socioeconomic status, and cognitive ability for predicting impor-
+2009.Decodingneuronalensemblesinthehumanhippocampus.
+tantlifeoutcomes.PerspectPsycholSci.2:313–345.
+CurrBiol.19:546–554. Roediger HL III, Karpicke JD. 2006. The power of testing memory:
+HassabisD,KumaranD,MaguireEA.2007.Usingimaginationtoun- basic research and implications foreducationalpractice.Perspect
+derstand the neural basis of episodic memory. J Neurosci.
+PsycholSci.181–210.
+27:14365–14374. SchacterDL.2012.Adaptiveconstructiveprocessesandthefutureof
+Hassabis D, Kumaran D, Vann SD, Maguire EA. 2007. Patients with
+memory.AmPsychol.67:603–613.
+hippocampalamnesiacannotimaginenewexperiences.ProcNatl Schacter DL, Addis DR, Buckner RL. 2008. Episodic simulation of
+AcadSciUSA.104:1726–1731. futureevents:concepts,data,andapplications.AnnNYAcadSci.
+HassabisD,MaguireEA.2007.Deconstructingepisodicmemorywith
+1124:39–60.
+construction.TrendsCognSci.11:299–306. SchacterDL,AddisDR,BucknerRL.2007.Rememberingthepastto
+HaynesJD,ReesG.2006.Decodingmentalstatesfrombrainactivity imagine the future: the prospective brain. Nat Rev Neurosci.
+inhumans.NatRevNeurosci.7:523–534. 8:657–661.
+Hopfinger JB, Buchel C, Holmes AP, Friston KJ. 2000. A study of Schacter DL, Addis DR, Hassabis D, Martin VC, Spreng RN, Szpunar
+analysis parameters that influence the sensitivity of event-related KK. 2012. The future of memory: remembering, imagining, and
+fMRIanalyses.Neuroimage.11:326–333. thebrain.Neuron.76:677–694.
+IngvarDH.1979.Hyperfrontaldistributionofthecerebralgreymatter SoonCS,BrassM,HeinzeHJ,HaynesJD.2008.Unconsciousdetermi-
+flowinrestingwakefulness:onthefunctionalanatomyofthecon- nants of free decisions in the human brain. Nat Neurosci.
+sciousstate.NeurolScand.60:12–25. 11:543–545.
+KriegeskorteN,GoebelR,BandettiniP.2006.Information-basedfunc- SprengRN,GradyCL.2010.Patternsofbrainactivitysupportingauto-
+tionalbrainmapping.ProcNatlAcadSciUSA.103:3863–3868. biographical memory, prospection, and theory-of-mind and their
+1986 PredictingBehaviorUsingPersonalityModels (cid:129) Hassabisetal.
+Downloaded
+from
+http://cercor.oxfordjournals.org/
+at
+York
+University
+Libraries
+on
+July
+14,
+2014
+
+--- PAGE 9 ---
+relationship to the default mode network. J Cogn Neurosci. Uleman JS, Adil Saribay S, Gonzalez CM. 2008. Spontaneous infer-
+22:1112–1123. ences, implicit impressions, and implicit theories. Annu Rev
+Spreng RN, Mar RA. 2012. I remember you: a role for memory in Psychol.59:329–360.
+social cognition and the functional neuroanatomy of their inter- Vazire S, Mehl MR. 2008. Knowing me, knowing you: the accuracy
+action.BrainRes.1428:43–50. and unique predictive validity of self-ratings and other-ratings of
+Spreng RN, Mar RA, Kim ASN. 2009. The common neural basis of dailybehavior.JPersSocPsychol.95:1202–1216.
+autobiographical memory, prospection, navigation, theory of von dem Hagen E, Stoyanova RS, Baron-Cohen S, Calder AJ. forth-
+mind and the default mode: a quantitative meta-analysis. J Cogn coming. Reduced functional connectivity within and between
+Neurosci.32:489–510. “social”restingstatenetworksinAutismSpectrumConditions.Soc
+SuddendorfT,CorballisMC.2007.Theevolutionofforesight:whatis CognAffectNeurosci.
+mental time travel and is it unique to humans? Behav Brain Sci. Wagner DD, Haxby JR, Heatherton TS. 2012. The representation of
+30:299–313. selfandpersonknowledgeinthemedialprefrontalcortex.WIRES
+Taylor SE, Pham LB, Rivkin ID, Armor DA. 1998. Harnessing the CognSci.3:451–470.
+imagination: mental simulation, self-regulation, and coping. Am WorsleyKJ,MarrettS,NeelinP,EvansAC.1996.Searchingscalespace
+Psychol.53:429–439. foractivationinPETimages.HumBrainMapp.4:74–90.
+CerebralCortexAugust2014,V24N8 1987
+Downloaded
+from
+http://cercor.oxfordjournals.org/
+at
+York
+University
+Libraries
+on
+July
+14,
+2014

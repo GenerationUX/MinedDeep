@@ -1,0 +1,1821 @@
+
+--- PAGE 1 ---
+ArticLe
+doi:10.1038/nature20101
+Hybrid computing using a neural
+network with dynamic external memory
+Alex Graves1*, Greg Wayne1*, Malcolm reynolds1, tim Harley1, ivo Danihelka1, Agnieszka Grabska-barwińska1,
+Sergio Gómez colmenarejo1, edward Grefenstette1, tiago ramalho1, John Agapiou1, Adrià Puigdomènech badia1,
+Karl Moritz Hermann1, Yori Zwols1, Georg ostrovski1, Adam cain1, Helen King1, christopher Summerfield1, Phil blunsom1,
+Koray Kavukcuoglu1 & Demis Hassabis1
+Artificial neural networks are remarkably adept at sensory processing, sequence learning and reinforcement learning,
+but are limited in their ability to represent variables and data structures and to store data over long timescales, owing to
+the lack of an external memory. Here we introduce a machine learning model called a differentiable neural computer
+(DNC), which consists of a neural network that can read from and write to an external memory matrix, analogous to the
+random-access memory in a conventional computer. Like a conventional computer, it can use its memory to represent
+and manipulate complex data structures, but, like a neural network, it can learn to do so from data. When trained
+with supervised learning, we demonstrate that a DNC can successfully answer synthetic questions designed to emulate
+reasoning and inference problems in natural language. We show that it can learn tasks such as finding the shortest
+path between specified points and inferring the missing links in randomly generated graphs, and then generalize these
+tasks to specific graphs such as transport networks and family trees. When trained with reinforcement learning, a DNC
+can complete a moving blocks puzzle in which changing goals are specified by sequences of symbols. Taken together,
+our results demonstrate that DNCs have the capacity to solve complex, structured tasks that are inaccessible to neural
+networks without external read–write memory.
+Modern computers separate computation and memory. Computation RAM, then the network, referred to as the ‘controller’, is a differentiable
+is performed by a processor, which can use an addressable memory to CPU whose operations are learned with gradient descent. The DNC
+bring operands in and out of play. This confers two important benefits: architecture differs from recent neural memory frameworks14,15 in
+the use of extensible storage to write new information and the ability that the memory can be selectively written to as well as read, allowing
+to treat the contents of memory as variables. Variables are critical to iterative modification of memory content. An earlier form of DNC,
+algorithm generality: to perform the same procedure on one datum or the neural Turing machine16, had a similar structure, but more limited
+another, an algorithm merely has to change the address it reads from. memory access methods (see Methods for further discussion).
+In contrast to computers, the computational and memory resources of Whereas conventional computers use unique addresses to
+artificial neural networks are mixed together in the network weights access memory contents, a DNC uses differentiable attention
+and neuron activity. This is a major liability: as the memory demands mechanisms2,16–18 to define distributions over the N rows, or ‘locations’,
+of a task increase, these networks cannot allocate new storage dynam- in the N × W memory matrix M. These distributions, which we call
+ically, nor easily learn algorithms that act independently of the values weightings, represent the degree to which each location is involved in a
+realized by the task variables. read or write operation. The read vector r returned by a read weighting
+Although recent breakthroughs demonstrate that neural networks wr over memory M is a weighted sum over the memory locations:
+are remarkably adept at sensory processing1, sequence learning2,3 and r=∑
+i
+N
+=1
+M[i,⋅]wr[i] , where the ‘·’ denotes all j = 1, …, W. Similarly,
+reinforcement learning4, cognitive scientists and neuroscientists have the write operation uses a write weighting ww to first erase with
+argued that neural networks are limited in their ability to represent an erase vector e, then add a write vector v: M[i,j] ← M[i,j]
+variables and data structures5–9, and to store data over long timescales (1 − ww[i]e[j]) + ww[i]v[j]. The functional units that determine and
+without interference10,11. We aim to combine the advantages of neu- apply the weightings are called read and write heads. The operation of
+ral and computational processing by providing a neural network with the heads is illustrated in Fig. 1 and summarized below; see Methods
+read–write access to external memory. The access is narrowly focused, for a formal description.
+minimizing interference among memoranda and enabling long-term
+storage12,13. The whole system is differentiable, and can therefore be Interaction between the heads and the memory
+trained end-to-end with gradient descent, allowing the network to learn The heads use three distinct forms of differentiable attention. The first is
+how to operate and organize the memory in a goal-directed manner. content lookup16,17,19–21, in which a key vector emitted by the controller
+is compared to the content of each location in memory according to
+System overview a similarity measure (here, cosine similarity). The similarity scores
+A DNC is a neural network coupled to an external memory matrix. determine a weighting that can be used by the read heads for asso-
+(The behaviour of the network is independent of the memory size as ciative recall19 or by the write head to modify an existing vector in
+long as the memory is not filled to capacity, which is why we view the memory. Importantly, a key that only partially matches the content of
+memory as ‘external’.) If the memory can be thought of as the DNC’s a memory location can still be used to attend strongly to that location.
+1Google DeepMind, 5 New Street Square, London EC4A 3TW, UK.
+*These authors contributed equally to this work.
+27 october 2016 | VoL 538 | NAtUre | 471
+© 2016 Macmillan Publishers Limited, part of Springer Nature. All rights reserved.
+
+--- PAGE 2 ---
+reSeArcH Article
+d Memory usage
+a Controller b Read and write heads c Memory and temporal links
+Output
+Write vector
+Erase vector
+Write
+Write key
+Read key
+Read mode Read 1 N
+BCF
+Read key
+Read 2
+Read mode
+BCF
+Read vectors
+Input
+W
+W
+Figure 1 | DNC architecture. a, A recurrent controller network receives defining a weighting that selectively focuses the write operation over the
+input from an external data source and produces output. b, c, The rows, or locations, in the memory matrix. The read heads can use gates
+controller also outputs vectors that parameterize one write head (green) called read modes to switch between content lookup using a read key (‘C’)
+and multiple read heads (two in this case, blue and pink). (A reduced and reading out locations either forwards (‘F’) or backwards (‘B’) in the
+selection of parameters is shown.) The write head defines a write and order they were written. d, The usage vector records which locations have
+an erase vector that are used to edit the N × W memory matrix, whose been used so far, and a temporal link matrix records the order in which
+elements’ magnitudes and signs are indicated by box area and shading, locations were written; here, we represent the order locations were written
+respectively. Additionally, a write key is used for content lookup to find to using directed arrows.
+previously written locations to edit. The write key can contribute to
+This enables a form of pattern completion whereby the value recovered facilities in our model. Human ‘free recall’ experiments demonstrate
+by reading the memory location includes additional information that the increased probability of item recall in the same order as first pre-
+is not present in the key. In general, key-value retrieval provides a rich sented—a hippocampus-dependent phenomenon accounted for by the
+mechanism for navigating associative data structures in the external temporal context model25, bearing some similarity to the formation of
+memory, because the content of one address can effectively encode temporal links (Methods).
+references to other addresses.
+A second attention mechanism records transitions between conse- Synthetic question answering experiments
+cutively written locations in an N × N temporal link matrix L. L[i, j] Our first experiments investigated the capacity of the DNC to perform
+is close to 1 if i was the next location written after j, and is close to 0 question answering. To compare DNCs to other neural network archi-
+otherwise. For any weighting w, the operation Lw smoothly shifts the tectures, we considered the bAbI dataset26, which includes 20 types of
+focus forwards to the locations written after those emphasized in w, synthetically generated questions designed to mimic aspects of textual
+whereas L⊤w shifts the focus backwards. This gives a DNC the native reasoning. The dataset consists of short ‘story’ snippets followed by
+ability to recover sequences in the order in which it wrote them, even questions with answers that can be inferred from the stories: for exam-
+when consecutive writes did not occur in adjacent time-steps. ple, the story “John is in the playground. John picked up the football.”
+The third form of attention allocates memory for writing. The ‘usage’ followed by the question “Where is the football?” with answer “play-
+of each location is represented as a number between 0 and 1, and a ground” requires a system to combine two supporting facts, whereas
+weighting that picks out unused locations is delivered to the write head. “Sheep are afraid of wolves. Gertrude is a sheep. Mice are afraid of
+As well as automatically increasing with each write to a location, usage cats. What is Gertrude afraid of?” (answer, “wolves”) tests its facility at
+can be decreased after each read. This allows the controller to reallocate basic deduction (and resilience to distractors). We found that a single
+memory that is no longer required (see Extended Data Fig. 1). The DNC, jointly trained on all 20 question types with 10,000 instances
+allocation mechanism is independent of the size and contents of the each, was able to achieve a mean test error rate of 3.8% with task failure
+memory, meaning that DNCs can be trained to solve a task using one (defined as >5 % error) on 2 types of questions, compared to 7.5% mean
+size of memory and later upgraded to a larger memory without retrain- error and 6 failed tasks for the best previous jointly trained result21. We
+ing (Extended Data Fig. 2). In principle, this would make it possible to also found that DNCs performed much better than both long short-
+use an unbounded external memory by automatically increasing the term memory27 (LSTM; at present the benchmark neural network for
+number of locations every time the minimum usage of any location most sequence processing tasks) and the neural Turing machine16
+passes a certain threshold. (see Extended Data Table 1 for details). Unlike previous results on this
+The design of the attention mechanisms was motivated largely by dataset, the inputs to our model were single word tokens without any
+computational considerations. Content lookup enables the formation preprocessing or sentence-level features (see Methods for details).
+of associative data structures; temporal links enable sequential retrieval
+of input sequences; and allocation provides the write head with unused Graph experiments
+locations. However, there are interesting parallels between the memory Although bAbI is presented in natural language, each declarative sen-
+mechanisms of a DNC and the functional capabilities of the mamma- tence involves a limited vocabulary and is generated from a simple triple
+lian hippocampus. DNC memory modification is fast and can be one- containing an actor, an action and a set of arguments. Such sentences
+shot, resembling the associative long-term potentiation of hippocampal could easily be rendered in graphical form: for example “John is in the
+CA3 and CA1 synapses22. The hippocampal dentate gyrus, a region playground” can be diagrammed as two named nodes, ‘Playground’ and
+known to support neurogenesis23, has been proposed to increase rep- ‘John’, connected by a named edge ‘Contains’. In this sense, the prop-
+resentational sparsity, thereby enhancing memory capacity24: usage- ositional knowledge in many of the bAbI tasks is equivalent to a set of
+based memory allocation and sparse weightings may provide similar constraints on an underlying graph structure. Indeed, many important
+472 | NAtUre | VoL 538 | 27 october 2016
+© 2016 Macmillan Publishers Limited, part of Springer Nature. All rights reserved.
+
+--- PAGE 3 ---
+Article reSeArcH
+a Random graph b London Underground c Family tree
+Ian Jodie Alan Lindsey
+Mary Becky Tom Charlotte Alison Fergus Jane
+Steve Jo Mat Liam Nina Alice Bob
+Simon Freya Maternal great uncle Natalie
+Traversal Shortest-path
+Underground input: Traversal question: Shortest-path question: Family tree input: Inference question:
+(OxfordCircus, TottenhamCtRd, Central) (BondSt, _, Central), (Moorgate, PiccadillyCircus, _) (Charlotte, Alan, Father) (Freya, _, MaternalGreatUncle)
+(TottenhamCtRd, OxfordCircus, Central) (_, _, Circle), (_, _, Circle), (Simon, Steve, Father)
+(BakerSt, Marylebone, Circle) (_, _, Circle), (_, _, Circle), (Steve , Simon, Son1)
+(BakerSt, Marylebone, Bakerloo) (_, _, Jubilee), (_, _, Jubilee), (Nina, Alison, Mother)
+(BakerSt, OxfordCircus, Bakerloo) (Lindsey, Fergus, Son1)
+(LeicesterSq, CharingCross, Northern) Answer: Answer: (Bob, Jane, Mother)
+Answer:
+(TottenhamCtRd, LeicesterSq, Northern) (BondSt, NottingHillGate, Central) (Moorgate, Bank, Northern) (Natalie, Alice, Mother)
+(OxfordCircus, PiccadillyCircus, Bakerloo) (NottingHillGate, GloucesterRd, Circle) (Bank, Holborn, Central) (Mary, Ian, Father) (Freya, Fergus, MaternalGreatUncle)
+(OxfordCircus, NottingHillGate, Central) (Holborn, LeicesterSq, Piccadilly) (Jane, Alice, Daughter1)
+(OxfordCircus, Euston, Victoria) (Westminster, GreenPark, Jubilee) (LeicesterSq, PiccadillyCircus, Piccadilly) (Mat, Charlotte, Mother)
+(GreenPark, BondSt, Jubilee)
+84 edges in total 54 edges in total
+tasks faced by machine learning involve graph data, including parse Figure 3 illustrates a DNC’s use of memory allocation, content lookup
+trees, social networks, knowledge graphs and molecular structures. and temporal linkage to store and traverse the London Underground
+We therefore turn next to a set of synthetic reasoning experiments on map. Visualization of a DNC trained on shortest-path suggests that it
+randomly generated graphs. progressively explored the links radiating out from the start and end
+Unlike bAbI, the edges in our graphs were presented explicitly, with nodes until a connecting path was found (Supplementary Video 1).
+each input vector specifying a triple consisting of two node labels and
+an edge label. We generated training graphs with random labelling and Block puzzle experiments
+connectivity and defined three kinds of query: ‘traversal’, ‘shortest path’ Next we wanted to investigate the ability of DNCs to exploit their
+and ‘inference’ (Fig. 2). After training with curriculum learning28,29 memory for logical planning tasks. To do this, we created a block
+using graphs and queries with gradually increasing complexity, the puzzle game inspired by Winograd’s SHRDLU30—a classic artificial
+networks were tested (with no retraining) on two specific graphs as a intelligence demonstration of an environment with movable objects
+test of generalization to realistic data: a symbolic map of the London and a rule-based agent that executed user instructions. Unlike the
+Underground and an invented family tree. previous experiments, for which the networks were trained with
+For the traversal task (Fig. 2b), the network was instructed to report supervised learning, we applied a form of reinforcement learning
+the node arrived at after leaving a start node and following a path of in which a sequence of instructions describing a goal is coupled to
+edges generated by a random walk. For the shortest-path task (Fig. 2b), a reward function that evaluates whether the goal is satisfied—a
+a random start and end node were given as the query, and the net- set-up that resembles an animal training protocol with a symbolic
+work was asked to return a sequence of triples corresponding to a task cue31.
+minimum-length path between them. Because we considered paths of Our environment, which we term Mini-SHRDLU, contains a set of
+up to length five, this is a harder version of the path-finding task in the numbered blocks on a grid board. An agent, given a view of the board
+bAbI dataset, which has a maximum length of two. For the inference as input, can move the top block from a column and deposit it on top
+task (Fig. 2c), we predefined 400 ‘relation’ labels that stood as abbre- of a stack in another column. At every episode, we generated a start
+viations for sequences of up to five connected edge labels. A query board configuration and several possible goals. Each goal, identified by
+consisted of an incomplete triple specifying a start node and a relation a single-letter label, was composed of several individual constraints on
+label, and the required answer was the final node after following the adjacent block pairs that were transmitted one constraint per time-step
+relation sequence. Because the relation sequences were never presented (goal ‘T’ is “block 6 below 2; block 4 left of 1; …”) (Fig. 4b, c). After all
+to the network, they had to be inferred from the queries and targets. of the goals were presented, a single goal label was chosen at random,
+As a benchmark we again compared DNCs with LSTM. In this case, and the agent was cued to satisfy that goal.
+the best LSTM network we found in an extensive hyper-parameter The DNC used its memory to store the instructions by iteratively writing
+search failed to complete the first level of its training curriculum of even goals to locations (Fig. 4a); it could then carry out any chosen goal (Fig. 4c,
+the easiest task (traversal), reaching an average of only 37% accuracy Supplementary Video 2). We observed that, at the time a goal was writ-
+after almost two million training examples; DNCs reached an average of ten, but many steps before execution was required, the first action could
+98.8% accuracy on the final lesson of the same curriculum after around be decoded from memory (Fig. 4d). This indicates that the DNC had
+one million training examples. written its decision to memory before acting upon it; thus, remarkably,
+27 october 2016 | VoL 538 | NAtUre | 473
+…
+…
+…
+Figure 2 | Graph tasks. a, An example of a randomly generated graph used blue (from Freya to Fergus, her maternal great uncle) were tested, giving
+for training. b, Zone 1 interchange stations of the London Underground an average accuracy of 81.8%. The symbol sequences processed by the
+map, used as a generalization test for the traversal and shortest-path tasks. network during the test examples are shown beneath the graphs. The
+Random seven-step traversals (an example of which is shown on the left) input is an unordered list of (‘from node’, ‘to node’, ‘edge’) triple vectors
+were tested, yielding an average accuracy of 98.8%. Testing on all possible that describes the graph. For each task, the question is a sequence of
+four-step shortest paths (example shown on the right) gave an average triples with missing elements (denoted ‘_’) and the answer is a sequence of
+accuracy of 55.3%. c, The family tree that was used as a generalization completed triples.
+test for the inference task; four-step relations such as the one shown in
+© 2016 Macmillan Publishers Limited, part of Springer Nature. All rights reserved.
+
+--- PAGE 4 ---
+reSeArcH Article
+a Read and write weightings c London Underground map
+Oxford Circus>Tottenham Court Rd
+Tottenham Court Rd>Oxford Circus
+Green Park>Oxford Circus
+Victoria>Green Park
+Oxford Circus>Green Park
+Green Park>Victoria
+Green Park>Piccadilly Circus
+Piccadilly Circus>Leicester Sq
+Piccadilly Circus>Green Park
+Leicester Sq>Piccadilly Circus
+Piccadilly Circus>Oxford Circus
+Charing Cross>Piccadilly Circus
+Piccadilly Circus>Charing Cross
+Oxford Circus>Piccadilly Circus
+Leicester Sq>Tottenham Court Rd
+Charing Cross>Leicester Sq
+Leicester Sq>Charing Cross
+Tottenham Court Rd>Leicester Sq
+Victoria>___ Victoria N
+_ _ _ _ _ _ > > _ _ _ _ _ _ V C ic e t n o t r r i a a l N E d Read key e Location content
+___>___ North S
+___>___ Piccadilly W
+___>___ Bakerloo N
+___>___ Central E
+From To Line
+DNC learned to make a plan. As with the graph tasks, learning the minimum number of actions needed to find a solution (Methods).
+followed a curriculum that gradually increased the number of blocks on Again, the DNC performed substantially better than LSTM (see Fig. 5
+the board and constraints in a goal as well as the number of goals and and Extended Data Fig. 3).
+474 | NAtUre | VoL 538 | 27 october 2016
+ssorC
+gnirahC
+kraP
+neerG
+qS retsecieL sucriC
+drofxO
+sucriC
+yllidacciP
+dR truoC
+mahnettoT
+airotciV ssorC
+gnirahC
+kraP
+neerG
+qS retsecieL sucriC
+drofxO
+sucriC
+yllidacciP
+dR truoC
+mahnettoT
+airotciV N oolrekaB S oolrekaB E lartneC W lartneC N htroN S htroN E yllidacciP W yllidacciP N airotciV S airotciV
+From To Line
+ssorC
+gnirahC
+kraP
+neerG
+qS retsecieL sucriC
+drofxO
+sucriC
+yllidacciP
+dR truoC
+mahnettoT
+airotciV ssorC
+gnirahC
+kraP
+neerG
+qS retsecieL sucriC
+drofxO
+sucriC
+yllidacciP
+dR truoC
+mahnettoT
+airotciV N oolrekaB S oolrekaB E lartneC W lartneC N htroN S htroN E yllidacciP W yllidacciP N airotciV S airotciV
+Decode
+snoitacol
+yromem
+dedoceD
+Graph definition Query Answer
+Decode
+b Read mode
+Backward
+Content
+Write head Forward
+Read head 1 Backward Read head 2 Content
+Forward
+0 5 10 15 20 25 30
+Time
+Figure 3 | Traversal on the London Underground. a, During the graph follows temporal links forwards to retrieve the instructions in order,
+definition phase, the network writes each triple in the map to a separate whereas read head 2 (blue) uses content lookup to find the stations along
+memory location, as shown by the write weightings (green). During the the path. The degree of coloration indicates how strongly each mode is
+query phase, the start station (Victoria) and lines to be traversed are used. c, The region of the map used. d, The final content key used by read
+recorded. The triple stored in each location can be recovered by a logistic head 2 is decoded as a triple with no destination. e, The memory location
+regression decoder, as shown on the vertical axis. b, The read mode returned by the key contains the complete triple, allowing the network to
+distribution during the answer phase reveals that read head 1 (pink) infer the destination (Tottenham Court Rd).
+3b2:G 1r6:G 2b6:T 1l4:T 4b5:T 3r6:T 1b2:T 2l5:T 2a1:C 6r5:C 1a3:C 6a4:C 6l1:A 3a5:A 3r4:A ?T
+a Weightings c Board states
+G
+T
+T
+T
+T
+C
+C
+C
+C
+A
+A
+#
+# d Planned action decodings e t-SNE location goal labels
+#
+#
+# 0.9
+0.7
+0.5
+0.3
+0.1
+1 2 3 4 5
+Action number
+ycarucca
+noitacfiissalC
+Time
+snoitacoL
+Decode
+Write head
+Read head 1
+Read head 2
+Location average
+Action frequencies
+Action
+b Goal T constraints
+6b2 4l1 5b4 6r3 2b1 5l2
+Figure 4 | Mini-SHRDLU analysis. a, In a short example episode, the for the first action is 89%, compared to 17% using action frequencies
+network wrote goal-related information to sequences of memory locations. alone, indicating that the network had determined a plan at the time of
+(‘G’, ‘T’, ‘C’ and ‘A’ denote goals; the numbers refer to the block number; writing, many steps before execution. Error bars represent 5–95 percentile
+‘b’, ‘a’, ‘l’ and ‘r’ denote ‘below’, ‘above’, ‘left of’ and ‘right of’, respectively.) bootstrapped confidence intervals on validation data. e, Within trials, we
+The chosen goal was T (‘T?’), and the read heads focused on the locations average the location contents associated with each goal label into single
+containing goal T. b, The constraints comprising goal T. c, The policy vectors. Across trials, we create a dataset of these vectors and perform
+made an optimal sequence of moves to satisfy its constraints. d, On 800 t-SNE (t-distributed stochastic neighbour embedding) dimensionality
+random episodes, the first five actions that the network took for the chosen reduction down to two dimensions. This shows that each goal label is
+goal were decoded from memory using logistic regression at the time-step coded geometrically in the memory locations.
+after the goal was written (box in a with arrow to c). Decoding accuracy
+© 2016 Macmillan Publishers Limited, part of Springer Nature. All rights reserved.
+
+--- PAGE 5 ---
+Article reSeArcH
+a adapting network parameters. We aim to further develop DNCs to
+serve as representational engines for one-shot learning35–37, scene
+understanding38, language processing39 and cognitive mapping40, capa-
+ble of intuiting the variable structure and scale of the world within a
+single, generic model.
+Online Content Methods, along with any additional Extended Data display items and
+Source Data, are available in the online version of the paper; references unique to
+these sections appear only in the online paper.
+received 5 January; accepted 19 September 2016.
+Published online 12 October 2016.
+1. Krizhevsky, A., Sutskever, I. & Hinton, G. E. Imagenet classification with deep
+convolutional neural networks. In Advances in Neural Information Processing
+Systems Vol. 25 (eds Pereira, F. et al.) 1097–1105 (Curran Associates, 2012).
+2. Graves, A. Generating sequences with recurrent neural networks. Preprint at
+1.0 http://arxiv.org/abs/1308.0850 (2013).
+3. Sutskever, I., Vinyals, O. & Le, Q. V. Sequence to sequence learning with neural
+networks. In Advances in Neural Information Processing Systems Vol. 27 (eds
+0.8 Ghahramani, Z. et al.) 3104–3112 (Curran Associates, 2014).
+4. Mnih, V. et al. Human-level control through deep reinforcement learning.
+Nature 518, 529–533 (2015).
+0.6
+5. Gallistel, C. R. & King, A. P. Memory and the Computational Brain: Why Cognitive
+Science Will Transform Neuroscience (John Wiley & Sons, 2011).
+6. Marcus, G. F. The Algebraic Mind: Integrating Connectionism and Cognitive
+0.4
+Science (MIT Press, 2001).
+7. Kriete, T., Noelle, D. C., Cohen, J. D. & O’Reilly, R. C. Indirection and symbol-like
+0.2 processing in the prefrontal cortex and basal ganglia. Proc. Natl Acad. Sci. USA
+110, 16390–16395 (2013).
+8. Hinton, G. E. Learning distributed representations of concepts. In Proc. Eighth
+0 Annual Conference of the Cognitive Science Society Vol. 1, 1–12 (Lawrence
+1 2 3 4 5 6 7 8 910111213141516171819202122232425 Erlbaum Associates, 1986).
+9. Bottou, L. From machine learning to machine reasoning. Mach. Learn. 94,
+Lesson 133–149 (2014).
+10. Fusi, S., Drew, P. J. & Abbott, L. F. Cascade models of synaptically stored
+memories. Neuron 45, 599–611 (2005).
+11. Ganguli, S., Huh, D. & Sompolinsky, H. Memory traces in dynamical systems.
+Proc. Natl Acad. Sci. USA 105, 18970–18975 (2008).
+12. Kanerva, P. Sparse Distributed Memory (MIT press, 1988).
+13. Amari, S.-i. Characteristics of sparsely encoded associative memory. Neural
+Netw. 2, 451–457 (1989).
+14. Weston, J., Chopra, S. & Bordes, A. Memory networks. Preprint at http://arxiv.
+org/abs/1410.3916 (2014).
+15. Vinyals, O., Fortunato, M. & Jaitly, N. Pointer networks. In Advances in Neural
+Discussion Information Processing Systems Vol. 28 (eds Cortes, C et al.) 2692–2700
+Taken together, the bAbI and graph tasks demonstrate that DNCs are (Curran Associates, 2015).
+16. Graves, A., Wayne, G. & Danihelka, I. Neural Turing machines. Preprint at
+able to process and reason about graph-structured data regardless of
+http://arxiv.org/abs/1410.5401 (2014).
+whether the links are implicit or explicit. Moreover, we have seen that 17. Bahdanau, D., Cho, K. & Bengio, Y. Neural machine translation by jointly learning
+the structure of the data source is directly reflected in the memory- to align and translate. Preprint at http://arxiv.org/abs/1409.0473 (2014).
+18. Gregor, K., Danihelka, I., Graves, A., Rezende, D. J. & Wierstra, D. DRAW: a recurrent
+access procedures learned by the controller. The Mini-SHRDLU prob-
+neural network for image generation. In Proc. 32nd International Conference on
+lem shows that a systematic use of memory also emerges when a DNC Machine Learning (eds Bach, F. & Blei, D.) 1462–1471 (JMLR, 2015).
+learns by reinforcement to act in pursuit of a set of symbolic goals. 19. Hintzman, D. L. MINERVA 2: a simulation model of human memory. Behav.
+The theme connecting these tasks is the need to learn to represent Res. Methods Instrum. Comput. 16, 96–101 (1984).
+20. Kumar, A. et al. Ask me anything: dynamic memory networks for natural
+and reason about the complex, quasi-regular structure embedded in language processing. Preprint at http://arxiv.org/abs/1506.07285 (2015).
+data sequences. In each problem, domain regularities, such as the con- 21. Sukhbaatar, S. et al. End-to-end memory networks. In Advances in Neural
+ventions for representing graphs, are invariant across all sequences Information Processing Systems Vol. 28 (eds Cortes, C et al.) 2431–2439
+(Curran Associates, 2015).
+shown; on the other hand, for any given sequence, a DNC must detect
+22. Magee, J. C. & Johnston, D. A synaptically controlled, associative signal for
+and capture novel variability as episodic variables in memory. This Hebbian plasticity in hippocampal neurons. Science 275, 209–213 (1997).
+mixture of large-scale structure and microscopic variability is generic 23. Johnston, S. T., Shtrahman, M., Parylak, S., Gonc¸ alves, J. T. & Gage, F. H.
+to many problems that confront a cognitive agent32–34. For example, in Paradox of pattern separation and adult neurogenesis: a dual role for new
+neurons balancing memory resolution and robustness. Neurobiol. Learn. Mem.
+visual scenes, stories and action plans, broad regularities bind together 129, 60–68 (2016).
+novel variation in any exemplar. Rooms statistically have chairs in them, 24. O’Reilly, R. C. & McClelland, J. L. Hippocampal conjunctive encoding, storage,
+and recall: avoiding a trade-off. Hippocampus 4, 661–682 (1994).
+but the shape and location of a particular chair in a room are variables.
+25. Howard, M. W. & Kahana, M. J. A distributed representation of temporal
+These variable values can be written to the external memory of a DNC, context. J. Math. Psychol. 46, 269–299 (2002).
+leaving the controller network free to concentrate on learning global 26. Weston, J., Bordes, A., Chopra, S. & Mikolov, T. Towards AI-complete question
+answering: a set of prerequisite toy tasks. Preprint at http://arxiv.org/
+regularities.
+abs/1502.05698 (2015).
+Our experiments focused on relatively small-scale synthetic tasks, 27. Hochreiter, S. & Schmidhuber, J. Long short-term memory. Neural Comput. 9,
+which have the advantage of being easy to generate and interpret. For 1735–1780 (1997).
+such problems, memory matrices of up to 512 locations were suffi- 28. Bengio, Y., Louradour, J., Collobert, R. & Weston, J. Curriculum learning. In Proc.
+26th International Conference on Machine Learning (eds Bottou, L. & Littman, M.)
+cient. To tackle real-world data we will need to scale up to thousands or 41–48 (ACM, 2009).
+millions of locations, at which point the memory will be able to store 29. Zaremba, W. & Sutskever, I. Learning to execute. Preprint at http://arxiv.org/
+more information than can be contained in the weights of the con- abs/1410.4615 (2014).
+30. Winograd, T. Procedures as a Representation for Data in a Computer Program for
+troller. Such systems should be able to continually acquire knowledge
+Understanding Natural Language. Report No. MAC-TR-84 (DTIC, MIT Project
+through exposure to large, naturalistic data sources, even without MAC, 1971).
+27 october 2016 | VoL 538 | NAtUre | 475
+noitroporP
+25
+20
+15
+10
+5
+0
+0 1 2 3 4 5
+Learning step (106)
+b
+nosseL
+DNC
+LSTM
+Perfect
+Success
+Incomplete
+Figure 5 | Mini-SHRDLU results. a, 20 replicated training runs with
+different random-number seeds for a DNC and LSTM. Only the DNC was
+able to complete the learning curriculum. b, A single DNC was able to
+solve a large percentage of problems optimally from each previous lesson
+(perfect), with a few episodes solved in extra moves (success), and some
+failures to satisfy all constraints (incomplete).
+© 2016 Macmillan Publishers Limited, part of Springer Nature. All rights reserved.
+
+--- PAGE 6 ---
+reSeArcH Article
+31. Epstein, R., Lanza, R. P. & Skinner, B. F. Symbolic communication between two Supplementary Information is available in the online version of the paper.
+pigeons (Columba livia domestica). Science 207, 543–545 (1980).
+32. McClelland, J. L., McNaughton, B. L. & O’Reilly, R. C. Why there are Acknowledgements We thank D. Silver, M. Botvinick and S. Legg for reviewing
+complementary learning systems in the hippocampus and neocortex: insights the paper prior to submission; P. Dayan, D. Wierstra, G. Hinton, J. Dean, N.
+from the successes and failures of connectionist models of learning and Kalchbrenner, J. Veness, I. Sutskever, V. Mnih, A. Mnih, D. Kumaran, N. de Freitas,
+memory. Psychol. Rev. 102, 419–457 (1995). L. Sifre, R. Pascanu, T. Lillicrap, J. Rae, A. Senior, M. Denil, T. Kocisky, A. Fidjeland,
+33. Kumaran, D., Hassabis, D. & McClelland, J. L. What learning systems do K. Gregor, A. Lerchner, C. Fernando, D. Rezende, C. Blundell and N. Heess for
+intelligent agents need? Complementary learning systems theory updated. discussions; J. Besley for legal assistance; the rest of the DeepMind team for
+Trends Cogn. Sci. 20, 512–534 (2016). support and encouragement; and Transport for London for allowing us to
+34. McClelland, J. L. & Goddard, N. H. Considerations arising from a reproduce portions of the London Underground map.
+complementary learning systems perspective on hippocampus and neocortex.
+Hippocampus 6, 654–665 (1996). Author Contributions A.G. and G.W. conceived the project. A.G., G.W., M.R.,
+35. Lake, B. M., Salakhutdinov, R. & Tenenbaum, J. B. Human-level concept learning T.H., I.D., S.G. and E.G. implemented networks and tasks. A.G., G.W., M.R., T.H.,
+through probabilistic program induction. Science 350, 1332–1338 (2015). A.G.-B., T.R. and J.A. performed analysis. M.R., T.H., I.D., E.G., K.M.H., C.S., P.B.,
+36. Rezende, D. J., Mohamed, S., Danihelka, I., Gregor, K. & Wierstra, D. One-shot K.K. and D.H. contributed ideas. A.C. prepared graphics. A.G., G.W., M.R., T.H.,
+generalization in deep generative models. In Proc. 33nd International S.G., A.P.B., Y.Z., G.O. and K.K. performed experiments. A.G., G.W., H.K., K.K.
+Conference on Machine Learning (eds Balcan, M. F. & Weinberger, K. Q.) and D.H. managed the project. A.G., G.W., M.R., T.H., K.K. and D.H. wrote the
+1521–1529 (JMLR, 2016). paper.
+37. Santoro, A., Bartunov, S., Botvinick, M., Wierstra, D. & Lillicrap, T. Meta-learning
+with memory-augmented neural networks. In Proc. 33nd International Author Information Reprints and permissions information is available at
+Conference on Machine Learning (eds Balcan, M. F. & Weinberger, K. Q.) www.nature.com/reprints. The authors declare no competing financial
+1842–1850 (JMLR, 2016). interests. Readers are welcome to comment on the online version of the
+38. Oliva, A. & Torralba, A. The role of context in object recognition. Trends Cogn. paper. Correspondence and requests for materials should be addressed
+Sci. 11, 520–527 (2007). to A.G. (gravesa@google.com), G.W. (gregwayne@google.com),
+39. Hermann, K. M. et al. Teaching machines to read and comprehend. In Advances D.H. (demishassabis@google.com).
+in Neural Information Processing Systems Vol. 28 (eds Cortes, C. et al.)
+1693–1701 (Curran Associates, 2015). reviewer Information Nature thanks Y. Bengio, J. McClelland and the
+40. O’Keefe, J. & Nadel, L. The Hippocampus as a Cognitive Map (Oxford Univ. Press, other anonymous reviewer(s) for their contribution to the peer review of
+1978). this work.
+476 | NAtUre | VoL 538 | 27 october 2016
+© 2016 Macmillan Publishers Limited, part of Springer Nature. All rights reserved.
+
+--- PAGE 7 ---
+Article reSeArcH
+MethOdS • the write key k
+t
+w∈RW;
+A glossary of symbols and full equations for the DNC model are provided in
+Supplementary Information. • the write strength βw=oneplus(βˆ w )∈[1,∞);
+t t
+Controller network. At every time-step t the controller network N receives an
+input vector xt ∈ RX from the dataset or environment and emits an output vector • the erase vector et =σ(eˆt)∈[0,1]W;
+yt ∈ RY that parameterizes either a predictive distribution for a target vector zt ∈ RY
+(supervised learning) or an action distribution (reinforcement learning). • the write vector vt ∈ RW;
+A m d e d m it o i r o y n m all a y t , r t i h x e M c t o − n 1 t ∈ ro R ll N er × r W ec a e t i v th e e s p a r s e e v t i o ou f R s t r im ea e d - s v t e e c p t , o v r i s a r t 1 t h − e 1 , re … ad , r h t R e − a 1 d f s r . o I m t th t e h n e • R free gates {f t i =σ(fˆ t i )∈[0,1];1≤i≤R};
+emits an interface vector ξ t that defines its interactions with the memory at the • the allocation gate ga=σ(gˆa)∈[0,1];
+current time-step. For notational convenience, we concatenate the read and input t t
+vectors to obtain a single controller input vector χ t =[xt;r1 t−1 ;…;r t R −1 ]. Any • the write gate gw=σ(gˆw)∈[0,1]; and
+neural network can be used for the controller, but we have used the following t t
+variant of the deep LSTM architecture41: • R read modes {π
+t
+i=softmax(πˆ
+t
+i)∈S 3;1≤i≤R}.
+i t l=σ(W i l[χ t ;hl t−1 ;h t l−1]+b i l) The use and interpretation of these terms will be explored in the following
+f t l=σ(Wl f [χ t ;h t l −1 ;h t l−1]+bl f ) s R e e c a ti d o i n n s g . and writing to memory. Selecting locations for reading and writing
+s t l=f t ls t l −1 +i t ltanh(Wl s [χ t ;h t l −1 ;h t l−1]+bl s ) depends on weightings, which are vectors of non-negative numbers whose ele-
+ments sum to at most 1. The complete set of allowed weightings over N locations
+o t l=σ(Wl o [χ t ;h t l −1 ;h t l−1]+bl o ) is the non-negative orthant of RN with the unit simplex as a boundary (known as
+hl=oltanh(sl) the ‘corner of the cube’):
+t t t
+where l is the layer index, σ(x) = 1/(1 + exp(− x)) is the logistic sigmoid function,  N 
+h ac t l, t i iv t l, a t f io t l, n s t l v e a c n t d o r o s t l , a re re sp t e h c e t i h v i e d ly d , e o n f , l a in y p er u l t a g t a t t i e m , f e o t r . g h e 0 t = ga 0 te f , o s r t a a t l e l t a ; n h d l = ou s t l p = ut 0 g a fo te r ∆ N =     α∈RN:α i ∈[0,1],∑ i=1 α i ≤1    
+t 0 0
+all l. The W terms denote learnable weight matrices (for example, W i l is the matrix For the read operation, R read weightings {w t r,1,…,w t r,R∈∆ N} are used to compute
+of weights going into the layer-l input gates) and the b terms are learnable biases. weighted averages of the contents of the locations, thereby defining the read vectors
+vec A to t r e ξ a t c ∈ h R ti ( m W e × - R s ) t + e 3 p W , + th 5R e + c 3 o , d n e tr f o in ll e e d r a e s mits an output vector υ t and an interface {r1 t ,…,r t R } as
+ri=M(cid:31)wr,i
+υ
+t
+=Wy[h1
+t
+;…;h
+t
+L] t t t
+ξ
+t
+=Wξ[h1
+t
+;…;h
+t
+L] The read vectors are appended to the controller input at the next time-step, giving
+it access to the memory contents. The write operation is mediated by a single write
+A co s m su p m le i t n e g h t i h st e o c r o y n ( t χ ro 1 l , l … er , n χ et t w ) o o f r k it s is i n re p c u u t r s r u en p t t , o it t s h o e u c tp u u rr t e s n a t r e ti m a f e u - n st c e t p io . n W o e f c t a h n e a w n e d ig a h w tin ri g t e w v t w ec ∈ to ∆ r v N t , ∈ w R h W ic h (b is o t u h s e e d m i i n tt c e o d n b j y u n th c e ti o co n n w tr i o th ll e a r n ) e t r o a m se o v d e i c f t y o t r h e e t ∈ m [ e 0 m , 1 o ] r W y
+therefore encapsulate the operation of the controller as as follows:
+(υ t,ξ
+t
+)=N([χ
+1
+;…;χ
+t
+];θ)
+Mt =Mt−1 (cid:31)(E−w
+t
+we(cid:31)
+t
+)+w
+t
+wv
+t
+(cid:31)
+where θ is the set of trainable network weights. It is also possible to use a feedfor-
+ward controller, in which case N is a function of χ t only; however, we use only where (cid:31) denotes element-wise multiplication and E is an N × W matrix of ones.
+recurrent controllers in this paper. Finally, the output vector yt is defined by adding The computation of the read and write weightings is detailed in the following
+υ t to a vector obtained by passing the concatenation of the current read vectors section.
+through the RW × Y weight matrix Wr Memory addressing. The system uses a combination of content-based addressing
+and dynamic memory allocation to determine where to write in memory, and a
+y t =υ t +Wr[r1 t ;…;r t R] combination of content-based addressing and temporal memory linkage to deter-
+mine where to read. These mechanisms, all of which are parameterized by the
+This arrangement allows the DNC to condition its output decisions on memory
+interface vectors defined in Methods section ‘Interface parameters’, are described
+that has just been read; it would not be possible to pass this information back to
+in detail below.
+the controller, and thereby use them to determine υ, without creating a cycle in
+Content-based addressing. All content lookup operations on the memory
+the computation graph. M ∈ RN×W use the following function
+Interface parameters. Before being used to parameterize the memory interactions,
+the interface vector ξ t is subdivided as follows: exp{D(k,M[i,⋅])β}
+C(M,k,β)[i]=
+ξ
+t
+= 
+
+
+
+k
+t
+r,1;…;k
+t
+r,R;βˆ
+t
+r,1 ;…;βˆ
+t
+r,R ;k
+t
+w;βˆ
+t
+w ;eˆt;vt;fˆ
+t
+1 ;…;fˆ
+t
+R ;gˆ
+t
+a;gˆ
+t
+w;πˆt 1;…;πˆt R 
+
+
+
+∑ j exp{D(k,M[j,⋅])β}
+where k ∈ RW is a lookup key, β ∈ [1, ∞ ) is a scalar representing key strength and
+The individual components are then processed with various functions to ensure D is the cosine similarity:
+that they lie in the correct domain. The logistic sigmoid function is used to con-
+strain to [0, 1]. The ‘oneplus’ function is used to constrain to [1, ∞ ), where u⋅v
+D(u,v)=
+u v
+oneplus(x)=1+ log(1+ex)
+and the softmax function is used to constrain vectors to S N, the N − 1-dimensional The weighting C(M, k, β) ∈ S N defines a normalized probability distribution over
+unit simplex the memory locations. In later sections, we will encounter weightings in Δ N that
+may sum to less than one, with the missing weight implicitly assigned to a null
+S N =
+
+
+
+ α∈RN:α i ∈[0,1], ∑
+N
+α i =1
+
+
+
+
+o
+p
+p
+er
+e
+f
+r
+o
+a
+r
+t
+m
+ion
+ed
+t h
+b
+a
+y
+t
+b
+d
+o
+o
+t
+e
+h
+s
+t
+n
+h
+o
+e
+t
+r
+a
+e
+c
+a
+c
+d
+e s
+a
+s
+n
+a
+d
+n
+w
+y
+r
+o
+i
+f
+t e
+th
+h
+e
+e
+l
+a
+o
+d
+c
+s
+a
+.
+tions. Content lookup operations are
+ i=1  Dynamic memory allocation. To allow the controller to free and allocate memory
+After processing we have the following set of scalars and vectors: as needed, we developed a differentiable analogue of the ‘free list’ memory alloca-
+tion scheme42, whereby a list of available memory locations is maintained by add-
+• R read keys {k t r,i∈RW;1≤i≤R}; ing to and removing addresses from a linked list. Denote by ut ∈ [0, 1]N the
+• R read strengths {β t r,i=oneplus(βˆ t r,i )∈[1,∞);1≤i≤R}; m co e n m tr o o r ll y e r u e sa m g i e t s v e a c s t e o t r o a f t f t r i e m e e g a t, t e a s n d f i d , e o f n in e e p u er 0 = re a 0 d . B h e e f a o d r , e t w ha r t it d in e g te t r o m m in e e m w o h ry e , t h th e e r
+t
+© 2016 Macmillan Publishers Limited, part of Springer Nature. All rights reserved.
+
+--- PAGE 8 ---
+reSeArcH Article
+t ψ a h n t e d ∈ m i [ s 0 o , d 1 s e ] t f N i r n r e e e c d p e r n a e s t s l e y n r ts e a b d y h lo o c w a t m io u n c s h c e a a n ch b l e o c f a r t e i e o d n . w T i h ll e n o m t e b m e f o re r e y d r b et y e t n h t e i o fr n e e v g e a c t t e o s r , f b t i t i = = L L t (cid:31) tw w t r t r − , − i ,i 1 1
+ψ t =∏ R (1−f t iw t r − ,i 1 ) w Sp h a e r r s e e w lin t r − , k i 1 m is a t t r h i e x . i T th h r e e l a in d k w m ei a g t h ri t x in is g N fr o × m N t a h n e d p t r h e e v r i e o f u o s r e ti r m eq e u -s ir te e p s . O(N2) resources
+i=1 in both memory and computation to calculate exactly. Although tolerable for the
+The usage vector can then be defined as experiments in this paper, this cost rapidly becomes prohibitive as the number of
+locations increases. Fortunately, the link matrix is typically very sparse and can
+ut =(ut−1 +w t w −1 −ut−1 (cid:31)w t w −1)(cid:31)ψ t be approximated with O(NlogN) computation cost and O(N) memory with no
+discernible loss in performance (see Extended Data Fig. 4 for an example).
+w
+h h a a
+h
+v v
+e
+e e
+r e
+b ju
+(cid:31)
+e s e
+d
+t n
+e
+b
+n
+r e e
+o
+e t
+t
+a n
+e
+i
+s
+n w
+e
+e r
+l
+d
+e
+it
+m
+b te y
+e
+n
+n
+t h
+t
+t
+-
+o e
+w
+. f
+i
+E r
+s
+e v
+e
+e e
+m
+g ry a
+u
+t
+l
+w e
+ti
+s
+p
+r ( i
+l
+t ψ
+i
+e
+c a
+t t [
+t
+o i
+i
+]
+o
+a ≈
+n
+l
+.
+1 o
+I
+)
+n
+c , a
+t
+a
+u
+t n i
+i
+o
+t
+d
+i
+n
+v
+w
+e
+i
+l
+n e
+y
+r
+,
+c e
+l
+r
+o
+e e
+c
+a i
+a
+t s h
+t
+e
+i
+e
+o
+s r
+n
+i a t
+s
+s l r
+a
+u e
+re
+a sa d
+u
+g y
+s
+e
+e
+i , n
+d
+u
+i
+u p
+f
+s
+t
+t e
+h
+o
+e
+o
+y
+a r and
+F o
+p
+r
+t−
+s
+1
+o
+,
+m
+se
+e
+tt
+f
+in
+ix
+g
+e
+a
+d
+l l
+K
+b
+,
+u
+w
+t
+e
+th
+f
+e
+ir
+K
+st
+h
+ca
+ig
+lc
+h
+u
+e
+l
+s
+a
+t
+t
+v
+e
+a
+s
+l
+p
+u
+a
+e
+r
+s
+s
+t
+e
+o
+v
+0
+e
+,
+c
+a
+t
+n
+o
+d
+rs
+d
+wˆ
+iv t
+w
+id
+a
+i
+n
+n
+d
+g t
+pˆ
+h t− e 1 r e
+b
+m
+y
+a
+s
+i
+o
+n
+r
+i
+t
+n
+in
+g
+g
+K
+w
+b t
+w
+y
+their sum to ensure that they sum to 1. This step has O(NlogN + K) computational
+maximum of 1, and usage can only be subsequently decreased (to a minimum of
+cost to account for the sort and O(N) memory cost. We then compute the sparse
+0 O o o ) f f n t t u c h h s e e e i n u l m g e t a h e t s h m a t e s u o b f s r r e e y e e d e l n o g l o d c a c a t e e a t t i s e t o i ; r o n t m h n s e i . i n T n e e l h d a e e s m , c t a h e e l n n l e o t d f c s r i a n e o t e g f i o u l o i n t s r t a d w r φ e e e r t i t ∈ g o h h f e Z t r u i N e n s f a i g o s g r a e d e t ; e b ∈ φ f o i n Δ t u [ e 1 n N d ] d , i b w e s y d h t s h i i o n c e h r r t t e h i i f n s e o g u r r e a s th e n t d h e g e e i t n o [ i d n 0 p i , d r c 1 e o e ] x s - . e o th l u e e t m e s r p e p n ar r t s o s e , d Lˆ l u i t n c c t k a w ˆ n m t w b a pˆ t e (cid:31) t r u i , x p w L d ˆ h t a i − t c e 1 h d f r r w e o q m it u h i t r O h e e s ( N p O r K ( e K v ) i 2 c o ) o u m s s t e t u m im si o n e r g - y s t a e n p d h c a o s m at p m ut o a s ti t o N n K . A n s o su n m -ze in ro g
+vide new locations for writing, is Lˆ t[i,j]=(1−wˆt w[i]−wˆt w[j])Lˆ t−1[i,j]+wˆt w[i]pˆ
+t−1
+[j]
+at[φ
+t
+[j]]=(1−ut[φ
+t
+[j]])∏
+i
+j
+=
+−
+1
+1 ut[φ
+t
+[i]] (1) a
+a
+n
+n
+d
+d
+t
+c
+h
+o
+e
+lu
+n
+m
+se
+n
+t t
+o
+in
+f
+g
+Lˆ
+a
+t
+l
+s
+l
+u
+e
+m
+le
+s
+m
+t
+e
+o
+n
+a
+t
+t
+s
+m
+of
+o
+Lˆ
+st
+t
+1
+th
+,
+a
+th
+t a
+is
+r e
+o p
+le
+e
+s
+r
+s
+a
+t
+t
+h
+io
+a
+n
+n
+g
+1
+u
+/K
+ar
+t
+a
+o
+n
+z
+te
+e
+e
+r
+s
+o .
+t h
+B
+a
+e
+t
+c
+L
+a
+ˆ
+u
+t
+s
+h
+e
+a
+e
+s
+a
+a
+c
+t
+h
+m
+ro
+o
+w
+st
+K non-zero elements per row and column and therefore at most NK non-zero
+If all usages are 1, then at = 0 and the controller can no longer allocate memory elements. Finally, the forward and backward weightings can be calculated with
+without first freeing used locations. The sort operation induces discontinuities at O(NK) computation cost and O(N) memory cost as follows:
+the points at which the sort order changes. We ignore these discontinuities when
+c W al r c it u e l a w ti e n ig g h t t h in e g g . r T a h d e ie c n o t n , a tr s o t l h le e r y c d a o n n w o r t i t s e e e to m n t e o w b l e y r a e l l l e o v c a a n te t d t o lo l c e a a t r i n o i n n s g , . or to loca- f t i =Lˆ tw t r, − i 1
+tions addressed by content, or it can choose not to write at all. First, a write content b t i=Lˆ t (cid:31) w t r, − i 1
+weighting c t w∈S N is constructed using the write key k t w and write strength β t w: Because K is a constant that is independent of N (in practice K = 8 appears to be
+c
+t
+w=C(Mt−1,k
+t
+w,β
+t
+w) sufficient, regardless of memory size), the complete sparse update is O(NlogN) in
+computation and O(N) in memory.
+c m t w i n is e i n a t w er r p it o e l a w te e d ig w ht i i t n h g t h w e t w a ∈ llo ∆ ca N ti : on weighting at defined in equation (1) to deter- R re e a a d d k w e e y i k gh r t , t i i ∈ ng R . E W a : ch read head i computes a content weighting c t r,i∈∆ N using a
+w t w=g t w g t aat +(1−g t a)c t w  (2) c
+t
+r,i=C(Mt,k
+t
+r,i,β
+t
+r,i)
+w is h th e e re w g r t a it ∈ e g [ a 0 t , e 1 . ] I i f s t h th e e w a r l i l t o e c g a a ti t o e n is g 0 a , t t e h g en ov n e o r t n h i i n n g g t i h s e w i r n it t t e e r n p , o r l e a g t a io rd n l e a s n s d o f g t t w he ∈ o [ t 0 h , e 1 r ] E am ac o h n g re t a h d e b h a e c a k d w a a l r s d o w re e c ig e h iv ti e n s g a b r i e , t a h d e m fo o rw de a r v d e w ct e o i r g h π t t i in ∈ g S f 3 i , a w nd h i t c h h e i c n o t n e t r e p n o t l r a e t a e d s
+write parameters; it can therefore be used to protect the memory from unnecessary t t
+modifications. weighting c t r,i, thereby determining the read weighting w t r,i∈S 3:
+Temporal memory linkage. The memory allocation system defined above stores
+no information about the order in which the memory locations are written to. w t r,i=π t i[1]b t i+π t i[2]c t r,i+π t i[3]f t i
+However, there are many situations in which retaining this information is useful: If πi[2] dominates the read mode, then the weighting reverts to content lookup
+f o o r r d e e r x . a W m e p t le h , e w re h fo e r n e a u s s e e q a u t e e n m c p e o o r f a i l n li s n tr k u m ct a io tr n i s x m Lt u ∈ s t [ 0 b , e 1 r ] e N c × o N r d to e d k e a e n p d t r r a e c tr k i e o v f e c d o n in - u in s i t n h t g e k o r t r ,i d . e If r π th t i[ e 3 y ] w do e m re i w na r t i e tt s e , n th , e ig n n t o h r e i n re g a t d h h e e r a e d a d it e k r e a y t . e I s f t π hr i o [1 u ] g d h o m m e i m na o t r e y s, l t o h c e a n ti o th n e s
+secutively modified memory locations (Fig. 1d). t
+read head iterates in the reverse order.
+Lt[i, j] represents the degree to which location i was the location written to
+Comparison with the neural Turing machine. The neural Turing machine16
+after location j, and each row and column of Lt defines a weighting over locations:
+(NTM) was the predecessor to the DNC described in this work. It used a similar
+Lt[i, ·] ∈ Δ N and Lt[·, j] ∈ Δ N for all i, j and t. To define Lt, we require a precedence architecture of neural network controller with read–write access to a memory
+weighting pt ∈ Δ N, where element pt[i] represents the degree to which location
+matrix, but differed in the access mechanism used to interface with the mem-
+i was the last one written to. pt is defined by the recurrence relation
+ory. In the NTM, content-based addressing was combined with location-based
+p =0 addressing to allow the network to iterate through memory locations in order of
+0 their indices (for example, location n followed by n + 1 and so on). This allowed
+ 
+p t =     1−∑w t w[i]   p t−1 +w t w t m h e e m n o et r w y. o H rk o w to e v s e to r, r t e h a e n re d w r e e r tr e i s e e v v e e t r e a m l d p r o a r w a b l a s c e k q s u . e F n ir c s e t s , t i h n e c N on T t M ig u h o a u s s n o b l m oc e k c s h o a- f
+i
+nism to ensure that blocks of allocated memory do not overlap and interfere—a
+where w t w is the write weighting defined in equation (2). Every time a location is basic problem of computer memory management. Interference is not an issue for
+modified, the link matrix is updated to remove old links to and from that location. the dynamic memory allocation used by DNCs, which provides single free loca-
+New links from the last-written location are then added. We use the following tions at a time, irrespective of index, and therefore does not require contiguous
+recurrence relation to implement this logic: blocks. Second, the NTM has no way of freeing locations that have already been
+written to and, hence, no way of reusing memory when processing long sequences.
+L0[i,j]=0 ∀i,j
+This problem is addressed in DNCs by the free gates used for de-allocation. Third,
+Lt[i,i]=0 ∀i sequential information is preserved only as long as the NTM continues to iterate
+Lt[i,j]=(1−w
+t
+w[i]−w
+t
+w[j])Lt−1[i,j]+w
+t
+w[i]p
+t−1
+[j] through consecutive locations; as soon as the write head jumps to a different part
+of the memory (using content-based addressing) the order of writes before and
+Self-links are excluded (the diagonal of the link matrix is always 0) because it is after the jump cannot be recovered by the read head. The temporal link matrix
+unclear how to follow a transition from a location to itself. The rows and columns used by DNCs does not suffer from this problem because it tracks the order in
+of Lt represent the weights of the temporal links going into and out from particular which writes were made.
+memory slots, respectively. Given Lt, the backward weighting b t i∈∆ N and forward bAbI task descriptions. The bAbI dataset26 comprises a set of 20 synthetic
+weighting f t i ∈∆ N for read head i are defined as question answering tasks that are designed to test different aspects of logical
+© 2016 Macmillan Publishers Limited, part of Springer Nature. All rights reserved.
+
+--- PAGE 9 ---
+Article reSeArcH
+reasoning. Because the bAbI data are programmatically generated, and the code were size 90. The graph networks had 90 output units, corresponding to nine
+is publicly available, multiple versions of the data can be used. For our exper- separate softmax distributions over the ten digits. The log-probability of correctly
+iments we used the en-10k subset of the data available for download from predicting an entire target triple was therefore the sum of the log-probabilities
+http://www.thespermwhale.com/jaseweston/babi/tasks_1-20_v1-2.tar.gz. For each of correctly classifying each of the nine digits. Given input sequence x, network
+of the 20 tasks, the data comes partitioned into a training set with 10,000 questions output sequence y and target sequence z, all of length T, this yields the following
+and a test set with 1,000 questions21. The bAbI tasks are designed around stories cross-entropy loss function:
+that may contain more than one question; we treated each story as a separate
+s
+a
+e
+t
+q
+im
+ue
+e
+n
+.
+c
+A
+e
+f
+a
+te
+n
+r
+d
+r
+p
+e
+r
+m
+es
+o
+e
+v
+n
+in
+te
+g
+d
+a
+i
+l
+t
+l
+t
+n
+o
+u
+t
+m
+he
+b
+n
+e
+e
+r
+t
+s
+w
+, s
+o
+p
+r
+l
+k
+it
+i
+t
+n
+in
+t
+g
+h
+t
+e
+h
+f
+e
+o r
+r
+m
+em
+o
+a
+f
+i
+w
+ni
+o
+n
+r
+g
+d
+t
+v
+e
+e
+x
+c
+t
+t
+i
+o
+n
+r
+t
+s
+o
+, o
+w
+n
+o
+e
+r
+w
+ds
+o
+,
+r
+a
+d
+n
+a
+d
+t
+L(x,z)=−∑
+T 
+
+
+A(t)∑
+9
+log[Pr(zd|yd)]
+
+
+
+ t t 
+converting all words to lower case, there were 156 unique words in the lexicon and t=1 d=0 
+three punctuation symbols: ‘ . ’ , ‘?’ and ‘-’, the last of which we added to indicate
+points in the input sequence where outputs were required. Each word was therefore where zd is the target at time t for digit d, yd is the softmax distribution over digit
+t t
+represented as a size-159 one-hot vector, and the network outputs were size-159 d returned by the network at time t, and A(t) is an indicator function whose value
+softmax distributions. The sentences were separated by full stop characters, and was 1 during answer phases (that is, when predictions were required of the net-
+all questions were delimited by a question mark followed by as many dash charac- work) and 0 otherwise.
+ters as there were words in the answer to that question. For example, a story from The network’s predictions were determined by taking the mode of the output
+the ‘Counting and Lists/Sets’ task containing five questions was presented as the distribution; the network indicated that it had completed an answer by outputting
+following input sequence of 69 word tokens: a specially reserved termination pattern. For all tasks apart from shortest-path task,
+performance was evaluated as the fraction of sequences for which all target vectors
+mary journeyed to the kitchen. mary moved to the bedroom. john went
+were correctly predicted. The metric used for the shortest-path task is described
+back to the hallway. john picked up the milk there. what is john carrying ?
+in Methods section ‘Structured prediction’.
+- john travelled to the garden. john journeyed to the bedroom. what is john
+Random graph generation. For all graph tasks, the graphs used to train the net-
+carrying ? - mary travelled to the bathroom. john took the apple there. what
+works were generated by uniformly sampling a set of two-dimensional points
+is john carrying ? - -
+from a unit square, each point corresponding to a node in the graph. For each
+The answers required at the ‘− ’ symbols, grouped by question into braces, are node, the K nearest neighbours in the square were used as the K outbound con-
+nections, with K independently sampled from a uniform range for each node. The
+{milk}, {milk}, {milk apple}
+numerical labels for the nodes were chosen uniformly from the range [0, 999].
+The network was trained to minimize the cross-entropy of the softmax outputs For the shortest-path and traversal problems, the edge labels were unique per
+with respect to the target words; the outputs during time-steps when no target was outbound node, but non-unique across the graph. This meant that the network
+present were ignored. For each step where a target was present, the most probable had to search the graph for a node and edge label simultaneously to pinpoint a
+word in the network’s output distribution was selected as its answer. The network particular triple, which made following paths much more difficult than if it had
+was considered to have correctly replied to a question only if it got all of the tar- to search for only an edge. For a graph with N nodes, N unique numbers in the
+get words correct (for example, it had to answer “milk” then “apple” to get the range [0, 999] were initially drawn. Then, the outbound edge labels for each node
+final question in the above story right). Following previous work, we evaluated were chosen at random from those N numbers. The edge labelling procedure for
+our networks using the per-task ‘question error rate’ (the fraction of incorrectly the inference task is described below.
+answered questions). Traversal. A path on the graph was defined on the basis of a random walk from
+For each task, we removed approximately 10% of the stories and added them to a random start node. At the query phase, the first input to the network was an
+a validation set. All of the remaining stories were gathered together into a single incomplete triple with the destination unspecified (source label, edge label, _). The
+training set from which a random story was drawn for each training sample. No input triples for the rest of the query contained only edge labels, with source and
+distinction was drawn between the different tasks during training, and no explicit destination unspecified. During the answer phase, no inputs were presented and
+information was provided to the network to indicate which task the current story the target output was the sequence of complete triples along the path. To succeed,
+was drawn from. We performed a grid search over experimental hyper-parameters the network had to infer the destination of each triple, and remember it as the
+for all three architectures, and kept the two settings that returned (1) the lowest implicit source for the next triple.
+average question error rate over the validation set and (2) the single network with Shortest path. In the query phase, a single incomplete triple was presented, defining
+the lowest validation question error rate. We also used the validation error rate the start and end nodes (source, _, destination). Each query was followed by a
+as the early stopping criterion during training (although in practice we did not 10-time-step planning phase, allowing the network to perform computations and
+observe a substantial increase in validation error due to overfitting for any of the to attempt to determine a shortest path. During the answer phase, the network
+networks). emitted a sequence of triples corresponding to a path. Unlike the traversal task,
+Using word tokens led to much longer sequences than previous work on bAbI, it also received input triples during the answer phase, indicating the actions cho-
+for which sentence embeddings were used as input21,26. The distinction is notable in sen on the previous time-step. This makes the problem a ‘structured prediction’
+that it places greater stress on the long-range memory capacity of the models, and problem, which we explain further in Methods section ‘Structured prediction’. As
+in that the word-level approach is easier to generalize to natural language, which described therein, the input triples were sometimes the network’s own predictions
+has far greater variability in sentence length and structure than the bAbI data. from the previous time-step, and during training were sometimes provided by an
+For complete results and hyper-parameters on all the bAbI tasks for DNC, NTM optimal planner recalculating a shortest path to the end node. To ensure that the
+and LSTM, see Extended Data Tables 1 and 2. network always moved to a valid node, the output distribution was renormalized
+Graph task descriptions. The graph tasks were supervised learning problems over the set of possible triples outgoing from the current node. The performance
+with each training example consisting of an input vector sequence and corre- measure was the fraction of sequences for which the network found a minimally
+sponding target vector sequence. Each vector encoded a triple consisting of a short path.
+source label, an edge label and a destination label. All labels were represented Inference. We define a ‘relation’ to be a concatenation of two or more edge labels
+as numbers between 0 and 999, with each digit represented as a 10-way one-hot that is given a distinct label; the label therefore acts as a kind of alias for the
+encoding. We reserved a special ‘blank’ label, represented by the all-zero vector sequence. For the inference task, numbers from 0 to 9 indicated single edge labels
+for the three digits, to indicate an unspecified label. Each label required 30 input and numbers from 10 to 410 indicated relation labels. The relations were generated
+elements, and each triple required 90. The sequences were divided into multiple as unique sequences of single edges of length 2–5, with 100 distinct sequences for
+phases: first a graph description phase, then a series of query and answer phases; in each length. The sequences and labels were fixed for all networks trained on the
+some cases the query and answer were separated by an additional planning phase task. During the query phase, an incomplete triple was presented, consisting of a
+with no input, during which the network was given time to compute the answer. start node and a relation label (start node, relation label, _). This was followed by
+During the graph description phase, the triples defining the input graph were a 10-time-step planning phase. The single target vector during the answer phase
+presented in random order. Target vectors were present during only the answer was the completed triple from the query: (start node, relation label, end node).
+phases. The input vectors had additional binary channels alongside the triples To solve the problem the network had to infer the relation sequence from its label
+to indicate when transitions between the different phases occurred, and when a and perform an implicit traversal along that sequence during the planning phase
+prediction was required of the network (this channel remained active throughout to reach the destination. The relations were never passed as input the network, so
+the answer phase). In total, the input vectors were size 92 and the target vectors it had to infer them from error signals alone.
+© 2016 Macmillan Publishers Limited, part of Springer Nature. All rights reserved.
+
+--- PAGE 10 ---
+reSeArcH Article
+S p t r r e u di c c t t u io re n d p p ro r b ed le i m ct 4 i 3 o ,4 n 4 . , b T e h c e a u sh se o r th te e s t o - u p t a p t u h t t d a e sk ci s c i a o n n b s e o f c t o h n e s i n d e e t r w e o d r a k s d t e r t u e c r t m ur in ed e ∇θJ(π)≈ 1 L ∑ L ∑ T ∇θlog  π(a t l|o 1 l,…,o t l;θ)  
+the sequence of nodes traversed on the graph and, hence, influence the future l=1t=1
+d th e e c i l s it io er n a s t u o r f e n o et n w t o h r i k s t a o n p d i c t , h w e e p r r e e d fe i r c t t i o o n th c e o o s u ts t . p T u o t b d r is in tr g i b n u o t m io e n n o c f l a t t h u e r e n i e n tw li o n r e k w a i s t h a      E    ∑ T r(sl τ ,al τ ) s t l,a t l   −E    ∑ T r(sl τ ,al τ ) s t l       
+policy π(a | s) over the actions a available to the network in state s. The state incor-
+ τ≥t  τ≥t 
+p n o et r w at o e r s k b o it t s h e l t f h . e T n h o e d a e c t c i u o r n r s e n a t r l e y t o h c e c u o p u i t e g d o i b n y g t h ed e g n e e s t w fr o o r m k a t n h d e c th u e r r l e at n e t n n t o st d a e te ( o re f c t a h l e l The quantity E     ∑T τ≥t r(sl τ ,al τ )|s t l,a t l     −E     ∑T τ≥t r(sl τ ,al τ )|s t l     , known as the
+that the output distribution is renormalized over the allowed triples after each advantage, represents the amount that the value changes from taking action al in
+t
+move). Following policy π, the induced distribution over states at time-step t is state sl. Using the value network, we can approximate the advantage using the
+denoted ρπ(s). We denote the optimal policy as π*(a | s) with corresponding state tempo t ral difference error
+t
+distribution ρ⁎(s). The conventional supervised loss is
+t
+T
+δ
+t
+l=r(s
+t
+l,a
+t
+l)+Vπ(o
+1
+l,…,o
+t
+l
++1
+;φ)−Vπ(o
+1
+l,…,o
+t
+l;φ)
+Jsup(π)=∑Est~ρ t ⁎(s)l[π⁎(⋅|st),π(⋅|st)] We use a slight modification of this expression for the advantage47 to reduce the
+t=1 bias in the value networks. The advantage is estimated using a geometric series of
+where l[π⁎(⋅|st),π(⋅|st)]=−∑ a π⁎(a|st)log[π(a|st)] is the cross-entropy loss. temporal difference errors ∑ τ≥t λτ−tδ τ l, where λ is a parameter that controls a
+π*(a | st) is a delta function on the action that corresponds to the first step along bias-variance trade-off between estimates based on the empirical return versus the
+one possible shortest path from the current node to the destination (there may parametric value function. Finally, the policy gradient estimate is
+be more than one). If the state distributions ρ⁎(s) and ρπ(s) are dissimilar, then
+m
+tas
+in
+k
+i
+o
+m
+b
+i
+j
+z
+e
+i
+c
+n
+t
+g
+iv
+t
+e
+he supervised loss function does n t ot necess t arily transfer to the true ∇θJ(π)≈ 1
+L
+∑ L ∑ T ∇θlog[π(a
+t
+l|o
+1
+l,…,o
+t
+l;θ)]∑ T λτ−tδ
+τ
+l
+l=1t=1 τ=t
+T Mini-SHRDLU. The Mini-SHRDLU board consists of an S × S grid, each square
+Jtask(π)=∑Est~ρt π(s)l[π⁎(⋅|st),π(⋅|st)]
+of which is either empty or filled with a numbered block. We report experiments
+t=1 with S = 3 and a maximum of 6 blocks on the board, uniquely numbered 1–6. To
+where the actions are sampled from the network policy and the states are therefore generate a problem instance, we first randomly place the blocks on the board so
+drawn from ρπ(s). To counteract this problem, we follow a similar approach to the that a block always rests on top of the highest block previously placed in its column.
+DAGGER algo t rithm43, which constructs a mixture policy πβ(a | s) = βπ*(a | s) + A sequence of G goals is generated, each composed of a number of constraints. An
+(1 − β)π(a | s) with parameter β and induced state distribution ρβ(s). To simplify example of a single goal is: block 1 is below block 4; block 2 is to the right of block
+t
+the implementation, we used a batch size of 1 and trained by taking a stochastic 5; block 3 is above block 4; and so on. Each goal represents a label for a set of con-
+gradient of straints on the adjacency relations of the blocks. A goal can be ambiguous in that
+it does not describe a unique board configuration. For example, a goal consisting
+T of only “block 1 is left of block 2” allows any configuration of the unstated blocks.
+Jβ(π)=∑E st~ρ t β(s) l[π⁎(⋅|st),π(⋅|st)] Each goal is chosen by constructing a tree search of all configurations of the board
+t=1
+that are at minimum D moves away from the starting board, randomly selecting
+where the actions are sampled from the network with probability (1 − β) and from one of these configurations, and then sampling a set of constraints on the chosen
+the optimal policy with probability β. To make transitions driven by the network board configuration. Redundant conditions such as “block 1 is left of block 2; block
+output, all possible edges connected to a source node are assigned a probability, 2 is right of block 1” are pruned, as are constraints that are already fulfilled by the
+and the most likely edge is chosen. initial state of the board.
+Reinforcement learning. Most reinforcement learning problems are sequential The goals are presented sequentially to the policy network during which time
+decision problems: the environment is in state s and each action a issued by the the policy cannot make any moves on the board. Each constraint in the goal is
+agent causes a transition of the environment state on the basis of the environment presented in one time-step using a place-coded vector: (first block, adjacency rela-
+dynamics. We consider episodic problems whereby the agent acts in the envi- tion, second block). For example, (100000, 1000, 010000) represents the constraint
+ronment for T steps before the environment is reset and a new episode begins. “block 1 is above block 2”. In addition, each constraint is labelled with the goal of
+The agent thus acts to create a time series s1, a1, s2, a2, s3, a3, …, sT, aT. A reward which it is a part: (goal name, first block, adjacency relation, second block), where
+function that defines the goal of the problem is given as a function of a state and we have chosen to let the goals be 1 of 26 possible letters designated by one-hot
+an action: r(st, at). The goal of the agent is to maximize the total expected reward encodings; that is, A = (1, 0, …, 0), Z = (0, 0, …, 1) and so on. The board is rep-
+over an episode. The architecture of the reinforcement learning agent presented resented as a set of place-coded representations, one for each square. Therefore,
+here contains two DNC networks: a policy network that selects an action and a (000000, 100000, …) designates that the bottom, left-hand square is empty, block
+value network that estimates the expected future reward given the policy network 1 is in the bottom centre square, and so on. The network also sees a binary flag that
+and current state. represents a ‘go cue’. While the go cue is active, a goal is selected from the list of
+The policy specifies a parametric mapping from state observations to a goals that have been shown to the network, its label is retransmitted to the network
+probability distribution over actions: a ∼ π(· | s; θ), where θ denotes the policy for one time-step, and the network can begin to move the blocks on the board. All
+parameters. The total expected reward of the policy over an episode is told, the policy observes at each time-step a vector with features (goal name, first
+J(π)=E[∑T t=1 r(st,at)|π]. In the context of Mini-SHRDLU, the policy-network block, adjacency relation, second block, go cue, board state). Up to 10 goals with
+DNC observes the environment states by receiving an observation sequence 6 constraints each can be sent to the network before action begins.
+o1, o2, …, ot, one step at a time and conditions its action on the sequence seen so Once the go cue arrives, it is possible for the policy network to move a block
+far: π(· | o1, …, ot; θ). The value-network DNC tries to predict the sum of future from one column to another or to pass at each turn. We parameterize these actions
+rewards for this policy given the current history of observations: V π(o1, …, ot; φ), using another one-hot encoding so that, for a 3 × 3 board, a move can be made
+where φ comprises its parameters. from any column to any other; with the pass move, there are therefore 7 moves.
+The learning algorithm for the value network is conceptually simpler than that The policy’s outputs define the probability of selecting each one of these actions,
+of the policy network. The value network learns by supervised regression to predict and a move is sampled at each time-step, which changes the board configuration
+the sum of future rewards. After a mini-batch of L episodes, the value network correspondingly. The policy has a fixed number of moves to make progress on
+updates its parameters φ using gradient descent on the loss function the board until the episode ends. In this setting, we can determine the minimum
+number of moves L required to solve the problem. We found that the early stages
+C(φ)=
+2
+1
+L
+∑ L ∑ T ∑ T r(s
+τ
+l,a
+τ
+l)−Vπ(o1,…,oτ;φ) 2 o
+in
+f
+s
+l
+t
+e
+r
+a
+u
+r
+c
+n
+t
+i
+i
+n
+o
+g
+n
+b
+s,
+e
+i
+n
+n
+e
+t
+f
+o
+it
+t
+e
+a
+d
+l
+f
+a
+r
+l
+o
+lo
+m
+w
+g
+in
+iv
+g
+i n
+L
+g
++
+th
+Δ
+e
+L
+p o
+m
+li
+o
+c
+v
+y
+e
+a
+s
+n
+w
+u
+i
+m
+th
+b
+Δ
+er
+L
+o
+f
+f
+i x
+ex
+ed
+tr a
+a t
+s t
+6
+e p
+in
+s
+t
+t
+h
+o
+e
+s a
+r
+t
+e
+i
+p
+sf
+o
+y
+r t
+t
+e
+h
+d
+e
+l=1t=1 τ=t
+experiments. This parameter did not need to be fine-tuned.
+The action distribution of the policy network π(at | o1, …, ot; θ) is a softmax over The reward function for the policy equalled the number of constraints in the
+a discrete set of actions. We use a policy gradient method to optimize the policy chosen goal that are currently satisfied minus a small cost for making invalid moves
+parameters45,46. After each mini-batch of L episodes, the policy parameter gradient such as picking a block up from a column without any blocks. There was also a
+direction to ascend J(π) is penalty for achieving the goal configuration, but then undoing it. In addition, the
+© 2016 Macmillan Publishers Limited, part of Springer Nature. All rights reserved.
+
+--- PAGE 11 ---
+Article reSeArcH
+policy received an extra reward that promoted higher-entropy output distributions training and test data. The error bars represent 5–95 percentile accuracy on the
+and encouraged exploration45. test data partitions. In Fig. 4e, two-dimensional t-SNE48 dimensionality reduction
+Curriculum learning. We found that curriculum learning28 was essential for all of is performed on those same averaged vectors. Each data point (only half of which
+our experiments apart from those on the bAbi dataset. For each task, we selected are shown to reduce crowding) is marked with the relevant goal label.
+a set of task parameters governing the complexity of the problem. For example, Optimization. For all experiments, results are reported on the basis of statis-
+for the traversal task, these parameters were the number of nodes in the graph, tics gathered from 20 randomly initialized networks that share the same set of
+the number of outgoing edges from each node and the number of steps in the hyper-parameters. The hyper-parameters were selected from large grid searches,
+traversal. We built a linear sequence of lessons in which the complexity of the and are listed for each experiment in Extended Data Table 2. All networks were
+task increases along at least one task parameter with each new lesson. Consistent trained using a single machine version of Downpour SGD49. Each CPU in the
+with the observations of Zaremba and Sutskever29, we found in some tasks that machine runs a ‘worker’ process with its own copy of the model parameters. The
+performance on earlier lessons degraded if all training exemplars were drawn only workers generate episodes and compute gradients of the loss function with respect
+from the current lesson. We followed their strategy to remedy this effect and drew to the network weights using backpropagation through time50. The gradients are
+10% of exemplars uniformly from earlier lessons on the traversal, inference and combined with a single central instance of the RMSProp optimization algorithm51.
+Mini-SHRDLU problems. (Shortest-path lessons effectively include earlier lessons Once a worker computes gradients for an episode, it acquires a mutual exclusion
+as proper subsets of the final lessons, so this is unnecessary.) After a predefined lock guaranteeing that no other process is accessing the optimizer. The gradients
+number of gradient updates, we ran a batch evaluation of the success of the network are used to perform one optimization step, modifying the central master copy of
+on the current problem distribution. During evaluation in each episode, on the the parameters, and the new parameter values are copied back to the worker. The
+graph problems, we deterministically sampled the most probable outputs of the optimizer updates a single global copy of its state, which for RMSProp includes a
+network (modal sampling). For the graph problems besides shortest-path, if 90% of moving average of gradient magnitudes. Finally, the mutual exclusion is released,
+the episodes were solved optimally, the lesson was completed. (Shortest-path lesson allowing a different worker to perform a gradient update. In the backpropaga-
+completion required 80% of network paths to be no more than one step longer than tion-through-time backward pass, the gradient with respect to the LSTM controller
+the shortest path.) In the Mini-SHRDLU problem, the lesson was marked complete activations was clipped element-wise to the range [− 10, 10].
+if 85% of the relevant goal constraints were satisfied on average over the batch. The Code Availability. A public version of the code will be made available within
+curricula for the tasks are presented in Extended Data Tables 3–6. 6 months, linked to from our website http://www.deepmind.com.
+Network analysis. In Fig. 3a, the y-axis labels are the input triples provided at
+each time-step, written beside the location with strongest write magnitude. The 41. Graves, A., Mohamed, A.-r. & Hinton, G. Speech recognition with deep recurrent
+locations were re-ordered spatially on the basis of the writing order. Figure 3d, e neural networks. In IEEE International Conference on Acoustics, Speech and
+Signal Processing (eds Ward, R. et al.) 6645–6649 (Curran Associates, 2013).
+is produced on the basis of the output of a trainer classifier, called the decoder. A
+42. Wilson, P. R., Johnstone, M. S., Neely, M. & Boles, D. Dynamic storage allocation:
+logistic regression classifier was built from a dataset of 40,000 data points in which a survey and critical review. In Memory Management (ed. Baler, H. G.) 1–116
+write vectors were treated as classifier inputs, with the input triples from the same (Springer, 1995).
+time-step taken to be the classifier targets, and treating source, destination and 43. Ross, S., Gordon, G. J. & Bagnell, J. A. A reduction of imitation learning and
+edges as independent outputs. The digits of each element were decoded inde- structured prediction to no-regret online learning. In Proc. Fourteenth
+International Conference on Artificial Intelligence and Statistics (eds Gordon, G.
+pendently, so that a total of nine 10-way classifiers were used to decode each triple.
+et al.) 627–635 (JMLR, 2010).
+The classifier was trained with an L2 regularization of the classifier weights with 44. Daumé, H. III, Langford, J. & Marcu, D. Search-based structured prediction.
+coefficient 0.1. Output classes that were irrelevant to the episode were excluded Mach. Learn. 75, 297–325 (2009).
+from the diagram. Figure 3d was produced by applying the classifier to the content 45. Williams, R. J. Simple statistical gradient-following algorithms for connectionist
+lookup key; Fig. 3e was produced by applying the classifier to the contents of the reinforcement learning. Mach. Learn. 8, 229–256 (1992).
+46. Sutton, R. S., McAllester, D., Singh, S. P. & Mansour, Y. Policy gradient methods
+memory location with the highest read weighting.
+for reinforcement learning with function approximation. In Advances in Neural
+For Fig. 4d, classifiers were trained on a dataset of 800 Mini-SHRDLU epi-
+Information Processing Systems Vol. 12 (eds Solla, S. A. et al.) 1057–1063 (MIT
+sodes. On each episode, the locations to which the read heads assign more than a Press, 1999).
+threshold of 0.01 weighting at the time of the query were considered relevant to the 47. Schulman, J., Moritz, P., Levine, S., Jordan, M. & Abbeel, P. High-dimensional
+selected goal. These locations were noted, and their contents at the time when they continuous control using generalized advantage estimation. Preprint at http://
+were last written (determined by the same numerical threshold) were uniformly arxiv.org/abs/1506.02438 (2015).
+48. van der Maaten, L. & Hinton, G. Visualizing data using t-SNE. J. Mach. Learn.
+averaged into a single vector. The vectors therefore encapsulate an average of the
+Res. 9, 2579–2605 (2008).
+locations containing the goal directly after the goal has been written to memory, 49. Dean, J. et al. Large scale distributed deep networks. In Advances in Neural
+but potentially many (up to about 60) time-steps before the first action occurs. The Information Processing Systems Vol. 25 (eds Pereira, F. et al.) 1223–1231
+vectors were used as inputs to train the classifier to predict the first five actions (Curran Associates, 2012).
+following the query; that is, action 1 occurs at tquery + 0, action 2 occurs at tquery + 1 50. W
+Pr
+e
+o
+r
+c
+b
+.
+o
+IE
+s
+E
+,
+E
+P.
+7
+J
+8
+. B
+, 1
+ac
+5
+k
+5
+p
+0
+r
+–
+o
+1
+p
+5
+a
+6
+g
+0
+at
+(
+io
+1
+n
+9 9
+th
+0
+r
+)
+o
+.
+ugh time: what it does and how to do it.
+and so on. The classifiers use logistic regression with an L2 regularization
+51. Tieleman, T. & Hinton, G. RmsProp: divide the gradient by a running average of its
+coefficient of 1. The action-frequencies baseline predicts each of the action choices recent magnitude. Lecture 6.5 of Neural Networks for Machine Learning
+on the basis of its frequency at that time-step after the query. Classifier accuracy (COURSERA, 2012); available at http://www.cs.toronto.edu/∼ tijmen/csc321/
+is determined by constructing 100 80%/20% random splits of the episodes into slides/lecture_slides_lec6.pdf.
+© 2016 Macmillan Publishers Limited, part of Springer Nature. All rights reserved.
+
+--- PAGE 12 ---
+reSeArcH Article
+Extended Data Figure 1 | Dynamic memory allocation. We trained whether the memory allocation system would be used to free and re-use
+the DNC on a copy problem, in which a series of 10 random sequences locations as needed. As shown by the read and write weightings, the
+was presented as input. After each input sequence was presented, it was same locations are repeatedly used. The free gate is active during the read
+recreated as output. Once the output was generated, that input sequence phases, meaning that locations are deallocated immediately after they are
+was not needed again and could be erased from memory. We used a DNC read from. The allocation gate is active during the write phases, allowing
+with a feedforward controller and a memory of 10 locations—insufficient the deallocated locations to be re-used.
+to store all 50 input vectors with no overwriting. The goal was to test
+© 2016 Macmillan Publishers Limited, part of Springer Nature. All rights reserved.
+
+--- PAGE 13 ---
+Article reSeArcH
+Extended Data Figure 2 | Altering the memory size of a trained the number of memory locations required to solve the task, reflecting
+network. A DNC trained on the traversal task with 256 memory locations our earlier analysis (Fig. 3) that suggests that DNC writes each triple to a
+was tested while varying the number of memory locations and graph separate location in memory. The network appears to exploit all available
+triples. The heat map shows the fraction of traversals of length 1–10 memory, regardless of how much memory it was trained with. This
+performed perfectly by the network, out of a batch of 100. There is a supports our claim that memory is independent of processing in a DNC,
+clear correspondence between the number of triples in the graph and and points to large-scale applications such as knowledge graph processing.
+© 2016 Macmillan Publishers Limited, part of Springer Nature. All rights reserved.
+
+--- PAGE 14 ---
+reSeArcH Article
+Extended Data Figure 3 | Probability of achieving optimal solution. a, DNC. With 10 goals, the performance of a DNC network with respect to
+satisfying constraints in minimal time as the minimum number of moves to a goal and the number of constraints in a goal are varied. Performance was
+highest with a large number of constraints in each goal. b, The performance of an LSTM on the same test.
+© 2016 Macmillan Publishers Limited, part of Springer Nature. All rights reserved.
+
+--- PAGE 15 ---
+Article reSeArcH
+Extended Data Figure 4 | Effect of link matrix sparsity on performance. The error rate is the fraction of sequences copied with no mistakes out
+We trained the DNC on a copy problem, for which a sequence of length of a batch of 100. There does not appear to be any systematic difference
+1–100 of size-6 random binary vectors was given as input, and an identical between no sparsity and K = 5. We observed similar behaviour for values
+sequence was then required as output. A feedforward controller was of K between 2 and 20 (plots omitted for clarity). The task cannot easily
+used to ensure that the sequences could not be stored in the controller be solved without the link matrix because the input sequence has to be
+state. The faint lines show error curves for 20 randomly initialized runs recovered in the correct order. Note the abrupt drops in error for the
+with identical hyper-parameters, with link matrix sparsity switched off networks with link matrices: these are the points at which the system
+(pink), sparsity used with K = 5 (green) and with the link matrix disabled learns a copy algorithm that generalizes to longer sequences.
+altogether (blue). The bold lines show the mean curve for each setting.
+© 2016 Macmillan Publishers Limited, part of Springer Nature. All rights reserved.
+
+--- PAGE 16 ---
+reSeArcH Article
+extended data table 1 | bAbI best and mean results
+To compare with previous results we report error rates for the single best network across all tasks (measured on the validation set) over 20 runs. The lowest error rate for each task is shown in bold.
+Results for MemN2N are from ref. 21; those for DMN are from ref. 20. The mean results are reported with ± s.d. for the error rates over all 20 runs for each task. The lowest mean error rate for each task
+is shown in bold.
+© 2016 Macmillan Publishers Limited, part of Springer Nature. All rights reserved.
+
+--- PAGE 17 ---
+Article reSeArcH
+extended data table 2 | hyper-parameter settings for bAbI, graph tasks and Mini-ShrdLU
+In bAbI experiments, for all models (LSTM, NTM and DNC) we kept the hyper-parameter settings that (1) gave the lowest average validation error rate and (2) gave the single best validation error rate for
+a single model. For LSTM and NTM the same setting was best for both criteria, but for DNC two different settings were found (DNC1 for criterion 1 and DNC2 for criterion 2).
+© 2016 Macmillan Publishers Limited, part of Springer Nature. All rights reserved.
+
+--- PAGE 18 ---
+reSeArcH Article
+extended data table 3 | Curriculum results for graph traversal
+Parentheses represent ranges: (lower bound, upper bound). ‘Test’ is the accuracy (mean ± s.d.) on the test problem (here, the London Underground map) after the completion of each intermediate
+lesson. Evaluation of lesson completion occurs after every group of 100 batches has been processed on the main worker thread. The completion threshold is met if 90% of modal samples (most likely
+output of the network) are correct. ‘Final’ (mean ± s.d.) is the accuracy on the final lesson of the curriculum after the completion of each intermediate lesson.
+© 2016 Macmillan Publishers Limited, part of Springer Nature. All rights reserved.
+
+--- PAGE 19 ---
+Article reSeArcH
+extended data table 4 | Curriculum results for inference
+Parentheses represent ranges: (lower bound, upper bound). Evaluation of lesson completion occurs after every group of 100 batches has been processed on the main worker thread. The completion
+threshold is met if 90% of modal samples (most likely output of the network) are correct. ‘Test’ and ‘Final’ as in Extended Data Table 3.
+© 2016 Macmillan Publishers Limited, part of Springer Nature. All rights reserved.
+
+--- PAGE 20 ---
+reSeArcH Article
+extended data table 5 | Curriculum results for shortest-path task
+Parentheses represent ranges: (lower bound, upper bound). Evaluation of lesson completion occurs after every group of 2,000 batches (size 1) has been processed on main worker thread. A path is
+defined as ‘correct’ if it is a shortest path. The completion threshold is met if 80% of modal samples (most likely output of the network) are correct on a new group of 50 episodes. ‘Test’ and ‘Final’ as
+in Extended Data Table 3.
+© 2016 Macmillan Publishers Limited, part of Springer Nature. All rights reserved.
+
+--- PAGE 21 ---
+Article reSeArcH
+extended data table 6 | Curriculum for Mini-ShrdLU
+Parentheses represent ranges: (lower bound, upper bound). Evaluation of lesson completion occurs after every group of 400 batches has been processed on the main worker thread. The completion
+threshold is met if 85% of constraints are satisfied at episode termination on average over 160 episodes. (The final lesson has no termination.)
+© 2016 Macmillan Publishers Limited, part of Springer Nature. All rights reserved.

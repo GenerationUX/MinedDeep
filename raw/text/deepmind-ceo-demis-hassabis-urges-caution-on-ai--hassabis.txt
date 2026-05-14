@@ -1,0 +1,474 @@
+
+--- PAGE 1 ---
+DeepMind CEO Demis Hassabis Urges Caution on AI 13/05/2026, 08:33
+JAN 12, 2023
+DeepMin
+d’s CEO
+Helped
+Take AI
+Mainstre
+am. Now
+Demis Hassabis by the Helicase—a
+sculpture that uses DNA’s helix shape as a
+He’s
+symbol of human endeavor and the pursuit
+of knowledge—at DeepMind’s headquarters
+in London on Nov. 3, 2022James Day for
+https://time.com/collections/davos-2023/6246119/demis-hassabis-deepmind-interview/ Page 1 of 16
+
+--- PAGE 2 ---
+DeepMind CEO Demis Hassabis Urges Caution on AI 13/05/2026, 08:33
+TIME
+Urging
+Caution
+bbbbyyyyBBBBiiiillllllllyyyy PPPPeeeerrrrrrrriiiiggggoooo
+CORRESPONDENT
+Demis Hassabis stands halfway up a spiral staircase, surveying the cathedral he
+built. Behind him, light glints off the rungs of a golden helix rising up through the
+staircase’s airy well. The DNA sculpture, spanning three floors, is the centerpiece of
+DeepMind’s recently opened London headquarters. It’s an artistic representation of
+the code embedded in the nucleus of nearly every cell in the human body.
+“Although we work on making machines smart, we wanted to keep humanity at the
+center of what we’re doing here,” Hassabis, DeepMind’s CEO and co-founder, tells
+TIME. This building, he says, is a “cathedral to knowledge.” Each meeting room is
+named after a famous scientist or philosopher; we meet in the one dedicated to
+James Clerk Maxwell, the man who first theorized electromagnetic radiation. “I’ve
+always thought of DeepMind as an ode to intelligence,” Hassabis says.
+Advertisement
+Hassabis, 46, has always been obsessed with intelligence: what it is, the possibilities
+it unlocks, and how to acquire more of it. He was the second-best chess player in
+the world for his age when he was 12, and he graduated from high school a year
+early. As an adult he strikes a somewhat diminutive figure, but his intellectual
+presence fills the room. “I want to understand the big questions, the really big ones
+that you normally go into philosophy or physics if you’re interested in,” he says. “I
+thought building AI would be the fastest route to answer some of those questions.”
+DeepMind—a subsidiary of Google’s parent company, Alphabet—is one of the
+world’s leading artificial intelligence labs. Last summer it announced that one of its
+algorithms, AlphaFold, had predicted the 3D structures of nearly all the proteins
+known to humanity, and that the company was making the technology behind it
+https://time.com/collections/davos-2023/6246119/demis-hassabis-deepmind-interview/ Page 2 of 16
+
+--- PAGE 3 ---
+DeepMind CEO Demis Hassabis Urges Caution on AI 13/05/2026, 08:33
+freely available. Scientists had long been familiar with the sequences of amino acids
+that make up proteins, the building blocks of life, but had never cracked how they
+fold up into the complex 3D shapes so crucial to their behavior in the human body.
+AlphaFold has already been a force multiplier for hundreds of thousands of
+scientists working on efforts such as developing malaria vaccines, fighting antibiotic
+resistance, and tackling plastic pollution, the company says. Now DeepMind is
+applying similar machine-learning techniques to the puzzle of nuclear fusion,
+hoping it helps yield an abundant source of cheap, zero-carbon energy that could
+wean the global economy off fossil fuels at a critical juncture in the climate crisis.
+Hassabis says these efforts are just the beginning. He and his colleagues have been
+working toward a much grander ambition: creating artificial general intelligence, or
+AGI, by building machines that can think, learn, and be set to solve humanity’s
+toughest problems. Today’s AI is narrow, brittle, and often not very intelligent at all.
+But AGI, Hassabis believes, will be an “epoch-defining” technology—like the
+harnessing of electricity—that will change the very fabric of human life. If he’s right,
+it could earn him a place in history that would relegate the namesakes of his
+meeting rooms to mere footnotes.
+Advertisement
+But with AI’s promise also comes peril. In recent months, researchers building an AI
+system to design new drugs revealed that their tool could be easily repurposed to
+make deadly new chemicals. A separate AI model trained to spew out toxic hate
+speech went viral, exemplifying the risk to vulnerable communities online. And
+inside AI labs around the world, policy experts were grappling with near-term
+questions like what to do when an AI has the potential to be commandeered by
+rogue states to mount widespread hacking campaigns or infer state-level nuclear
+secrets. In December 2022, ChatGPT, a chatbot designed by DeepMind’s rival
+OpenAI, went viral for its seeming ability to write almost like a human—but faced
+criticism for its susceptibility to racism and misinformation. So did the tiny company
+Prisma Labs, for its Lensa app’s AI-enhanced selfies. But many users complained
+Lensa sexualized their images, revealing biases in its training data. What was once a
+field of a few deep-pocketed tech companies is becoming increasingly accessible.
+https://time.com/collections/davos-2023/6246119/demis-hassabis-deepmind-interview/ Page 3 of 16
+
+--- PAGE 4 ---
+DeepMind CEO Demis Hassabis Urges Caution on AI 13/05/2026, 08:33
+As computing power becomes cheaper and AI techniques become better known,
+you no longer need a high-walled cathedral to perform cutting-edge research.
+Read More: The Price of Your AI-Generated Selfie
+It is in this uncertain climate that Hassabis agrees to a rare interview, to issue a stark
+warning about his growing concerns. “I would advocate not moving fast and
+breaking things,” he says, referring to an old Facebook motto that encouraged
+engineers to release their technologies into the world first and fix any problems that
+arose later. The phrase has since become synonymous with disruption. That culture,
+subsequently emulated by a generation of startups, helped Facebook rocket to 3
+billion users. But it also left the company entirely unprepared when disinformation,
+hate speech, and even incitement to genocide began appearing on its platform.
+Hassabis sees a similarly worrying trend developing with AI. He says AI is now “on
+the cusp” of being able to make tools that could be deeply damaging to human
+civilization, and urges his competitors to proceed with more caution than before.
+“When it comes to very powerful technologies—and obviously AI is going to be one
+of the most powerful ever—we need to be careful,” he says. “Not everybody is
+thinking about those things. It’s like experimentalists, many of whom don’t realize
+they’re holding dangerous material.” Worse still, Hassabis points out, we are the
+guinea pigs.
+Advertisement
+Hassabis was just 15 when he walked into the Bullfrog video-game studios in
+Guildford, in the rolling green hills just southwest of London. As a child he had
+always been obsessed with games. Not just chess—the main source of his
+expanding trophy cabinet—but the kinds you could play on early computers, too.
+Now he wanted to help make them. He had entered a competition in a video-game
+magazine to win an internship at the prestigious studio. His program—a Space
+Invaders-style game where players shot at chess pieces descending from the top of
+the screen—came in second place. He had to settle for a week’s work experience.
+https://time.com/collections/davos-2023/6246119/demis-hassabis-deepmind-interview/ Page 4 of 16
+
+--- PAGE 5 ---
+DeepMind CEO Demis Hassabis Urges Caution on AI 13/05/2026, 08:33
+Hassabis, left, captaining the England under-11s chess team at the age of 9 Courtesy Demis Hassabis
+Peter Molyneux, Bullfrog’s co-founder, still remembers first seeing Hassabis. “He
+looked like an elf from Lord of the Rings,” Molyneux says. “This little slender kid
+came in, who you would probably just walk past in the street and not even notice.
+But there was a sparkle in his eyes: the sparkle of intelligence.” In a chance
+conversation on the bus to Bullfrog’s Christmas party, the teenager captivated
+Molyneux. “The whole of the journey there, and the whole of the journey back, was
+the most intellectually stimulating conversation,” he recalls. They talked about the
+philosophy of games, what it is about the human psyche that makes winning so
+appealing, and whether you could imbue those same traits in a machine. “All the
+time I’m thinking, This is just a kid!” He knew then this young man was destined for
+great things.
+The pair became fast friends. Hassabis returned to Bullfrog in the summer before he
+left for the University of Cambridge, and spent much of that time with Molyneux
+playing board and computer games. Molyneux recalls a fierce competitive streak. “I
+beat him at almost all the computer games, especially the strategy games,”
+https://time.com/collections/davos-2023/6246119/demis-hassabis-deepmind-interview/ Page 5 of 16
+
+--- PAGE 6 ---
+DeepMind CEO Demis Hassabis Urges Caution on AI 13/05/2026, 08:33
+Molyneux says. “He is an incredibly competitive person.” But Molyneux’s bragging
+rights were short-lived. Together, in pursuit of interesting game dynamics that might
+be the seed of the next hit video game, they invented a card-game they called
+Dummy. Hassabis beat Molyneux 35 times in a row.
+Advertisement
+After graduating from Cambridge, Hassabis returned to Bullfrog to help Molyneux
+build his most popular game to date: Theme Park, a simulation game giving the
+player a God’s-eye view of an expanding fairground business. Hassabis went on to
+establish his own game company before later deciding to study for a Ph.D. in
+neuroscience. He wanted to understand the algorithmic level of the brain: not the
+interactions between microscopic neurons but the larger architectures that seemed
+to give rise to humanity’s powerful intelligence. “The mind is the most intriguing
+object in the universe,” Hassabis says. He was trying to understand how it worked in
+preparation for his life’s quest. “Without understanding that I had in mind AI the
+whole time, it looks like a random path,” Hassabis says of his career trajectory:
+chess, video games, neuroscience. “But I used every single scrap of that
+experience.”
+By 2013, when DeepMind was three years old, Google came knocking. A team of
+Google executives flew to London in a private jet, and Hassabis wowed them by
+showing them a prototype AI his team had taught to play the computer game
+Breakout. DeepMind’s signature technique behind the algorithm, reinforcement
+learning, was something Google wasn’t doing at the time. It was inspired by how the
+human brain learns, an understanding Hassabis had developed during his time as a
+neuroscientist. The AI would play the game millions of times, and was rewarded
+every time it scored some points. Through a process of points-based reinforcement,
+it would learn the optimum strategy. Hassabis and his colleagues fervently believed
+in training AI in game environments, and the dividends of the approach impressed
+the Google executives. “I loved them immediately,” says Alan Eustace, a former
+senior vice president at Google who led the scouting trip.
+Hassabis’ focus on the dangers of AI was evident from his first conversation with
+https://time.com/collections/davos-2023/6246119/demis-hassabis-deepmind-interview/ Page 6 of 16
+
+--- PAGE 7 ---
+DeepMind CEO Demis Hassabis Urges Caution on AI 13/05/2026, 08:33
+Eustace. “He was thoughtful enough to understand that the technology had long-
+term societal implications, and he wanted to understand those before the
+technology was invented, not after the technology was deployed,” Eustace says. “It’s
+like chess. What’s the endgame? How is it going to develop, not just two steps
+ahead, but 20 steps ahead?”
+Advertisement
+Eustace assured Hassabis that Google shared those concerns, and that DeepMind’s
+interests were aligned with its own. Google’s mission, Eustace said, was to index all
+of humanity’s knowledge, make it accessible, and ultimately raise the IQ of the
+world. “I think that resonated,” he says. The following year, Google acquired
+DeepMind for some $500 million. Hassabis turned down a bigger offer from
+Facebook. One reason, he says, was that, unlike Facebook, Google was “very happy
+to accept” DeepMind’s ethical red lines “as part of the acquisition.” (There were
+reports at the time that Google agreed to set up an independent ethics board to
+ensure these lines were not crossed.) The founders of the fledgling AI lab also
+reasoned that the megacorporation’s deep pockets would allow them access to
+talent and computing power that they otherwise couldn’t afford.
+In a glass cabinet spanning the far wall of the lobby at DeepMind’s London
+headquarters, among other memorabilia from the first 12 years of the company’s life,
+sits a large square of wood daubed with black scribbles. It’s a souvenir from
+DeepMind’s first major coup. Soon after the Google acquisition, the company had
+set itself the challenge of designing an algorithm that could beat the best player in
+the world at the ancient Chinese board game Go. Chess had long ago been
+conquered by brute-force computer programming, but Go was far more complex;
+the best AI algorithms were still no match for top human players. DeepMind tackled
+the problem the same way they’d cracked Breakout. It built a program that, after
+being taught the rules of the game by observing human play, would play virtually
+against itself millions of times. Through reinforcement learning, the algorithm would
+update itself, reducing the “weights” of decisions that made it more likely to lose the
+game, and increasing the “weights” that made it more likely to win. At a tournament
+in Korea in March 2016, the algorithm—called AlphaGo—went up against Lee Sedol,
+https://time.com/collections/davos-2023/6246119/demis-hassabis-deepmind-interview/ Page 7 of 16
+
+--- PAGE 8 ---
+DeepMind CEO Demis Hassabis Urges Caution on AI 13/05/2026, 08:33
+one of the world’s top Go players. AlphaGo beat him four games to one. With a black
+marker pen, the defeated Lee scrawled his signature on the back of the Go board on
+which the fateful game had been played. Hassabis signed on behalf of AlphaGo, and
+DeepMind kept the board as a trophy. Forecasters had not expected the milestone
+to be passed for a decade. It was a vindication of Hassabis’ pitch to Google: that the
+best way to push the frontier of AI was to focus on reinforcement learning in game
+environments.
+Advertisement
+But just as DeepMind was scaling new heights, things were beginning to get
+complicated. In 2015, two of its earliest investors, billionaires Peter Thiel and Elon
+Musk, symbolically turned their backs on DeepMind by funding rival startup OpenAI.
+That lab, subsequently bankrolled by $1 billion from Microsoft, also believed in the
+possibility of AGI, but it had a very different philosophy for how to get there. It
+wasn’t as interested in games. Much of its research focused not on reinforcement
+learning but on unsupervised learning, a different technique that involves scraping
+vast quantities of data from the internet and pumping it through neural networks. As
+computers became more powerful and data more abundant, those techniques
+appeared to be making huge strides in capability.
+While DeepMind, Google, and other AI labs had been working on similar research
+behind closed doors, OpenAI was more willing to let the public use its tools. In late
+2022 it launched DALL·E 2, which can generate an image of almost any search term
+imaginable, and the chatbot ChatGPT. Because both of these tools were trained on
+data scraped from the internet, they were plagued by structural biases and
+inaccuracies. DALL·E 2 is likely to illustrate “lawyers” as old white men and “flight
+attendants” as young beautiful women, while ChatGPT is prone to confident
+assertions of false information. In the wrong hands, a 2021 DeepMind research
+paper says, language-generation tools like ChatGPT and its predecessor GPT-3
+could turbocharge the spread of disinformation, facilitate government censorship or
+surveillance, and perpetuate harmful stereotypes under the guise of objectivity.
+(OpenAI acknowledges its apps have limitations, including biases, but says that it’s
+working to minimize them and that its mission is to build safe AGI to benefit
+https://time.com/collections/davos-2023/6246119/demis-hassabis-deepmind-interview/ Page 8 of 16
+
+--- PAGE 9 ---
+DeepMind CEO Demis Hassabis Urges Caution on AI 13/05/2026, 08:33
+humanity.)
+But despite Hassabis’s calls for the AI race to slow down, it appears DeepMind is not
+immune from the competitive pressures. In early 2022, the company published a
+blueprint for a faster engine. The piece of research, called Chinchilla, showed that
+many of the industry’s most cutting-edge models had been trained ine$iciently, and
+explained how they could deliver more capability with the same level of computing
+power. Hassabis says DeepMind’s internal ethics board discussed whether releasing
+the research would be unethical given the risk that it could allow less scrupulous
+firms to release more powerful technologies without firm guardrails. One of the
+reasons they decided to publish it anyway was because “we weren’t the only people
+to know” about the phenomenon. He says that DeepMind is also considering
+releasing its own chatbot, called Sparrow, for a “private beta” some time in 2023.
+(The delay is in order for DeepMind to work on reinforcement learning-based
+features that ChatGPT lacks, like citing its sources. “It’s right to be cautious on that
+front,” Hassabis says.) But he admits that the company may soon need to change its
+calculus. “We’re getting into an era where we have to start thinking about the
+freeloaders, or people who are reading but not contributing to that information
+base,” he says. “And that includes nation states as well.” He declines to name which
+states he means—“it’s pretty obvious, who you might think”—but he suggests that
+the AI industry’s culture of publishing its findings openly may soon need to end.
+Advertisement
+https://time.com/collections/davos-2023/6246119/demis-hassabis-deepmind-interview/ Page 9 of 16
+
+--- PAGE 10 ---
+DeepMind CEO Demis Hassabis Urges Caution on AI 13/05/2026, 08:33
+Hassabis celebrates DeepMind’s victory over Go player Lee Sedol, right, in South Korea in 2016 Lee Jin-man—AP
+Hassabis wants the world to see DeepMind as a standard bearer of safe and ethical
+AI research, leading by example in a field full of others focused on speed. DeepMind
+has published “red lines” against unethical uses of its technology, including
+surveillance and weaponry. But neither DeepMind nor Alphabet has publicly shared
+what legal power DeepMind has to prevent its parent—a surveillance empire that
+has dabbled in Pentagon contracts—from pursuing those goals with the AI
+DeepMind builds. In 2021, Alphabet ended yearslong talks with DeepMind about the
+subsidiary’s setting up an independent legal structure that would prevent its AI
+being controlled by a single corporate entity, the Wall Street Journal reported.
+Hassabis doesn’t deny DeepMind made these attempts, but downplays any
+suggestion that he is concerned about the current structure being unsafe. When
+asked to confirm or deny whether the independent ethics board rumored to have
+been set up as part of the Google acquisition actually exists, he says he can’t,
+because it’s “all confidential.” But he adds that DeepMind’s ethics structure has
+“evolved” since the acquisition “into the structures that we have now.”
+Hassabis says both DeepMind and Alphabet have committed to public ethical
+frameworks and build safety into their tools from the very beginning. DeepMind has
+its own internal ethics board, the Institutional Review Committee (IRC), with
+representatives from all areas of the company, chaired by its chief operating o$icer,
+Lila Ibrahim. The IRC meets regularly, Ibrahim says, and any disagreements are
+escalated to DeepMind’s executive leaders for a final decision. “We operate with a
+lot of freedom,” she says. “We have a separate review process: we have our own
+internal ethics review committee; we collaborate on best practices and learnings.”
+When asked what happens if DeepMind’s leadership team disagrees with Alphabet’s,
+or if its “red lines” are crossed, Ibrahim only says, “We haven’t had that issue yet.”
+Advertisement
+https://time.com/collections/davos-2023/6246119/demis-hassabis-deepmind-interview/ Page 10 of 16
+
+--- PAGE 11 ---
+DeepMind CEO Demis Hassabis Urges Caution on AI 13/05/2026, 08:33
+One of Hassabis’ favorite games right now is a strategy game called Polytopia. The
+aim is to grow a small village into a world-dominating empire through gradual
+technological advances. Fishing, for example, opens the door to seafaring, which
+leads eventually to navies of your ships firing cannons and traversing oceans. By the
+end of the game, if you’ve directed your technological progress astutely, you’ll sit
+atop a shining, sophisticated empire with your enemies dead at your feet. (Elon
+Musk, Hassabis says, is a fan too. The last time the pair spoke, a few months ago,
+Polytopia was the main subject of their conversation. “We both like that game a lot,”
+Hassabis says.)
+While Hassabis’ worldview is much more nuanced—and cautious—it’s easy to see
+why the game’s ethos resonates with him. He still appears to believe that
+technological advancement is inherently good for humanity, and that under
+capitalism it’s possible to predict and mitigate AI’s risks. “Advances in science and
+technology: that’s what drives civilization,” he says.
+MENU SUBSCRIBE
+CLOSE
+Introducing TIME Games… VIEW MORE
+BACK TO LIST DDDDaaaavvvvoooossss 2222000022223333: CCCCoooommmmiiiinnnngggg TTTTooooggggeeeetttthhhheeeerrrr
+https://time.com/collections/davos-2023/6246119/demis-hassabis-deepmind-interview/ Page 11 of 16
+
+--- PAGE 12 ---
+DeepMind CEO Demis Hassabis Urges Caution on AI 13/05/2026, 08:33
+Demis Hassabis at DeepMind’s headquarters in London on Nov. 3, 2022 James Day for TIME
+Hassabis believes the wealth from AGI, if it arrives, should be redistributed. “I think
+we need to make sure that the benefits accrue to as many people as possible—to all
+of humanity, ideally.” He likes the ideas of universal basic income, under which every
+citizen is given a monthly stipend from the government, and universal basic
+services, where the state pays for basic living standards like transportation or
+housing. He says an AGI-driven future should be more economically equal than
+today’s world, without explaining how that system would work. “If you’re in a [world
+of] radical abundance, there should be less room for that inequality and less ways
+that could come about. So that’s one of the positive consequences of the AGI vision,
+if it gets realized.”
+Others are less optimistic that this utopian future will come to pass—given that the
+past several decades of growth in the tech industry have coincided with huge
+https://time.com/collections/davos-2023/6246119/demis-hassabis-deepmind-interview/ Page 12 of 16
+
+--- PAGE 13 ---
+DeepMind CEO Demis Hassabis Urges Caution on AI 13/05/2026, 08:33
+increases in wealth inequality. “Major corporations, including the major corporation
+that owns DeepMind, have to ensure they maximize value to shareholders; are not
+focused really on addressing the climate crisis unless there is a profit in it; and are
+certainly not interested in redistributing wealth when the whole goal of the
+company is to accumulate further wealth and distribute it to shareholders,” says
+Paris Marx, host of the podcast Tech Won’t Save Us. “Not recognizing those things is
+really failing to fully consider the potential impacts of the technology.” Alphabet,
+Amazon, and Meta were among the 20 corporations that spent the most money
+lobbying U.S. lawmakers in 2022, according to transparency watchdog Open
+Secrets. “What we lack is not the technology to address the climate crisis, or to
+redistribute wealth,” Marx says. “What we lack is the political will. And it’s hard to see
+how just creating a new technology is going to create the political will to actually
+have these more structural transformations of society.”
+Back at DeepMind’s spiral staircase, an employee explains that the DNA sculpture is
+designed to rotate, but today the motor is broken. Closer inspection shows some of
+the rungs of the helix are askew. At the bottom of the staircase there’s a notice on a
+wooden stool in front of this giant metaphor for humanity. “Please don’t touch,” it
+reads. “It’s very fragile and could easily be damaged.”
+—With reporting by Mariah Espada and Solcyre Burga
+Advertisement
+JAN 12, 2023
+The
+Power of
+Collabora
+tion in a
+Moment Local residents play a game of cricket outside of the Jharia
+coalfield in Dhanbad, in the state of Jharkhand, and home to
+India’s largest coal reserves.Sarker Protick for TIME
+https://time.com/collections/davos-2023/6246119/demis-hassabis-deepmind-interview/ Page 13 of 16
+
+--- PAGE 14 ---
+DeepMind CEO Demis Hassabis Urges Caution on AI 13/05/2026, 08:33
+of Crisis
+bbbbyyyyEEEEddddwwwwaaaarrrrdddd FFFFeeeellllsssseeeennnntttthhhhaaaallll
+FELSENTHAL IS THE
+EXECUTIVE CHAIRMAN
+AND FORMER EDITOR IN
+CHIEF OF TIME.
+Last month, I was in Boston for the presentation of the Earthshot Prize, the annual
+awards started by Prince William designed to help accelerate creative solutions to
+the climate crisis. The roughly $6 million in grants—supported by donors including
+TIME’s owners Marc and Lynne Benioff—went to five remarkable projects, from a
+technology that turns carbon into rock to biodegradable seaweed-based packaging
+for consumer goods (called Notpla for “not plastics”). At a gathering after the
+ceremony, I was struck by the remarks of Earthshot board chair Christiana Figueres,
+the former U.N. climate chief, who framed this moment in the planet’s 4.5 billion
+years (no small task!) as one in which “the pen of history has been passed from
+nature to humanity.”
+CONTINUE READING
+Advertisement
+JAN 12, 2023
+Allies
+Are
+Needed
+to Create
+a Happy
+https://time.com/collections/davos-2023/6246119/demis-hassabis-deepmind-interview/ Page 14 of 16
+
+--- PAGE 15 ---
+DeepMind CEO Demis Hassabis Urges Caution on AI 13/05/2026, 08:33
+Society Kengo Sakurada, Group CEO of Sompo
+Holdings Inc.
+bbbbyyyyCCCCoooonnnntttteeeennnntttt FFFFrrrroooommmm SSSSoooommmmppppoooo
+HHHHoooollllddddiiiinnnnggggssss
+Today, with society becoming more unequal and fragmented, cooperation is
+becoming more di$icult. How can we overcome our differences in positions and
+interests and work together more deeply? The root principle of our behavior is the
+same: we want to be happy. Under this idea, I believe people should pursue
+happiness – but for all stakeholders in society. Many Westerners who traveled to
+Japan in the late Edo period (1800s) wrote that Japanese society was full of
+happiness. The person who played a leading role in opening Japan to the West,
+Commodore Matthew Perry, also described Japan at that time: “the people seem
+happy and contented.” The concept of Seikatsusha is key to creating such a happy
+society. Learning, working, playing, eating – Seikatsusha is a Japanese word that
+refers to people who live their daily lives in a multifaceted manner. For example, I
+am a CEO, a consumer, and a grandfather. As a CEO, I aim to improve corporate
+performance; as a consumer, I choose what I love at the supermarket; as a
+grandfather, I hope for a future in which my grandchildren live happily.
+CONTINUE READING
+Advertisement
+Sections More About Us Your
+Subscriptions
+Home The TIME Our
+Vault Mission Subscribe
+Politics
+https://time.com/collections/davos-2023/6246119/demis-hassabis-deepmind-interview/ Page 15 of 16
+
+--- PAGE 16 ---
+DeepMind CEO Demis Hassabis Urges Caution on AI 13/05/2026, 08:33
+Health TIME Contact Access My
+Africa the Digital
+AI
+Editors Magazine
+TIME
+World
+France Press Manage My
+Room Subscription
+Business
+TIME For
+Kids Media Kit Global
+Science
+Help
+TIME Reprints &
+Center
+Climate
+Futures Permissions
+Buy an
+Ideas
+TIME Masthead
+Issue
+Studios
+Entertainment
+Careers
+Shop the
+Video
+Cover
+Sports
+Site Map
+Store
+Red
+Technology
+Modern
+Border
+Give a Gift
+Slavery
+Newsletters
+Supplied Statement
+Partner
+Content
+© 2026 TIME USA, LLC. All Rights Reserved. Use of this site constitutes acceptance of our Terms
+of Service, Privacy Policy (Your Privacy Rights) and Do Not Sell or Share My Personal Information
+.
+TIME may receive compensation for some links to products and services on this website. Offers
+may be subject to change without notice.
+This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.
+https://time.com/collections/davos-2023/6246119/demis-hassabis-deepmind-interview/ Page 16 of 16

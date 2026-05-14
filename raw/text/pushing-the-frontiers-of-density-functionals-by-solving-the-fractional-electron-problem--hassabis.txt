@@ -1,0 +1,616 @@
+
+--- PAGE 1 ---
+RESEARCH
+QUANTUMCHEMISTRY code [PySCF (19)]. The functional was eval-
+uatedbyintegratinglocalenergiescomputed
+Pushing the frontiers of density functionals
+byamultilayerperceptron(MLP),whichtook
+asinputbothlocalandnonlocalfeaturesof
+by solving the fractional electron problem
+theoccupiedKohn-Sham(KS)orbitals,and
+canbedescribedasalocalrange-separated
+JamesKirkpatrick1*†,BrendanMcMorrow1†,DavidH.P.Turban1†,AlexanderL.Gaunt1†, hybrid. To train the functional, the sum of
+JamesS.Spencer1,AlexanderG.D.G.Matthews1,AnnetteObika1,LouisThiry2,MeireFortunato1, twoobjectivefunctionswasused:aregression
+DavidPfau1,LaraRománCastellanos1,StigPetersen1,AlexanderW.R.Nelson1,PushmeetKohli1, loss for learning the exchange-correlation en-
+PaulaMori-Sánchez3,DemisHassabis1,AronJ.Cohen1,4* ergyitselfandagradientregularizationterm
+that ensured that the functional derivatives
+Densityfunctionaltheorydescribesmatteratthequantumlevel,butallpopularapproximations canbeusedinself-consistentfield(SCF)cal-
+sufferfromsystematicerrorsthatarisefromtheviolationofmathematicalpropertiesoftheexact culations after training. For the regression
+functional.Weovercamethisfundamentallimitationbytraininganeuralnetworkonmolecular loss,weusedadatasetoffixeddensitiesrep-
+dataandonfictitioussystemswithfractionalchargeandspin.Theresultingfunctional,DM21 resentingreactantsandproductsfor2235re-
+(DeepMind21),correctlydescribestypicalexamplesofartificialchargedelocalizationandstrong actions,andthenetworkwastrainedtomap
+correlationandperformsbetterthantraditionalfunctionalsonthoroughbenchmarksformain-group fromthesedensitiestohigh-accuracyreaction
+atomsandmolecules.DM21accuratelymodelscomplexsystemssuchashydrogenchains, energiesbymeansofaleast-squaresobjective
+chargedDNAbasepairs,anddiradicaltransitionstates.Morecruciallyforthefield,becauseour (Fig. 1B). Specifically, 1161 training reactions
+methodologyreliesondataandconstraints,whicharecontinuallyimproving,itrepresentsa representedatomization,ionization,electron
+viablepathwaytowardtheexactuniversalfunctional. affinity, and intermolecularbinding energies
+ofsmallmain-group,H-Krmolecules,and1074
+C
+representedthecrucialFCandFSdensities
+omputingelectronicenergiesunderpins centworkhasalsobeguntoaddressthefrac- onlyfortheatomsH-Ar(supplementaryma-
+theoreticalchemistryandmaterialssci- tionalconstraints,ofparticularinterestbeing terials,section2.1).Thefixeddensitiesforthe
+ence,anddensityfunctionaltheory(DFT) alocalizedcorrectionontheorbitals(6,7).In main-group molecules were obtained from a
+(1,2)promisesanexactandefficientap- parallel, machine learning has emerged as a popular traditional functional [B3LYP (20)],
+proach.However,thereisaconundrum powerful tool at the level of molecular mod- and the energy labels were either obtained
+atthe heartofDFT: Theexactfunctional— elinginchemistry(8,9)andhasbeenrecently fromliterature(21–25)orbasedonin-house
+mappingelectrondensitytoenergy—isproven applied to functional development (10, 11). completebasissetCCSD(T)(coupled-cluster
+toexist,butlittlepracticalguidanceisgivenon Proof-of-principle studies have shown that with single and double and perturbative tri-
+itsexplicitform.Approximationstotheexact neuralnetworks(12–16)canbetrainedonmo- pleexcitations) calculations. More justifica-
+functionalhaveenablednumerousinvestiga- leculardata,buttodate,theyarenotcompeti- tion on the use of a fixed charge density is
+tionsofmatteratamicroscopiclevelandrank tiveinaccuracywithtraditionalhand-designed provided in the supplementary materials,
+assomeofthemostimpactfulworksinthe functionals. section4.3.Forgradienttraining,perturba-
+wholeofscience(3).Nevertheless,despitetheir Inthiswork,wepresentafunctional,DM21 tion theory gives the leading order change
+designandsuccess,pathologicalerrorsper- (DeepMind21)thatisstateoftheartonthor- inenergy,dE ,afterasingleSCFiteration
+SCF
+sistintheseapproximations,andithasbeen oughbenchmarkevaluationandhasqualita- (supplementarymaterials,section1.3.1).This
+knownforoveradecade(4)thattherootcause tively improved properties because it obeys energychangedependsonthederivativesof
+ofmanyoftheseerrorsistheviolationofexact two classes of constraints on systems with the exchange-correlationfunctional (Fig.1C),
+conditions for systems with fractional elec- fractionalelectrons.Thetypesoffractionalcon- andaddingdE2 tothetrainingobjectiveen-
+SCF
+trons.Inthiswork,weuseddeeplearningto straintsconsideredwerefractionalcharge(FC) couragesthemodeltoavoidmakingspuriously
+train a functional that respects these condi- systems, with a noninteger total charge, and large orbital rotations away from reasonable
+tionsandthushasexcellentperformanceacross fractionalspin(FS)systems,withnoninteger orbitals during self-consistent iteration. This
+main-groupchemistry. spinmagnetization.Inbothcases,theexact approachwasconsiderablycheaperthansu-
+SincetheearlydaysofDFT,ithasbeenclear energyisalinearinterpolationoftheenergy pervisingexplicitself-consistentiterationsdur-
+that approximations improve when they sat- oftheneighboringintegersystems(17,18).FC ingtraining(26)orMonteCarlomethodsto
+isfymoreofthemathematicalconstraintsof andFSsystemsarefictitious,butrealcharge supervisedensities(12).Networkswithgra-
+the exact functional and fit more systems. densitiescanincluderegionsthathaveFCor dientsregularizedinthiswaywereabletorun
+Seventeenknownexactconstraints(butnot FScharacter,andtherefore,correctlymodeling self-consistentlyonallreactionsinlargemain-
+the fractional constraints) are satisfied by theseidealizedproblemshelpstoensurethat groupbenchmarks,andDM21producedac-
+the strongly constrained and appropriately functionalsbehavecorrectlyinawidevarietyof curate molecular densities (supplementary
+normed(SCAN)functional(5),whichachieves moleculesandmaterials.TheFCandFSlin- materials,section5).
+unprecedented accuracy and predictiveness earityconditionshaveshowntobechallenging Aftertraining,thebehaviorofthefunctional
+for bonded systems among the functionals toaddresswithmanualdesignofthefunctional, wasanalyzed,startingwiththearchetypalFC
+thatarenotfittedtoanybondedsystem.Re- buttheyareeasytoillustrateasexamples.This andFSsystemsshowninFig.2,AandB.We
+situationisideallysuitedtoadeeplearning comparedDM21withSCANandpopularhy-
+framework, inwhich the constraints can be bridfunctionalsB3LYP(20),M06-2X(27),and
+1DeepMind,6PancrasSquare,LondonN1C4AG,UK. expressed as data and a functional can be wB97X(28),withallcalculationscarriedout
+P 2D a é ri p s a , r F t r e a m n e ce n . t 3 d D ’i e n p fo a r r m ta a m ti e q n u t e o , d E e NS Q , u C ím N i R ca S, a P n S d L IF U IM ni A ve C r , s U ity A , M, trained to obey them and to reproduce the byusingamodifiedversionofPySCF(19).Gen-
+28049,Madrid,Spain.4MaxPlanckInstituteforSolidState energyofmolecularsystems. erally,traditionalfunctionalapproximations
+Research,70569Stuttgart,Germany. OurfunctionalisillustratedinFig.1.Only areconvexwithrespecttotheFCexactcon-
+*Correspondingauthor.Email:kirkpatrick@google.com(J.K.);
+the exchange-correlation term was learned dition and concave with respect to the FS
+aroncohen@google.com(A.J.C.)
+†Theseauthorscontributedequallytothiswork. andinterfacedtoastandardKohn-ShamDFT exact condition, with improved performance
+Kirkpatricketal.,Science374,1385–1389(2021) 10December2021 1of5
+Downloaded
+from
+https://www.science.org
+at
+University
+of
+North
+Carolina
+Chapel
+Hill
+on
+January
+22,
+2022
+
+--- PAGE 2 ---
+RESEARCH | REPORT
+onFCcomingatthecostofalargererrorin
+FS,andviceversa.DM21standsoutincom-
+parison as close to the correct behavior for
+bothFCandFS.Thefunctionalwastrained
+onlyontheexactconditionsforbareatoms,
+butcorrectbehavior wasalsoseenonfrag-
+mentsofmoleculesforbothFCandFS,albeit
+withasomewhatlargererror.Thisresultshows
+that DM21 has not simply memorized the
+trainingexamplesbuthasfoundfeaturesin
+thechargedensityoftheatomdatathatuse-
+fullygeneralizetomolecularsystems.
+Additionallimitationsofcurrentfunction-
+alsassociatedwithFCandFSerrorsarein-
+correct description of bond breaking for
+chargedandclosed-shellneutralmolecules,
+respectively.Whendissociatingachargedmol-
+ecule,functionalswithaconvexerrorforFC
+artificially lowerthe energy bydelocalizing
+charge;assuch,theypredictthat—evenatin-
+finiteseparation—achargedmoleculeisbound.
+Thislimitationistheessenceofthewell-known
+chargedelocalizationerrorinDFT,andDM21
+achieves thecorrectasymptoteasinFig.2C.
+Relateddiscussiononeigenvaluesisavaila-
+bleinthesupplementarymaterials,section6.
+Traditionalfunctionalsalsogrosslyoveresti-
+mate the energy of a stretched closed-shell
+molecule, whereas DM21 yields correct as-
+ymptotes(Fig.2D).Thisoverestimationisoften
+describedintermsofstaticcorrelationerror
+undertheinterpretationthatatlargesepara-
+tion,thereisneardegeneracyofbondingand
+antibondingstatesthatcannotberepresented
+byasinglereferencemethod.
+Following previous studies (4, 29), we re-
+visited this interpretation and instead sug-
+gestthattheerrorisduetotheoverestimation
+of the energy for spin delocalized solutions:
+Closed-shellorbitalsarenotcapableofartifi-
+cially breaking spin symmetry and localiz-
+ing spins, giving asymptotes that are too
+highforfunctionalswithFSerror.Addition-
+ally, we made a quantitative evaluation of
+theadvantageofDM21forbondbreakingby
+usinganaccurateQuantumMonteCarlobond
+breakingbenchmark(BBB)(supplementary Fig.1.Overviewofthefunctionalarchitectureandtraining.(A)Featuresoftheelectrondensity
+materials, section 8.1). Forneutral molecules computedfromKSorbitalsaresampledonanatom-centeredquadraturegrid.Specifically,theinputfeatures
+at intermediate distances, DM21 could ex- arethespin-indexedchargedensityr,thenormofitsgradientjrrj,thekineticenergydensityt,andthe
+hibit a “hump” in the energy. This feature, (range-separated)localHartreeFockexchangeenergydensitiesewHFandeHF.Thesearefedthroughashared
+seenbeforewithothermethodssuchasthe MLPthatpredictslocalenhancementfactorsforlocaldensityapproximationandHartree-Fockcontributions
+random phase approximation (30), can be tothelocalexchange-correlationenergydensity,whichisthenintegratedoverallspace.Adispersion
+correctedwithanextensiontofractionaloc- correctionisthenaddedtothefunctional.(B)ThenetworkistrainedbyusingadatasetofKSinputdensities
+cupationoftheclosed-shellorbitals(31).Of andhigh-accuracyenergylabelsformoleculesandexactmathematicalconstraints.(C)Thegradientof
+thefunctionalspresented,optimizationofthe thelearnedfunctionalatfixedelectronnumber(N)issupervisedbyrequestingthatthesuppliedorbitalsare
+orbital occupations lowered the hump en- astationarypointofthetotalenergywithrespecttounitaryrotationofoccupiedandvirtualorbitals
+ergyonlyforDM21(supplementarymaterials, (illustratedbyangled).(D)Oncetrained,thefunctionalcanbedeployedinself-consistentcalculations.
+section3.2). Numbersontherightindicatedatasetsizes(excludinggridaugmentations)fortheDM21functional.
+HavingestablishedtheimprovedFCandFS
+behavior of DM21 on textbook systems, how
+thisbehaviorleadstoimproveddescriptionof sidered:chargedelocalizationinaDNAbase icalcharacter.ChargetransportinDNAisa
+subtle electronic structure in systems of sci- pair,magneticpropertiesofacompressedhy- subjectofconsiderableexperimentalandthe-
+entificinterestisillustratedinFig.3.Three drogen chain, and reaction barrier heights oreticalinterest(32),andthedistributionof
+systemsfromacrossthescienceswere con- foraring-openingintermediatewithdirad- thechargeofanionizedbasepair(adenine
+Kirkpatricketal.,Science374,1385–1389(2021) 10December2021 2of5
+Downloaded
+from
+https://www.science.org
+at
+University
+of
+North
+Carolina
+Chapel
+Hill
+on
+January
+22,
+2022
+
+--- PAGE 3 ---
+RESEARCH | REPORT
+Fig.2.Trainingonfractionalelectronconstraintssolveschargeandspin generalizestoimprovedcationbindingcurvesforDM21.TheoracleisHF
+localizationanddelocalizationerrors.(A)and(C)relatetotheFCconstraint,and forHþ andUCCSD(T)forHeþ andC Hþ.(D)Improvedperformanceon
+2 2 2 6
+(B)and(D)relatetotheFSconstraint.(A)DM21correctlycapturesthepiecewise closed-shellbondbreaking.DM21givesthecorrectstretchedlimitbut
+linearenergyofaHatomastheelectronnumberiscontinuouslyvaried.(Insets) showsabumpatintermediatedistances,whichiscorrectedinarestricted
+Deviationfromlinearbehaviorforsimpleatoms(HandC),andsmallmolecules. optimizationthatallowsfractionaloccupationofthehighestoccupiedmolecular
+(B)DM21correctlycapturestheconstancyconditionofenergyuponinterpolating orbital(HOMO)andlowestunoccupiedmolecularorbital(LUMO).Oraclesfor
+betweenspinflippedsolutions.Shownaretheresultsforaquadruplet(N)andsome thesecurvescomefromFermiNetQMCcalculations,exceptforCH ,which
+2 6
+doublets(H,CH,andAlCl).(C)Correcthandlingofthefractionallychargedstates usedUCCSD(T)atthebasissetlimit.
+3 2
+andthymine)isshowninFig.3A.Apopular bedrivenbyerrorsintraditionalfunctionals, sets of reactions (supplementary materials,
+functional such as B3LYP predicts charge andDM21predictsagroundstatewithnospin section7.2),andthisphenomeneonhasalso
+densitydelocalizedoverbothbasepairs,but symmetry breaking. In the example of ring beenobservedintheliteratureforothercy-
+this prediction is an artefact driven by the openinginbicyclobutane(C H ),theenergy cloadditionreactions(35).
+4 6
+violationsofFCconditionsfortheindividual of the disrotatory transition state is highly Last, beyond the treatment of FC and FS,
+bases.Conversely,DM21ismuchclosertothe overestimatedinunrestrictedcalculationswith analysisofDM21isextendedtoconsiderbroader
+correctFCbehavior,andchargeislocalized functionalssuchasM06-2XandwB97Xbut classes of main-group chemistry contained
+ontheadenineunitalone.Thedifficultiesfor iscorrectlypredictedbyDM21.Thisisagain inlargebenchmarksets.ShowninFig.4isthe
+traditionalfunctionalstolocalizechargesare linkedtoFSerror;althoughthetransitionstate summary performance of DM21 compared
+wellunderstood,butartificialspinlocalization isasinglet,DFTpredictspartiallocalization with existing functionals on the GMTKN55
+errors associated with FS violation are less ofthespinwithanintermediate hS2i value benchmark(36),asetofsubbenchmarksused
+wellstudied. between0and1.Thismeansthatfunctionals toprobethebehavioroffunctionalsforseveral
+Inahighlycompressedhydrogenchain,un- withincorrectFSbehaviorgivelargeerrors. importantchemicaltasksthatrequireextrap-
+restrictedDFTcalculationswithtraditional Thisresultishighlyreminiscentoftheway olationtosystemsverydistinctfromthetrain-
+functionalslocalizesspinonwhatappearto thatenergyisoverestimatedforclosed-shell ingset.GMTKN55includessystemsthatcontain
+beantiferromagneticdomains(Fig.3B).This bondbreaking.ForC H ,high-levelreference heavyatomsbeyondKrthatwereneverseen
+4 6
+observationhasbeenusedtobolstertheevi- calculationsareavailabletoverifythatDM21 duringtrainingandthatthereforewewould
+dence for a magnetic phasetransition (33). behavescorrectly(34),butwealsoobserved notnormallyrecommendforDM21[weeval-
+Conversely,high-levelwavefunctionmethods thathybridfunctionalstendtooverestimate uatedtheseusingpseudo-potentialsfollowing
+did not yield spin polarized solutions, sug- barrierheightsfortransitionstateswithin- themethodin(36)].Wecalculatedthemean
+gesting that the symmetry breaking might termediatelevelsofspinpolarizationinother absolute error for each subbenchmark and
+Kirkpatricketal.,Science374,1385–1389(2021) 10December2021 3of5
+Downloaded
+from
+https://www.science.org
+at
+University
+of
+North
+Carolina
+Chapel
+Hill
+on
+January
+22,
+2022
+
+--- PAGE 4 ---
+RESEARCH | REPORT
+Fig.3.Exactconstraintsimproveperform-
+anceonchallengingchemistry.(A)Charge
+densityforasinglyionizedadenine-thyminebase
+pair.B3LYPunphysicallydelocalizescharge
+onbothbasepairsdespiteadeninehavingadeeper
+ionizationpotential.Conversely,DM21displays
+localizationofchargeontheadenineonly.
+(B)Spindensityforacompressedchainof
+24hydrogenatomsat0.48Åseparation.Theline
+densitynforeachspinchannelisoverlaid
+(supplementarymaterials,section3.3).ThePBE
+functional(41)breaksspinsymmetryandleads
+toanapparentmagnetizationalongthechain.
+Thiseffectisalsopredictedbyotherfunctionals
+butisabsentinDM21.(C)Theconrotatory
+pathwaysofbicyclobutaneisomerization.The
+HOMOofasinglespinchannelinanunrestricted
+calculationisshownforthetransitionstates.
+Spinisdelocalizedacrosstwoatomsinthe
+conrotatorypath,requiringsatisfactionof
+FSforaccuratemodeling.Theoracleisdiffusion
+MonteCarlofrom(42).
+Fig.4.State-of-the-artperformancebyDM21onbenchmarks.Allerrors benchmarksets:BBB(supplementarymaterials,section8.1),GMTKN55,
+areinkcal/mol.(A)TheMoMerrormetricineachclassofreactionsfrom andQM9.TheBBBbenchmarkmeasuresmeanabsoluteerrorsforselected
+GMTKN55.Moredetailsareavailableinthesupplementarymaterials,section first-andsecond-rowdiatomicsrelativetohigh-levelUCCSD(T)(cation)
+8.2.DM21iscomparedwithfunctionalsatrungstwotofive,withstrong andQMC(neutral)calculations.TheneutraldimerDFTcalculationsuse
+GMTKN55metricsfrom(43):revPBE:D3 (44),SCAN:D3 ,andPW6B95:D3 arestrictedansatzwithintegeroccupation.QM9errorsaretakenrelative
+BJ BJ 0
+(45).Thedashedblacklineindicatestheperformanceofthedouble-hybrid tohigh-levelG4(MP2)theory.(:D3 )indicatesthatthebestofSCAN BJ
+functionalDSD-PBEP86:D3 (46).(B)PerformanceofDM21comparedwiththe withorwithoutD3correctionisreportedoneachmetricandsimilarlyfor
+BJ
+SCANfunctionalandthethreebestperforminghybridfunctionalsonthree VV10variants(47)ofwB97X.
+reportthemeanofthesemeans(MoM),with thattheimprovedperformanceonthisclass wB97-X(>30kcal/molerror),aswellasnon-
+additionalreweightedscorespresentedin stemsfromtheFCandFStrainingdata(sup- empiricalfunctionals,suchasSCAN(15kcal/
+thesupplementarymaterials,section8.2. plementary materials, section 8.2). Addition- molerror),butDM21hadanerrorof<5kcal/
+Overall,thebehaviorofDM21isbetterthan ally,DM21considerablyoutperformsexisting mol.Thisdatasetisasfarfromthetraining
+the best hybrid functional and approaches functionalsonthemindlessbenchmarksubset andvalidationsetasispossible,showingthat
+the performance of the much more expen- (MB16-43)ofGMTKN55,asetofatomization our functional performs well even when ap-
+sive double-hybrid functionals. In particu- energiesforrandomlygeneratedgeometries pliedtoout-of-distributiongeneralizationex-
+lar,DM21excelsatthedescriptionofbarrier ofatomsthatwasdesignedtotestperform- amples.Tofurtherstressthisout-of-distribution
+heights, which is unexpected given that no ance on out-of-distribution exotic geome- generalization, benchmarking on the QM9
+transitionstateswerepresentinthetraining tries.Otherwisewell-performingfunctionals (37,38)datasetisshowninFig.4B.Thisisa
+data.Ablationofthetrainingdatarevealed have large errors for this dataset, such as collectionof133,857enumeratedisomersof
+Kirkpatricketal.,Science374,1385–1389(2021) 10December2021 4of5
+Downloaded
+from
+https://www.science.org
+at
+University
+of
+North
+Carolina
+Chapel
+Hill
+on
+January
+22,
+2022
+
+--- PAGE 5 ---
+RESEARCH | REPORT
+organicmoleculeswithuptonineheavyatoms, 9. O.T.Unkeetal.,Chem.Rev.121,10142–10186(2021). 40.J.Kirkpatricketal.,Zenodo(2021);doi:10.5281/zenodo.
+andagainDM21displaysstate-of-the-artper- 10.J.C.Snyder,M.Rupp,K.Hansen,K.-R.Müller,K.Burke, 5482370.
+formancewhencomparedwiththatofexist- Phys.Rev.Lett.108,253002(2012). 41.J.P.Perdew,K.Burke,M.Ernzerhof,Phys.Rev.Lett.77,
+11. L.Lietal.,Int.J.QuantumChem.116,819–833(2016). 3865–3868(1996).
+ingfunctionals. 12. R.Nagai,R.Akashi,O.Sugino,npjComput.Mater.6,43 42.R.Berner,A.Lüchow,J.Phys.Chem.A114,13222–13227
+This work has successfully demonstrated (2020). (2010).
+thatdeeplearningprovidesaframeworkfor 13. A.V.Sinitskiy,V.S.Pande,Physicalmachinelearning 43.L.Goerigketal.,Phys.Chem.Chem.Phys.19,32184–32215
+thedevelopmentofimprovedfunctionalswith
+outperforms“humanlearning”inquantumchemistry.
+(2017).
+arXiv:1908.00971[physics.chem-ph](2019). 44.Y.Zhang,W.Yang,Phys.Rev.Lett.80,890(1998).
+newproperties.Specifically,developmentof 14. K.Ryczko,D.A.Strubbe,I.Tamblyn,Phys.Rev.A100,022512 45.Y.Zhao,D.G.Truhlar,J.Phys.Chem.A109,5656–5667
+DM21combinedhighlyaccuratechemical (2019). (2005).
+15. Y.Chen,L.Zhang,H.Wang,E.Weinan,J.Chem.Theory
+d dr a e ta ss a m nd aj f o r r a s c h ti o o r n t a co l m ele in ct g r s o i n n c p o r n io s r tr f a u i n n c ts tio to na a l d s - . 16. C S. om Di p c u k t , . M 17 . , F 1 e 7 rn 0 a – n 1 d 8 e 1 z ( - 2 S 0 e 2 rr 1 a ) , . Nat.Commun.11,3509(2020). 46. 2 S 0 . 1 K 0 o 4 z – u 2 ch 0 , 10 J. 7 M (2 . 0 L 1 . 1 M ). artin,Phys.Chem.Chem.Phys.13,
+47.N.Mardirossian,M.Head-Gordon,Phys.Chem.Chem.Phys.16,
+Thiscombinationledtoabetterdescription 17.
+L
+J.
+et
+P
+t
+.
+.
+P
+4
+e
+9
+r
+,
+d
+1
+e
+6
+w
+9
+,
+1–
+R
+1
+.
+6
+G
+9
+.
+4
+P
+(
+a
+1
+r
+9
+r,
+8
+M
+2)
+.
+.
+Levy,J.L.BalduzJr.,Phys.Rev. 9904–9924(2014).
+of the quantum mechanical interaction of
+18. A.J.Cohen,P.Mori-Sánchez,W.Yang,J.Chem.Phys.129,
+electrons,fromsimpleatomizationenergies 121104(2008). ACKNOWLEDGMENTS
+to complicated reaction barriers and exotic 19. Q.Sunetal.,WileyInterdiscip.Rev.Comput.Mol.Sci.8,e1340 WethankC.DonnerfortechnicalassistanceinrunningPySCFat
+(2018). scale,T.Backforhelpwithprojectinception,K.Kavukcuoglu
+compressedhydrogenchains.Thisworkhas
+20.A.D.Becke,J.Chem.Phys.98,5648–5652(1993). andH.Macleanforusefuldiscussions,D.RezendeandO.Vinyals
+focusedonmain-groupchemistry,butthemeth- 21. A.Karton,N.Sylvetsky,J.M.L.Martin,J.Comput.Chem.38, forreviewingthemanuscript,andtherestoftheDeepMind
+odologycaneasilybeextendedtoincorporate 2063–2075(2017). teamfortheirsupport.Funding:Thisresearchreceivednoexternal
+newdataandconstraintsthatwillalloweven 22.A.Karton,S.Daon,J.M.L.Martin,Chem.Phys.Lett.510, funding.Authorcontributions:J.K.,B.M.,D.H.P.T.,A.L.G.,andA.
+165–178(2011). J.C.designedandbuilttheDM21networkarchitectureandtraining
+betterfunctionalstobetrained.Toillustrate 23.A.Karton,A.Tarnopolsky,J.M.L.Martin,Mol.Phys.107, datasets,withadvicefromP.M.-S.;J.K.,B.M.,D.H.P.T.,A.L.G.,and
+thisflexibility,resultsfromaddingtheuni- 977–990(2009). A.G.D.G.M.trainedthefunctionals.J.K.,B.M.,D.H.P.T.,A.L.G.,J.S.S.,
+formelectrongasconditiontothefunctional 24.B.Brauer,M.K.Kesharwani,S.Kozuch,J.M.L.Martin, A.G.D.G.M.,P.M.-S.,andA.J.C.evaluatedthefunctionalson
+Phys.Chem.Chem.Phys.18,20905–20925(2016). chemicalsystemsandinterpretedtheresults.J.S.S.andD.P.
+areprovidedinthesupplementarymaterials, 25.M.K.Kesharwani,D.Manna,N.Sylvetsky,J.M.L.Martin, obtainedtheFermiNetoracles.J.K.,D.H.P.T.,L.T.,M.F.,A.W.R.N.,
+section 4.2. Many natural phenomena, from J.Phys.Chem.A122,2184–2197(2018). A.J.C.,P.K.,andD.H.initiatedtheproject.B.M.,D.H.P.T.,J.S.S.,
+chargetransferexcitationstothestripephase 26.L.Li,S.Hoyer,R.Pederson,R.Sun,E.D.Cubuk,P.Riley, andS.P.contributedtosoftwareengineering.J.K.,A.O.,P.K.,and
+insuperconductingcuprates(39),relyonsub- K
+kn
+.
+o
+B
+w
+u
+l
+r
+e
+k
+d
+e
+g
+,
+e
+K
+i
+o
+n
+h
+to
+n-S
+m
+h
+a
+a
+c
+m
+hin
+e
+e
+q
+-
+u
+le
+a
+a
+t
+r
+io
+n
+n
+e
+s
+d
+a
+p
+s
+hy
+re
+si
+g
+c
+u
+s
+l
+.
+a
+a
+ri
+r
+z
+X
+e
+i
+r
+v
+:
+:2
+b
+0
+u
+0
+ild
+9
+i
+.
+n
+0
+g
+85
+p
+5
+r
+1
+ior D
+th
+.
+e
+H.
+m
+m
+a
+a
+n
+n
+u
+a
+sc
+g
+r
+e
+i
+d
+pt,
+th
+w
+e
+it
+p
+h
+r
+h
+o
+e
+je
+lp
+ct
+f
+.
+ro
+J.
+m
+K.,
+L.
+A
+R
+.
+.
+L
+C
+.
+.
+G
+C
+.,
+o
+P
+m
+.M
+pe
+.-
+t
+S
+in
+.,
+g
+an
+in
+d
+te
+A
+r
+.
+e
+J
+s
+.C
+ts
+.
+:
+w
+T
+r
+h
+o
+e
+t
+r
+e
+e
+tleeffectsdependentonthemotionofcharge [physics.comp-ph](2020). isapendingpatentapplication,USProvisionalApplication63/
+andspinpolarization,andwebelievethatthe 27.Y.Zhao,D.G.Truhlar,Theor.Chem.Acc.120,215–241 135,223,onthiswork.Theremainingauthorsdeclarenocompeting
+(2008). interests.Dataandmaterialsavailability:Thecodeandlearned
+functional presented here, and the approach 28.J.-D.Chai,M.Head-Gordon,J.Chem.Phys.128,084106 networkweightsforrunningourfunctionalsonnewsystems
+thatwesuggest,arecentraltoimprovingour (2008). usingtheopensourcePySCFpackageisavailableathttps://
+understanding of these and other properties 29.A.J.Cohen,P.Mori-Sánchez,W.Yang,Chem.Rev.112, github.com/deepmind/deepmind-research/tree/master/density_
+289–320(2012). functional_approximation_dm21and(40).TheBBBbenchmark, ofmaterials.
+30.M.Fuchs,Y.-M.Niquet,X.Gonze,K.Burke,J.Chem.Phys.122, errorsforDM21onallreactionsinGMTKN55,andalldata
+094116(2005). underlyingthefiguresarealsoavailableasdigitalmaterials
+REFERENCESANDNOTES 31. A.D.Becke,DensityFunctionals,E.R.Johnson,Ed.(Springer, (datafilesS1toS3)inthesupplementarymaterials.Allother
+1. P.Hohenberg,W.Kohn,Phys.Rev.136(3B),B864–B871 2014),vol.365,pp.175–186. dataneededtoevaluatetheconclusionsinthepaperarepresentin
+(1964). 32.J.C.Genereux,J.K.Barton,Chem.Rev.110,1642–1662 thepaperorthesupplementarymaterials.
+2. W.Kohn,L.J.Sham,Phys.Rev.140,A1133–A1138(1965). (2010).
+3. R.VanNoorden,B.Maher,R.Nuzzo,Nature514,550–553 33.M.Mottaetal.,Phys.Rev.X7,031059(2017).
+(2014). 34.N.P.Bauman,J.Shen,P.Piecuch,Mol.Phys.115,2860–2891 SUPPLEMENTARYMATERIALS
+4. A.J.Cohen,P.Mori-Sánchez,W.Yang,Science321,792–794 (2017). science.org/doi/10.1126/science.abj6511
+(2008). 35.H.V.Pham,K.N.Houk,J.Org.Chem.79,8968–8976 MaterialsandMethods
+5. J.Sun,A.Ruzsinszky,J.P.Perdew,Phys.Rev.Lett.115, (2014). SupplementaryText
+036402(2015). 36.L.Goerigk,S.Grimme,J.Chem.TheoryComput.6,107–126 Figs.S1toS9
+6. C.Li,X.Zheng,N.Q.Su,W.Yang,Natl.Sci.Rev.5,203–215 (2010). TablesS1toS8
+(2018). 37.R.Ramakrishnan,P.O.Dral,M.Rupp,O.A.vonLilienfeld,Sci. References(48–73)
+7. N.Q.Su,C.Li,W.Yang,Proc.Natl.Acad.Sci.U.S.A.115, Data1,140022(2014). DataFilesS1toS3
+9678–9683(2018). 38.H.Kim,J.Y.Park,S.Choi,Sci.Data6,109(2019).
+8. R.Ramakrishnan,P.O.Dral,M.Rupp,O.A.vonLilienfeld, 39.Y.Zhangetal.,Proc.Natl.Acad.Sci.U.S.A.117,68–72 24May2021;accepted16September2021
+J.Chem.TheoryComput.11,2087–2096(2015). (2020). 10.1126/science.abj6511
+Kirkpatricketal.,Science374,1385–1389(2021) 10December2021 5of5
+Downloaded
+from
+https://www.science.org
+at
+University
+of
+North
+Carolina
+Chapel
+Hill
+on
+January
+22,
+2022
+
+--- PAGE 6 ---
+Pushing the frontiers of density functionals by solving the fractional electron
+problem
+James KirkpatrickBrendan McMorrowDavid H. P. TurbanAlexander L. GauntJames S. SpencerAlexander G. D. G.
+MatthewsAnnette ObikaLouis ThiryMeire FortunatoDavid PfauLara Román CastellanosStig PetersenAlexander W. R.
+NelsonPushmeet KohliPaula Mori-SánchezDemis HassabisAron J. Cohen
+Science, 374 (6573), • DOI: 10.1126/science.abj6511
+Improving DFT with deep learning
+In the past 30 years, density functional theory (DFT) has emerged as the most widely used electronic structure method
+to predict the properties of various systems in chemistry, biology, and materials science. Despite a long history of
+successes, state-of-the-art DFT functionals have crucial limitations. In particular, significant systematic errors are
+observed for charge densities involving mobile charges and spins. Kirkpatrick et al. developed a framework to train a
+deep neural network on accurate chemical data and fractional electron constraints (see the Perspective by Perdew).
+The resulting functional outperforms traditional functionals on thorough benchmarks for main-group atoms and
+molecules. The present work offers a solution to a long-standing critical problem in DFT and demonstrates the success
+of combining DFT with the modern machine-learning methodology. —YS
+View the article online
+https://www.science.org/doi/10.1126/science.abj6511
+Permissions
+https://www.science.org/help/reprints-and-permissions
+Use of think article is subject to the Terms of service
+Science (ISSN ) is published by the American Association for the Advancement of Science. 1200 New York Avenue NW, Washington, DC
+20005. The title Science is a registered trademark of AAAS.
+Copyright © 2021 The Authors, some rights reserved; exclusive licensee American Association for the Advancement of Science. No claim
+to original U.S. Government Works
+Downloaded
+from
+https://www.science.org
+at
+University
+of
+North
+Carolina
+Chapel
+Hill
+on
+January
+22,
+2022

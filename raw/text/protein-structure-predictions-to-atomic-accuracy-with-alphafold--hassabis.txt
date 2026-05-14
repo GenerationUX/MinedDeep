@@ -1,0 +1,111 @@
+
+--- PAGE 1 ---
+FOCUS | COMMENT
+FOCUS | comment
+Protein structure predictions to atomic accuracy
+with AlphaFold
+AlphaFold is a neural-network-based approach to predicting protein structures with high accuracy. We describe
+how it works in general terms and discuss some anticipated impacts on the field of structural biology.
+John Jumper and Demis Hassabis
+I
+n the 2020 Critical Assessment of protein machine-learning algorithms, consisting interpreted as a communication between
+Structure Prediction (CASP14), the of pipelines of alternating linear and different sequence positions, we add a special
+AlphaFold system1 predicted almost nonlinear components, called layers, that are connection to our ‘pair representation’ that
+two-thirds of the target protein structures typically ‘trained’ (the process of optimizing enables the network to modulate these
+at an accuracy that the assessors considered parameters) using gradient descent on the interactions on the basis of its understanding
+competitive with that of experimental error of the final predictions. The accuracy of pairwise residue interactions. In practice,
+methods (~1 Å typical deviation on the and generality of the trained neural network this means that the network learns rapidly in
+backbone)2. This advance, which builds on is highly dependent on the design of the training to enforce communication between
+decades of work to create comprehensive network architecture (the layers used and sequence-distant positions in the protein
+databases of protein sequences and how they are connected) and its training. To that are spatially local in the folded structure,
+structures3–5, has enabled large increases in develop AlphaFold’s neural network, we set without requiring hard-coding of a specific
+the structural coverage of model organism out to create new network architectures and geometric algorithm. Similarly, the training
+proteomes, including a doubling of the training procedures that are aligned with our is adapted so that the neural network can
+fraction of the human proteome whose understanding of protein biology. make effective use of protein sequence data
+structure is known to high accuracy6. A key to AlphaFold’s success is the even when the structures are unknown
+At the core of AlphaFold is a new establishment of communication patterns and is encouraged to learn generalized
+kind of neural network whose building within and between components of the coevolution patterns. The combined effect of
+blocks are adapted specifically to the network that are sympathetic to the concepts these and many other ideas on the network
+problem of predicting protein structure. of protein physics and biology. For example, are dramatic: AlphaFold can be trained
+Neural networks are a large class of wherever there is an interaction that can be to produce vastly more accurate structure
+AlphaFold
+Experimentally determined
+Expanded coverage with structure prediction
+Fig. 1 | AlphaFold as an amplifier of sparse experimental data. Schematic illustration of the role of machine learning, which converts a smaller amount
+experimentally determined data into a comprehensive set of experimental predictions.
+NATURE METHODS | VOL 19 | JANUARY 2022 | 11–26 | www.nature.com/naturemethods 11
+
+--- PAGE 2 ---
+COMMENT | FOCUS
+comment | FOCUS
+predictions using the same Protein Data but genomic coverage can be increased Although these and related developments
+Bank (PDB) training data as earlier, less much more rapidly. In effect, AlphaFold will ultimately bring us quite a bit
+accurate methods. amplifies the combined output of the further toward modeling the geometry of
+Despite being trained on only single experimental protein structure community well-structured protein components,
+protein chains that appear in the PDB, to create a vastly larger universe of reliable there is still much more to achieve in
+the AlphaFold network shows significant protein structures (Fig. 1). The structural understanding the dynamical and functional
+generalization to other protein structure prediction of entire proteomes also behavior of these components, as well as
+tasks due to its very high accuracy. creates opportunities to interpret protein understanding the vast disordered regions
+AlphaFold predicts the structure of proteins structure at scale and to add geometric of the proteome. It is quite possible, though,
+with novel folds at approximately the and biophysical context to protein-coding that other areas of cell biology can replicate
+same accuracy as that of proteins with variants in the genome. Just as with what occurred for structure prediction:
+known folds, implying that the network experimental models, however, care will the impact of carefully collected, diverse
+is prioritizing local interactions over need to be taken to interpret the confidence biological resources like the PDB can be
+recognition of global patterns. Similarly, the and limitations of the computational models amplified by many orders of magnitude
+network is tolerant of sequences containing to make sure that conclusions drawn from through the development of the right
+large disordered segments, and the low them are well founded and possible errors in machine-learning tools. ❐
+confidence of AlphaFold in these regions the models are understood.
+can be repurposed as a reliable predictor of These computational models can also John Jumper ✉ and Demis Hassabis ✉
+intrinsically disordered regions6,7. be expected to accelerate progress in DeepMind, London, UK.
+As a more stringent test of generalization, experimental structure determination. ✉e-mail: jumper@deepmind.com; dhcontact@
+AlphaFold is able to accurately predict the A large fraction of X-ray structures can be deepmind.com
+structure of artificial constructs that include phased via molecular replacement using
+multiple proteins joined with flexible linkers AlphaFold-predicted structures11, and Published online: 11 January 2022
+or artificial sequence gaps8. Note that this the network’s predictions are excellent https://doi.org/10.1038/s41592-021-01362-6
+is a situation that is rarely, if ever, observed starting points for building models
+References
+in AlphaFold’s training data, but obeys the into experimental electron densities12.
+1. Jumper, J. et al. Nature 596, 583–589 (2021).
+same physical and geometric principles Additionally, knowledge of the protein 2. Pereira, J. et al. Proteins 89, 1687–1699 (2021).
+as regular protein structure. Using these topology and domain structures will enable 3. wwPDB Consortium. Nucleic Acids Res. 47, D520–D528 (2018).
+artificial linker or gap sequences, the better design of experimental constructs for 4. Bateman, A. et al. Nucleic Acids Res. 49, D480–D489 (2021).
+5. Mitchell, A. L. et al. Nucleic Acids Res. 48(D1), D570–D578
+AlphaFold network can be used to predict structure determination. Recent work on
+(2020).
+protein–protein interactions at an accuracy the nuclear pore complex13 has shown that 6. Tunyasuvunakool, K. et al. Nature 596, 590–596 (2021).
+that exceeds even that of specialized protein monomer and pairwise heteromer modeling 7. Akdel, M., Pires, D. E. V., Pardo, E. P., Jänes, J. & Zalevsky, A. O.
+Preprint at bioRxiv https://doi.org/10.1101/2021.09.26.461876
+interaction predictors despite being trained can be very effectively combined with
+(2021).
+only on single protein chains9. Prediction of low-resolution cryo-electron microscopy 8. Yin, R., Feng, B. Y., Varshney, A. & Pierce, B. G. Preprint at
+heteromeric interactions can be substantially data to provide atomic-scale models of bioRxiv https://doi.org/10.1101/2021.10.23.465575 (2021).
+increased, however, by including protein– enormous molecular machines. 9. Bryant, P., Pozzati, G. & Elofsson, A. Preprint at bioRxiv https://
+doi.org/10.1101/2021.09.15.460468 (2021).
+protein interactions in the training of the AlphaFold and related technologies will 10. Evans, R., O’Neill, M., Pritzel, A., Antropova, N. & Senior, A.W.
+neural network10. Despite these advances, make it possible to build atomistic models bioRxiv (2021).
+the prediction of protein interactions still of many more cellular processes using 11. Millán, C. et al. Proteins 89, 1752–1769 (2021).
+12. Kryshtafovych, A. et al. Proteins 89, 1633–1646 (2021).
+requires development, and current issues abundant pairwise connections made by
+13. Mosalaganti, S. et al. Preprint at bioRxiv https://doi.
+including false negatives and difficulties protein interaction models. Early work in org/10.1101/2021.10.26.465776 (2021).
+with antibody binding can likely be greatly this direction has already uncovered many 14. Humphreys, I. R. et al. Science https://doi.org/10.1126/science.
+abm4805 (2021).
+reduced with further research. new eukaryotic interactions14,15, and further
+15. Burke, D. F. et al. Preprint at bioRxiv https://doi.
+In the immediate term, the availability advances in heteromer modeling will greatly org/10.1101/2021.11.08.467664 (2021).
+of an accurate method of predicting protein expand our coverage of protein interaction
+Acknowledgements
+structure will allow many functional networks. This will create the need for new
+We thank K. Tunyasuvunakool for helping with the figure;
+studies to proceed based on structural computational methods to interpret the
+R. Bates, M. Figurnov, T. Green and Z. Wu for their
+hypotheses developed from the predicted structural biology of molecular pathways at suggestions and comments; and C. Meyer for helping to
+models that would previously have required scale and is likely to create new opportunities prepare the manuscript.
+experimental models. This will be especially for deep learning systems to interpret
+Competing interests
+useful for understudied organisms and in these data in conjunction with large-scale,
+The authors have filed patent applications in the name
+metagenomics, where structural coverage low-resolution experimental techniques such
+of DeepMind Technologies Limited relating to machine
+is often very sparse and slow to extend as cryo-electron tomography. learning for protein structure prediction.
+12 NATURE METHODS | VOL 19 | JANUARY 2022 | 11–26 | www.nature.com/naturemethods

@@ -1,0 +1,799 @@
+
+--- PAGE 1 ---
+Article
+Neural Mechanisms of Hierarchical Planning in a
+Virtual Subway Network
+Highlights Authors
+d Humansrepresentplansinahierarchicalfashion,over JanBalaguer,HugoSpiers,
+contextsaswellasstates DemisHassabis,
+ChristopherSummerfield
+d Hierarchicalplancomplexityisencodedincaudalprefrontal
+cortex
+Correspondence
+jua@google.com
+d Ventromedialprefrontalcortexandhippocampusencode
+proximitytoagoalstate
+In Brief
+d Thecurrentcontextcanbedecodedfromthedorsomedial Torepresentplansefficiently,statesof
+prefrontalcortex theworldcanbeclusteredhierarchically
+into‘‘contexts’’.Balagueretal.showthat
+ashumansnavigateavirtualsubway
+environment,fMRIsignalsencodethe
+complexityofahierarchicalplan.
+Balagueretal.,2016,Neuron90,893–903
+May18,2016ª2016TheAuthors.PublishedbyElsevierInc.
+http://dx.doi.org/10.1016/j.neuron.2016.03.037
+
+--- PAGE 2 ---
+Neuron
+Article
+Neural Mechanisms of Hierarchical Planning
+in a Virtual Subway Network
+JanBalaguer,1,3,*HugoSpiers,2DemisHassabis,3andChristopherSummerfield1,3
+1DepartmentofExperimentalPsychology,UniversityofOxford,OxfordOX13UD,UK
+2DepartmentofExperimentalPsychology,UniversityCollegeLondon,LondonWC1E6BT,UK
+3GoogleDeepmind,LondonEC4A3TW,UK
+*Correspondence:jua@google.com
+http://dx.doi.org/10.1016/j.neuron.2016.03.037
+SUMMARY cording to one conception, future states belong to a decision
+‘‘tree’’inwhicheachnodeisadecisionpointandeachbranch
+Planningallowsactionstobestructuredinpursuitof a possible response. Plans are representations of trajectories
+a future goal. However, in natural environments, throughthetree,selectedonthebasisoftheirlong-termcumu-
+planning over multiple possible future states incurs lativeoutcome(Dawetal.,2005,2011;Huysetal.,2012;Russell
+prohibitive computational costs. To represent plans andNorvig,1995).Computer-based algorithms havesuccess-
+efficiently, states can be clustered hierarchically fully exploited this strategy to achieve expert levels of perfor-
+mance in board games such as chess and weiqi (Go) (Silver
+into‘‘contexts’’.Forexample,representingajourney
+etal.,2016).However,becausethenumberofpossibleaction
+through a subway network as a succession of indi-
+sequences grows exponentially with each additional step in
+vidualstates(stations)ismorecostlythanencoding
+the planning horizon, this approach is computationally intrac-
+asequenceofcontexts(lines)andcontextswitches
+table in many natural environments (Gershman et al., 2015).
+(line changes).Here,usingfunctional brain imaging,
+Forexample,avisitorwouldprobablynotplanatriptoLondon
+weaskedhumanstoperformaplanningtaskinavir- byenvisagingeveryuniqueinterimstepenroutetothedestina-
+tual subway network. Behavioral analyses revealed tion, but might rather imagine attaining only a subset of key
+that humans executed a hierarchically organized states,suchasreachinganairportorothertransporthub.
+plan.Brainactivityinthedorsomedialprefrontalcor- In machine learning and computational neuroscience, it is
+texandpremotorcortexscaledwiththecostofhier- widely recognized that the computational demand associated
+archical plan representation and unique neural sig- withplanningcanbereducedbyexploitinghierarchicalstructure
+intheenvironment,withstatesclusteredintolarger‘‘contexts’’
+nals in these regions signaled contexts and context
+(Badreetal.,2010;Botvinicketal.,2009;KoechlinandJubault,
+switches.Theseresults suggestthathumansrepre-
+2006;SuttonandBarto,1998).Tounderstandhowahierarchical
+senthierarchicalplansusinganetworkofcaudalpre-
+representationmayalleviatethecomputationalburdenofplan-
+frontalstructures.
+ning, consider a metropolitan rail (subway) network, in which
+stations (i.e., states,e.g., King’s Cross and Oxford Circus) are
+organizedintolines(i.e.,contexts,e.g.,theVictoriaLine;seeFig-
+INTRODUCTION ure 1A). Unlike planning in a ‘‘flat’’ (non-hierarchical) environ-
+ment, plans formed in a hierarchical environment need not
+Byformingandexecutingplans,humanscanengageincomplex specify each and every state linking the current position and
+behaviorssuchaspreparingacupofcoffeeororganizingatrip goal. Rather, it is sufficient to identify the current context and
+to London. When asked to perform multistep tasks such as the (termination) conditions that allow the next context to be
+these,patientswithlesionstotheprefrontalcortex(PFC)often reached; for example, when planning a journey from Marble
+exhibit disordered action sequences that fail to achieve the ArchtoKing’sCrossontheLondonUnderground,oneshould
+specified goal (Owen et al., 1990; Shallice, 1982; Shallice and ‘‘taketheCentralLinetoOxfordCircus,andfromthere,switch
+Burgess,1991),andhippocampalpatientshavedifficultyimag- totheVictoriaLine’’.Humansseemtorepresentlocationshier-
+iningthefuturestatesentailed(Schacteretal.,2012).Moreover, archically in spatial memory: for example, we have a bias to
+functional neuroimaging has confirmed the involvement of hu- judge cities belonging to a common region (e.g., Nevada) as
+man prefrontal and limbic structures in forming and executing geographically closer than those crossing a region boundary
+plans,particularlyinspatialenvironments(Howardetal.,2014; (Newcombe and Liben, 1982; Stevens and Coupe, 1978).
+SchacterandAddis,2007;UnterrainerandOwen,2006).Never- Regionalizationmayalsoinfluencenavigationalstrategy:during
+theless,linkingthesemacroscopicneuralfindingstotheunder- wayfinding,humanspreferroutesthatpermitacontextbound-
+lying computational mechanisms that subserve planning re- ary to be crossed earlier rather than later (Wiener and Mallot,
+mainsanopenchallengeforpsychologistsandneuroscientists. 2003). In machine learning, states that offer privileged access
+Planningisoftendescribedasmentalexplorationofanetwork toanewcontext(suchasOxfordCircusallowingaccesstothe
+ofinterlinked,internallyrepresentedepisodes(or‘‘states’’).Ac- Victoria Line) are considered ‘‘bottlenecks,’’ and hierarchical
+Neuron90,893–903,May18,2016ª2016TheAuthors.PublishedbyElsevierInc. 893
+ThisisanopenaccessarticleundertheCCBYlicense(http://creativecommons.org/licenses/by/4.0/).
+
+--- PAGE 3 ---
+A B Figure1. TaskandDesign
+(A)Schematicrepresentationofplanningundera
+flat(left)andhierarchical(right)policy.Eachnode
+fromleft(startstate,shownbytherobot)toright
+showsapossiblestate(i.e.,station)thatcouldbe
+visited.Theflagindicatesthedestinationstation.A
+hierarchicalpolicyallowstheagentto‘‘chunk’’the
+mazeintocontexts(here,aredlineandablueline).
+Thisinturnreducesthecostofplanningandplan
+representation.
+(B)Thesubwaymapthatparticipantsnavigated.
+Themapwasrotatedandthelinecolorsandstation
+names were shuffled between participants. Par-
+ticipantsonlysawthemapduringtraining.
+(C) A schematic depiction of the sequence of
+events(trials)thatoccurredonanexamplejourney.
+Thenamesatthetopandbottomofthescreenrefer
+to the current and destination stations, respec-
+C tively. The responses (arrows) and lines (colored
+dots)werenotshowntoparticipants.Timings(in
+seconds)forthevariouseventsareshownbelow.
+(D)Examplesofhowthe various distances were
+calculated for an example map: D S (stations to
+goal),D L(linestogoal),D X(exchangestationsto
+goal),andD U(U-turncost).Thenumbersandblue-
+redcolormapshowthedistanceineachmetricthat
+was used to estimate the cost of planning. The
+robotshowsthestartpoint,andtheflagshowsthe
+destinationstation.
+whetherhumansrepresentedplansinahi-
+erarchicalfashion(overlinesorcontexts)
+or a flat fashion (over stations or states).
+Ontheneurallevel,anextensiveliterature
+hasimplicatedboththemedialandlateral
+PFC in planning on multistep decision
+D taskssuchastheTowerofLondon(Unter-
+rainer and Owen, 2006), but the relative
+contributionofthesedifferentregionsre-
+mainsunclear.Somestudieshavefound
+thattheBOLDsignalindorsolateral PFC
+scaleswiththenumberofmovesrequired
+toattaingoalstate(vandenHeuveletal.,
+2003; Wagner et al., 2006), but neural
+structures encoding hierarchical plan
+complexityhaveyettobeidentified.One
+theoretical perspective has suggested
+that the dorsomedial PFC (dmPFC) may
+play a particular role in representing
+learning models successfully predict that visiting these should contextualinformationforfuturebehavior(HolroydandYeung,
+elicit unique patterns of behavior and neural activity (Holroyd 2012).Duringpassiveobservationoftrajectoriesthroughastruc-
+and Yeung, 2012;Ribas-Fernandes etal.,2011;Solway etal., turedenvironment,thedmPFCislessactiveatbottleneckstates
+2014). (Schapiro et al., 2013), but by contrast, a more caudal medial
+Here,thus,wetaughtparticipantstonavigateanovelsubway prefrontal region shows a positive ‘‘pseudo-reward’’ signal
+networkinwhichstations(states;e.g.,MandelaandBudapest) when a subgoal is attained (Ribas-Fernandes et al., 2011). It
+were organized hierarchically into lines (contexts) defined by thus remains unclear how the medial and lateral PFC might
+their color (Figure 1B). Following training, participants were contributetohierarchicalplanning.
+askedtocompletejourneyswithinthenetworkwithoutviewing Topreviewourfindings,weidentifiedtwofrontalcorticalre-
+the map, pressing keys to move from one station to another. gions that encoded the cost of representing a hierarchical
+We analyzed behavior and fMRI data in order to determine plan:abilateralanteriorpremotorregionandthedmPFC.These
+894 Neuron90,893–903,May18,2016
+
+--- PAGE 4 ---
+regions also became differentially active at bottleneck states ure1D,centerleft).Then,asacontrol,wecomputedthedistance
+(‘‘exchange’’ stations, where participants could switch from to goal in number of exchange stations to be traversed. By
+onecontexttoanother).Usingmultivariateanalyses,wefound design, on many journeys, the shortest path involved passing
+thatthedmPFCadditionallyencodedormonitoredthecurrent through an exchange station without switching context (Fig-
+context(i.e.,thesubwaylinethatwascurrentlybeingtaken),a ure1D,centerright).Thismeasure,whichwecallD ,wasthus
+X
+key quantity that is required for executing a hierarchical plan. decorrelated fromD (for details of the correlation among dis-
+L
+Bycontrast,therostromedialPFCandhippocampusencoded tance measures, see Table S3). Finally, we computed another
+theproximitytoagoalstate.Together,thesefindingssuggest cost, which represented the number of steps that had to be
+thatduringplanning,humansencodethesubwaynetworkand takenawayfromthegoal(incityblockspace)inordertoreach
+formulateplansinahierarchicalfashion. it by the shortest path. Thus, this measure, which we call the
+U-turncost(orD ),washighforpathsthatrequired‘‘doubling
+U
+RESULTS back’’(Figure1D,rightmost).
+Wethenusedlinearregressiontoaskwhether(log)response
+TaskSummary times(RTs)duringnavigationweresensitivetothecomplexityof
+The task is depicted in Figure 1C. Each journey began at a theplanasindexedbyD S,D L,D X,andD U.Critically,thisanalysis
+pseudo-randomly chosen station (see Experimental Proce- yielded significant positive coefficients for number of lines to
+dures).Oneachtrial,thenamesofthedestinationandcurrent goal (D : t = 3.46, p = 0.003) and for the U-turn cost (D :
+L 19 U
+stationswereshown,andparticipantspressedoneoffourbut- t = 4.26, p < 0.001; see Figure 2A). When these predictors
+19
+tons (north, south, east, or west) to move to an adjacent sta- competedforvariancewithinasingleregression,however,the
+tion, which was then shown on the next trial. Their goal was numberofstationstogoalfailedtopredictRTs(D :t =1.26,
+S 19
+to navigate through the subway map from the start station to p = 0.223), as did the number of exchange stations (D : t =
+X 19
+the destination station (these successive trials comprising a (cid:1)0.49,p=0.628).Thisfindingsuggeststhatthemaincostsof
+‘‘journey’’).Duringaninitialtrainingsession,lineswereassoci- representing the plan were contextual or structural aspects of
+atedwithcolors(red,green,yellow,andblue),butatscanning, the subway map, rather than the number of unique steps
+all color information was removed. Successful journeys were required to reach the destination station. This supports the
+rewarded with financial incentives, but there was a small, but view that plans are formed and executed in a hierarchical
+constant, probability that journeys were ‘‘cancelled’’ on each fashion.
+trial and the reward was unavailable, motivating participants Wedefinedstationsas‘‘regular’’(i.e.,withinasingleline;e.g.,
+tomakejourneysintheshortestpossiblenumberoftrials.Par- MadridinFigure1B)andexchange(i.e.,bottlenecks,occurring
+ticipantscarriedout88.8±2journeysintotal,eachconsisting at the intersection between lines, e.g., Clinton). Moreover, re-
+of an average of 5.5 ± 0.06 trials. Of these, 78.3% were per- sponseswereclassifiedaseitherstay(i.e.,travelinthesamedi-
+formed‘‘optimally’’(i.e.,whenallresponsesdecreasedthedis- rectionasthepreviousstep)orswitch(i.e.,changethedirection
+tance to goal in number of stations). Of the remainder, 15.2% of travel). These factors were orthogonal in our paradigm,
+contained at least one action that led participants further becauseregularstationssometimesrequiredadirectionswitch,
+away from the goal; these responses were made more slowly as whena single lineturned a corner (e.g., Kathmandu in Fig-
+(t = 7.56, p < 0.000001). Additionally, 9.0% of journeys ure1B),butparticipantscouldalsopassthroughexchangesta-
+19
+included at least one missing response (when subjects failed tions without switching response (e.g., when passing through
+to respond on time and remained in the same station as in Moscow en route from Winfrey to Bern). This feature of our
+theprevious trial). designthusallowedustofurtherinclude,intheaboveregres-
+sion, separate binary predictors encoding station type (ex-
+Behavior:TheCostofPlanRepresentation changeversusregular)andresponsetype(switchversusstay).
+Thecomplexity(ordescriptionlength)ofrepresentingaflat(non- Weobservedamaineffectofstationtype(exchange>regular;
+hierarchical) plan is proportional to the number of remaining t =3.40,p=0.003)andofdirection(switch>stay;t =7.92,
+19 19
+states(here,stations)thatmustbetraversedtoreachthegoal p<0.001).Theinteractionbetweenstationtypeandresponse
+(here, destination station). By contrast, in a hierarchical plan, type was not significant (t = 1.05, p = 0.309). Mean RTs in
+19
+this cost scales with the remaining number of contexts that eachconditionareplottedinFigureS1.
+must be traversed for the goal to be attained. We thus began
+bydefiningmeasuresofplancomplexitythatmightbecomputed NeuralCostofPlanRepresentation
+by participants under flat and hierarchical policies. First, we Next,wesoughttoidentifyinthebrainimagingdatatheneural
+calculated,oneachtrial,thenumberofsteps(stations)thatre- costs of representing flat or hierarchical plans. In this analysis
+mainedtobetraversedbeforethegoalwasreached,assuming and all that follow, all reported results survive correction for
+ashortestpathtrajectory(D ).Thisrepresentsplancomplexity multiple comparisons using a false discovery rate (FDR) with
+S
+underaflatpolicy(seeFigure1D,leftmost).Next,wecalculated analphaofp<0.05,unlessotherwisenoted.Webuiltadesign
+thenumberofcontextsthatremainedtobetraversedbeforethe matrix (GLM1) with regressors encoding the various indices
+goalwasreached.Thus,ifonthecurrenttrialtherewereonlyone ofdistancetogoalintroducedabove(D S,D L,D X,andD U;Fig-
+changeofcontextthatwouldberequiredtoreachthegoal,this ure 2C). Examples of how these distances were computed
+valuewouldbe1;beyondthatcontextswitch,thevaluewouldbe areshown inFigure 1D.Regressing thisdesignmatrix against
+0.ThisquantityD indexesthecostofahierarchicalpolicy(Fig- BOLD data, we found that a dmPFC (BA8/32) responded
+L
+Neuron90,893–903,May18,2016 895
+
+--- PAGE 5 ---
+A B Figure2. BehavioralandNeuralCostsofFlat
+andHierarchicalPlanning
+(A) Regression coefficients (mean ± SEM across
+participants) showing the slope of the pre-
+dictiverelationshipbetweenexperimentalvariables
+(includingdistanceestimates)andlogRTs.
+(B)Parametricresponses(mean±SEM)toD Sand
+D L in the PMC and rlPFC. There is a significant
+condition 3 region interaction. The rlPFC ROI is
+shownontheright.
+(C)Encodingofthefourplancomplexitymeasures
+(GLM1) in the lateral (coronal view; upper) and
+medial (sagittal view; lower) frontal cortices,
+rendered onto a template brain, thresholded at
+p<0.001uncorrected.
+C (D)Correlationwithproximitytogoal(GLM1)inthe
+vmPFC.
+(E)Correlationwithproximitytogoal(GLM2)inthe
+hippocampus. The activations are shown that
+exceedp<0.001,uncorrected.
+(F)Correlationbetweenparameterestimateslink-
+ing log(RT) to plan complexity in units of station
+(left) and lines (right), with beta values encoding
+thecorrespondingdistancemeasureinthePMC
+(upper)anddmPFC(lower).Thedotscorrespond
+toindividualsubjects.Thelinesaretobestlinear
+fits for significant (red) and non-significant (gray)
+D F
+correlations,respectively.
+The significant regions within a circle survived
+multiplecomparisonscorrection.
+E
+Previous neuroimaging studies have
+noted that BOLD signals in the rostrolat-
+eralPFC(rlPFC)scalewiththenumberof
+movesthatarerequiredtosolvetheTower
+of London task (van den Heuvel et al.,
+2003; Wagner et al., 2006), equivalent to
+ourD Smeasure.Topermitdirectcompar-
+isonwithpaststudies,wecreatedanew
+positivelytothecostofplanrepresentationinunitsofbothlines GLM (GLM2) that included only D S (alongside other nuisance
+(peak:(cid:1)6,8,58;t =5.21,p<0.0001)andtheU-turncost(peak: quantities;seeExperimentalProcedures),omittingthedistance
+19
+(cid:1)2,12,46;t =5.63,p<0.00001).Critically,inGLM1(whenall regressorsinunitsoflines,exchangestations,ortheU-turncost.
+19
+fourregressorscompetedtoexplainvarianceinBOLDactivity) Consistentwithpreviouswork,thisanalysisidentified notonly
+nodmPFCvoxelsweresensitivetothedistancetogoalinterms thepremotorcortex(PMC),butalsoaportionofbilateralrlPFC
+ofnumberofstations. (left:(cid:1)42,32,34;t =7.87,p<0.000001andright:42,40,34;
+19
+InthelateralPFC,weobservedasimilarpatternofBOLDsig- t = 4.81, p < 0.0001; see Figure 2C). Plotting the average
+19
+nalsinananteriorpremotorregion(premotorcortex)thatstrad- beta parameters across the cohort for D S and D L confirmed
+dled BA6 and BA8, where BOLD activity scaled with D L (left thatthePMC,butnottherlPFC,encodedthecostofahierarchi-
+peak:(cid:1)26,(cid:1)8,54;t =6.58,p<0.000001andrightpeak:30, calplan,asdemonstratedbyaregion(PMCandrlPFC)3dis-
+19
+4, 66; t 19 = 4.99, p < 0.0001) and D U (left peak: (cid:1)26, 4, 54; tance (D S and D L) interaction (F 1,19 = 4.71, p < 0.05; see
+t = 6.51, p < 0.000001 and right peak: 26, 8, 46; t = 6.30, Figure2B).
+19 19
+p<0.000001).Here,wealsoobservedaneffectofdistancein
+number ofstations, D S(leftpeak: (cid:1)22,(cid:1)8,50;t
+19
+=6.62,p< ProximitytoGoal
+0.000001 and right peak: 30, 4, 58; t = 6.39, p < 0.000001). Consistent with previous findings (Howard et al., 2014), using
+19
+Notably,thenumberofexchangestationsbetweenthecurrent GLM1,wealsoobservedasignalthatreflectedanegativecorre-
+position and the goal (D X) failed to show any consistent effect lationwithdistanceinstationstogoal(D
+S
+)intheventromedial
+at the group level. In other words, these regions encoded the PFC(vmPFC,peak:10,48,(cid:1)6;t =5.80,p<0.00001;inother
+19
+costofrepresentingaplaninunitsthatreflected thestructure words,thisregionbecamemoreactivetheclosertothegoal).In
+ofthesubwaymap,overandaboveanyencodingofthedistance thisregion,distancewasencodedinunitsofstationsonly,with
+togoal. no evidence for encoding of hierarchical distance (Figure 2D).
+896 Neuron90,893–903,May18,2016
+
+--- PAGE 6 ---
+A B Figure 3. BOLD Responses to Bottleneck
+States
+(A) BOLD signal b values (mean ± SEM) from
+single-trial GLM approach in the PMC on
+three regular stations preceding (leftmost
+points) and following (rightmost points) a con-
+text switch (green lines), an exchange station
+without line change (purple lines), or an elbow
+C D station (cyan lines). The activation at the
+contextswitch,exchangestation,or elboware
+shownwithasinglepointinthecorresponding
+color. The averaged BOLD signal b in regular
+stations is represented by the horizontal
+dashed line.
+(B)Voxelsrespondingtothemaineffectofstation
+type (exchange > regular) in the PMC (left) and
+dmPFC(right).
+(C)Voxelsintheamygdalarespondingtotheinteractionbetweenstationtypeandresponse.
+(D)Voxelsintheparietalcortexrespondingtothemaineffectofresponseswitch.ThecoordinatesinMNIspaceareprovidedundereachslice.Thesignificant
+regionswithinacirclesurvivedmultiplecomparisonscorrection.
+IncludingonlyD S(GLM2)identifiedanumberofotherregions, WeobservedincreasesinBOLDsignalsassociatedwithex-
+including the hippocampus, where BOLD signals have previ- changestationsinboththedmPFC(peak:6,16,46;t =4.09,
+19
+ouslybeenfoundtoscalewithdistancetogoalduringnavigation p < 0.001) and PMC, overlapping with the region described
+(Howardetal.,2014).Inourtask,thehippocampusreflecteddis- above(leftpeak:(cid:1)26,8,54;t =7.24,p<0.000001andright
+19
+tancetogoalbilaterallyinthesamedirectionasthevmPFC(Fig- peak: 26, 12, 54; t = 6.56, p < 0.00001). Across the subject
+19
+ure2E).Afullrangeofregionsthatcorrelatedwitheachofthese cohort,thestrengthofthislatterneuraleffectpredictedtheRT
+distanceestimatesisreportedinTablesS1andS2. difference between exchange and regular stations (r = 0.40,
+p < 0.04), but not between switch and stay trials (p = 0.70). A
+CorrelationofNeuralandBehavioralCostsacrossthe furthereffectofexchange>regularstationswasobservedina
+Cohort more anterior prefrontal region, in bilateral BA 46 (left peak:
+Next,weaimedtounderstandtherelationshipbetweentheneural (cid:1)42,24,30;t =4.48,p<0.0001andrightpeak:46,32,22;
+19
+andbehavioraleffectssofarobserved(seeFigure2F).Foreach t =5.38,p<0.0001).
+19
+measureofplanningcost(D S,D L,D X,andD U),wecalculatedthe Next,weplottedhowtheBOLDsignalvariedonthoseregular
+correlationacrossthecohortofparticipantsbetweenitsinfluence stations that both preceded and followed an exchange or an
+onRT(regressioncoefficientfromFigure2A)anditsinfluenceon elbowstation.Abrainregionencodingthehierarchicalrepresen-
+BOLDsignalsin(1)thePMCand(2)thedmPFC.Wefoundthecor- tationofaplanmightbeexpectedtoshowtonicallyhigherBOLD
+relationwassignificantindmPFCforbothdistanceinnumberof signals in the trials preceding an exchange station (where the
+stations(D :R=0.6,p<0.005)andinnumberoflinechanges cost of plan representation in units of lines remains high), fol-
+S
+(D :R=0.39, p<0.05).However,neitherofthese correlations lowed by a reduction immediately after context switch (where
+L
+wassignificantinthePMC(D :R=(cid:1)0.05,p=0.57andD :R= thecomputationalburdenisreduced).InFigure3A,weplotthe
+S L
+0.07,p=0.379).Nobrain-behaviorcorrelationswereobserved BOLDsignalinthePMCregion(extractedfromthemaineffect
+ineitherregionforD XorD U.However,wedidobserveacorrelation oftypeofstation)onregularstationsthatprecedeandsucceed
+betweenthebehavioralcostofD UandtheencodingofD Uina acontextswitch(greenlines).AnelevatedBOLDsignalisvisible
+dlPFCregionshowninFigureS4(D :R=0.33,p<0.05one-tailed). onthosetrialsprecedingacontextswitch,afterwhichitdropsoff
+U
+sharply(comparisonbetweenprecedingandsucceeding:t =
+19
+NeuralSignalsAssociatedwithBottleneckStates 3.24,p<0.003).Ofnote, asimilardropisnotobserved when
+The analyses described above suggest that both dmPFC and the same analysis is conducted on stations that precede or
+PMC encoded the hierarchical cost of representing a plan, succeed anexchangestationwithout acontextswitch(purple
+over and above any cost of plan representation computed in lines;p>0.9)andonlyamodestdropfollowsanelbowstation
+unitsofdiscretestates.Next,weinvestigatedneuralsignalsin (t = 1.87, p < 0.05, one tailed). These effects were qualified
+19
+theseregionsmoreclosely,byplottingtheactivitythataccom- by the interaction of type of station and type of response on
+paniedthemomentinwhichabottleneckstateoccurred,when the difference of signal (preceding and following) around each
+participants were offered the opportunity to switch from one condition: F = 5.44, p < 0.04. In other words, the average
+1,19
+context to another. We once again capitalized on the factorial BOLDsignalinPMCobservedwashigherontrialsbeforethan
+design of our task, asking if there were unique neural signals afteracontextswitch,consistentwithahierarchicalrepresenta-
+thatvariedwithstationtype(exchange>regular,nowincluding tionoftheplan.Weadditionallyfoundamaineffectoftypeof
+alltrials;Figure3B).Thisanalysisalsoincludedaregressoren- response: F = 4.61, p < 0.05, indicating that participants
+1,19
+codingD S,aswellasafurthernuisancepredictorthatsignaled also anticipated making a response switch. Signals from the
+whethertheactionchosenwasoptimalornot(GLM2). dmPFCfollowedasimilarpattern,althoughtheinteractionfailed
+Neuron90,893–903,May18,2016 897
+
+--- PAGE 7 ---
+A Figure4. EncodingofContextinMultivariate
+BOLDSignals
+(A) A depiction of the predicted representational
+dissimilaritymatrixthatwasusedtoidentifybrain
+regionswherethesimilaritystructurewasgreater
+withinthanbetweencontexts.Theblue(andyellow)
+squaresrepresentlow(high)dissimilarity,respec-
+tively for independent pairs of scanner runs and
+lines(xandyaxis).
+(B) The results ofthe RSA identifying voxels en-
+coding context, i.e., where multivoxel pattern
+dissimilarity was greater between than within
+contexts (lines), identified using a searchlight
+approach.
+B C D ( m C e ) t V ric ox d e is ls ta w nc h e er t e og th o e al p (in at u te n r it n s e o n fs c t o a d ti i o n n g )w th a e s p m a o ra re -
+differentbetweenthanwithincontexts(lines).
+(D) The results of the control analysis for (B)
+involving shuffled stations-line assignments. An
+additionalcontrolanalysiswasperformedtoassert
+thattheeffectwasnotdrivenbylineorientation(see
+FigureS2).Thesignificantregionswithinacircle
+survivedmultiplecomparisonscorrection.
+toreachsignificance.AnequivalentanalysisforRTsisshownin differentlines(usingunsmootheddata;seeExperimentalProce-
+theSupplementalInformation(FigureS3). dures for details; Figure 4A). In the scanner, no indication
+wasgivenastothesubwaylinecurrentlybeingvisited,andso
+NeuralSignalsAccompanyingResponseSwitchand any significant voxels must reflect an abstract encoding of
+ContextSwitch the context from memory. In conjunction with a whole-brain
+Behavioraldataindicatedthattherewasauniquecostincurred ‘‘searchlight’’ approach, thisanalysis once again identified the
+when participants switched context, i.e., at exchange stations dmPFCasaregionwherethecurrentcontextwasrepresented
+requiring a response switch. In the fMRI data, we observed a (peak(cid:1)10,8,54;t =7.49,p<0.000001;Figure4B).Noevi-
+19
+comparable interaction between type of station and response dence for context encoding in the PMC was found, although
+switchinaclusterofvoxelsstraddlingtheamygdalaandputa- evidence was found in other regions, including more anterior
+men (left peak: (cid:1)26, 0, (cid:1)10; t = 4.46, p < 0.001 and right portions of the PFC in BA9 (left peak: (cid:1)30, 44, 34; t = 5.32,
+19 19
+peak:22,4,(cid:1)14;t =5.20,p<0.0001),aswellasanextrastriate p<0.0001andrightpeak:34,44,30;t =4.9,p<0.001).
+19 19
+regionon thelingualgyrus(peak: 26,(cid:1)68,(cid:1)6;t =5.16,p< TheanalysesaboveindicatedthatthedmPFCencodesdis-
+19
+0.0001), corresponding to area V4 where responses to color tance to goal in units of lines and U-turns. It could be, thus,
+areoftenobserved(ZekiandMarini,1998).Plottingparameter thatthepatternencodingofthisquantitymaydependonthecur-
+estimates for these regions showed that this interaction was rent line, providing evidence for a distinct computational cost
+drivenbyhigherBOLDsignalsforthosetrialswhereparticipants withineachcontext.WethusrepeatedourRSA,butusingnot
+switchedfromonecontexttoanother(Figure3C).However,we the raw BOLD signal observed at each station, but the para-
+interprettheseresultswithcaution,becausetheyfailedtoreach metricencodingofdistancetogoal(instations).Thepatternof
+the threshold required for correction using an FDR threshold. encodingofdistancetogoalwasalsomoresimilarwithinlines
+Finally,wealsoobservedstrongactivationsintheparietalcortex than it was between lines in the dmPFC (2, 20, 54; t = 5.38,
+19
+thatpredictedwhetherparticipantsswitcheddirectionornot(left p<0.0001);itisshowninFigure4C.
+peak:(cid:1)38,(cid:1)32,46;t =10.8,p<0.000000001andrightpeak: RSAcan yieldspuriousresultswhentrialsassignedto each
+19
+54,(cid:1)24,34;t =8.39,p<0.0000001;Figure3D). categoryarenotfullytemporallydecorrelated,andsowecon-
+19
+ductedthisanalysisbetweenruns(e.g.,measuredthesimilarity
+EncodingofCurrentContext betweenlineaonrun1andlinebonrun2).Weadditionallycon-
+Toexecuteahierarchicalplan,anagentmustbeabletoidentify ductedacontrolanalysisinwhichtheassignmentsbetweensta-
+and represent the current context, in addition to the current tionsandlineswereshuffled;thisyieldednosignificantresults
+state(i.e.,ontheLondonUnderground,toknowthatoneison (Figure4D).
+the Victoria Line, not just that one is at Green Park station). Finally,subwaylinescontainedlongstraightsections,andso
+Wethususedamultivariateanalysistechniqueknownasrepre- we were concerned that RSA of context might have captured
+sentational similarity analysis (RSA) to identify brain regions in similarityassociatedwithtravelinacommondirection,unrelated
+whichthepatternsofBOLDsignalovervoxelswasmoresimilar tocontextperse.Totestthis,weconductedanotherRSAusing
+across runs within a single subway line than between two thesameapproach,butsearchedforregionswheremultivoxel
+898 Neuron90,893–903,May18,2016
+
+--- PAGE 8 ---
+patternsweremoresimilarwithinthanbetweendirections(north, cohort,weobservedreliablebrain-behaviorcorrelationsinonly
+south, east, and west). No activations were observed in the thedmPFC,butnotthePMC.InthedmPFC,thestrengthwith
+medialPFC,butalargeclusterofsignificantvoxelswasfound whichBOLDsignalsencodeddistancetogoalinunitsbothof
+intheleftmotorcortex(FigureS2). stationsandcontextsforagivensubjectpredictedhisorhercor-
+responding RT cost for those plan complexity measures. We
+DISCUSSION also found that the multivariate pattern of information in the
+dmPFC(butnotPMC)wassufficienttodistinguishamongcon-
+The behavior of humans and other animals is controlled at texts,eventhoughthelinethatwascurrentlyvisitedwasnever
+least in part by a ‘‘model-based’’ control system that learns explicitly displayed to participants during the scanning phase.
+the structure of the world and organizes sequential behavior Moreover,wewerealsoabletodistinguishcontext-specificrep-
+inpursuitoffuturegoals(Dawetal.,2005;DickinsonandBal- resentationsofdistancetogoalinthedmPFC,asiftheregionen-
+leine, 2002; Dolan and Dayan, 2013; Schoenbaum et al., coded separate costs of planning for each individual context.
+2009; Tolman, 1948). Recent work has begun to address OneinterpretationofthisfindingisthatthedmPFCisresponsible
+the neural and computational substrates underlying the forthetranslatingofaplanintobehavior,whereasthePMCpar-
+model-based decision-making by constructing ‘‘two-step’’ ticipates in maintaining the active plan over the journey. How-
+decision tasks in which cached state-action values and ever,wenotethatthoseparticipantsshowingthestrongestflat
+explicit forward search strategies make opposing predictions cost in behavior also showed stronger encoding of this cost
+about behavior and brain activity (Daw et al., 2011; Gla¨scher in dmPFC neural signals. It may be, thus, that there are some
+et al., 2010; Wunderlich et al., 2012). However, these studies individual differences in the way that dmPFC contributes to
+sidesteponekeytheoreticalchallengeassociatedwithmodel- computingthecostofplanning.
+based approaches, namely, how to organize behavior over Moregenerally,ourfindingsareconsistentwiththeviewthat
+multiplefuturestateswithout incurringaprohibitivecomputa- the dmPFC encodes a motivational signal that is extended
+tional cost. Human cognition has evolved to meet this chal- over time (Summerfield and Koechlin, 2009) and the comple-
+lenge, as exemplified by our ability to form and follow plans mentaryperspectivethatthedmPFCencodes‘‘option’’values
+overmultipletimescales,forexamplewhenfindinganefficient undertheframeworkofhierarchicalreinforcementlearning(Hol-
+route to run a series of errands, or envisaging a future career roydandYeung,2012).Aspartofageneralroleinmonitoringthe
+pathandtakingstepstowarditsfulfillment.Althoughwehave expectedvalueofcontrolledbehavior(Shenhavetal.,2013),the
+known for decades that planning involves the PFC, to date, dmPFCmaythusencodeboththeidentityandvalueofacontex-
+very little has been revealed about the computational mecha- tualvariableoverwhichaparticularpolicyapplies,forexample,
+nisms that unfold in these regions during plan formation and whenforagingfromdifferentpatches(Haydenetal.,2011;Kol-
+execution. lingetal.,2012).
+Here,wedrewuponaframeworkthathasitsrootsincognitive The lateral region overlaps with the superior aspect of the
+psychology(Milleretal.,1960;NormanandShallice,1986),but caudal dorsolateral PFC identified by Koechlin et al. (2003) as
+has most recently inspired advances in machine intelligence activewhenactionsareselectedonthebasisofcontextualinfor-
+(Botvinicketal.,2009;Ponsenetal.,2010).Thisframeworkpro- mation.Thesameregionislabeled‘‘pre-PMd’’byBadreetal.
+posesthatthespaceof possible statescanbeorganized and (2010),whofoundthatthisregionisactivewhenactionselection
+represented hierarchically as a series of clusters or contexts, iscontingentonahierarchyofcontingencies,ratherthanaflat
+reducingplancomplexity(descriptionlength),andaffordingsub- seriesofsensorimotorassociations.Inthisregion(asinbehavior
+stantiveincreasesincomputationalefficiencybothatthetimeof andthedmPFCsignal),theBOLDsignalscaledwithdistanceto
+plan formation and plan execution. In the current study, we thedestinationstationinunitsofcontext(i.e.,lines),butnotthe
+testedapredictionarisingfromthishypothesis:thatwhenplan- metricprovidedbyindividualstates(i.e.,stations).Notably,no
+ninginacomplexenvironment,thecostofrepresentingaplan sucheffectwasobservedinmorerostralregionsthathavepre-
+will be expressed in units of context (or context switch) over viouslybeenimplicatedinrepresentingplancomplexityinmulti-
+andaboveanycostthatisincurredinunitsofstatesthemselves. stepproblemssuchastheTowerofLondontask(vandenHeu-
+OurkeyfindingisthatbothRTsandneuralactivityinthecaudal veletal.,2003;Wagneretal.,2006).Atfirstglancethisfindingis
+frontal cortex encode the cost of representing a hierarchical surprising,onemighthaveexpectedmoreanteriorregionstobe
+plan,indicatingthattheyparticipateinthehierarchicalorganiza- responsibleforrepresentingthehigherhierarchicalaspectsofa
+tionoffuturebehavior. complexplan.However,oneexplanationforthisfindingisthat
+The neural costs observed were identified in two frontal re- during hierarchical planning, potentially complex action se-
+gions: a dmPFC region, falling in the presupplementary motor quences are ‘‘compressed’’ to a small number of steps (e.g.,
+cortex,thatisoftenfoundtobesensitivetothedifficulty(orcon- contextsandcontextswitches)thatcanthenberepresentedin
+flict)incurredwhenmakingachoice(Botvinicketal.,1999),anda subsidiary prefrontal regions located more caudally (Koechlin
+lateral frontal that straddles the border between the premotor andSummerfield,2007).
+and prefrontal cortices, in BA6/BA8. Both regions were also Interestingly,thecostofrepresentingaplanwasincurredin
+active when participants were faced with the opportunity to unitsofcontext,butnotinunitsofresponseswitch.Thisexplains
+switchcontext,atanexchangestationorbottleneck,consistent theprevious findingthathumansseektoreach anewcontext
+withthefindingthatthedmPFCrespondstosubgoalattainment earlierratherthanlaterduringnavigation,asdoingsoreduces
+(Ribas-Fernandesetal.,2011).However,acrosstheparticipant the computational burden of plan representations (Wiener and
+Neuron90,893–903,May18,2016 899
+
+--- PAGE 9 ---
+Mallot,2003).Thisresultadditionallysuggeststhatthehierarchi- network.Thisisageneralindexofthecostinvolvedinmaintain-
+calrepresentationoftheplanisencodedintermsofitsabstract ingandmonitoringtheplan,ratherthanofrecursivelysearching
+structure, rather than as a succession of macro-actions (e.g., throughallpossiblenodesofthedecisiontree(forexample,viaa
+‘‘gostraight,thengoleft’’).Norwastheplanencodedinterms breadth- or depth-first algorithm) or ‘‘pruning’’ of unpromising
+ofthenumberofchoicepoints,suggestingthatthestatespace routestoagoal(Huysetal.,2012,2015).Whileplanformation
+isnotchunkedpurelyonthebasisofitsphysicalproperties(e.g., may have occurred mainly on presentation of the cue screen
+in terms of segments between choice points), but in a fashion stating the start and goal stations, plans may also have been
+thatreflectedthemoreabstractstructurethattheywereencour- constantly updated and reformed during execution (‘‘replan-
+agedtolearnduringtraining.Whatremainsunclear,however,is ning’’).Indeed,asdistancetogoalgrows,theprocessingcost
+whether context is represented as a cluster of interlinked ofthesesearchoperationswillgrowcorrespondingly.However,
+perceptualstates(i.e.,stationsontheyellowline),orasaseries itisnotclearthatthiscostwouldgrowlinearlywiththenumberof
+ofmacro-policiesthatdictatepursuitofagoal(e.g.,keepgoing statesorcontextsthatmustbetraversedtoreachagoal.One
+straight on until you reach a given switch point). A hint that limitationoftheapproachtakenhereisthatwedonothavean
+participantsreliedonperceptualrepresentationofcontextwas obviousmeanstoassesshowplansareformedpriortoorduring
+providedbythefindingthatvoxelsinareaV4becameactiveat navigationortodistinguishtheneuralmechanismsthataccom-
+context switches, as if participants were recalling the color of panyplanmaintenanceandmonitoringfromanyreplanningthat
+the new subway line (which was not shown to them during may be occurring. We did examine BOLD signals evoked in
+scanning). However, the precise nature of the information that responsetothecuescreen,buttheydidnotshowconvincing
+characterizesacontextremainsanopenquestion.Forexample, correlations with the various distance metrics or predict the
+participantsmighthaveusedinformationaboutthespatialorga- journeys that participants would follow. However, it is unclear
+nizationofthemap(thebluelinerunsfromnorthtosouthorthe whether this null finding is due to a lack of statistical power,
+redlineisnorthofthegreenline). owingtothelimitednumberofsuchtrials.Examiningthecosts
+Moreover,bothbehaviorandthePMCalsoencodedanaddi- incurred at the time of plan formation would be an interesting
+tional ‘‘U-turn’’ cost, that indexed the extent to which plans avenueofresearchforfuturestudies.
+involved doubling back toward the current location along a
+different line. In the planning literature, it has been noted EXPERIMENTALPROCEDURES
+thatgoal-subgoalconflict—forexample,theneedtotemporarily
+remove one disc from a peg and subsequently replace it in Subjects
+Atotalof22healthyparticipants(10femaleand12male;age19–34,mean25.6
+theTowerofLondontask—incursauniqueRTcost(Wardand
+years;onewasthefirstauthorofthestudy)wererecruitedintothestudyin
+Allport, 1997) and poses a particular problem for patients
+accordancewithlocalethicalguidelines.Noparticipantsreportedahistory
+with lateral prefrontal lesions (Morris et al., 1997). Consistent of psychiatric or neurological illness, and all had normal or corrected-to-
+withthisfinding,U-turncostswerevisiblenotonlyinthePMC, normalvision.Participantswerepaid£35forparticipationinbothapractice
+butalsoinlateralprefrontalregions.Theexistenceofaunique andascannersessionontwoseparatedays.Amonetaryincentiveofupto
+U-turncostinournavigationtaskdemonstratesthatparticipants £10,proportionaltoperformance,wasaddedtothepreviousamount.There
+weretwoparticipantsthatwereexcludedduetopoorperformanceonthe
+notonlyencodedplansinthesubwaynetworkasahierarchical
+task(morethan20%ofthejourneysincludedamoveinthewrongdirection
+seriesofcontexts,butalsointermsofthegeometryofthemap
+duringthemainexperiment).
+thattheysawinthetrainingsession.
+Although the costs of representing a flat plan were minimal StimuliandTaskDesign
+oncevarianceassociatedwithahierarchicalplanhadbeenpar- Thesamesubwaymapwasusedforallparticipants,butthenamesofthesta-
+tialled out, there was one brain region where strong (positive) tionsandthecolorsofthelineswererandomlyshuffled,andthemapwas
+covariation with number of stations to goal was observed, the randomly rotated by 0(cid:3), 90(cid:3), 180(cid:3), or 270(cid:3) (example shown in Figure 1B).
+Followingtraining(see below),participantsperformedthemain task, which
+vmPFC. Previous theories have speculated that the vmPFC
+involvednavigatinginavirtualsubwayenvironment,intheMRIscanner.Each
+may be among a set of regions that tracks distance to a goal
+journeyinvolvedastartstationandadestinationstationthatwererandomly
+state (Holroyd and Yeung, 2012) and, indeed, the vmPFC is selectedwiththeconstraintthatthejourneywouldrequireatleastonechange
+implicated in episodic future thinking (Schacter and Addis, ofline(17.8%ofjourneys)oronechangeofdirectionwithoutchanginglines
+2007), and has been found to track growing expected reward (10.7%)orboth(71.5%).Participantsnavigatedthroughthesubwaymapby
+in decision tasks involving sequential, interdependent choices pressingbuttons(seebelow).Oneachtrial,therewasaconstantprobability
+thatthejourneywascancelled,engineeredsuchthatcancellationprobability
+(Tsetsos et al., 2014). The hippocampus has also previously
+wasindependentofthelengthoftheoptimaljourneyandledtoapproximately
+beenfoundtocovarywithproximitytogoal,butonlyinvirtualre-
+50%ofjourneysbeingcancelled;cancellationprobabilitywasindependentof
+alityenvironmentsthatmimicmuchmorecloselythenaturalistic
+thehierarchicalaspectsofthetask.Overall,52.9%ofjourneysweresuccess-
+experienceofnavigation(Howardetal.,2014;Viardetal.,2011). fullycompleted.Eachjourneywasrewardedwithamonetaryvalue(eitherone
+Here,weshowthatthedistancetogoalrepresentationispresent orfivevirtualcoins,signaledduringnavigation),whichwereconvertedtorealin-
+evenwhencurrentandgoalstateinformationisdevoidoftherich centives(normalizedtoamaximumof£10)thatwerepaidoutasabonusatthe
+episodiccuesthatwenormallyusetonavigate.Critically,how- endoftheexperiment.Behavioralperformancedidnotdifferasafunctionofthe
+incentivesoffered,sowecollapsedoverthisfactorforallanalyses.
+ever,thehippocampusandvmPFCshowednoevidenceofahi-
+erarchicalsignal.
+Procedure
+Ouranalysesfocusedonthecostof‘‘representing’’ahierar- ThemaintaskisdepictedinFigure1C.Eachjourneybeganwiththepresenta-
+chical (or flat plan) as participants navigated through the tionofacuescreenfor3sthatindicatedthestartingpointandthedestination
+900 Neuron90,893–903,May18,2016
+
+--- PAGE 10 ---
+(stationsandlines).Afteraperiodof2–5s(jittered)ofblankscreen,oneachof participant,wefirstrealignedallfunctionalimages,thenweco-registered(rigid
+thesuccessivetrialsanavigationscreenwasdisplayedfor3s.Thisscreen bodytransformation)theanatomicalscantothemeanfunctionalimage.We
+providedmultiplepiecesofinformation:thenamesofthecurrentanddestina- then segmented each subject’s co-registered anatomical scan, using
+tionstations;thelinecolorofthedestinationstation;therewardatstakeforthe segmentedprobabilisticmapsforgraymatter,whitematter,cerebro-spinal
+current journey; the cumulative reward so far; and the cardinal directions fluid,bone,softtissue,andair/backgroundintheMontrealNeurologicalInsti-
+(north,south,east,andwest)availablefromthecurrentstation.Critically,no tute(MNI)space.Theparametersobtainedwereappliedtonormalizethesub-
+informationaboutthecurrentlineoraboutthelineassociatedwitheachaction ject’sfunctionalscanstothetemplatebrainMNIspace.Functionalimages
+wasshown.Ateachstep,participantshadtochoosethedirectiontheywanted wereresampled(33333mmvoxels)andspatiallysmoothed(6-mmfull-width
+totakebypressingoneoutoffourbuttons.Ifnokeywaspressed,thesame half-maximum[FWHM]Gaussiankernel).Forallanalyses,a128stemporal
+stationwasshownagaininthenextstep.Eachnavigationscreenwasfollowed high-passfilterwasappliedtoremovelow-frequencyscannerartifacts.Tem-
+by a blank screen of 1–3 s (jittered); no feedback was provided during poralautocorrelationinthetimeseriesdatawasestimatedusingrestricted
+navigation. maximum-likelihoodestimatesofvariancecomponentsusingafirst-orderau-
+Thejourneyendedeitherwhentheparticipantreachedthedestinationor toregressivemodel(AR-1),andtheresultingnon-sphericitywasusedtoform
+whenthejourneywascancelled.Afterthejourneywasfinishedorcancelled, maximum-likelihoodestimatesoftheactivations,consistentwithstandardap-
+afeedbackscreeninformedwhetherthedestination hadbeenreachedor proachesinSPM(Pennyetal.,2006).
+notandtherewardthathadbeenobtained.Thisscreenwasdisplayedfor
+2sandwasfollowedbyablankscreenof2–5s(jittered)beforethenext BehavioralAnalyses
+cuescreenoccurred.Participantscompletedasmanyjourneysaspossible Weanalyzedlogreactiontimeswithlinearregressionasdescribedinthemain
+infoursuccessiverunsbuttressedbylead-inandlead-outdurationsof10s textandthesignificantcontributionofeachregressorwasvalidatedthrougha
+and5s,respectively.Thetotalscanningtime,includinganatomicalandlocal- ttestusinganalphaofp<0.05.AllregressorsandinteractionswereZscored
+izerscans,wasaround75minperparticipant. beforebeing introducedintheregression.The optimal pathwasobtained
+throughageneralizedversionoftheDijkstraalgorithmthatminimizedmultiple
+TrainingTask distances,bypriority:innumberofstations,numberofresponseswitches,and
+Allparticipantsweretrainedinaseparatebehavioralsessionthattookplace numberofexchangestations.TheU-turncostwasdefinedasthesigneddif-
+outsidethescannerexactly2daysbeforethemainexperimentaltask.This ferencebetweenthedistanceinnumberofstationsandtheManhattan(city-
+trainingsessionwassimilartothemaintask,withthefollowingexceptions. block)distance:D (a,b)=D (a,b)(cid:1)jx (cid:1)x j(cid:1)jy (cid:1)y j,where(x,y)arethe
+U S a b a b i i
+First,themap(e.g.,Figure1B)wasshownfor10spriortothestartofeach geometricalcoordinatesofastationi,j$jistheabsolutevalueoperator,and
+journey.Second,participantswereallowedunlimitedtimetorespond,moving D isthedistanceinnumberofstations.Anillustrationofhowthevarious
+S
+ontothenextscreenonlyafterakeypresshadbeeninitiated.Third,theavail- indicesofdistancetogoalwerecomputedisshowninFigure1D.Theoriginal
+ableactionswereshowninthecolorofthecorrespondingline,andapicture Dijkstraalgorithmwasbasedonin-housecode.
+matchingthenameofeachstationwasdisplayedconsistentlyintheback-
+groundtofacilitatethelearningofthemap.Anadditionalkeypress(space UnivariateAnalysesofFunctionalData
+bar)wasrequiredtoswitchbetweenlinesand,duringalineswitch,ananimated All univariate analyses were based on a generalized linear model (GLM)
+clockwasshownonscreenandadelayof1swasimposed.Oneachjourney, approach.OurGLMincludedregressorscodingforonsetsanddurationsof
+the starting and destination stations were selected uniformly, permitting a stimuliorevents,whichwerethenconvolvedwiththecanonicalhaemody-
+largernumberofpossiblejourneysand,attheendofeachjourney,afeedback namic response function (HRF) and regressed against the observed fMRI
+screeninformedtheparticipantof(1)thetotallengthofthejourneyand(2)the data.Scannerrunswereconcatenatedforunivariateanalyses,andconstant
+minimumlengththatcouldhavebeenbeachieved(i.ewhethertheirjourneyhad termsforeachrunwereincludedmanually.Additionally,motionparameters
+beenoptimalornot).Duringtraining,journeyswerenevercancelledandno andtheaveragesignaloutsideofthebrainwereincludedasnuisancevari-
+monetary outcomes were associated with successful journeys. Lastly, we ablesforallGLMs.Group-levelstatisticswereestimatedfromtheindividual
+introducedten‘‘quizzes’’athomogeneoustimesduringthetrainingsession bpatterns,notthewithin-subjectstatistics.
+(alwaysbetweenjourneys),eachincludingten‘‘questions’’wherethecurrent ThemainanalysesdescribedinthepaperwerebasedontwoGLMs.Unless
+stationandthegoalwerecued,butparticipantswereonlyrequiredtorespond otherwisespecified,weonlyconsideredjourneyswheretheparticipantalways
+tothefirststeptowardthegoal.Participantswereinformedofthescores movedtowardthegoal(‘‘optimal’’journeys),butotherjourneysweremodeled
+obtainedattheendofeachquizandwereinstructedtolearnduringthewhole separately.GLM1includedthefollowingconditionsconvolvedwiththecanon-
+sessionastomaximizetheirscoresduringthequiz.Theycompletedasmany icalHRFbasisfunction:maineffectofcuescreen;maineffectoffeedback
+journeysaspossibleoveraperiodof45min. screen; and main effect of navigation screen for suboptimal journeys. We
+Onthedayofscanning,beforeenteringtheMRI,participantsperformeda modeled navigation screens during optimal journeys independently for (1)
+practiceblockidenticaltooneofthemaintaskscannerruns.Theywereal- linechanges,(2)exchangestationswithoutalinechange,(3)elbowstations,
+lowedtoseethemaponelasttimebeforethebeginningofthissecondtraining and(4)regularstationswithoutresponseswitch.Additionally,weincluded
+session.Datafromthissessionwerenotincludedintheanalyses. the following parametric modulators for regular stations without response
+switch:distancetogoalinnumberofstations(D S);distancetogoalinnumber
+fMRIAcquisition oflinechanges(D L);distancetogoalinnumberofexchangestations(D X);and
+Magneticresonanceimageswereacquiredwitha3TSiemensVERIOscanner theU-turncost(D U).GLM2includedthefollowingconditions:maineffectofcue
+witha32-channelheadcoilusingastandardecho-planarimagingsequence. screen;maineffectoffeedbackscreen;andmaineffectofnavigationscreen.
+Whole-head T 2 *-weighted echo-planar images were continuously acquired Additionally,thenavigationscreenincludedthefollowingparametricmodula-
+witharepetitiontimeof2s,echotimeof30ms.WeacquiredfMRIdatain tors:typeofstation(exchange>regular);typeofresponse(switch>stay);inter-
+fourruns((cid:4)17mineach)ofbetween456and510volumes,plusthreedummy actionbetweenstationandresponse;distancetogoalinnumberofstations
+scansdiscardedbeforetheanalyses.Fortechnicalreasons,threeparticipants (D S);andperformanceonthecurrentstep(1ifoptimaland(cid:1)1otherwise).
+completedonlythreeruns.Eachvolumeincluded64364336voxelsof33 AlleffectsreportedsurvivedFDRcorrectionformultiplecomparisons,un-
+333mm.Ahigh-resolutionT1-weightedstructuralimagewasalsoobtained lessnotedinthemaintext.Imagesandtablesarethresholdedatp<0.001,
+(voxelsize=13131mm).Forstandardpreprocessingandunivariatestatis- unlessotherwisenoted.Alltheanalysesdescribedherefocusedoneffects
+ticalanalyses,weusedSPM12(WellcomeDepartmentofCognitiveNeurology, duringthetimeofnavigation.Peakactivationsarereportedwiththecoordinate
+London,UnitedKingdom).Allotheranalyseswerecarriedoutwithcustom systemoftheMNItemplatebrain.Regionsofinterest(ROI)weredefinedby
+scriptsforMatlab(Mathworks).WealsousedXjView(http://www.alivelearn. manuallyselectingclustersunderathresholdofp<0.001uncorrected.
+net/xjview)tovisualizethedataandtoconstructmaskimagesandimpose ThemaskinrlPFCwasextractedfromamaineffectofdistancetogoalin
+anFDRcorrectionformultiplecomparisons(Genoveseetal.,2002).Foreach GLM2.
+Neuron90,893–903,May18,2016 901
+
+--- PAGE 11 ---
+BOLD-RTCorrelationAnalysis AUTHORCONTRIBUTIONS
+WeextractedtheaveragebetaobtainedfromGLM1,andweobtainedaverage
+valuesfordmPFCandPMC.Wealsoobtainedsimilarbetavaluesofeffectof J.B.,conceptionanddesign,acquisitionofdata,analysisandinterpretationof
+DS and DL in explaining log-reaction times (see Experimental Procedures, data,drafting,andrevisingofthearticle;D.H.andH.S.,conceptionanddesign
+BehavioralAnalyses).Wethenperformedanon-parametricSpearmancorre- andrevisingthearticle;C.S.,conceptionanddesign,analysisandinterpreta-
+lationacrossparticipantsforeachregionandtypeofdistance. tionofdata,drafting,andrevisingofthearticle.
+Single-TrialGLMApproach ACKNOWLEDGMENTS
+Weperformedasingle-trialanalysisinordertoextracttheaveragesignalin
+PMCbeforeandafteralinechange,anelbowstation,anexchangestation WethankDharshanKumaranandChristianeAhlheimforhelpfuldiscussions.
+without response switch (i.e., a line stay), or a regular station without WealsothankMartinChadwickandHamedNiliforusefulinputontheRSA
+responseswitch.First,weconstructedadesignmatrixinwhicheachtrial methodology.Finally,wethankMattBotvinick,MartinChadwick,andHannah
+wasmodeledwithauniqueregressor.Fromthis,weobtainedasinglesca- Tickleforcommentsonanearlyversionofthemanuscript.Thisworkwas
+lar BOLDestimate for each voxel on each trial. We then averaged these fundedbyaEuropeanResearchCouncilawardtoC.S.
+valueswithinthePMCregionforeachstationtype.Toavoiddoubledip-
+ping,ourROIwasdefinedbasedonorthogonalcontrastoftypeofstation Received:November25,2015
+(exchange>regular)fromGLM2(p<0.001uncorrected).Second,weaver- Revised:February15,2016
+agedthePMCsignalfortheneighboringtrialsaroundeachcondition(i.e., Accepted:March31,2016
+linechange,elbowstation,linestay,andregularstation)withinthejourney. Published:May18,2016
+Critically, we restricted these neighboring trials only to regular stations
+withoutresponseswitch. REFERENCES
+OurpredictionwasthattheBOLDsignalinPMCwouldbehigherbeforea
+linechangethanafter,butthatthisdifferencewouldnotbereflectedaround Badre,D.,Kayser,A.S.,andD’Esposito,M.(2010).Frontalcortexandthedis-
+elbow stationsorexchangestationswithout aline change.Wecalculated
+coveryofabstractactionrules.Neuron66,315–326.
+thedifferenceonthetrialsimmediatelybefore/aftereachconditionandper- Botvinick,M.,Nystrom,L.E.,Fissell,K.,Carter,C.S.,andCohen,J.D.(1999).
+formedastatisticalanalysisonthemaineffectsoftypeofstationandtype Conflict monitoring versus selection-for-action in anterior cingulate cortex.
+ofresponseonthisdifference.Forbettervisualization,wecontrolledforbe- Nature402,179–181.
+tween-subject variability in Figure 3A, where we displayed the activity in Botvinick, M.M., Niv, Y., and Barto, A.C. (2009). Hierarchically organized
+PMCofallotherconditionsrelativetotheaveragesignalinregularstations behavior and its neural foundations: a reinforcement learning perspective.
+withoutresponseswitch. Cognition113,262–280.
+Daw,N.D.,Niv,Y.,andDayan,P.(2005).Uncertainty-basedcompetitionbe-
+RepresentationSimilarityAnalysis tweenprefrontalanddorsolateralstriatalsystemsforbehavioralcontrol.Nat.
+Forrepresentationsimilarityanalysis(RSA),weconstructedanewGLMwith Neurosci.8,1704–1711.
+fourregressors(perscannerrun)thateachencodedregularstations(without Daw,N.D.,Gershman,S.J.,Seymour,B.,Dayan,P.,andDolan,R.J.(2011).
+aresponseswitch)correspondingtoonesubwayline(contextregressors), Model-basedinfluencesonhumans’choicesandstriatalpredictionerrors.
+and four further parametric regressors that modulated each event by dis- Neuron69,1204–1215.
+tance to goal (in number of stations; context distance regressors). We
+Dickinson,A.,andBalleine,B.(2002).Theroleoflearninginmotivation.In
+used unsmoothed imagesfor this analysis. Additional regressors encoded
+Stevens’HandbookofExperimentalPsychologyVol3:Learning,Motivation
+otherquantities(cuescreen;feedbackscreen;innavigation:linechanges,
+andEmotion,C.R.Gallistel,ed.(Wiley),pp.497–533.
+‘‘elbow’’stations,andexchangestationswithoutalinechange;andnuisance
+regressors).Weusedasearchlightapproach,inwhichasphereof15mm
+Dolan,R.J.,andDayan,P.(2013).Goalsandhabitsinthebrain.Neuron80,
+radius was moved progressively over the brain volume, with the resulting 312–325.
+RSAestimates allocatedtothecentroidvoxelforlocalizationanddisplay. Genovese,C.R.,Lazar,N.A.,andNichols,T.(2002).Thresholdingofstatistical
+Resultsobtainedwithasmallerradius(10mm)werequalitativelyverysimilar. mapsinfunctionalneuroimagingusingthefalsediscoveryrate.Neuroimage
+Forcontextdecoding(Figure4B),weestimatedforeachscannerrun(n=4) 15,870–878.
+the pattern of resulting betas for each of the four context regressors and Gershman,S.J.,Horvitz,E.J.,andTenenbaum,J.B.(2015).Computationalra-
+computedtheircorrelationdistance(1-Pearsoncorrelation)yieldinga163 tionality:Aconvergingparadigmforintelligence inbrains,minds,andma-
+16 neural dissimilarity matrix. This matrix was regressed against the pre- chines.Science349,273–278.
+dicted representation dissimilaritymatrix (RDM) shownin Figure 4A within
+Gla¨scher,J.,Daw,N.,Dayan,P.,andO’Doherty,J.P.(2010).Statesversusre-
+eachsearchlightandstatisticsperformedontheresultingbetasatthesec-
+wards:dissociableneuralpredictionerrorsignalsunderlyingmodel-basedand
+ond(between-subject)level.InthepredictedRDM,distancesweregreater model-freereinforcementlearning.Neuron66,585–595.
+between lines than within lines. We excluded comparisons within a single
+Hayden,B.Y.,Pearson,J.M.,andPlatt,M.L.(2011).Neuronalbasisofsequen-
+run,tocontroltemporalautocorrelationinthewithin-sessionBOLDsignal.
+tialforagingdecisionsinapatchyenvironment.Nat.Neurosci.14,933–939.
+An identical approach was used for the context distance regressors (Fig-
+ure4C).Inthecontrolcondition(Figure4D),theassignmentofregularand Holroyd,C.B.,andYeung,N.(2012).Motivationofextendedbehaviorsby
+elbowstationstoeachlinewasshuffled,sothatthehierarchicalstructure
+anteriorcingulatecortex.TrendsCogn.Sci.16,122–128.
+waslost.Wethenrepeatedtheestimationofbetapatternsandthesearch- Howard,L.R.,Javadi,A.H.,Yu,Y.,Mill,R.D.,Morrison,L.C.,Knight,R.,Loftus,
+lightRSAapproachasabove. M.M.,Staskute,L.,andSpiers,H.J.(2014).Thehippocampusandentorhinal
+cortexencodethepathandEuclideandistancestogoalsduringnavigation.
+Curr.Biol.24,1331–1340.
+SUPPLEMENTALINFORMATION
+Huys,Q.J.,Eshel,N.,O’Nions,E.,Sheridan,L.,Dayan,P.,andRoiser,J.P.
+SupplementalInformationincludesfourfiguresandthreetablesandcanbe (2012).Bonsaitreesinyourhead:howthepavloviansystemsculptsgoal-
+found with this article online at http://dx.doi.org/10.1016/j.neuron.2016.03.
+directedchoicesbypruningdecisiontrees.PLoSComput.Biol.8,e1002410.
+037. Huys, Q.J., Lally, N., Faulkner, P., Eshel, N., Seifritz, E., Gershman, S.J.,
+Avideoabstractisavailableathttp://dx.doi.org/10.1016/j.neuron.2016.03. Dayan,P.,andRoiser,J.P.(2015).Interplayofapproximateplanningstrate-
+037#mmc5. gies.Proc.Natl.Acad.Sci.USA112,3098–3103.
+902 Neuron90,893–903,May18,2016
+
+--- PAGE 12 ---
+Koechlin,E.,andJubault,T.(2006).Broca’sareaandthehierarchicalorgani- Shallice,T.(1982).Specificimpairmentsofplanning.Philos.Trans.R.Soc.
+zationofhumanbehavior.Neuron50,963–974. Lond.BBiol.Sci.298,199–209.
+Koechlin,E.,andSummerfield,C.(2007).Aninformationtheoreticalapproach Shallice,T.,andBurgess,P.W.(1991).Deficitsinstrategyapplicationfollowing
+toprefrontalexecutivefunction.TrendsCogn.Sci.11,229–235. frontallobedamageinman.Brain114,727–741.
+Koechlin,E.,Ody,C.,andKouneiher,F.(2003).Thearchitectureofcognitive Shenhav,A.,Botvinick,M.M.,andCohen,J.D.(2013).Theexpectedvalueof
+controlinthehumanprefrontalcortex.Science302,1181–1185. control: an integrative theory of anterior cingulate cortex function. Neuron
+79,217–240.
+Kolling,N.,Behrens,T.E.,Mars,R.B.,andRushworth,M.F.(2012).Neural
+mechanismsofforaging.Science336,95–98. Silver,D.,Huang,A.,Maddison,C.J.,Guez,A.,Sifre,L.,vandenDriessche,G.,
+Schrittwieser,J.,Antonoglou,I.,Panneershelvam,V.,Lanctot,M.,etal.(2016).
+Miller,G.A.,Galanter,E.,andPribram,K.A.(1960).PlansandtheStructureof
+MasteringthegameofGowithdeepneuralnetworksandtreesearch.Nature
+Behavior(Holt,Rhinehart,&Winston).
+529,484–489.
+Morris,R.G.,Miotto,E.C.,Feigenbaum,J.D.,Bullock,P.,andPolkey,C.E.
+Solway,A.,Diuk,C.,Co´rdova,N.,Yee,D.,Barto,A.G.,Niv,Y.,andBotvinick,
+(1997). The effect of goal-subgoal conflict onplanning ability after frontal- M.M.(2014).Optimalbehavioralhierarchy.PLoSComput.Biol.10,e1003779.
+andtemporal-lobelesionsinhumans.Neuropsychologia35,1147–1157.
+Stevens, A., and Coupe, P. (1978). Distortions in judged spatial relations.
+Newcombe,N.,andLiben,L.S.(1982).Barriereffectsinthecognitivemapsof Cognit.Psychol.10,422–437.
+childrenandadults.J.Exp.ChildPsychol.34,46–58.
+Summerfield,C.,andKoechlin,E.(2009).Decision-makingandprefrontalex-
+Norman,D.A.,andShallice,T.(1986).Attentiontoaction:willedandautomatic ecutivefunction.InTheCognitiveNeurosciences,M.S.Gazzaniga,ed.(MIT
+controlofbehaviour.InConsciousnessandSelf-Regulation,G.E.Schwartz Press),pp.1019–1030.
+andD.Shapiro,eds.(PlenumPress).
+Sutton,R.,andBarto,A.(1998).ReinforcementLearning(MITPress).
+Owen,A.M.,Downes,J.J.,Sahakian,B.J.,Polkey,C.E.,andRobbins,T.W. Tolman, E.C. (1948). Cognitive maps in rats and men. Psychol. Rev. 55,
+(1990).Planningandspatialworkingmemoryfollowingfrontallobelesionsin
+189–208.
+man.Neuropsychologia28,1021–1034.
+Tsetsos, K., Wyart, V., Shorkey, S.P., and Summerfield, C. (2014). Neural
+Penny,W.D.,Friston,K.,Ashburner,J.,Kiebel,S.,andNichols,T.E.(2006).
+mechanismsofeconomiccommitmentinthehumanmedialprefrontalcortex.
+Statistical Parametric Mapping: The Analysis of Functional Brain Images eLife3,3.
+(AcademicPress).
+Unterrainer,J.M.,andOwen,A.M.(2006).Planningandproblemsolving:from
+Ponsen,M.,Taylor,M.E.,andTuyls,K.(2010).Abstractionandgeneralization neuropsychologytofunctionalneuroimaging.J.Physiol.Paris99,308–317.
+inreinforcementlearning:asummaryandframework.R.Goebel,J.Siekmann,
+vandenHeuvel,O.A.,Groenewegen,H.J.,Barkhof,F.,Lazeron,R.H.,van
+and W. Wahlster, eds. Proceedings of the AAMAS 2009 Conference in
+Dyck, R., and Veltman, D.J. (2003). Frontostriatal system in planning
+Budapest,5924,1–32.
+complexity:aparametricfunctionalmagneticresonanceversionofTowerof
+Ribas-Fernandes,J.J.,Solway,A.,Diuk,C.,McGuire,J.T.,Barto,A.G.,Niv,Y., Londontask.Neuroimage18,367–374.
+andBotvinick,M.M.(2011).Aneuralsignatureofhierarchicalreinforcement
+Viard,A.,Doeller,C.F.,Hartley,T.,Bird,C.M.,andBurgess,N.(2011).Anterior
+learning.Neuron71,370–379.
+hippocampus and goal-directed spatial decision making. J. Neurosci. 31,
+Russell,S.,andNorvig,P.(1995).ArtificialIntelligence:AModernApproach 4613–4621.
+(PrenticeHall). Wagner, G., Koch, K., Reichenbach, J.R., Sauer, H., and Schlo¨sser, R.G.
+Schacter, D.L., and Addis, D.R. (2007). The cognitive neuroscience of (2006).Thespecialinvolvementoftherostrolateralprefrontalcortexinplan-
+constructive memory: remembering the past and imagining the future. ningabilities:anevent-relatedfMRIstudywiththeTowerofLondonparadigm.
+Philos.Trans.R.Soc.Lond.BBiol.Sci.362,773–786. Neuropsychologia44,2337–2347.
+Schacter, D.L., Addis, D.R., Hassabis, D., Martin, V.C., Spreng, R.N., and Ward,G.,andAllport,A.(1997).Planningandproblemsolvingusingthefive
+Szpunar, K.K. (2012).Thefutureofmemory: remembering,imagining,and discTowerofLondontask.Q.J.Exp.Psychol.A50,49–78.
+thebrain.Neuron76,677–694. Wiener,J.M.,andMallot,H.A.(2003).‘Fine-to-Coarse’routeplanningandnav-
+Schapiro,A.C.,Rogers,T.T.,Cordova,N.I.,Turk-Browne,N.B.,andBotvinick, igationinregionalizedenvironments.Spat.Cogn.Comput.3,331–358.
+M.M.(2013).Neuralrepresentationsofeventsarisefromtemporalcommunity Wunderlich,K.,Dayan,P.,andDolan,R.J.(2012).Mappingvaluebasedplan-
+structure.Nat.Neurosci.16,486–492. ningandextensivelytrainedchoiceinthehumanbrain.Nat.Neurosci.15,
+Schoenbaum,G.,Roesch,M.R.,Stalnaker,T.A.,andTakahashi,Y.K.(2009).A 786–791.
+newperspectiveontheroleoftheorbitofrontalcortexinadaptivebehaviour. Zeki,S.,andMarini,L.(1998).Threecorticalstagesofcolourprocessinginthe
+Nat.Rev.Neurosci.10,885–892. humanbrain.Brain121,1669–1685.
+Neuron90,893–903,May18,2016 903

@@ -1,0 +1,319 @@
+
+--- PAGE 1 ---
+CurrentBiology20,544–547,March23,2010ª2010ElsevierLtd.Open access under CC BY license. DOI10.1016/j.cub.2010.01.053
+Report
+Decoding Individual
+Episodic Memory Traces
+in the Human Hippocampus
+MartinJ.Chadwick,1,2DemisHassabis,1,2 hippocampus is ideally suited for multimodal binding, given
+NikolausWeiskopf,1andEleanorA.Maguire1,* itspurportedlocationatthetopofthesensorycorticalhier-
+1WellcomeTrustCentreforNeuroimaging,Instituteof archyanditswidelyacknowledgedroleinsupportingepisodic
+Neurology,UniversityCollegeLondon,12QueenSquare, memory[12,13].
+LondonWC1N3BG,UK Preciselyhowthehippocampuscodesforepisodicmemo-
+ries, however, is still unknown. This is because tracking an
+individual episodic memory in terms of the activity of the
+Summary many thousands of hippocampal neurons that support it
+remains a substantial challenge [3, 14], complicated further
+Inrecentyears,multivariatepatternanalyseshavebeenper- by the possibility that episodic memories might be uniquely
+formed on functional magnetic resonance imaging (fMRI) human [4]. Multivariate pattern analysis (MVPA) techniques
+data, permitting prediction of mental states from local applied to human functional magnetic resonance imaging
+patterns of blood oxygen-level-dependent (BOLD) signal (fMRI) data [1, 2] may offer a means to bridge the gap
+across voxels[1, 2]. We previously demonstratedthat it is between recordings from single neurons and examining
+possible to predict the position of individuals in a virtual- episodic memory across large populations of neurons in
+realityenvironmentfromthepatternofactivityacrossvoxels humans.MVPAassesseslocalpatternsofinformationacross
+in the hippocampus [3]. Although this shows that spatial voxels, permitting the differentiation of distinct perceptual
+memoriescanbedecoded,substantiallymorechallenging, andmentalstatesinamannernotpossibleviaconventional
+andarguablyonlypossibletoinvestigateinhumans[4],is univariate fMRI analyses [1, 2]. In a recent study, MVPA
+whether it is feasible to predict which complex everyday was used to decode spatial information and predict the
+experience, or episodic memory, a person is recalling. location of participants in a virtual-reality environment
+Herewedocumentforthefirsttimethattracesofindividual fromthepattern offMRI signalsacross voxels inthehuman
+richepisodicmemoriesaredetectableanddistinguishable hippocampus [3]. Here, using high-spatial-resolution fMRI,
+solelyfromthepatternoffMRIBOLDsignalsacrossvoxels we investigated whether it would be possible to predict
+in the human hippocampus. In so doing, we uncovered which specific recent episodic memory a participant was
+apossiblefunctionaltopographyinthehippocampus,with recalling solely on the basis of the blood oxygen-level-
+preferential episodic processing by some hippocampal dependent(BOLD)activitypatternsacrossvoxelsinthehip-
+regions over others. Moreover, our results imply that the pocampus, thus potentially distinguishing specific memory
+neuronaltracesofepisodicmemoriesarestable(andthus traces.
+predictable) even over many re-activations. Finally, our In a prescan training session, ten participants repeatedly
+data provide further evidence for functional differentiation viewed short film clips of three distinct everyday events
+withinthemedialtemporallobe,inthatweshowthehippo- (Figure1A).DuringfMRIscanning,aparticipantwasrequired
+campus contains significantly more episodic information tovividlyrecallinasmuchdetailaspossibleeachofthethree
+thanadjacentstructures. episodesanumberoftimes(Figure1B).Weappliedamultivar-
+iate decoding technique, based on a linear support vector
+machine(SVM)[15]withmultivariatefeatureselection[16],to
+ResultsandDiscussion
+the fMRI signals within the hippocampus (see Experimental
+Procedures and the Supplemental Experimental Procedures
+The search for the elusive engram, or memory trace, in the
+available online). This analysis revealed episodic memory
+brainhasbeenanongoingendeavorinneurosciencefornearly
+decodinginthehippocampusforeveryparticipant, showing
+a century [5–7]. Although the biological existence of such
+thatitispossibletopredictwhichspecificepisodicmemory
+engramscodingformemoriesiswidelyaccepted,theprecise
+was being recalled solely from the pattern of fMRI BOLD
+mechanisms,locations,andevennatureoftheengramitself,
+signalsacrossvoxelsinthehippocampus.
+in light of processes such as reconsolidation [7, 8], is the
+Giventhattheentorhinalcortex(EC)andposteriorparahip-
+subjectofmuchdebate.Thecomponentsofacomplexmulti-
+pocampalgyrus(PHG)arebothmajorinputpathwaystothe
+modal memory, such as a rich episodic memory, are likely
+hippocampus[17],wetheninvestigatedwhethertheseregions
+to be widely distributed throughout the cortex [9]. These
+might also contain episodic information. The same analysis
+componentsontheirownarenotsufficient,however.Some-
+techniqueswereappliedtoECandPHG,andresultsshowed
+thing must bind the disparate elements of a recent episodic
+that both of these areas contained episodic information
+memorytogethertoallowtherelevantneuralrepresentations
+(Figure2).However,thisinformationwassignificantlyreduced
+to coactivate, thus facilitating recollection [10]. Marr [11]
+compared with the hippocampus (HC). Thus, not only is it
+proposed that the hippocampus provides this function by
+possibletodecodeindividualepisodicmemoriesfromallthree
+storingamemory‘‘index,’’adistilledrepresentationcontain-
+medial temporal lobe regions, but the relative degree of de-
+ing the essence of the memory, which is synaptically linked
+coding reflects the anatomical and functional hierarchy of
+to the full representation stored in the neocortex. The
+theseareas[18].
+Apriori,itisnotclearwhetherparticularregionswithinthe
+*Correspondence:e.maguire@fil.ion.ucl.ac.uk hippocampusshouldshowapreferenceforcodingindividual
+2Theseauthorscontributedequallytothiswork episodicmemories.Ausefulpropertyofthefeatureselection
+
+--- PAGE 2 ---
+DecodingIndividualEpisodicMemoryTraces
+545
+Figure1. ExperimentalProtocol
+(A)Stillphotographstakenfromoneofthefilm
+clips viewed during prescan training. The clip
+depictsawomantakingadrinkfromadisposable
+coffeecupandthenputtingitinarubbishbin
+(trashcan).
+(B)TimelineofasingletrialduringfMRIscanning.
+For details, see Supplemental Experimental
+Procedures.
+re-activations. Finally, our data provide
+further evidence for functional differen-
+tiation within the medial temporal
+lobe, with the hippocampus containing
+significantly more episodic information
+than adjacent structures.
+Now that we have shown that it is
+possible to directly access information
+about individual episodic memories in
+the human hippocampus in vivo and
+noninvasively,thisoffersnewopportuni-
+ties to examine important properties of
+episodic memory, to explore possible
+method used in this analysis is that it produced a subset of functionaltopographies,andtoexamineneuralcomputations
+voxels within a region of interest that carried the most withinhippocampalsubfields[21].
+episodic information (see Experimental Procedures and
+Supplemental Experimental Procedures). We refer to this as ExperimentalProcedures
+the ‘‘information map’’ for that region, and the hippocampal
+Participants
+information maps for all ten participants are displayed in
+Tenhealthyright-handedparticipants(sixfemale,fourmale)tookpartin
+Figure 3. An inspection of these maps suggests that there
+theexperiment(meanage21.1years,standarddeviation1.8years,range
+may be consistencies across participants in the location of 18–24 years). All had normal or corrected-to-normal vision and gave
+episodicinformation.Toexaminethisfurther,wetransformed informed written consent to participation in accordance with the local
+thehippocampalinformationmapsforalltenparticipantsinto researchethicscommittee.
+standardstereotacticspaceandaddedthemtogethertoform
+Task
+afrequencyheatmap(Figure4).Thisheatmapclearlyshows
+During a prescan training period, participants viewed three film clips of
+three peak regions of overlap, in bilateral anterior and right
+everydayevents.Eachclipwas7slongandfeaturedawoman(adifferent
+posterior hippocampus. To quantify these results, we com-
+paredthe frequencycount ateachvoxel (outofamaximum
+frequencyof10)againstthebinomialdistributionandderived
+apvalue.Allthreepeakregionsinredandyellowaresignifi-
+cantatathresholdofp=0.001.Thisresultdemonstratesthat
+episodic information is not randomly distributed across the
+hippocampus but is instead concentrated within specific
+regions.
+In summary, we have documented for the first time that
+traces of individual rich episodic memories are detectable
+and distinguishable in the human hippocampus. Moreover,
+ourresultsshowremarkableconsistencyacrossparticipants
+and suggest a functional topography in the hippocampus,
+with preferential episodic processing by some hippocampal
+regions over others. We speculate that the involvement of
+the right posterior hippocampus may relate to the coding
+of spatial locations in the memories [3, 19], while the robust
+loci in bilateral anterior hippocampal regions are consistent Figure2. MeanDecodingAccuracyResultswithStandardErrorsforthe
+with previous studies of autobiographical memory [20] and Hippocampus,EntorhinalCortex,andParahippocampalGyrus
+represent a clear target for future investigations. Another Proportionaccuracyvaluesareshownontheverticalaxis;thedashedlineat
+striking feature of our findings isthe stability ofthe memory 0.33representschance-levelperformance.Allthreeareasweresignificantly
+traces. The MVPA classifier could only successfully decode abovechance-levelperformance,withhippocampus(HC)accuracysignifi-
+cantlygreaterthanbothentorhinalcortex(EC)andparahippocampalgyrus
+hippocampal activity if the differences between the memo-
+(PHG)(one-wayanalysisofvariance,p=0.027;posthocttests:HC>EC,
+ries were systematic and consistent across the majority of
+p=0.035;HC>PHG,p=0.048;nosignificantdifferencebetweenECand
+the training examples. Thus, our results imply that the neu- PHG,p=0.86).SeeSupplementalExperimentalProceduresandFigureS1
+ronal traces of the memories were stable even over many formoredetails.Errorbarsrepresentthestandarderrorofthemean.
+
+--- PAGE 3 ---
+CurrentBiologyVol20No6
+546
+Figure4. ConsistencyofResultsacrossParticipants
+Frequencyheatmapsfortheleftandrighthippocampishownonzoomed-in
+sagittalsectionsfromoneoftheparticipant’sstructuralMRIscanschosen
+atrandom.Frequencyscaleisshownattheleft.Todeterminestatistical
+significance,wecomparedthefrequencyvalueateachvoxelagainstthe
+binomialdistribution,andthepeakregionsinyellowandredallsurvived
+anuncorrectedp<0.001levelofsignificance.
+repeatedtwoormoretimesinarow.Thesecondconditionwasafreerecall
+task where the participant was allowed to decide which of the three
+episodestheywouldrecalloneachtrial(forthestatisticaldependencies
+thatresultfromthisfreechoicebehavior,seeTableS1).Here,thecueperiod
+wasreplacedwithadecisionperiod,duringwhichtheparticipantdecided
+whichofthethreememoriestheywouldsubsequentlyrecall,andfollowing
+recall, the participants were required to indicate via an MRI-compatible
+keypadwhichofthethreememoriestheyhadjustrecollected.Thefree
+recallconditionincludedatotalof30trials,andparticipantswereinstructed
+tosamplefrom thethreememories.Foreachcued andfree recalltrial,
+participantsthenperformedaseriesofratings(seeFigure1B,Supplemental
+Experimental Procedures, and Table S2). Both experimental conditions
+werescannedinasinglefunctionalrun,startingwiththecuedrecallcondi-
+tion,witha30srestperiodbeforethefreerecallcondition.Multivariate
+patternanalysesusingthecuedorfreerecalltrialsseparatelyyieldedsignif-
+icantdecodingresultsinallthreeanatomicalregions,andtherewereno
+significant differences between the two conditions (see Supplemental
+ExperimentalProcedures),demonstratingthatdecodingdoesnotdepend
+on the specific retrieval mode. For all subsequent analyses, the data
+werecollapsedacrossbothconditionsinordertoinvestigatepatternsof
+informationthatheldacrossdifferentretrievalmodes.Thesearetheresults
+reported above. After the scanning session, participants completed
+a debriefing questionnaire that was designed to assess various factors
+Figure3. IndividualParticipantData such as the emotional response to each memory and similarity to real
+memories(seeSupplementalExperimentalProceduresforthefullquestion-
+Hippocampalinformationmapsintheleftandrighthippocampiareshown
+naireandTableS3formeanscoresandanalyses).Therewerenosignificant
+for the ten participants (P1–P10) on zoomed-in sagittal sections of the
+differencesbetweenthethreememoriesfortheseratings,makingitunlikely
+medialtemporallobestakenfromeachparticipant’sstructuralMRIscan.
+thattheseextraneousfactorscouldhavedriventhedecodingperformance.
+Eachmaprepresentsthesetofvoxelscarryingthemostepisodicinforma-
+tionwithinthehippocampus.SeeSupplementalExperimentalProcedures
+ImageAcquisition
+andFigureS2formoredetails.
+A3TMagnetomAllegrahead-onlyMRIscanner(SiemensMedicalSolutions)
+operatedwiththestandardtransmit-receiveheadcoilwasusedtoacquire
+womanineachclip)carryingoutashortseriesofactions(seeSupplemental functional data with a T2*-weighted single-shot echo-planar imaging
+ExperimentalProcedures).Eachparticipantviewedeachclip15timesand sequence(in-planeresolution=1.531.5mm2,matrix=1283128,field
+practicedvividlyrecallingthem.Duringscanning,thereweretwoexperi- ofview =192 3192 mm2,35slicesacquiredininterleavedorder, slice
+mentalconditions.Thefirstinvolvedacuedrecalltaskwhereoneachtrial, thickness=1.5mmwithnogapbetweenslices,echotime[TE]=30ms,
+theparticipantwaspresentedwithacueindicatingwhichofthethreefilm asymmetric echo shifted forward by 26 phase-encoding lines, echo
+eventstheywererequiredtorecall(seeFigure1).Followingthis,aninstruc- spacing=560ms,repetitiontime[TR]=3.5s,flipanglea=90(cid:2)).Alldata
+tionappearedonthescreenindicatingthattheparticipantshouldclosetheir wereacquiredat0(cid:2)angleintheanterior-posterioraxisinonesingleuninter-
+eyesandvividlyrecallthecuedmemory.Thecuedrecallconditioncon- ruptedfunctionalscanningsession.Anisotropicvoxelsizeof1.531.53
+tainedatotalof21trials,withseventrialsofeachmemory,presentedin 1.5mm3waschosenforanoptimaltradeoffbetweenBOLDsensitivityand
+a pseudorandom order while ensuring that the same memory was not spatial resolution. Furthermore, the isotropic voxel dimension reduced
+
+--- PAGE 4 ---
+DecodingIndividualEpisodicMemoryTraces
+547
+resampling artifacts when applying motion correction. For distortion 4.Tulving,E.(2001).Episodicmemoryandcommonsense:Howfarapart?
+correction[22],fieldmapswereacquiredwithastandardmanufacturer’s Philos.Trans.R.Soc.Lond.BBiol.Sci.356,1505–1515.
+double-echogradientechofieldmapsequence(TE=10.0and12.46ms, 5.Semon,R.(1923).MnemonicPsychology(London:Allen&Unwin).
+TR=1020ms,matrixsize=64364),with64slicescoveringthewhole 6.Lashley,K.(1950).Insearchoftheengram.Symp.Soc.Exp.Biol.4,
+head(voxelsize=33333mm3).AT1-weightedhigh-resolution3Dmodi- 454–482.
+fieddrivenequilibriumFouriertransformwhole-brainstructuralMRIscan 7.Dudai,Y.(2004).Theneurobiologyofconsolidations,or,howstableis
+was acquired for each participant after the main scanning session with theengram?Annu.Rev.Psychol.55,51–86.
+1mmisotropicresolution[23]. 8.Nadel, L., and Land, C. (2000). Memory traces revisited. Nat. Rev.
+Neurosci.1,209–212.
+ImagePreprocessingforMultivariateAnalysis 9.Wheeler, M.E., Petersen, S.E., and Buckner, R.L. (2000). Memory’s
+T1-weighted structural images were anatomically segmented with the echo: Vivid remembering reactivates sensory-specific cortex. Proc.
+FreeSurferautomatedcorticalandsubcorticalparcellationtools[24,25]. Natl.Acad.Sci.USA97,11125–11129.
+Thisgeneratedasetofhippocampus,entorhinalcortex,andparahippo- 10.Shimamura, A.P., and Wickens, T.D. (2009). Superadditive memory
+campalgyrusmasksforeachparticipant,whichwerethenmanuallycor- strengthforitemandsourcerecognition:Theroleofhierarchicalrela-
+rectedwherenecessarytoensurethattheywereinlinewiththeanatomical tionalbindinginthemedialtemporallobe.Psychol.Rev.116,1–19.
+guidelinessetoutbyInsaustietal.[26].Alineardetrendwasappliedtothe 11.Marr,D.(1971).Simplememory:Atheoryforarchicortex.Philos.Trans.
+datawithafirst-orderpolynomialfunction.Theprocedurewasperformed R.Soc.Lond.BBiol.Sci.262,23–81.
+byfittingthelineardrifttothewholerunandsubtractingitfromthevoxel 12.Andersen,P.,Morris,R.,Amaral,D.G.,Bliss,T.,andO’Keefe,J.(2007).
+intensities.Theonsettimeswerethenshiftedtoaccountforthedelayin TheHippocampusBook(NewYork:OxfordUniversityPress).
+hemodynamicresponse[2]. 13.Squire,L.R.,Stark,C.E.,andClark,R.E.(2004).Themedialtemporal
+lobe.Annu.Rev.Neurosci.27,279–306.
+14.Gelbard-Sagiv, H., Mukamel, R., Harel, M., Malach, R., and Fried, I.
+MultivariateClassification
+(2008). Internally generated reactivation of single neurons in human
+In order to assess the degree of episodic information contained within
+hippocampusduringfreerecall.Science322,96–101.
+medialtemporallobestructures,weusedatwo-stepprocedureincorpo-
+15.Duda, O.R., Hart, P.E.,and Stork, D.G. (2001).Pattern Classification
+ratingfirstfeatureselectionandthenfinalmultivariateclassification[16].
+(NewYork:Wiley).
+Thepurposeoffeatureselectionistoreducethesetoffeatures(inthis
+16.Guyon,I.,andElisseeff,A.(2003).Anintroductiontovariableandfeature
+case,voxels)inadatasettothosemostlikelytocarryrelevantinformation.
+selection.J.Mach.Learn.Res.3,1157–1182.
+The particular feature selection strategy employed was a multivariate
+17.Amaral,D.G.(1999).Introduction:Whatiswhereinthemedialtemporal
+searchlight strategy, which assesses the local pattern of information
+lobe?Hippocampus9,1–6.
+surroundingeachvoxelinturn[27](seeSupplementalExperimentalProce-
+18.Murray,E.A.,Graham,K.S.,andGaffan,D.(2005).Perirhinalcortexand
+duresandFigureS2formoredetails).Theoverallclassificationprocedure
+itsneighboursinthemedialtemporallobe:Contributionstomemory
+involved splitting the imaging data into two segments: a ‘‘training’’ set
+andperception.Q.J.Exp.Psychol.B58,378–396.
+usedtotrainalinearsupportvectormachine(withfixedregularizationhy-
+19.Maguire,E.A.,Woollett,K.,andSpiers,H.J.(2006).Londontaxidrivers
+perparameterC=1)inordertoidentifyresponsepatternsrelatedtothe
+and bus drivers: A structural MRI and neuropsychological analysis.
+memories being discriminated, and a ‘‘test’’ set used to independently
+Hippocampus16,1091–1101.
+testtheclassificationperformance(seeSupplementalExperimentalProce-
+20.Svoboda, E., McKinnon, M.C., and Levine, B. (2006). The functional
+duresandFigureS1formoredetails).TheSVMclassifierwastrainedto
+neuroanatomyofautobiographicalmemory:Ameta-analysis.Neuro-
+discriminatebetweenthethreememorieswiththe‘‘training’’imagedata
+psychologia44,2189–2208.
+setandtestedontheindependent‘‘test’’dataset.Theclassificationwas
+21.Kumaran,D.,andMaguire,E.A.(2009).Noveltysignals:Awindowinto
+performed with the LIBSVM (http://www.csie.ntu.edu.tw/wcjlin/libsvm/)
+hippocampalinformationprocessing.TrendsCogn.Sci.13,47–54.
+implementation.Weusedastandardk-foldcross-validationtestingregime
+22.Hutton,C.,Bork,A.,Josephs,O.,Deichmann,R.,Ashburner,J.,and
+[15]whereinkequaledthenumberofexperimentaltrials.Notethatstandard
+Turner,R.(2002).Imagedistortion correctioninfMRI:Aquantitative
+SVMsarebinaryclassifiersthatoperateontwo-classdiscriminationprob-
+evaluation.Neuroimage16,217–240.
+lems.TheSVMcan,however,bearbitrarilyextendedtoworkincaseswhere
+23.Deichmann,R.,Schwarzbauer,C.,andTurner,R.(2004).Optimisationof
+therearemorethantwoclasses,suchasthethreememoriesinthisstudy
+the3DMDEFTsequenceforanatomicalbrainimaging:Technicalimpli-
+(seeSupplementalExperimentalProcedures).
+cationsat1.5and3T.Neuroimage21,757–767.
+24.Fischl,B.,Salat,D.H.,Busa,E.,Albert,M.,Dieterich,M.,Haselgrove,C.,
+SupplementalInformation vanderKouwe,A.,Killiany,R.,Kennedy,D.,Klaveness,S.,etal.(2002).
+Whole brain segmentation: Automated labeling of neuroanatomical
+SupplementalInformationincludestwofigures,threetables,andSupple- structuresinthehumanbrain.Neuron33,341–355.
+mentalExperimentalProceduresandcanbefoundwiththisarticleonline 25.Fischl,B.,vanderKouwe,A.,Destrieux,C.,Halgren,E.,Se´gonne,F.,
+atdoi:10.1016/j.cub.2010.01.053. Salat,D.H.,Busa,E.,Seidman,L.J.,Goldstein,J.,Kennedy,D.,etal.
+(2004). Automatically parcellating the human cerebral cortex. Cereb.
+Acknowledgments Cortex14,11–22.
+26.Insausti,R.,Juottonen,K.,Soininen,H.,Insausti,A.M.,Partanen,K.,
+ThisworkwassupportedbytheWellcomeTrust.WethankJ.Glensman, Vainio,P.,Laakso,M.P.,andPitka¨nen,A.(1998).MRvolumetricanalysis
+S.Lee,D.Bradbury,R.Davis,A.Reid,andP.Astonfortechnicalassistance. ofthehumanentorhinal,perirhinal,andtemporopolarcortices.AJNR
+Am.J.Neuroradiol.19,659–671.
+27.Kriegeskorte, N., Goebel, R., and Bandettini, P. (2006). Information-
+Received:November26,2009
+based functional brain mapping. Proc. Natl. Acad. Sci. USA 103,
+Revised:January25,2010
+3863–3868.
+Accepted:January26,2010
+Publishedonline:March11,2010
+References
+1. Norman,K.A.,Polyn,S.M.,Detre,G.J.,andHaxby,J.V.(2006).Beyond
+mind-reading:Multi-voxelpatternanalysisoffMRIdata.TrendsCogn.
+Sci.10,424–430.
+2. Haynes,J.D.,andRees,G.(2006).Decodingmentalstatesfrombrain
+activityinhumans.Nat.Rev.Neurosci.7,523–534.
+3. Hassabis, D., Chu, C., Rees, G., Weiskopf, N., Molyneux, P.D., and
+Maguire, E.A. (2009). Decoding neuronal ensembles in the human
+hippocampus.Curr.Biol.19,546–554.

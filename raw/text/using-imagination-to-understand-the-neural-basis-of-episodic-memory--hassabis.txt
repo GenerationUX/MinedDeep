@@ -1,0 +1,722 @@
+
+--- PAGE 1 ---
+TheJournalofNeuroscience,December26,2007•27(52):14365–14374•14365
+Behavioral/Systems/Cognitive
+Using Imagination to Understand the Neural Basis of
+Episodic Memory
+DemisHassabis,DharshanKumaran,andEleanorA.Maguire
+WellcomeTrustCentreforNeuroimaging,InstituteofNeurology,UniversityCollegeLondon,LondonWC1N3BG,UnitedKingdom
+FunctionalMRI(fMRI)studiesinvestigatingtheneuralbasisofepisodicmemoryrecall,andtherelatedtaskofthinkingaboutplausible
+personalfutureevents,haverevealedaconsistentnetworkofassociatedbrainregions.Surprisinglylittle,however,isunderstoodabout
+thecontributionsindividualbrainareasmaketotheoverallrecollectiveexperience.Toexaminethis,weusedanovelfMRIparadigmin
+whichsubjectshadtoimaginefictitiousexperiences.Incontrasttofuturethinking,thisresultsinexperiencesthatarenotexplicitly
+temporalinnatureorasreliantonself-processing.Byusingpreviouslyimaginedfictitiousexperiencesasacomparisonforepisodic
+memories,weidentifiedtheneuralbasisofakeyprocessengagedincommon,namelysceneconstruction,involvingthegeneration,
+maintenanceandvisualizationofcomplexspatialcontexts.Thiswasassociatedwithactivationsinadistributednetwork,including
+hippocampus,parahippocampalgyrus,andretrosplenialcortex.Importantly,wedisambiguatedthesecommoneffectsfromepisodic
+memory-specificresponsesinanteriormedialprefrontalcortex,posteriorcingulatecortexandprecuneus.Theselatterregionsmay
+supportself-schemaandfamiliarityprocesses,andcontributetothebrain’sabilitytodistinguishrealfromimaginarymemories.We
+concludethatsceneconstructionconstitutesacommonprocessunderlyingepisodicmemoryandimaginationoffictitiousexperiences,
+andsuggestitmaypartiallyaccountforthesimilarbrainnetworksimplicatedinnavigation,episodicfuturethinking,andthedefault
+mode.Wesuggestthatadditionalbrainregionsareco-optedintothiscorenetworkinatask-specificmannertosupportfunctionssuch
+asepisodicmemorythatmayhaveadditionalrequirements.
+Keywords:fMRI;episodicmemory;imagination;scene;construction;recollection
+Introduction Addisetal.,2007;Szpunaretal.,2007),haverevealedaconsistent
+A rich recollective experience is a defining characteristic of anddistributednetworkofassociatedbrainregions,surprisingly
+episodicmemoryrecall,thememoryforoureverydaypersonal little is understood about the contributions individual areas
+experiences(Tulving,2002).Recollectionofthistypeofmemory maketotheoverallrecollectiveexperience.
+iswidelyacceptedtobeareconstructiveprocess(Bartlett,1932; To progress this issue further we used a novel paradigm in
+Schacteretal.,1998;ConwayandPleydell-Pearce,2000;Rubinet which subjects, as well as recollecting past memories, had to
+al.,2003;HassabisandMaguire,2007;SchacterandAddis,2007) imaginenewfictitiousexperiences(Hassabisetal.,2007)during
+as opposed to the simple retrieval of a perfect holistic record. fMRIscanning.Episodicmemoryandimaginingfictitiousexpe-
+Thusepisodicmemoryrecallcanbeconceptuallydividedintoa riences share striking similarities in terms of the psychological
+numberofcomponentprocessesincludingasenseofsubjective processes engaged (Conway and Pleydell-Pearce, 2000; Green-
+time (Tulving, 2002), self-processing (Conway and Pleydell- bergandRubin,2003;SchacterandAddis,2007)includingim-
+Pearce,2000),visualimagery(Rubinetal.,2003),narrativestruc- agery(Rubinetal.,2003)andtheretrievalofrelevantsemantic
+ture (Rubin et al., 2003), retrieval of semantic information information(Wheeleretal.,1997).Moreover,bothtasksinvolve
+(Wheeler et al., 1997) and multimodal details (Wheeler et al., theprocessof“sceneconstruction”(HassabisandMaguire,2007;
+2000;Gottfriedetal.,2004),andfeelingsoffamiliarity(Wagneret Hassabisetal.,2007),thatis,thegeneration,maintenanceand
+al., 2005). Although numerous fMRI studies investigating the
+visualizationofacomplexspatialsettinginwhichanevent(real
+neuralbasisofepisodicmemoryrecall(Maguire,2001;Svoboda
+orimaginary)canbementallyexperienced(Burgessetal.,2001;
+etal.,2006;CabezaandStJacques,2007),andmorerecentlythe
+Hassabis and Maguire, 2007). Note that this kind of complex
+closelyrelatedtaskoffuturethinking(AtanceandO’Neill,2001;
+“scene”imagerydiffersmarkedlyfrom“simple”imagery(Koss-
+lynetal.,2001)(e.g.,forfacesorsingleobjects)inthatitrequires
+ReceivedJune25,2007;revisedNov.12,2007;acceptedNov.14,2007. the binding of disparate (possibly multimodal) elements of a
+ThisworkwassupportedbytheBrainResearchTrustandtheWellcomeTrust.WethankPeterAstonfortechnical
+sceneintoacoherentwhole.Assuch,sceneconstructionlikely
+assistance.
+Theauthorsdeclarenocompetingfinancialinterests. recruitsasetofadditionalprocessesunderpinnedbyregionssuch
+CorrespondenceshouldbeaddressedtoDemisHassabis,WellcomeTrustCentreforNeuroimaging,Instituteof as the hippocampus (Hassabis et al., 2007) not thought to be
+Neurology, University College London, 12 Queen Square, London WC1N 3BG, UK. E-mail: involvedinsimpleimagery(Rosenbaumetal.,2004).Critically,
+d.hassabis@fil.ion.ucl.ac.uk.
+imagining fictitious scenarios, in contrast to tasks that require
+DOI:10.1523/JNEUROSCI.4549-07.2007
+Copyright©2007SocietyforNeuroscience 0270-6474/07/2714365-10$15.00/0 thinking about plausible personal future events such as those
+
+--- PAGE 2 ---
+14366•J.Neurosci.,December26,2007•27(52):14365–14374 Hassabisetal.•RealandImaginaryMemories
+used in several recent episodic memory Table1.Summaryofconditions
+studies(Addisetal.,2007;Szpunaretal., Abbreviation Description
+2007), results in experiences that are not
+Mainconditions,scenes
+explicitly temporal in nature. Further-
+RM Recallofarecentrealepisodicmemoryelicitedintheprescaninterview
+more, a purely created imagined experi-
+IS Recallofanimaginedfictitiousscenepreviouslyconstructedintheprescaninterview
+ence does not have the same reliance or NS Constructionofanovelfictitioussceneforthefirsttimeduringscanning
+effectontheimaginer’sself-schemacom- Controlconditions,objects
+paredwitharealepisodicmemory(Con- RO Recallofanacontextualobjectvisuallypresentedduringtheprescaninterview
+wayandPleydell-Pearce,2000;Gallagher, IO Recallofanimaginedacontextualobjectpreviouslycreatedintheprescaninterview
+2000) although both likely involve the NO Constructionofanovelacontextualobjectforthefirsttimeduringscanning
+adoptionofanegocentricviewpoint(Bur-
+gess,2006)onthepartoftheimaginer.By
+usingimaginingfictitiousexperiencesasacomparisontaskfor detailedmentalpictureoftheobject.Theimportanceofvisualizingthe
+episodicmemory,itispossibletoaddresssomekeyquestionsnot objecteitheragainstaplainbackgroundorsimplyfloatinginmid-air,
+i.e.,intheabsenceofanybackgroundcontext,wasstressedandthiswas
+amenabletopreviousstudies(Addisetal.,2007;Szpunaretal.,
+verifiedbytheexperimenteraftereachobjectwasimagined.
+2007).
+Next,subjectswereaskedtodescribe10fictitiousscenesinresponseto
+Specifically, in the present study we asked subjects to recall
+short verbal cues read out by the experimenter [condition: imagined
+very recent episodic memories, retrieve fictitious experiences
+scene(IS)]outliningarangeofcommonplacescenarios(e.g.,“Imagine
+previouslyconstructedinaprescaninterview1weekbefore,and
+youarelyingonasandybeachinatropicalbay.Describewhatyoucan
+to construct new fictitious experiences during fMRI scanning.
+see,hear,smell,andfeelinasmuchdetailaspossible.”)(Hassabisetal.,
+Wereasonedthatbrainregionsengagedincommonduringepi- 2007).Commonplace,ordinarysettingswerechosentominimizethe
+sodic memory retrieval and imagined experiences would likely difficultylevelandtobeasindependentfromasubject’sinnatecreative
+support scene construction regardless of whether experiences ability as possible. The scenarios also purposely encompassed a wide
+wererealorfictitious(Hassabisetal.,2007).Wefurtherhypoth- varietyofdifferentsubjectmattersfromthemanmadetothenaturaland
+esizedthatbrainareasselectivelyactiveduringepisodicmemory thebusytotheisolatedtoensuretherewerenocontentbiases.Thusthe
+recallwouldmediatespecificaspectsofrememberingone’sown imaginedscenarioscouldbeconsideredas“episodic-like”experiencesin
+pastexperiencesincludingthoserelatedtoself-schema(Conway thattheyinvolvedthesalientexperiencingofcomplexscenesthatin-
+and Pleydell-Pearce, 2000; Gallagher, 2000) and mental time cludedpeopleandactions,withtheimplicitconstraintthatanyevent
+imaginedtobetakingplacenecessarilyhadarelativelyshortduration
+travel(Tulving,2002).Inthisway,wehopednotonlytocharac-
+andoccurredinonecontext.Subjectswereaskedtoclosetheireyesand
+terize the neural circuitry underlying the (re)construction of
+vividlyimaginethesceneandthengiven2–3mintodescribeitinas
+complexscenes,butalsotogainnewinsightsintothecomponent
+much(multimodal)detailaspossible.Importantlysubjectswereexplic-
+processes supported by different brain regions in the episodic
+itlytoldnottorecountanactualmemoryoranypartofoneorsomething
+memorynetwork.Assuch,wesetouttofunctionallydeconstruct
+theyplannedtodobutrathertocreatesomethingcompletelynew.After
+acorticalnetworkthathasrecentlybeensuggested(Bucknerand eachscenario,participantswereaskedtoratetheirimaginedscenesfor
+Carroll,2007;HassabisandMaguire,2007)tosupportnotjust vividness(1,notvivid...5,veryvivid)andforsimilaritytoarealmem-
+episodicmemory,butalsonumerousotherhigh-levelcognitive ory(1,nothinglikeanymemory...5,exactlylikeamemory).Allde-
+functionsincludingfuturethinking(Addisetal.,2007;Szpunar scriptionsweredigitallyrecordedforlaterscoringpurposes.Finally,10
+etal.,2007),spatialnavigation(Burgessetal.,2002;Hartleyetal., recentrealepisodicmemorieswereelicitedfromthesubjects[condition:
+2003), theory of mind (Frith and Frith, 2003), the default net- realmemory(RM)].Memorieshadtobeemotionallyneutral,specificin
+work(Raichleetal.,2001),andperhapsevendaydreaming(Ma- timeandplace,andvividlyrecalledtobeacceptedasastimulus.Ifa
+sonetal.,2007). memoryinvolvedalongsequenceofevents(e.g.,goingtothecinemaone
+evening)subjectswereinstructedtofocusonasingleshortertemporal
+MaterialsandMethods elementofthateventanddescribejustitanditsimmediatelocation(e.g.,
+buyingtheticketattheticketboothinthecinemalobby)soastoquali-
+Subjects.Twenty-onehealthy,right-handed,nativeEnglishspeakerspar-
+ticipatedintheexperiment(10males;mean(cid:1)SDage,24.8(cid:1)3.8years; tativelymatchtheimaginedsceneconditionsascloselyaspossible[i.e.,a
+snapshot(Hassabisetal.,2007)].Subjectswereencouragedtothinkof
+agerange,18–31years).Allsubjectsgaveinformedwrittenconsentto
+memoriesthatweresetindifferentdistinctenvironments.
+participationinaccordancewiththelocalresearchethicscommittee.
+Prescaninterview.Interviewsessionswereconductedwithsubjects(cid:2)1 Overallitisimportanttonotethatbecausetaskswereperformedina
+weekbeforescanning(mean(cid:1)SD,6.24(cid:1)1.45d).Subjectssatfacingthe singleprescansessioninonesittingandonecontext,allconditionswere
+matched for effects related to the memory of the interview itself. In
+experimenterandengagedinfourtasks(forconditionssummary,see
+addition,onlyveryrecentautobiographicalmemories(mean(cid:1)SDage,
+Table1).Theyweretoldattheoutsettotryandrememberasmuchas
+possible about the things they were going to do during the interview
+12.82(cid:1)2.77d)wereusedasstimulitobetemporallycomparablewith
+session as their memory would be tested in the subsequent scanning theimaginedmemories.
+session.Firsttheywereshown10picturesofeverydayobjectsonacom- Stimuli.Stimuliforthescanningsessionconsistedofsimpleone-line
+puterscreen(e.g.,aredfireextinguisher)[condition:realobjects(RO)]. text cues presented centrally on the screen in white on a plain black
+Eachobjectwasshowncentrallyinisolationfor20ssetagainstaplain background(Fig.1).Eachcuestartedwithakeywordindicatingthetrial
+white background along with an accompanying line of text (in black type followed by a very brief description of the scene or object to be
+alongthebottomofthescreen)describingitskeyfeatures(e.g.,“aredfire visualized.Fourkeywordswereused:“Recall”indicatedthatthedescrip-
+extinguisher with a silver label and black nozzle”). Subjects were in- tionthatfollowedwaseitherarealautobiographicalmemory(different
+structedtousethetimetotryandrememberasmanydetailsaboutthe foreachsubject)oranobjectthathadbeenseenintheinterviewsession
+objectaspossibleandalsotoformastrongmentalimageoftheobject. (RMandROconditions);“Recreate”indicatedtrialsinwhichanimag-
+Thenshortdescriptionsof10additionaleverydayobjects(e.g.,“afancy inedsceneorobjectpreviouslycreatedintheinterviewsessionwastobe
+gold-platedpenwithasilvernibandtheinitialsJTengravedalongthe reconstructed(ISandIOconditions);“Imagine”prefixedtrialsinwhich
+casing”)werereadoutbytheexperimenter[condition:imaginedobjects anewfictitioussceneorobjectwastobeimaginedforthefirsttimeinthe
+(IO)].Subjectsclosedtheireyesandweregiven20stoformavividand scanner[newscene(NS)andnewobject(NO)conditions].“Focus”was
+
+--- PAGE 3 ---
+Hassabisetal.•RealandImaginaryMemories J.Neurosci.,December26,2007•27(52):14365–14374•14367
+previouslyimaginedscenes(IS),andtwonewly
+imaginedscenes(NS)wererandomlyselected
+and subjects were asked to describe in detail
+whattheyhadvisualizedinthescanner.These
+descriptions were digitally recorded for later
+transcriptionandscoring.Thenumberofdis-
+tinctdetailswascalculated,andfortheprevi-
+ouslyimaginedscenecondition(IS)thedetails
+werealsocomparedwiththosedescribedwhen
+thatsamescenewasinitiallycreatedinthepres-
+caninterview,thusprovidinganobjectivemea-
+sureofhowaccuratelythescenehadbeenre-
+createdinthescanner.Subjectswerethenasked
+howemotionalthethreemainsceneconditions
+Figure1. Experimentaldesign.Atextcue,prefixedbyaninstructionkeyworddenotingtrialtype[“Recall,”“Recreate,”
+madethemfeeloverallonascalefrom(cid:3)3(neg-
+“Imagine”(seeMaterialsandMethods)],waspresentedfor5.5sdescribingthesceneorobjecttobevisualized.Subjectswere
+ative)to(cid:4)3(positive).Finally,theywerealso
+theninstructedtoclosetheireyesandbeginvisualizingthesceneorobjectinasmuchdetailaspossiblefortheentire16s asked to rate on a five-point scale how much
+duration.Asimpleaudiotone,playedthroughheadphonesandlasting1s,indicatedtheendofthevisualizationperiodatwhich theyfeltthemselvestobeanactualpartofthe
+pointthesubjectopenedtheireyes.Subjectsthenusedafive-buttonMR-compatibleboxtoratetheirjustvisualizedsceneor visualizedscenes(“senseofpresence”:1,notat
+objectacrossfourratingsonfive-pointscales:difficulty,vividness,coherence,andmemory.Subjectsweregiven4.5storespond all...5,feltlikeIwasreallythere).
+perrating,resultinginanoverallratingperiodof18s.Thiswasfollowedbya1srestperiodinwhichablankscreenwaspresented Scanningparameters.T2*-weightedechopla-
+beforethestartofthenexttrial. nar images (EPIs) with blood oxygen level-
+dependent(BOLD)contrastwereacquiredona
+1.5teslaSiemensAG(Erlangen,Germany)So-
+usedtoindicatealowimagerybaselinetaskwheresubjectshadtoimag- nataMRIscanner.Weusedstandardscanning
+ineandthenfocusonawhitecrosshaironablackbackground. parameterstoachievewhole-braincoverage:45obliqueaxialslicesan-
+Task. Outside the scanner, the instructions and keywords were ex- gledat30degreesintheanteroposterioraxis,2mmthickness(1mm
+plainedtosubjectsbeforescanning,andtheyreceivedextensivetraining gap),repetitiontimeof4.05s.Thefirstsix“dummy”volumesfromeach
+toensuretheywerethoroughlyfamiliarizedwithallaspectsofthetask. session were discarded to allow for T1 equilibration effects. A T1-
+Subjectsalsohadapracticesessioninthescannerbeforethemainscan- weightedstructuralMRIscanwasacquiredforeachsubjectafterthefour
+ningsessionsconsistingofonetrialpercondition.Therewere7condi- main scanning sessions. Images were analyzed in a standard manner
+tions(3sceneconditions:RM,IS,NS;3objectconditions:RO,IO,NO; usingthestatisticalparametricmappingsoftwareSPM5(www.fil.ion.
+andthelowimagerybaselinecondition)with10trialspercondition, ucl.ac.uk/spm).Spatialpreprocessingconsistedofrealignmentandnor-
+yielding70trialsintotal.Asintheprescaninterviewsession,subjects
+malizationtoastandardEPItemplateinMontrealNeurologicalInstitute
+were explicitly told that for the scenes and objects they would newly (MNI)spacewitharesampledvoxelsizeof3(cid:5)3(cid:5)3mm,andsmoothing
+imagineinthescanner(NS,NO)theyshouldnotgiveanactualmemory
+usingaGaussiankernelwithfull-widthathalf-maximumof8mm.
+oranypartofonebutrathertocreatesomethingcompletelynew.Scan-
+Dataanalysis.Afterpreprocessing,statisticalanalysiswasperformed
+ningconsistedoffourmainsessionslasting(cid:2)11mineachduringwhich
+usingthegenerallinearmodel.Theexperimenthadthreemain“scene”
+17or18trialswerepseudorandomlypresentedsuchthat2or3trialswere
+conditionsandthreebaseline“object”conditions.Ourinterestwasinthe
+presentedpercondition,andneverthesameconditiontwiceinarow.
+16svisualizationperiodwhensubjectswerevividlyrecallingorimagin-
+Textcuesremainedonthescreenfor5.5sandwerethenreplacedbya
+ingthescenesorobjects.Thisperiodwasmodeledasaboxcarfunction
+“closeyoureyes”textinstruction(Fig.1).Atthispointsubjectswere
+instructedtoclosetheireyesimmediatelyandbeginvisualizingthescene (of16sduration)andconvolvedwiththecanonicalhemodynamicre-
+orobject(the“visualizationperiod”)asvividlyand,inthecaseofthe sponsefunctiontocreateregressorsofinterest.Subject-specificmove-
+“memory”conditions(RM,RO,IS,IO),asaccuratelyaspossible.Exten- ment parameters were included as regressors of no interest. Subject-
+sivepilotinginthescanningenvironmentrevealedthatsubjectsrequired specificparameterestimatespertainingtoeachregressor(betas)were
+(cid:2)16stocomfortablyperformthevisualizationtasks.Subjectswerere- calculatedforeachvoxel.Theseparameterestimates(collapsedacross
+quiredtofocusonthesceneorobjecttheywereimagining,addingmore sessions)wereenteredintoasecondlevelrandom-effectsanalysisusinga
+detailsifnecessary,fortheentire16sdurationofthevisualizationperiod. one-wayANOVA.Wereportresultsinaprioriregionsofinterest(pre-
+Asimple1saudiotonesignaledtheendofthevisualizationperiod(at viouslyidentifiedinnumerousneuroimagingstudiesofepisodicmem-
+whichpointsubjectsopenedtheireyes)andthestartoftheratingsphase. ory(Maguire,2001;Ruggetal.,2002;Svobodaetal.,2006;CabezaandSt
+UsinganMR-compatiblefive-buttonkeypad,subjectsscoredtheirjust- Jacques,2007)atp(cid:6)0.001,uncorrectedformultiplecomparisons,with
+visualizedsceneorobjectacrossfourratings:difficulty(howhardwasthe anextentthresholdof5ormorecontiguousvoxels.Activationsinother
+trial:1,easy...5,hard),vividness(salienceoftheimagery:1,notvivid... brainregionsarereportedforcompletenessatathresholdofp(cid:6)0.001
+5,veryvivid),coherence(contiguousnessofthespatialcontext:1,frag-
+uncorrectedformultiplecomparisons,butwereonlyconsideredsignif-
+mented...5,completelycontiguous),andmemory(howmuchlikea
+icantiftheysurvivewholebraincorrectionformultiplecomparisonsat
+memorythevisualizedsceneorobjectwas:1,nothinglikeamemory... p(cid:6)0.05[inlinewithestablishedprocedures(Frackowiaketal.,2004)].
+5,exactlylikeamemory).Foreachratingsubjectsweregiven4.5sto
+Astandardconjunctionanalysis(Fristonetal.,2005),asimplementedin
+respond.Thiswasfollowedbya1speriodofrestbeforethenextcuewas SPM5andreportedatp(cid:6)0.001,wasperformedtorevealtheregions
+presented.Thescenesandobjectsusedforthenewimaginationcondi-
+activatedincommonbetweenthemainsceneconditionscomparedwith
+tions(NS,NO)andthoseimaginedintheprescaninterview(IS,IO)were
+their respective individual baseline object conditions. Two additional
+counter-balancedacrosssubjects.
+analyseswerealsoperformedinwhicheffectsattributabletodifficulty,
+Debriefingandscoring.Afterscanning,subjectswerethoroughlyde-
+briefed.Subjectswerefirsttestedontheirmemoryforalltheseen(RO) vividness,coherence,andmemorywereeitherfactoredoutbyincluding
+andimaginedobjects(IO)fromtheprescaninterview.Thecuesforthe theseratingsascovariatesofnointerestinasecondlevelANOVA,or
+objectswerereadoutandsubjectsprovidedasmanydetailsastheycould treatedascovariatesofinterest.Allactivationsaredisplayedonsections
+remember.Anobjectwasregardedasaccuratelyrememberedifthesub- oftheaveragestructuralimageofalltheparticipants.Reportedvoxels
+jectwasabletocorrectlynameatleasttwosalientfeaturesoftheobject conformtoMNIcoordinatespace.Rightsideofthebrainisdisplayedon
+correctlywithnoincorrectdetails.Thentworealmemories(RM),two therightside.
+
+--- PAGE 4 ---
+14368•J.Neurosci.,December26,2007•27(52):14365–14374 Hassabisetal.•RealandImaginaryMemories
+Results Table2.Behavioralratings
+Behavioraldata Ratings(1,low(cid:1)5,high)(cid:9)mean(SD)(cid:10)
+Ratingssummary
+Conditions Difficulty Vividness Coherence Memory
+During scanning, after each visualization
+period(Fig.1)subjectswereimmediately Realrecentmemories(RM) 1.36(0.37) 4.41(0.44) 4.25(0.76) 4.56(0.50)
+Previouslyimaginedscenes(IS) 1.69(0.41) 4.07(0.41) 4.06(0.58) 3.97(0.68)
+askedtorateonfive-pointscalesthejust
+Newlyimaginedscenes(NS) 1.85(0.45) 3.91(0.64) 3.91(0.58) 1.94(0.33)
+(re)constructedsceneorobjectacrossfour
+Previouslyseenobjects(RO) 1.80(0.42) 4.04(0.41) 1.49(0.48) 3.89(0.61)
+measures (see Materials and Methods). Previouslyimaginedobjects(IO) 1.84(0.46) 3.91(0.44) 1.49(0.54) 3.66(0.75)
+Overalltheconditionsweregenerallyvery Newlyimaginedobjects(NO) 1.65(0.44) 4.09(0.43) 1.67(0.56) 1.74(0.54)
+well matched (Table 2). All conditions
+wereratedaslowindifficulty(allcondi-
+tions had a mean (cid:6)1.9) and the images visualized as vivid (all memoriessignificantlylessthantherecallofreal(RO)orimagi-
+conditionshadamean(cid:7)3.9).Thescenes(re)createdaspartof naryobjects(IO)(RO(cid:7)NO,t (cid:8)12.99,p(cid:6)0.001;IO(cid:7)NO,
+(20)
+thethreemainconditions(RM,IS,NS)wereallratedtobeco- t (cid:8)8.67,p(cid:6)0.001)thusconfirmingthatsubjectshadadhered
+(20)
+herent and contiguous (all had a mean (cid:7)3.9), conversely, the to instructions to create new fictitious objects for the NO
+backgroundcontextsinthethreeobjectcontrolconditions(RO, condition.
+IO,NO)wereratedasfragmentary(allobjectconditionshada Thepatternofperformanceobservedwiththerealmemory
+meancoherence(cid:6)1.8),indicatingthatinstructionstominimize (RM)conditionwasexpected,asretrievingarecentrealsalient
+contextandfocussolelyonvisualizingtherequiredobjecthad personalmemoryandvividlyrelivingitisnotadifficulttaskfora
+been adhered to. Finally, the four “memory” conditions (both healthysubject.ItshouldbenotedthatalthoughRMcondition
+real and previously imagined: RM, RO, IS, IO) that required wasratedaseasier,morevividandbetterremembered,thiswasin
+recallofamemoryelicited/establishedinthepreviousinterview thecontextofallothertasksbeingratedaseasy,salientandwell
+sessionwerewellremembered(allhadamean(cid:7)3.6).Thetwo rememberedalso.
+“new”conditions(NS,NO)didnotrelyheavilyonexplicitepi- Attheinterviewsession1weekbeforescanning,subjectswere
+sodic memories (each had a mean memory rating (cid:6)2.0), thus asked to rate the vividness and the use of memory after each
+confirmingthatinstructionsnottouseamemoryoranypartof imaginedscenetheyconstructed.Therewasnosignificantdiffer-
+oneorsomethingtheyplannedtodobutinsteadtocreatesome- enceinvividnessbetweenthescenesconstructedintheinterview
+thingnewhadbeenfollowed. (mean (cid:1) SD, 3.98 (cid:1) 0.46) when compared with those same
+sceneslaterrecalledinthescanner(IS)(t (cid:8)(cid:3)0.89,p(cid:8)0.39)
+(20)
+Formalcomparisons norcomparedwithnewscenesfreshlycreatedinthescannerfor
+Asexpected,allthreemainsceneconditionswereratedasmore the first time (NS) (t (cid:8) 0.51, p (cid:8) 0.62). There was also no
+(20)
+coherentthantheirrespectiveobjectbaselines(RM(cid:7)RO,t (cid:8) significantdifferencebetweenthe(low)useofepisodicmemory
+(20)
+13.52,p(cid:6)0.001;IS(cid:7)IO,t (cid:8)13.60,p(cid:6)0.001;NS(cid:7)NO,t inimagininganewsceneforthefirsttimewhetherdoneinthe
+(20) (20)
+(cid:8)11.03,p(cid:6)0.001)thusconfirmingthatobjectshadbeenvisu- interview session (mean (cid:1) SD, 1.75 (cid:1) 0.31) or in the scanner
+alizedacontextuallyasinstructed.RMwasratedaseasier,more
+(mean(cid:1)SD,1.94(cid:1)0.33)(t (cid:8)(cid:3)1.97,p(cid:8)0.06)againcon-
+(20)
+vividandmorelikearealmemorythanthepicturesofobjects firmingthatinbothcasessomethingnewhadbeencreated.
+seenintheinterviewsession(RO)(RM(cid:7)RO;difficulty:t (cid:8) Overly positive or negative real autobiographical memories
+(20)
+(cid:3)4.89,p(cid:6)0.001;vividness:t (cid:8)4.36,p(cid:6)0.001;memory:t werediscardedattheinterviewstage,aswerememoriesthatthe
+(20) (20)
+(cid:8)4.41,p(cid:6)0.001).Also,imaginingnewscenes(NS)wasratedas subject could not visualize saliently or pinpoint accurately in
+significantly harder than imagining new objects (NO) (t (cid:8) time.Allrealmemoriestakenforwardtoscanningweretherefore
+(20)
+2.88,p(cid:6)0.01).Therewerenoothersignificantdifferences. recent (mean (cid:1) SD, 12.82 (cid:1) 2.77 d old), emotionally neutral,
+Direct comparison of the three main scene conditions with specificintimeandvividlyrecollected.Fortheimaginationcon-
+eachotherrevealednosignificantdifferenceindifficulty,vivid- ditionsscenesandobjectswerecounter-balancedacrosssubjects
+nessorcoherencebetweenanyoftheconditionsexceptforrecall- forthosethatwerepresentedduringtheprescaninterview(IS,
+ing real autobiographical memories (RM) which was rated as IO)andthosethatwerepresentedforthefirsttimeinthescanner
+significantlyeasierandmorevividthantheothertwoscenecon- (NS,NO).
+ditions(difficulty:RM(cid:7)IS,t (cid:8)(cid:3)4.77,p(cid:6)0.001,RM(cid:7)NS,
+(20)
+t (cid:8)(cid:3)6.67,p(cid:6)0.001;vividness:RM(cid:7)IS,t (cid:8)5.51,p(cid:6) Debriefing
+(20) (20)
+0.001,RM(cid:7)NS,t (cid:8)4.96,p(cid:6)0.001).Realmemorieswere Afterscanning,subjectswerethoroughlydebriefed.
+(20)
+alsobetterremembered(i.e.,hadahighermemoryrating)than Scenes. Subjects were asked how emotional the three main
+imaginarymemories(IS)(t (cid:8)6.17,p(cid:6)0.001).Ofcoursenew sceneconditionsmadethemfeeloverallonascalefrom(cid:3)3(neg-
+(20)
+imagined experiences (NS) relied on actual memories signifi- ative)to(cid:4)3(positive).Asexpected,thesubjectsratedall3con-
+cantlylessthantherecallofreal(RM)orimaginarymemories ditionsasbeingemotionallyneutral(RM,mean(cid:1)SD,0.24(cid:1)
+(IS)(RM(cid:7)NS,t (cid:8)17.85,p(cid:6)0.001;IS(cid:7)NS,t (cid:8)11.18, 1.22;IS,mean(cid:1)SD,0.62(cid:1)0.86;NS,mean(cid:1)SD,0.38(cid:1)0.67),
+(20) (20)
+p(cid:6)0.001)thusconfirmingthatsubjectshadadheredtoinstruc- with no significant difference between any of the conditions
+tionstocreatesomethingcompletelynewandfictitiousforthe (RM(cid:7)IS,t (cid:8)(cid:3)1.00,p(cid:8)0.33;RM(cid:7)NS,t (cid:8)(cid:3)0.47,p(cid:8)
+(20) (20)
+NScondition. 0.64,IS(cid:7)NS,t (cid:8)1.75,p(cid:8)0.10).
+(20)
+Directcomparisonofthethreeobjectcontrolconditions(RO, Subjectswerealsoaskedtorate(scaleof1–5,inwhich1islow)
+IO, NO) with each other revealed no significant difference in howmuchtheyfeltthemselvestobeanactualpartofthevisual-
+difficulty, vividness, coherence or memory except for recalling ized scenes (“sense of presence”). As expected, real memories
+previouslyimaginedobjects(IO)whichwasratedasharderthan wereassociatedwithastrongersenseofpresencethanimagined
+imaginingnewobjects(NO)(t (cid:8)2.42,p(cid:6)0.03).Again,as scenes whether recalled or newly created in the scanner (RM,
+(20)
+with the scenes, new imagined objects (NO) relied on actual mean (cid:1) SD, 4.32 (cid:1) 0.66; IS, mean (cid:1) SD, 3.81 (cid:1) 0.73; NS,
+
+--- PAGE 5 ---
+Hassabisetal.•RealandImaginaryMemories J.Neurosci.,December26,2007•27(52):14365–14374•14369
+Table3.Recallofrealepisodicmemories>recallofpreviouslyseenobjects cortex(PCC),posteriorparietalcortex,rightthalamus,middle
+(RM>RO) temporalcortexbilaterally,andmedialprefrontalcortex.
+Region Peakcoordinate(x,y,z) Z By contrasting the construction of imagined scenes to the
+imaginationofacontextualobjects,bothnewlyimaginedinthe
+Medialprefrontalcortex (cid:3)3,51,24 5.00
+Ventromedialprefrontalcortex 3,42,(cid:3)9 4.79 scanner (NS (cid:7) NO), we identified brain regions involved in
+Rightsuperiorfrontalsulcus 27,36,39 4.39 the process of creating and imagining vivid fictitious scenes
+Leftmiddletemporalcortex (cid:3)57,(cid:3)9,(cid:3)21 4.10 (Table4,Fig.2B)includingtherighthippocampus,PHG,retro-
+Rightmiddletemporalcortex 57,(cid:3)6,(cid:3)24 3.96 splenialandposteriorparietalcortices.Theinvolvementofthe
+Lefthippocampus (cid:3)18,(cid:3)21,(cid:3)15 4.54 hippocampus provides additional evidence that the process of
+Righthippocampus 18,(cid:3)24,(cid:3)12 4.19 scene construction involves the hippocampus, consistent with
+Rightthalamus 15,(cid:3)18,9 4.30 findings in Hassabis et al.’s recent neuropsychological study
+Leftparahippocampalgyrus (cid:3)18,(cid:3)36,(cid:3)15 4.28
+(Hassabisetal.,2007).
+Rightparahippocampalgyrus 24,(cid:3)33,(cid:3)18 3.97
+Contrastingtherecallofimaginedscenestotherecallofimag-
+Leftretrosplenialcortex (cid:3)3,(cid:3)57,15 6.04
+inedacontextualobjects,bothpreviouslyconstructedinthein-
+Rightretrosplenialcortex 12,(cid:3)60,12 6.11
+Posteriorcingulatecortex (cid:3)3,(cid:3)54,33 6.39 terview session before scanning (IS (cid:7) IO), revealed a similar
+Precuneus 3,(cid:3)66,39 5.67 networkasthatengagedduringthecreationofnewconstructed
+Leftposteriorparietalcortex (cid:3)48,(cid:3)78,18 4.46 scenes (i.e., NS (cid:7) NO) (Table 5, Fig. 2C), but with additional
+Rightposteriorparietalcortex 48,(cid:3)72,27 5.71 activationsinthemedialsuperiorfrontalgyrus(BA9),andalso
+Medialposteriorparietalcortex 3,(cid:3)63,63 4.94 precuneusandPCC.
+Althoughnotthemainfocus,forcompletenesswereportthat
+thebrainregionsshowingincreasedactivityforobjectscompared
+withscenes(RO(cid:4)IO(cid:4)NO(cid:7)RM(cid:4)IS(cid:4)NS)(supplemental
+mean(cid:1)SD,3.62(cid:1)0.79;RM(cid:7)IS,t (cid:8)3.86,p(cid:6)0.001;RM(cid:7) Fig.S1,availableatwww.jneurosci.orgassupplementalmaterial)
+NS,t (cid:8)4.26,p(cid:6)0.001;IS(cid:7)NS
+(
+,
+20
+t
+)
+(cid:8)1.09,p(cid:8)0.29).
+includedlateraloccipitalcortex(LOC)bilaterally((cid:3)45,(cid:3)66,(cid:3)
+(20) (20) 9;z(cid:8)5.28;42,(cid:3)69,(cid:3)3;z(cid:8)4.90),intraparietalsulcus(IPS)
+Thescenesvisualizedinthethreemainconditionswerewell
+bilaterally((cid:3)54,(cid:3)30,42;z(cid:8)5.24;51,(cid:3)33,45;z(cid:8)4.89),and
+matched for number of details, with no significant difference
+betweenanyoftheconditions(RM,mean(cid:1)SD,7.12(cid:1)1.51);IS,
+rightlateralprefrontalcortex(39,48,15;z(cid:8)3.96).Thisisstrik-
+mean(cid:1)SD,7.36(cid:1)1.85;NS,mean(cid:1)SD,7.29(cid:1)1.59;RM(cid:7)IS, inglyconsistentwithotherstudiesthathaveinvestigatedobjects
+t (cid:8)(cid:3)0.69,p(cid:8)0.50;RM(cid:7)NS,t (cid:8)(cid:3)0.59,p(cid:8)0.56;IS(cid:7) comparedwithplaces(Sugiuraetal.,2005),andhasbeenattrib-
+N (2 S 0 , ) t (cid:8)0.26,p(cid:8)0.80).Also,wh (2 e 0 n ) describingdetailsofthe uted to greater attention and focus being directed toward the
+(20) objectwhenpresentinisolation(Sugiuraetal.,2005).
+previously imagined scenes (IS), during debriefing, subjects
+mentioned an average of 89.7% of the same details they had
+producedwhencreatingthesceneoriginallyintheprescaninter- Commonalities:thecoresceneconstructionnetwork
+Having observed in the separate contrasts above similarities in
+view,thusindicatingthattheyhadrecalledthepreviouslyimag-
+thebrainnetworksunderpinningthethreesceneconditions,we
+inedscenes(IS)withahighdegreeofaccuracyandtherebycon-
+firming the behavioral rating (memory rating, mean (cid:8) nextsoughttoformallyexaminecommonalitiesbetweenthem.A
+conjunctionanalysis(Fristonetal.,2005)ofthemainconditions
+3.97(0.68))obtainedinthescanner.
+(RM,IS,NS)againsttheirrespectivecontrols(RO,IO,NO)al-
+Objects.Memoryforboththeseen(RO)andimaginedobjects
+lowedustoisolatethecommonbrainnetworkinvolvedinthe
+(IO) from the prescan interview was tested. All objects in the
+underlyingcoreprocessofconstructing,maintainingandvisual-
+studyhadanumberofsalientfeatures[e.g.,color,texture,adorn-
+izing complex scenes. This network (Table 6, Fig. 3) included
+ments(seeMaterialsandMethods)].Whencuedinthescanner
+bilateralhippocampi,parahippocampalgyrus,retrosplenialcor-
+only the basic name of the object was given. In the debriefing
+tex,precuneus,posteriorparietalcortexandventromedialpre-
+sessionanobjectwasregardedasaccuratelyrememberedifthe
+frontalcortex(vmPFC).
+subjectwasabletonamecorrectlyandunpromptedatleasttwo
+salientfeaturesoftheobject.Objectswerewellrememberedwith
+a mean (cid:1) SD of 8.33 (cid:1) 1.35 and 8.43 (cid:1) 1.29 of the seen and Differences:additionalrequirementsforrealepisodicmemories
+Havingestablishedthebrainareasthesceneconditionssharein
+imaginedobjectsrememberedrespectivelyofapossible10,and
+no significant difference between the two conditions (t (cid:8) common,wenextexamineddifferencesbetweenthem.Specifi-
+(cid:3)0.30,p(cid:8)0.77). (20) cally, we asked which brain regions distinguished between the
+recallofrealandfictitiousevents.Thiswasaddressedbycontrast-
+ingtherecallofrealmemorieswiththerecallofpreviouslyimag-
+Neuroimagingdata
+ined memories [minus their respective baseline conditions to
+Overallbrainnetworks control for any effects of external versus internally generated
+Toappreciatetheoverallnetworkassociatedwitheachscenecon- stimuli and creative processes: (RM – RO) (cid:7) (IS – IO)]. The
+dition,wefirstcontrastedeachwithitsrespectivecontrolcondi- precuneus,PCCandanteriormedialprefrontal(amPFC;BA10)
+tion.Bycontrastingtherecallofrecentepisodicmemoriestothe were preferentially engaged for real compared with imagined
+recallofacontextualobjectspreviouslyseenintheinterviewses- memories(Table7,Fig.4A).Theplotsoftheparameterestimates
+sion (RM (cid:7) RO) we replicated the well established episodic inthesethreeareas(Fig.4B–D)clearlyshowthatactivationin
+memoryretrievalnetworkconsistentlyactivatedinstudiesofau- these areas is most sensitive to the recall of real memories. No
+tobiographicalmemory(Maguire,2001;Ruggetal.,2002;Svo- changesinactivitywereobservedinthereversecontrast[(IS–
+bodaetal.,2006;CabezaandStJacques,2007)(Table3,Fig.2A), IO)(cid:7)(RM–RO)].
+consistingofthehippocampusbilaterally,parahippocampalgy- We were also able to ask another question, namely which
+rus(PHG),retrosplenialcortex,precuneus,posteriorcingulate brainareasweredifferentiallyengagedbytheretrievalcompared
+
+--- PAGE 6 ---
+14370•J.Neurosci.,December26,2007•27(52):14365–14374 Hassabisetal.•RealandImaginaryMemories
+Figure2. Comparisonofthemainsceneconditionswiththeirrespectiveobjectbaselines.Thetoprowshowssagittal,coronal,andaxialimagesfroma“glassbrain,”whichenablesoneto
+appreciateactivationsinalllocationsandlevelsinthebrainsimultaneously.Thebottomrowshowsactivationsonaselectionofrelevantsagittal,coronal,andaxialsectionsfromtheaveraged
+structuralMRIscanofthe21subjects,atathresholdofp(cid:6)0.001uncorrected.A,RM(cid:7)RO,Thiscontrastrevealsthewellestablishednetworkforepisodicmemoryretrievalthatincludesbilateral
+hippocampi,parahippocampalgyrus,retrosplenialandposteriorparietalcortices,rightthalamus,middletemporalcortices,andmedialprefrontalcortex.Table3detailsthecoordinatesofallthe
+activationpeaks.B,NS(cid:7)NO,Thiscontrastrevealsasimilarnetworkforimaginingnewfictitiousexperiencesthatincludesrighthippocampus,parahippocampalgyrus,retrosplenialandposterior
+parietalcortices,andventromedialprefrontalcortex.Table4detailsthecoordinatesofalltheactivationpeaks.C,IS(cid:7)IO,Thiscontrastalsorevealsasimilarnetworkforrecallingimaginedfictitious
+experiencespreviouslycreatedinaprescaninterviewthatincludesrighthippocampus,parahippocampalgyrus,retrosplenialandposteriorparietalcortices,andmedialprefrontalcortex.Table5
+detailsthecoordinatesofalltheactivationpeaks.
+Table4.Newlyimaginedfictitiousexperiences>newlyimaginedobjects Table5.Recallofpreviouslyimaginedexperiences>recallofpreviouslyimagined
+(NS>NO) objects(IS>IO)
+Region Peakcoordinate(x,y,z) Z Region Peakcoordinate(x,y,z) Z
+Ventromedialprefrontalcortex 3,24,(cid:3)9 4.27 Medialsuperiorfrontalgyrus (cid:3)3,45,36 4.53
+Rightsuperiorfrontalsulcus 27,27,45 4.42 Ventromedialprefrontalcortex (cid:3)6,48,(cid:3)9 4.35
+Rightmiddletemporalcortex 57,(cid:3)6,(cid:3)24 3.70 Leftsuperiorfrontalsulcus (cid:3)24,24,51 4.48
+Righthippocampus 21,(cid:3)24,(cid:3)12 3.86 Leftmiddletemporalcortex (cid:3)63,(cid:3)12,(cid:3)18 3.93
+Leftparahippocampalgyrus (cid:3)18,(cid:3)36,(cid:3)15 4.28 Righthippocampus 24,(cid:3)21,(cid:3)15 3.49
+Rightparahippocampalgyrus 33,(cid:3)42,(cid:3)12 4.43 Leftparahippocampalgyrus (cid:3)21,(cid:3)39,(cid:3)18 5.57
+Leftretrosplenialcortex (cid:3)12,(cid:3)60,9 6.08 Rightparahippocampalgyrus 27,(cid:3)36,(cid:3)18 5.17
+Rightretrosplenialcortex 12,(cid:3)57,15 5.52 Leftretrosplenialcortex (cid:3)9,(cid:3)48,6 5.87
+Rightprecuneus 9,(cid:3)57,48 3.91 Rightretrosplenialcortex 15,(cid:3)57,9 6.21
+Leftposteriorparietalcortex (cid:3)48,(cid:3)78,24 4.75 Leftposteriorcingulatecortex (cid:3)9,(cid:3)42,36 5.29
+Rightposteriorparietalcortex 45,(cid:3)66,24 4.75 Precuneus (cid:3)3,(cid:3)60,54 4.88
+Medialposteriorparietalcortex 9,(cid:3)75,57 4.73 Leftposteriorparietalcortex (cid:3)36,(cid:3)75,30 5.72
+Rightposteriorparietalcortex 45,(cid:3)69,33 5.51
+Medialposteriorparietalcortex 3,(cid:3)66,60 4.71
+withtheencoding,ofan(fictitious)episodic-likeevent.Wecon-
+trastedtherecallofpreviouslyimaginedmemoriestotheencod-
+ingofnewlyimaginedevents(IS(cid:7)NS)whichrevealedincreased
+activityintheprecuneusbilaterally((cid:3)12,(cid:3)63,30;z(cid:8)4.21;9,(cid:3) ertheless included the ratings as covariates of no interest in a
+69,36;z(cid:8)3.95)forrecallofpreviouslyimaginedscenes.This second level ANOVA in a separate analysis (see Materials and
+Methods). However, this made no qualitative difference to the
+effectisalsoapparentintheparameterestimatesplotinFigure
+results,whichwasexpected,becauseofthehighdegreeofsimi-
+4D.Nochangesinactivitywereobservedinthereversecontrast
+(NS(cid:7)IS). laritybetweentheratingsacrossconditions.Inanotheranalysis
+we treated the ratings as covariates of interest, asking whether
+Additionalanalyses activityinanybrainareascorrelatedwiththeratings.Therewere
+Althoughtheratingsfortheconditionswereoverallquitesimilar nosignificantfindings,againmostlikelybecausethetaskswere
+intermsofdifficulty,vividness,coherence,andmemory,wenev- generallywellmatched.
+
+--- PAGE 7 ---
+Hassabisetal.•RealandImaginaryMemories J.Neurosci.,December26,2007•27(52):14365–14374•14371
+Table6.Conjunctionanalysis betweentheprocessesof“simple”imagery(Kosslynetal.,2001)
+Region Peakcoordinate(x,y,z) Z (e.g., of objects), and that of complex scene construction and
+visualization, and attribute the latter to a distributed network
+Medialprefrontalcortex (cid:3)6,54,27 4.52
+includingthehippocampus(Hassabisetal.,2007).Indeed,our
+Ventromedialprefrontalcortex (cid:3)3,48,(cid:3)12 3.90
+Leftsuperiorfrontalsulcus (cid:3)24,24,51 5.37 findingofsignificantlygreateractivationintheobjectconditions
+Rightsuperiorfrontalsulcus 24,24,48 5.54
+(i.e.,Objects(cid:7)Scenes)inbrainareasoftenassociatedwithsup-
+Leftmiddletemporalcortex (cid:3)63,(cid:3)9,(cid:3)18 4.29 portingobjectrepresentationsandmanipulations(Sugiuraetal.,
+Rightmiddletemporalcortex 57,(cid:3)3,(cid:3)24 4.67 2005)(i.e.,LOCandIPS),lendsadditionalsupporttoourasser-
+Lefthippocampus (cid:3)21,(cid:3)21,(cid:3)21 3.90 tion that scene construction represents a dissociable cognitive
+Righthippocampus 24,(cid:3)21,(cid:3)15 5.04 processwithadistinctneuralbasis.Assuch,alargeportionofthe
+Leftparahippocampalgyrus (cid:3)18,(cid:3)33,(cid:3)15 7.52 episodicmemoryrecallnetwork(Maguire,2001;Svobodaetal.,
+Rightparahippocampalgyrus 21,(cid:3)33,(cid:3)18 5.51
+2006) would seem to be more accurately characterized as the
+Leftretrosplenialcortex (cid:3)6,(cid:3)54,9 (cid:7)8
+network responsible for the construction of complex scenes.
+Rightretrosplenialcortex 12,(cid:3)54,9 (cid:7)8
+Giventhis,itwouldseemreasonabletoproposethatrealmem-
+Posteriorcingulatecortex (cid:3)3,(cid:3)39,42 5.23
+Leftprecuneus (cid:3)6,(cid:3)63,51 6.12 oriesarereconstructedalongverysimilarlinestothewayimag-
+Rightprecuneus 6,(cid:3)66,60 5.71 inedeventsareconstructed,dovetailingwiththeideathatmem-
+Leftposteriorparietalcortex (cid:3)33,(cid:3)78,39 6.60 oryis(re)constructiveinnature(Bartlett,1932;Schacteretal.,
+Rightposteriorparietalcortex 48,(cid:3)72,27 (cid:7)8 1998;ConwayandPleydell-Pearce,2000;Rubinetal.,2003;Has-
+Medialposteriorparietalcortex (cid:3)6,(cid:3)78,54 4.94 sabisandMaguire,2007;SchacterandAddis,2007).
+Thethreecontrastsenteredintotheconjunctionanalysiswere:RM(cid:3)RO,IS(cid:3)IO,andNS(cid:3)NO. Ourdata,therefore,alsoaccordwellwitharecentneuropsy-
+chologicalstudy(Hassabisetal.,2007)inwhichhippocampal-
+damagedpatientswerefoundtobeimpairedatimaginingnew
+Discussion fictitious experiences. Their descriptions were fragmented,
+InthisfMRIstudywerevealtheextendedbrainnetwork,includ- lackedacoherentspatialcontext,andweresignificantlylessrich
+ingthehippocampus,associatedwithsceneconstruction,akey suggestingthatthehippocampusplaysacriticalroleinintegrat-
+processincommontorealandimaginarymemories,andcrucial ing the disparate elements of a scene into a coherent whole
+to the recollective experience of recalling an episodic memory (O’Keefe and Nadel, 1978; Burgess et al., 2001; Eichenbaum,
+(Tulving,2002).Moreover,byusingrichimaginarymemoriesas 2004;Moscovitchetal.,2005;HassabisandMaguire,2007;Has-
+awellmatchedcomparisontaskwewereabletoisolateprocesses sabisetal.,2007).Moreover,evidencefromapreviousEEGstudy
+specifictoepisodicmemory,suchastheuseofself-schema(Con- (Conwayetal.,2003)alsosuggeststhatcommonprocessesun-
+wayandPleydell-Pearce,2000;Gallagher,2000),asenseoffamil- derlietherecallofbothrealandimaginaryevents.
+iarity and mental time travel (Tulving, 2002). Previous studies Anotherkeyaimofthisstudywastheinvestigationofareas
+thathavecomparedepisodicmemoryandfuturethinkingwere differentially engaged by episodic memories and (re)construc-
+unable to make this distinction because these features were tionofimaginedfictitiousexperiences.Whenconstructingficti-
+present to a similar degree in both autobiographical memories tiousexperiencessubjectswereinstructednottodescribeamem-
+andpersonalfuturescenarios(AtanceandO’Neill,2001;Addiset ory or something they planned to do but instead create
+al., 2007; Szpunar et al., 2007).Together, therefore, the present somethingcompletelynew.Thatnovelandoriginalexperiences
+study advances efforts to dissociate the functions of the many wereconstructedisevidencedbythelowscoresobtainedonthe
+brainregionsconsistentlyactivatedinstudiesofepisodicmem- “useofmemory”behavioralmeasure.Furthermore,itisunlikely
+ory recall (Maguire, 2001; Svoboda et al., 2006; Cabeza and St thatsubjectsengagedinmentaltimetravelwhendescribingtheir
+Jacques,2007)andepisodicfuturethinking(AtanceandO’Neill, fictitiousscenesbecausecomparisonsofthefictitiousscenede-
+2001;Addisetal.,2007;Szpunaretal.,2007),anendeavorgiven scriptionsobtainedinthisstudy(supplementalTableS1,avail-
+allthemoreimportancebyrecentobservationsthatthisdistrib- able at www.jneurosci.org as supplemental material) to typical
+uted network may support not just episodic memory, but also descriptions obtained in future thinking studies (Addis et al.,
+numerous other high-level cognitive functions (Buckner and 2007,theirAppendixA.2)showclearqualitativedifferences.In
+Carroll,2007;HassabisandMaguire,2007). futureeventdescriptionstemporalphrasessuchas“Iwillbe”,“I
+Ourresultsshowthatwhensubjectsconstructnewfictitious planto”and“I’mgoingto”,andfamiliarobjectsandpeople(e.g.,
+scenes an extended brain network involving the hippocampus, “my sister is there”) are commonplace (Addis et al., 2007) in
+parahippocampalgyrus,retrosplenialcortices,posteriorparietal contrasttoimaginedfictitiousscenesinwhichgenerallynoneof
+cortices,andventromedialprefrontalcortexisactive.Critically, thesefeaturesarepresent.Wethereforesoughttocapitalizeon
+we show using a conjunction analysis that this network is not the absence of self-projection in time and reduced reliance on
+specifictotheconstructionofnewfictitiousexperiences,butis self-schema processes in the imagination task to identify brain
+alsoengagedwhensubjectsrememberbothpreviouslyimagined regions that might support these specific qualities of episodic
+experiencesaswellastheirownrealpersonalexperiences.The memory,bothpastandfuture(SchacterandAddis,2007).Con-
+implicationis,therefore,thatthisdistributednetworksupports trastingtheretrievalofrecentrealepisodicmemoriestothere-
+cognitiveoperationsengagedincommonduringthethreemain trievalofrecentlyconstructedfictitiousexperiences,whilecon-
+conditionsinourexperiment,mostlikelythe(re)construction, trolling for external versus internal generation effects with the
+maintenanceandvisualizationofcomplexscenes.Importantly, respective baselines, revealed increased activity in the amPFC,
+theseeffectscannotbeattributedtodifferencesineitherdifficulty PCCandprecuneus.Itshouldbenotedthatthisdifferentialac-
+or vividness between the conditions given that these variables tivitycannotbeattributabletodifferencesinretrievaleffort,as
+were generally comparable. A key aspect of our experimental recallingrealmemorieswasratedaseasierthantheothercondi-
+designwastheuseofcontrolconditionsinvolvingthevividvisu- tions.Itisalsounlikelytobeexplainedbyvividness;althoughreal
+alizationofacontextualobjectswhichallowedustodistinguish memorieswereratedasmorevivid,thisissetagainstanoverall
+
+--- PAGE 8 ---
+14372•J.Neurosci.,December26,2007•27(52):14365–14374 Hassabisetal.•RealandImaginaryMemories
+contextofhighvividnessacrossallcondi-
+tions.Thiswasconfirmedbyouranalysis
+inwhichcovaryingouttheeffectofvivid-
+nessmadenoqualitativedifferencetothe
+regionsactivatedinthecontrasts.Interest-
+ingly,wealsoobservedsignificantlygreater
+activation in precuneus when we com-
+paredtherecallofpreviouslyimaginedex-
+periences with the creation of new imag-
+inedexperiences.Assuch,activationinthe
+precuneusmayreflecttherelativefamiliar-
+ityofthevisualizedexperience[i.e.,RM(cid:7)
+IS (cid:7) NS (Fig. 4D)] with real memories,
+perhapsnotsurprisinglygiventheiroften
+highlyfamiliarcontent,morefamiliarthan
+imaginarymemories,inlinewithpropos-
+alsconcerningthefunctionofthisregion
+derivedfromstudiesofrecognitionmem-
+ory(Ruggetal.,2002;Wagneretal.,2005;
+Hornberger et al., 2006; Vincent et al.,
+2006).
+Activation in amPFC and PCC, how-
+ever, was only observed during episodic
+memory recall, suggesting that these re-
+gionssupportfunctionsthatarespecificto
+episodic memory over and above scene
+construction (Tulving, 2002). In fact the
+patternofactivationrevealedbythiscon-
+trast bears a striking resemblance to net- Figure3. Brainareasincommontothethreesceneconditions.Aconjunctionanalysisrevealedthebrainregionsactivatedin
+works found to support self-reflection commonbythethreesceneconditionsandthereforelikelyinvolvedin“sceneconstruction,”theprimaryprocessthesethree
+(Johnsonetal.,2002),theoryofmind(Ku- conditionshaveincommon.Thisnetworkincludedbilateralhippocampi,parahippocampalgyrus,retrosplenialandposterior
+maran and Maguire, 2005; Amodio and parietalcortices,middletemporalcortices,andmedialprefrontalcortex.Table6detailsthecoordinatesofalltheactivation
+Frith, 2006) and episodic future thinking peaks.Viewsofthisdistributedbrainnetworkarealsoshowninthebottomonaselectionofrelevantsagittal,coronal,andaxial
+sectionsfromtheaveragedstructuralMRIscanofthe21subjects,atathresholdofp(cid:6)0.001uncorrected.
+(Addis et al., 2007) suggesting that the
+amPFCandPCCmightbesupportingpro-
+Table7.Recallofrealepisodicmemories>recallofpreviouslyimagined
+cessesrelatedtotheself(ConwayandPleydell-Pearce,2000)and
+experiences(cid:9)(RM(cid:1)RO)>(IS(cid:1)IO)(cid:10)
+mentaltimetravel(Wheeleretal.,1997;Tulving,2002).Indeed,
+whenviewedintermsofcomponentprocesses,episodicfuture Region Peakcoordinate(x,y,z) Z
+thinking (Atance and O’Neill, 2001) and recalling past events Anteriormedialprefrontalcortex (cid:3)3,63,6 4.54
+sharemanyofthesameunderlyingprocesses.Theseincludenot Posteriorcingulatecortex (cid:3)3,(cid:3)54,36 4.61
+onlysceneconstruction(whichtheyhaveincommonwithimag- Precuneus 3,(cid:3)63,39 5.21
+iningfictitiousexperiences)butalsoself-schemaprocessing,self-
+projectionintime(forwardsinsteadofbackwardsinthecaseof
+futurethinking),andasenseoffamiliarity–processespresentin 2007;Szpunaretal.,2007),thedefaultmode(Raichleetal.,2001)
+imaginedfictitiousexperienceseithertoamuchlesserextentor anddaydreaming(Masonetal.,2007),leadingtosuggestionsthat
+not at all. Perhaps it is not altogether surprising therefore that itperformsageneralfunction(BucknerandCarroll,2007;Has-
+recent fMRI studies have found comprehensive overlap in the sabisandMaguire,2007).Onehypothesisthathasrecentlybeen
+activationpatternsassociatedwithrecallingthepastandthinking proposedrelatesthefunctionofthisbrainnetworktotheprocess
+about plausible self-relevant future events (Addis et al., 2007; of“selfprojection”(BucknerandCarroll,2007),awide-ranging
+Szpunaretal.,2007).Together,then,wesuggestthatduringep- term that encompasses numerous processes including self-
+isodicmemoryretrieval(andperhapsalsoepisodicfuturethink- relevance,self-schemaornarrativeself,sceneconstruction,men-
+ing),theinteractionorcooperationbetweentheself-processing talsimulationandprojectionoftheselfintospace,timeoronto
+andfamiliarityfunctionsperformedbytheamPFC/PCCandpre- another’s perspective (Tulving, 2002; Buckner and Carroll,
+cuneusrespectivelymaybesufficienttodistinguishbetweenreal 2007).Thecurrentfindingssuggestthatthismultifacetedcon-
+and fictitious memories and likely reflects the greater sense of ceptcanbebrokendownintoatleasttwodistinctcomponents
+presencereportedbyoursubjectsforrealmemories. with dissociable neural bases: a network centered on the hip-
+Intriguingly, similar brain networks to the classic episodic pocampusresponsibleforsceneconstruction,withtheamPFC/
+memorynetwork(alsoreplicatedinthisstudywiththeRM(cid:7)RO PCCandprecuneusmediatingselfprojectionintime,senseof
+contrast) has also been activated in a variety of other circum- familiarity and self-schema. The disparate cognitive functions
+stancesincludingnavigation(Burgessetal.,2002;Hartleyetal., highlighted by Buckner and Carroll (2007) and Hassabis and
+2003; Spiers and Maguire, 2006), spatial tasks (Maguire et al., Maguire(2007)maybedifferentiallyreliantonthesetwocom-
+2003; Kumaran and Maguire, 2005), episodic future thinking ponents(e.g.,navigationlikelypredominantlyreliesonthescene
+(AtanceandO’Neill,2001;Addisetal.,2007;SchacterandAddis, constructionprocess,whereasepisodicmemoryrequiresboth).
+
+--- PAGE 9 ---
+Hassabisetal.•RealandImaginaryMemories J.Neurosci.,December26,2007•27(52):14365–14374•14373
+riencesisamanipulableandusefulexperi-
+mental tool which may prove fruitful in
+further advancing our understanding of
+episodicmemoryandtheprocessesunder-
+pinningit,aswellasotherrelatedcognitive
+functions (Buckner and Carroll, 2007;
+HassabisandMaguire,2007).Inthefuture,
+it will be important to define the exact
+function of individual regions within the
+scene construction network, explain the
+roleofthesefunctionsinapparentlyunre-
+lated tasks such as word-pair recognition
+tasksthatalsoofteninvolvethisnetwork,
+and discover the precise mechanisms
+which give rise to the phenomenological
+feeling one experiences during episodic
+memoryrecallthatallowsustoknowthat
+aneventreallyhappened.
+References
+Addis DR, Wong AT, Schacter DL (2007) Re-
+memberingthepastandimaginingthefuture:
+commonanddistinctneuralsubstratesduring
+eventconstructionandelaboration.Neuropsy-
+chologia45:1363–1377.
+AmodioDM,FrithCD (2006) Meetingofminds:
+themedialfrontalcortexandsocialcognition.
+NatRevNeurosci7:268–277.
+Atance CM, O’Neill DK (2001) Episodic future
+thinking.TrendsCognSci5:533–539.
+Bartlett FC (1932) Remembering. Cambridge:
+CambridgeUP.
+Buckner RL, Carroll DC (2007) Self-projection
+andthebrain.TrendsCognSci11:49–57.
+BurgessN (2006) Spatialmemory:howegocen-
+tricandallocentriccombine.TrendsCognSci
+10:551–557.
+Figure4. Comparisonofrealandimaginedmemories.A,Contrastingrecallofrealmemoriestotherecallofimaginary Burgess N, Becker S, King JA, O’Keefe J (2001)
+memorieswhilecontrollingforexternallyversusinternallygeneratedstimuliandcreativityprocesses,(RM(cid:3)RO)(cid:7)(IS(cid:3)IO), Memory for events and their spatial context:
+revealedthattheprecuneus,PCC,andamPFCwerepreferentiallyengagedforrealmemories.Table7detailsthecoordinatesofall modelsandexperiments.PhilosTransRSoc
+theactivationpeaks.Bottom,ViewsofthesebrainregionsonasagittalandcoronalsectionfromtheaveragedstructuralMRIscan LondBBiolSci356:1493–1503.
+ofthe21subjects,atathresholdofp(cid:6)0.001uncorrected.B–D,Condition-specificparameterestimates(betas)inarbitraryunits BurgessN,MaguireEA,O’KeefeJ (2002) Thehu-
+man hippocampus and spatial and episodic
+atthepeakvoxels.ErrorbarsrepresenttheSE.RM,Recallofrealmemories;IS,recallofpreviouslyimaginedscenes;NS,con-
+memory.Neuron35:625–641.
+structingnewfictitiousscenes;RO,recallofpreviouslyseenobjects;IO,recallofpreviouslyimaginedobjects;NO,imaginingnew
+CabezaR,StJacquesP (2007) Functionalneuro-
+objects.B,AtthepeakvoxelinPCC.C,AtthepeakvoxelinamPFC.D,Atthepeakvoxelintheprecuneus.
+imagingofautobiographicalmemory.Trends
+CognSci11:219–227.
+Toconclude,wehavedemonstratedthatadistributedbrain Conway MA, Pleydell-Pearce CW (2000) The construction of autobio-
+network, including the hippocampus, is recruited during both graphicalmemoriesintheself-memorysystem.PsycholRev107:261–288.
+episodicmemoryrecallandthevisualizationoffictitiousexperi- ConwayMA,Pleydell-PearceCW,WhitecrossSE,SharpeH (2003) Neuro-
+ences.Ourdataprovideevidencefortheroleofthisbrainnet- physiologicalcorrelatesofmemoryforexperiencedandimaginedevents.
+Neuropsychologia41:334–340.
+workinsceneconstruction,acriticalprocessunderpinningrich
+EichenbaumH (2004) Hippocampus:cognitiveprocessesandneuralrepre-
+recollection.Wefurtherproposethattherecruitmentofthisnet-
+sentationsthatunderliedeclarativememory.Neuron44:109–120.
+workinavarietyofdifferentconditions(BucknerandCarroll,
+FrackowiakRSJ,FristonKJ,FrithCD,DolanRJ,PriceCJ,ZekiS,Ashburner
+2007; Hassabis and Maguire, 2007), ranging from the default
+JT, Penny WD (2004) Human brain function. New York: Elsevier
+state,spatialnavigationtoepisodicfuturethinking,mayinfact Academic.
+reflectitsgeneralroleintheprocessofsceneconstruction.Our FristonKJ,PennyWD,GlaserDE (2005) Conjunctionrevisited.NeuroIm-
+findingsalsoprovideinsightsintotheneuralbasisofprocesses age25:661–667.
+specifictoepisodicmemory,suggestingamodelinwhichactiva- FrithU,FrithCD (2003) Developmentandneurophysiologyofmentaliz-
+tioninamPFC,PCCandprecuneusinteracttoallowrealmem- ing.PhilosTransRSocLondBBiolSci358:459–473.
+ories to be distinguished from imaginary ones. Moreover, the GallagherS (2000) Philosophicalconceptionsoftheself:implicationsfor
+cognitivescience.TrendsCognSci4:14–21.
+notion that scene construction is a key component of episodic
+GottfriedJA,SmithAP,RuggMD,DolanRJ (2004) Remembranceofodors
+memoryrecalllendsadditionalsupporttoconstructivetheories
+past:humanolfactorycortexincross-modalrecognitionmemory.Neu-
+ofepisodicmemory(Bartlett,1932;Schacteretal.,1998)andthe
+ron42:687–695.
+recentlyproposedconstructiveepisodicsimulationfunctionof
+GreenbergDL,RubinDC (2003) Theneuropsychologyofautobiographical
+theepisodicmemorysystem(SchacterandAddis,2007;Schacter memory.Cortex39:687–728.
+etal.,2007).Thisstudydemonstratesthatimaginingnewexpe- HartleyT,MaguireEA,SpiersHJ,BurgessN (2003) Thewell-wornroute
+
+--- PAGE 10 ---
+14374•J.Neurosci.,December26,2007•27(52):14365–14374 Hassabisetal.•RealandImaginaryMemories
+andthepathlesstraveled:distinctneuralbasesofroutefollowingand Rubin DC, Schrauf RW, Greenberg DL (2003) Belief and recollection of
+wayfindinginhumans.Neuron37:877–888. autobiographicalmemories.MemCognit31:887–901.
+HassabisD,MaguireEA (2007) Deconstructingepisodicmemorywithcon- RuggMD,OttenLJ,HensonRN (2002) Theneuralbasisofepisodicmem-
+struction.TrendsCognSci11:299–306. ory:evidencefromfunctionalneuroimaging.PhilosTransRSocLondB
+HassabisD,KumaranD,VannSD,MaguireEA (2007) Patientswithhip- BiolSci357:1097–1110.
+pocampalamnesiacannotimaginenewexperiences.ProcNatlAcadSci SchacterDL,AddisDR (2007) Thecognitiveneuroscienceofconstructive
+USA104:1726–1731. memory:rememberingthepastandimaginingthefuture.PhilosTransR
+HornbergerM,RuggMD,HensonRN (2006) fMRIcorrelatesofretrieval SocLondBBiolSci362:773–786.
+orientation.Neuropsychologia44:1425–1436. SchacterDL,NormanKA,KoutstaalW (1998) Thecognitiveneuroscience
+JohnsonSC,BaxterLC,WilderLS,PipeJG,HeisermanJE,PrigatanoGP ofconstructivememory.AnnuRevPsychol49:289–318.
+(2002) Neuralcorrelatesofself-reflection.Brain125:1808–1814. SchacterDL,AddisDR,BucknerRL (2007) Rememberingthepasttoimag-
+KosslynSM,GanisG,ThompsonWL (2001) Neuralfoundationsofimag- inethefuture:theprospectivebrain.NatRevNeurosci8:657–661.
+ery.NatRevNeurosci2:635–642. SpiersHJ,MaguireEA (2006) Thoughts,behaviour,andbraindynamics
+KumaranD,MaguireEA (2005) Thehumanhippocampus:cognitivemaps duringnavigationintherealworld.NeuroImage31:1826–1840.
+orrelationalmemory?JNeurosci25:7254–7259. SugiuraM,ShahNJ,ZillesK,FinkGR (2005) Corticalrepresentationsof
+MaguireEA (2001) Neuroimagingstudiesofautobiographicaleventmem- personallyfamiliarobjectsandplaces:functionalorganizationofthehu-
+ory.PhilosTransRSocLondBBiolSci356:1441–1451. manposteriorcingulatecortex.JCognNeurosci17:183–198.
+MaguireEA,ValentineER,WildingJM,KapurN (2003) Routestoremem- SvobodaE,McKinnonMC,LevineB (2006) Thefunctionalneuroanatomy
+bering:thebrainsbehindsuperiormemory.NatNeurosci6:90–95. of autobiographical memory: a meta-analysis. Neuropsychologia
+MasonMF,NortonMI,VanHornJD,WegnerDM,GraftonST,MacraeCN 44:2189–2208.
+(2007) Wandering minds: the default network and stimulus- SzpunarKK,WatsonJM,McDermottKB (2007) Neuralsubstratesofenvi-
+independentthought.Science315:393–395. sioningthefuture.ProcNatlAcadSciUSA104:642–647.
+MoscovitchM,RosenbaumRS,GilboaA,AddisDR,WestmacottR,GradyC, TulvingE (2002) Episodicmemory:frommindtobrain.AnnuRevPsychol
+McAndrewsMP,LevineB,BlackS,WinocurG,NadelL (2005) Func- 53:1–25.
+tionalneuroanatomyofremoteepisodic,semanticandspatialmemory:a Vincent JL, Snyder AZ, Fox MD, Shannon BJ, Andrews JR, Raichle ME,
+unifiedaccountbasedonmultipletracetheory.JAnat207:35–66. Buckner RL (2006) Coherent spontaneous activity identifies a
+O’KeefeJ,NadelL (1978) Thehippocampusasacognitivemap.Oxford: hippocampal-parietalmemorynetwork.JNeurophysiol96:3517–3531.
+OxfordUP. WagnerAD,ShannonBJ,KahnI,BucknerRL (2005) Parietallobecontri-
+RaichleME,MacLeodAM,SnyderAZ,PowersWJ,GusnardDA,Shulman butionstoepisodicmemoryretrieval.TrendsCognSci9:445–453.
+GL (2001) Adefaultmodeofbrainfunction.ProcNatlAcadSciUSA WheelerMA,StussDT,TulvingE (1997) Towardatheoryofepisodicmem-
+98:676–682. ory: the frontal lobes and autonoetic consciousness. Psychol Bull
+RosenbaumRS,McKinnonMC,LevineB,MoscovitchM (2004) Visualim- 121:331–354.
+agerydeficits,impairedstrategicretrieval,ormemoryloss:disentangling Wheeler ME, Petersen SE, Buckner RL (2000) Memory’s echo: vivid re-
+thenatureofanamnesicperson’sautobiographicalmemorydeficit.Neu- memberingreactivatessensory-specificcortex.ProcNatlAcadSciUSA
+ropsychologia42:1619–1635. 97:11125–11129.

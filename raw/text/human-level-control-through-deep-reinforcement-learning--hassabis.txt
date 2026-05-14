@@ -1,0 +1,1192 @@
+
+--- PAGE 1 ---
+LETTER
+doi:10.1038/nature14236
+Human-level control through deep reinforcement
+learning
+VolodymyrMnih1*,KorayKavukcuoglu1*,DavidSilver1*,AndreiA.Rusu1,JoelVeness1,MarcG.Bellemare1,AlexGraves1,
+MartinRiedmiller1,AndreasK.Fidjeland1,GeorgOstrovski1,StigPetersen1,CharlesBeattie1,AmirSadik1,IoannisAntonoglou1,
+HelenKing1,DharshanKumaran1,DaanWierstra1,ShaneLegg1&DemisHassabis1
+Thetheoryofreinforcementlearningprovidesanormativeaccount1, agentistoselectactionsinafashionthatmaximizescumulativefuture
+deeplyrootedinpsychological2andneuroscientific3perspectiveson reward.Moreformally,weuseadeepconvolutionalneuralnetworkto
+animalbehaviour,ofhowagentsmayoptimizetheircontrolofan approximatetheoptimalaction-valuefunction
+environment.Tousereinforcementlearningsuccessfullyinsituations
+approachingreal-worldcomplexity,however,agentsareconfronted
+Q!
+ð
+s,a
+Þ
+~m
+p
+ax r
+t
+zcr
+tz1
+zc2r
+tz2
+z...
+j
+s
+t
+~s,a
+t
+~a,p ,
+withadifficulttask:theymustderiveefficientrepresentationsofthe whichisthemaximum!sumofrewardsr discountedbycateach"time-
+t
+environmentfromhigh-dimensionalsensoryinputs,andusethese stept,achievablebyabehaviourpolicyp5P(as),aftermakingan
+togeneralizepastexperiencetonewsituations.Remarkably,humans observation(s)andtakinganaction(a)(seeMet j hods)19.
+andotheranimalsseemtosolvethisproblemthroughaharmonious
+Reinforcementlearningisknowntobeunstableoreventodiverge
+combinationofreinforcementlearningandhierarchicalsensorypro-
+whenanonlinearfunctionapproximatorsuchasaneuralnetworkis
+cessingsystems4,5,theformerevidencedbyawealthofneuraldata
+usedtorepresenttheaction-value(alsoknownasQ)function20.This
+revealingnotableparallelsbetweenthephasicsignalsemittedbydopa-
+instabilityhasseveralcauses:thecorrelationspresentinthesequence
+minergicneuronsandtemporaldifferencereinforcementlearning
+ofobservations,thefactthatsmallupdatestoQmaysignificantlychange
+algorithms3.Whilereinforcementlearningagentshaveachievedsome
+thepolicyandthereforechangethedatadistribution,andthecorrelations
+successesinavarietyofdomains6–8,theirapplicabilityhaspreviously
+betweentheaction-values(Q)andthetargetvaluesrzcmaxQ s0,a0 .
+beenlimitedtodomainsinwhichusefulfeaturescanbehandcrafted,
+WeaddresstheseinstabilitieswithanovelvariantofQ-lear
+a0ning ð
+,whic
+Þ
+h
+ortodomainswithfullyobserved,low-dimensionalstatespaces.
+usestwokeyideas.First,weusedabiologicallyinspiredmechanism
+Hereweuserecentadvancesintrainingdeepneuralnetworks9–11to
+termedexperiencereplay21–23thatrandomizesoverthedata,thereby
+developanovelartificialagent,termedadeepQ-network,thatcan
+removingcorrelationsintheobservationsequenceandsmoothingover
+learnsuccessfulpoliciesdirectlyfromhigh-dimensionalsensoryinputs
+changesinthedatadistribution(seebelowfordetails).Second,weused
+usingend-to-endreinforcementlearning.Wetestedthisagenton
+aniterativeupdatethatadjuststheaction-values(Q)towardstarget
+thechallengingdomainofclassicAtari2600games12.Wedemon-
+valuesthatareonlyperiodicallyupdated,therebyreducingcorrelations
+stratethatthedeepQ-networkagent,receivingonlythepixelsand
+withthetarget.
+thegamescoreasinputs,wasabletosurpasstheperformanceofall
+Whileotherstablemethodsexistfortrainingneuralnetworksinthe
+previousalgorithmsandachievealevelcomparabletothatofapro-
+reinforcementlearningsetting,suchasneuralfittedQ-iteration24,these
+fessionalhumangamestesteracrossasetof49games,usingthesame
+methodsinvolvetherepeatedtrainingofnetworksdenovoonhundreds
+algorithm,networkarchitectureandhyperparameters.Thiswork
+ofiterations.Consequently,thesemethods,unlikeouralgorithm,are
+bridges the divide between high-dimensional sensory inputs and
+tooinefficienttobeusedsuccessfullywithlargeneuralnetworks.We
+actions,resultinginthefirstartificialagentthatiscapableoflearn-
+parameterizeanapproximatevaluefunctionQ(s,a;h)usingthedeep
+ingtoexcelatadiversearrayofchallengingtasks. i
+convolutionalneuralnetworkshowninFig.1,inwhichharetheparam-
+Wesetouttocreateasinglealgorithmthatwouldbeabletodevelop i
+eters (that is, weights) of the Q-network at iteration i. To perform
+awiderangeofcompetenciesonavariedrangeofchallengingtasks—a
+experiencereplaywestoretheagent’sexperiencese 5(s,a,r,s )
+centralgoalofgeneralartificialintelligence13thathaseludedprevious t t t t t11
+ateachtime-steptinadatasetD 5{e ,…,e}.Duringlearning,we
+efforts8,14,15.Toachievethis,wedevelopedanovelagent,adeepQ-network t 1 t
+applyQ-learningupdates,onsamples(orminibatches)ofexperience
+(DQN),whichisabletocombinereinforcementlearningwithaclass
+(s,a,r,s9),U(D),drawnuniformlyatrandomfromthepoolofstored
+ofartificialneuralnetwork16knownasdeepneuralnetworks.Notably,
+samples.TheQ-learningupdateatiterationiusesthefollowingloss
+recentadvancesindeepneuralnetworks9–11,inwhichseverallayersof
+function:
+nodesareusedtobuildupprogressivelymoreabstractrepresentations
+ofthedata,havemadeitpossibleforartificialneuralnetworkstolearn 2
+c u o se nc o e n p e ts p s a u r c t h ic a u s la o r b ly je s c u t c c c a e te ss g f o u r l ie a s rc d h ir i e te c c tl t y ur fr e o , m the ra d w ee se p n c s o o n ry vo d l a u t t a i . o W na e l
+L
+i ð
+h
+i Þ
+~
+ð s,a,r,s0Þ *U ð D Þ"
+rzcm
+a
+a
+0
+xQ(s0,a0;h{
+i
+){Q
+ð
+s,a;h
+i Þ  #
+network17,whichuseshierarchicallayersoftiledconvolutionalfilters inwhichcisthediscountfactordeterminingtheagent’shorizon,h are
+i
+tomimictheeffectsofreceptivefields—inspiredbyHubelandWiesel’s theparametersoftheQ-networkatiterationiandh{arethenetwork
+i
+seminalworkonfeedforwardprocessinginearlyvisualcortex18—thereby parametersusedtocomputethetargetatiterationi.Thetargetnet-
+exploitingthelocalspatialcorrelationspresentinimages,andbuilding workparametersh{areonlyupdatedwiththeQ-networkparameters
+i
+inrobustnesstonaturaltransformationssuchaschangesofviewpoint (h)everyCstepsandareheldfixedbetweenindividualupdates(see
+i
+orscale. Methods).
+Weconsidertasksinwhichtheagentinteractswithanenvironment ToevaluateourDQNagent,wetookadvantageoftheAtari2600
+throughasequenceofobservations,actionsandrewards.Thegoalofthe platform,whichoffersadiversearrayoftasks(n549)designedtobe
+1GoogleDeepMind,5NewStreetSquare,LondonEC4A3TW,UK.
+*Theseauthorscontributedequallytothiswork.
+26 FEBRUARY 2015 | VOL 518 | NATURE | 529
+©2015Macmillan Publishers Limited. All rights reserved
+
+--- PAGE 2 ---
+Convolution Convolution Fully connected Fully connected
+No input
+Figure1|Schematicillustrationoftheconvolutionalneuralnetwork. The symbolizesslidingofeachfilteracrossinputimage)andtwofullyconnected
+detailsofthearchitectureareexplainedintheMethods.Theinputtotheneural layerswithasingleoutputforeachvalidaction.Eachhiddenlayerisfollowed
+networkconsistsofan8438434imageproducedbythepreprocessing byarectifiernonlinearity(thatis,max 0,x ).
+ð Þ
+mapw,followedbythreeconvolutionallayers(note:snakingblueline
+difficultandengagingforhumanplayers.Weusedthesamenetwork We compared DQN with the best performing methods fromthe
+architecture,hyperparametervalues(seeExtendedDataTable1)and reinforcementlearningliteratureonthe49gameswhereresultswere
+learningprocedurethroughout—takinghigh-dimensionaldata(210|160 available12,15.Inadditiontothelearnedagents,wealsoreportscoresfor
+colourvideoat60Hz)asinput—todemonstratethatourapproach aprofessionalhumangamestesterplayingundercontrolledconditions
+robustlylearnssuccessfulpoliciesoveravarietyofgamesbasedsolely andapolicythatselectsactionsuniformlyatrandom(ExtendedData
+onsensoryinputswithonlyveryminimalpriorknowledge(thatis,merely Table2andFig.3,denotedby100%(human)and0%(random)ony
+theinputdatawerevisualimages,andthenumberofactionsavailable axis;seeMethods).OurDQNmethodoutperformsthebestexisting
+ineachgame,butnottheircorrespondences;seeMethods).Notably, reinforcementlearningmethodson43ofthegameswithoutincorpo-
+ourmethodwasabletotrainlargeneuralnetworksusingareinforce- ratinganyoftheadditionalpriorknowledgeaboutAtari2600games
+mentlearningsignalandstochasticgradientdescentinastablemanner— usedbyotherapproaches(forexample,refs12,15).Furthermore,our
+illustratedbythetemporalevolutionoftwoindicesoflearning(the DQNagentperformedatalevelthatwascomparabletothatofapro-
+agent’saveragescore-per-episodeandaveragepredictedQ-values;see fessionalhumangamestesteracrossthesetof49games,achievingmore
+Fig.2andSupplementaryDiscussionfordetails). than75%ofthehumanscoreonmorethanhalfofthegames(29games;
+a 2,200 b
+2,000
+1,800
+1,600
+1,400
+1,200
+1,000
+800
+600
+400
+200
+0
+0 20 40 60 80 100 120 140 160 180 200
+c d
+edosipe
+rep
+erocs
+egarevA
+Training epochs
+11
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+0
+0 20 40 60 80 100 120 140 160 180 200
+)Q(
+eulav
+noitca
+egarevA
+6,000
+5,000
+4,000
+3,000
+2,000
+1,000
+0
+0 20 40 60 80 100 120 140 160 180 200
+Training epochs
+edosipe
+rep
+erocs
+egarevA
+Training epochs
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+0
+0 20 40 60 80 100 120 140 160 180 200
+)Q(
+eulav
+noitca
+egarevA
+RESEARCH LETTER
+Training epochs
+Figure2|Trainingcurvestrackingtheagent’saveragescoreandaverage onthecurveistheaverageoftheaction-valueQcomputedovertheheld-out
+predictedaction-value.a,Eachpointistheaveragescoreachievedperepisode setofstates.NotethatQ-valuesarescaledduetoclippingofrewards(see
+aftertheagentisrunwithe-greedypolicy(e50.05)for520kframesonSpace Methods).d,Averagepredictedaction-valueonSeaquest.SeeSupplementary
+Invaders.b,AveragescoreachievedperepisodeforSeaquest.c,Average Discussionfordetails.
+predictedaction-valueonaheld-outsetofstatesonSpaceInvaders.Eachpoint
+530 | NATURE | VOL 518 | 26 FEBRUARY 2015
+©2015Macmillan Publishers Limited. All rights reserved
+
+--- PAGE 3 ---
+LETTER RESEARCH
+Video Pinball
+Boxing
+Breakout
+Star Gunner
+Robotank
+Atlantis
+Crazy Climber
+Gopher
+Demon Attack
+Name This Game
+Krull
+Assault
+Road Runner
+Kangaroo
+James Bond
+Tennis
+Pong
+Space Invaders
+Beam Rider
+Tutankham
+Kung-Fu Master
+Freeway
+Time Pilot
+Enduro
+Fishing Derby
+Up and Down
+Ice Hockey
+Q*bert
+H.E.R.O. At human-level or above
+Asterix Below human-level
+Battle Zone
+Wizard of Wor
+Chopper Command
+Centipede
+Bank Heist
+River Raid
+Zaxxon
+Amidar
+Alien
+Venture
+Seaquest
+Double Dunk
+Bowling
+Ms. Pac-Man
+Asteroids
+Frostbite
+Gravitar DQN
+Private Eye
+Best linear learner
+Montezuma's Revenge
+0 100 200 300 400 500 600 1,000 4,500%
+Figure3|ComparisonoftheDQNagentwiththebestreinforcement outperformscompetingmethods(alsoseeExtendedDataTable2)inalmostall
+learningmethods15intheliterature. TheperformanceofDQNisnormalized thegames,andperformsatalevelthatisbroadlycomparablewithorsuperior
+withrespecttoaprofessionalhumangamestester(thatis,100%level)and toaprofessionalhumangamestester(thatis,operationalizedasalevelof
+randomplay(thatis,0%level).NotethatthenormalizedperformanceofDQN, 75%orabove)inthemajorityofgames.Audiooutputwasdisabledforboth
+expressedasapercentage,iscalculatedas:1003(DQNscore2randomplay humanplayersandagents.Errorbarsindicates.d.acrossthe30evaluation
+score)/(humanscore2randomplayscore).ItcanbeseenthatDQN episodes,startingwithdifferentinitialconditions.
+seeFig.3,SupplementaryDiscussionandExtendedDataTable2).In perceptuallydissimilar(Fig.4,bottomright,topleftandmiddle),con-
+additionalsimulations(seeSupplementaryDiscussionandExtended sistentwiththenotionthatthenetworkisabletolearnrepresentations
+DataTables3and4),wedemonstratetheimportanceoftheindividual thatsupportadaptivebehaviourfromhigh-dimensionalsensoryinputs.
+corecomponentsoftheDQNagent—thereplaymemory,separatetarget Furthermore,wealsoshowthattherepresentationslearnedbyDQN
+Q-networkanddeepconvolutionalnetworkarchitecture—bydisabling areabletogeneralizetodatageneratedfrompoliciesotherthanits
+themanddemonstratingthedetrimentaleffectsonperformance. own—insimulationswherewepresentedasinputtothenetworkgame
+WenextexaminedtherepresentationslearnedbyDQNthatunder- statesexperiencedduringhumanandagentplay,recordedtherepre-
+pinnedthesuccessfulperformanceoftheagentinthecontextofthegame sentationsofthelasthiddenlayer,andvisualizedtheembeddingsgen-
+SpaceInvaders(seeSupplementaryVideo1forademonstrationofthe eratedbythet-SNEalgorithm(ExtendedDataFig.1andSupplementary
+performanceofDQN),byusingatechniquedevelopedforthevisual- Discussion).ExtendedDataFig.2providesanadditionalillustrationof
+izationofhigh-dimensionaldatacalled‘t-SNE’25(Fig.4).Asexpected, howtherepresentationslearnedbyDQNallowittoaccuratelypredict
+thet-SNEalgorithmtendstomaptheDQNrepresentationofpercep- stateandactionvalues.
+tuallysimilarstatestonearbypoints.Interestingly,wealsofoundinstances ItisworthnotingthatthegamesinwhichDQNexcelsareextremely
+inwhichthet-SNEalgorithmgeneratedsimilarembeddingsforDQN variedintheirnature,fromside-scrollingshooters(RiverRaid)tobox-
+representationsofstatesthatarecloseintermsofexpectedrewardbut inggames(Boxing)andthree-dimensionalcar-racinggames(Enduro).
+26 FEBRUARY 2015 | VOL 518 | NATURE | 531
+©2015Macmillan Publishers Limited. All rights reserved
+
+--- PAGE 4 ---
+RESEARCH LETTER
+V
+Figure4|Two-dimensionalt-SNEembeddingoftherepresentationsinthe predictshighstatevaluesforbothfull(toprightscreenshots)andnearly
+lasthiddenlayerassignedbyDQNtogamestatesexperiencedwhileplaying completescreens(bottomleftscreenshots)becauseithaslearnedthat
+SpaceInvaders. TheplotwasgeneratedbylettingtheDQNagentplayfor completingascreenleadstoanewscreenfullofenemyships.Partially
+2hofrealgametimeandrunningthet-SNEalgorithm25onthelasthiddenlayer completedscreens(bottomscreenshots)areassignedlowerstatevaluesbecause
+representationsassignedbyDQNtoeachexperiencedgamestate.The lessimmediaterewardisavailable.Thescreensshownonthebottomright
+pointsarecolouredaccordingtothestatevalues(V,maximumexpectedreward andtopleftandmiddlearelessperceptuallysimilarthantheotherexamplesbut
+ofastate)predictedbyDQNforthecorrespondinggamestates(ranging arestillmappedtonearbyrepresentationsandsimilarvaluesbecausethe
+fromdarkred(highestV)todarkblue(lowestV)).Thescreenshots orangebunkersdonotcarrygreatsignificanceneartheendofalevel.With
+correspondingtoaselectednumberofpointsareshown.TheDQNagent permissionfromSquareEnixLimited.
+Indeed,incertaingamesDQNisabletodiscoverarelativelylong-term realizationofsuchaprocessinthemammalianbrain,withthetime-
+strategy(forexample,Breakout:theagentlearnstheoptimalstrategy, compressed reactivation of recently experienced trajectories during
+whichistofirstdigatunnelaroundthesideofthewallallowingtheball offlineperiods21,22(forexample,wakingrest)providingaputativemech-
+tobesentaroundthebacktodestroyalargenumberofblocks;seeSup- anismbywhichvaluefunctionsmaybeefficientlyupdatedthrough
+plementaryVideo2forillustrationofdevelopmentofDQN’sperfor- interactionswiththebasalganglia22.Inthefuture,itwillbeimportant
+manceoverthecourseoftraining).Nevertheless,gamesdemandingmore toexplorethepotentialuseofbiasingthecontentofexperiencereplay
+temporallyextendedplanningstrategiesstillconstituteamajorchal- towardssalientevents,aphenomenonthatcharacterizesempirically
+lengeforallexistingagentsincludingDQN(forexample,Montezuma’s observedhippocampalreplay29,andrelatestothenotionof‘prioritized
+Revenge). sweeping’30inreinforcementlearning.Takentogether,ourworkillus-
+Inthiswork,wedemonstratethatasinglearchitecturecansuccess- tratesthepowerofharnessingstate-of-the-artmachinelearningtech-
+fullylearncontrolpoliciesinarangeofdifferentenvironmentswithonly niqueswithbiologicallyinspiredmechanismstocreateagentsthatare
+veryminimalpriorknowledge,receivingonlythepixelsandthegame capableoflearningtomasteradiversearrayofchallengingtasks.
+scoreasinputs,andusingthesamealgorithm,networkarchitectureand
+OnlineContentMethods,alongwithanyadditionalExtendedDatadisplayitems
+hyperparametersoneachgame,privyonlytotheinputsahumanplayer andSourceData,areavailableintheonlineversionofthepaper;referencesunique
+wouldhave.Incontrasttopreviouswork24,26,ourapproachincorpo- tothesesectionsappearonlyintheonlinepaper.
+rates‘end-to-end’reinforcementlearningthatusesrewardtocontinu-
+Received10July2014;accepted16January2015.
+ouslyshaperepresentationswithintheconvolutionalnetworktowards
+salientfeaturesoftheenvironmentthatfacilitatevalueestimation.This 1. Sutton,R.&Barto,A.ReinforcementLearning:AnIntroduction(MITPress,1998).
+principledrawsonneurobiologicalevidencethatrewardsignalsduring 2. Thorndike,E.L.AnimalIntelligence:Experimentalstudies(Macmillan,1911).
+perceptuallearningmayinfluencethecharacteristicsofrepresentations 3. Schultz,W.,Dayan,P.&Montague,P.R.Aneuralsubstrateofpredictionand
+reward.Science275,1593–1599(1997).
+withinprimatevisualcortex27,28.Notably,thesuccessfulintegrationof
+4. Serre,T.,Wolf,L.&Poggio,T.Objectrecognitionwithfeaturesinspiredbyvisual
+reinforcementlearningwithdeepnetworkarchitectureswascritically cortex.Proc.IEEE.Comput.Soc.Conf.Comput.Vis.Pattern.Recognit.994–1000
+dependentonourincorporationofareplayalgorithm21–23involvingthe (2005).
+5. Fukushima,K.Neocognitron:Aself-organizingneuralnetworkmodelfora
+storageandrepresentationofrecentlyexperiencedtransitions.Conver-
+mechanismofpatternrecognitionunaffectedbyshiftinposition.Biol.Cybern.36,
+gentevidencesuggeststhatthehippocampusmaysupportthephysical 193–202(1980).
+532 | NATURE | VOL 518 | 26 FEBRUARY 2015
+©2015Macmillan Publishers Limited. All rights reserved
+
+--- PAGE 5 ---
+LETTER RESEARCH
+6. Tesauro,G.TemporaldifferencelearningandTD-Gammon.Commun.ACM38, 23. Lin,L.-J.Reinforcementlearningforrobotsusingneuralnetworks.Technical
+58–68(1995). Report,DTICDocument(1993).
+7. Riedmiller,M.,Gabel,T.,Hafner,R.&Lange,S.Reinforcementlearningforrobot 24. Riedmiller,M.NeuralfittedQiteration-firstexperienceswithadataefficient
+soccer.Auton.Robots27,55–73(2009). neuralreinforcementlearningmethod.Mach.Learn.:ECML,3720,317–328
+8. Diuk,C.,Cohen,A.&Littman,M.L.Anobject-orientedrepresentationforefficient (Springer,2005).
+reinforcementlearning.Proc.Int.Conf.Mach.Learn.240–247(2008). 25. VanderMaaten,L.J.P.&Hinton,G.E.Visualizinghigh-dimensionaldatausing
+9. Bengio,Y.LearningdeeparchitecturesforAI.FoundationsandTrendsinMachine t-SNE.J.Mach.Learn.Res.9,2579–2605(2008).
+Learning2,1–127(2009). 26. Lange,S.&Riedmiller,M.Deepauto-encoderneuralnetworksinreinforcement
+10. Krizhevsky,A.,Sutskever,I.&Hinton,G.ImageNetclassificationwithdeep learning.Proc.Int.Jt.Conf.Neural.Netw.1–8(2010).
+convolutionalneuralnetworks.Adv.NeuralInf.Process.Syst.25,1106–1114(2012). 27. Law,C.-T.&Gold,J.I.Reinforcementlearningcanaccountforassociative
+11. Hinton,G.E.&Salakhutdinov,R.R.Reducingthedimensionalityofdatawith andperceptuallearningonavisualdecisiontask.NatureNeurosci.12,655
+neuralnetworks.Science313,504–507(2006). (2009).
+12. Bellemare,M.G.,Naddaf,Y.,Veness,J.&Bowling,M.Thearcadelearning 28. Sigala,N.&Logothetis,N.K.Visualcategorizationshapesfeatureselectivityinthe
+environment:Anevaluationplatformforgeneralagents.J.Artif.Intell.Res.47, primatetemporalcortex.Nature415,318–320(2002).
+253–279(2013). 29. Bendor,D.&Wilson,M.A.Biasingthecontentofhippocampalreplayduringsleep.
+13. Legg,S.&Hutter,M.UniversalIntelligence:adefinitionofmachineintelligence. NatureNeurosci.15,1439–1444(2012).
+MindsMach.17,391–444(2007). 30. Moore,A.&Atkeson,C.Prioritizedsweeping:reinforcementlearningwithlessdata
+14. Genesereth,M.,Love,N.&Pell,B.Generalgameplaying:overviewoftheAAAI andlessrealtime.Mach.Learn.13,103–130(1993).
+competition.AIMag.26,62–72(2005).
+15. Bellemare,M.G.,Veness,J.&Bowling,M.Investigatingcontingencyawareness SupplementaryInformationisavailableintheonlineversionofthepaper.
+usingAtari2600games.Proc.Conf.AAAI.Artif.Intell.864–871(2012).
+AcknowledgementsWethankG.Hinton,P.DayanandM.Bowlingfordiscussions,
+16. McClelland,J.L.,Rumelhart,D.E.&Group,T.P.R.ParallelDistributedProcessing:
+A.CainandJ.Keeneforworkonthevisuals,K.KellerandP.Rogersforhelpwiththe
+ExplorationsintheMicrostructureofCognition(MITPress,1986).
+visuals,G.Wayneforcommentsonanearlierversionofthemanuscript,andtherestof
+17. LeCun,Y.,Bottou,L.,Bengio,Y.&Haffner,P.Gradient-basedlearningappliedto
+theDeepMindteamfortheirsupport,ideasandencouragement.
+documentrecognition.Proc.IEEE86,2278–2324(1998).
+18. Hubel,D.H.&Wiesel,T.N.Shapeandarrangementofcolumnsincat’sstriate AuthorContributionsV.M.,K.K.,D.S.,J.V.,M.G.B.,M.R.,A.G.,D.W.,S.L.andD.H.
+cortex.J.Physiol.165,559–568(1963). conceptualizedtheproblemandthetechnicalframework.V.M.,K.K.,A.A.R.andD.S.
+19. Watkins,C.J.&Dayan,P.Q-learning.Mach.Learn.8,279–292(1992). developedandtestedthealgorithms.J.V.,S.P.,C.B.,A.A.R.,M.G.B.,I.A.,A.K.F.,G.O.and
+20. Tsitsiklis,J.&Roy,B.V.Ananalysisoftemporal-differencelearningwithfunction A.S.createdthetestingplatform.K.K.,H.K.,S.L.andD.H.managedtheproject.K.K.,D.K.,
+approximation.IEEETrans.Automat.Contr.42,674–690(1997). D.H.,V.M.,D.S.,A.G.,A.A.R.,J.V.andM.G.B.wrotethepaper.
+21. McClelland,J.L.,McNaughton,B.L.&O’Reilly,R.C.Whytherearecomplementary
+learningsystemsinthehippocampusandneocortex:insightsfromthesuccesses AuthorInformationReprintsandpermissionsinformationisavailableat
+andfailuresofconnectionistmodelsoflearningandmemory.Psychol.Rev.102, www.nature.com/reprints.Theauthorsdeclarenocompetingfinancialinterests.
+419–457(1995). Readersarewelcometocommentontheonlineversionofthepaper.Correspondence
+22. O’Neill,J.,Pleydell-Bouverie,B.,Dupret,D.&Csicsvari,J.Playitagain:reactivation andrequestsformaterialsshouldbeaddressedtoK.K.(korayk@google.com)or
+ofwakingexperienceandmemory.TrendsNeurosci.33,220–229(2010). D.H.(demishassabis@google.com).
+26 FEBRUARY 2015 | VOL 518 | NATURE | 533
+©2015Macmillan Publishers Limited. All rights reserved
+
+--- PAGE 6 ---
+RESEARCH LETTER
+METHODS Ourexperimentalsetupamountstousingthefollowingminimalpriorknow-
+ledge:thattheinputdataconsistedofvisualimages(motivatingouruseofacon-
+Preprocessing.WorkingdirectlywithrawAtari2600frames,whichare2103160
+volutionaldeepnetwork),thegame-specificscore(withnomodification),number
+pixelimageswitha128-colourpalette,canbedemandingintermsofcomputation
+ofactions,althoughnottheircorrespondences(forexample,specificationofthe
+andmemoryrequirements.Weapplyabasicpreprocessingstepaimedatreducing
+up‘button’)andthelifecount.
+theinputdimensionalityanddealingwithsomeartefactsoftheAtari2600emu-
+Evaluationprocedure.Thetrainedagentswereevaluatedbyplayingeachgame
+lator.First,toencodeasingleframewetakethemaximumvalueforeachpixelcolour
+30timesforupto5mineachtimewithdifferentinitialrandomconditions(‘no-
+valueovertheframebeingencodedandthepreviousframe.Thiswasnecessaryto
+op’;seeExtendedDataTable1)andane-greedypolicywithe50.05.Thispro-
+removeflickeringthatispresentingameswheresomeobjectsappearonlyineven
+cedureisadoptedtominimizethepossibilityofoverfittingduringevaluation.The
+frameswhileotherobjectsappearonlyinoddframes,anartefactcausedbythe
+randomagentservedasabaselinecomparisonandchosearandomactionat10Hz
+limitednumberofspritesAtari2600candisplayatonce.Second,wethenextract
+whichiseverysixthframe,repeatingitslastactiononinterveningframes.10Hzis
+theYchannel,alsoknownasluminance,fromtheRGBframeandrescaleitto
+aboutthefastestthatahumanplayercanselectthe‘fire’button,andsettingthe
+84384.Thefunctionwfromalgorithm1describedbelowappliesthispreprocess-
+randomagenttothisfrequencyavoidsspuriousbaselinescoresinahandfulofthe
+ingtothemmostrecentframesandstacksthemtoproducetheinputtothe
+games.Wedidalsoassesstheperformanceofarandomagentthatselectedanaction
+Q-function,inwhichm54,althoughthealgorithmisrobusttodifferentvaluesof
+at60Hz(thatis,everyframe).Thishadaminimaleffect:changingthenormalized
+m(forexample,3or5).
+DQNperformancebymorethan5%inonlysixgames(Boxing,Breakout,Crazy
+Codeavailability.Thesourcecodecanbeaccessedathttps://sites.google.com/a/
+Climber,DemonAttack,KrullandRobotank),andinallthesegamesDQNout-
+deepmind.com/dqnfornon-commercialusesonly.
+performedtheexperthumanbyaconsiderablemargin.
+Modelarchitecture.ThereareseveralpossiblewaysofparameterizingQusinga
+Theprofessionalhumantesterusedthesameemulatorengineastheagents,and
+neuralnetwork.BecauseQmapshistory–actionpairstoscalarestimatesoftheir
+playedundercontrolledconditions.Thehumantesterwasnotallowedtopause,
+Q-value,thehistoryandtheactionhavebeenusedasinputstotheneuralnetwork
+saveorreloadgames.AsintheoriginalAtari2600environment,theemulatorwas
+bysomepreviousapproaches24,26.Themaindrawbackofthistypeofarchitecture
+runat60Hzandtheaudiooutputwasdisabled:assuch,thesensoryinputwas
+isthataseparateforwardpassisrequiredtocomputetheQ-valueofeachaction,
+equatedbetweenhumanplayerandagents.Thehumanperformanceistheaverage
+resultinginacostthatscaleslinearlywiththenumberofactions.Weinsteadusean
+rewardachievedfromaround20episodesofeachgamelastingamaximumof5min
+architectureinwhichthereisaseparateoutputunitforeachpossibleaction,and
+each,followingaround2hofpracticeplayingeachgame.
+onlythestaterepresentationisaninputtotheneuralnetwork.Theoutputscor-
+Algorithm.Weconsidertasksinwhichanagentinteractswithanenvironment,
+respondtothepredictedQ-valuesoftheindividualactionsfortheinputstate.The
+inthiscasetheAtariemulator,inasequenceofactions,observationsandrewards.
+mainadvantageofthistypeofarchitectureistheabilitytocomputeQ-valuesforall
+possibleactionsinagivenstatewithonlyasingleforwardpassthroughthenetwork.
+Ateachtime-steptheagentselectsanactionatfromthesetoflegalgameactions,
+~ 1,...,K .Theactionispassedtotheemulatorandmodifiesitsinternalstate
+Theexactarchitecture,shownschematicallyinFig.1,isasfollows.Theinputto A f g
+andthegamescore.Ingeneraltheenvironmentmaybestochastic.Theemulator’s
+theneuralnetworkconsistsofan8438434imageproducedbythepreprocess-
+internalstateisnotobservedbytheagent;insteadtheagentobservesanimage
+i
+i
+n
+n
+g
+pu
+m
+t
+a
+im
+pw
+ag
+.
+e
+Th
+an
+e
+d
+fir
+a
+s
+p
+t
+p
+h
+l
+i
+i
+d
+es
+d
+a
+en
+re
+la
+c
+y
+ti
+e
+f
+r
+ie
+c
+r
+o
+n
+n
+o
+v
+n
+o
+l
+l
+i
+v
+n
+e
+e
+s
+a
+3
+r
+2
+ity
+fi
+3
+l
+1
+t
+,
+e
+32
+r
+.
+s
+T
+o
+h
+f
+e
+8
+s
+3
+ec
+8
+on
+w
+d
+ith
+hi
+s
+d
+t
+d
+ri
+e
+d
+n
+e
+l
+4
+ay
+w
+e
+i
+r
+th
+co
+th
+n
+e
+-
+xt[Rdfromtheemulator,whichisavectorofpixelvaluesrepresentingthecurrent
+screen.Inadditionitreceivesarewardr representingthechangeingamescore.
+volves64filtersof434withstride2,againfollowedbyarectifiernonlinearity. t
+Notethatingeneralthegamescoremaydependonthewholeprevioussequenceof
+Thisisfollowedbyathirdconvolutionallayerthatconvolves64filtersof333with
+actionsandobservations;feedbackaboutanactionmayonlybereceivedaftermany
+stride1followedbyarectifier.Thefinalhiddenlayerisfully-connectedandcon-
+thousandsoftime-stepshaveelapsed.
+sistsof512rectifierunits.Theoutputlayerisafully-connectedlinearlayerwitha
+Becausetheagentonlyobservesthecurrentscreen,thetaskispartiallyobserved33
+singleoutputforeachvalidaction.Thenumberofvalidactionsvariedbetween4
+andmanyemulatorstatesareperceptuallyaliased(thatis,itisimpossibletofully
+and18onthegamesweconsidered.
+Trainingdetails.Weperformedexperimentson49Atari2600gameswhereresults
+understandthecurrentsituationfromonlythecurrentscreenxt).Therefore,
+wereavailableforallothercomparablemethods12,15.Adifferentnetworkwastrained
+sequencesofactionsandobservations,st ~x1 ,a1 ,x2 ,:::,at{1 ,xt,areinputtothe
+algorithm,whichthenlearnsgamestrategiesdependinguponthesesequences.All
+oneachgame:thesamenetworkarchitecture,learningalgorithmandhyperpara-
+sequencesintheemulatorareassumedtoterminateinafinitenumberoftime-
+metersettings(seeExtendedDataTable1)wereusedacrossallgames,showingthat
+steps.ThisformalismgivesrisetoalargebutfiniteMarkovdecisionprocess(MDP)
+ourapproachisrobustenoughtoworkonavarietyofgameswhileincorporating
+inwhicheachsequenceisadistinctstate.Asaresult,wecanapplystandardrein-
+onlyminimalpriorknowledge(seebelow).Whileweevaluatedouragentsonunmodi-
+forcementlearningmethodsforMDPs,simplybyusingthecompletesequences
+fiedgames,wemadeonechangetotherewardstructureofthegamesduringtraining t
+asthestaterepresentationattimet.
+only.Asthescaleofscoresvariesgreatlyfromgametogame,weclippedallposi-
+Thegoaloftheagentistointeractwiththeemulatorbyselectingactionsinaway
+tiverewardsat1andallnegativerewardsat21,leaving0rewardsunchanged.
+thatmaximizesfuturerewards.Wemakethestandardassumptionthatfuturerewards
+Clippingtherewardsinthismannerlimitsthescaleoftheerrorderivativesand
+arediscountedbyafactorofcpertime-step(cwassetto0.99throughout),and
+makesiteasiertousethesamelearningrateacrossmultiplegames.Atthesametime, T
+itcouldaffecttheperformanceofouragentsinceitcannotdifferentiatebetween definethefuturediscountedreturnattimetasRt ~ ct0{trt0 ,inwhichTisthe
+rewardsofdifferentmagnitude.Forgameswherethereisalifecounter,theAtari
+time-step at which the game terminates. We definX
+t0e ~t
+the optimal action-value
+2600emulatoralsosendsthenumberoflivesleftinthegame,whichisthenusedto
+marktheendofanepisodeduringtraining.
+functionQ!
+ð
+s,a
+Þ
+asthemaximumexpectedreturnachievablebyfollowingany
+policy,afterseeingsomesequencesandthentakingsomeactiona,Q! s,a ~
+Intheseexperiments,weusedtheRMSProp(seehttp://www.cs.toronto.edu/ ð Þ
+,tijmen/csc321/slides/lecture_slides_lec6.pdf)algorithmwithminibatchesofsize
+maxp
+½
+RtDst ~s,at ~a,p
+
+inwhichpisapolicymappingsequencestoactions(or
+distributionsoveractions).
+32.Thebehaviourpolicyduringtrainingwase-greedywitheannealedlinearly
+Theoptimalaction-valuefunctionobeysanimportantidentityknownasthe
+from1.0to0.1overthefirstmillionframes,andfixedat0.1thereafter.Wetrained
+Bellmanequation.Thisisbasedonthefollowingintuition:iftheoptimalvalue
+foratotalof50millionframes(thatis,around38daysofgameexperienceintotal)
+andusedareplaymemoryof1millionmostrecentframes.
+Q!
+ð
+s0,a0Þ ofthesequences9atthenexttime-stepwasknownforallpossibleactions
+a9,thentheoptimalstrategyistoselecttheactiona9maximizingtheexpectedvalue
+FollowingpreviousapproachestoplayingAtari2600games,wealsouseasimple
+frame-skippingtechnique15.Moreprecisely,theagentseesandselectsactionson
+ofrzcQ!
+ð
+s0,a0Þ :
+everykthframeinsteadofeveryframe,anditslastactionisrepeatedonskipped
+frames.Becauserunningtheemulatorforwardforonesteprequiresmuchless
+Q!
+ð
+s,a
+Þ
+~
+s0 
+rzcm
+a
+a
+0
+xQ!
+ð
+s0,a0Þ Ds,a
+
+computationthanhavingtheagentselectanaction,thistechniqueallowstheagent
+toplayroughlyktimesmoregameswithoutsignificantlyincreasingtheruntime. Thebasicideabehindmanyreinforcementlearningalgorithmsistoestimate
+Weusek54forallgames. theaction-valuefunctionbyusingtheBellmanequationasaniterativeupdate,
+Thevaluesofallthehyperparametersandoptimizationparameterswereselected Q
+iz1ð
+s,a
+Þ
+~
+s0½
+rzcmaxa0 Q
+ið
+s0,a0Þ Ds,a
+
+.Suchvalueiterationalgorithmsconverge
+byperforminganinformalsearchonthegamesPong,Breakout,Seaquest,Space totheoptimalaction-valuefunction,Q
+i
+? Q!asi? ?.Inpractice,thisbasicapproach
+InvadersandBeamRider.Wedidnotperformasystematicgridsearchowingto isimpractical,becausetheaction-valuefunctionisestimatedseparatelyforeach
+thehighcomputationalcost.Theseparameterswerethenheldfixedacrossallother sequence,withoutanygeneralization.Instead,itiscommontouseafunctionapprox-
+games.ThevaluesanddescriptionsofallhyperparametersareprovidedinExtended imatortoestimatetheaction-valuefunction,Q s,a;h <Q! s,a .Inthereinforce-
+ð Þ ð Þ
+DataTable1. mentlearningcommunitythisistypicallyalinearfunctionapproximator,but
+©2015Macmillan Publishers Limited. All rights reserved
+
+--- PAGE 7 ---
+LETTER RESEARCH
+sometimesanonlinearfunctionapproximatorisusedinstead,suchasaneural replaythebehaviourdistributionisaveragedovermanyofitspreviousstates,
+network.Werefertoaneuralnetworkfunctionapproximatorwithweightshasa smoothingoutlearningandavoidingoscillationsordivergenceintheparameters.
+Q-network.AQ-networkcanbetrainedbyadjustingtheparametershatiteration Notethatwhenlearningbyexperiencereplay,itisnecessarytolearnoff-policy
+i
+itoreducethemean-squarederrorintheBellmanequation,wheretheoptimal (becauseourcurrentparametersaredifferenttothoseusedtogeneratethesam-
+y ta ~ rg r e z tv c al m ue a s x r a z 0 Q c s m 0,a ax 0; a h 0{ i Q! ð , s u 0, s a in 0Þ g a p re ar s a u m bs e t t i e t r u s te h d { i w fr it o h m ap so p m ro e xi p m re a v te io t u a s rg i e te t r v a a t l i u o e n s . ple I ) n ,w pr h a i c c t h ic m e, o o t u iv r a a te lg s o t r h it e h c m ho o ic n e ly o s f t Q or - e l s ea t r h n e in la g s . tNexperiencetuplesinthereplay
+Thisleadstoase ÿ quenceof  lossfunctionsL i (h i )thatchangesateachiterationi, memory,andsamplesuniformlyatrandomfromDwhenperformingupdates.This
+approachisinsomerespectslimitedbecausethememorybufferdoesnotdiffer-
+Lið h iÞ ~ s,a,r ð Es0½ yDs,a  {Q ð s,a;h iÞÞ 2 entiateimportanttransitionsandalwaysoverwriteswithrecenttransitionsowing
+~ s,a,r, ! s0 ð y{Q ð s,a;h iÞÞ 2 zEs, " a,r½ Vs0½ y  : t t o an t c h e e t f o in a i ll te tr m an e s m iti o o r n y s s i i n ze th N e . r S ep im la i y la m rl e y m ,th or e y u .A nif m or o m re s s a o m ph p i l s i t n ic g a g te iv d e s s a e m q p u l a i l n i g m st p r o a r t - -
+Notethatthetargetsdependo ! nthenetworkwe " ights;thisisincontrastwiththe egymightemphasizetransitionsfromwhichwecanlearnthemost,similarto
+targetsusedforsupervisedlearning,whicharefixedbeforelearningbegins.At prioritizedsweeping30.
+eachstageofoptimization,weholdtheparametersfromthepreviousiterationh2 ThesecondmodificationtoonlineQ-learningaimedatfurtherimprovingthe
+i
+fixedwhenoptimizingtheithlossfunctionL(h),resultinginasequenceofwell- stabilityofourmethodwithneuralnetworksistouseaseparatenetworkforgen-
+i i
+definedoptimizationproblems.Thefinaltermisthevarianceofthetargets,which eratingthetargetsy j intheQ-learningupdate.Moreprecisely,everyCupdateswe
+doesnotdependontheparametersh thatwearecurrentlyoptimizing,andmay clonethenetworkQtoobtainatargetnetworkQ^ anduseQ^ forgeneratingthe
+i
+thereforebeignored.Differentiatingthelossfunctionwithrespecttotheweights Q-learningtargetsy j forthefollowingCupdatestoQ.Thismodificationmakesthe
+wearriveatthefollowinggradient: algorithmmorestablecomparedtostandardonlineQ-learning,whereanupdate
+thatincreasesQ(s,a)oftenalsoincreasesQ(s ,a)forallaandhencealsoincreases
+t t t11
++hi L ð h iÞ ~ s,a,r,s0  rzcm a a 0 xQ s0,a0;h{ i {Q ð s,a;h iÞ  +hi Q ð s,a;h iÞ  : t t h h e e t t a a r r g g e e t t s y u j , s p in o g ss a ib n l o y l l d e e a r d s in et g o t f o p o a s r c a i m lla e t t i e o r n s s a o d r d d s i a v d er e g la e y nc b e et o w f e th en ep th o e li t c i y m .G ea e n ne u r p a d ti a n t g e
+ÿ  toQismadeandthetimetheupdateaffectsthetargetsy,makingdivergenceor
+j
+Ratherthancomputingthefullexpectationsintheabovegradient,itisoften oscillationsmuchmoreunlikely.
+c
+d b
+o
+y e
+m
+sc u e
+p
+p n
+u
+d t
+t
+a .
+a
+t T
+t
+i
+i
+n h
+o
+g
+n
+e
+a
+t f h a
+ll
+m e
+y
+w i
+e
+l
+x
+i e a
+p
+i r g
+e
+h Q
+d
+t
+i
+- s
+e
+l
+n
+e a a
+t
+f r t
+t
+e n
+o
+r in
+o
+e g v
+p
+e a
+ti
+r l
+m
+g y o
+i
+t
+z
+r i i
+e
+m th
+t
+e m
+h
+s
+e
+1 t 9 e
+lo
+p c
+s
+a ,
+s
+n re
+f
+b
+u
+p e
+n
+la r
+c
+c e
+t
+i
+i
+c n
+o
+o g
+n
+ve t
+b
+h r
+y
+e e d
+s
+e
+t
+i x
+o
+n p
+c
+t e
+h
+h c
+a
+i t
+s
+s a
+t
+t f
+i
+i
+c
+r o a n
+g
+m s
+ra
+e u
+d
+w s
+i
+o i
+e
+n r
+n
+k g
+t
+fu s0 n
+W
+,a ct 0
+e
+; io h
+a
+n { i
+lso
+x {
+fo
+h Q
+u
+as
+n
+ð a
+d
+s,a d
+it
+; e h r
+h
+i i
+e
+v Þ
+l
+a
+p
+t t o
+f
+i
+u
+v b e
+l
+e
+t
+o
+o
+f b
+c
+2 e
+l
+t
+i
+w 1
+p
+e f
+t
+o e
+h
+n r
+e
+a 2
+e
+ll
+r
+1
+r
+n
+o
+e a
+r
+g n a
+t
+d
+e
+ti
+r
+v 1
+m
+e .B v
+fr
+a e
+o
+l c u
+m
+a e u s s
+t
+o e
+h
+f
+e
+t x h
+u
+e a
+p
+n a
+d
+d b
+a
+s
+t
+a o
+e
+l d
+r
+u e
+z
+t r e iv
+c
+v a a
+m
+t l i u v
+a
+e e
+xa
+o lo 0 f
+Q
+s 1 s
+singlesamples,andsettingh{ i ~h i{1. f ÿ orallpos j it j ivevaluesofx,clippingthesquarederrortobebetween21and1cor-
+Notethatthisalgorithmismodel-free:itsolvesthereinforcementlearningtask respondstousinganabsolutevaluelossfunctionforerrorsoutsideofthe(21,1)
+directlyusingsamplesfromtheemulator,withoutexplicitlyestimatingthereward interval.Thisformoferrorclippingfurtherimprovedthestabilityofthealgorithm.
+andtransitiondynamicsP
+ð
+r,s0Ds,a
+Þ
+.Itisalsooff-policy:itlearnsaboutthegreedy Algorithm1:deepQ-learningwithexperiencereplay.
+policya~argmax a0 Q ð s,a0;h Þ ,whilefollowingabehaviourdistributionthatensures InitializereplaymemoryDtocapacityN
+adequateexplorationofthestatespace.Inpractice,thebehaviourdistributionis
+Initializeaction-valuefunctionQwithrandomweightsh
+oftenselectedbyane-greedypolicythatfollowsthegreedypolicywithprobability Initializetargetaction-valuefunctionQ^ withweightsh25h
+12eandselectsarandomactionwithprobabilitye.
+Forepisode51,Mdo
+TrainingalgorithmfordeepQ-networks.Thefullalgorithmfortrainingdeep
+Initializesequences ~ x andpreprocessedsequencew ~w s
+Q-networksispresentedinAlgorithm1.Theagentselectsandexecutesactions 1 f 1g 1 ð1Þ
+Fort51,Tdo
+accordingtoane-greedypolicybasedonQ.Becauseusinghistoriesofarbitrary
+Withprobabilityeselectarandomactiona
+lengthasinputstoaneuralnetworkcanbedifficult,ourQ-functioninsteadworks t
+onafixedlengthrepresentationofhistoriesproducedbythefunctionwdescribed
+otherwiseselectat ~argmax
+a
+Q
+ð
+w
+ð
+stÞ ,a;h
+Þ
+Executeactiona inemulatorandobserverewardr andimagex
+above.ThealgorithmmodifiesstandardonlineQ-learningintwowaystomakeit t t t11
+suitablefortraininglargeneuralnetworkswithoutdiverging.
+Setstz1 ~st ,at ,xtz1andpreprocessw
+tz1
+~w
+ð
+stz1Þ
+First,weuseatechniqueknownasexperiencereplay23inwhichwestorethe Storetransition w t ,at ,rt ,w tz1 inD
+agent’sexperiencesateachtime-step,e t 5(s t ,a t ,r t ,s t11 ),inadatasetD t 5{e 1 ,…,e t }, Samplerandom ÿ minibatchof  transitions w j ,aj ,rj ,w jz1 fromD
+pooledovermanyepisodes(wheretheendofanepisodeoccurswhenatermi- rj ifepisodeterminatesatstepjz1
+n
+w
+a
+e
+ls
+a
+t
+p
+a
+p
+te
+ly
+is
+Q
+re
+-
+a
+le
+c
+a
+h
+r
+e
+n
+d
+i
+)
+n
+i
+g
+nt
+u
+o
+p
+a
+d
+r
+a
+e
+te
+p
+s
+l
+,
+ay
+or
+m
+m
+em
+in
+o
+i
+r
+b
+y
+a
+.
+t
+D
+ch
+ur
+u
+i
+p
+n
+d
+g
+a
+th
+te
+e
+s,
+in
+t
+n
+o
+e
+s
+r
+a
+l
+m
+oo
+p
+p
+le
+o
+s
+f
+o
+th
+f
+e
+e
+a
+x
+l
+p
+g
+e
+o
+r
+r
+i
+i
+e
+t
+n
+h
+c
+m
+e,
+, Setyj ~
+(
+rj zcmaxa0 Q^ w
+jz1
+,a0;h{ otherwise
+(s,a,r,s9),U(D),drawnatrandomfromthepoolofstoredsamples.Thisapproach Performagradientdescentstepon y j {Q w j ,aj;h 2 withrespecttothe
+hasseveraladvantagesoverstandardonlineQ-learning.First,eachstepofexperience networkparametersh
+  
+ispotentiallyusedinmanyweightupdates,whichallowsforgreaterdataefficiency. EveryCstepsresetQ^~Q
+Second,learningdirectlyfromconsecutivesamplesisinefficient,owingtothestrong EndFor
+correlationsbetweenthesamples;randomizingthesamplesbreaksthesecorrela- EndFor
+tionsandthereforereducesthevarianceoftheupdates.Third,whenlearningon-
+policythecurrentparametersdeterminethenextdatasamplethattheparameters 31. Jarrett,K.,Kavukcuoglu,K.,Ranzato,M.A.&LeCun,Y.Whatisthebestmulti-stage
+aretrainedon.Forexample,ifthemaximizingactionistomoveleftthenthetrain- architectureforobjectrecognition?Proc.IEEE.Int.Conf.Comput.Vis.2146–2153
+(2009).
+ingsampleswillbedominatedbysamplesfromtheleft-handside;ifthemaximiz-
+32. Nair,V.&Hinton,G.E.RectifiedlinearunitsimproverestrictedBoltzmann
+ingactionthenswitchestotherightthenthetrainingdistributionwillalsoswitch.
+machines.Proc.Int.Conf.Mach.Learn.807–814(2010).
+Itiseasytoseehowunwantedfeedbackloopsmayariseandtheparameterscouldget 33. Kaelbling,L.P.,Littman,M.L.&Cassandra,A.R.Planningandactinginpartially
+stuckinapoorlocalminimum,orevendivergecatastrophically20.Byusingexperience observablestochasticdomains.ArtificialIntelligence101,99–134(1994).
+©2015Macmillan Publishers Limited. All rights reserved
+
+--- PAGE 8 ---
+RESEARCH LETTER
+ExtendedDataFigure1|Two-dimensionalt-SNEembeddingofthe points)andDQNplay(bluepoints)suggeststhattherepresentationslearned
+representationsinthelasthiddenlayerassignedbyDQNtogamestates byDQNdoindeedgeneralizetodatageneratedfrompoliciesotherthanits
+experiencedduringacombinationofhumanandagentplayinSpace own.Thepresenceinthet-SNEembeddingofoverlappingclustersofpoints
+Invaders. Theplotwasgeneratedbyrunningthet-SNEalgorithm25onthelast correspondingtothenetworkrepresentationofstatesexperiencedduring
+hiddenlayerrepresentationassignedbyDQNtogamestatesexperienced humanandagentplayshowsthattheDQNagentalsofollowssequencesof
+duringacombinationofhuman(30min)andagent(2h)play.Thefactthat statessimilartothosefoundinhumanplay.Screenshotscorrespondingto
+thereissimilarstructureinthetwo-dimensionalembeddingscorrespondingto selectedstatesareshown(human:orangeborder;DQN:blueborder).
+theDQNrepresentationofstatesexperiencedduringhumanplay(orange
+©2015Macmillan Publishers Limited. All rights reserved
+
+--- PAGE 9 ---
+LETTER RESEARCH
+ExtendedDataFigure2|Visualizationoflearnedvaluefunctionsontwo allactionsarearound0.7,reflectingtheexpectedvalueofthisstatebasedon
+games,BreakoutandPong.a,Avisualizationofthelearnedvaluefunctionon previousexperience.Attimepoint2,theagentstartsmovingthepaddle
+thegameBreakout.Attimepoints1and2,thestatevalueispredictedtobe,17 towardstheballandthevalueofthe‘up’actionstayshighwhilethevalueofthe
+andtheagentisclearingthebricksatthelowestlevel.Eachofthepeaksin ‘down’actionfallsto20.9.Thisreflectsthefactthatpressing‘down’wouldlead
+thevaluefunctioncurvecorrespondstoarewardobtainedbyclearingabrick. totheagentlosingtheballandincurringarewardof21.Attimepoint3,
+Attimepoint3,theagentisabouttobreakthroughtothetoplevelofbricksand theagenthitstheballbypressing‘up’andtheexpectedrewardkeepsincreasing
+thevalueincreasesto,21inanticipationofbreakingoutandclearinga untiltimepoint4,whentheballreachestheleftedgeofthescreenandthevalue
+largesetofbricks.Atpoint4,thevalueisabove23andtheagenthasbroken ofallactionsreflectsthattheagentisabouttoreceivearewardof1.Note,
+through.Afterthispoint,theballwillbounceattheupperpartofthebricks thedashedlineshowsthepasttrajectoryoftheballpurelyforillustrative
+clearingmanyofthembyitself.b,Avisualizationofthelearnedaction-value purposes(thatis,notshownduringthegame).WithpermissionfromAtari
+functiononthegamePong.Attimepoint1,theballismovingtowardsthe Interactive,Inc.
+paddlecontrolledbytheagentontherightsideofthescreenandthevaluesof
+©2015Macmillan Publishers Limited. All rights reserved
+
+--- PAGE 10 ---
+RESEARCH LETTER
+ExtendedDataTable1|Listofhyperparametersandtheirvalues
+ThevaluesofallthehyperparameterswereselectedbyperforminganinformalsearchonthegamesPong,Breakout,Seaquest,SpaceInvadersandBeamRider.Wedidnotperformasystematicgridsearchowing
+tothehighcomputationalcost,althoughitisconceivablethatevenbetterresultscouldbeobtainedbysystematicallytuningthehyperparametervalues.
+©2015Macmillan Publishers Limited. All rights reserved
+
+--- PAGE 11 ---
+LETTER RESEARCH
+ExtendedDataTable2|ComparisonofgamesscoresobtainedbyDQNagentswithmethodsfromtheliterature12,15andaprofessional
+humangamestester
+BestLinearLearneristhebestresultobtainedbyalinearfunctionapproximatorondifferenttypesofhanddesignedfeatures12.Contingency(SARSA)agentfiguresaretheresultsobtainedinref.15.Notethe
+figuresinthelastcolumnindicatetheperformanceofDQNrelativetothehumangamestester,expressedasapercentage,thatis,1003(DQNscore2randomplayscore)/(humanscore2randomplayscore).
+©2015Macmillan Publishers Limited. All rights reserved
+
+--- PAGE 12 ---
+RESEARCH LETTER
+ExtendedDataTable3|TheeffectsofreplayandseparatingthetargetQ-network
+DQNagentsweretrainedfor10millionframesusingstandardhyperparametersforallpossiblecombinationsofturningreplayonoroff,usingornotusingaseparatetargetQ-network,andthreedifferentlearning
+rates.Eachagentwasevaluatedevery250,000trainingframesfor135,000validationframesandthehighestaverageepisodescoreisreported.Notethattheseevaluationepisodeswerenottruncatedat5min
+leadingtohigherscoresonEndurothantheonesreportedinExtendedDataTable2.Notealsothatthenumberoftrainingframeswasshorter(10millionframes)ascomparedtothemainresultspresentedin
+ExtendedDataTable2(50millionframes).
+©2015Macmillan Publishers Limited. All rights reserved
+
+--- PAGE 13 ---
+LETTER RESEARCH
+ExtendedDataTable4|ComparisonofDQNperformancewithlin-
+earfunctionapproximator
+TheperformanceoftheDQNagentiscomparedwiththeperformanceofalinearfunctionapproximator
+onthe5validationgames(thatis,whereasinglelinearlayerwasusedinsteadoftheconvolutional
+network,incombinationwithreplayandseparatetargetnetwork).Agentsweretrainedfor10million
+framesusingstandardhyperparameters,andthreedifferentlearningrates.Eachagentwasevaluated
+every250,000trainingframesfor135,000validationframesandthehighestaverageepisodescoreis
+reported.Notethattheseevaluationepisodeswerenottruncatedat5minleadingtohigherscoreson
+EndurothantheonesreportedinExtendedDataTable2.Notealsothatthenumberoftrainingframes
+wasshorter(10millionframes)ascomparedtothemainresultspresentedinExtendedDataTable2
+(50millionframes).
+©2015Macmillan Publishers Limited. All rights reserved

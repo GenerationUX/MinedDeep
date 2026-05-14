@@ -1,0 +1,123 @@
+
+--- PAGE 1 ---
+Grandmaster Garry Kasparov during the last of six games against Deep Blue in 1997; the computer won the match by 3.5 games to 2.5.
+ARTIFICIAL INTELLIGENCE
+Chess match of the century
+Demis Hassabis lauds Garry Kasparov’s account of battling supercomputer Deep Blue.
+N
+early 20 years ago, I was fortunate crucial traits such as tasks that people consider incredibly difficult,
+enough to play friendly blitz chess generality, adaptability but totally fail at commonsense tasks we find
+against former world champion and learning. intuitive (a phenomenon called Moravec’s
+Garry Kasparov. It was quite an experience; As he details in paradox). It was also due to industry and
+his competitive spirit and creative genius Deep Thinking, Kasp- research dynamics in the 1980s and 1990s:
+were palpable. I had recently founded Elixir arov reached a simi- in pursuit of quick results, labs ditched gen-
+Studios, which specialized in artificial lar conclusion. The eralizable, learning-based approaches in
+intelligence (AI) games, and my ambition book is his first thor- favour of narrow, hand-coded solutions that
+was to conduct cutting-edge research in the ough account of the exploited machines’ computational speed.
+field. AI was on my mind that day: Kasparov match, and it offers Deep Thinking: The focus on brute-force approaches had
+had played chess against IBM’s supercom- thoughtful medita- Where Machine upsides, Kasparov explains. It may not have
+puter Deep Blue just a few years before. Now, tions on technology. Intelligence delivered on the promise of general-purpose
+Ends and Human
+he sets out the details of that titanic event in The title references AI, but it did result in very powerful chess
+Creativity Begins
+his memoir Deep Thinking. what he believes chess engines that soon became popularly avail-
+GARRY KASPAROV
+The 1997 match was a watershed for AI engines cannot do: able. Today, anyone can practise for free
+PublicAffairs: 2017.
+and an extraordinary technical feat. Strangely, they can calculate, but against software stronger than the greatest
+although Kasparov lost, it left me more in awe not innovate or create. They cannot think human chess masters, enabling enthusiasts
+of the incredible capabilities of the human in the deepest sense. In drawing out these worldwide to train at top levels. Before Deep
+brain than of the machine. Kasparov was able distinctions, Kasparov provides an impres- Blue, pessimists predicted that the defeat of a
+to compete against a computational leviathan sively researched history of AI and the field’s world chess champion by a machine would
+and to complete myriad other tasks that make ongoing obsession with chess. lead to the game’s death. In fact, more people
+us all distinctly human. By contrast, Deep For decades, leading computer scientists play now than ever before, according to
+Blue was hard-coded with a set of specialized believed that, given the traditional status World Chess Federation figures.
+rules distilled from chess grandmasters, and of chess as an exemplary demonstration Chess engines have also given rise to
+empowered with a brute-force search algo- of human intellect, a competent computer exciting variants of play. In 1998, Kasparov
+rithm. It was programmed to do one thing chess player would soon also surpass all other introduced ‘Advanced Chess’, in which
+only; it could not have played even a simpler human abilities. That proved not to be the human–computer teams merge the calcu-
+game such as noughts and crosses with- case. This has to do partly with differences lation abilities of machines with a person’s
+out being completely reprogrammed. I felt between human and machine cognition: pattern-matching insights. Kasparov’s
+that this brand of ‘intelligence’ was missing computers can easily perform calculation embrace of the technology that defeated
+27 APRIL 2017 | VOL 544 | NATURE | 413
+YTTEG/ADNOH
+NATS
+©2017MacmillanPublishersLimited,partofSpringerNature.Allrightsreserved.
+
+--- PAGE 2 ---
+COMMENT BOOKS & ARTS
+him shows how computers can inspire,
+rather than obviate, human creativity.
+In Deep Thinking, Kasparov also delves
+into the renaissance of machine learning,
+an AI subdomain focusing on general-
+purpose algorithms that learn from data.
+He highlights the radical differences
+between Deep Blue and AlphaGo, a learn-
+ing algorithm created by my company
+DeepMind to play the massively complex
+game of Go. Last year, AlphaGo defeated
+Lee Sedol, widely hailed as the great-
+est player of the past decade. Whereas
+Deep Blue followed instructions care-
+fully honed by a crack team of engineers
+and chess professionals, AlphaGo played
+against itself repeatedly, learning from its
+mistakes and developing novel strategies.
+Several of its moves against Lee had never
+been seen in human games — most nota-
+bly move 37 in game 2, which upended
+centuries of traditional Go wisdom by
+playing on the fifth line early in the game. An angiogram and computed-tomography scan of a man’s brain, used to locate his language centre.
+Most excitingly, because its learning
+algorithms can be generalized, AlphaGo PSYCHOLOGY
+holds promise far beyond the game for
+Science in spite of itself
+which it was created. Kasparov relishes
+this potential, discussing applications from
+machine translation to automated medical
+diagnoses. AI will not replace humans, he
+Barbara A. Spellman hails an analysis of reproducibility
+argues, but will enlighten and enrich us,
+much as chess engines did 20 years ago. in psychology by a champion for change.
+His position is especially notable coming
+from someone who would have every
+C
+reason to be bitter about AI’s advances. hris Chambers’s portrait should (D. J. Bem J. Pers. Soc.
+His account of the Deep Blue match sit high on the wall of heroes in the Psychol. 100, 407–425;
+itself is fascinating. Famously, Kasparov movement to reform science. A 2011). Published in
+stormed out of one game and gave antag- cognitive neuroscientist and psychologist, the American Psycho-
+onistic press conferences in which he Chambers has had an important role as an logical Association’s
+protested against IBM’s secrecy around editor and advocate in identifying, challeng- prestigious Journal
+the Deep Blue team and its methods, and ing and changing practices responsible for of Personality and
+insinuated that the company might have the reproducibility crisis. Social Psychology, it
+cheated. In Deep Thinking, Kasparov offers Many fields of science — social, life, physi- left many psycholo-
+an engaging insight into his psychological cal and medical — have had to acknowledge The Seven gists outraged. The
+state during the match. To a degree, he in recent years that much of their published Deadly Sins of article had followed
+walks back on his earlier claims, conclud- research is not replicable (see M. Munafò Psychology: the rules of scientific
+ing that although IBM probably did not Nature 543, 619–620; 2017). Psychological A Manifesto practice. Its stud-
+for Reforming
+cheat, it violated the spirit of fair competi- science was hit hard by that problem early this ies all supported the
+the Culture of
+tion by obscuring useful information. He decade. But it quickly joined the vanguard of same hypothesis; its
+Scientific Practice
+also provides a detailed commentary on reform. In The Seven Deadly Sins of Psychol- CHRIS CHAMBERS methods included
+several crucial moments; for instance, he ogy — part history, part autobiography, largely Princeton University randomization and
+dispels the myth that Deep Blue’s bizarre manifesto — Chambers identifies some “sins”, Press: 2017. standard-looking data
+move 44 in the first game of the match left from biased reasoning to outright fraud, that analyses. But close
+him unrecoverably flummoxed. led us to this point. And he describes specific scrutiny of the paper and subsequent failures
+Kasparov includes enough detail to reforms, some already well under way, that to replicate the studies (plus the unwilling-
+satisfy chess enthusiasts, while providing will make science more transparent, acces- ness of journals to publish those failures)
+a thrilling narrative for the casual reader. sible and reproducible. As he shows, the sins revealed many of the sins.
+Deep Thinking delivers a rare balance of are (mostly) not those of individual scientists, The sin that makes the biggest news splash
+analysis and narrative, weaving commen- but of the processes and incentive structures is outright fraud — changing or fabricating
+tary about technological progress with an under which scientists work. data, or making up an entire study. It may
+inside look at one of the most important Chambers ably illustrates these failings be the least interesting (and, we hope, the
+chess matches ever played. ■ with tales from psychological science. The least prevalent) sin, but is illustrated by
+first chapter describes a 2011 paper by social Chambers’s tale of a psychologist who did
+Demis Hassabis is the founder and chief psychologist Daryl Bem that reported nine just that — at least 58 times. If you stop to
+executive of DeepMind, a neuroscience- experiments demonstrating evidence of pre- ask why a scientist would commit fraud,
+inspired AI company based in London. cognition — the ability to predict the future the perverse nature of scientific processes
+LPS/RYHPEZ
+414 | NATURE | VOL 544 | 27 APRIL 2017
+©2017MacmillanPublishersLimited,partofSpringerNature.Allrightsreserved.

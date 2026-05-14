@@ -1,0 +1,1497 @@
+
+--- PAGE 1 ---
+Mastering the Game of Go without Human Knowledge
+DavidSilver*,JulianSchrittwieser*,KarenSimonyan*,IoannisAntonoglou,AjaHuang,Arthur
+Guez,ThomasHubert,LucasBaker,MatthewLai,AdrianBolton,YutianChen,Timothy
+Lillicrap,FanHui,LaurentSifre,GeorgevandenDriessche,ThoreGraepel,DemisHassabis.
+DeepMind,5NewStreetSquare,LondonEC4A3TW.
+*Theseauthorscontributedequallytothiswork.
+Along-standinggoalofartificialintelligenceisanalgorithmthatlearns,tabularasa,su-
+perhuman proficiency in challenging domains. Recently, AlphaGo became the first program
+to defeat a world champion in the game of Go. The tree search in AlphaGo evaluated posi-
+tions and selected moves using deep neural networks. These neural networks were trained
+by supervised learning from human expert moves, and by reinforcement learning from self-
+play. Here, we introduce an algorithm based solely on reinforcement learning, without hu-
+man data, guidance, or domain knowledge beyond game rules. AlphaGo becomes its own
+teacher: a neural network is trained to predict AlphaGo’s own move selections and also the
+winner of AlphaGo’s games. This neural network improves the strength of tree search, re-
+sulting in higher quality move selection and stronger self-play in the next iteration. Starting
+tabula rasa, our new program AlphaGo Zero achieved superhuman performance, winning
+100-0againstthepreviouslypublished,champion-defeatingAlphaGo.
+Much progress towards artificial intelligence has been made using supervised learning sys-
+tems that are trained to replicate the decisions of human experts 1–4. However, expert data is often
+expensive, unreliable, or simply unavailable. Even when reliable data is available it may impose a
+ceiling on the performance of systems trained in this manner 5. In contrast, reinforcement learn-
+ing systems are trained from their own experience, in principle allowing them to exceed human
+capabilities,andtooperateindomainswherehumanexpertiseislacking. Recently,therehasbeen
+rapid progress towards this goal, using deep neural networks trained by reinforcement learning.
+These systems have outperformed humans in computer games such as Atari 6,7 and 3D virtual en-
+vironments8–10. However, themost challenging domains in termsof human intellect – such asthe
+1
+
+--- PAGE 2 ---
+game of Go, widely viewed as a grand challenge for artificial intelligence 11 – require precise and
+sophisticatedlookaheadinvastsearchspaces. Fullygeneralmethodshavenotpreviouslyachieved
+human-levelperformanceinthesedomains.
+AlphaGo was the first program to achieve superhuman performance in Go. The published
+version12,whichwerefertoasAlphaGoFan,defeatedtheEuropeanchampionFanHuiinOctober
+2015. AlphaGo Fan utilised two deep neural networks: a policy network that outputs move prob-
+abilities, and a value network that outputs a position evaluation. The policy network was trained
+initially by supervised learning to accurately predict human expert moves, and was subsequently
+refined by policy-gradient reinforcement learning. The value network was trained to predict the
+winner of games played by the policy network against itself. Once trained, these networks were
+combined with a Monte-Carlo Tree Search (MCTS) 13–15 to provide a lookahead search, using the
+policy network to narrow down the search to high-probability moves, and using the value net-
+work(inconjunctionwithMonte-Carlorolloutsusingafastrolloutpolicy)toevaluatepositionsin
+the tree. A subsequent version, which we refer to as AlphaGo Lee, used a similar approach (see
+Methods),anddefeatedLeeSedol,thewinnerof18internationaltitles,inMarch2016.
+Our program, AlphaGo Zero, differs from AlphaGo Fan and AlphaGo Lee 12 in several im-
+portantaspects. Firstandforemost,itistrainedsolelybyself-playreinforcementlearning,starting
+from random play, without any supervision or use of human data. Second, it only uses the black
+and white stones from the board as input features. Third, it uses a single neural network, rather
+than separate policy and value networks. Finally, it uses a simpler tree search that relies upon this
+single neural network to evaluate positions and sample moves, without performing any Monte-
+Carlo rollouts. To achieve these results, we introduce a new reinforcement learning algorithm that
+incorporateslookaheadsearchinsidethetrainingloop,resultinginrapidimprovementandprecise
+and stable learning. Further technical differences in the search algorithm, training procedure and
+networkarchitecturearedescribedinMethods.
+2
+
+--- PAGE 3 ---
+1 ReinforcementLearninginAlphaGoZero
+Ournewmethodusesadeepneuralnetworkf withparametersθ. Thisneuralnetworktakesasan
+θ
+inputtherawboardrepresentationsofthepositionanditshistory,andoutputsbothmoveprobabil-
+ities and a value, (p,v) = f (s). The vector of move probabilities p represents the probability of
+θ
+selectingeachmove(includingpass),p = Pr(a|s). Thevaluev isascalarevaluation,estimating
+a
+the probability of the current player winning from position s. This neural network combines the
+roles of both policy network and value network 12 into a single architecture. The neural network
+consists of many residual blocks 4 of convolutional layers 16,17 with batch normalisation 18 and
+rectifiernon-linearities19 (seeMethods).
+TheneuralnetworkinAlphaGoZeroistrainedfromgamesofself-playbyanovelreinforce-
+ment learning algorithm. In each position s, an MCTS search is executed, guided by the neural
+network f . The MCTS search outputs probabilitiesπππ of playing each move. These search proba-
+θ
+bilitiesusuallyselectmuchstrongermovesthantherawmoveprobabilitiespoftheneuralnetwork
+f (s); MCTS may therefore be viewed as a powerful policy improvement operator 20,21. Self-play
+θ
+with search – using the improved MCTS-based policy to select each move, then using the game
+winner z as a sample of the value – may be viewed as a powerful policy evaluation operator. The
+main idea of our reinforcement learning algorithm is to use these search operators repeatedly in
+a policy iteration procedure 22,23: the neural network’s parameters are updated to make the move
+probabilities and value (p,v) = f (s) more closely match the improved search probabilities and
+θ
+self-playwinner(πππ,z);thesenewparametersareusedinthenextiterationofself-playtomakethe
+searchevenstronger. Figure1illustratestheself-playtrainingpipeline.
+The Monte-Carlo tree search uses the neural network f to guide its simulations (see Figure
+θ
+2). Each edge (s,a) in the search tree stores a prior probability P(s,a), a visit count N(s,a),
+and an action-value Q(s,a). Each simulation starts from the root state and iteratively selects
+movesthatmaximiseanupperconfidenceboundQ(s,a)+U(s,a),whereU(s,a) ∝ P(s,a)/(1+
+N(s,a))12,24,untilaleafnodes(cid:48) isencountered. Thisleafpositionisexpandedandevaluatedjust
+3
+
+--- PAGE 4 ---
+Figure1: Self-playreinforcementlearninginAlphaGoZero. aTheprogramplaysagames ,...,s againstitself.
+1 T
+Ineachpositions ,aMonte-Carlotreesearch(MCTS)α isexecuted(seeFigure2)usingthelatestneuralnetwork
+t θ
+f . MovesareselectedaccordingtothesearchprobabilitiescomputedbytheMCTS,a ∼πππ . Theterminalposition
+θ t t
+s isscoredaccordingtotherulesofthegametocomputethegamewinnerz. bNeuralnetworktraininginAlphaGo
+T
+Zero. The neural network takes the raw board position s as its input, passes it through many convolutional layers
+t
+withparametersθ,andoutputsbothavectorp ,representingaprobabilitydistributionovermoves,andascalarvalue
+t
+v , representing the probability of the current player winning in position s . The neural network parameters θ are
+t t
+updated so as to maximise the similarity of the policy vector p to the search probabilitiesπππ , and to minimise the
+t ttt
+errorbetweenthepredictedwinnerv andthegamewinnerz (seeEquation1). Thenewparametersareusedinthe
+t
+nextiterationofself-playa.
+4
+
+--- PAGE 5 ---
+Figure 2: Monte-CarlotreesearchinAlphaGoZero. aEachsimulationtraversesthetreebyselectingtheedge
+with maximum action-value Q, plus an upper confidence bound U that depends on a stored prior probability P and
+visit count N for that edge (which is incremented once traversed). b The leaf node is expanded and the associated
+positionsisevaluatedbytheneuralnetwork(P(s,·),V(s))=f (s);thevectorofP valuesarestoredintheoutgoing
+θ
+edgesfroms. cAction-valuesQareupdatedtotrackthemeanofallevaluationsV inthesubtreebelowthataction. d
+Oncethesearchiscomplete,searchprobabilitiesπππ arereturned,proportionaltoN1/τ,whereN isthevisitcountof
+eachmovefromtherootstateandτ isaparametercontrollingtemperature.
+once by the network to generate both prior probabilities and evaluation, (P(s(cid:48),·),V(s(cid:48))) = f (s(cid:48)).
+θ
+Each edge (s,a) traversed in the simulation is updated to increment its visit count N(s,a), and to
+updateitsaction-valuetothemeanevaluationoverthesesimulations,Q(s,a) = 1/N(s,a) (cid:80) V(s(cid:48)),
+s(cid:48)|s,a→s(cid:48)
+wheres,a → s(cid:48) indicatesthatasimulationeventuallyreacheds(cid:48) aftertakingmoveafromposition
+s.
+MCTS may be viewed as a self-play algorithm that, given neural network parameters θ and
+a root position s, computes a vector of search probabilities recommending moves to play, πππ =
+α (s), proportional to the exponentiated visit count for each move, π ∝ N(s,a)1/τ, where τ is a
+θ a
+temperatureparameter.
+The neural network is trained by a self-play reinforcement learning algorithm that uses
+MCTS to play each move. First, the neural network is initialised to random weights θ . At each
+0
+subsequent iteration i ≥ 1, games of self-play are generated (Figure 1a). At each time-step t,
+an MCTS search πππ = α (s ) is executed using the previous iteration of neural network f ,
+t θi−1 t θi−1
+and a move is played by sampling the search probabilitiesπππ . A game terminates at step T when
+t
+5
+
+--- PAGE 6 ---
+both players pass, when the search value drops below a resignation threshold, or when the game
+exceeds a maximum length; the game is then scored to give a final reward of r ∈ {−1,+1} (see
+T
+Methods for details). The data for each time-step t is stored as (s ,πππ ,z ) where z = ±r is
+t t t t T
+the game winner from the perspective of the current player at step t. In parallel (Figure 1b), new
+network parameters θ are trained from data (s,πππ,z) sampled uniformly among all time-steps of
+i
+the last iteration(s) of self-play. The neural network (p,v) = f (s) is adjusted to minimise the
+θi
+error between the predicted value v and the self-play winner z, and to maximise the similarity of
+the neural network move probabilities p to the search probabilities πππ. Specifically, the parame-
+ters θ are adjusted by gradient descent on a loss function l that sums over mean-squared error and
+cross-entropylossesrespectively,
+(p,v) = f (s), l = (z −v)2 −πππ(cid:62)logp+c||θ||2 (1)
+θ
+wherecisaparametercontrollingthelevelofL2weightregularisation(topreventoverfitting).
+2 EmpiricalAnalysisofAlphaGoZeroTraining
+We applied our reinforcement learning pipeline to train our program AlphaGo Zero. Training
+started from completely random behaviour and continued without human intervention for approx-
+imately3days.
+Overthecourseoftraining,4.9milliongamesofself-playweregenerated,using1,600simu-
+lations for each MCTS, which corresponds to approximately 0.4s thinking time per move. Param-
+eters were updated from 700,000 mini-batches of 2,048 positions. The neural network contained
+20residualblocks(seeMethodsforfurtherdetails).
+Figure 3a shows the performance of AlphaGo Zero during self-play reinforcement learning,
+as a function of training time, on an Elo scale 25. Learning progressed smoothly throughout train-
+ing, and did not suffer from the oscillations or catastrophic forgetting suggested in prior literature
+6
+
+--- PAGE 7 ---
+Figure 3: Empirical evaluation of AlphaGo Zero. a Performance of self-play reinforcement learning. The plot
+shows the performance of each MCTS player α from each iteration i of reinforcement learning in AlphaGo Zero.
+θi
+Eloratingswerecomputedfromevaluationgamesbetweendifferentplayers, using0.4secondsofthinkingtimeper
+move (see Methods). For comparison, a similar player trained by supervised learning from human data, using the
+KGSdata-set,isalsoshown. bPredictionaccuracyonhumanprofessionalmoves. Theplotshowstheaccuracyofthe
+neuralnetworkf ,ateachiterationofself-playi,inpredictinghumanprofessionalmovesfromtheGoKifudata-set.
+θi
+Theaccuracymeasuresthepercentageofpositionsinwhichtheneuralnetworkassignsthehighestprobabilitytothe
+humanmove. Theaccuracyofaneuralnetworktrainedbysupervisedlearningisalsoshown. cMean-squarederror
+(MSE)onhumanprofessionalgameoutcomes. TheplotshowstheMSEoftheneuralnetworkf ,ateachiteration
+θi
+ofself-playi,inpredictingtheoutcomeofhumanprofessionalgamesfromtheGoKifudata-set. TheMSEisbetween
+theactualoutcomez ∈{−1,+1}andtheneuralnetworkvaluev,scaledbyafactorof 1 totherange[0,1]. TheMSE
+4
+ofaneuralnetworktrainedbysupervisedlearningisalsoshown.
+7
+
+--- PAGE 8 ---
+26–28. Surprisingly, AlphaGo Zero outperformed AlphaGo Lee after just 36 hours; for compari-
+son, AlphaGo Lee was trained over several months. After 72 hours, we evaluated AlphaGo Zero
+against the exact version of AlphaGo Lee that defeated Lee Sedol, under the 2 hour time controls
+and match conditions as were used in the man-machine match in Seoul (see Methods). AlphaGo
+Zero used a single machine with 4 Tensor Processing Units (TPUs) 29, while AlphaGo Lee was
+distributed over many machines and used 48 TPUs. AlphaGo Zero defeated AlphaGo Lee by 100
+gamesto0(seeExtendedDataFigure5andSupplementaryInformation).
+To assess the merits of self-play reinforcement learning, compared to learning from human
+data, we trained a second neural network (using the same architecture) to predict expert moves
+in the KGS data-set; this achieved state-of-the-art prediction accuracy compared to prior work
+12,30–33 (see Extended Data Table 1 and 2 respectively). Supervised learning achieved better initial
+performance, and was better at predicting the outcome of human professional games (Figure 3).
+Notably, although supervised learning achieved higher move prediction accuracy, the self-learned
+playerperformedmuchbetteroverall,defeatingthehuman-trainedplayerwithinthefirst24hours
+oftraining. ThissuggeststhatAlphaGoZeromaybelearningastrategythatisqualitativelydiffer-
+enttohumanplay.
+To separate the contributions of architecture and algorithm, we compared the performance
+of the neural network architecture in AlphaGo Zero with the previous neural network architecture
+used in AlphaGo Lee (see Figure 4). Four neural networks were created, using either separate
+policy and value networks, as in AlphaGo Lee, or combined policy and value networks, as in
+AlphaGo Zero; and using either the convolutional network architecture from AlphaGo Lee or the
+residual network architecture from AlphaGo Zero. Each network was trained to minimise the
+same loss function (Equation 1) using a fixed data-set of self-play games generated by AlphaGo
+Zero after 72 hours of self-play training. Using a residual network was more accurate, achieved
+lower error, and improved performance in AlphaGo by over 600 Elo. Combining policy and value
+togetherintoasinglenetworkslightlyreducedthemovepredictionaccuracy,butreducedthevalue
+errorandboostedplayingperformanceinAlphaGobyaroundanother600Elo. Thisispartlydueto
+8
+
+--- PAGE 9 ---
+Figure 4: Comparison of neural network architectures in AlphaGo Zero and AlphaGo Lee. Comparison of
+neuralnetworkarchitecturesusingeitherseparate(“sep”)orcombinedpolicyandvaluenetworks(“dual”),andusing
+eitherconvolutional (“conv”)orresidualnetworks (“res”). The combinations“dual-res”and“sep-conv” correspond
+totheneuralnetworkarchitecturesusedinAlphaGoZeroandAlphaGoLeerespectively. Eachnetworkwastrainedon
+afixeddata-setgeneratedbyapreviousrunofAlphaGoZero. aEachtrainednetworkwascombinedwithAlphaGo
+Zero’ssearchtoobtainadifferentplayer. Eloratingswerecomputedfromevaluationgamesbetweenthesedifferent
+players, using 5 seconds of thinking time per move. b Prediction accuracy on human professional moves (from the
+GoKifudata-set)foreachnetworkarchitecture. cMean-squarederroronhumanprofessionalgameoutcomes(from
+theGoKifudata-set)foreachnetworkarchitecture.
+9
+
+--- PAGE 10 ---
+improvedcomputationalefficiency,butmoreimportantlythedualobjectiveregularisesthenetwork
+toacommonrepresentationthatsupportsmultipleusecases.
+3 KnowledgeLearnedbyAlphaGoZero
+AlphaGoZerodiscoveredaremarkablelevelofGoknowledgeduringitsself-playtrainingprocess.
+This included fundamental elements of human Go knowledge, and also non-standard strategies
+beyondthescopeoftraditionalGoknowledge.
+Figure 5 shows a timeline indicating when professional joseki (corner sequences) were dis-
+covered (Figure 5a, Extended Data Figure 1); ultimately AlphaGo Zero preferred new joseki vari-
+ants that were previously unknown (Figure 5b, Extended Data Figure 2). Figure 5c and the Sup-
+plementary Information show several fast self-play games played at different stages of training.
+Tournament length games played at regular intervals throughout training are shown in Extended
+Data Figure 3 and Supplementary Information. AlphaGo Zero rapidly progressed from entirely
+random moves towards a sophisticated understanding of Go concepts including fuseki (opening),
+tesuji (tactics), life-and-death, ko (repeated board situations), yose (endgame), capturing races,
+sente (initiative), shape, influence and territory, all discovered from first principles. Surprisingly,
+shicho (“ladder” capture sequences that may span the whole board) – one of the first elements of
+Goknowledgelearnedbyhumans–wereonlyunderstoodbyAlphaGoZeromuchlaterintraining.
+4 FinalPerformanceofAlphaGoZero
+WesubsequentlyappliedourreinforcementlearningpipelinetoasecondinstanceofAlphaGoZero
+using a larger neural network and over a longer duration. Training again started from completely
+randombehaviourandcontinuedforapproximately40days.
+Over the course of training, 29 million games of self-play were generated. Parameters were
+updated from 3.1 million mini-batches of 2,048 positions each. The neural network contained
+10
+
+--- PAGE 11 ---
+Figure 5: GoknowledgelearnedbyAlphaGoZero. aFivehumanjoseki(commoncornersequences)discovered
+duringAlphaGoZerotraining.Theassociatedtimestampsindicatethefirsttimeeachsequenceoccured(takingaccount
+ofrotationandreflection)duringself-playtraining. ExtendedDataFigure1providesthefrequencyofoccurenceover
+training for each sequence. b Five joseki favoured at different stages of self-play training. Each displayed corner
+sequencewasplayedwiththegreatestfrequency,amongallcornersequences,duringaniterationofself-playtraining.
+The timestamp of that iteration is indicated on the timeline. At 10 hours a weak corner move was preferred. At 47
+hoursthe3-3invasionwasmostfrequentlyplayed. Thisjosekiisalsocommoninhumanprofessionalplay;however
+AlphaGo Zero later discovered and preferred a new variation. Extended Data Figure 2 provides the frequency of
+occurenceovertimeforallfivesequencesandthenewvariation. cThefirst80movesofthreeself-playgamesthat
+were played at different stages of training, using 1,600 simulations (around 0.4s) per search. At 3 hours, the game
+focusesgreedilyoncapturingstones,muchlikeahumanbeginner. At19hours,thegameexhibitsthefundamentals
+oflife-and-death,influenceandterritory. At70hours,thegameisbeautifullybalanced,involvingmultiplebattlesand
+a complicated ko fight, eventually resolving into a half-point win for white. See Supplementary Information for the
+fullgames.
+
+--- PAGE 12 ---
+40 residual blocks. The learning curve is shown in Figure 6a. Games played at regular intervals
+throughouttrainingareshowninExtendedDataFigure4andSupplementaryInformation.
+We evaluated the fully trained AlphaGo Zero using an internal tournament against AlphaGo
+Fan,AlphaGoLee,andseveralpreviousGoprograms. Wealsoplayedgamesagainstthestrongest
+existingprogram,AlphaGoMaster –aprogrambasedonthealgorithmandarchitecturepresented
+in this paper but utilising human data and features (see Methods) – which defeated the strongest
+human professional players 60–0 in online games 34 in January 2017. In our evaluation, all pro-
+grams were allowed 5 seconds of thinking time per move; AlphaGo Zero and AlphaGo Master
+each played on a single machine with 4 TPUs; AlphaGo Fan and AlphaGo Lee were distributed
+over176GPUsand48TPUsrespectively. Wealsoincludedaplayerbasedsolelyontherawneural
+networkofAlphaGoZero;thisplayersimplyselectedthemovewithmaximumprobability.
+Figure6bshowstheperformanceofeachprogramonanEloscale. Therawneuralnetwork,
+without using any lookahead, achieved an Elo rating of 3,055. AlphaGo Zero achieved a rating
+of 5,185, compared to 4,858 for AlphaGo Master, 3,739 for AlphaGo Lee and 3,144 for AlphaGo
+Fan.
+Finally, we evaluated AlphaGo Zero head to head against AlphaGo Master in a 100 game
+matchwith2hourtimecontrols. AlphaGoZerowonby89gamesto11(seeExtendedDataFigure
+6)andSupplementaryInformation.
+5 Conclusion
+Ourresultscomprehensivelydemonstratethatapurereinforcementlearningapproachisfullyfea-
+sible,eveninthemostchallengingofdomains: itispossibletotraintosuperhumanlevel,without
+human examples or guidance, given no knowledge of the domain beyond basic rules. Further-
+more,apurereinforcementlearningapproachrequiresjustafewmorehourstotrain,andachieves
+much better asymptotic performance, compared to training on human expert data. Using this ap-
+12
+
+--- PAGE 13 ---
+Figure6: PerformanceofAlphaGoZero.aLearningcurveforAlphaGoZerousinglarger40blockresidualnetwork
+over40days. Theplotshowstheperformanceofeachplayerα fromeachiterationiofourreinforcementlearning
+θi
+algorithm. Eloratingswerecomputedfromevaluationgamesbetweendifferentplayers,using0.4secondspersearch
+(seeMethods).bFinalperformanceofAlphaGoZero.AlphaGoZerowastrainedfor40daysusinga40residualblock
+neuralnetwork. Theplotshowstheresultsofatournamentbetween: AlphaGoZero, AlphaGoMaster (defeatedtop
+humanprofessionals60-0inonlinegames),AlphaGoLee(defeatedLeeSedol),AlphaGoFan(defeatedFanHui),as
+wellaspreviousGoprogramsCrazyStone, PachiandGnuGo. Eachprogramwasgiven5secondsofthinkingtime
+permove. AlphaGoZeroandAlphaGoMaster playedonasinglemachineontheGoogleCloud; AlphaGoFanand
+AlphaGo Lee were distributed over many machines. The raw neural network from AlphaGo Zero is also included,
+whichdirectlyselectsthemoveawithmaximumprobabilityp ,withoutusingMCTS.Programswereevaluatedon
+a
+anEloscale25: a200pointgapcorrespondstoa75%probabilityofwinning.
+13
+
+--- PAGE 14 ---
+proach, AlphaGo Zero defeated the strongest previous versions of AlphaGo, which were trained
+fromhumandatausinghandcraftedfeatures,byalargemargin.
+Humankind has accumulated Go knowledge from millions of games played over thousands
+ofyears,collectivelydistilledintopatterns,proverbsandbooks. Inthespaceofafewdays,starting
+tabula rasa, AlphaGo Zero was able to rediscover much of this Go knowledge, as well as novel
+strategiesthatprovidenewinsightsintotheoldestofgames.
+14
+
+--- PAGE 15 ---
+References
+1. Friedman, J., Hastie, T. & Tibshirani, R. The Elements of Statistical Learning: Data Mining,
+Inference,andPrediction(Springer-Verlag,2009).
+2. LeCun,Y.,Bengio,Y.&Hinton,G. Deeplearning. Nature521,436–444(2015).
+3. Krizhevsky, A., Sutskever, I. & Hinton, G. ImageNet classification with deep convolutional
+neuralnetworks. InAdvancesinNeuralInformationProcessingSystems,1097–1105(2012).
+4. He, K., Zhang, X., Ren, S. & Sun, J. Deep residual learning for image recognition. In IEEE
+ConferenceonComputerVisionandPatternRecognition,770–778(2016).
+5. Hayes-Roth,F.,Waterman,D.&Lenat,D. Buildingexpertsystems(Addison-Wesley,1984).
+6. Mnih, V. et al. Human-level control through deep reinforcement learning. Nature 518, 529–
+533(2015).
+7. Guo, X., Singh, S. P., Lee, H., Lewis, R. L. & Wang, X. Deep learning for real-time Atari
+gameplayusingofflineMonte-Carlotreesearchplanning. InAdvancesinNeuralInformation
+ProcessingSystems,3338–3346(2014).
+8. Mnih, V. et al. Asynchronous methods for deep reinforcement learning. In International
+ConferenceonMachineLearning,1928–1937(2016).
+9. Jaderberg, M. et al. Reinforcement learning with unsupervised auxiliary tasks. International
+ConferenceonLearningRepresentations(2017).
+10. Dosovitskiy, A. & Koltun, V. Learning to act by predicting the future. In International Con-
+ferenceonLearningRepresentations(2017).
+11. Mandziuk, J. Computational intelligence in mind games. In Challenges for Computational
+Intelligence,407–442(2007).
+15
+
+--- PAGE 16 ---
+12. Silver, D. et al. Mastering the game of Go with deep neural networks and tree search. Nature
+529,484–489(2016).
+13. Coulom,R. EfficientselectivityandbackupoperatorsinMonte-Carlotreesearch. InInterna-
+tionalConferenceonComputersandGames,72–83(2006).
+14. Kocsis,L.&Szepesva´ri,C.BanditbasedMonte-Carloplanning.In15thEuropeanConference
+onMachineLearning,282–293(2006).
+15. Browne, C. et al. A survey of Monte-Carlo tree search methods. IEEE Transactions of Com-
+putationalIntelligenceandAIinGames4,1–43(2012).
+16. Fukushima, K. Neocognitron: A self-organizing neural network model for a mechanism of
+patternrecognitionunaffectedbyshiftinposition.BiologicalCybernetics36,193–202(1980).
+17. LeCun,Y.&Bengio,Y. Convolutionalnetworksforimages,speech,andtimeseries. InArbib,
+M. (ed.) The Handbook of Brain Theory and Neural Networks, chap. 3, 276–278 (MIT Press,
+1995).
+18. Ioffe,S.&Szegedy,C. Batchnormalization: Acceleratingdeepnetworktrainingbyreducing
+internalcovariateshift. InInternationalConferenceonMachineLearning,448–456(2015).
+19. Hahnloser, R. H. R., Sarpeshkar, R., Mahowald, M. A., Douglas, R. J. & Seung, H. S. Digital
+selection and analogue amplification coexist in a cortex-inspired silicon circuit. Nature 405,
+947–951(2000).
+20. Howard,R. DynamicProgrammingandMarkovProcesses(MITPress,1960).
+21. Sutton,R.&Barto,A. ReinforcementLearning: anIntroduction(MITPress,1998).
+22. Bertsekas, D. P. Approximate policy iteration: a survey and some new methods. Journal of
+ControlTheoryandApplications9,310–335(2011).
+23. Scherrer, B. Approximate policy iteration schemes: A comparison. In International Confer-
+enceonMachineLearning,1314–1322(2014).
+16
+
+--- PAGE 17 ---
+24. Rosin,C.D. Multi-armedbanditswithepisodecontext. AnnalsofMathematicsandArtificial
+Intelligence61,203–230(2011).
+25. Coulom, R. Whole-history rating: A Bayesian rating system for players of time-varying
+strength. InInternationalConferenceonComputersandGames,113–124(2008).
+26. Laurent, G. J., Matignon, L. & Le Fort-Piat, N. The world of Independent learners is not
+Markovian. International Journal of Knowledge-Based and Intelligent Engineering Systems
+15,55–64(2011).
+27. Foerster,J.N.etal. Stabilisingexperiencereplayfordeepmulti-agentreinforcementlearning.
+InInternationalConferenceonMachineLearning(2017).
+28. Heinrich,J.&Silver,D. Deepreinforcementlearningfromself-playinimperfect-information
+games. InNIPSDeepReinforcementLearningWorkshop(2016).
+29. Jouppi, N. P., Young, C., Patil, N. et al. In-datacenter performance analysis of a tensor pro-
+cessingunit. InProceedingsofthe44thAnnualInternationalSymposiumonComputerArchi-
+tecture,ISCA’17,1–12(ACM,2017).
+30. Maddison,C.J.,Huang,A.,Sutskever,I.&Silver,D. MoveevaluationinGousingdeepcon-
+volutionalneuralnetworks. InInternationalConferenceonLearningRepresentations(2015).
+31. Clark, C. & Storkey, A. J. Training deep convolutional neural networks to play Go. In Inter-
+nationalConferenceonMachineLearning,1766–1774(2015).
+32. Tian, Y. & Zhu, Y. Better computer Go player with neural network and long-term prediction.
+InInternationalConferenceonLearningRepresentations(2016).
+33. Cazenave, T. Residual networks for computer Go. IEEE Transactions on Computational
+IntelligenceandAIinGames(2017).
+34. Huang, A. AlphaGo Master online series of games (2017). URL:
+https://deepmind.com/research/alphago/match-archive/master.
+17
+
+--- PAGE 18 ---
+SupplementaryInformation
+SupplementaryInformationisavailableintheonlineversionofthepaper.
+Acknowledgements
+We thank A. Cain for work on the visuals; A. Barreto, G. Ostrovski, T. Ewalds, T. Schaul, J. Oh
+andN.Heessforreviewingthepaper;andtherestoftheDeepMindteamfortheirsupport.
+AuthorContributions
+D.S.,J.S.,K.S.,I.A.,A.G.,L.S.andT.H.designedandimplementedthereinforcementlearningal-
+gorithminAlphaGoZero. A.H.,J.S.,M.L.,D.S.designedandimplementedthesearchinAlphaGo
+Zero. L.B., J.S., A.H, F.H., T.H., Y.C, D.S. designed and implemented the evaluation framework
+for AlphaGo Zero. D.S., A.B., F.H., A.G., T.L., T.G., L.S., G.v.d.D., D.H. managed and advised
+ontheproject. D.S.,T.G.,A.G.wrotethepaper.
+AuthorInformation
+Reprints and permissions information is available at www.nature.com/reprints. The authors de-
+clare no competing financial interests. Readers are welcome to comment on the online version
+of the paper. Correspondence and requests for materials should be addressed to D.S. (davidsil-
+ver@google.com).
+18
+
+--- PAGE 19 ---
+Methods
+Reinforcement learning Policy iteration 20,21 is a classic algorithm that generates a sequence of
+improving policies, by alternating between policy evaluation – estimating the value function of
+thecurrentpolicy–andpolicyimprovement –usingthecurrentvaluefunctiontogenerateabetter
+policy. Asimpleapproachtopolicyevaluationistoestimatethevaluefunctionfromtheoutcomes
+ofsampledtrajectories35,36. Asimpleapproachtopolicyimprovementistoselectactionsgreedily
+withrespecttothevaluefunction20. Inlargestatespaces,approximationsarenecessarytoevaluate
+eachpolicyandtorepresentitsimprovement22,23.
+Classification-based reinforcement learning 37 improves the policy using a simple Monte-
+Carlosearch. Manyrolloutsareexecutedforeachaction;theactionwiththemaximummeanvalue
+provides a positive training example, while all other actions provide negative training examples; a
+policy is then trained to classify actions as positive or negative, and used in subsequent rollouts.
+This may be viewed as a precursor to the policy component of AlphaGo Zero’s training algorithm
+whenτ → 0.
+A more recent instantiation, classification-based modified policy iteration (CBMPI), also
+performspolicyevaluationbyregressingavaluefunctiontowardstruncatedrolloutvalues,similar
+tothevaluecomponentofAlphaGoZero;thisachievedstate-of-the-artresultsinthegameofTetris
+38. However,thispriorworkwaslimitedtosimplerolloutsandlinearfunctionapproximationusing
+handcraftedfeatures.
+The AlphaGo Zero self-play algorithm can similarly be understood as an approximate pol-
+icy iteration scheme in which MCTS is used for both policy improvement and policy evaluation.
+Policy improvement starts with a neural network policy, executes an MCTS based on that policy’s
+recommendations,andthenprojectsthe(muchstronger)searchpolicybackintothefunctionspace
+of the neural network. Policy evaluation is applied to the (much stronger) search policy: the out-
+comes of self-play games are also projected back into the function space of the neural network.
+Theseprojectionstepsareachievedbytrainingtheneuralnetworkparameterstomatchthesearch
+19
+
+--- PAGE 20 ---
+probabilitiesandself-playgameoutcomerespectively.
+Guo et al. 7 also project the output of MCTS into a neural network, either by regressing
+a value network towards the search value, or by classifying the action selected by MCTS. This
+approach was used to train a neural network for playing Atari games; however, the MCTS was
+fixed—therewasnopolicyiteration—anddidnotmakeanyuseofthetrainednetworks.
+Self-playreinforcementlearningingames Ourapproachismostdirectlyapplicabletozero-sum
+games of perfect information. We follow the formalism of alternating Markov games described in
+previous work 12, noting that algorithms based on value or policy iteration extend naturally to this
+setting39.
+Self-play reinforcement learning has previously been applied to the game of Go. NeuroGo
+40,41 used a neural network to represent a value function, using a sophisticated architecture based
+on Go knowledge regarding connectivity, territory and eyes. This neural network was trained by
+temporal-difference learning 42 to predict territory in games of self-play, building on prior work
+43. A related approach, RLGO 44, represented the value function instead by a linear combination
+of features, exhaustively enumerating all 3 × 3 patterns of stones; it was trained by temporal-
+differencelearningtopredictthewinneringamesofself-play. BothNeuroGoandRLGOachieved
+aweakamateurlevelofplay.
+Monte-Carlo tree search (MCTS) may also be viewed as a form of self-play reinforcement
+learning 45. The nodes of the search tree contain the value function for the positions encountered
+during search; these values are updated to predict the winner of simulated games of self-play.
+MCTS programs have previously achieved strong amateur level in Go 46,47, but used substantial
+domainexpertise: afastrolloutpolicy,basedonhandcraftedfeatures48 13,thatevaluatespositions
+by running simulations until the end of the game; and a tree policy, also based on handcrafted
+features,thatselectsmoveswithinthesearchtree47.
+Self-play reinforcement learning approaches have achieved high levels of performance in
+other games: chess 49–51, checkers 52, backgammon 53, othello 54, Scrabble 55 and most recently
+20
+
+--- PAGE 21 ---
+poker 56. In all of these examples, a value function was trained by regression 54–56 or temporal-
+difference learning 49–53 from training data generated by self-play. The trained value function was
+used as an evaluation function in an alpha-beta search 49–54, a simple Monte-Carlo search 55,57, or
+counterfactual regret minimisation 56. However, these methods utilised handcrafted input features
+49–53,56 or handcrafted feature templates 54,55. In addition, the learning process used supervised
+learningtoinitialiseweights58,hand-selectedweightsforpiecevalues49,51,52,handcraftedrestric-
+tions on the action space 56, or used pre-existing computer programs as training opponents 49,50 or
+togenerategamerecords51.
+Many of the most successful and widely used reinforcement learning methods were first
+introduced in the context of zero-sum games: temporal-difference learning was first introduced
+for a checkers-playing program 59, while MCTS was introduced for the game of Go 13. However,
+very similar algorithms have subsequently proven highly effective in video games 6–8,10, robotics
+60,industrialcontrol61–63,andonlinerecommendationsystems64,65.
+AlphaGoversions WecomparethreedistinctversionsofAlphaGo:
+1. AlphaGoFanisthepreviouslypublishedprogram12 thatplayedagainstFan HuiinOctober
+2015. Thisprogramwasdistributedovermanymachinesusing176GPUs.
+2. AlphaGo Lee is the program that defeated Lee Sedol 4–1 in March, 2016. It was previously
+unpublishedbutissimilarinmostregardstoAlphaGoFan12. However,wehighlightseveral
+key differences to facilitate a fair comparison. First, the value network was trained from
+the outcomes of fast games of self-play by AlphaGo, rather than games of self-play by the
+policy network; this procedure was iterated several times – an initial step towards the tabula
+rasa algorithm presented in this paper. Second, the policy and value networks were larger
+than those described in the original paper – using 12 convolutional layers of 256 planes
+respectively – and were trained for more iterations. This player was also distributed over
+many machines using 48 TPUs, rather than GPUs, enabling it to evaluate neural networks
+fasterduringsearch.
+21
+
+--- PAGE 22 ---
+3. AlphaGoMasteristheprogramthatdefeatedtophumanplayersby60–0inJanuary,201734.
+It was previously unpublished but uses the same neural network architecture, reinforcement
+learning algorithm, and MCTS algorithm as described in this paper. However, it uses the
+same handcrafted features and rollouts as AlphaGo Lee 12 and training was initialised by
+supervisedlearningfromhumandata.
+4. AlphaGo Zero is the program described in this paper. It learns from self-play reinforcement
+learning,startingfromrandominitialweights,withoutusingrollouts,withnohumansuper-
+vision, and using only the raw board history as input features. It uses just a single machine
+in the Google Cloud with 4 TPUs (AlphaGo Zero could also be distributed but we chose to
+usethesimplestpossiblesearchalgorithm).
+Domain Knowledge Our primary contribution is to demonstrate that superhuman performance
+canbeachievedwithouthumandomainknowledge. Toclarifythiscontribution,weenumeratethe
+domainknowledgethatAlphaGoZerouses,explicitlyorimplicitly,eitherinitstrainingprocedure
+oritsMonte-Carlotreesearch;thesearetheitemsofknowledgethatwouldneedtobereplacedfor
+AlphaGoZerotolearnadifferent(alternatingMarkov)game.
+1. AlphaGo Zero is provided with perfect knowledge of the game rules. These are used dur-
+ing MCTS, to simulate the positions resulting from a sequence of moves, and to score any
+simulations that reach a terminal state. Games terminate when both players pass, or after
+19 · 19 · 2 = 722 moves. In addition, the player is provided with the set of legal moves in
+eachposition.
+2. AlphaGo Zero uses Tromp-Taylor scoring 66 during MCTS simulations and self-play train-
+ing. This is because human scores (Chinese, Japanese or Korean rules) are not well-defined
+if the game terminates before territorial boundaries are resolved. However, all tournament
+andevaluationgameswerescoredusingChineserules.
+3. The input features describing the position are structured as a 19×19 image; i.e. the neural
+networkarchitectureismatchedtothegrid-structureoftheboard.
+22
+
+--- PAGE 23 ---
+4. The rules of Go are invariant under rotation and reflection; this knowledge has been utilised
+in AlphaGo Zero both by augmenting the data set during training to include rotations and
+reflections of each position, and to sample random rotations or reflections of the position
+during MCTS (see Search Algorithm). Aside from komi, the rules of Go are also invari-
+ant to colour transposition; this knowledge is exploited by representing the board from the
+perspectiveofthecurrentplayer(seeNeuralnetworkarchitecture)
+AlphaGo Zero does not use any form of domain knowledge beyond the points listed above.
+Itonlyusesitsdeepneuralnetworktoevaluateleafnodesandtoselectmoves(seesectionbelow).
+It does not use any rollout policy or tree policy, and the MCTS is not augmented by any other
+heuristicsordomain-specificrules. Nolegalmovesareexcluded–eventhosefillingintheplayer’s
+owneyes(astandardheuristicusedinallpreviousprograms67).
+Thealgorithmwasstartedwithrandominitialparametersfortheneuralnetwork. Theneural
+network architecture (see Neural Network Architecture) is based on the current state of the art
+in image recognition 4,18, and hyperparameters for training were chosen accordingly (see Self-
+PlayTrainingPipeline). MCTSsearchparameterswereselectedbyGaussianprocessoptimisation
+68, so as to optimise self-play performance of AlphaGo Zero using a neural network trained in
+a preliminary run. For the larger run (40 block, 40 days), MCTS search parameters were re-
+optimised using the neural network trained in the smaller run (20 block, 3 days). The training
+algorithmwasexecutedautonomouslywithouthumanintervention.
+Self-Play Training Pipeline AlphaGo Zero’s self-play training pipeline consists of three main
+components,allexecutedasynchronouslyinparallel. Neuralnetworkparametersθ arecontinually
+i
+optimised fromrecentself-playdata;AlphaGoZeroplayersα arecontinuallyevaluated;andthe
+θi
+bestperformingplayersofar,α ,isusedtogeneratenewself-playdata.
+θ∗
+Optimisation Each neural network f is optimised on the Google Cloud using TensorFlow,
+θi
+with 64 GPU workers and 19 CPU parameter servers. The batch-size is 32 per worker, for a
+total mini-batch size of 2,048. Each mini-batch of data is sampled uniformly at random from
+23
+
+--- PAGE 24 ---
+all positions from the most recent 500,000 games of self-play. Neural network parameters are
+optimised by stochastic gradient descent with momentum and learning rate annealing, using the
+loss in Equation 1. The learning rate is annealed according to the standard schedule in Extended
+Data Table 3. The momentum parameter is set to 0.9. The cross-entropy and mean-squared error
+losses are weighted equally (this is reasonable because rewards are unit scaled, r ∈ {−1,+1})
+and the L2 regularisation parameter is set to c = 10−4. The optimisation process produces a new
+checkpointevery1,000trainingsteps. Thischeckpointisevaluatedbytheevaluatoranditmaybe
+usedforgeneratingthenextbatchofself-playgames,asweexplainnext.
+Evaluator To ensure we always generate the best quality data, we evaluate each new neural
+network checkpoint against the current best network f before using it for data generation. The
+θ∗
+neural network f is evaluated by the performance of an MCTS search α that uses f to evalu-
+θi θi θi
+ate leaf positions and prior probabilities (see Search Algorithm). Each evaluation consists of 400
+games, using an MCTS with 1,600 simulations to select each move, using an infinitesimal tem-
+perature τ → 0 (i.e.we deterministically select the move with maximum visit count, to give the
+strongestpossibleplay). Ifthenewplayerwinsbyamarginof> 55%(toavoidselectingonnoise
+alone) then it becomes the best player α , and is subsequently used for self-play generation, and
+θ∗
+alsobecomesthebaselineforsubsequentcomparisons.
+Self-Play The best current player α , as selected by the evaluator, is used to generate data.
+θ∗
+In each iteration, α plays 25,000 games of self-play, using 1,600 simulations of MCTS to select
+θ∗
+each move (this requires approximately 0.4s per search). For the first 30 moves of each game, the
+temperature is set to τ = 1; this selects moves proportionally to their visit count in MCTS, and
+ensures a diverse set of positions are encountered. For the remainder of the game, an infinitesimal
+temperature is used, τ → 0. Additional exploration is achieved by adding Dirichlet noise to the
+priorprobabilitiesintherootnodes ,specificallyP(s,a) = (1−(cid:15))p +(cid:15)η ,whereηηη ∼ Dir(0.03)
+0 a a
+and (cid:15) = 0.25; this noise ensures that all moves may be tried, but the search may still overrule bad
+moves. In order to save computation, clearly lost games are resigned. The resignation threshold
+v is selected automatically to keep the fraction of false positives (games that could have been
+resign
+24
+
+--- PAGE 25 ---
+won if AlphaGo had not resigned) below 5%. To measure false positives, we disable resignation
+in10%ofself-playgamesandplayuntiltermination.
+Supervised Learning For comparison, we also trained neural network parameters θ by super-
+SL
+vised learning. The neural network architecture was identical to AlphaGo Zero. Mini-batches of
+data (s,πππ,z) were sampled at random from the KGS data-set, setting π = 1 for the human expert
+a
+move a. Parameters were optimised by stochastic gradient descent with momentum and learning
+rate annealing, using the same loss as in Equation 1, but weighting the mean-squared error com-
+ponent by a factor of 0.01. The learning rate was annealed according to the standard schedule
+in Extended Data Table 3. The momentum parameter was set to 0.9, and the L2 regularisation
+parameterwassettoc = 10−4.
+By using a combined policy and value network architecture, and by using a low weight on
+the value component, it was possible to avoid overfitting to the values (a problem described in
+prior work 12). After 72 hours the move prediction accuracy exceeded the state of the art reported
+in previous work 12,30–33, reaching 60.4% on the KGS test set; the value prediction error was also
+substantially better than previously reported 12. The validation set was composed of professional
+games from GoKifu. Accuracies and mean squared errors are reported in Extended Data Table 1
+andExtendedDataTable2respectively.
+Search Algorithm AlphaGo Zero uses a much simpler variant of the asynchronous policy and
+valueMCTSalgorithm(APV-MCTS)usedinAlphaGoFanandAlphaGoLee.
+Eachnodesinthesearchtreecontainsedges(s,a)foralllegalactionsa ∈ A(s). Eachedge
+storesasetofstatistics,
+{N(s,a),W(s,a),Q(s,a),P(s,a)},
+whereN(s,a)isthevisitcount,W(s,a)isthetotalaction-value,Q(s,a)isthemeanaction-value,
+and P(s,a) is the prior probability of selecting that edge. Multiple simulations are executed in
+parallel on separate search threads. The algorithm proceeds by iterating over three phases (a–c in
+Figure2),andthenselectsamovetoplay(dinFigure2).
+25
+
+--- PAGE 26 ---
+Select(Figure2a). TheselectionphaseisalmostidenticaltoAlphaGoFan12;werecapitulate
+here for completeness. The first in-tree phase of each simulation begins at the root node of the
+search tree, s , and finishes when the simulation reaches a leaf node s at time-step L. At each
+0 L
+of these time-steps, t < L, an action is selected according to the statistics in the search tree,
+(cid:0) (cid:1)
+a = argmax Q(s ,a)+U(s ,a) ,usingavariantofthePUCTalgorithm24,
+t t t
+a
+(cid:112)(cid:80)
+N(s,b)
+U(s,a) = c P(s,a) b
+puct
+1+N(s,a)
+where c is a constant determining the level of exploration; this search control strategy initially
+puct
+prefers actions with high prior probability and low visit count, but asympotically prefers actions
+withhighaction-value.
+Expand and evaluate (Figure 2b). The leaf node s is added to a queue for neural network
+L
+evaluation,(d (p),v) = f (d (s )),whered isadihedralreflectionorrotationselecteduniformly
+i θ i L i
+atrandomfromi ∈ [1..8].
+Positions in the queue are evaluated by the neural network using a mini-batch size of 8; the
+searchthreadislockeduntilevaluationcompletes. Theleafnodeisexpandedandeachedge(s ,a)
+L
+is initialised to {N(s ,a) = 0,W(s ,a) = 0,Q(s ,a) = 0,P(s ,a) = p }; the value v is then
+L L L L a
+backedup.
+Backup (Figure 2c). The edge statistics are updated in a backward pass through each step
+t ≤ L. Thevisitcountsareincremented,N(s ,a ) = N(s ,a )+1,andtheaction-valueisupdated
+t t t t
+to the mean value, W(s ,a ) = W(s ,a )+v,Q(s ,a ) = W(st,at). We use virtual loss to ensure
+t t t t t t N(st,at)
+eachthreadevaluatesdifferentnodes69.
+Play(Figure2d). AttheendofthesearchAlphaGoZeroselectsamoveatoplayintheroot
+position s , proportional to its exponentiated visit count, π(a|s ) = N(s ,a)1/τ/ (cid:80) N(s ,b)1/τ,
+0 0 0 b 0
+whereτ isatemperatureparameterthatcontrolsthelevelofexploration. Thesearchtreeisreused
+at subsequent time-steps: the child node corresponding to the played action becomes the new root
+node; the subtree below this child is retained along with all its statistics, while the remainder of
+26
+
+--- PAGE 27 ---
+the tree is discarded. AlphaGo Zero resigns if its root value and best child value are lower than a
+thresholdvaluev .
+resign
+ComparedtotheMCTSinAlphaGoFanandAlphaGoLee,theprincipaldifferencesarethat
+AlphaGo Zero does not use any rollouts; it uses a single neural network instead of separate policy
+and value networks; leaf nodes are always expanded, rather than using dynamic expansion; each
+search thread simply waits for the neural network evaluation, rather than performing evaluation
+and backup asynchronously; and there is no tree policy. A transposition table was also used in the
+large(40block,40day)instanceofAlphaGoZero.
+Neural Network Architecture The input to the neural network is a 19 × 19 × 17 image stack
+comprising 17 binary feature planes. 8 feature planes X consist of binary values indicating the
+t
+presence of the current player’s stones (Xi = 1 if intersection i contains a stone of the player’s
+t
+colour at time-step t; 0 if the intersection is empty, contains an opponent stone, or if t < 0). A
+further 8 feature planes, Y , represent the corresponding features for the opponent’s stones. The
+t
+final feature plane, C, represents the colour to play, and has a constant value of either 1 if black
+is to play or 0 if white is to play. These planes are concatenated together to give input features
+s = [X ,Y ,X ,Y ,...,X ,Y ,C]. History features X ,Y are necessary because Go is
+t t t t−1 t−1 t−7 t−7 t t
+not fully observable solely from the current stones, as repetitions are forbidden; similarly, the
+colourfeatureC isnecessarybecausethekomiisnotobservable.
+Theinputfeaturess areprocessedbyaresidualtowerthatconsistsofasingleconvolutional
+t
+blockfollowedbyeither19or39residualblocks4.
+Theconvolutionalblockappliesthefollowingmodules:
+1. Aconvolutionof256filtersofkernelsize3×3withstride1
+2. Batchnormalisation18
+3. Arectifiernon-linearity
+27
+
+--- PAGE 28 ---
+Eachresidualblockappliesthefollowingmodulessequentiallytoitsinput:
+1. Aconvolutionof256filtersofkernelsize3×3withstride1
+2. Batchnormalisation
+3. Arectifiernon-linearity
+4. Aconvolutionof256filtersofkernelsize3×3withstride1
+5. Batchnormalisation
+6. Askipconnectionthataddstheinputtotheblock
+7. Arectifiernon-linearity
+Theoutputoftheresidualtowerispassedintotwoseparate“heads”forcomputingthepolicy
+andvaluerespectively. Thepolicyheadappliesthefollowingmodules:
+1. Aconvolutionof2filtersofkernelsize1×1withstride1
+2. Batchnormalisation
+3. Arectifiernon-linearity
+4. A fully connected linear layer that outputs a vector of size 192 +1 = 362 corresponding to
+logitprobabilitiesforallintersectionsandthepassmove
+Thevalueheadappliesthefollowingmodules:
+1. Aconvolutionof1filterofkernelsize1×1withstride1
+2. Batchnormalisation
+3. Arectifiernon-linearity
+28
+
+--- PAGE 29 ---
+4. Afullyconnectedlinearlayertoahiddenlayerofsize256
+5. Arectifiernon-linearity
+6. Afullyconnectedlinearlayertoascalar
+7. Atanhnon-linearityoutputtingascalarintherange[−1,1]
+The overall network depth, in the 20 or 40 block network, is 39 or 79 parameterised layers
+respectively for the residual tower, plus an additional 2 layers for the policy head and 3 layers for
+thevaluehead.
+Wenotethatadifferentvariantofresidualnetworkswassimultaneouslyappliedtocomputer
+Go33 andachievedamateurdan-levelperformance;howeverthiswasrestrictedtoasingle-headed
+policynetworktrainedsolelybysupervisedlearning.
+NeuralNetworkArchitectureComparison Figure4showstheresultsofacomparisonbetween
+networkarchitectures. Specifically,wecomparedfourdifferentneuralnetworks:
+1. dual-res: The network contains a 20-block residual tower, as described above, followed by
+bothapolicyheadandavaluehead. ThisisthearchitectureusedinAlphaGoZero.
+2. sep-res: The network contains two 20-block residual towers. The first tower is followed by
+apolicyheadandthesecondtowerisfollowedbyavaluehead.
+3. dual-conv: The network contains a non-residual tower of 12 convolutional blocks, followed
+bybothapolicyheadandavaluehead.
+4. sep-conv: The network contains two non-residual towers of 12 convolutional blocks. The
+first tower is followed by a policy head and the second tower is followed by a value head.
+ThisisthearchitectureusedinAlphaGoLee.
+Each network was trained on a fixed data-set containing the final 2 million games of self-
+play data generated by a previous run of AlphaGo Zero, using stochastic gradient descent with
+29
+
+--- PAGE 30 ---
+the annealing rate, momentum, and regularisation hyperparameters described for the supervised
+learning experiment; however, cross-entropy and mean-squared error components were weighted
+equally,sincemoredatawasavailable.
+Evaluation We evaluated the relative strength of AlphaGo Zero (Figure 3a and 6) by measuring
+the Elo rating of each player. We estimate the probability that player a will defeat player b by
+a logistic function p(adefeatsb) = 1 , and estimate the ratings e(·) by Bayesian
+1+exp(c (e(b)−e(a))
+elo
+logisticregression,computedbytheBayesEloprogram25usingthestandardconstantc = 1/400.
+elo
+Elo ratings were computed from the results of a 5 second per move tournament between
+AlphaGo Zero, AlphaGo Master, AlphaGo Lee, and AlphaGo Fan. The raw neural network from
+AlphaGoZerowasalsoincludedinthetournament. TheEloratingsofAlphaGoFan,CrazyStone,
+Pachi and GnuGo were anchored to the tournament values from prior work 12, and correspond to
+the players reported in that work. The results of the matches of AlphaGo Fan against Fan Hui and
+AlphaGo Lee against Lee Sedol were also included to ground the scale to human references, as
+otherwisetheEloratingsofAlphaGoareunrealisticallyhighduetoself-playbias.
+The Elo ratings in Figure 3a, 4a and 6a were computed from the results of evaluation games
+between each iteration of player α during self-play training. Further evaluations were also per-
+θi
+formedagainstbaselineplayerswithEloratingsanchoredtothepreviouslypublishedvalues12.
+We measured the head-to-head performance of AlphaGo Zero against AlphaGo Lee, and
+the 40 block instance of AlphaGo Zero against AlphaGo Master, using the same player and match
+conditionsaswereusedagainstLeeSedolinSeoul,2016. Eachplayerreceived2hoursofthinking
+time plus 3 byoyomi periods of 60 seconds per move. All games were scored using Chinese rules
+withakomiof7.5points.
+Data Availability The datasets used for validation and testing are the GoKifu dataset (available
+fromhttp://gokifu.com/)andtheKGSdataset(availablefromhttps://u-go.net/gamerecords/).
+30
+
+--- PAGE 31 ---
+References
+35. Barto,A.G.&Duff,M. MonteCarlomatrixinversionandreinforcementlearning. Advances
+inNeuralInformationProcessingSystems687–694(1994).
+36. Singh,S.P.&Sutton,R.S. Reinforcementlearningwithreplacingeligibilitytraces. Machine
+learning22,123–158(1996).
+37. Lagoudakis, M. G. & Parr, R. Reinforcement learning as classification: Leveraging modern
+classifiers. InInternationalConferenceonMachineLearning,424–431(2003).
+38. Scherrer, B., Ghavamzadeh, M., Gabillon, V., Lesner, B. & Geist, M. Approximate modi-
+fied policy iteration and its application to the game of Tetris. Journal of Machine Learning
+Research16,1629–1676(2015).
+39. Littman, M. L. Markov games as a framework for multi-agent reinforcement learning. In
+InternationalConferenceonMachineLearning,157–163(1994).
+40. Enzenberger, M. The integration of a priori knowledge into a Go playing neural network
+(1996). URL:http://www.cgl.ucsf.edu/go/Programs/neurogo-html/neurogo.html.
+41. Enzenberger, M. Evaluation in Go by a neural network using soft segmentation. In Advances
+inComputerGamesConference,97–108(2003).
+42. Sutton, R. Learning to predict by the method of temporal differences. Machine Learning 3,
+9–44(1988).
+43. Schraudolph, N. N., Dayan, P. & Sejnowski, T. J. Temporal difference learning of position
+evaluation in the game of Go. Advances in Neural Information Processing Systems 817–824
+(1994).
+44. Silver, D., Sutton, R. & Mu¨ller, M. Temporal-difference search in computer Go. Machine
+Learning87,183–219(2012).
+31
+
+--- PAGE 32 ---
+45. Silver, D. Reinforcement Learning and Simulation-Based Search in Computer Go. Ph.D.
+thesis,UniversityofAlberta,Edmonton,Canada(2009).
+46. Gelly, S. & Silver, D. Monte-Carlo tree search and rapid action value estimation in computer
+Go. ArtificialIntelligence175,1856–1875(2011).
+47. Coulom, R. Computing Elo ratings of move patterns in the game of Go. International Com-
+puterGamesAssociationJournal30,198–208(2007).
+48. Gelly, S., Wang, Y., Munos, R. & Teytaud, O. Modification of UCT with patterns in Monte-
+CarloGo. Tech.Rep.6062,INRIA(2006).
+49. Baxter, J., Tridgell, A. & Weaver, L. Learning to play chess using temporal differences.
+MachineLearning40,243–263(2000).
+50. Veness,J.,Silver,D.,Blair,A.&Uther,W. Bootstrappingfromgametreesearch. InAdvances
+inNeuralInformationProcessingSystems,1937–1945(2009).
+51. Lai,M. Giraffe: UsingDeepReinforcementLearningtoPlayChess. Master’sthesis,Imperial
+CollegeLondon(2015).
+52. Schaeffer, J., Hlynka, M. & Jussila, V. Temporal difference learning applied to a high-
+performance game-playing program. In International Joint Conference on Artificial Intelli-
+gence,529–534(2001).
+53. Tesauro, G. TD-gammon, a self-teaching backgammon program, achieves master-level play.
+NeuralComputation6,215–219(1994).
+54. Buro,M. Fromsimplefeaturestosophisticatedevaluationfunctions. InInternationalConfer-
+enceonComputersandGames,126–145(1999).
+55. Sheppard, B. World-championship-caliber Scrabble. Artificial Intelligence 134, 241–275
+(2002).
+32
+
+--- PAGE 33 ---
+56. Moravcˇ´ık, M. et al. Deepstack: Expert-level artificial intelligence in heads-up no-limit poker.
+Science(2017).
+57. Tesauro, G. & Galperin, G. On-line policy improvement using Monte-Carlo search. In Ad-
+vancesinNeuralInformationProcessing,1068–1074(1996).
+58. Tesauro, G. Neurogammon: a neural-network backgammon program. In International Joint
+ConferenceonNeuralNetworks,vol.3,33–39(1990).
+59. Samuel, A. L. Some studies in machine learning using the game of checkers II - recent
+progress. IBMJournalofResearchandDevelopment 11,601–617(1967).
+60. Kober, J., Bagnell, J. A. & Peters, J. Reinforcement learning in robotics: A survey. The
+InternationalJournalofRoboticsResearch32,1238–1274(2013).
+61. Zhang, W. & Dietterich, T. G. A reinforcement learning approach to job-shop scheduling. In
+InternationalJointConferenceonArtificialIntelligence,1114–1120(1995).
+62. Cazenave, T., Balbo, F. & Pinson, S. Using a Monte-Carlo approach for bus regulation. In
+InternationalIEEEConferenceonIntelligentTransportationSystems,1–6(2009).
+63. Evans, R. & Gao, J. Deepmind AI reduces Google data centre cooling bill by 40% (2016).
+URL:https://deepmind.com/blog/deepmind-ai-reduces-google-data-centre-cooling-bill-40/.
+64. Abe,N.etal. Empiricalcomparisonofvariousreinforcementlearningstrategiesforsequential
+targetedmarketing. InIEEEInternationalConferenceonDataMining,3–10(2002).
+65. Silver, D., Newnham, L., Barker, D., Weller, S.& McFall, J. Concurrent reinforcement learn-
+ing from customer interactions. In International Conference on Machine Learning, 924–932
+(2013).
+66. Tromp,J. Tromp-Taylorrules(1995). URL:http://tromp.github.io/go.html.
+67. Mu¨ller,M. ComputerGo. ArtificialIntelligence134,145–179(2002).
+33
+
+--- PAGE 34 ---
+68. Shahriari, B., Swersky, K., Wang, Z., Adams, R. P. & de Freitas, N. Taking the human out of
+theloop: AreviewofBayesianoptimization. ProceedingsoftheIEEE 104,148–175(2016).
+69. Segal,R.B. OnthescalabilityofparallelUCT. ComputersandGames6515,36–47(2011).
+34
+
+--- PAGE 35 ---
+KGS train KGS test GoKifuvalidation
+Supervisedlearning(20block) 62.0 60.4 54.3
+Supervisedlearning(12layer12) 59.1 55.9 -
+Reinforcementlearning(20block) - - 49.0
+Reinforcementlearning(40block) - - 51.3
+Extended Data Table 1: Move prediction accuracy. Percentage accuracies of move prediction for neural net-
+works trained by reinforcement learning (i.e. AlphaGo Zero) or supervised learning respectively. For supervised
+learning,thenetworkwastrainedfor3daysonKGSdata(amateurgames);comparativeresultsarealsoshownfrom
+Silveretal12. Forreinforcementlearning,the20blocknetworkwastrainedfor3daysandthe40blocknetworkwas
+trainedfor40days. NetworkswerealsoevaluatedonavalidationsetbasedonprofessionalgamesfromtheGoKifu
+dataset.
+KGS train KGS test GoKifuvalidation
+Supervisedlearning(20block) 0.177 0.185 0.207
+Supervisedlearning(12layer12) 0.19 0.37 -
+Reinforcementlearning(20block) - - 0.177
+Reinforcementlearning(40block) - - 0.180
+Extended Data Table 2: Game outcome prediction error. Mean squared error on game outcome predictions
+for neural networks trained by reinforcement learning (i.e. AlphaGo Zero) or supervised learning respectively. For
+supervised learning, the network was trained for 3 days on KGS data (amateur games); comparative results are also
+shownfromSilveretal12. Forreinforcementlearning,the20blocknetworkwastrainedfor3daysandthe40block
+networkwastrainedfor40days. Networkswerealsoevaluatedonavalidationsetbasedonprofessionalgamesfrom
+theGoKifudataset.
+
+--- PAGE 36 ---
+Thousandsofsteps Reinforcementlearning Supervisedlearning
+0–200 10−2 10−1
+200–400 10−2 10−2
+400–600 10−3 10−3
+600–700 10−4 10−4
+700–800 10−4 10−5
+>800 10−4 -
+Extended Data Table 3: Learningrateschedule. Learningrateusedduringreinforcementlearningandsuper-
+visedlearningexperiments,measuredinthousandsofsteps(mini-batchupdates).
+
+--- PAGE 37 ---
+4.00e-03
+3.50e-03
+3.00e-03
+2.50e-03
+2.00e-03
+1.50e-03
+1.00e-03
+5.00e-04
+0.00e+00
+0 10 20 30 40 50 60 70 0 10 20 30 40 50 60 70
+Hours Hours
+2.50e-05
+2.00e-05
+1.50e-05
+1.00e-05
+5.00e-06
+0.00e+00
+0 10 20 30 40 50 60 70 0 10 20 30 40 50 60 70
+Hours Hours
+4.00e-04
+3.50e-04
+3.00e-04
+2.50e-04
+2.00e-04
+1.50e-04
+1.00e-04
+5.00e-05
+0.00e+00
+0 10 20 30 40 50 60 70
+Hours
+ycneuqerF
+ycneuqerF
+ycneuqerF
+ycneuqerF
+Pincer 3-3 point
+ycneuqerF
+5-3 point press Small avalanche
+4.00e-04
+3.50e-04 10
+6 4 2 3 5 8
+3.00e-04
+5 3 7 2 4 1 9
+2.50e-04
+1 6 11
+2.00e-04
+1.50e-04
+1.00e-04
+5.00e-05
+0.00e+00
+Attach and draw back Knight's move pincer
+2.50e-04
+2.00e-04 8 4 3 5 3 6
+6 2 1 1 4
+1.50e-04
+7 2
+1.00e-04
+5.00e-05 5
+0.00e+00
+12 6 4 10
+7 1 5 8
+9
+2 11
+3
+Extended Data Figure 1: Frequency of occurence over time during training, for each joseki from Figure 5a
+(cornersequencescommoninprofessionalplaythatwerediscoveredbyAlphaGoZero). Thecorrespondingjosekiare
+reproducedinthisfigureasinsets.
+
+--- PAGE 38 ---
+4.50e-04 6.00e-04
+4.00e-04
+5.00e-04
+3.50e-04
+3.00e-04 4.00e-04
+2.50e-04
+3.00e-04
+2.00e-04
+1.50e-04 2.00e-04
+1.00e-04
+1.00e-04
+5.00e-05
+0.00e+00 0.00e+00
+Knight's move approach
+6.00e-04
+5.00e-04
+4.00e-04
+3.00e-04
+2.00e-04
+1.00e-04
+0.00e+00
+3-3 invasion
+3.50e-02
+3.00e-02
+2.50e-02
+2.00e-02
+1.50e-02
+1.00e-02
+5.00e-03
+0.00e+00
+ycneuqerF
+1-1 point Outside attachment
+One-space jump
+ycneuqerF
+0 10 20 30 40 50 60 70 0 10 20 30 40 50 60 70
+Hours Hours
+0 10 20 30 40 50 60 70 0 10 20 30 40 50 60 70
+Hours Hours
+3-3 point knight's move
+0 10 20 30 40 50 60 70 0 10 20 30 40 50 60 70
+Hours Hours
+ycneuqerF
+ycneuqerF
+ycneuqerF
+ycneuqerF
+1
+5 7
+9 3 1 4
+8 2 6
+2
+4 3
+10
+6.00e-03
+6
+5.00e-03
+7 10 8 8 2 3
+5 1 4.00e-03 4 1
+3 9 6 7
+3.00e-03
+4 2 5
+2.00e-03
+1.00e-03
+0.00e+00
+12 2.50e-03
+10 7 6 11 13 17 8 11 15 13 10
+8 5 4 2 2.00e-03 19 5 6 4 2 9 14
+9 1 3 18 7 1 3 12
+1.50e-03
+20
+1.00e-03
+5.00e-04 16 at 9
+0.00e+00
+ExtendedDataFigure2: Frequencyofoccurenceovertimeduringtraining,foreachjosekifromFigure5b,(cor-
+nersequencesthatAlphaGoZerofavouredforatleastoneiteration),andoneadditionalvariation. Thecorresponding
+josekiarereproducedinthisfigureasinsets.
+
+--- PAGE 39 ---
+Game1,B:AGZero,W:AGZero,Result:B+R Game2,B:AGZero,W:AGZero,Result:B+R Game3,B:AGZero,W:AGZero,Result:W+R Game4,B:AGZero,W:AGZero,Result:B+R
+2 906313 65 51 77 93
+2348 88 98 28 100444248 8281 6058 30776 59 897094
+5022 55 76 98432322 1816 8079 899 72706921615657 4 3 33 584547 262418656790
+9686 92 17 94 9987862124 151420 52 7849 45 77 979874716887 5931 6 2 135 4421 25172066
+59 56 83 30 8 94952526 7 64 58 67 37 80797573868891 2625534 46 2368
+1993 3 58112 52 9 96 2728 112 9 41 84 55 292722 32 69
+79 41 425 77 51 2930 5 13 8381786664625489 90393628 99
+39 14 1038 50593132 56 12 8582676563535249434140 4850 92959861
+32 334457 1 97 3334 6 939294 5150484244 764972 88919684
+54 46 16 91 373510 8 46 3896 10095 11 77744373 10097
+100 80 40 316 393638 75 78 82
+68 29 87 69 99 60756424 4054 60 4 4791 8785837960
+6726 66 61 4647 1513 86628081
+73 42 85 11 18 15 53 17 2445 1211 41
+7121 846278 7 83 61 1623 105 614303634 4039
+2045 27 35 95 53 57 68 7569 1965 10 2018141215 4 132291635565254 2237
+97 55 66 7276843 626393 1917139 2 3 333157275355 423851
+47 72 70 58 49 7371 70 74185 888992 8 7 9 1928 646371
+43 89 36 82 3734 74 90
+Game5,B:AGZero,W:AGZero,Result:B+R Game6,B:AGZero,W:AGZero,Result:W+R Game7,B:AGZero,W:AGZero,Result:B+R Game8,B:AGZero,W:AGZero,Result:B+R
+38 15
+2171 3073 17 2539 36352837 39 48161471013 80 76
+201370 262425 16132928 40 30 962795232122 8516 302526242033 473 5 611 94 5017977
+12311 221 71123 844124226 97807986 323127123 964 21279 45 2087475
+141019 7423 691415 784746 888793 95 5554 21
+646265 666519 5848 97 9518 34 91 97 49 53
+72276667 70671864 7742 9810099 595856 4657
+696875 68 8183 92 93 6160 7273
+76 100 5560 578031 6362 907871
+979498 87 6172 63628293 29 6564 89
+9392 829091 100987374 76 59 4556 9998 6766
+95 8178 866163 99 794490 100 6968 29
+79776080594448 51 898586 92 83 8870 2728
+56555740525147 383549 8887 72 969194 444187 2326
+9 5 54493458 5053 3637 9291 71 8353906345 4243 332524
+7 2 6 3628331843739 341 75208 41094 4 21019 7482594441 17 7715 401 31303218
+298 9688 8432313517151645 3233 11 7 5 6 213 5 6 9 6952626640654943765157 2239 353419
+998983424143 3846 50435253 9 2214127 81158676860 424746505455 82818485 37363852
+85 54 13706164 48 56 86 51
+73at61 75at67 78at58 81at67 84at58
+89at67
+Game9,B:AGZero,W:AGZero,Result:W+R Game10,B:AGZero,W:AGZero,Result:W+R Game11,B:AGZero,W:AGZero,Result:W+R Game12,B:AGZero,W:AGZero,Result:W+R
+79 15 59
+70 7877 666465 6162 18161491013 455857 61
+6968762071 6055 546 175 7 811 40984 1 94 3 43 42 44 17285453
+843807372745859 47 4 6 212 97 38 7 93 8997 3 5 29 255
+87825781756763 5254 3919 6 87838495 95 89 787167565152
+858388 4948 5829296 32 8788 488370 6018
+5610086 435053 99100 7776 969298908584
+99 51 797888 97 9186 50
+45 29 8 22801181 36 82 93 99 4946
+83 98 3713 66642762
+444139 9628 91 12 10 6563
+424094 8280744142 687566 90 31 47
+14 33 57 5564 81 717072 707473656713 9 94 216968
+161112 9336 262337 63626510056 75 734330 43 6972 71 7934 222019
+10913 37 32 2425 9952669391898688454467 262444 474038 85 14 7610077 402581
+158 1 332622231 221 545392586090876834669 5223428484641393130201816 2 7 1111530 3875 33 42380
+176 796 38 34242523212835 20215150 48944959612795787647 2527554542 493621191532 86 166 810914 7473 35 2624
+1918979190 3027 29 32313435 847985 51 53 2950 5756 3734333517 12 7241 39
+36 5464636260595861
+89at 3 92at82 95at 3 98at82 77at46
+Game13,B:AGZero,W:AGZero,Result:W+R Game14,B:AGZero,W:AGZero,Result:W+R Game15,B:AGZero,W:AGZero,Result:W+R Game16,B:AGZero,W:AGZero,Result:W+R
+58 62 67 57
+27 29 363457 87575658978891 56554445 59 16151820
+2625 23 2438 3233 4748 139214 46 1 66 2017191158 3953 1 6 7 14
+282 535301 494 5960 46184411415 52 228 5 4
+56 31 65645010053 54 62356343421637 211011
+22 47 37 51 619998 5 13 79843836 61 12919 13
+54 61 67 55 51 21 4078 97100 17
+444640 66 71737477 64
+66 76 45 79 85297072758088
+99 50 757884 286869768193 90 65 38 9075
+5589 43 63 77686376 90 5242 504996829287 36 746591
+95 969786 655362 7374 95 434144 48479491959998 3435 64515073 95
+17 77 9198 51644142 8530 96 45 8124 89 37 76 4849 5794
+12921 94 69676014 726970 40 82 242631 60 3923 7980 4647
+1011 100 74848280858768 2271 20 393633 54232225 86 7877 424552537292 9796
+8 3 7592 908381797848884 187 3112119 373126342 32327610 833034 2 43282308224 40415456263981001
+6 77170 4913 52 28156 8109 2332 33 9 7 8 12 5 322729 81625825556886934483
+1615181972 93 3959 162729251217 3538 33 316059896366678485
+20 73 94 618770716988
+80at68 83at63 86at68 89at63 93at68 99at44
+Game17,B:AGZero,W:AGZero,Result:W+R Game18,B:AGZero,W:AGZero,Result:B+R Game19,B:AGZero,W:AGZero,Result:B+R Game20,B:AGZero,W:AGZero,Result:W+R
+25 27 7980 6766 70 171513
+221 26 6562 5886 27100 9141112 1011 655957 494753 193 1121
+2120 24 28 69615645457 3999896 88 97 25162 123 606344585044851 918 202337 5 1
+23 7472685953555185 868487 1415 6468 5652 7 6 36
+3 97 827175 5288 8581 10 161341 6661 45 4354 810 14 56
+9681 367360421264 626179 40 71 6967 55 84
+78767741436387 726871 42 62 27 97 41
+35 8376565859 98944692 94 252430 40
+17 83 34 29 756665575445 9995931009182 291326 98
+908491 636455393660 818384 283492 425822
+463789 734437403138 2985247086 15 339039878996545246 57
+95 100 93 74526942412930 27 77752580 9331 3591958688 535145
+491315 40 10893 8 9495 53807032282124 97674 991232 85 17
+14 45393832 6 7 7851 2322 5 37 36182022 7978 100 66768079
+48 2 16 9433313018 9 4 7 26 5049 120 28 26 303234171921968721 468 6263817247 434950238
+4750 44 92 9911 5 6 5 9046921918 2 2331333597 90 6 773 60676461487170 554416
+9819 82 899135 333448 3938 8887 5969657782737475
+47 89 78
+43at40 67at54 77at69 83at48
+Extended Data Figure 3: AlphaGoZero(20block)self-playgames. The3daytrainingrunwassubdividedinto
+20periods. Thebestplayerfromeachperiod(asselectedbytheevaluator)playedasinglegameagainstitself,with2
+hourtimecontrols. 100movesareshownforeachgame;fullgamesareprovidedinSupplementaryInformation.
+
+--- PAGE 40 ---
+Game1,B:AGZero,W:AGZero,Result:B+R Game2,B:AGZero,W:AGZero,Result:W+R Game3,B:AGZero,W:AGZero,Result:B+R Game4,B:AGZero,W:AGZero,Result:W+R
+48 6186 85 89
+11 80972734 49 72 50 7385 5857 989911 674286 78847583 8281 87
+147 84 96 5239 74 1413 82 178 9 7 521 9394 81 5152 34 8261 848079 29 767377
+45 3631 1553 4 15 56 4718102 619 3 592 80969755643940 4623663 83285 787475 5 3
+82 95 8881 26 6261 6766 6063 20 95 87986665417172 57 90 86 49 5947
+6 29 19 33 10 16 7574 68597981 52 91 90 99 76 6837 33 30 88 94 545657 46
+42 37 59 646972 70 100 776970 73 7989 5253584842
+28 16 556573 80 4958 5488 92 9363316045
+30 58 875 256 68 4896 43 45 7447 9598 62614344
+99 3577705 78 83 384846 65 50
+9 79 25 8341 7671 53 50 10099 5164 5572
+20 6323 94 1821 69 67 43 51 778889 16 28 69676870
+92 8962 90 47 45 4950 939091 1444 56 29 662321
+3851 65 10012 3 97 44 95928584 12915 35272631 25 2291271
+4 24 13 78 71 64 10012 37 53 86 201011 59282425 2736 9796 111015
+5743 1 32 38 3536 54 2912387 19188 1 22330 323433 26 1 819
+54 22 98 4240339 34 28252422 176 7 222132 4 41 359138 24 7 617
+91 7660 4641 3027263133 13 60 373940 161314
+46 87 1744 93 405566 32 18
+94at85 20at13
+Game5,B:AGZero,W:AGZero,Result:W+R Game6,B:AGZero,W:AGZero,Result:W+R Game7,B:AGZero,W:AGZero,Result:W+R Game8,B:AGZero,W:AGZero,Result:B+R
+767582 79 42
+585748 77 76 6877666774 495178575541603940 989 85
+4044 354647 43 732 75 43453944 29 3533 726465 929185254448565354612120 935 7 88 797783
+39274424549 33 478 472 404146 4 69701 9486848745 365850 322 916 4 8 95 87 8027881
+41 73 4248 34 71 93 37 4346 23 92 98 8482
+53638 34 5 32301172 19 95 47 24 94 90 11
+375354 3136 8938 28 97 86
+51 55 60 92 7173 100 62 90 100
+715052 89 59 63 52 17 19 99
+696570 93 1263 36 75 42
+636466 96 16 88 65647069 18 76 68
+6762619493 97 19 30 666751602861 99 5366
+68 9095 2120253129 50 94 55 59 73 35 96 74727064606167
+56100897299 242223276 90 9897 565421202423 1735 1024 3334 55 737169636265
+79 98 181126 918587 10074535217186862 33 34 26 2823 2532 415456 52
+83 38185 17 10928113 838138437 9976 7515161 71957 294 27 88122 696 30291 2122 57 5015313
+82 80845991 8141215 8280867879 77 9148 62258 313098 18 118 7 581 312627 203739 59 514746141243
+92 888687 9695 3849 13102526 9732 13109141683 4038 49164548 44
+27 15 58
+80at66
+Game9,B:AGZero,W:AGZero,Result:W+R Game10,B:AGZero,W:AGZero,Result:W+R Game11,B:AGZero,W:AGZero,Result:B+R Game12,B:AGZero,W:AGZero,Result:W+R
+22
+181720 9089 53 737159 87 864563676465 3334 31 932 92
+211011 28 70 100 931011 5131 724568 65 20 621766 22 1110 285 72322 917687
+23123 299 94121 52 4849 6766 4 2 46 2425 16 31240 336 2 8 30 86 884
+191415 97 1415 5080 75 23 13363538 908985 80
+161326 29 161329 76 5840 26 42433714 959384 79 7781
+2527 8382 702863 62 61 57 50 47 3127 4139 26
+6571987384 3069 82 60 3028 32 29 15 252770 78
+78796364 72 81 64 77 84 44 8081 97 75
+69668658 999697 83 78 48 497879 3920 24 38 94 8283
+87 85 6768 1009895 3979 727477 35
+59 57 92 8687 3532 52 8471705961 17 21 37 4996 69 100 98
+80 4648 27 85 33 19 100 99 76736075 575652
+36 8177767460 564945449 88 26 22 23 9 918 9798 68 5556 3416 18 3658535961
+33 755196 52 84342 91 2524 47 83637 8 21 90959669 855854 634129 66 99
+38371 3132 959461 4 747 3 2118 461942 2 744 7 4 9394 83 157 62 34719655054606468 13111
+34 3530 3989509262 6 5 1720 74 4341 6 5 5 6 15 9192 8253 72404446 43 515567 48 1210
+93889091 54534041 555456 3438 51 8988 7173 4245 14
+55 74
+24at17
+Game13,B:AGZero,W:AGZero,Result:B+R Game14,B:AGZero,W:AGZero,Result:W+R Game15,B:AGZero,W:AGZero,Result:W+R Game16,B:AGZero,W:AGZero,Result:W+R
+41 41
+35 303940 4349 99 4740 3637 6527 97 96
+1920 3738 42 7 6 1314 44 39100 3029 2818 741326 39 45 2221 291615175 928867 10098
+214293136 1 8 23154 28 42 231 172 20 4327 423 28302251213 84818687 399
+2527283233 9 212016 40 32 19 4442 466724 26 14 85908993 73
+232226 10 221718 97 5 51416 38 65 25 1118 809178 747282
+24 34 60 251926 41 33 7115 35 94
+53 2724 7073 839579 77 75
+87 51 43 59 58 6869 66 68
+29 64
+84 869699100 90 77 91 72 95 63
+8283 8197939592 8988 76717284878990935798 91899275 7977 69 62
+625066 98 918552 707369858675889495 93648790 807876 61 70 7657
+111865757176 58 94 48 79 78666374 68 53 94 88 66 33 5960 5510
+6163791472737759 47 67616264 6592 51 5154 83 52 514171 9545356
+67264121374 5756 346 7 1 955608196 838048473733550 587 3114852 9997 3313182 2042231 373844 1 858
+16151756870 55 4544 566 8101154 494546 363452 60556 81094953 100989681 323084 2419214223 32 40343945 7 6
+54 6978 12 82 38 56576159125063 853486 5046434947 3536
+48
+80at13 62at55
+Game17,B:AGZero,W:AGZero,Result:B+R Game18,B:AGZero,W:AGZero,Result:W+R Game19,B:AGZero,W:AGZero,Result:W+R Game20,B:AGZero,W:AGZero,Result:W+R
+61 60
+595860 10 46 86 10 88 26 715859611315 49 69 67 4121
+1920 91 92 26 8 645 85546 812952 242264 7756911351214164748 342 1615 35540
+214 1009394 9 1 7 87557 11353 9892 2532391 751023645 514639 7 4344 18141 22 4
+2324 96 55 54 47 97 91767980 3752505340 63 6564686 2017192934
+25229543 93 858384 5482 55 6266 42 8242528
+3130 9997 67 99 869038 81 92 57 3630272638
+5632 44 8898 34 6366 1009665 9389 41 18 322331
+8586 62 8887 2324 33 4437
+7984 5158 43 39 45
+878941 4271788390 49 615960 84 17 22 10098
+828081 64747770 5756 95 888799 84
+7372355740697576 78779471 89 100 43 82898581 51
+39111865636768 48 1135 75 90 345 19 2097 90727479 5013
+62382866145052 211820 767273 7430 38 78 9899 6 57 7566706869738012
+363722712135153 3 19154 3649 8229283724240 27264 7033 1 21 5348567 64659167 97 211
+331615175 1716 14 4847 80273331324146 312528 8 34 325 95 494635260 58 63 71 83109
+29 50 7068698381 79 3944 2930 74727394 4754615962 76929394 777886
+45 96 9695
+55at46
+ExtendedDataFigure4: AlphaGoZero(40block)self-playgames. The40daytrainingrunwassubdividedinto
+20periods. Thebestplayerfromeachperiod(asselectedbytheevaluator)playedasinglegameagainstitself,with2
+hourtimecontrols. 100movesareshownforeachgame;fullgamesareprovidedinSupplementaryInformation.
+
+--- PAGE 41 ---
+Game1,B:AGLee,W:AGZero,Result:W+R Game2,B:AGLee,W:AGZero,Result:W+R Game3,B:AGLee,W:AGZero,Result:W+R Game4,B:AGLee,W:AGZero,Result:W+0.50
+303234 96 323436 85 302829 79 83 182030
+262829313335 97 475152 57 2830313335378483 4145466861 202177317867 415558 32141617192131 93
+271 4948 2 5662 29151 82 594342662676069 40 221768066696473 595352562 2915159 2
+6350 586053 50 44 65 49 3227268243817071 54 50 818048 5051
+8081 1761 70 72919327 392423886242866865 75 61 514997 79587582 53
+73 597555 76 636492 2589 33 92857274 57 78777376 5249
+64 7267 949574 40 947473807162 19 63 848791 6074
+36 686971 909287 38 817578897788 100 18 90 60 5455
+7054 86899382 545339 79 98 100 9998 48 46 56 8485
+1009991 787779 56115257 9087 111314 86 41 65 92
+11 88 98848376 25 58 55 8623 151216 47 45 13573543 46 62
+16 85 969597 353437 45 44 4233 40 66 6364
+66 8 21 998 3638 44 8 93 36 3488 39 67 8
+1014 1265 40 10 141512 484725 10 37258990 38 7268
+241320 1921 9 7444 24 1816 20 139 7 4 17 9 7 4 94 2322268728 709 7 49699
+223 1518 5 64337 1931722 5 6 26 3 5 6 95 2732491614771 1169 5 6 95
+23 3938414246 96 1094129897 100
+45
+83at58
+Game5,B:AGLee,W:AGZero,Result:W+R Game6,B:AGLee,W:AGZero,Result:W+0.50 Game7,B:AGLee,W:AGZero,Result:W+R Game8,B:AGLee,W:AGZero,Result:W+R
+66
+6743 65 3233 8386 727476 85 2524 161820 6158 34 3235 55 5051
+6436373944 24 253031 1514 887170731096 1511 19 2327222030 15141712 59 5762 40332628302937 71 57 561249
+334381366 282627 116 86375 1213 2612128 6011987 2 382713136 1046359
+41354042 29 1718 10087 94 16149518 695351333229 63 743984 41 70 58 4752
+88 1920 98 17 93 54525034 13 7273 605354
+2122 99 92 89 80 55 56 96 446148
+84 23 97 79 47465354 85 6362
+99100 45443752 656791889689 6764
+9 98 85 9 3536 6690929394 96568
+11 8782 81 3334 64 95 7981 9395 69
+1095 2251 7173 21 83764580 87929497
+969293 97 68 37 48 77 68 69 7778 89 17
+125 7 48 57 43365 7 82 68 70 85 8 8214 9886 88 7 51623
+916 5655 39642 84 47 66586378 841086 7283 26 100 22619
+94 4 8 47 2 58 40414 8 904983 6525559 494143 117497 9 7284 2 909143 8 42120
+89 806072506349 4546 51 4435 31 9146 4560575662 42383 75769998 5 62723 4299 13 11 1524
+9078735970697479 53526254 38 676461 50394048777810082 2524293032 7525 18
+7771757681 61 817980 31
+Game9,B:AGLee,W:AGZero,Result:W+R Game10,B:AGLee,W:AGZero,Result:W+R Game11,B:AGZero,W:AGLee,Result:B+R Game12,B:AGZero,W:AGLee,Result:B+1.50
+48
+302829 918990 4241444590 2422 5049 2450515352 29273064 3435
+2021 31 6072 62 45888384 242594 37 3138 214 4241 573 222123 2566163 48 8 7
+34 221 67 28587 261 39 236 23 20 43 5951 393637 4 193331262862686618 2 9
+322726 5761 8696 2829 4035 19 4847 58 5655 32 65 17471011
+332423100585666 73 3027464981 343223 33 44 38 467420 44 67 1213
+25 356568 98 4347 80 337677 3132 454273 5557 92 59 1415
+19 596470 7879 292526 4143 87 98 16
+75186976 63 83 50 51 27628 95 868584 58 69
+717497 97 30 89748293 40 5683 797860
+11131499 8562 82 92 84887372817694 9954 8889 91 71
+151216 63 897586 8810098 11 9178808386657571 100 9093 77757270
+3736394443 59616484 8799 18777987 969495 76 82
+3840 4241 5593 8 93 606567 8 46 63 90 54 66 805 97
+10 53545192 787781 955810726669 73 16 17 85 616260 39 81
+175247509 7 48079 9655 717068 9 7204 348 245 67 70525 971 364938
+3 464849 5 6 82 561235357 5 61913 357 9101214166864 6953 969899 337 40 1
+9495 92915254 74 1514171822 111315 100
+21
+Game13,B:AGZero,W:AGLee,Result:B+R Game14,B:AGZero,W:AGLee,Result:B+R Game15,B:AGZero,W:AGLee,Result:B+R Game16,B:AGZero,W:AGLee,Result:B+R
+59
+2440 415839 574956 61 5756 49 36 6157586263
+3 94 204222326 7 8 40375051 45471853552021 5 59589 464243 383534432 674945395659365
+19213635 9 4 42605228 464854 21923 2 60 4714039 3331 6653524844602021
+28 25 1110 334344 242225 69 444138 37 41 85695554 24232564
+1312 3534 2617 6 7868635553514548 8468 224272
+5355 1514 36 942927 10099 6462545250 8126 71
+5152 27 10016 38 7374 43
+654254 6 88 74 73 9798 6 82 7576
+6763616489 2930 8990 96 84 7182 78 5147
+5758628588 41 3132 9183 97 74 858370 67 818088 7750
+66605979778487 3334 62 8584 95 7270 22 867775 658772 28 19 70 407983
+56 78808391 3718 79 78 736968 96 90 66 80
+68699092 9996 4338 31 76 87571 13 79 8 18 46
+93 86 959897 17 93 82 86 31 89 2694 17 27 99
+1 705 73 100 452 846 92 6665636780 1 33512 91762042325 8 230 29 59593198
+74 75447147 161412109 749 3 7730 6 64328161 28341110 14 9271815162495 867 910121416 97949296100
+8182 767250 48151311 75 9899 3733322930 9321191727 90878889111315
+36 91
+39at23
+Game17,B:AGZero,W:AGLee,Result:B+R Game18,B:AGZero,W:AGLee,Result:B+R Game19,B:AGZero,W:AGLee,Result:B+1.50 Game20,B:AGZero,W:AGLee,Result:B+R
+4745 43 37 9998100 27
+69626567 4637413240441819 18 312936 3936 42 24 21202526
+6359606668 63836313529 8 7 1312 10 2530272834 7 8 96 4416 1819 13146228 60 78 3
+46121 333027 2 9 15112 41 3243335 9 2 95 41 43 41721 154 59717258 6 7
+64 34242317391011 171416 4243 1110 93 40 222023 7417186169 10911
+22 282025421213 21919 44 26 1312 9794 251527 76191623296870 80798
+26 1415 20 3714 26 752224326366 128183
+92 16 39 38 91 7773 6530 82
+76 759377 3823 76 29 31676488
+838278 4745 75 31 53505152
+87 858479 692246 72 92 3328 393637454687 89 90
+898886 7470 73 40 35 4135343885
+7458 9990 6059 7161 7779 10088 77 88 47424044 91
+8157 55100 5 24 5 937883 78687 7454953 7371 30 433348 9993 92
+525654 7071 5150586668 89909295 998485 784850515286 706334656769 4954 1008694959784
+485150 949173 56524849546562 949196976 8081 854647 87 626159646668 2 9698 5 1
+3495380 9695721 53155576763648 98 823 82 1 5445 896 90 603257372 5556
+98 97 8481 83 5855567576 57
+79 80
+Extended Data Figure 5: Tournament games between AlphaGo Zero (20 block, 3 day) versus AlphaGo Lee
+using 2 hour time controls. 100 moves of the first 20 games are shown; full games are provided in Supplementary
+Information.
+
+--- PAGE 42 ---
+Game1,B:AGMaster,W:AGZero,Result:W+R Game2,B:AGZero,W:AGMaster,Result:B+R Game3,B:AGMaster,W:AGZero,Result:W+R Game4,B:AGZero,W:AGMaster,Result:B+R
+36 68 51 52
+123134 6160 66635669 50494548 6769 59
+6 810932 3019 2624 7 86455727071 4953 6 3 98 7 6 4441465517 546166571 60
+737 1113335100 67662868 423 9 459586747 5254 2 13 1 8 53403 6563647068724
+72 65605963 25 1110625765 73 50 1110 4247 7358 37
+74 9998 91616264222017 1312 48 515 532 912 3839 6
+88 868487 959094 2921 1514 765654 26 4335 62
+708571 97968992 16 75 745316 58909694 90 100
+27 7774 757849555152899192 8376 89
+56 13 93 100 67 593072878893 19 969284797599809798
+53 18 45 9992 77687071838495 35 36 9591 81858636
+57 4344 989785 6569 734650 74 82
+312927 40 847683 645715474344 60 23
+4547 83 75 2822234142 91 8017 66143379423145 29 22 18 24 78 94
+3942 77 30 252426 46 783987 34 8048 2561 2021 2221 77
+354 5 3738 5115434827876 35333 19 7913881 82 2384028 27 419 301232025 87 932 856
+5855 414016824652494414 3432 18 20 213736828696 100996341373962 24 1817 3231 2627 88161412109 757
+69 81 507980 8988 95 86 343328 29 151311
+90 9394
+81at53 85at78 97at88
+Game5,B:AGMaster,W:AGZero,Result:W+R Game6,B:AGZero,W:AGMaster,Result:B+R Game7,B:AGMaster,W:AGZero,Result:W+R Game8,B:AGZero,W:AGMaster,Result:B+R
+34 36 44 111317 111315 29 283334
+3132 68431646 2914 3942 437 910121418 63 18 17 557 910121416 2726 3132
+330 574454763 1526 2 428 4 3 2 19 4 548 4 84 252023330
+33 2740 318083 27 45 5049 85 838182 2122
+35 72 7362605848413738 84796044 85 2516 14 51474852 74 71 7980 24 18
+6764615957 28 503259 69 41 4415 97 5346 72676873 7762 90
+706665 25 474855 70 100 7069 5554 666569617675
+7169 24 4953 5856 8699 4019 968295 6156 52 7892
+13 98 543957 81 24 81809394 62 70 91 19
+93646535 4651 74 2643 797868 58 89
+929495 9695 52 78 732623 16222327 91718390 60 93
+98 938896 349433 38 66 77 65672120 9257 58 639759 958788 45
+8291 999710089875456 6 61 75 2220 6441529 1008998 912 66499 56969486 49
+8385 86 555150 97 6376 6871 21 663938342835 888599 1110 57 4342
+787 1118090 52492220418 2 29 36 30 6267 1 4037242531 741384 1 8 98 2405053 1 44
+84756 810981 5323211917 9290 285 7237 15 32330 75727387 7 6 363538551 174746
+76 791277 91878845 82 3633 777686 5960 100373941 48
+89
+42at37
+Game9,B:AGMaster,W:AGZero,Result:W+R Game10,B:AGZero,W:AGMaster,Result:B+R Game11,B:AGMaster,W:AGZero,Result:B+R Game12,B:AGZero,W:AGMaster,Result:B+R
+62 84
+91 84 61605556 8180 767475 9899 29 81797880
+30293 33 8688908581 7 6 73718363824656 197977 18 303234 443826402532 31 1817 21285020 23 18 7574
+32282627 891387 1 8 726836965545357 78 13133 5443237 3934 24 419 1 318557 19 376
+31 93 1110 676662585561 242223 28 464153 68 33 2021 51 845453 77
+80795 54 6358912 17 5960 52504847212026 144245 67100 22 1727 5556 82
+34 65 9273725957 8870 64 855149 252729 302915 278084 9092 23 2225 52
+16 35 52 77687574 78 47 839185 9335 26308832
+37 64 836966677076 939192 28 36 9887 100
+36 8253 71 899094 6386 48959697948693
+38 94 9796 69 71 87 473440499991 92 73
+9945100 16 1659 74 8988 82 3943 16
+231525 50 43 9895 1415 58 70 948164 89 58 67 1415
+1424 474551 21 542 1213 57605 77 95 65912 533 83 60 7071 1213
+99 46444349 20 413840 1011 566261 7572 76 1110 9045244244 35 6972 61 1011
+95242 483940 419 39354 44 2 9 504849 7313 97 1 8 46 237 36 685965 4 9
+979641 22 1817 3736 6 8 7 52513 55 79967 6 41 386 6664 8 7
+10098 8687 78 66 6263
+Game13,B:AGMaster,W:AGZero,Result:W+R Game14,B:AGZero,W:AGMaster,Result:W+R Game15,B:AGMaster,W:AGZero,Result:W+R Game16,B:AGZero,W:AGMaster,Result:W+R
+12 111315 29 283334 633132 66 84 77373941 52
+6 810938 4888 697 910121416 2726 3132 64302728 34 2465 83 1817 8374363538543 155150
+7 11140 874 52 688 2 252023130 5922933 419 75734424093 3 48
+86 84 2122 60 2021 8276 4572 4746
+8985 495147 6124 18 14263638 67 229392 6 66 94 53
+96 50 94 96 5825153537 87 9194 23 79 54 100 49
+353390 839753 92 95 5461 41 898582 6463 81 95
+343031 8180 44 7091 93 565352 8688 80 628061 86 968597
+3213 82747399 97 19 5755 95 58 8419
+3937 72 7998 67 99 58 51 44 57 78 92
+9594 100 66 65 77 8998 60 4759 16 4381 96 65
+36 9291 666567 17 72 817680 90 50 40 79 60 5971 88
+23 93 58 57 557177 671828386 46 39465 912 6869 98 8724 16
+21 70 6968 566075 84 8788 45100 64 54 52 484445 42 97 11107790 677089 91 2122
+318415 27294554 1563622 76 757344042 625634855 49477372 62991371 1 878 568 290 252023130
+192043 2516284246 591461 78 74363538543 6317 57495053 398 100706869 7 6 557 91012141899 2726 3132
+224424 26 64 8578373941 51 74 7576 111317 29 283334
+79
+Game17,B:AGMaster,W:AGZero,Result:W+R Game18,B:AGZero,W:AGMaster,Result:B+R Game19,B:AGMaster,W:AGZero,Result:W+R Game20,B:AGZero,W:AGMaster,Result:B+R
+50
+343151 47464344 8889 126265 95787779 56 4544
+30328 7 6 623432 16 20 21373681 666 81096163 7643 50485572 7 8 52 6
+3835222329 13 1 8 35333 19 14284 7 111 94 5253 44760 9 4 2
+563736322633 1110 30 252426 44 8543 70497174 11106851
+5239527 5348912 2822233940 15 51 464417 1312 46 5
+55571918 4945 312927 38 80 97 455458 1714 67
+16202125 83 80 4161 81 80 91969367 75 59576873 18
+2441 7982 1006399 878588 90 92 69
+62 98 60 86 138286
+70 786892 81 90 998384 89
+69 84776793 18 58578783 98 4143 85
+4215 97 6164 1714 598255 100 312927898838 6086
+14 91 54 1312 64 70 909291 545 2933 2541 2822233940 5055 15
+886686 1110666365 9372100 504851 6428232627182124 30 25242647 595642 3799
+2 17 95758987465 9 4 96 567769946778 24549 313223251920 15 2 3533348 53 199192 966313698
+727173 74 58605985 7 8 979574 71686 4647 3430353639 16 4214 49343272166958616620 219462100
+96 76 94 5352 98767573 79 3837 81809574717370545764
+848382 7678777565
+40at35 99at67 40at35 79at73 87at83 90at84 93at83 97at80
+Extended Data Figure 6: AlphaGo Zero (40 block, 40 day) versus AlphaGo Master tournament games using 2
+hourtimecontrols.100movesofthefirst20gamesareshown;fullgamesareprovidedinSupplementaryInformation.

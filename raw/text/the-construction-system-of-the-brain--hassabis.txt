@@ -1,0 +1,290 @@
+
+--- PAGE 1 ---
+Phil.Trans.R.Soc.B(2009)364,1263–1271
+doi:10.1098/rstb.2008.0296
+The construction system of the brain
+Demis Hassabis* and Eleanor A. Maguire*
+Wellcome Trust Centre for Neuroimaging,Institute of Neurology, University College London,
+12 QueenSquare, London WC1N 3BG, UK
+The ability to construct a hypothetical situation in one’s imagination prior to it actually occurring
+mayaffordgreateraccuracyinpredictingitseventualoutcome.Therecollectionofpastexperiencesis
+alsoconsideredtobeareconstructiveprocesswithmemoriesrecreatedfromtheircomponentparts.
+Construction,therefore,playsacriticalroleinallowingustoplanfor thefutureandremember the
+past. Conceptually, construction can be broken down into a number of constituent processes
+althoughlittleisknownabouttheir neuralcorrelates.Moreover,ithasbeensuggestedthatsomeof
+theseprocessesmaybesharedbyanumberofothercognitivefunctionsincludingspatialnavigation
+and imagination. Recently, novel paradigms have been developed that allow for the isolation and
+characterization of these underlying processes and their associated neuroanatomy. Here, we
+selectively review this fast-growing literature and consider some implications for remembering the
+past andpredicting the future.
+Keywords:episodicmemory; imagination; hippocampus; autobiographical;
+functional magnetic resonance imaging; episodicfuturethinking
+1.INTRODUCTION Taking a different approach, several recent fMRI
+The recollection of episodic memories is widely studies compared recall of autobiographical memories
+accepted to be a reconstructive process as opposed to withpredictingpossiblepersonallyrelevantfutureevents
+thesimpleretrievalofaperfectholisticrecord(Bartlett (known as episodic future thinking (EFT), Atance &
+1932; Schacter et al. 1998, 2008; Conway & O’Neill 2001),and found near completeoverlap in the
+Pleydell-Pearce 2000; Rubin et al. 2003; Hassabis & brain networks activated (Okuda et al. 2003; Szpunar
+Maguire 2007). Recollection relies on a number et al. 2007; Botzung et al. 2008, but see Addis et al.
+of component processes. These include a sense of 2007). In terms of characterizing the underlying
+subjective time (Tulving 2002), connection to the self processes and their mapping to specific brain regions,
+(Conway & Pleydell-Pearce 2000; Gallagher 2000), however, it is clear from these studies that only limited
+narrative structure (Rubin et al. 2003), retrieval of further progress can be made by using EFT as a
+relevant semantic information (Wheeler et al. 1997, comparison task because it engages all of the same
+2000; Gottfried et al. 2004), feelings of familiarity processes as episodic memory and to a similar degree
+(Wagneretal.2005)andrichmultimodalre-experien- (Suddendorf & Corballis 1997; Schacter et al. 2007).
+cing of the event (Tulving 2002) in a coherent spatial Here, we suggest that in the context of real-world
+context (Byrne et al. 2007; Hassabis & Maguire 2007; experiences,aproductivewaytoinvestigaterecollection
+Hassabis et al. 2007b; Bird & Burgess 2008). From ofthepastandpredictionofthefutureis,ironically,not
+functional magnetic resonance imaging (fMRI) to study the past or the future at all. We argue that
+becausethecoreprocessesunderlyingpredictionofthe
+studies, we also know that a distributed and highly
+future can be co-opted by a range of other atemporal
+consistent network of brain regions supports memory
+cognitivefunctions,theseprocessesmaybebestisolated
+for past experiences. This comprises dorsal and
+andunderstoodinthecontextofparadigmswheretime
+ventromedial prefrontal cortex (PFC), lateral PFC,
+is not an explicit factor, such as imagining fictitious
+the hippocampus, parahippocampal gyrus, lateral
+experiences. We believe that time does not merit
+temporalcortices,temporoparietaljunction,thalamus,
+elevation to the level of an independent process with a
+retrosplenial cortex (RSC), posterior cingulate cortex
+distinct neural signature. Instead, we view the time-
+(PCC), precuneus and cerebellum (Maguire 2001a;
+stampofanevent(whetherfutureorpast)assimplythe
+Maguire&Frith2003;Svobodaetal.2006;Cabeza&
+resultofacontentorgoaldifferenceratherthanachange
+St Jacques 2007; Hassabis et al. 2007a; figure 1).
+in the fundamental processes involved (see Hassabis &
+Despite over a decade of activating this network,
+Maguire 2007). In order to test this idea, it has been
+however, surprisingly little is understood about the
+necessarytodevelopnovelexperimentalparadigms.
+contributionsindividualbrainareasmaketotheoverall
+recollective experience (Hassabis & Maguire2007).
+2.USINGIMAGINATION
+Recently, one important tool in the development of
+*Authors for correspondence (d.hassabis@fil.ion.ucl.ac.uk,
+e.maguire@fil.ion.ucl.ac.uk). noveltaskshasbeenimagination(Hassabis&Maguire
+2007). In many ways, imagining new experiences can
+Onecontributionof18toaThemeIssue‘Predictionsinthebrain:
+usingourpasttoprepareforthefuture’. be regarded as the purest expression of construction.
+1263 Thisjournalisq2009TheRoyalSociety
+
+--- PAGE 2 ---
+1264 D. Hassabis & E.A. Maguire The brain’sconstruction system
+(a) (b)
+(i) (i)
+(ii) (ii)
+(iii) (iii)
+Figure 1. (a,b(i)–(iii)) The episodic memory network. Significant peaks of activity from a meta-analysis of 24 neuroimaging
+studiesofautobiographicalmemory(Svobodaetal.2006).Theclassiccoreepisodicmemorynetworkcanbeseeninredand
+includesthehippocampusbilaterally,parahippocampalgyrus,retrosplenial,posteriorcingulateandposteriorparietalcortices
+andmedialPFC.Activationsincore(red),secondary(green)andinfrequentlyreportedregions(blue)aredepictedacrossright
+andleft,lateral,medialandsubcorticalplanes.AdaptedfromSvobodaetal.(2006)withpermissionfromElsevier.
+All healthy volunteers can effortlessly use their performances can be compared and contrasted more
+imagination to a basic degree (indeed humans have directly than would be possible in a standard episodic
+told stories and delighted in fiction and narrative for memoryrecall paradigm (Hassabis et al. 2007b).
+thousands of years), and verbally induced imagination Crucially, tasks involving imagined scenarios can
+of scenes has been shown to be possible and useful in be designed to de-emphasize key features allowing
+the neuropsychological context (Bisiach & Luzzatti insightstobegainedintotheneuralsubstratesofthese
+1978). Experiences constructed by the imagination, features when compared with episodic memories
+while having much in common with episodic mem- (Hassabis et al. 2007a). For example, participants
+ories,havetheadvantageofbeingeasiertosystematize canbeaskedtoconstructfictitiousexperiencesintheir
+and experimentally manipulate (Hassabis & Maguire imagination that are atemporal (i.e. not set in the past
+2007). For example, participants can be asked to orinthefuture)andwithalowconnectiontotheself.
+construct the same fictitious situations, and their Figure 2a shows a description of one such imagined
+Phil.Trans.R.Soc.B(2009)
+
+--- PAGE 3 ---
+Thebrain’sconstruction system D. Hassabis &E.A.Maguire 1265
+(a)
+Cue: Imagine standing by a small stream somewhere deep in a forest
+‘It's a pine forest. What I can see on the ground all around me are patches of pine
+needles and brown earth with nothing really growing. The tree trunks are quite
+narrow. Overhead are the spikes of the green pines and you can only just see the
+sky. There's a pine needle smell but down towards the stream there's a slightly
+rotting smell. It's quite a narrow stream with stones in it and dark water rushing round
+them causing little white water eddies. There's not much life around the stream and
+the banks are quite steep sloping down to the stream. It's peaceful and quiet...’
+(b)
+Time scale: 5 years in future; cue: dress
+‘My sister will be finishing... her undergraduate education, I imagine some neat place,
+Ivy League private school... it would be a very nice spring day and my mom and my
+dad will be there, my dad with the camcorder as usual, and my mom with the camera
+as usual. My sister will be in the crowd and they'd be calling everyone's name... I
+can see her having a different hair style by then, maybe instead of straight, very curly
+with lots of volume. She would be wearing contacts by then and heels of course. And
+I can see myself sitting in some kind of sundress, like yellow, and under some trees...
+the reception either before or after and it would be really nice summer food, like
+salads and fruits, and maybe some sweets, and cold drinks that are chilled but have no
+ice. And my sister would be sitting off with her friends, you know, talking with them
+about graduating, and they'd probably get emotional.’
+Figure2.Descriptionsofexperiences.Representativeexamplesofparticipanttranscriptswhencuedtodescribe(a)animagined
+fictitiousexperience(datafromHassabisetal.2007a)and(b)apersonallyrelevantfutureexperience(datafromAddisetal.
+2007).Notetheabsenceofexplicittemporalandself-relevantstatementsin(a)thatarecommonplacein(b)suchas‘Iwillbe’
+and‘mysisteristhere’.
+(i) (ii) (iii)
+(a)
+(ii)
+(i)
+(b)
+(iii) (iv)
+Figure 3. The imagination network. Brain regions active when recalling imagined fictitious experiences that were previously
+createdinapre-scaninterviewincludedthehippocampus,parahippocampalgyrus,retrosplenialandposteriorparietalcortices
+andmedialPFC.(a(i))Sagittal,(ii)coronaland(iii)axialimagesfroma‘glassbrain’,whichenablesonetoappreciateactivations
+in all locations and levels in the brain simultaneously. (b) Activations on a selection of relevant (i) sagittal, (ii) coronal and
+((iii),(iv)) axial sections from the averaged structural MRI scan of the 21 study participants at a threshold of p!0.001
+uncorrected(datafromHassabisetal.2007a).
+Phil.Trans.R.Soc.B(2009)
+
+--- PAGE 4 ---
+1266 D. Hassabis & E.A. Maguire The brain’sconstruction system
+experience (Hassabis et al. 2007a). It is interesting to between these two positions largely due to disparate
+contrast this transcript with one from an fMRI study testing protocols, patient aetiologies and scoring
+involving plans for a future personal experience (Addis systems (Levine et al. 2002; Moscovitch et al. 2005;
+etal.2007;figure2b).Clearlytheimaginedscenarioisset Kirwan et al. 2008). It has been suggested that
+in the present and in this case does not have the same discrepancies between studies of remote episodic
+involvement with the imaginer’s self-schema as the memory in hippocampal-damaged patients (Bayley
+personal future event (Conway & Pleydell-Pearce et al. 2003) might be accounted for by differences in
+2000; Gallagher 2000) although both types of scenario the quality or richness of the recollective experience
+involve the adoption of an egocentric viewpoint on the (Gilboa et al. 2004), a feature that is not always
+part of the imaginer (Burgess 2006). Being able to captured by existing scoring systems (Kopelman et al.
+manipulate factors such as the level of self-relevance/ 1989;Hassabis et al. 2007b).
+involvementandthedegreeofoverlapbetweenmemories Consideringtheextantliteratureaboveandnowalso
+and imagined experiences has the potential to progress thefindingsfromourimaginationstudy(Hassabisetal.
+ourunderstandingofthecoreprocessesandbrainareas 2007b),wesuggestthatthehippocampusmayhavetwo
+involved(Hassabis&Maguire2007). distinct functions in episodic memory recall. Further-
+To this end, we designed a novel imagination task more, we propose that such a dual role may help to
+that involved participants richly imagining new ficti- resolvethelong-standingdebateaboutthetimescaleof
+tiousexperiences(Hassabisetal.2007b).Wereasoned hippocampal involvement in episodic memory. First,
+that if episodic memory recall was truly a reconstruc- the hippocampus may be the initial location for the
+tiveprocess(Bartlett1932;Schacteretal.1998),witha memory index (Marr 1971) which reinstantiates the
+memory reassembled from its stored constituent active set of contextual details (Wheeler et al. 2000;
+components, then some of these integrative processes Polyn et al. 2005; Polyn & Kahana 2008) and later
+should also be co-opted by a purely constructive task mightbeconsolidatedoutofthehippocampus(Squire
+involving imagination (Hassabis et al. 2007b). We et al. 2004). Second, the hippocampus may have
+tested patients with primary damage to the hippo- another role as an online integrator supporting the
+campusbilaterallyasthisstructureiswellknowntobe binding of these reactivated components into a
+critical in supporting episodic memory (Scoville & coherent whole to facilitate the rich recollection of
+Milner1957).Wefoundthat,aswellasbeingimpaired a past episodic memory, regardless of its age. Such a
+atrecallingthepast,thepatientswerenotabletorichly function would be of great use also for predicting the
+imagine new experiences. This was the case for EFT future, imaginationand navigation.
+scenarios (see also Klein et al. 2002;Rosenbaum et al. Furtherempiricalevidencehintingatatwo-process
+2005) and, crucially, for constructions that were function of the hippocampus comes from structural
+atemporal and low in self-relevance. Even when all MRIstudiesofexpertnavigators(Londontaxidrivers)
+the components necessary to construct a fictitious who show increased grey matter volume in posterior
+experience were supplied in the form of visual hippocampusseeminglyattheexpenseofreducedgrey
+elements, sounds and smells, patients’ performance mattervolumeinanteriorhippocampus(Maguireetal.
+didnotimprove(Hassabisetal.2007b).Thesourceof 2006b). Moreover, their increased spatial knowledge
+their deficit was an inability to integrate the imagined appears to come at a cost to the acquisition of new
+experience into a coherent whole manifesting itself visual associative information (Maguire et al. 2006b;
+most obviously in the discontinuity of the spatial Woollett&Maguire2009).Thehippocampusisideally
+context. We concluded that the hippocampus plays a placed to support these two roles both in terms of the
+critical role in imagination by binding together the diversity of its multisensory inputs and its specific
+disparate elements of an event or scene (O’Keefe & anatomical properties (Andersen et al. 2007), such as
+Nadel 1978;Cohen& Eichenbaum 1993). the high number of recurrent connections, although
+Ifthehippocampusplaysacriticalintegrativerolein clearlymoreworkisrequiredtocategoricallyascertain
+a constructive process such as imagination, it seems if the hippocampus is performing more than one
+plausible that it might also have a similar role in function in episodic memoryrecall.
+supporting the rich recollection of episodic memories
+and in predicting the future (Hassabis et al. 2007b).
+It has long been known that the hippocampus is 3.THE CONSTRUCTIONSYSTEM
+required to initially encode the memoryof an ongoing The(re)constructiveprocess,althoughcriticallyreliant
+event(Scoville&Milner1957).Thetraditionalviewof on the hippocampus, is not supported by it alone. We
+memory posits that over time these memories are sought to characterize the entire construction network
+consolidated to neocortex, which is then able to by using fMRI to compare imagination with episodic
+support the recall of remote memories independently memory recall (Hassabis et al. 2007a). Healthy
+fromthehippocampus(Squireetal.2004).Conversely, participantsengagedinthreetaskswhileinthescanner:
+otheraccounts(Sanders&Warrington1971;Cipolotti (i) vivid recall of recent real memories, (ii) vivid recall
+et al. 2001; Murray & Bussey 2001; Moscovitch et al. of previously created imaginary experiences, and
+2005;Maguireetal.2006a),supportedbytheresultsof (iii) construction of new imaginary experiences for
+the majority of fMRI studies on episodic memory the first time in the scanner. Recall of recent auto-
+(Maguire2001a;Svobodaetal.2006),havesuggested biographical memories activated the now classic
+that the hippocampus is always required for rich network shown in figure 1 (Maguire 2001a; Svoboda
+episodic memory recall irrespective of memory age. et al. 2006). Interestingly, imagined experiences were
+Various patient studies have been unable to arbitrate associated with increased activity in manyof the same
+Phil.Trans.R.Soc.B(2009)
+
+--- PAGE 5 ---
+Thebrain’sconstruction system D. Hassabis &E.A.Maguire 1267
+brain areas (figure 3). A conjunction analysis was crashing on the shore or the face of your best friend,
+performed in order to examine the brain regions andpotentiallylearnedoverandsharedacrossmultiple
+activated in common by the three conditions. episodicmemories.
+A distributed brain network was implicated involving Alternatives to scene construction have been pro-
+the hippocampus, parahippocampal gyrus, RSC, posed (Buckner & Carroll 2007; Schacter & Addis
+posterior parietal cortices, middle temporal cortices 2007;Schacteretal.2008).Similar tosceneconstruc-
+and ventromedial PFC (figure 4). This construction tion,theprocessof‘self-projection’(Buckner&Carroll
+network cannot only account for a large part of the 2007) defined as ‘the shifting of the self to alternative
+episodic memory recall network (figure 1) and EFT perspectives in time or space’ has been posited as an
+(Addis et al. 2007; Szpunar et al. 2007; Botzung et al. underlying process common to a set of disparate
+2008), but also bears a striking resemblance to cognitive functions including episodic memory recall,
+networks activated by navigation (Maguire 2001b; EFTand navigation. However, while self-projection is
+Burgess et al. 2002), spatial (Maguire et al. 2003; clearly an important concept, it conflates several
+Kumaran&Maguire2005)andplacetasks(Epstein& distinct component processes including scene con-
+Kanwisher 1998; Sugiura et al. 2005), aswellas those struction (Hassabis & Maguire 2007) and theory of
+associated with mind wandering (Mason et al. 2007) mind (Amodio & Frith 2006). For the purposes of
+and the default network (Raichle et al. 2001; Buckner teasing apart the various component processes under-
+et al. 2008). This suggests there may be a set of key pinningepisodicmemorywesuggestitisadvantageous
+component processes underlying all of these cognitive toconsider constituent processesin asreduced aform
+functions (Buckner & Carroll 2007; Hassabis & aspossible.Thus,webelievetheconstructionnetwork
+Maguire 2007;Sprengetal. in press). is most accurately characterized as being invoked
+Wehavesuggestedthatthesecommonprocessescan whenever attention is directed away from the current
+be characterized by the concept of scene construction externalsituationandinsteadfocusedinwardstowards
+(Hassabis & Maguire 2007). Scene or event construc- a rich internal representation of an event, real or
+tioninvolvesthementalgenerationandmaintenanceof imagined. Processes such as theory of mind are only
+a complex and coherent scene or event. This is engagedifrequired,i.e.inthecase ofEFTorepisodic
+achieved by the reactivation, retrieval and integration memory recall but not necessarily in imagination or
+of relevant semantic, contextual and sensory com- navigation. This may explain why the construction
+ponents,storedintheirmodalityspecificcorticalareas network has a similar pattern of activity to that
+(Wheeler et al. 2000), the product of which has a associated with the default network (Raichle et al.
+coherent spatial context (Hassabis et al. 2007b), and 2001; Buckner et al. 2008) and mind wandering
+can then later be manipulated and visualized. In fact, (Mason et al. 2007), cognitive functions that involve
+scene construction is a specific example of ‘associative minimal external stimuli combined with introspection
+construction’, which involves visual imagery, binding andrichinternalimagery.Theseconstructedscenesor
+and also disparate multimodal elements that, when events, created and maintained by the construction
+bound together, (re)create an event as a whole. This network, can then be manipulated further by other
+includescontextualdetailssuchassoundsandsmellsin processes, such as theory of mind, to allow shifting of
+addition to visual inputs, people, objects, entities and theselftoalternativeperspectivesinspaceorsubjective
+their actions. time (Buckner & Carroll2007;Arzyet al.2008).
+Scene construction differs markedly from ‘simple’
+visual imagery such as that for single objects (Kosslyn
+et al. 2001), in that it requires the flexible association 4.ADD-ONS TOTHE CONSTRUCTIONSYSTEM
+and integration of many scene elements. Our fMRI We have demonstrated that scene construction is a
+studyalsoincludedtasksrequiringvividvisualizationof dissociable set of processes supporting the episodic
+acontextual single objects as a baseline task (Hassabis memory system (Hassabis et al. 2007a), both past
+et al. 2007a). Recalling previously seen or previously and future, but what are some of the other processes
+imaginedobjects,orimaginingobjectsforthefirsttime that together with the construction system underpin
+in the scanner resulted in activation of brain areas the special properties of episodic memory? We
+associated with supporting object representations and addressed this question using our fMRI imagination
+manipulations, namely lateral occipital complex and paradigm by contrasting the recall of real memoriesto
+intraparietal sulcus (e.g. Sugiura et al. 2005;figure 5). the recall of previously created imaginary memories
+Moreover, there was no overlap between this simple matched for difficulty, age, detail and vividness, thus
+object network (Sugiura et al. 2005) and that of partialling out the effects of the common construction
+complex scene construction (Hassabis et al. 2007a), network (Hassabis et al. 2007a). Three distinct areas
+suggesting that they represent dissociable cognitive were more active for real compared to imaginary
+processes with distinct neural bases. Nevertheless, memories, the anterior medial PFC, PCC and the
+complexscenesandexperiencesareclearlyconstructed precuneus(figure 6).
+outofsimplerelements.Ithasbeensuggestedthatpast The precuneus has been implicated in studies of
+and future experiences draw on information stored in recognitionmemorywithincreasedactivityinresponse
+episodic memory (Schacter et al. 2007, 2008). tofamiliaritems(Ruggetal.2002;Wagneretal.2005;
+However, we argue that the component elements of Hornbergeretal.2006;Vincentetal.2006).Therefore,
+constructions are not simply fragments of past events, the increased precuneus activity here probably reflects
+but can comprise elements that are more abstracted the relatively greater familiarity of the visualized
+and semantic such as the sound of ocean waves experience for real memories over more novel
+Phil.Trans.R.Soc.B(2009)
+
+--- PAGE 6 ---
+(i) (ii) (iii)
+(a)
+(i) (ii)
+(b)
+Figure5.(a(i)–(iii))Neuralcorrelatesofrecallingsingleobjects.Thesearethebrainareasactivatedmoreforrecalling(realor
+imagined)singleobjectsthanforcomplexexperiences,andincludethelateraloccipitalcomplexbilaterally,intraparietalsulcus
+bilaterallyandrightlateralPFC.Viewsofthesebrainregionsarealsoshownin(b)onan(i)axialand(ii)coronalsectionsfrom
+theaveragedstructuralMRIscanofthe21subjects,atathresholdofp!0.001uncorrected(datafromHassabisetal.2007a).
+imaginary memories, given that we controlled for (Johnsonetal. 2002) and theoryofmind(Kumaran &
+vividness. Activation in anterior medial PFC and Maguire 2005; Amodio & Frith 2006) suggesting that
+PCC is consistent with studies of self-reflection these two regions support processes related to the self.

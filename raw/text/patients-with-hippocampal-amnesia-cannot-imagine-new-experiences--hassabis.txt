@@ -1,0 +1,517 @@
+
+--- PAGE 1 ---
+Patients with hippocampal amnesia cannot imagine
+new experiences
+DemisHassabis*,DharshanKumaran*,SeralynneD.Vann†,andEleanorA.Maguire*‡
+*WellcomeTrustCentreforNeuroimaging,InstituteofNeurology,UniversityCollegeLondon,12QueenSquare,LondonWC1N3BG,UnitedKingdom;
+and†SchoolofPsychology,CardiffUniversity,TowerBuilding,ParkPlace,CardiffCF103AT,UnitedKingdom
+CommunicatedbyEndelTulving,RotmanResearchInstituteofBaycrestCentre,NorthYork,ON,Canada,November29,2006(receivedforreview
+October11,2006)
+Amnesicpatientshaveawellestablisheddeficitinremembering memoryandconstructioninvolvethesalientvisualizationofan
+theirpastexperiences.Surprisingly,however,thequestionasto experience within a rich spatial setting or context (24), and
+whethersuchpatientscanimaginenewexperienceshasnotbeen thereforediffermarkedlyfrom‘‘simple’’visualimagery(e.g.,for
+formallyaddressedtoourknowledge.Wetestedwhetheragroup facesorsingleobjects)(25),whichisthoughtnottodependon
+of amnesic patients with primary damage to the hippocampus thehippocampus(26).Constructions,then,havemuchincom-
+bilaterallycouldconstructnewimaginedexperiencesinresponse mon with episodic memories but have the advantage of being
+toshortverbalcuesthatoutlinedarangeofsimplecommonplace easiertosystematizeandexperimentallymanipulate.Forexam-
+scenarios. Our results revealed that patients were markedly im- ple, all patients can be asked to construct the same fictitious
+paired relative to matched control subjects at imagining new situations, and their performances can be compared and con-
+experiences. Moreover, we identified a possible source for this trasted more directly than would be possible in a standard
+deficit. The patients’ imagined experiences lacked spatial coher- episodic memory recall paradigm.
+ence,consistinginsteadoffragmentedimagesintheabsenceofa Wethereforetestedwhetheragroupofpatients(n(cid:1)5)with
+holistic representation of the environmental setting. The hip- amnesia associated with bilateral hippocampal damage [see
+pocampus, therefore, may make a critical contribution to the Methods and supporting information (SI) Text] and a group of
+creationofnewexperiencesbyprovidingthespatialcontextinto
+matchedcontrolsubjects(n(cid:1)10)couldconstructnewimagined
+which the disparate elements of an experience can be bound. experiences in response to short verbal cues which outlined a
+Givenhowcloselyimaginedexperiencesmatchepisodicmemories, range of simple commonplace scenarios (see Methods). When
+theabsenceofthisfunctionmediatedbythehippocampus,may imagininganewexperienceparticipantswereexplicitlytoldnot
+alsofundamentallyaffecttheabilitytovividlyre-experiencethe todescribearememberedeventoranypartofonebutratherto
+past. givefreereigntotheirimaginationsandcreatesomethingnew.
+Theywerealsoencouragedto‘‘seethesituationandsettingin
+episodic (cid:1) hippocampus (cid:1) imagination (cid:1) memory (cid:1) construction their mind’s eye’’ as if they themselves were physically present
+andtodescribeasmanysensoryandintrospectivedetailsabout
+Each of us has our own unique personal past, comprising a thesituationastheycould.Thesedescriptionswerethenscored
+alongarangeofparameterstoaddresstwoquestions:(i)isthe
+myriadofautobiographicalexperiencesaccruedoveralife-
+hippocampus critical for imagining experiences, paralleling its
+time. Recollection of these rich autobiographical or episodic
+vitalroleinrecollectingthepast;andifso,(ii)isthereaspecific
+memories has been likened to mentally traveling back in time
+hippocampal mechanism underpinning imagining that might
+andre-experiencingone’spast(1).Ithaslongbeenknownthat
+also bear on its role in episodic memory?
+the hippocampus and related medial temporal lobe structures
+play a critical role in supporting episodic memory (2), and
+Results
+damage to even the hippocampus alone is sufficient to cause
+Descriptions of the newly constructed experiences provided by
+amnesia(3,4).Howexactlythehippocampussupportsepisodic
+participantswererecordedandlaterscoredacrossanumberof
+memory(5–7),orindeedwhetheritsinvolvementistime-limited
+ratings by using a similar method to the autobiographical
+(5, 8) or permanent (7, 9) is uncertain, however. Numerous
+interview (13) that has been used to assess the richness of
+studieshaveattemptedtosettlethisdebatebyascertainingthe
+episodic memories. We also developed additional ratings and
+statusofremoteepisodicmemoryinpatientswithhippocampal
+measurestofittherequirementsofourtask(seeMethodsandSI
+amnesia (10) but without resolution thus far. This is not alto- Text).Acompositescore,theexperientialindex,measuringthe
+gethersurprisingasstudyingmemoryforpersonalexperiencesis
+overallrichnessoftheimaginedexperienceandrangingfrom0
+fraughtwithmethodologicalissues(11–13),notleastofwhichis
+to60(0,notexperiencedatall;60,extremelyrichlyexperienced),
+how to generalize across individuals when autobiographical
+was calculated from four subcomponents: information content
+memories are unique to each person (9, 14).
+(content, classified into four categories), ratings of sense of
+Wethereforesoughttofurtherourunderstandingoftherole
+presenceandperceivedvividness(participantratings),asubin-
+ofthehippocampusinepisodicmemorybyadoptingadifferent
+dex generated from participant feedback (spatial coherence
+approach.Ifpatientswithhippocampaldamageareimpairedat
+index),andascorerratingofoverallqualityoftheconstructed
+recollecting past events, we wondered, can they imagine new
+experiences? While there have been some suggestions that
+amnesic patients have difficulty envisioning themselves in the
+Authorcontributions:D.H.andE.A.M.designedresearch;D.H.,D.K.,S.D.V.,andE.A.M.
+future (15–18), surprisingly, the more general question of performedresearch;D.H.andE.A.M.analyzeddata;andD.H.,D.K.,andE.A.M.wrotethe
+whether imagining new experiences depends on a functioning paper.
+hippocampushasnotbeenformallyaddressedtoourknowledge. Theauthorsdeclarenoconflictofinterest.
+In fact, episodic memory and imagining or constructing events FreelyavailableonlinethroughthePNASopenaccessoption.
+sharestrikingsimilaritiesintermsofthepsychologicalprocesses ‡Towhomcorrespondenceshouldbeaddressed.E-mail:e.maguire@fil.ion.ucl.ac.uk.
+engaged(19–21).Theseincludeimagery(22),senseofpresence
+This article contains supporting information online at www.pnas.org/cgi/content/full/
+(1), retrieval of semantic information and multimodal details 0610561104/DC1.
+(23), and narrative structure (22). Moreover, both episodic ©2007byTheNationalAcademyofSciencesoftheUSA
+1726–1731 (cid:1) PNAS (cid:1) January30,2007 (cid:1) vol.104 (cid:1) no.5 www.pnas.org(cid:2)cgi(cid:2)doi(cid:2)10.1073(cid:2)pnas.0610561104
+.09.03.82.401
+sserdda
+PI
+morf
+6202
+,21
+yaM
+no
+09.03.82.401
+yb
+gro.sanp.www//:sptth
+morf
+dedaolnwoD
+
+--- PAGE 2 ---
+Table1.Performanceontheconstructiontask
+Mean(SD)
+Patients, Controls,
+Measure n(cid:1)5 n(cid:1)10
+Overallrichness:Experientialindex 27.54(13.12) 45.06(4.02)
+Subcomponents
+Content
+Spatialreferences 2.38(1.82) 5.28(1.15)
+Entitiespresent 4.94(1.26) 6.49(0.42)
+Sensorydescriptions 4.12(1.03) 5.64(0.72)
+Thought(cid:2)emotion(cid:2)actions 2.76(1.77) 5.52(0.64)
+Participantratings
+Senseofpresence 3.46(1.15) 3.65(0.49)
+Perceivedsalience 3.52(1.19) 3.88(0.48)
+Spatialcoherenceindex 0.10(3.21) 3.68(1.30)
+Scorerrating:qualityjudgment 3.88(2.70) 7.13(0.96)
+Fig.2. Scoresontheexperientialindex.Thedatapointsforeverypatientand
+experience(qualityjudgment).Table1showsthemeanscoreson
+controlsubjectareshown.Verticalbarsrepresentgroupmeans.
+thesemeasuresforpatientsandcontrols.Examplesofscenario
+cues,excerptsfrompatients’constructions,andthoseofmatched
+control subjects are shown in Fig. 1 (see SI Fig. 4). experiences is compromised in the context of bilateral hip-
+Eachparticipantwastestedon10scenarioscoveringarange pocampal damage.
+ofthemes.Sevenwerestandardcommonplacescenarios(involv- Inthefirstinstance,wewonderedwhethertheimpairmentmight
+ing a beach, museum, pub, port, market, forest, and castle bebecausepatientsfoundthetaskmoredifficultthanthecontrol
+setting). We also examined the effect of scenarios that were subjects.Afterimaginingeachnewexperience,subjectsratedhow
+explicitly self-relevant and potentially plausible in the future, difficulttheyfoundthistaskonascaleof1–5(1,veryeasy;5,very
+so-called‘‘episodicfuturethinking’’(17,18)(possibleChristmas difficult).Therewasnosignificantdifferencebetweenpatientsand
+event,possibleeventovernextweekend,possiblefuturemeeting controlsinperceiveddifficultyofimaginingscenarios[patientmean
+with a friend). Performances on the two scenario types were 2.20(1.07),controls2.13(0.64),P(cid:1)0.87].Wenextconsideredthe
+initially analyzed separately. However, both had identical pat- extent to which imagined experiences were derivatives of actual
+ternsofresults,andsoforclaritywepresenttheresultscollapsed memoriesinthecontrolsubjects,despitetheinstructiontocreate
+across scenarios. somethingnew.Aftereachconstructionweaskedparticipantsto
+rateonascaleof1–5itssimilaritytoanactualmemory,inwhole
+ExperientialIndex.Thepatientgroupscoredsignificantlyloweron or in part (1, nothing at all like any memories; 5, exactly like a
+theoverallexperientialindexthanthecontrolgroup(P(cid:1)0.002) memory).Thepurposeofthismeasurewastoverifythatcontrol
+(Fig. 2), thus revealing that the ability to richly imagine new subjectshadadheredtotheinstructionstocreatesomethingnew.
+Fig.1. Examplesofimaginedexperiences.Representativeexcerptsfromtranscriptionsrelatingtotwoofthescenarios,withthecueatthetop,followedby
+anexcerptfromapatient’stranscription,followedbythatofacontrolsubjectwhowasage-,education-,andIQ-matchedtothatpatient.SeeSIFig.4foran
+additionalexample.Interviewer’sprobingcommentsareinitalics.Relevantbackgroundisinformationnotedinsquarebrackets.
+Hassabisetal. PNAS (cid:1) January30,2007 (cid:1) vol.104 (cid:1) no.5 (cid:1) 1727
+.09.03.82.401
+sserdda
+PI
+morf
+6202
+,21
+yaM
+no
+09.03.82.401
+yb
+gro.sanp.www//:sptth
+morf
+dedaolnwoD
+YGOLOHCYSP
+
+--- PAGE 3 ---
+Thelowoverallmeanofthecontrolsubjects[2.03(0.62)]confirmed
+thatthiswasthecase,andthereforethatsuccessfulconstructionof
+richnewexperiencesdidnotdependonrecallingrealmemories.
+Forcompleteness,wereportthatthepatientmeanwas2.37(0.90)
+andtherewasnosignificantdifferencebetweengroups(P(cid:1)0.40).
+We next sought to investigate the source of the patients’
+experiential index deficit further by analyzing the subcompo-
+nents that comprised this composite score.
+Subcomponents. Content. Each scenario description given by the
+participantwassegmentedintoasetofstatements.Everystatement
+was then classified as belonging to one of four main categories:
+spatialreference,entitypresence,sensorydescription,orthought/
+emotion/action.Thespatialreferencecategoryencompassedstate-
+ments regarding the relative position of entities within the envi-
+ronment, directions relative to the participant’s vantage point, or
+explicitmeasurements(e.g.,‘‘behindthebar’’or‘‘tomyleftIcan
+see’’or‘‘theceilingisabout40fthigh’’).Theentitycategorywas
+asimplecountofhowmanydistinctentities(e.g.,objects,people,
+animals)werementioned(e.g.,‘‘Icanseesomebirds’’).Thesensory
+descriptionscategoryconsistedofanystatementsdescribing(inany
+Fig.3. Scoresonthespatialcoherenceindex.Thedatapointsforevery
+modality)propertiesofanentity(e.g.,‘‘thechairI’msittingonis patientandcontrolsubjectareshown.Verticalbarsrepresentgroupmeans.
+made of wood’’) as well as general weather and atmosphere
+descriptions (e.g., ‘‘it is very hot’’ or ‘‘the room is very smoky’’).
+Finally, the thought/emotion/action category covered any intro- indicating that the deficit is subtle in nature. Although the
+spective thoughts or emotional feelings (e.g., ‘‘I have a sense of feedback received from patients was confidently and promptly
+being alone’’) as well as the thoughts, intentions, and actions of given, we cannot completely exclude the possibility that these
+otherentitiesinthescene(e.g.,‘‘heseemstobeinahurry’’or‘‘the subjective ratings are somehow systematically different in pa-
+barman is pouring a pint’’) (see SI Text and SI Data Set for an tients compared with controls. Patients might remember less
+examplecategorization). accurately their immediate task performance because of their
+For each category, patients produced fewer details than amnesia, or because they do not have the same volume of rich
+controls: spatial references (P (cid:1) 0.002), entities present (P (cid:1) experiencesavailabletodrawon.However,iftheseparticipant
+0.003),sensorydescriptions(P(cid:1)0.005),andthought/emotion/
+ratingsweresomehowinaccuratelyscoredbypatients,andthey
+actions(P(cid:1)0.001).Althoughimpaired,allpatientsperformed
+should have scored themselves lower, resulting in their experi-
+abovefloorandwereabletoproduceatleastsomeassociations ential index being further decreased.
+and even substantial descriptions relevant to the scenario in Wethereforenextconsideredanotherfactorfundamentalto
+question,ascanbeappreciatedfromFig.1(andSIFig.4).None episodicexperiences,namelytheextenttowhichthepatientsfelt
+had deficits in semantic retrieval. Nevertheless, we next asked liketheimaginedexperiencesweretakingplaceinanintegrated
+whether an inability to retrieve relevant semantic information and coherent spatial context as opposed to merely being a
+might underpin their construction deficit. We selected one
+fragmented collection of images.
+patientatrandomandtestedhiminthesamewayonadditional
+SpatialCoherenceIndex.Thespatialcoherenceindexisameasure
+scenarios.However,onthisoccasion,beforestartingtoimagine,
+ofthecontiguousnessandspatialintegrityoftheimaginedscene.
+the patient was provided with pictures of objects, as well as
+After each scenario, participants were presented with a set of
+sounds and smells relevant to the scenario (see Methods). This
+statements,eachprovidingapossiblequalitativedescriptionof
+information, which remained present during the task, thus theimaginedexperience.Theywereinstructedtoindicatewhich
+eschewed the need for retrieval from memory of relevant
+statements they felt accurately described their construction.
+semanticinformation,andusingtheprovidedmaterialsappro-
+They were free to identify as many or as few as they thought
+priately could produce a reasonable score. Despite this assis- appropriate.Thespatialcoherenceindexwasthenderivedfrom
+tance, however, performance did not improve, with no differ-
+thestatementsidentified(seeSIText).Someofthestatements
+enceinexperientialindexscoresbetweenoriginaland‘‘assisted’’
+scenarios(P(cid:1)0.96),theoverallcontentscore(P(cid:1)0.50),orthe indicatedthataspectsofthescenewereintegrated(e.g.,‘‘Icould
+spatial coherence index (P (cid:1) 0.85). seethewholesceneinmymind’seye’’),whereasothersindicated
+that aspects of the scene were fragmented (e.g., ‘‘it was a
+Participant ratings. Perhaps their imagined experiences lacked
+collection of separate images’’). Participants were blind to the
+somekeyexperientialqualities.Wetestedwhetherpatientswere
+purposeofthestatementsandindeedtheconceptofcoherence.
+explicitly aware of these qualities by asking them to rate each
+Compared with controls, the feedback from the patients
+constructiononascaleof1–5forsenseofpresence(1,didnot
+feellikeIwasthereatall;5,feltstronglylikeIwasreallythere). indicatedthattheirimaginedexperienceswerefragmentaryand
+There was no significant difference between patients and con-
+lackingincoherence(P(cid:1)0.007;seealsoFig.3).Althoughthe
+trols in perceived sense of presence [patient mean 3.46 (1.15), spatial coherence index encompasses a range of concepts, to
+controls3.65(0.49),P(cid:1)0.65].Wealsoaskedsubjectstoratethe ensure that the patient feedback was reliable we performed a
+perceivedsalienceofeachimaginedexperienceonascaleof1–5 correlation analysis between the spatial coherence scores and
+(1, couldn’t really see anything; 5, extremely salient). As with the data from the spatial reference content category, the most
+sense of presence, there was no significant difference between closelyrelated(althoughnarrower)objectivemeasure.Astrong
+patients and controls in perceived salience [patient mean 3.52
+trendwasobserved(P(cid:1)0.07),which,althoughnotsignificant,
+(1.19),controls3.88(0.48),P(cid:1)0.41].Thuswhilepatientswere indicates that it is likely that something concrete and real was
+impaired in terms of the amount of content included in their captured by the derived spatial coherence measure. Notably,
+imagined experiences, their subjective feelings of salience and when performing the spatial coherence task, several of the
+sense of presence were no different from control subjects, patientsidentifiedfragmentationasarelevantdifficultywiththe
+1728 (cid:1) www.pnas.org(cid:2)cgi(cid:2)doi(cid:2)10.1073(cid:2)pnas.0610561104 Hassabisetal.
+.09.03.82.401
+sserdda
+PI
+morf
+6202
+,21
+yaM
+no
+09.03.82.401
+yb
+gro.sanp.www//:sptth
+morf
+dedaolnwoD
+
+--- PAGE 4 ---
+task at hand, but also pertinent to their memory problems in questsforclarification,and,inparticular,noevidenceofrepe-
+general. tition,whichonemighthaveexpectedifpatientswereforgetting
+QualityJudgment.Onefinalscoringcomponent,thequalityjudg- recently generated scene elements and then constructing them
+ment,wasthescorer’sassessmentoftheoverallqualityofeach anew (see excerpts in Fig. 1 and SI Fig. 4).
+construction (see SI Text). This component was included to According to the traditional view of memory (5, 28–30) the
+provide a measure of the range, diversity, and quality of the roleofthehippocampusinepisodicmemoryistime-limited,with
+details described and to ensure that short, succinct, but none- thesememoriesconsolidatedtotheneocortexovertime.Within
+thelesssalient,descriptionswerenotunfairlypenalizedbecause thisframeworkitisheldthattheneocortexcontainsgeneralized
+oftheirbrevity.Scorerswereinstructedtorateonascaleof0–10 representations for spatial contextual (e.g., a beach, a market)
+howwelltheyfeltthedescriptionevokedadetailed‘‘picture’’of and nonspatial (e.g., object) memories, and therefore supports
+theexperienceintheirownmind’seye(0,nopictureatall;10, remote memory independently of any contribution from the
+vivid,extremelyrichpicture).Theimaginedexperiencesofthe hippocampus/medial temporal lobe (5). According to this view
+patientswerejudgedassignificantlypoorerinqualitythanthose then,successfulimaginationofexperienceswouldbeexpectedto
+of the controls (P (cid:1) 0.004). The pattern of quality judgment occurinthepresenceofhippocampallesions,bythecoordina-
+scores matched the pattern of the overall experiential indices tionofactivityinmultipleneocorticalareas,perhapsmediated
+veryclosely,and,infact,whenananalysiswasdonewithoutthe by the goal-directed temporary or online binding capacities of
+contributionofthequalityjudgmentstotheexperientialindex, theprefrontalcortexinworkingmemory(31–33).Thedemon-
+the patients still scored significantly lower than controls (P (cid:1) strationthatpatientswithhippocampalamnesiaareimpairedat
+0.001). generating new imagined experiences poses a challenge to the
+traditional model.
+P01.Whileoverallthepatientgroupwasimpairedatimagining Itcouldbeargued,however,thatthecreationofimaginednew
+newexperiencescomparedwiththecontrolgroup,examination experiences relies on retrieval of recent episodic memories, a
+of Figs. 2 and 3 shows that one of the five patients (P01; see process severely disrupted in hippocampal amnesics. Although
+Methods and SI Text) appeared to be unimpaired on the task. we cannot entirely exclude this possibility, we feel it to be
+Thisfindingwasconfirmedwhenhisperformancewascompared unlikelyforseveralreasons.First,commonplace,everydaysce-
+with his two exactly matched control subjects. A separate narios were specifically selected to increase the dependence of
+analysisofthedataexcludingP01andhistwomatchedcontrol constructionsongeneralizedsemanticmemoryrepresentations
+subjects, however, made no difference to the statistical signifi- formedfromnumerouspriorexperiences,andthusminimizeany
+cance of any of the results reported above. The fact that the possiblecontributionofrecent(orevenremote)episodicmem-
+patient group were so impaired even when P01 was included ories.Therefore,aninabilitytouserecentepisodicmemoriesto
+illustratestheextentofthedeficitinimaginingnewexperiences. aid their constructions is likely to have caused, at most, a mild
+Furthermore, the other four patients were remarkably homog- impairmentontheconstructiontask,ratherthanthedevastated
+enousintheirperformances(seeFigs.2and3),despitediffer- performancethatweobserved.Second,weexplicitlyinstructed
+encesinage,IQ,andmemoryprofiles(seeMethodsandSIText). participantsnottorecountanactualmemoryoranypartofone.
+PossiblereasonsforP01’satypicalperformancecomparedwith That our instructions were adhered to is evidenced by control
+theotherpatientsareconsideredinDiscussion(seealsoSIText). subjects reporting a low dependence on episodic memories to
+produce rich constructions. Finally, the fact that one densely
+Discussion amnesic patient was unimpaired on the construction task is
+In this experiment, we devised a paradigm where participants, further evidence against intact episodic retrieval capabilities
+rather than recollecting the past, had to imagine new experi- being a necessary prerequisite for imagining new experiences.
+ences.Ourresultsdemonstratethatamnesicpatientswithbilat- Although our findings are inconsistent with the traditional
+eral hippocampal damage were significantly impaired on this view(5),theyaccordwellwithsuggestionsthatthehippocampus
+task. From this study, we are able to draw several conclusions. plays a critical role in imagining experiences through the pro-
+To begin with, this systematic study formally documents that visionofspatialcontext,inperpetuity,eitherthroughitsability
+patients with hippocampal amnesia have a deficit in richly to process spatial information (7, 24, 27) or to bind together
+imagining new experiences. Second, in revealing this we show disparateelementsoftheimaginedscene(6,34–36).Giventhe
+that the role of the hippocampus extends beyond reliving past striking similarities between the process of imagining new ex-
+experiences, encompassing not only imagining plausible self- periencesandrelivingpastmemories(19–21)ourfindingsmay
+relevantfutureevents,butalsomoregenerallytheconstruction alsohaveimplicationsforthestatusofremoteepisodicmemory
+of fictitious experiences. Third, our findings offer some insight after hippocampal damage. It has been suggested that discrep-
+into a mechanism whose absence could underpin all of these anciesbetweenstudiesofremoteepisodicmemoryinhippocam-
+deficits. The patients’ imagined experiences were strikingly pal patients (8) might be accounted for by differences in the
+deficient in spatial coherence, resulting in their constructions qualityorrichnessoftherecollectiveexperience,afeaturethat
+being fragmented and lacking in richness. The hippocampus, is not always captured by existing scoring systems (7, 13, 37).
+therefore,maymakeacriticalcontributiontothecreationofnew Indeed,recentevidencesuggeststhatthehippocampusmaybe
+experiences by providing the spatial context or environmental critical for recollecting vivid, detailed episodic memories, re-
+setting into which details are bound (6, 7, 24, 27). Given how gardlessoftheirage(7,38,39).Ourresultsareconsistentwith
+closely imagined experiences match episodic memories, the this perspective and moreover suggest the critical attribute
+absence of this function mediated by the hippocampus may determining whether internally generated experiences, either
+fundamentallyaffecttheabilitytore-experienceorreconstruct realorimaginary,arehippocampal-dependentmaybetheextent
+past events. to which they are vividly (re-)experienced.
+Whenever one examines patients with amnesia, and in par- OnecaveattoourfindingsisthatP01wasunimpairedonthe
+ticularusinganoveltaskthattakesmorethanafewseconds,it construction task. Whereas the other four patients, despite
+couldbearguedthattheresultsmerelyreflecttheiranterograde variations in age, education, IQ, and memory profiles, were
+memory impairment. However, patients had access to a re- foundtobestrikinglyhomogenousintheirperformances,P01is
+mindercueduringeachtrial,andtheexaminerverifiedthrough- clearlydistinct.Althoughthereasonforhissparedperformance
+outthattheyhadnotforgottenthetask,theinstructions,ortheir is uncertain, it may relate to a degree of residual hippocampal
+own constructions. There were no instances of confusion, re- function.Indeed,thispatientretainstheabilitytoacquirenew
+Hassabisetal. PNAS (cid:1) January30,2007 (cid:1) vol.104 (cid:1) no.5 (cid:1) 1729
+.09.03.82.401
+sserdda
+PI
+morf
+6202
+,21
+yaM
+no
+09.03.82.401
+yb
+gro.sanp.www//:sptth
+morf
+dedaolnwoD
+YGOLOHCYSP
+
+--- PAGE 5 ---
+semantic information (40). Moreover, in a separate functional informedwrittenconsenttoparticipationinthestudyinaccordance
+MRI study, P01’s spared capacity for encoding new semantic withthelocalresearchethicscommittees.
+information(retainedevenwhentestedafewmonthslater)was
+associated with significant activation in residual hippocampal TaskandProcedure.Eachparticipantwastestedindividuallyand
+tissue(seeSITextandSIFig.5).Wesuggest,therefore,thatthis satfacingtheexaminer.Testingsessionsweredigitallyrecorded
+patient may have sufficient functional hippocampal tissue to to enable transcription and later scoring of participants’ re-
+allow him to perform successfully on the construction task. sponses. The requirements of the imagining new experiences
+Inthisstudy,wedemonstratethatpatientswithhippocampal taskwereexplained,andseveralexampleswereprovided.Dur-
+amnesiaareimpairedonanoveltaskthatsharesmanysimilar- ing this practice phase we also established that patients could
+ities with episodic memory, namely the construction task. As remembertheinstructionsandthecuesthroughoutaconstruc-
+suchwewereabletoprovideinsightsintothenatureofessential tion trial. Commonplace, ordinary settings were chosen as
+neuralmechanismscarriedoutbythehippocampus.Ourcurrent scenariostominimizethedifficultylevelandtobeasindepen-
+task was optimized to examine spatial deficits within the more dentfromaparticipant’sinnatecreativeabilityaspossible.The
+general context of rich experiencing. In the future, it will be scenariosalsopurposelyencompassedawidevarietyofdifferent
+interestingtoexaminewhetherthelackofcoherenceobserved subjectmattersfromthemanmadetothenaturalandthebusy
+extends to other nonspatial aspects of an imagined event. totheisolatedtoensuretherewerenocontentbiases.Foreach
+Furthermore,itwillbeimportanttoclarifythepreciserelation- scenarioashortdescriptionwasreadoutloudbytheinterviewer
+ship between construction and episodic memory and establish from a prepared script (e.g., ‘‘Imagine you’re lying on a white
+whetherthehippocampusplaysasimilarroleinmediatingboth sandy beach in a beautiful tropical bay;’’ see also Fig. 1 and SI
+Fig.4),andtheparticipantwasinstructedtovividlyimaginethe
+of these functions.
+situationfromthecueanddescribeitinasmuch(multimodal)
+Methods detailaspossible.Participantswereexplicitlytoldnottorecount
+anactualmemoryoranypartofonebutrathercreatesomething
+Participants.Fivepatients(allmale,oneleft-handed)eachwith
+new.Aprintedtextcardwasplacedonthedeskinfrontofthe
+primarydamagetothehippocampibilaterallyandconcomitant
+participantsummarizingthemainconceptofthescenariotoact
+amnesia took part. All but one patient have been reported
+asareminderifneeded.Participantswereallowedtocontinue
+(40–44)(seealsoSITextforsummariesofeachcaseandSIFigs.
+withtheirdescriptionsuntiltheycametoanaturalendorthey
+6–10).Hippocampaldamageinthreeofthecasesresultedfrom
+feltnothingelsecouldbeadded.Aprobingprotocoldictatedthe
+limbic encephalitis associated with voltage-gated potassium
+appropriateuseofstatementsusedbytheexaminerduringthe
+channelantibodies(VGKC-Ab),meningeoencephalitisandthen
+session. These mostly took the form of general probes encour-
+recurrent meningitis in one case, and limbic encephalitis (not
+agingfurtherdescription(e.g.,‘‘canyouseeanythingelseinthe
+associated with VGKC-Ab) in one case. The mean age of the
+scene?’’), or asking for further elaboration on a theme intro-
+patientswas52.8years(SD18.5,range24–70),yearsofeduca-
+ducedbythesubject(e.g.,‘‘canyoudescribethefishingboatin
+tionwas14.0years(SD3.7,range11–19)andverbalIQwas103.2
+moredetail?’’inresponsetothesubjectsaying‘‘Icanseeasmall
+(SD 11.7, range 90–116). All of the patients had significant
+fishing boat gently rocking out in the sea’’). It was strictly
+impairment of anterograde memory; some were deficient on
+prohibited for the examiner to introduce any concept, idea,
+both recognition and recall tests, others on recall tests alone.
+detail, or entity that had not already been mentioned by the
+Retrievalofpremorbidsemanticmemorywasintactinallcases,
+subject.Aftereachscenario,participantswereaskedtoratetheir
+whileretrogradememoryforepisodicexperienceswasimpaired,
+constructions across a number of different categories (see
+with the amnesic period ranging from 10 years to a complete
+ResultsandSIText).Atvariouspointsduringatrial,andbefore
+lifetime. Language, perceptual, verbal fluency, and executive
+the postscenario ratings, the examiner verified that the partici-
+functioning were within the normal range in all cases.
+pantstillrecalledthetaskinstructions,thescenarioinquestion,
+Lesions were confirmed by structural MRI scans and ap-
+and the scenario he had created.
+pearedtoimplicatethehippocampiwithnoevidenceofdamage
+Intheassistedversionofthetask(seeResults),thescenarios
+in adjacent medial temporal areas. It is notoriously difficult, if
+were similar in nature and the tasks were identical except that
+notimpossible,tobecertaininvivothatlesionsareselectiveto
+before commencing imagination, four-color photographs of
+a particular brain region. Even scrupulous measurements or
+objectsrelevanttothescenario,arelevantsoundwasplayed,and
+ratings of tissue volume from MRI scans cannot provide a a relevant smell was provided. These were available to the
+definitiveindicationastowhetherthetissueisfunctioningornot subject throughout the imagination task, with the sound peri-
+(43,45,46)(seealsoSIText)orthefunctionaleffectofalesion odicallyplayedbytheexaminer,andthesubjectinvitedtosmell
+on wider brain systems. In the patients we tested, the primary the relevant odor.
+area of damage in every case seemed restricted to the hip- During the pilot studies we attempted to contrast the first-
+pocampi, which was the only area of overlap. Their neuropsy- person perspective of the main task with a third-person or
+chological profiles suggested an isolated memory impairment, observer perspective. We found, however, that healthy pilot
+andtheirperformanceontheexperimentaltaskwasremarkably subjects effectively adopted a first-person perspective in any
+homogenous (excluding P01; see Results, Discussion, and SI case.Ofcourse,thisdoesnotruleoutthepossibilitytherecould
+Text).Notwithstandingthedifficultiesinherentinthefield,we be an effect of a different perspective provided a first-person
+therefore feel that our data permit conclusions to be drawn perspective could be definitely excluded. This is a potentially
+regarding the hippocampus. interesting issue for future studies.
+Ten healthy control participants also took part (all male, one
+left-handed).Themeanageofthecontrolsubjectswas52.2years Scoring.Acompositescore,theexperientialindex,rangingfrom
+(SD16.9,range25–76),yearsofeducationwas14.1years(SD2.8, 0 to 60, measuring the overall richness of the imagined experi-
+range 11–17), and verbal IQ was 104.3 (SD 6.3, range 94–112). ence, was calculated from the four subcomponents: content,
+There was no significant difference between the patients and participant ratings, spatial coherence index, and quality judg-
+controls on these background characteristics (age P (cid:1) 0.95; edu- ments. Full details of scoring system are provided in SI Text.
+cationP(cid:1)0.95;IQP(cid:1)0.81).Inadditiontocomparingthetwo Similar to the approach used in studies of autobiographical
+groups,weensuredthateachpatientwasmatchedexactlytotwoof memory(13),theprimaryscorerwasnotblindtosubjectstatus.
+thecontrolsubjectsonage,education,andIQ.Allparticipantsgave Therefore to assess interrater reliability and scoring system
+1730 (cid:1) www.pnas.org(cid:2)cgi(cid:2)doi(cid:2)10.1073(cid:2)pnas.0610561104 Hassabisetal.
+.09.03.82.401
+sserdda
+PI
+morf
+6202
+,21
+yaM
+no
+09.03.82.401
+yb
+gro.sanp.www//:sptth
+morf
+dedaolnwoD
+
+--- PAGE 6 ---
+robustness, two subjects (one patient and one control) were paired two-tailed t tests were used with the same statistical
+selectedatrandomandtheirconstructions(representing13.3% threshold.
+of all constructions) were assessed by a second trained scorer
+who was blind to subject identity. A two-way ANOVA was We thank the patients and their families for giving of their time so
+performed with scorer and subject as factors. There was no generously; Brian Levine for information about the autobiographical
+significant main effect of scorer on experiential index ratings interview;JohnWelchfordetailsofP03’sretrogradememory;Dennis
+[F(1,9) (cid:1) 0.117; P (cid:1) 0.74] indicating a high degree of scorer Chan for similar details about P04; Jason Warren and the Dementia
+Research Centre at the Institute of Neurology, Tim Griffiths and the
+reliability.
+CognitiveNeurologyClinicatNewcastleGeneralHospital(Newcastle
+uponTyne,U.K.),JohnAggletonattheSchoolofPsychology,Cardiff
+StatisticalAnalysis.Thetwogroups(patientsandcontrols)were
+University,andGeoffreySchottattheNationalHospital(London)for
+comparedbyusingtwo-tailedindependentttestswithasignif- patientreferrals;andPeterAston,KatherineWoollett,HugoSpiers,and
+icance threshold of P (cid:2) 0.05. For comparison of a patient’s NeilBurgessforassistanceandhelpfuldiscussions.Thisworkwasfunded
+performance on standard compared with assisted scenarios, bytheWellcomeTrustandtheBrainResearchTrust.
+1. TulvingE(2002)AnnuRevPsychol53:1–25. 26. RosenbaumRS,McKinnonMC,LevineB,MoscovitchM(2004)Neuropsy-
+2. ScovilleWB,MilnerB(1957)JNeurolNeurosurgPsychiatry20:11–21. chologia42:1619–1635.
+3. Zola-MorganS,SquireLR,AmaralDG(1986)JNeurosci6:2950–2967. 27. O’KeefeJ,NadelL(1978)TheHippocampusasaCognitiveMap(OxfordUniv
+4. Rempel-Clower NL, Zola SM, Squire LR, Amaral DG (1996) J Neurosci Press,Oxford).
+16:5233–5255. 28. AlvarezP,SquireLR(1994)ProcNatlAcadSciUSA91:7041–7045.
+5. SquireLR,StarkCE,ClarkRE(2004)AnnuRevNeurosci27:279–306. 29. SquireLR,AlvarezP(1995)CurrOpinNeurobiol5:169–177.
+6. EichenbaumH(2004)Neuron44:109–120. 30. SquireLR(1992)PsycholRev99:195–231.
+7. MoscovitchM,RosenbaumRS,GilboaA,AddisDR,WestmacottR,GradyC, 31. MosesSN,RyanJD(2006)Hippocampus16:43–65.
+McAndrews MP, Levine B, Black S, Winocur G, Nadel L (2005) J Anat 32. PrabhakaranV,NarayananK,ZhaoZ,GabrieliJD(2000)NatNeurosci3:85–90.
+207:35–66. 33. FusterJM(1997)ThePrefrontalCortex:Anatomy,Physiology,andNeuropsy-
+8. BayleyPJ,GoldJJ,HopkinsRO,SquireLR(2005)Neuron46:799–810. chologyoftheFrontalLobe(Lippincott–Raven,NewYork).
+9. MoscovitchM,NadelL,WinocurG,GilboaA,RosenbaumRS(2006)Curr 34. McClellandJL,McNaughtonBL,O’ReillyRC(1995)PsycholRev102:419–
+OpinNeurobiol16:179–190. 457.
+10. SpiersHJ,MaguireEA,BurgessN(2001)Neurocase7:357–382. 35. HannulaDE,TranelD,CohenNJ(2006)JNeurosci26:8352–8359.
+11. MaguireEA(2001)PhilosTransRSocLondonB356:1441–1451. 36. LeeAC,BuckleyMJ,PegmanSJ,SpiersH,ScahillVL,GaffanD,BusseyTJ,
+12. BayleyPJ,HopkinsRO,SquireLR(2003)Neuron38:135–144. DaviesRR,KapurN,HodgesJR,GrahamKS(2005)Hippocampus15:782–
+13. LevineB,SvobodaE,HayJF,WinocurG,MoscovitchM(2002)PsycholAging 797.
+17:677–689. 37. Kopelman MD, Wilson BA, Baddeley AD (1989) J Clin Exp Neuropsychol
+14. BurgessN(2002)QJExpPsycholA55:1057–1080. 11:724–744.
+15. TulvingE(1983)ElementsofEpisodicMemory(Clarendon,Oxford). 38. GilboaA,WinocurG,GradyCL,HevenorSJ,MoscovitchM(2004)Cereb
+16. RosenbaumRS,KohlerS,SchacterDL,MoscovitchM,WestmacottR,Black Cortex14:1214–1225.
+SE,GaoF,TulvingE(2005)Neuropsychologia43:989–1021. 39. AddisDR,MoscovitchM,CrawleyAP,McAndrewsMP(2004)Hippocampus
+17. KleinSB,LoftusJ,KihlstromJF(2002)SocCognit20:353–379. 14:752–762.
+18. AtanceCM,O’NeillDK(2001)TrendsCognitSci5:533–539. 40. McKennaP,GerhandS(2002)Cortex38:37–58.
+19. GreenbergDL,RubinDC(2003)Cortex39:687–728. 41. AggletonJP,VannSD,DenbyC,DixS,MayesAR,RobertsN,YonelinasAP
+20. ConwayMA,Pleydell-PearceCW(2000)PsycholRev107:261–288. (2005)Neuropsychologia43:1810–1823.
+21. SchacterDL(1996)SearchingforMemory:TheBrain,theMind,andthePast 42. SamarasekeraSR,VincentA,WelchJL,JacksonM,NicholsP,GriffithsTD
+(BasicBooks,NewYork). (2006)JNeurolNeurosurgPsychiatry,10.1136/jnnp.2006.093096.
+22. RubinDC,SchraufRW,GreenbergDL(2003)MemCognit31:887–901. 43. MaguireEA,NanneryR,SpiersHJ(2006)Brain129:2894–2907.
+23. WheelerMA,StussDT,TulvingE(1997)PsycholBull121:331–354. 44. Hartley T, Bird CM, Chan D, Cipolotti L, Husain M, Vargha-Khadem F,
+24. BurgessN,BeckerS,KingJA,O’KeefeJ(2001)PhilosTransRSocLondonB BurgessN(2007)Hippocampus17:34–48.
+356:1493–1503. 45. MaguireEA,FrithCD,RudgeP,CipolottiL(2005)NeuroImage27:146–152.
+25. KosslynSM,GanisG,ThompsonWL(2001)NatRevNeurosci2:635–642. 46. MaguireEA,Vargha-KhademF,MishkinM(2001)Brain124:1156–1170.
+Hassabisetal. PNAS (cid:1) January30,2007 (cid:1) vol.104 (cid:1) no.5 (cid:1) 1731
+.09.03.82.401
+sserdda
+PI
+morf
+6202
+,21
+yaM
+no
+09.03.82.401
+yb
+gro.sanp.www//:sptth
+morf
+dedaolnwoD
+YGOLOHCYSP

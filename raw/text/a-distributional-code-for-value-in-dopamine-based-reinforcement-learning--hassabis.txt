@@ -1,0 +1,930 @@
+
+--- PAGE 1 ---
+Article
+A distributional code for value in dopamine-
+based reinforcement learning
+https://doi.org/10.1038/s41586-019-1924-6 Will Dabney1,5*, Zeb Kurth-Nelson1,2,5, Naoshige Uchida3, Clara Kwon Starkweather3,
+Demis Hassabis1, Rémi Munos1 & Matthew Botvinick1,4,5
+Received: 3 January 2019
+Accepted: 19 November 2019
+Since its introduction, the reward prediction error theory of dopamine has explained
+Published online: xx xx xxxx
+a wealth of empirical phenomena, providing a unifying framework for understanding
+the representation of reward and value in the brain1–3. According to the now canonical
+theory, reward predictions are represented as a single scalar quantity, which supports
+learning about the expectation, or mean, of stochastic outcomes. Here we propose an
+account of dopamine-based reinforcement learning inspired by recent artificial
+intelligence research on distributional reinforcement learning4–6. We hypothesized
+that the brain represents possible future rewards not as a single mean, but instead as a
+probability distribution, effectively representing multiple future outcomes
+simultaneously and in parallel. This idea implies a set of empirical predictions, which
+we tested using single-unit recordings from mouse ventral tegmental area. Our
+findings provide strong evidence for a neural realization of distributional
+reinforcement learning.
+The reward prediction error (RPE) theory of dopamine derives from representation learning (see Extended Data Figs. 2, 3 and Supplemen-
+work in the artificial intelligence (AI) field of reinforcement learning tary Information). This prompts the question of whether RL in the brain
+(RL)7. Since the link to neuroscience was first made, however, RL has might leverage the benefits of distributional coding. This question is
+made substantial advances8,9, revealing factors that greatly enhance encouraged both by the fact that the brain utilizes distributional codes in
+the effectiveness of RL algorithms10. In some cases, the relevant mecha- numerous other domains16, and by the fact that the mechanism of distri-
+nisms invite comparison with neural function, suggesting hypotheses butional RL is biologically plausible6,17. Here we tested several predictions
+concerning reward-based learning in the brain11–13. Here we examine a of distributional RL using single-unit recordings in the ventral tegmental
+promising recent development in AI research and investigate its poten- area (VTA) of mice performing tasks with probabilistic rewards.
+tial neural correlates. Specifically, we consider a computational frame-
+work referred to as distributional reinforcement learning4–6 (Fig. 1a, b).
+Value predictions vary among dopamine neurons
+Similar to the traditional form of temporal-difference RL—on which
+the dopamine theory was based—distributional RL assumes that In contrast to classical temporal-difference (TD) learning, distributional
+reward-based learning is driven by a RPE, which signals the difference RL posits a diverse set of RPE channels, each of which carries a different
+between received and anticipated reward. (For simplicity, we introduce value prediction, with varying degrees of optimism across channels.
+the theory in terms of a single-step transition model, but the same (Value is formally defined in RL as the mean of future outcomes, but here
+principles hold for the general multi-step (discounted return) case; we relax this definition to include predictions about future outcomes
+see Supplementary Information.) The key difference in distributional that are not necessarily the mean.) These value predictions in turn pro-
+RL lies in how ‘anticipated reward’ is defined. In traditional RL, the vide the reference points for different RPE signals, causing the latter to
+reward prediction is represented as a single quantity: the average over also differ in terms of optimism. As a surprising consequence, a single
+all potential reward outcomes, weighted by their respective probabili- reward outcome can simultaneously elicit positive RPEs (within relatively
+ties. By contrast, distributional RL uses a multiplicity of predictions. pessimistic channels) and negative RPEs (within more optimistic ones).
+These predictions vary in their degree of optimism about upcoming This translates immediately into a neuroscientific prediction, which
+reward. More optimistic predictions anticipate obtaining greater is that dopamine neurons should display such diversity in ‘optimism’.
+future rewards; less optimistic predictions anticipate more meager Suppose an agent has learned that a cue predicts a reward whose mag-
+outcomes. Together, the entire range of predictions captures the full nitude will be drawn from a probability distribution. In the standard
+probability distribution over future rewards (more details in Supple- RL theory, receiving a reward with magnitude below the mean of this
+mentary Information). distribution will elicit a negative RPE, whereas larger magnitudes
+Compared with traditional RL procedures, distributional RL can will elicit positive RPEs. The reversal point—the magnitude at which
+increase performance in deep learning systems by a factor of two prediction errors transition from negative to positive—in standard
+or more5,14,15, an effect that stems in part from an enhancement of RL is the expectation of the magnitude’s distribution. By contrast, in
+1DeepMind, London, UK. 2Max Planck UCL Centre for Computational Psychiatry and Ageing Research, University College London, London, UK. 3Center for Brain Science, Department of
+Molecular and Cellular Biology, Harvard University, Cambridge, MA, USA. 4Gatsby Computational Neuroscience Unit, University College London, London, UK. 5These authors contributed
+equally: Will Dabney, Zeb Kurth-Nelson, Matthew Botvinick. *e-mail: wdabney@google.com
+Nature | www.nature.com | 1
+
+--- PAGE 2 ---
+Article
+a Classical TD learning b Distributional TD learning
+V V
+(cid:71) (cid:71)
+Same scaling Mean-value baseline Mean-value coding Different scaling Multiple value baselines Distribution coding
+Fig. 4
+Reward magnitude
+distributional RL, the reversal point differs across dopamine neurons preferences, the 50% cue response should be midway between the 10%
+according to their degree of optimism. and 90% cues. Under different risk preferences, the 50% cue response
+We tested for such reversal-point diversity in optogenetically verified might be at a different position between 10% and 90%, but it should
+dopaminergic VTA neurons, focusing on responses to receipt of liquid be the same for all neurons). Distributional RL predicts, instead, that
+rewards, the volume of which was drawn at random on each trial from dopamine neurons should vary in their responses to the 50% cue: some
+seven possible values (Fig. 1c). As anticipated by distributional RL, but not neurons should respond optimistically, emitting a RPE nearly as large as
+by the standard theory, we found that dopamine neurons had substan- to the 90% cue. Others should respond pessimistically, emitting a RPE
+tially different reversal points, ranging from cells that reversed between closer to the 10% cue response (Fig. 3a). Labelling these two cases as
+the smallest two rewards to cells that reversed between the largest two optimistically and pessimistically biased, respectively, distributional RL
+rewards (Fig. 2a, b). This diversity was not owing to noise, as the reversal predicts that as a population, dopamine neurons should show concur-
+point estimated on a random half of the data was a robust predictor rent optimistic and pessimistic coding for reward probability.
+of the reversal point estimated on the other half of the data (R = 0.58, To test this prediction, we analysed responses of dopaminergic VTA
+P = 1.8 × 10−5 by linear regression; Fig. 2c). In fact, in response to the 5 μl neurons in the cued probability task just described (see Methods for more
+reward, 13 out of 40 cells had significantly above-baseline responses and details). As predicted by distributional RL, but not by the standard theory,
+10 out of 40 cells had significantly below-baseline responses. Note that dopamine neurons differed in their patterns of response across the three
+while some cells appeared pessimistic and others appeared optimistic, reward-probability cues, with both optimistic and pessimistic probability
+there was also a population of cells with approximately neutral responses, coding observed (Fig. 3b left, Extended Data Figs. 6, 7). Again, this diver-
+as predicted by the distributional RL model (compare with Fig. 2a, right). sity was not due to noise, as 10 out of 31 cells were significantly optimistic
+A stronger test of our theory is whether this diversity also exists and 9 out of 31 cells were significantly pessimistic, at a P < 0.05 threshold
+within a single animal. Most animals had too few cells for analysis, but (see Methods). By comparison, at a 0.05 threshold, approximately 3 out
+within the single animal with the highest number of recorded cells, of 31 cells in a non-distributional TD system are expected by chance to
+reversal points estimated on half of the data were robustly predictive appear either significantly optimistic or pessimistic. At the group level,
+of reversal points estimated on the other half (P = 0.008). Furthermore, the null hypothesis of no diversity was rejected by one-way analysis of
+in response to a single reward magnitude (5 μl), 6 out of 16 cells had variance (ANOVA) (F(30, 3335) = 4.31, P = 6 × 10−14). Notably, both forms
+significantly above-baseline responses and 5 out of 16 cells had sig- of probability coding were observed side by side in individual animals.
+nificantly below-baseline responses. Finally, Fig. 2d shows rasters of In the animal with the largest number of recorded cells, 4 out of 17 cells
+two example cells from this animal, exhibiting consistently opposite were consistently optimistic and 5 out of 17 cells were consistently pessi-
+responses to the same reward. mistic. This was also significant by ANOVA (F(15, 1652) = 4.02, P = 3 × 10−7).
+Because the diversity we observe is reliable across trials, it cannot Because most cells were recorded in different sessions, it was
+be explained by adding measurement noise to non-distributional TD important to examine whether global changes in reward expecta-
+models. As detailed in section 2 of the Supplementary Information (see tions between sessions might explain the observed diversity in opti-
+also Extended Data Fig. 4), we also analysed several more elaborate mism. To this end, we analysed patterns of anticipatory licking. Here
+alternative models, and whereas some of these can give rise to the we found that, although within-session fluctuations in licking were
+appearance of reversal-point diversity under some analysis methods, predictive of within-session fluctuations in dopamine cell firing, there
+the same models are contradicted by other aspects of the experimental was no relationship between optimism and licking on a cell-by-cell
+data, which we report below. basis (Extended Data Fig. 9). This observation makes it unlikely that
+Our first prediction dealt with the relationship between dopaminergic the diverse responses we observed in dopamine neurons are explained
+signalling and reward magnitude; dopaminergic RPE signals also scale by session-to-session variability in global reward expectation. That
+with reward probability2,18, and distributional RL also leads to a predic- interpretation is further undermined by the fact that reversal-point
+tion in this domain. Pursuing this, we analysed data from a second task diversity was observed in the one case where several cells were recorded
+in which sensory cues indicated the probability of an upcoming liquid simultaneously in one animal (Fig. 3c and Supplementary Information).
+reward (Fig. 1d). One cue indicated a 10% probability of reward, a differ-
+ent cue indicated a 50% probability, and a third a 90% probability. The
+GABAergic neurons make diverse reward predictions
+standard RPE theory predicts that, considering responses at the time the
+cue is presented, all dopamine neurons should have the same relative In distributional RL, diversity in RPE signalling arises because differ-
+spacing between 10%, 50% and 90% cue responses. (Under neutral risk ent RPE channels listen to different reward predictions, which vary
+2 | Nature | www.nature.com
+gniriF
+RPE
+gniriF
+eulav
+denraeL
+Fig. 4
+Reward magnitude
+gniriF
+RPE
+gniriF
+eulav
+denraeL
+c Variable magnitude
+0.1 μl
+0.3 μl
+1.2 μl
+2.5 μl
+5 μl
+10 μl
+20 μl
+Variable probability
+d
+p
+1 – p
+α+/(α+ + α–) α+/(α+ + α–) ∅
+Fig. 1 | Distributional value coding arises from a diversity of relative scaling (α+) and negative (α−) RPEs. Red shading indicates α+ > α−, and blue shading
+of positive and negative prediction errors. a, In the standard temporal- indicates α− > α+. An imbalance between α+ and α− causes each channel to learn a
+difference (TD) theory of the dopamine system, all value predictors learn the different value prediction. This set of value predictions collectively represents
+same value V. Each dopamine cell is assumed to have the same relative scaling the distribution over possible rewards. c, We analyse data from two tasks. In the
+for positive and negative RPEs (left). This causes each value prediction (or value variable-magnitude task, there is a single cue, followed by a reward of
+baseline) to be the mean of the outcome distribution (middle). Dotted lines unpredictable magnitude. d, In the variable-probability task, there are three
+indicate zero RPE or pre-stimulus firing. b, In our proposed model, cues, which each signal a different probability of reward, and the reward
+distributional TD, different channels have different relative scaling for positive magnitude is fixed.
+
+--- PAGE 3 ---
+a Classical TD Distributional TD b Neural data c Consistency d Example cells
+Mice
+0.3 0.2
+0.1
+0
+log(p)–20 0
+in their degree of optimism. From a neuroscientific perspective, it
+Distribution coding from asymmetric RPE scaling
+should thus be possible to track the effects we have identified at the
+level of VTA dopamine neurons back to upstream neurons signal- The results reported in the preceding sections suggest that a distri-
+ling reward predictions. Previous work strongly suggests that VTA bution of value predictions is coded in the neural circuits underlying
+GABAergic (γ-aminobutyric acid) neurons have precisely this role, RL. How might such coding arise in the first place? Recent AI work on
+and that the reward prediction used to compute the RPE is reflected distributional RL15 has shown that distributional coding arises automati-
+in their firing rates19. Therefore, we predicted that, in the same task cally if a single change is made to the classical TD learning mechanism.
+described above, the population of VTA GABAergic neurons should In classical TD, positive and negative errors are given equal weight.
+also contain concurrent optimistic and pessimistic probability cod- As a result, positive and negative errors are in equilibrium when the
+ing. As predicted, consistent differences in probability coding were learned prediction equals the mean of the reward distribution. There-
+observed across putative GABAergic neurons, again with concurrent fore, classical TD learns to predict the average over future rewards.
+optimism and pessimism (Fig. 3b, right). In the animal with the largest By contrast, in distributional TD, different RPE channels place different
+number of cells recorded, 12 out of 36 cells were consistently opti- relative weights on positive versus negative RPEs (see Fig. 1b). In channels
+mistic and 11 out of 36 cells were consistently pessimistic (example that overweight positive RPEs, reaching equilibrium requires these positive
+cells shown in Fig. 3d). errors to become less frequent, so the learning dynamics converge on a
+Nature | www.nature.com | 3
+Fraction
+20 μl
+10 μl
+5 μl
+2.5 μl
+0.1 μl
+0.1 μ 2 l .5 μl 5 μl 10 μl
+Reversal point in half of data
+atad
+fo
+flah
+rehto
+ni
+tniop
+lasreveR
+50
+25
+40
+20
+0
+slairT
+–1 0 1 2 –3 –2 –1 0 1 2 3 –4 –3 –2 –1 0 1 2 3 –200 200 400 600
+RPE (normalized) RPE (normalized) Δ Firing rate (normalized) Time from reward onset (ms)
+)tniop
+lasrever
+yb
+detros(
+tinU
+)tniop
+lasrever
+yb
+detros(
+tinU
+)tniop
+lasrever
+yb
+detros(
+lleC
+0
+Fig. 2 | Different dopamine neurons consistently reverse from positive to responded positively to only the very largest reward. b, Responses recorded
+negative responses at different reward magnitudes. Variable-magnitude from light-identified dopamine neurons in behaving mice. Neurons differed
+task from ref. 30. On each trial, the animal experiences one of seven possible markedly in their reversal points. c, To assess whether this diversity was
+reward magnitudes (0.1, 0.3, 1.2, 2.5, 5, 10 or 20 μl), selected randomly. a, RPEs reliable, we randomly partitioned the data into two halves and estimated
+produced by classical and distributional TD simulations. Each horizontal bar is reversal points independently in each half. We found that the reversal point
+one simulated neuron. Each dot colour corresponds to a particular reward estimated in one half was correlated with that estimated in the other half
+magnitude. The x axis is the cell’s response (change in firing rate) when reward (P = 1.8 × 10−5 by linear regression). d, Spike rasters for two example dopamine
+is delivered. Cells are sorted by reversal point. In classical TD, all cells carried neurons from the same animal, showing responses to all trials when the 5 μl
+approximately the same RPE signal. Note that the slight differences between reward was delivered. We analysed data from 200 to 600 ms after reward onset
+cells arose from Gaussian noise added to the simulation; the differences (highlighted), to exclude the initial transient that was positive for all
+between cells in the classical TD simulation were not statistically reliable. magnitudes. During this epoch, the cell on the bottom fires above its baseline
+Conversely, in distributional TD, cells had reliably different degrees of rate, while the cell on the top pauses.
+optimism. Some responded positively to almost all rewards, and others
+Classical TD Distributional TD
+DA response GABAergic response
+)zH(
+etar gniriF
+Δ
+10% cue 50% cue 90% cue
+5 3
+4 3 2
+2
+1 1 0 0 –1
+–2 –1 –3
+–4 –2
+–0.5 0 0.5 1.0 1.5
+Time from odour onset (s) Time from odour onset (s)
+)zH( etar
+gniriF
+Δ
+DA time courses GABAergic time courses
+8 12 6 10 4 8 6
+2
+4 0 2 –2 0
+–4 –2
+Time from odour onset (s) Time from odour onset (s) Time from odour onset (s)
+)zH( etar
+gniriF
+Δ
+50 40 30 20
+10
+0 –10 –20
+–30
+25
+20
+15
+10 5
+0
+–5
+Time from odour onset (s)
+)zH(
+etar
+gniriF
+Δ
+a c d
+–10 –5 0 5 10 –10 –5 0 5 10
+t-statistic t-statistic
+b
+–10 –5 0 5 10 –10 –5 0 5 10
+t-statistic t-statistic
+ycneuqerf
+evitaleR
+ycneuqerf
+evitaleR
+ycneuqerf
+evitaleR
+ycneuqerf
+evitaleR
+1 1 0.8 Neutral 0.8 Pessimistic Optimistic 0.6 0.6
+0.4 0.4 0.2 0.2
+0 0
+–0.5 0 0.5 1.0 1.5 –0.5 0 0.5 1.0 1.5 –0.5 0 0.5 1.0 1.5
+1 1
+0.8 0.8
+0.6 0.6 0.4 0.4
+0.2 0.2
+0 0
+–0.5 0 0.5 1.0 1.5 –0.5 0 0.5 1.0 1.5
+Fig. 3 | Optimistic and pessimistic probability coding occur concurrently in from real dopamine and putative GABAergic neurons. The pattern of results
+dopamine and VTA GABAergic neurons. Data from variable-probability task. closely matches the predictions from the distributional TD model.
+a, Histogram (across simulated cells) of t-statistics which compare each cell’s c, Responses of four example dopamine neurons recorded simultaneously in a
+50% cue response against the mean 50% cue response across cells. Qualitatively single animal. Each trace is the average response to one of the three cues.
+identical results hold when comparing the 50% cue response against Shaded area shows s.e.m. Time zero is the onset of the odour cue. Some cells
+the midpoint of 10% and 90% responses. The superimposed black curve shows code the 50% cue similarly to the 90% cue, while others simultaneously code it
+the t-distribution with the corresponding degrees of freedom. Distributional similarly to the 10% cue. Grey areas show epoch averaged for summary
+TD predicts simultaneous optimistic and pessimistic coding of probability, analyses. d, Responses of two example VTA GABAergic cells from the same
+whereas classical TD predicts that all cells have the same coding. Colour animal.
+indicates the degree of optimism or pessimism. b, Same as a, but using data
+
+--- PAGE 4 ---
+Article
+15 15 15
+10 10 10 5 5 5 0 0 0 –5 –5 –5
+–5 0 5 10 –5 0 5 10 –5 0 5 10
+Reward minus reversal point
+more optimistic reward prediction. Conversely, in channels overweighting particular response asymmetries in the corresponding neurons, should
+negative RPEs, a more pessimistic prediction is needed to attain equilibrium encode an approximate representation of the anticipated probability
+(Fig. 4a, Extended Data Fig. 1a). Together, the set of predictions learned distribution over future rewards.
+across all channels encodes the full shape of the reward distribution. If this is the case, then with sufficient data it should be possible to
+When distributional RL is considered as a model of the dopamine sys- decode the full value distribution from the responses of dopamine neu-
+tem, these points translate into two testable predictions. First, dopamine rons. As a final test of the distributional RL hypothesis, we attempted
+neurons should differ in their relative scaling of positive and negative this type of decoding. The distributional TD model implies that, if
+RPEs. To test this prediction, we analysed activity from VTA dopamine dopaminergic responses are approximately linear in the positive and
+neurons in the variable-magnitude task described above. We first esti- negative domains, then the resultant learned reward predictions will
+mated a reversal point for each cell as previously described. Then, for each correspond to expectiles of the reward distribution20 (expectiles are
+cell, we separately estimated two slopes: α+ for responses in the positive a statistic of distributions, which generalize the mean in the same way
+domain (that is, above the reversal point), and α− for the negative domain that quantiles generalize the median).
+(Fig. 4b). This revealed reproducible differences across dopamine neurons We therefore treated the reversal points and response asymmetries
+in the relative magnitude of positive versus negative RPEs (Extended measured in the variable-magnitude task as defining a set of expec-
+Data Fig. 5). Across all animals, the mean value of the ratio α+/(α+ + α−) tiles, and we transformed these expectiles into a probability density
+was 0.48. However, many cells had a value significantly above or below (see Methods). As shown in Fig. 5a–c, the resulting density captured
+this mean (Fig. 4c; see Methods for details of statistical test). At the group multiple modes of the ground-truth value distribution. Decoding the
+level, there was significant diversity between cells by one-way ANOVA RPEs produced by a distributional TD simulation, but not a classical
+(F(38, 234) = 2.93, P = 4 × 10−7). In the animal with the largest number of TD simulation, produced the same pattern of results.
+recorded cells, 3 out of 15 cells were significantly below the mean and 3 Parallel analyses focusing on the variable-probability task (see Meth-
+out of 15 were significantly above the mean; ANOVA again rejected the ods) yielded similarly good matches to the ground-truth distributions
+null hypothesis of no diversity between cells (F(14, 90) = 4.06, P = 2 × 10−5). in that task (Fig. 5d, e). In both tasks, successful decoding depended
+Second, RPE asymmetry should correlate, across dopamine neu- on the specific pattern of variability in the neural data, and not on the
+rons, with reversal point. Dopamine neurons that scale positive RPEs presence of variability per se (Extended Data Fig. 8).
+more steeply relative to negative RPEs should be linked with relatively It is worth emphasizing that none of the effects we have reported are
+optimistic reward predictions, and so should have reversal points at anticipated by the standard RPE theory of dopamine, which implies that
+relatively high reward magnitudes. Dopamine neurons that scale posi- all dopamine neurons should transmit essentially the same RPE signal.
+tive RPEs less steeply should have relatively low reversal points. Again Why have the present effects not been observed before? In some cases,
+using data from the variable-magnitude task, we found a strong cor- relevant data have been hiding in plain sight. For example, a number of
+relation between RPE asymmetry and reversal point (P = 8.1 × 10−5 by studies have reported marked variability in the relative magnitude of
+linear regression; Fig. 4d, e), validating this prediction. Furthermore, positive and negative RPEs across dopamine neurons; however, they
+this effect survived when only considering data from the single animal have treated this as an incidental finding or a reflection of measure-
+with the largest number of recorded cells (P = 0.002). ment error, or viewed it as a problem for the RPE theory17. One of the
+earliest studies of reward-probability coding in dopaminergic RPEs
+remarked on apparent diversity across dopamine neurons, but only in a
+Decoding reward distributions footnote18. A more general issue is that the forms of variability we have
+As we have discussed, the distributional TD model correctly predicts reported are masked by traditional analysis techniques, which typically
+that dopamine neurons should show diverse reversal points and focus on average responses across dopamine neurons (see Supplemen-
+response asymmetries, and that these should correlate. Finally, we tary Information and Extended Data Fig. 10).
+consider the most detailed prediction of the model. The specific rever- Distributional RL offers a range of untested predictions. Dopamine
+sal points observed in any experimental situation, together with the neurons should maintain their ordering of relative optimism across task
+4 | Nature | www.nature.com
+etar
+gniriF Δ
+Reward minus reversal point
+etar
+gniriF
+Δ
+Distributional TD simulation
+1.2
+1
+0.8
+Asymmetric scaling in DA firing 0.6
+0.4
+Each cell 0.2 Mean across cells 0
+10 15 20 25 30 35 40
+Cell index
+)–α++α(/+α
+Diversity in asymmetry 40 Normalized by negative scale
+30
+20
+10
+0
+–10 Different from mean –20
+0 5 –10 –5 0 5 10 15
+Reward minus reversal point
+)dezilamron(
+etar
+gniriF
+Δ
+Asymmetry predicts reversal point
+10 μl
+5 μl
+2.5 μl 1.2 μl 0.1 μl
+0 0.2 0.4 0.6 0.8 1
+α+/(α++α–)
+tniop
+lasreveR
+a c d e
+b
+Fig. 4 | Relative scaling of positive and negative dopamine responses α+/(α+ + α−) are displayed, where α+ and α− are the slopes estimated above.
+predicts reversal point. a, Three simulated dopamine neurons—each with a d, Relative scaling of positive and negative responses predicts that cell’s
+different asymmetry—in the variable-magnitude task. For each unit, we reversal point (P = 8.1 × 10−5 by linear regression). Each point represents one
+empirically estimated the reversal point where responses switch from negative dopamine cell. Dashed line is the mean over cells. Light grey traces show
+to positive. The x axis shows reward minus the per-cell reversal point, reversal points measured in distributional TD simulations of the same task, and
+effectively aligning each cell’s responses to its respective reversal point. show variability over simulation runs. e, All 40 dopamine cells plotted in the
+Baseline-subtracted response to reward is plotted on the y axis. Responses same fashion as in b, except normalized by the slope estimated in the negative
+below the reversal point are shown in green and those above are shown in domain. Thus, the observed variability in slope in the positive domain
+orange. Solid curves show linear functions fit separately to the above-reversal corresponds to diversity in relative scaling of positive and negative responses.
+and below-reversal domains of each cell. b, Same as a, but showing three real Cells are coloured by reversal point, to illustrate the relationship between
+example dopamine cells. c, The diversity in relative scaling of positive and reversal point and asymmetric scaling. In all panels, reward magnitudes are in
+negative responses in dopamine cells is statistically reliable (one-way ANOVA; estimated utility space (see Methods).
+F(38, 234) = 2.93, P = 4 × 10−7). The mean and 95% confidence intervals of
+
+--- PAGE 5 ---
+e
+Sensitivity to distribution
+10% cue 50% cue
+90% cue
+0 0.2 0.4 0.6 0.8 1.0
+Probability of reward
+contexts, even as the specific distribution of rewards changes. If RPE 5. Bellemare, M. G., Dabney, W., & Munos, R. A distributional perspective on reinforcement
+learning. In International Conference on Machine Learning (eds Precup, D. & The, Y. W.)
+channels with particular levels of optimism are selectively activated
+449–458 (2017).
+with optogenetics, this should sculpt the learned distribution, which 6. Dabney, W. Rowland, M. Bellemare, M. G. & Munos, R. Distributional reinforcement
+should in turn be detectable with behavioural measures of sensitivity learning with quantile regression. In AAAI Conference on Artificial Intelligence (2018).
+7. Sutton, R. S. & Barto, A. G. Reinforcement Learning: an Introduction Vol. 1 (MIT Press,
+to moments of the distribution. We list further predictions in the Sup-
+1998).
+plementary Information. 8. Mnih, V. et al. Human-level control through deep reinforcement learning. Nature 518,
+Distributional RL also gives rise to a number of broader questions. 529–533 (2015).
+9. Silver, D. et al. Mastering the game of Go with deep neural networks and tree search.
+What are the circuit- or cellular-level mechanisms that give rise to a
+Nature 529, 484–489 (2016).
+diversity of asymmetry in positive versus negative RPE scaling? It is 10. Hessel, M. et al. Rainbow: combining improvements in deep reinforcement learning. In
+also worth considering whether other mechanisms, aside from asym- 32nd AAAI Conference on Artificial Intelligence (2018).
+11. Botvinick, M. M., Niv, Y. & Barto, A. G. Hierarchically organized behavior and its neural
+metric scaling of RPEs, might contribute to distributional coding. It is foundations: a reinforcement learning perspective. Cognition 113, 262–280 (2009).
+well established, for example, that positive and negative RPEs differ- 12. Wang, J. X. et al. Prefrontal cortex as a meta-reinforcement learning system. Nat.
+entially engage striatal D and D dopamine receptors21, and that the Neurosci. 21, 860–868 (2018).
+1 2 13. Song, H. F., Yang, G. R. & Wang, X. J. Reward-based training of recurrent neural networks
+balance of these receptors varies anatomically22–24. This suggests a sec- for cognitive and value-based tasks. eLife 6, e21492 (2017).
+ond potential mechanism for differential learning from positive versus 14. Barth-Maron, G. et al. Distributed distributional deterministic policy gradients. In
+negative RPEs25. Moreover, how do different RPE channels anatomically International Conference on Learning Representations https://openreview.net/
+forum?id=SyZipzbCb (2018).
+couple with their corresponding reward predictions (see Extended 15. Dabney, W., Ostrovski, G., Silver, D. & Munos, R. Implicit quantile networks for
+Data Fig. 4i–k)? Finally, what effects might distributional coding have distributional reinforcement learning. In International Conference on Machine Learning
+downstream, at the level of action learning and selection? With this (2018).
+16. Pouget, A., Beck, J. M., Ma, W. J. & Latham, P. E. Probabilistic brains: knowns and
+question in mind, it is notable that some current theories in behavioural unknowns. Nat. Neurosci. 16, 1170–1178 (2013).
+economics centre on risk measures that can be easily read out from 17. Lammel, S., Lim, B. K. & Malenka, R. C. Reward and aversion in a heterogeneous midbrain
+dopamine system. Neuropharmacology 76, 351–359 (2014).
+the kind of distributional codes that the present work has considered.
+18. Fiorillo, C. D., Tobler, P. N. & Schultz, W. Discrete coding of reward probability and
+Finally, we speculate on the implications of the distributional hypothesis uncertainty by dopamine neurons. Science 299, 1898–1902 (2003).
+of dopamine for the mechanisms of mental disorders such as addiction and 19. Eshel, N. et al. Arithmetic and local circuitry underlying dopamine prediction errors.
+depression. Mood has been linked with predictions of future reward26, and Nature 525, 243–246 (2015).
+20. Rowland, M., et al. Statistics and samples in distributional reinforcement learning. In
+it has been proposed that both depression and bipolar disorder may involve International Conference on Machine Learning (2019).
+biased forecasts concerning value-laden outcomes27. It has recently been 21. Frank, M. J., Seeberger, L. C. & O’Reilly, R. C. By carrot or by stick: cognitive reinforcement
+proposed that such biases may arise from asymmetries in RPE coding28,29. learning in parkinsonism. Science 306, 1940–1943 (2004).
+22. Hirvonen, J. et al. Striatal dopamine D1 and D2 receptor balance in twins at increased
+There are clear potential connections between these ideas and the phenom- genetic risk for schizophrenia. Psychiatry Res. Neuroimaging 146, 13–20 (2006).
+ena we have reported here, presenting opportunities for further research. 23. Piggott, M. A. et al. Dopaminergic activities in the human striatum: rostrocaudal gradients
+of uptake sites and of D1 and D2 but not of D3 receptor binding or dopamine.
+Neuroscience 90, 433–445 (1999).
+24. Rosa-Neto, P., Doudet, D. J. & Cumming, P. Gradients of dopamine D1- and D2/3-binding
+Online content sites in the basal ganglia of pig and monkey measured by PET. Neuroimage 22, 1076–1083
+(2004).
+Any methods, additional references, Nature Research reporting sum-
+25. Mikhael, J. G. & Bogacz, R. Learning reward uncertainty in the basal ganglia. PLOS
+maries, source data, extended data, supplementary information, Comput. Biol. 12, e1005062 (2016).
+acknowledgements, peer review information; details of author con- 26. Robb, B. et al. A computational and neural model of momentary subjective well-being.
+Proc. Natl Acad. Sci. USA 111, 12252–12257 (2014).
+tributions and competing interests; and statements of data and code
+27. Huys, Q. J., Daw, N. D. & Dayan, P. Depression: a decision-theoretic analysis. Annu. Rev.
+availability are available at https://doi.org/10.1038/s41586-019-1924-6. Neurosci. 38, 1–23 (2015).
+28. Bennett, D. & Niv, Y. Opening Burton’s clock: psychiatric insights from computational
+cognitive models. Preprint at https://doi.org/10.31234/osf.io/y2vzu (2018).
+1. Schultz, W., Stauffer, W. R. & Lak, A. The phasic dopamine signal maturing: from reward via 29. Tian, J. & Uchida, N. Habenula lesions reveal that multiple mechanisms underlie
+behavioural activation to formal economic utility. Curr. Opin. Neurobiol. 43, 139–148 (2017). dopamine prediction errors. Neuron 87, 1304–1316 (2015).
+2. Glimcher, P. W. Understanding dopamine and reinforcement learning: the dopamine 30. Eshel, N., Tian, J., Bukwich, M. & Uchida, N. Dopamine neurons share common response
+reward prediction error hypothesis. Proc. Natl Acad. Sci. USA 108, 15647–15654 (2011). function for reward prediction error. Nat. Neurosci. 19, 479–486 (2016).
+3. Watabe-Uchida, M., Eshel, N. & Uchida, N. Neural circuitry of reward prediction error.
+Annu. Rev. Neurosci. 40, 373–394 (2017). Publisher’s note Springer Nature remains neutral with regard to jurisdictional claims in
+4. Morimura, T., Sugiyama, M., Kashima, H., Hachiya, H. & Tanaka, T. Parametric return published maps and institutional affiliations.
+density estimation for reinforcement learning. In Proc. 26th Conference on Uncertainty in
+Artificial Intelligence (eds Grunwald, P. & Spirtes, P.) http://dl.acm.org/citation.
+cfm?id=3023549.3023592 (2010). © The Author(s), under exclusive licence to Springer Nature Limited 2020
+Nature | www.nature.com | 5
+)gol(
+ssoL
+d
+Decoded distribution (DA)
+10–1
+10–2
+10–3
+10–4
+0 0.2 0.4 0.6 0.8 1.0
+Reward (AU)
+ytisneD
+c
+Decoded distribution (DA)
+8
+6
+4
+2
+0
+0.1 μl 2.5 μl5 μl 10 μl 20 μl
+ytisneD
+a b
+Distributional TD decoding Classical TD decoding
+0.8 0.3
+Ground truth
+Decoded 0.6 0.2
+0.4
+0.1 0.2
+0 0
+Reward
+ytisneD
+0.4
+0.3
+0.2
+0.1
+0
+ytisneD
+0.1 μl 2.5 μl5 μl 10 μl 20 μl 0.1 μl 2.5 μl5 μl 10 μl 20 μl
+Reward Reward
+Fig. 5 | Decoding reward distributions from neural responses. positive and negative RPEs, as shown in Fig. 4. Unlike the classical TD
+a, Distributional TD simulation trained on the variable-magnitude task, whose simulation, the real dopamine cells collectively encode the shape of the reward
+actual (smoothed) distribution of rewards is shown in grey. After training the distribution that animals have been trained to expect. d, Same decoding
+model, we interpret the learned values as a set of expectiles. We then decode analysis, using data from each of the cue conditions in the variable-probability
+the set of expectiles into a probability density (blue traces). Multiple solutions task, based on cue responses of dopamine neurons (decoding for GABAergic
+are shown in light blue, and the average across solutions is shown in dark blue. neurons shown in Extended Data Fig. 8i, j). e, The neural data for both
+(See Methods for more details.) b, Same as a, but with a classical TD simulation. dopamine and GABAergic neurons were best fit by Bernoulli distributions
+c, Same as a, but using data from recorded dopamine cells. The expectiles are closely approximating the ground-truth reward probabilities in all three cue
+defined by the reversal points and the relative scaling from the slopes of conditions.
+
+--- PAGE 6 ---
+Article
+Methods with other response functions (for example, Hill function30 or κ−satu-
+rating), despite these leading to semantically different estimators of
+Distributional RL model the distribution. The population sizes were chosen for clarity of pres-
+The model for distributional RL we use throughout the work is based entation and to provide similar variability as observed in the neuronal
+on the principle of asymmetric regression and extends recent results data. Each cell was paired with a different state-dependent value esti-
+in AI5,6,15. We present a more detailed and accessible introduction to mate V(x). Note that while these simulations focused on immediate
+i
+distributional RL in the Supplementary Information. Here we outline rewards, the same algorithm also learns distributions over multi-step
+the method in brief. returns.
+Let f: ℝ → ℝ be a response function. In each observed state x, let there In the variable-probability task, each cue corresponded to a differ-
+be a set of value predictions V(x) which are updated with learning rates ent value estimate and reward probability (90%, 50% or 10%). When
+i
+α+,α−∈R+. Then given a state x, next-state x′, resulting reward signal r rewarded, the agent received numerical reward of 1.0, and when omit-
+i i
+and time discount γ ∈ [0, 1), the distributional TD model computes ted, it received 0.0. Both agents were trained for 100 trials of 5,000
+distributional TD errors updates, and both simulated n = 31 cells (separate value estimates). The
+learning rates were all selected uniformly at random between [0.001,
+δ i =r+γV j (x′)−V i (x) (1) 0.2]. Cue response was taken to be the temporal difference from a con-
+stant zero baseline to the value estimate.
+where V(x′) is a sample from the distribution V(x′). The model then In the variable-magnitude task, all rewards were taken to be the water
+j
+updates the baselines with magnitude measured in microlitres (qualitatively same results obtained
+with utilities instead of magnitudes). For Fig. 2 we ran 10 trials of 25,000
+V i (x)←V i (x)+α i +f(δ i ) for δ i >0 (2) updates each for 150 estimators with random learning rates in [0.001,
+0.02]. These smaller learning rates and larger number of updates were
+V(x)←V(x)+α−f(δ)forδ≤0 (3) intended to ensure the values converged fully with low error. We then
+i i i i i
+report temporal difference errors for ten cells taken uniformly to span
+When performed with a tabular representation, asymmetry uni- the range of value estimates for each agent. Reported errors (simulating
+formly distributed, and f(δ) = sgn(δ), this method converges to the τ i change in firing rate) are the utility of a reward minus the value estimate
+quantile, τ=
+α+
+i , of the distribution over discounted returns at x and scaled by the learning rate. As with the neuronal data, these are
+(ref. 6). Sim i ilar α l i + y + , a α− i symmetric regression with response function f(δ) = δ reported averaged over trials and normalized by variance over reward
+corresponds to expectile regression31. Like quantiles, expectiles fully magnitudes. Distributional TD RPEs are computed using asymmetric
+characterize the distribution and have been shown to be particularly learning rates, with a small constant (floor) added to the learning rates.
+useful for measures of risk32,33.
+Finally, we note that throughout the paper, we use the terms opti- Distribution decoding
+mistic and pessimistic to refer to return predictions that are above or For both real neural data and TD simulations, we performed distribution
+below the mean (expected) return. Importantly, these predictions are decoding. The distributional and classical TD simulations used for
+optimistic in the sense of corresponding to particularly good outcomes decoding in the variable-magnitude task each used 40 value predictors,
+from the set of possible outcomes. They are not optimistic in the sense to match the 40 recorded cells in the neural data (neural analyses were
+of corresponding to outcomes that are impossibly good. pooled across the six animals). In the distributional TD simulation, each
+value predictor used a different asymmetric scaling factor τ=
+α+
+i ,
+Artificial agent results and therefore learned a different value prediction V. i αi ++α− i
+i
+Atari results are on the Atari-57 benchmark using the publicly avail- The decoding analyses began with a set of reversal points, V, and
+i
+able Arcade Learning Environment34. This is a set of 57 Atari 2600 asymmetric scaling factors τ. For the neural data, these were obtained
+i
+games and human-performance baselines. Refer to previous work as described elsewhere. For the simulations, they were read directly
+for details on deep Q-networks (DQN) and computation of human- from the simulation. These numbers were interpreted as a set of expec-
+normalized scores8. The distributional TD agent uses our proposed tiles, with the τ-th expectile having value V. We decoded these into
+i i
+model and a DQN with multiple (n = 200) value predictors, each with probability densities by solving an optimization problem to find the
+a different asymmetry, spaced uniformly in [0, 1]. The training objec- density most compatible with the set of expectiles20. For optimization,
+tive of DQN, the Huber loss, is replaced with the asymmetric quantile- the density was parameterized as a set of samples. For display in Fig. 5,
+Huber loss, which corresponds to the κ-saturating response function the samples are smoothed with kernel density estimation.
+f(δ) = max(min(δ, κ), −κ), with κ = 1.
+Finally, at each update we train all channels based on the immediate Animals and behavioural tasks
+reward and the predicted future returns from all next-state value predic- The rodent data we re-analysed here were first reported in ref. 19. Meth-
+tors. Further details can be found in ref. 6. The physics-based motor- ods details can be found in that paper and in ref. 30. We give a brief
+control task requires control of a 28 degrees-of-freedom humanoid description of the methods below.
+to complete a 3D obstacle course in minimal time35. Full details for the Five mice were trained on a ‘variable-probability’ task, and six differ-
+D3PG and distributional D3PG agents are as described14. Distributions ent mice on a ‘variable-magnitude’ task. In the variable-probability task,
+over return shown in Extended Data Fig. 2d, f are based on the network- in each trial the animal first experienced one of four odour cues for 1 s,
+predicted distribution in each of the given frames. followed by a 1-s pause, followed by a reward (3.75 μl water), an aversive
+airpuff or nothing. Odour 1 signalled a 90% chance of reward, odour
+Tabular simulations 2 signalled a 50% chance of reward, odour 3 signalled a 10% chance of
+Tabular simulations of the classical TD and distributional TD models reward and odour 4 signalled a 90% chance of airpuff. Odour meanings
+used a population of learning rates selected uniformly at random, were randomized across animals. Inter-trial intervals were exponentially
+α+~U(0,1) for each cell i. In all cases the only algorithmic difference distributed.
+i
+between the classical and distributional TD models was that the dis- An infrared beam was positioned in front of the water delivery spout,
+tributional model used a separately varying learning rate for negative and each beam break was recorded as one lick event. We report the aver-
+prediction errors, α−~U(0,1) for each cell i. Both methods used a linear age lick rate over the entire interval between the cue and the outcome
+i
+response function. Qualitatively similar results were also obtained (that is, 0–2,000 ms after cue onset).
+
+--- PAGE 7 ---
+In the variable-magnitude task, in 10% of trials an odour cue was The per-cell cue responses shown in Extended Data Fig. 7 were nor-
+delivered that indicated that no reward would be delivered on that malized to zero mean and unit variance, to allow direct comparison of
+trial. In the remaining 90% of trials, one of the following reward mag- cells with different response variability. Each cell appears in one of three
+nitudes was delivered, at random: 0.1, 0.3, 1.2, 2.5, 5, 10 or 20 μl. In half panels based on the outcome of two single-tailed Mann–Whitney tests
+of these trials, this reward was preceded by 1,500 ms by an odour cue evaluating the rank order for c < c and c < c (see Supplementary
+10 50 50 90
+(which indicated that a reward was forthcoming but did not disclose Information section 3.3 for further details). The left, centre and right
+its magnitude). In the other half, it was unsignalled. panels correspond to outcomes (P ≥ 0.05, P < 0.05), (P < 0.05, P < 0.05
+In order to identify dopamine neurons while recording, neurons or P ≥ 0.05, P ≥ 0.05) and (P < 0.05, P ≥ 0.05), respectively.
+in the VTA were tagged with channelrhodopsin-2 (ChR2) by injecting
+adeno-associated virus (AAV) that expresses ChR2 in a Cre-dependent Variable-magnitude task. n = 40 cells were recorded from five ani-
+manner into the VTA of transgenic mice that express Cre recombinase mals, with the following number of cells per animal: 3, 6, 9, 16 and 6.
+under the promoter of the dopamine transporter (DAT) gene Slc6a3 Responses to reward were defined as the average activity from 200 to
+(B6.SJL-Slc6a3tm1.1(cre)Bkmn/J, The Jackson Laboratory)36. Mice were 600 ms after reward onset. This time interval was selected to match
+implanted with a head plate and custom-built microdrive containing ref. 30 as closely as possible, while excluding the initial response to the
+6–8 tetrodes (Sandvik) and optical fibre, as described37. feeder click30,38,39, which was not selective to reward magnitude and was
+All experiments were performed in accordance with the US National positive for all reward magnitudes. This enabled us to find the reward
+Institutes of Health Guide for the Care and Use of Laboratory Animals magnitudes for which the dopamine response was either boosted or
+and approved by the Harvard Institutional Animal Care and Use Com- suppressed relative to baseline.
+mittee. The reversal point (that is, the reward magnitude that would elicit
+neither a positive nor a negative deflection in firing relative to baseline)
+Neuronal data and analysis for each cell was defined as the magnitude M that maximized the num-
+R
+Extracellular recordings were made from VTA using a data acquisi- ber of positive responses to rewards greater than M plus the number
+R
+tion system (DigiLynx, Neuralynx). VTA recording sites were verified of negative responses to rewards less than M . To obtain statistics for
+R
+histologically. The identity of dopaminergic cells was confirmed by reliability of cell-to-cell differences in reversal point, we partitioned
+recording the electrophysiological responses of cells to a brief blue the data into random halves and estimated the reversal point for each
+light pulse train, which stimulates only DAT-expressing cells. Spikes cell separately in each half. We repeated this procedure 1,000 times
+were sorted using SpikeSort3D (Neuralynx) or MClust-3.5 (A.D. Redish). with different random partitions, and we report the mean R value and
+Putative GABAergic neurons in the VTA were identified by clustering geometric mean p value across these 1,000 folds.
+of firing patterns as described previously30,37. All confidence intervals After measuring reversal points, we fit linear functions separately to
+are s.e.m. unless otherwise noted. the positive and negative domains of each cell. To obtain confidence
+Data analyses were performed using NumPy 1.15 and MATLAB R2018a intervals, we divided the data into seven random partitions (seven being
+(Mathworks). Spike times were collected in 1-ms bins to create peri- the smallest number of trials in any condition for any cell), subject to
+stimulus time histograms. These histograms were then smoothed by the constraint that every condition for every cell contain at least one
+convolving with the function (1−e−t)⋅e−t/T, where T was a time constant, trial in each partition. In each partition, we repeated the procedure
+set to 20 ms as in ref. 30. For single-cell traces, we set T to 200 ms for for estimating reversal points and finding slopes in the positive and
+display purposes. negative domains. Our confidence interval on τ = α+/(α+ + α−) was then
+After smoothing, the data were baseline-corrected by subtracting the s.e.m. of the values calculated across the seven partitions. ANOVAs
+from each trial and each neuron independently the mean over that trial’s are also reported testing the null hypothesis that means (across parti-
+activity from −1,000 to 0 ms relative to stimulus onset (or relative to tions) were not different between cells.
+reward onset in the unexpected reward condition). Fitting linear functions to dopamine responses was more logical in
+utility space than in reward volume space. We relied on ref. 38 to approxi-
+Variable-probability task. n = 31 cells were recorded from five ani- mate the underlying utility function from the dopamine responses
+mals, with the following number of cells per animal: 1, 4, 16, 1 and 9. to rewards of varying magnitudes. We used these empirical utilities
+Responses to cue for dopamine neurons were defined as the average instead of raw reward magnitudes for the analyses shown in Fig. 4.
+activity from 0 to 400 ms after cue onset. This interval was chosen to However, none of the reported results were sensitive to this choice of
+match ref. 30. Responses to cue for putative GABAergic neurons were utility function. We also ran the analyses using other utility functions,
+defined as the average activity from 0 to 1,500 ms after cue onset. This and these results are reported in Extended Data Fig. 5. One cell was
+longer interval was chosen because these neurons had much slower excluded from analyses in Fig. 5: because it had no positive responses
+responses, often ramping up slowly over the first 500 or 1,000 ms after to any reward magnitude, a slope could not be fit in the positive domain.
+cue onset37 (Fig. 3d). When measuring the correlation (across cells) between reversal
+We were interested in whether there was between-cell diversity point and τ, we first randomly split the data into two disjoint halves of
+in responses to the 50% cue. We first normalized the responses trials. In one half, we first calculated reversal points RP and used these
+1
+to the 50% cue on a per-cell basis as follows: cnorm=(c −mean(c ))/ reversal points to calculate α+ and α−. In the other half, we calculated
+50 50 10
+(mean(c )−mean(c )), where mean indicates the mean over trials reversal points RP. The correlation we report is between RP and τ = α+/
+90 10 2 2
+within a cell. In order to be agnostic about the risk preferences of the (α+ + α−). We did this to avoid confounds associated with using the same
+animal, we then performed a two-tailed t-test of the cell’s normalized data to estimate both slopes and intercepts.
+responses to the 50% cue against the average of all cells’ normalized
+responses to the 50% cue. This is the test for optimistic or pessimistic Reporting summary
+probability coding that we report in the main text. Note that these Further information on research design is available in the Nature
+t-statistics would be t-distributed if the differences between cells were Research Reporting Summary linked to this paper.
+due to chance. We also report ANOVA results where we evaluate the null
+hypothesis that all cells’ normalized 50% responses have the same mean.
+Data availability
+The same pattern of results held when instead comparing responses
+to the 50% cue against the midway point between responses to the 10% The neuronal data analysed in this work are available at https://doi.
+cue and responses to the 90% cue. org/10.17605/OSF.IO/UX5RG.
+
+--- PAGE 8 ---
+Article
+40. Schaul, T., Quan, J., Antonoglou, I. & Silver, D. Prioritized experience replay. In
+Code availability International Conference on Learning Representations (2016).
+41. Van Hasselt, H., Guez, A. & Silver, D. Deep reinforcement learning with double q-learning.
+The analysis code from our value-distribution decoding and code used In AAAI Conference on Artificial Intelligence (2016).
+to generate model predictions for distributional TD are available at 42. Krizhevsky, A. & Hinton, G. Learning Multiple Layers of Features from Tiny Images (Univ. of
+Toronto, 2009).
+https://doi.org/10.17605/OSF.IO/UX5RG.
+Acknowledgements We thank K. Miller, P. Dayan, T. Stepleton, J. Paton, M. Frank, C. Clopath,
+31. Newey, W. K. & Powell, J. L. Asymmetric least squares estimation and testing.
+T. Behrens and the members of the Uchida laboratory for comments on the manuscript; and
+Econometrica 55, 819–847 (1987).
+N. Eshel, J. Tian, M. Bukwich and M. Watabe-Uchida for providing data.
+32. Chris Jones, M. Expectiles and m-quantiles are quantiles. Stat. Probab. Lett. 20, 149–153
+(1994).
+33. Ziegel, J. F. Coherence and elicitability. Math. Finance 26, 901–918 (2016). Author contributions W.D. conceived the project. W.D., Z.K.-N. and M.B. contributed ideas for
+34. Bellemare, M. G., Naddaf, Y., Veness, J. & Bowling, M. The arcade learning environment: experiments and analysis. W.D. and Z.K.-N. performed simulation experiments and analysis.
+an evaluation platform for general agents. J. Artif. Intell. Res. 47, 253–279 (2013). N.U. and C.K.S. provided neuronal data for analysis. W.D., Z.K.-N. and M.B. managed the
+35. Heess, N. et al. Emergence of locomotion behaviours in rich environments. Preprint at project. M.B., N.U., R.M. and D.H. advised on the project. M.B., W.D. and Z.K.-N. wrote the paper.
+https://arxiv.org/abs/1707.02286 (2017). W.D., Z.K.-N., M.B., N.U., C.K.S., D.H. and R.M. provided revisions to the paper.
+36. Bäckman, C. M., et al. Characterization of a mouse strain expressing cre recombinase
+from the 3′ untranslated region of the dopamine transporter locus. Genesis 44, 383–390 Competing interests The authors declare no competing interests.
+(2006).
+37. Cohen, J. Y. et al. Neuron-type-specific signals for reward and punishment in the ventral Additional information
+tegmental area. Nature 482, 85–88 (2012). Supplementary information is available for this paper at https://doi.org/10.1038/s41586-019-
+38. Stauffer, W. R., Lak, A. & Schultz, W. Dopamine reward prediction error responses reflect 1924-6.
+marginal utility. Curr. Biol. 24, 2491–2500 (2014). Correspondence and requests for materials should be addressed to W.D.
+39. Fiorillo, C. D., Song, M. R. & Yun, S. R. Multiphasic temporal dynamics in responses of Peer review information Nature thanks Rui Costa, Michael Littman and the other, anonymous,
+midbrain dopamine neurons to appetitive and aversive stimuli. J. Neurosci. 33, 4710–4725 reviewer(s) for their contribution to the peer review of this work.
+(2013). Reprints and permissions information is available at http://www.nature.com/reprints.
+
+--- PAGE 9 ---
+Extended Data Fig. 1 | Mechanism of distributional TD. a, The degree of Quantile (sign function) version is displayed here for clarity. Model is trained
+asymmetry in positive to negative scale determines the equilibrium where on arbitrary task with trimodal reward distribution. c, Same as b, viewed in
+positive and negative errors balance. Equal scaling equilibrates at the mean, terms of cumulative distribution (left) or learned value for each predictor
+whereas a larger positive (negative) scaling produces an equilibrium above (quantile function) (right).
+(below) the mean. b, Distributional prediction emerges through experience.
+
+--- PAGE 10 ---
+Article
+Extended Data Fig. 2 | Learning the distribution of returns improves Reward predictions of individual RPE channels shown as tick marks ranging
+performance of deep RL agents across multiple domains. a, DQN and from pessimistic (blue) to optimistic (red), and kernel density estimate shown
+distributional TD share identical nonlinear network structures. b, c, After in black. e, Atari-57 experiments with single runs of prioritized experience
+training classical or distributional DQN on MsPacman, we freeze the agent and replay40 and double DQN41 agents for reference. Benefits of distributional
+then train a separate linear decoder to reconstruct frames from the agent’s learning exceed other popular innovations. f, g, The performance pay-off of
+final layer representation. For each agent, reconstructions are shown. The distributional RL can be seen across a wide diversity of tasks. Here we give
+distributional model’s representation allows substantially better another example, a humanoid motor-control task in the MuJoCo physics
+reconstruction. d, At a single frame of MsPacman (not shown), the agent’s value simulator. Prioritized experience replay agent is shown for reference14. Traces
+predictions together represent a probability distribution over future rewards. show individual runs; averages are in bold.
+
+--- PAGE 11 ---
+Extended Data Fig. 3 | Simulation experiment to examine the role of experiment. e, Bird–dog t-SNE visualization of final hidden layer of network,
+representation learning in distributional RL. a, Illustration of tasks 1 and 2. given different input images (blue, bird; red, dog). Left, classical TD; right,
+b, Example images for each class used in our experiment42 c, Experimental distributional TD; top row, representation after training on task 1; bottom row,
+results, where each of ten random seeds yields an individual run shown with representation after training on task 2.
+traces; average over seeds is shown in bold. d, Same as c, but for control
+
+--- PAGE 12 ---
+Article
+Extended Data Fig. 4 | See next page for caption.
+
+--- PAGE 13 ---
+Extended Data Fig. 4 | Null models. a, Classical TD plus noise does not give rise reversal point (opposite that observed in neural data). i, Diagram illustrating a
+to the pattern of results observed in real dopamine data in the variable- Gaussian-weighted topological mapping between RPEs and value predictors.
+magnitude task. When reversal points were estimated in two independent j, Varying the standard deviation of this Gaussian modulates the degree of
+partitions there was no correlation between the two (P = 0.32 by linear coupling. k, In a task with equal chance of a reward 1.0 or 0.0, distributional TD
+regression). b, We then estimated asymmetric scaling of responses and found with different levels of coupling shows robustness to the degree of coupling.
+no correlation between this and reversal point (P = 0.78 by linear regression). l, When there is no coupling, a distributional code is not learned, but
+c, Model comparison between ‘same’, a single reversal point, and ‘diverse’, asymmetric scaling can cause spurious detection of diverse reversal points.
+separate reversal points. In both, the model is used to predict whether a held- m, Even though every cell has the same reward prediction they appear to have
+out trial has a positive or negative response. d, Simulated baseline-subtracted different reversal points. n, With this model, some cells may have significantly
+RPEs, colour-coded according to the ground-truth value of bias added to that positive responses, and others significantly negative responses, in response to
+cell’s RPEs. e, Across all simulated cells, there was a strong positive relationship the same reward. o, But this model is unable to explain a positive correlation
+between pre-stimulus baseline firing and the estimated reversal point. f, Two between asymmetric scaling and reversal points. p, Simulation of ‘synaptic’
+independent measurements of the reversal point were strongly correlated. distributional RL, in which learning rates but not firing rates are
+g, The proportion of simulated cells that have significantly positive (blue) or asymmetrically scaled. This model predicts diversity in reversal points
+negative (red) responses showed no magnitudes with both positive and between dopamine neurons. q, The model predicts no correlation between
+negative responses. h, In the simulation, there was a significant negative asymmetric scaling of firing rates and reversal point.
+relationship between the estimated asymmetry of each cell and its estimated
+
+--- PAGE 14 ---
+Article
+Extended Data Fig. 5 | Asymmetry and reversal. a, Left, all data points (trials) asymmetric scaling and reversal point. We repeat this procedure 20 times with
+from an example cell. The solid lines are linear fits to the positive and negative different dopamine response functions in the simulation, and different
+domains, and the shaded areas show 95% confidence intervals calculated with functions used to fit the positive and negative domains of the simulated data.
+Bayesian regression. Right, the same cell plotted in the format of Fig. 4b. The functions are sorted in increasing order of concavity. An artefact can
+b, Cross-validated model comparison on the dopamine data favours allowing emerge if the response function used to fit the data is less concave than the
+each cell to have its own asymmetric scaling (P = 1.4 × 10−11 by paired t-test). The response function used to generate the data. For example, when generating
+standard error of the mean appears large relative to the P value because the data with a Hill function but fitting with a linear function, a positive correlation
+P value is computed using a paired test. c, Although the difference between can be spuriously measured. e, When simulating data from the distributional
+single-asymmetry and diverse-asymmetry models was small in firing-rate TD model, where a true correlation exists between asymmetric scaling and
+space, such small differences correspond to large differences in decoded reversal point, it is always possible to detect this positive correlation, even if
+distribution space (more details in Supplementary Information). Each point is a the fitting response function is more concave than the generating response
+TD simulation; colour indicates the degree of diversity in asymmetric scaling function. The black rectangle highlights the function used to fit real neural
+within that simulation. d, We were interested in whether an apparent data in c. f, Here we analyse the real dopamine cell data identically to Fig. 4d,
+correlation between reversal point and asymmetry could arise as an artefact, but using Hill functions instead of linear functions to fit the positive and
+owing to a mismatch between the shape of the actual dopamine response negative domains. Because the correlation between asymmetric scaling and
+function and the function used to fit it. Here we simulate the variable- reversal point still appears under these adversarial conditions, we can be
+magnitude task using a TD model without a true correlation between confident it is not driven by this artefact. g, Same as Fig. 4d, but using linear
+asymmetric scaling and reversal point. We then apply the same analysis response function and linear utility function (instead of empirical utility).
+pipeline as in the main paper, to measure the correlation (colour axis) between
+
+--- PAGE 15 ---
+Extended Data Fig. 6 | Cue responses versus outcome responses, and more baseline-subtracted response to airpuff. Dots with black outlines are per-cell
+evidence for diversity. a, In the variable-probability task: firing at cue, versus means, and un-outlined dots are means of disjoint subsets of trials indicating
+firing at reward (left) or omission (right). Colour brightness denotes consistency of asymmetry. Right, the same data plotted in a different way, with
+asymmetry. b, Same as a, but showing RPEs from distributional TD simulation. cells sorted along the x axis by response to airpuff. Response to reward is shown
+c, Data from ref. 30 also included unpredicted rewards and unpredicted in greyscale dots. Asterisks indicate significant difference in firing rates from
+airpuffs. Top two panels show responses for all the cells recorded in one animal one or both neighbouring cells. d, Simulations for distributional but not
+and bottom two panels show responses for all the cells of another animal. Left, classical TD produce diversity in relative response.
+the x axis is the baseline-subtracted response to free reward and the y axis is the
+
+--- PAGE 16 ---
+Article
+Extended Data Fig. 7 | More details of data in variable-probability task. are split into panels according to a statistical test for type of probability coding
+a, Details of analysis method. Of the four possible outcomes of the two Mann– (see Methods for details). Colour indicates the degree of optimism or
+Whitney tests (Methods), two outcomes correspond to interpolation (middle) pessimism. Distributional TD predicts simultaneous optimistic and
+and one each to the pessimistic (left) and optimistic (right) groups. pessimistic coding of probability, whereas classical TD predicts all cells have
+b, Simulation results for the classical TD and distributional TD models. y axis the same coding. c, Same as b, but using data from real dopamine neurons. The
+shows the average firing-rate change, normalized to mean zero and unit pattern of results closely matches the predictions from the distributional TD
+variance, in response to each of the three cues. Each curve is one cell. The cells model. d, Same as b, using data from putative VTA GABAergic interneurons.
+
+--- PAGE 17 ---
+Extended Data Fig. 8 | Further distribution decoding analysis. This figure functions used to shift asymmetries, to measure degradation of decoded
+pertains to the variable-magnitude experiment. a–c, In the decoding shown in distribution. The normal cumulative distribution function ϕ is used to
+the main text, we constrained the support of the distribution to the range of the transform asymmetry τ. This is shifted by some value s and transformed back
+rewards in the task. Here, we applied the decoding analysis without through the normal quantile function ϕ−1. Positive values s increase the value of
+constraining the output values. We find similar results, although with τ and negative values decrease the value of τ. f, Decoded distributions under
+increased variance. d, We compare the quality of the decoded distribution different shifts, s. g, Plot of shifted asymmetries for values of s used.
+against several controls. The real decoding is shown as black dots. In coloured h, Quantification of match between decoded and ground-truth distribution,
+lines are reference distributions (uniform and Gaussian with the same mean for each s. i, j, Same as Fig. 5d, e, but for putative GABAergic cells rather than
+and variance as the ground truth; and the ground truth mirrored). Black traces dopamine cells.
+shift or scale the ground-truth distribution by varying amounts. e, Nonlinear
+
+--- PAGE 18 ---
+Article
+Extended Data Fig. 9 | Simultaneous diversity. a, b, Variable-probability task. These are the same four cells whose time courses are shown in Fig. 3c.
+Mean spiking (a) and licking (b) activity in response to each of the three cues f, Variable-magnitude task. Across cells, there was no relationship between
+(indicating 10%, 50% or 90% probability of reward) at time 0, and in response to asymmetric scaling of positive versus negative prediction errors, and baseline
+the outcome (reward or no reward) at time 2,000 ms. c, Trial-to-trial variations firing rates (R = 0.18, P = 0.29). Each point is a cell. These data are from
+in lick rates were strongly correlated with trial-to-trial variations in dopamine dopamine neurons at reward delivery time. g, t-statistics of response to 5 μl
+firing rates. Mean of each cell is subtracted from each axis, and the x axis is reward compared with baseline firing rate, for all 16 cells from animal D. Some
+binned for ease of visualization. d, Dopaminergic coding of the 50% cue relative cells respond significantly above baseline and others significantly below. Cells
+to the 10% and 90% cues (as shown in b) was not correlated with the same are sorted by t-statistic. h, Spike rasters showing all trials in which the 5 μl
+measure computed on lick rates. Therefore, between-session differences in reward was delivered. The two panels are two example cells from the same
+cue preference, measured by anticipatory licking, cannot explain between-cell animal with rasters shown in Fig. 2.
+differences in optimism. e, Four simultaneously recorded dopamine neurons.
+
+--- PAGE 19 ---
+Extended Data Fig. 10 | Relationship of results to original analysis. Here c, Correlation between response predicted by scaled common response
+we reproduce results for the variable-magnitude task in ref. 30 with two function and actual response to expected reward delivery. d, Zooming in
+different time windows. a, Change in firing rate in response to cued reward on c shows correlation driven primarily by larger reward magnitudes.
+delivery averaged over all cells. b, Comparing Hill-function fit and response e–h, Repeating the above analysis for a window of 200–600 ms.
+averaged over all cells for expected (cued) and unexpected reward delivery.
+
+--- PAGE 20 ---
+1
+nature
+research
+|
+reporting
+summary
+October
+2018
+Will Dabney, Zeb Kurth-Nelson, Matthew
+Corresponding author(s): Botvinick
+Last updated by author(s): Oct. 31, 2019
+Reporting Summary
+Nature Research wishes to improve the reproducibility of the work that we publish. This form provides structure for consistency and transparency
+in reporting. For further information on Nature Research policies, see Authors & Referees and the Editorial Policy Checklist.
+Statistics
+For all statistical analyses, confirm that the following items are present in the figure legend, table legend, main text, or Methods section.
+n/a Confirmed
+The exact sample size (n) for each experimental group/condition, given as a discrete number and unit of measurement
+A statement on whether measurements were taken from distinct samples or whether the same sample was measured repeatedly
+The statistical test(s) used AND whether they are one- or two-sided
+Only common tests should be described solely by name; describe more complex techniques in the Methods section.
+A description of all covariates tested
+A description of any assumptions or corrections, such as tests of normality and adjustment for multiple comparisons
+A full description of the statistical parameters including central tendency (e.g. means) or other basic estimates (e.g. regression coefficient)
+AND variation (e.g. standard deviation) or associated estimates of uncertainty (e.g. confidence intervals)
+For null hypothesis testing, the test statistic (e.g. F, t, r) with confidence intervals, effect sizes, degrees of freedom and P value noted
+Give P values as exact values whenever suitable.
+For Bayesian analysis, information on the choice of priors and Markov chain Monte Carlo settings
+For hierarchical and complex designs, identification of the appropriate level for tests and full reporting of outcomes
+Estimates of effect sizes (e.g. Cohen's d, Pearson's r), indicating how they were calculated
+Our web collection on statistics for biologists contains articles on many of the points above.
+Software and code
+Policy information about availability of computer code
+Data collection Simulation experiments were built with custom code and use the following components: Python 2.7 and Tensorflow 1.13.1. Artificial
+agent experiments are based upon previously published methods.
+Data analysis Data analysis was performed using MATLAB R2018a, NumPy 1.15, and SciPy 1.2.1. Analysis code from our value-distribution decoding
+analyses, as well as code used to generate model predictions for distributional TD, are available at https://doi.org/10.17605/OSF.IO/
+UX5RG.
+For manuscripts utilizing custom algorithms or software that are central to the research but not yet described in published literature, software must be made available to editors/reviewers.
+We strongly encourage code deposition in a community repository (e.g. GitHub). See the Nature Research guidelines for submitting code & software for further information.
+Data
+Policy information about availability of data
+All manuscripts must include a data availability statement. This statement should provide the following information, where applicable:
+- Accession codes, unique identifiers, or web links for publicly available datasets
+- A list of figures that have associated raw data
+- A description of any restrictions on data availability
+The neuronal data analyzed in this work have been uploaded to OSF and are available at https://doi.org/10.17605/OSF.IO/UX5RG.
+
+--- PAGE 21 ---
+2
+nature
+research
+|
+reporting
+summary
+October
+2018
+Field-specific reporting
+Please select the one below that is the best fit for your research. If you are not sure, read the appropriate sections before making your selection.
+Life sciences Behavioural & social sciences Ecological, evolutionary & environmental sciences
+For a reference copy of the document with all sections, see nature.com/documents/nr-reporting-summary-flat.pdf
+Life sciences study design
+All studies must disclose on these points even when the disclosure is negative.
+Sample size All data were taken from a previously-published set of experiments (Eshel et al 2015, 2016).
+Data exclusions No data were excluded.
+Replication Cross-validation was used to avoid over-fitting.
+Randomization There were no between-animal manipulations. Trial sequences were randomized.
+Blinding There were no design factors to which blinding would be relevant.
+Reporting for specific materials, systems and methods
+We require information from authors about some types of materials, experimental systems and methods used in many studies. Here, indicate whether each material,
+system or method listed is relevant to your study. If you are not sure if a list item applies to your research, read the appropriate section before selecting a response.
+Materials & experimental systems Methods
+n/a Involved in the study n/a Involved in the study
+Antibodies ChIP-seq
+Eukaryotic cell lines Flow cytometry
+Palaeontology MRI-based neuroimaging
+Animals and other organisms
+Human research participants
+Clinical data
+Animals and other organisms
+Policy information about studies involving animals; ARRIVE guidelines recommended for reporting animal research
+Laboratory animals The rodent data we re-analyzed here were first reported in Eshel et al. (2015). We used 5 adult male mice, backcrossed for more
+than 5 generations with C57/BL6J mice, that were heterozygous for Cre recombinase under the control of either the DAT gene or
+the Vgat gene.
+Wild animals The study did not involve wild animals.
+Field-collected samples The study did not involve field-collected samples.
+Ethics oversight All experiments were performed in accordance with the US National Institutes of Health Guide for the Care and Use of
+Laboratory Animals and approved by the Harvard Institutional Animal Care and Use Committee.
+Note that full information on the approval of the study protocol must also be provided in the manuscript.
