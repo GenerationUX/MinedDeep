@@ -1,3 +1,11 @@
+---
+title: "Self-Play Is Sufficient for Superhuman Play"
+tags:
+  - claim
+description: "A reinforcement learning agent trained entirely through self-play, starting from random initialisation with no human data, can achieve superhuman performance…"
+date: 2026-05-13
+---
+
 # Self-Play Is Sufficient for Superhuman Play
 
 **Type:** claim

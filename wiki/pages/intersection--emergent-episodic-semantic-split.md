@@ -1,3 +1,10 @@
+---
+title: "Construction×Self-Play + Fast/Slow×AlphaGo Zero"
+tags:
+  - intersection
+date: 2026-05-14
+---
+
 # Construction×Self-Play + Fast/Slow×AlphaGo Zero
 
 **Type:** intersection (second-order)

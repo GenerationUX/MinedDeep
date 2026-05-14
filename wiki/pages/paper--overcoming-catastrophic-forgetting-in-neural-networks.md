@@ -1,3 +1,15 @@
+---
+title: "Overcoming Catastrophic Forgetting in Neural Networks"
+tags:
+  - peer-reviewed-paper
+  - reinforcement-learning
+  - deep-rl
+  - deepmind-ascent
+  - DeepMind-general
+description: "Kirkpatrick, Pascanu, Rabinowitz, Veness, Desjardins, Rusu, Milan, Quan, Ramalho, Grabska-Barwińska, Hassabis, Clopath, Kumaran, and Hadsell (2017) introduced…"
+date: 2017-01-01
+---
+
 # Overcoming Catastrophic Forgetting in Neural Networks
 
 **Type:** paper

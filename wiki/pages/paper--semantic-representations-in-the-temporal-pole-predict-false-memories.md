@@ -1,3 +1,15 @@
+---
+title: "Semantic Representations in the Temporal Pole Predict False Memories"
+tags:
+  - peer-reviewed-paper
+  - episodic-memory
+  - cognitive-neuroscience
+  - deepmind-ascent
+  - hippocampus-research
+description: "Chadwick, Anjum, Kumaran, Schacter, Spiers, and Hassabis (2016) used fMRI with representational similarity analysis (RSA) to show that a similarity-based…"
+date: 2016-01-01
+---
+
 # Semantic Representations in the Temporal Pole Predict False Memories
 
 **Type:** paper

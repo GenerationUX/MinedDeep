@@ -1,3 +1,11 @@
+---
+title: "Deep Reinforcement Learning"
+tags:
+  - theme
+description: "Deep reinforcement learning is the technical foundation of DeepMind's game-playing achievements and a recurring methodological theme across 8 papers…"
+date: 2026-05-13
+---
+
 # Deep Reinforcement Learning
 
 **Type:** theme

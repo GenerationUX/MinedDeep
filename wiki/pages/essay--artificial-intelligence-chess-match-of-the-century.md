@@ -1,3 +1,15 @@
+---
+title: "Chess Match of the Century"
+tags:
+  - essay
+  - game-playing-ai
+  - chess
+  - deepmind-ascent
+  - AlphaGo
+description: "Hassabis (2016) wrote a Nature book review of Garry Kasparov's *Deep Thinking*, reflecting on the 1997 Deep Blue match and its significance for AI."
+date: 2016-01-01
+---
+
 # Chess Match of the Century
 
 **Type:** essay

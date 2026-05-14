@@ -1,3 +1,10 @@
+---
+title: "Semantic False Memories × Construction"
+tags:
+  - intersection
+date: 2026-05-14
+---
+
 # Semantic False Memories × Construction
 
 **Type:** intersection

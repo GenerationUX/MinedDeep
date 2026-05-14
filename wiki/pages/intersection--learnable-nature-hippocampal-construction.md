@@ -1,3 +1,10 @@
+---
+title: "Learnable Nature × Hippocampal Construction"
+tags:
+  - intersection
+date: 2026-05-14
+---
+
 # Learnable Nature × Hippocampal Construction
 
 **Type:** intersection

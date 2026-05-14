@@ -1,3 +1,14 @@
+---
+title: "Accelerating Scientific Discovery with AI (Nobel Lecture)"
+tags:
+  - lecture
+  - ai-for-science
+  - learnable-nature-conjecture
+  - post-alphafold
+description: "Hassabis (2024) delivered his Nobel Prize Lecture in Chemistry on 8 December 2024, titled \"Accelerating Scientific Discovery with AI."
+date: 2024-01-01
+---
+
 # Accelerating Scientific Discovery with AI (Nobel Lecture)
 
 **Type:** lecture

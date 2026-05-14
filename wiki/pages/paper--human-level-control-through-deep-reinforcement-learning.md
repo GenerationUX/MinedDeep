@@ -1,3 +1,15 @@
+---
+title: "Human-Level Control Through Deep Reinforcement Learning"
+tags:
+  - peer-reviewed-paper
+  - reinforcement-learning
+  - deep-rl
+  - early-deepmind
+  - DQN
+description: "Mnih, Kavukcuoglu, Silver, Rusu, Veness, Bellemare, Graves, Riedmiller, Fidjeland, Ostrovski, Petersen, Beattie, Sadik, Antonoglou, King, Kumaran, Wierstra,…"
+date: 2015-01-01
+---
+
 # Human-Level Control Through Deep Reinforcement Learning
 
 **Type:** paper

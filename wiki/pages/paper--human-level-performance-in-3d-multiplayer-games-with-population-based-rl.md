@@ -1,3 +1,16 @@
+---
+title: "Human-Level Performance in First-Person Multiplayer Games with Population-Based Deep Reinforcement Learning"
+tags:
+  - peer-reviewed-paper
+  - deep-rl
+  - game-playing-ai
+  - reinforcement-learning
+  - deepmind-ascent
+  - DeepMind-general
+description: "Jaderberg, Czarnecki, Dunning, Marris, Lever, Garcia Castaneda, Beattie, Rabinowitz, Morcos, Ruderman, Sonnerat, Green, Deason, Leibo, Silver, Hassabis,…"
+date: 2017-01-01
+---
+
 # Human-Level Performance in First-Person Multiplayer Games with Population-Based Deep Reinforcement Learning
 
 **Type:** paper

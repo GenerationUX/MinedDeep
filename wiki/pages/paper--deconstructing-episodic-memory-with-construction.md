@@ -1,3 +1,16 @@
+---
+title: "Deconstructing Episodic Memory with Construction"
+tags:
+  - peer-reviewed-paper
+  - memory-imagination
+  - episodic-memory
+  - cognitive-neuroscience
+  - phd-period
+  - hippocampus-research
+description: "Hassabis and Maguire (2007) Opinion article in Trends in Cognitive Sciences introduces \"scene construction\" as the key shared process underlying episodic…"
+date: 2007-01-01
+---
+
 # Deconstructing Episodic Memory with Construction
 
 **Type:** paper

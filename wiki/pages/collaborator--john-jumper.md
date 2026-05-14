@@ -1,3 +1,11 @@
+---
+title: "John Jumper"
+tags:
+  - collaborator
+description: "John Jumper is the first author and lead architect of AlphaFold2, appearing on 4 corpus papers (2020–2022)."
+date: 2026-05-13
+---
+
 # John Jumper
 
 **Type:** collaborator

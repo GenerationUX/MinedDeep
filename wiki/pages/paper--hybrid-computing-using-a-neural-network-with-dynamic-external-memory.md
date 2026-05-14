@@ -1,3 +1,14 @@
+---
+title: "Hybrid Computing Using a Neural Network with Dynamic External Memory"
+tags:
+  - peer-reviewed-paper
+  - reinforcement-learning
+  - deepmind-ascent
+  - DNC
+description: "Graves, Wayne, Reynolds, Harley, Danihelka, Grabska-Barwińska, Gómez Colmenarejo, Grefenstette, Ramalho, Agapiou, Badia, Hermann, Zwols, Ostrovski, Cain,…"
+date: 2016-01-01
+---
+
 # Hybrid Computing Using a Neural Network with Dynamic External Memory
 
 **Type:** paper

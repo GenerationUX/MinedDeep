@@ -1,3 +1,10 @@
+---
+title: "EWC × Experience Replay"
+tags:
+  - intersection
+date: 2026-05-14
+---
+
 # EWC × Experience Replay
 
 **Type:** intersection

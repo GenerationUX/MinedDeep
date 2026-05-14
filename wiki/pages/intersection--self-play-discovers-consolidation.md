@@ -1,3 +1,10 @@
+---
+title: "Self-Play Discovers Its Own Consolidation"
+tags:
+  - intersection
+date: 2026-05-14
+---
+
 # Self-Play Discovers Its Own Consolidation
 
 **Type:** intersection (feedback loop)

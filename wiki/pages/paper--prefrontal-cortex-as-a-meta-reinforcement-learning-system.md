@@ -1,3 +1,14 @@
+---
+title: "Prefrontal Cortex as a Meta-Reinforcement Learning System"
+tags:
+  - peer-reviewed-paper
+  - reinforcement-learning
+  - neuroscience-ai-bridge
+  - deepmind-ascent
+description: "Wang, Kurth-Nelson, Kumaran, Tirumala, Soyer, Leibo, Hassabis, and Botvinick (2018) proposed that the prefrontal cortex functions as a meta-reinforcement…"
+date: 2017-01-01
+---
+
 # Prefrontal Cortex as a Meta-Reinforcement Learning System
 
 **Type:** paper

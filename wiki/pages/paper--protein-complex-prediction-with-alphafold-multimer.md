@@ -1,3 +1,16 @@
+---
+title: "Protein Complex Prediction with AlphaFold-Multimer"
+tags:
+  - peer-reviewed-paper
+  - protein-folding
+  - structural-biology
+  - protein-structure
+  - alphafold-era
+  - AlphaFold-Multimer
+description: "Evans, O'Neill, Pritzel, Antropova, Senior, Green, Žídek, Bates, Blackwell, Yim, Ronneberger, Bodenstein, Zielinski, Bridgland, Potapenko, Cowie,…"
+date: 2021-01-01
+---
+
 # Protein Complex Prediction with AlphaFold-Multimer
 
 **Type:** paper

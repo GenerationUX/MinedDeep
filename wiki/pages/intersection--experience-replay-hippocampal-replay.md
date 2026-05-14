@@ -1,3 +1,10 @@
+---
+title: "Experience Replay × Hippocampal Replay"
+tags:
+  - intersection
+date: 2026-05-14
+---
+
 # Experience Replay × Hippocampal Replay
 
 **Type:** intersection

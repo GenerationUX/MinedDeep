@@ -1,3 +1,11 @@
+---
+title: "Hippocampus Research Programme"
+tags:
+  - project
+description: "The hippocampus research programme is the longest-running project in the corpus (2007–2019), spanning 12 publications across the PhD period, postdoc, and two…"
+date: 2026-05-13
+---
+
 # Hippocampus Research Programme
 
 **Type:** project

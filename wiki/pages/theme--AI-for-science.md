@@ -1,3 +1,11 @@
+---
+title: "AI for Science"
+tags:
+  - theme
+description: "AI for science is the newest and most forward-looking theme in the corpus, spanning protein structure prediction (6 papers), density functional theory (1),…"
+date: 2026-05-13
+---
+
 # AI for Science
 
 **Type:** theme

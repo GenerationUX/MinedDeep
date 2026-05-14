@@ -1,3 +1,14 @@
+---
+title: "A Distributional Code for Value in Dopamine-Based Reinforcement Learning"
+tags:
+  - peer-reviewed-paper
+  - reinforcement-learning
+  - neuroscience-ai-bridge
+  - alphafold-era
+description: "Dabney, Kurth-Nelson, Uchida, Starkweather, Hassabis, Munos, and Botvinick (2020) demonstrated that dopamine neurons encode a distribution over possible…"
+date: 2020-01-01
+---
+
 # A Distributional Code for Value in Dopamine-Based Reinforcement Learning
 
 **Type:** paper

@@ -1,3 +1,15 @@
+---
+title: "Big-Loop Recurrence Within the Hippocampal System Supports Integration of Information Across Episodes"
+tags:
+  - peer-reviewed-paper
+  - hippocampal-construction
+  - cognitive-neuroscience
+  - alphafold-era
+  - hippocampus-research
+description: "Koster, Chadwick, Chen, Berron, Banino, Düzel, Hassabis, and Kumaran (2019) used fMRI pattern similarity analysis to demonstrate that the hippocampal system…"
+date: 2019-01-01
+---
+
 # Big-Loop Recurrence Within the Hippocampal System Supports Integration of Information Across Episodes
 
 **Type:** paper

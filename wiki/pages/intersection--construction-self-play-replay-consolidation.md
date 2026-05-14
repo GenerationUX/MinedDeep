@@ -1,3 +1,10 @@
+---
+title: "Construction×Self-Play + Replay×Hippocampal-Replay"
+tags:
+  - intersection
+date: 2026-05-14
+---
+
 # Construction×Self-Play + Replay×Hippocampal-Replay
 
 **Type:** intersection (second-order)

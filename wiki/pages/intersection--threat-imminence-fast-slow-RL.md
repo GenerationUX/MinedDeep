@@ -1,3 +1,10 @@
+---
+title: "Threat Imminence × Fast/Slow RL"
+tags:
+  - intersection
+date: 2026-05-14
+---
+
 # Threat Imminence × Fast/Slow RL
 
 **Type:** intersection

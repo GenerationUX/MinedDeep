@@ -1,3 +1,11 @@
+---
+title: "AlphaFold2"
+tags:
+  - project
+description: "AlphaFold2 is the deep learning system that achieved atomic-accuracy protein structure prediction, published in Nature (2021) and cited in the 2024 Nobel…"
+date: 2026-05-13
+---
+
 # AlphaFold2
 
 **Type:** project

@@ -1,3 +1,11 @@
+---
+title: "Neuroscience-AI Bidirectional Bridge"
+tags:
+  - claim
+description: "Neuroscience and AI should inform each other bidirectionally: not just using brain principles to inspire AI architectures, but using AI systems as models to…"
+date: 2026-05-13
+---
+
 # Neuroscience-AI Bidirectional Bridge
 
 **Type:** claim

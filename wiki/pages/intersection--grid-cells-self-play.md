@@ -1,3 +1,10 @@
+---
+title: "Grid Cells × Self-Play"
+tags:
+  - intersection
+date: 2026-05-14
+---
+
 # Grid Cells × Self-Play
 
 **Type:** intersection

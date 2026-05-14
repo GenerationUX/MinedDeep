@@ -1,3 +1,10 @@
+---
+title: "Big-Loop×Attention + Learnable×Construction"
+tags:
+  - intersection
+date: 2026-05-14
+---
+
 # Big-Loop×Attention + Learnable×Construction
 
 **Type:** intersection (second-order)

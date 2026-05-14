@@ -1,3 +1,13 @@
+---
+title: "Neuroscience-Inspired Artificial Intelligence"
+tags:
+  - peer-reviewed-paper
+  - neuroscience-ai-bridge
+  - deepmind-ascent
+description: "Hassabis, Kumaran, Summerfield, and Botvinick (2017) published a landmark review in Neuron arguing that neuroscience can serve as a rich source of inspiration…"
+date: 2017-01-01
+---
+
 # Neuroscience-Inspired Artificial Intelligence
 
 **Type:** paper

@@ -1,3 +1,11 @@
+---
+title: "Post-AlphaFold (2022–Present)"
+tags:
+  - period
+description: "The post-AlphaFold period is defined by the 2024 Nobel Prize in Chemistry and its aftermath."
+date: 2026-05-13
+---
+
 # Post-AlphaFold (2022–Present)
 
 **Type:** period

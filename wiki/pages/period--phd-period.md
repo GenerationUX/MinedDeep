@@ -1,3 +1,11 @@
+---
+title: "PhD Period (2007–2009)"
+tags:
+  - period
+description: "Hassabis's PhD at UCL under Eleanor Maguire produced 9 publications (2007–2009) that established the construction system hypothesis — the claim that the…"
+date: 2026-05-13
+---
+
 # PhD Period (2007–2009)
 
 **Type:** period

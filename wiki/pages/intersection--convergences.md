@@ -1,3 +1,10 @@
+---
+title: "Convergences (Third-Order Intersections)"
+tags:
+  - intersection
+date: 2026-05-14
+---
+
 # Convergences (Third-Order Intersections)
 
 **Type:** intersection (third-order)

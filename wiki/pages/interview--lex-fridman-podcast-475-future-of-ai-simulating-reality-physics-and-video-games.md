@@ -1,3 +1,15 @@
+---
+title: "Future of AI, Simulating Reality, Physics and Video Games (Lex Fridman Podcast #475)"
+tags:
+  - interview
+  - agi-definition
+  - game-playing-ai
+  - agi-theory
+  - post-alphafold
+description: "Demis Hassabis appeared on the Lex Fridman Podcast (#475) for a wide-ranging conversation covering AI's trajectory, the philosophy of intelligence,…"
+date: 2026-01-01
+---
+
 # Future of AI, Simulating Reality, Physics and Video Games (Lex Fridman Podcast #475)
 
 **Type:** interview

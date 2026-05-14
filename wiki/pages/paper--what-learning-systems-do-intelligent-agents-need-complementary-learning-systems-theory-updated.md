@@ -1,3 +1,14 @@
+---
+title: "What Learning Systems Do Intelligent Agents Need? Complementary Learning Systems Theory Updated"
+tags:
+  - peer-reviewed-paper
+  - neuroscience-ai-bridge
+  - complementary-learning-systems
+  - deepmind-ascent
+description: "Kumaran, Hassabis, and McClelland (2016) published an updated review of Complementary Learning Systems (CLS) theory in Trends in Cognitive Sciences, extending…"
+date: 2016-01-01
+---
+
 # What Learning Systems Do Intelligent Agents Need? Complementary Learning Systems Theory Updated
 
 **Type:** paper

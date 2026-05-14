@@ -1,3 +1,11 @@
+---
+title: "Memory and Imagination"
+tags:
+  - theme
+description: "The memory-imagination theme captures the core finding of the PhD period: that episodic memory and imagination share a common neural substrate in the…"
+date: 2026-05-13
+---
+
 # Memory and Imagination
 
 **Type:** theme

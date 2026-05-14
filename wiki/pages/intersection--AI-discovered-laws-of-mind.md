@@ -1,3 +1,10 @@
+---
+title: "AI-Discovered Laws of Mind"
+tags:
+  - intersection
+date: 2026-05-14
+---
+
 # AI-Discovered Laws of Mind
 
 **Type:** intersection (second-order)

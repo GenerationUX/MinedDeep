@@ -1,3 +1,15 @@
+---
+title: "Computations Underlying Social Hierarchy Learning: Distinct Neural Mechanisms for Updating and Representing Self-Relevant Information"
+tags:
+  - peer-reviewed-paper
+  - hippocampal-construction
+  - cognitive-neuroscience
+  - deepmind-ascent
+  - hippocampus-research
+description: "Kumaran, Banino, Blundell, Hassabis, and Dayan (2016) investigated how humans learn social hierarchies, finding that social hierarchy learning is…"
+date: 2016-01-01
+---
+
 # Computations Underlying Social Hierarchy Learning: Distinct Neural Mechanisms for Updating and Representing Self-Relevant Information
 
 **Type:** paper

@@ -1,3 +1,11 @@
+---
+title: "AlphaGo"
+tags:
+  - project
+description: "AlphaGo is the DeepMind project that defeated human Go champions, spanning three major systems: AlphaGo (2016, supervised + RL), AlphaGo Zero (2017, pure…"
+date: 2026-05-13
+---
+
 # AlphaGo
 
 **Type:** project

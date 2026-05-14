@@ -1,3 +1,15 @@
+---
+title: "Neural Mechanisms of Hierarchical Planning in a Virtual Subway Network"
+tags:
+  - peer-reviewed-paper
+  - hippocampal-construction
+  - cognitive-neuroscience
+  - deepmind-ascent
+  - hippocampus-research
+description: "Balaguer, Spiers, Hassabis, and Summerfield (2016) used fMRI to investigate how humans represent hierarchical plans, using a virtual subway navigation task…"
+date: 2016-01-01
+---
+
 # Neural Mechanisms of Hierarchical Planning in a Virtual Subway Network
 
 **Type:** paper

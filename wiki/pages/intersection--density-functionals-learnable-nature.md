@@ -1,3 +1,10 @@
+---
+title: "Density Functionals × Learnable Nature"
+tags:
+  - intersection
+date: 2026-05-14
+---
+
 # Density Functionals × Learnable Nature
 
 **Type:** intersection

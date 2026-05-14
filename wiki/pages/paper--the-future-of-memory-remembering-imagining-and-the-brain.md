@@ -1,3 +1,15 @@
+---
+title: "The Future of Memory: Remembering, Imagining, and the Brain"
+tags:
+  - review-article
+  - memory-imagination
+  - cognitive-neuroscience
+  - phd-period
+  - hippocampus-research
+description: "Schacter, Addis, Hassabis, Martin, Spreng, and Szpunar (2012) published a major review in Neuron synthesizing five years of research since the 2007 \"mental…"
+date: 2007-01-01
+---
+
 # The Future of Memory: Remembering, Imagining, and the Brain
 
 **Type:** paper

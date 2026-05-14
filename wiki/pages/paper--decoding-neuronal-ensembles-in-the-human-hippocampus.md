@@ -1,3 +1,15 @@
+---
+title: "Decoding Neuronal Ensembles in the Human Hippocampus"
+tags:
+  - peer-reviewed-paper
+  - hippocampal-construction
+  - cognitive-neuroscience
+  - phd-period
+  - hippocampus-research
+description: "Hassabis, Chu, Rees, Weiskopf, Molyneux, and Maguire (2009) used multivariate pattern classification (searchlight SVM) with high-resolution fMRI to decode a…"
+date: 2009-01-01
+---
+
 # Decoding Neuronal Ensembles in the Human Hippocampus
 
 **Type:** paper

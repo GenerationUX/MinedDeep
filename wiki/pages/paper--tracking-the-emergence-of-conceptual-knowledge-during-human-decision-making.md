@@ -1,3 +1,15 @@
+---
+title: "Tracking the Emergence of Conceptual Knowledge during Human Decision Making"
+tags:
+  - peer-reviewed-paper
+  - hippocampal-construction
+  - cognitive-neuroscience
+  - phd-period
+  - hippocampus-research
+description: "Kumaran, Summerfield, Hassabis, and Maguire (2009) used fMRI to track how conceptual knowledge emerges during human decision making, showing that the…"
+date: 2006-01-01
+---
+
 # Tracking the Emergence of Conceptual Knowledge during Human Decision Making
 
 **Type:** paper

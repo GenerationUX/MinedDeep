@@ -1,3 +1,11 @@
+---
+title: "AlphaFold Era (2018–2022)"
+tags:
+  - period
+description: "The era defined by the AlphaFold project's trajectory from early results to atomic-accuracy predictions and the Nobel Prize-cited Nature paper."
+date: 2026-05-13
+---
+
 # AlphaFold Era (2018–2022)
 
 **Type:** period

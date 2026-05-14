@@ -1,3 +1,15 @@
+---
+title: "When Fear Is Near: Threat Imminence Elicits Prefrontal-Periaqueductal Gray Shifts in Humans"
+tags:
+  - peer-reviewed-paper
+  - hippocampal-construction
+  - cognitive-neuroscience
+  - phd-period
+  - hippocampus-research
+description: "Mobbs et al."
+date: 2007-01-01
+---
+
 # When Fear Is Near: Threat Imminence Elicits Prefrontal-Periaqueductal Gray Shifts in Humans
 
 **Type:** paper

@@ -1,3 +1,11 @@
+---
+title: "Early DeepMind (2010–2015)"
+tags:
+  - period
+description: "The period from DeepMind's founding (2010) through its first landmark publication (2015) is represented in the corpus by a single paper — the DQN paper in…"
+date: 2026-05-13
+---
+
 # Early DeepMind (2010–2015)
 
 **Type:** period

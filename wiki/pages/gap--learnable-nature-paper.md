@@ -1,3 +1,10 @@
+---
+title: "Missing Paper: Learnable Nature Conjecture"
+tags:
+  - gap
+date: 2026-05-13
+---
+
 # Missing Paper: Learnable Nature Conjecture
 
 **Type:** gap

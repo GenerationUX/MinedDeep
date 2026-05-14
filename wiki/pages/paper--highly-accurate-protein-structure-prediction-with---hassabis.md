@@ -1,3 +1,11 @@
+---
+title: "Highly Accurate Protein Structure Prediction with AlphaFold"
+tags:
+  - paper--highly-accurate-protein-structure-prediction-with-
+description: "Jumper, Evans, Pritzel, Green, Figurnov, Ronneberger, Tunyasuvunakool, and 26 colleagues, with Silver, Senior, Kavukcuoglu, Kohli, and Hassabis (2021)…"
+date: 2026-05-13
+---
+
 # Highly Accurate Protein Structure Prediction with AlphaFold
 
 **Type:** paper

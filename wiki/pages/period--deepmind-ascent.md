@@ -1,3 +1,11 @@
+---
+title: "DeepMind Ascent (2015–2018)"
+tags:
+  - period
+description: "The most prolific and intellectually diverse period in the corpus, with 15 publications across game-playing AI, neuroscience theory, clinical AI, and…"
+date: 2026-05-13
+---
+
 # DeepMind Ascent (2015–2018)
 
 **Type:** period

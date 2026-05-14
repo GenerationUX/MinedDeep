@@ -1,3 +1,17 @@
+---
+title: "Mastering the Game of Go without Human Knowledge"
+tags:
+  - peer-reviewed-paper
+  - self-play
+  - game-playing-ai
+  - go
+  - deep-rl
+  - deepmind-ascent
+  - AlphaGo-Zero
+description: "Silver, Schrittwieser, Simonyan, Antonoglou, Huang, Guez, Hubert, Baker, Lai, Bolton, Chen, Lillicrap, Fan Hui, Sifre, van den Driessche, Graepel, and…"
+date: 2017-01-01
+---
+
 # Mastering the Game of Go without Human Knowledge
 
 **Type:** paper

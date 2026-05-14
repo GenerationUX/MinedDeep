@@ -1,0 +1,81 @@
+name: Deploy MinedDeep to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "wiki/**"
+      - "assets/**"
+      - "quartz.config.ts"
+      - "quartz.layout.ts"
+      - ".github/workflows/deploy.yml"
+  workflow_dispatch:   # allow manual re-deploy from the Actions tab
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one deploy at a time; don't cancel in-progress runs
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0          # full history so git-date frontmatter works
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # ── Install Quartz ──────────────────────────────────────────────────────
+      # We keep Quartz as a submodule OR install via npx.
+      # This workflow uses the submodule approach (recommended for config control).
+      # See QUARTZ_SETUP.md for the one-time git submodule init step.
+      - name: Install Quartz dependencies
+        run: npm ci
+        working-directory: ./quartz-src   # submodule path (see QUARTZ_SETUP.md)
+
+      # ── Rename entry point ─────────────────────────────────────────────────
+      # Quartz expects index.md, not _index.md, as the home page.
+      # This step does the rename at build time so you don't have to touch your files.
+      - name: Normalise home page filename
+        run: |
+          if [ -f wiki/_index.md ] && [ ! -f wiki/index.md ]; then
+            cp wiki/_index.md wiki/index.md
+          fi
+
+      # ── Build ──────────────────────────────────────────────────────────────
+      - name: Build Quartz site
+        run: |
+          npx quartz build \
+            --directory ../wiki \
+            --output ../public
+        working-directory: ./quartz-src
+
+      # ── Upload artifact for Pages ──────────────────────────────────────────
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

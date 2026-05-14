@@ -1,3 +1,16 @@
+---
+title: "Improved Protein Structure Prediction Using Potentials from Deep Learning"
+tags:
+  - peer-reviewed-paper
+  - protein-folding
+  - structural-biology
+  - protein-structure
+  - alphafold-era
+  - AlphaFold
+description: "Senior, Evans, Jumper, Kirkpatrick, Sifre, Green, Qin, Žídek, Nelson, Bridgland, Penedones, Petersen, Simonyan, Crossan, Kohli, Jones, Silver, Kavukcuoglu,…"
+date: 2019-01-01
+---
+
 # Improved Protein Structure Prediction Using Potentials from Deep Learning
 
 **Type:** paper

@@ -1,3 +1,16 @@
+---
+title: "Patients with Hippocampal Amnesia Cannot Imagine New Experiences"
+tags:
+  - peer-reviewed-paper
+  - memory-imagination
+  - hippocampal-construction
+  - cognitive-neuroscience
+  - phd-period
+  - hippocampus-research
+description: "Hassabis, Kumaran, Vann, and Maguire (2007) demonstrated that patients with bilateral hippocampal damage are markedly impaired at constructing richly imagined…"
+date: 2007-01-01
+---
+
 # Patients with Hippocampal Amnesia Cannot Imagine New Experiences
 
 **Type:** paper

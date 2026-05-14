@@ -1,3 +1,15 @@
+---
+title: "Neural Scene Representation and Rendering"
+tags:
+  - peer-reviewed-paper
+  - reinforcement-learning
+  - multi-agent-systems
+  - deepmind-ascent
+  - GQN
+description: "Eslami, Rezende, Besse, Viola, Morcos, Garnelo, Ruderman, Rusu, Danihelka, Gregor, Reichert, Buesing, Weber, Vinyals, Botvinick, Rosenbaum, Rabinowitz, King,…"
+date: 2018-01-01
+---
+
 # Neural Scene Representation and Rendering
 
 **Type:** paper

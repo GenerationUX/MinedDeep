@@ -1,3 +1,16 @@
+---
+title: "Imagine All the People: How the Brain Creates and Uses Personality Models"
+tags:
+  - peer-reviewed-paper
+  - memory-imagination
+  - hippocampal-construction
+  - cognitive-neuroscience
+  - phd-period
+  - hippocampus-research
+description: "Hassabis, Spreng, Rusu, Robbins, Mar, and Schacter (2014) used fMRI to identify the neural substrates of personality model construction and deployment."
+date: 2007-01-01
+---
+
 # Imagine All the People: How the Brain Creates and Uses Personality Models
 
 **Type:** paper

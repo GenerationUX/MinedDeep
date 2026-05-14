@@ -1,3 +1,19 @@
+---
+title: "A General Reinforcement Learning Algorithm That Masters Chess, Shogi, and Go Through Self-Play"
+tags:
+  - peer-reviewed-paper
+  - self-play
+  - game-playing-ai
+  - chess
+  - go
+  - deep-rl
+  - reinforcement-learning
+  - deepmind-ascent
+  - AlphaZero
+description: "Silver, Schrittwieser, Antonoglou, Guez, Lanctot, and colleagues, with Simonyan, Kavukcuoglu, and Hassabis (2017) introduced AlphaZero, a single reinforcement…"
+date: 2018-01-01
+---
+
 # A General Reinforcement Learning Algorithm That Masters Chess, Shogi, and Go Through Self-Play
 
 **Type:** paper

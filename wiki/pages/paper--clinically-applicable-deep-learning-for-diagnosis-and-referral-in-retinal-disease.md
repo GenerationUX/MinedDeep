@@ -1,3 +1,14 @@
+---
+title: "Clinically Applicable Deep Learning for Diagnosis and Referral in Retinal Disease"
+tags:
+  - peer-reviewed-paper
+  - clinical-ai
+  - deepmind-ascent
+  - DeepMind-general
+description: "De Fauw, Ledsam, Romera-Paredes, Nikolov, Tomašev, and colleagues, with Keane, and Hassabis (2018) developed a deep learning system for analyzing retinal OCT…"
+date: 2018-01-01
+---
+
 # Clinically Applicable Deep Learning for Diagnosis and Referral in Retinal Disease
 
 **Type:** paper

@@ -1,3 +1,11 @@
+---
+title: "Nobel Prize Lecture"
+tags:
+  - venue
+description: "The Nobel Prize Lecture is the venue for Hassabis's 2024 Nobel Lecture, \"Accelerating Scientific Discovery with AI."
+date: 2026-05-13
+---
+
 # Nobel Prize Lecture
 
 **Type:** venue

@@ -1,3 +1,13 @@
+---
+title: "Vector-Based Navigation Using Grid-Like Representations in Artificial Agents"
+tags:
+  - peer-reviewed-paper
+  - neuroscience-ai-bridge
+  - alphafold-era
+description: "Banino, Barry, Uria, Blundell, Lillicrap, Mirowski, Pritzel, Chadwick, Degris, Modayil, Wayne, Soyer, Viola, Zhang, Goroshin, Rabinowitz, Pascanu, Beattie,…"
+date: 2018-01-01
+---
+
 # Vector-Based Navigation Using Grid-Like Representations in Artificial Agents
 
 **Type:** paper

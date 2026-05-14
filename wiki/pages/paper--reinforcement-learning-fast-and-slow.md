@@ -1,3 +1,15 @@
+---
+title: "Reinforcement Learning, Fast and Slow"
+tags:
+  - peer-reviewed-paper
+  - reinforcement-learning
+  - neuroscience-ai-bridge
+  - complementary-learning-systems
+  - alphafold-era
+description: "Botvinick, Ritter, Wang, Kurth-Nelson, Blundell, and Hassabis (2020) published a review in Neuron proposing that the brain's RL system comprises parallel…"
+date: 2020-01-01
+---
+
 # Reinforcement Learning, Fast and Slow
 
 **Type:** paper

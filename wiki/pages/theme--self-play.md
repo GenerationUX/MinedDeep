@@ -1,3 +1,11 @@
+---
+title: "Self-Play"
+tags:
+  - theme
+description: "Self-play is the training paradigm in which an agent improves by playing against itself rather than learning from human data."
+date: 2026-05-13
+---
+
 # Self-Play
 
 **Type:** theme

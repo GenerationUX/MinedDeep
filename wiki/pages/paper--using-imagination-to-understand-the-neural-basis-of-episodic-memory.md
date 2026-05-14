@@ -1,3 +1,16 @@
+---
+title: "Using Imagination to Understand the Neural Basis of Episodic Memory"
+tags:
+  - peer-reviewed-paper
+  - memory-imagination
+  - episodic-memory
+  - cognitive-neuroscience
+  - phd-period
+  - hippocampus-research
+description: "Hassabis, Kumaran, and Maguire (2007) used a novel fMRI paradigm in which subjects recalled real episodic memories, retrieved previously imagined fictitious…"
+date: 2007-01-01
+---
+
 # Using Imagination to Understand the Neural Basis of Episodic Memory
 
 **Type:** paper

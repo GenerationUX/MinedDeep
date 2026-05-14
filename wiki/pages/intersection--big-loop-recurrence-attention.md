@@ -1,3 +1,10 @@
+---
+title: "Big-Loop Recurrence × Attention"
+tags:
+  - intersection
+date: 2026-05-14
+---
+
 # Big-Loop Recurrence × Attention
 
 **Type:** intersection

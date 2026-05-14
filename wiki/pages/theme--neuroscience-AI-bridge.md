@@ -1,3 +1,11 @@
+---
+title: "Neuroscience-AI Bridge"
+tags:
+  - theme
+description: "The neuroscience-AI bridge is Hassabis's distinctive intellectual contribution as a thinker, not just a builder."
+date: 2026-05-13
+---
+
 # Neuroscience-AI Bridge
 
 **Type:** theme

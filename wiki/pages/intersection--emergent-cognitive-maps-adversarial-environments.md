@@ -1,3 +1,10 @@
+---
+title: "Emergent Cognitive Maps in Adversarial Environments"
+tags:
+  - intersection
+date: 2026-05-14
+---
+
 # Emergent Cognitive Maps in Adversarial Environments
 
 **Type:** intersection (second-order)

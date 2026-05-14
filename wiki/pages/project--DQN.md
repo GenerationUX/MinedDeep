@@ -1,3 +1,11 @@
+---
+title: "DQN (Deep Q-Network)"
+tags:
+  - project
+description: "DQN is the first DeepMind project to demonstrate that deep neural networks combined with reinforcement learning can achieve human-level performance across…"
+date: 2026-05-13
+---
+
 # DQN (Deep Q-Network)
 
 **Type:** project

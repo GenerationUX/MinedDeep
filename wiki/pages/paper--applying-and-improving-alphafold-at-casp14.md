@@ -1,3 +1,16 @@
+---
+title: "Applying and Improving AlphaFold at CASP14"
+tags:
+  - peer-reviewed-paper
+  - protein-folding
+  - structural-biology
+  - protein-structure
+  - alphafold-era
+  - AlphaFold2
+description: "Jumper, Evans, Pritzel, Green, Figurnov, Ronneberger, Tunyasuvunakool, and colleagues (2021) provided a detailed account of AlphaFold2's participation in…"
+date: 2021-01-01
+---
+
 # Applying and Improving AlphaFold at CASP14
 
 **Type:** paper

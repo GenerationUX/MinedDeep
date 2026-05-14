@@ -1,3 +1,15 @@
+---
+title: "Grandmaster Level in StarCraft II Using Multi-Agent Reinforcement Learning"
+tags:
+  - peer-reviewed-paper
+  - game-playing-ai
+  - starcraft
+  - alphafold-era
+  - AlphaStar
+description: "Vinyals, Babuschkin, Czarnecki, Mathieu, and 36 colleagues, with Apps, Lillicrap, Kavukcuoglu, Hassabis, and Silver (2019) developed AlphaStar, an AI system…"
+date: 2019-01-01
+---
+
 # Grandmaster Level in StarCraft II Using Multi-Agent Reinforcement Learning
 
 **Type:** paper

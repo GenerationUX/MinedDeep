@@ -1,3 +1,16 @@
+---
+title: "Demis Hassabis Is Preparing for AI's Next Chapter (TIME100)"
+tags:
+  - essay
+  - protein-folding
+  - agi-definition
+  - ai-for-science
+  - agi-theory
+  - post-alphafold
+description: "Hassabis (2025) authored his TIME100 acceptance essay, published as part of TIME's annual list of the 100 most influential people."
+date: 2025-01-01
+---
+
 # Demis Hassabis Is Preparing for AI's Next Chapter (TIME100)
 
 **Type:** essay

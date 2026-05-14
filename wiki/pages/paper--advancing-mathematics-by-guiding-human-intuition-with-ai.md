@@ -1,3 +1,15 @@
+---
+title: "Advancing Mathematics by Guiding Human Intuition with AI"
+tags:
+  - peer-reviewed-paper
+  - ai-for-science
+  - mathematics-ai
+  - alphafold-era
+  - DeepMind-general
+description: "Davies, Veličković, Buesing, Blackwell, Zheng, Tomašev, Tanburn, Battaglia, Blundell, Juhász, Lackenby, Williamson, Hassabis, and Kohli (2021) demonstrated…"
+date: 2021-01-01
+---
+
 # Advancing Mathematics by Guiding Human Intuition with AI
 
 **Type:** paper

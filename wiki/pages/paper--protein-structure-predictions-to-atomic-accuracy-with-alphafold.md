@@ -1,3 +1,16 @@
+---
+title: "Protein Structure Predictions to Atomic Accuracy with AlphaFold"
+tags:
+  - peer-reviewed-paper
+  - protein-folding
+  - structural-biology
+  - protein-structure
+  - alphafold-era
+  - AlphaFold2
+description: "Jumper and Hassabis (2021) authored a Nature Focus/Comment piece providing a high-level overview of AlphaFold2's achievement at CASP14 for a general…"
+date: 2020-01-01
+---
+
 # Protein Structure Predictions to Atomic Accuracy with AlphaFold
 
 **Type:** paper

@@ -1,3 +1,17 @@
+---
+title: "Decoding Individual Episodic Memory Traces in the Human Hippocampus"
+tags:
+  - peer-reviewed-paper
+  - memory-imagination
+  - hippocampal-construction
+  - episodic-memory
+  - cognitive-neuroscience
+  - postdoc-period
+  - hippocampus-research
+description: "Chadwick, Hassabis, Weiskopf, and Maguire (2010) used high-spatial-resolution fMRI with multivariate pattern analysis (MVPA) to demonstrate that individual…"
+date: 2010-01-01
+---
+
 # Decoding Individual Episodic Memory Traces in the Human Hippocampus
 
 **Type:** paper

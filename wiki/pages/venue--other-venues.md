@@ -1,3 +1,11 @@
+---
+title: "Other Venues"
+tags:
+  - venue
+description: "The remaining 11 venues each appear 1–2 times in the corpus."
+date: 2026-05-13
+---
+
 # Other Venues
 
 **Type:** venue

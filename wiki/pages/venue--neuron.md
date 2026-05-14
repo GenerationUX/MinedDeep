@@ -1,3 +1,11 @@
+---
+title: "Neuron"
+tags:
+  - venue
+description: "Neuron is the second-most-represented venue with 6 corpus papers, all from the neuroscience period (2007–2019)."
+date: 2026-05-13
+---
+
 # Neuron
 
 **Type:** venue

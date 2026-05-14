@@ -17,5 +17,11 @@ Thumbs.db
 *.tmp
 *.bak
 
+# Quartz build output
+public/
+
+# Node modules (submodule manages its own)
+node_modules/
+
 # Keep placeholders
 !.gitkeep

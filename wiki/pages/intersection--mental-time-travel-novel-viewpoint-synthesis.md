@@ -1,3 +1,10 @@
+---
+title: "Mental Time Travel as Novel Viewpoint Synthesis"
+tags:
+  - intersection
+date: 2026-05-14
+---
+
 # Mental Time Travel as Novel Viewpoint Synthesis
 
 **Type:** intersection (second-order)

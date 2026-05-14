@@ -1,3 +1,10 @@
+---
+title: "MuZero × Construction"
+tags:
+  - intersection
+date: 2026-05-14
+---
+
 # MuZero × Construction
 
 **Type:** intersection

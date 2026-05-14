@@ -1,3 +1,11 @@
+---
+title: "David Silver"
+tags:
+  - collaborator
+description: "David Silver is the most frequent co-author in the DeepMind era, appearing on 8 corpus papers (2015–2021) spanning the entire game-playing arc (DQN → AlphaGo…"
+date: 2026-05-13
+---
+
 # David Silver
 
 **Type:** collaborator

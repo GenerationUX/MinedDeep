@@ -1,3 +1,15 @@
+---
+title: "Pushing the Frontiers of Density Functionals by Solving the Fractional Electron Problem"
+tags:
+  - peer-reviewed-paper
+  - ai-for-science
+  - mathematics-ai
+  - post-alphafold
+  - DeepMind-general
+description: "Kirkpatrick, McMorrow, Turban, Gaunt, and colleagues (2022) used deep learning to develop a neural network density functional that correctly solves the…"
+date: 2022-01-01
+---
+
 # Pushing the Frontiers of Density Functionals by Solving the Fractional Electron Problem
 
 **Type:** paper

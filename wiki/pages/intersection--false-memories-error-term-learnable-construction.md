@@ -1,3 +1,10 @@
+---
+title: "False Memories as the Error Term of Learnable Construction"
+tags:
+  - intersection
+date: 2026-05-14
+---
+
 # False Memories as the Error Term of Learnable Construction
 
 **Type:** intersection (second-order)

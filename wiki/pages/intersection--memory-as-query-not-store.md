@@ -1,3 +1,10 @@
+---
+title: "Memory as Query, Not Store"
+tags:
+  - intersection
+date: 2026-05-14
+---
+
 # Memory as Query, Not Store
 
 **Type:** intersection (feedback loop)

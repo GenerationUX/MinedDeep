@@ -1,3 +1,14 @@
+---
+title: "A Clinically Applicable Approach to Continuous Prediction of Future Acute Kidney Injury"
+tags:
+  - peer-reviewed-paper
+  - clinical-ai
+  - alphafold-era
+  - DeepMind-general
+description: "Tomašev, Glorot, Rae, Zielinski, Askham, and colleagues, with Mohamed, and Hassabis (2019) developed a deep learning system for continuously predicting acute…"
+date: 2019-01-01
+---
+
 # A Clinically Applicable Approach to Continuous Prediction of Future Acute Kidney Injury
 
 **Type:** paper

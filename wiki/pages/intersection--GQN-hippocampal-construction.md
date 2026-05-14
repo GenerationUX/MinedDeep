@@ -1,3 +1,10 @@
+---
+title: "GQN × Hippocampal Construction"
+tags:
+  - intersection
+date: 2026-05-14
+---
+
 # GQN × Hippocampal Construction
 
 **Type:** intersection

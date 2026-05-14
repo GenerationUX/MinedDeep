@@ -1,3 +1,13 @@
+---
+title: "DeepMind CEO Demis Hassabis Urges Caution on AI"
+tags:
+  - op-ed
+  - safety-governance
+  - post-alphafold
+description: "Billy Perrigo (2023) profiled Demis Hassabis for TIME magazine in a long-form interview conducted at DeepMind's London headquarters, published 12 January 2023…"
+date: 2026-01-01
+---
+
 # DeepMind CEO Demis Hassabis Urges Caution on AI
 
 **Type:** essay

@@ -1,3 +1,17 @@
+---
+title: "The Construction System of the Brain"
+tags:
+  - review-article
+  - memory-imagination
+  - hippocampal-construction
+  - episodic-memory
+  - cognitive-neuroscience
+  - phd-period
+  - hippocampus-research
+description: "Hassabis and Maguire (2009) review article in Philosophical Transactions of the Royal Society B articulates the \"construction system hypothesis\" — the…"
+date: 2008-01-01
+---
+
 # The Construction System of the Brain
 
 **Type:** paper

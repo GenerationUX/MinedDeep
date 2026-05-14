@@ -1,3 +1,10 @@
+---
+title: "Self-Correcting Construction"
+tags:
+  - intersection
+date: 2026-05-14
+---
+
 # Self-Correcting Construction
 
 **Type:** intersection (feedback loop)

@@ -1,3 +1,15 @@
+---
+title: "Mastering the Game of Go with Deep Neural Networks and Tree Search"
+tags:
+  - peer-reviewed-paper
+  - game-playing-ai
+  - go
+  - deepmind-ascent
+  - AlphaGo
+description: "Silver, Huang, Maddison, Guez, Sifre, van den Driessche, Schrittwieser, Antonoglou, Panneershelvam, Lanctot, Dieleman, Grewe, Nham, Kalchbrenner, Sutskever,…"
+date: 2016-01-01
+---
+
 # Mastering the Game of Go with Deep Neural Networks and Tree Search
 
 **Type:** paper

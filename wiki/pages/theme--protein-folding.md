@@ -1,3 +1,11 @@
+---
+title: "Protein Folding"
+tags:
+  - theme
+description: "The protein folding theme traces the AlphaFold project from its first published results (2019) through atomic-accuracy predictions (2021) to proteome-scale…"
+date: 2026-05-13
+---
+
 # Protein Folding
 
 **Type:** theme

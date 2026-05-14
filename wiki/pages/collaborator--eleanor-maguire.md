@@ -1,3 +1,11 @@
+---
+title: "Eleanor A. Maguire"
+tags:
+  - collaborator
+description: "Eleanor A."
+date: 2026-05-13
+---
+
 # Eleanor A. Maguire
 
 **Type:** collaborator

@@ -1,3 +1,10 @@
+---
+title: "Spatially Structured Mental Time Travel"
+tags:
+  - intersection
+date: 2026-05-14
+---
+
 # Spatially Structured Mental Time Travel
 
 **Type:** intersection (feedback loop)

@@ -1,3 +1,11 @@
+---
+title: "Postdoc Period (2009–2010)"
+tags:
+  - period
+description: "A single-paper bridge period between Hassabis's PhD and the founding of DeepMind in 2010."
+date: 2026-05-13
+---
+
 # Postdoc Period (2009–2010)
 
 **Type:** period

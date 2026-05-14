@@ -1,3 +1,16 @@
+---
+title: "Highly Accurate Protein Structure Prediction for the Human Proteome"
+tags:
+  - peer-reviewed-paper
+  - protein-folding
+  - structural-biology
+  - protein-structure
+  - alphafold-era
+  - AlphaFold2
+description: "Tunyasuvunakool, Adler, Wu, Green, Zielinski, Žídek, Bridgland, Cowie, Meyer, Laydon, Velankar, Kleywegt, Bateman, Evans, Pritzel, Figurnov, Ronneberger,…"
+date: 2021-01-01
+---
+
 # Highly Accurate Protein Structure Prediction for the Human Proteome
 
 **Type:** paper

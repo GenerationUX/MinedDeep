@@ -1,3 +1,10 @@
+---
+title: "Fast/Slow RL × AlphaGo Zero's Training Dynamics"
+tags:
+  - intersection
+date: 2026-05-14
+---
+
 # Fast/Slow RL × AlphaGo Zero's Training Dynamics
 
 **Type:** intersection

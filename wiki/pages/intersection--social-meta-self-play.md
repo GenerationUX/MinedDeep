@@ -1,3 +1,10 @@
+---
+title: "Social Meta-Self-Play"
+tags:
+  - intersection
+date: 2026-05-14
+---
+
 # Social Meta-Self-Play
 
 **Type:** intersection (second-order)

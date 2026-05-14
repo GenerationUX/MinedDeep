@@ -1,3 +1,10 @@
+---
+title: "Distributional RL × Hippocampal Construction"
+tags:
+  - intersection
+date: 2026-05-14
+---
+
 # Distributional RL × Hippocampal Construction
 
 **Type:** intersection

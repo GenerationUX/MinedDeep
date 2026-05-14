@@ -1,3 +1,10 @@
+---
+title: "Conceptual Emergence × Big-Loop Recurrence"
+tags:
+  - intersection
+date: 2026-05-14
+---
+
 # Conceptual Emergence × Big-Loop Recurrence
 
 **Type:** intersection

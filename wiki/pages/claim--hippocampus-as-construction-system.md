@@ -1,3 +1,11 @@
+---
+title: "Hippocampus as Construction System (Not Memory Store)"
+tags:
+  - claim
+description: "The hippocampus does not store episodic memories as holistic recordings but instead constructs scene-like representations by recombining stored elements…"
+date: 2026-05-13
+---
+
 # Hippocampus as Construction System (Not Memory Store)
 
 **Type:** claim

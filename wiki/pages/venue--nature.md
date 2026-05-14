@@ -1,3 +1,11 @@
+---
+title: "Nature"
+tags:
+  - venue
+description: "Nature is the dominant venue in the corpus with 14 papers — more than any other journal."
+date: 2026-05-13
+---
+
 # Nature
 
 **Type:** venue

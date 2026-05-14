@@ -1,3 +1,11 @@
+---
+title: "Current Biology"
+tags:
+  - venue
+description: "Current Biology appears 6 times in the corpus, all from the PhD period (2007–2009)."
+date: 2026-05-13
+---
+
 # Current Biology
 
 **Type:** venue

@@ -1,3 +1,18 @@
+---
+title: "Mastering Atari, Go, Chess and Shogi by Planning with a Learned Model"
+tags:
+  - peer-reviewed-paper
+  - deep-rl
+  - model-based-rl
+  - game-playing-ai
+  - chess
+  - reinforcement-learning
+  - alphafold-era
+  - MuZero
+description: "Schrittwieser, Antonoglou, Hubert, Simonyan, Sifre, Schmitt, Guez, Lockhart, Hassabis, Graepel, Lillicrap, and Silver (2020) introduced MuZero, a…"
+date: 2020-01-01
+---
+
 # Mastering Atari, Go, Chess and Shogi by Planning with a Learned Model
 
 **Type:** paper

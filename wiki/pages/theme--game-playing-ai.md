@@ -1,3 +1,11 @@
+---
+title: "Game-Playing AI"
+tags:
+  - theme
+description: "Eight publications trace DeepMind's game-playing programme from Atari (2015) through Go, chess, shogi, Quake III, and StarCraft II (2019)."
+date: 2026-05-13
+---
+
 # Game-Playing AI
 
 **Type:** theme

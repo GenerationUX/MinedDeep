@@ -1,3 +1,11 @@
+---
+title: "Hippocampal Construction"
+tags:
+  - theme
+description: "The hippocampal construction hypothesis is the central intellectual contribution of Hassabis's neuroscience career."
+date: 2026-05-13
+---
+
 # Hippocampal Construction
 
 **Type:** theme

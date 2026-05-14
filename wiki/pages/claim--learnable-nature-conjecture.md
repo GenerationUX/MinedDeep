@@ -1,3 +1,11 @@
+---
+title: "Learnable Nature Conjecture"
+tags:
+  - claim
+description: "Many laws and regularities of nature may be discoverable by machine learning systems trained on experimental data, without requiring explicit programming of…"
+date: 2026-05-13
+---
+
 # Learnable Nature Conjecture
 
 **Type:** claim

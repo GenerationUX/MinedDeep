@@ -1,3 +1,10 @@
+---
+title: "Learnable×Construction + Mathematics×Learnable-Nature"
+tags:
+  - intersection
+date: 2026-05-14
+---
+
 # Learnable×Construction + Mathematics×Learnable-Nature
 
 **Type:** intersection (second-order)
