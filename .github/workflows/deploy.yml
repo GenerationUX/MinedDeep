@@ -4,12 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - "wiki/**"
-      - "assets/**"
-      - "quartz.config.ts"
-      - "quartz.layout.ts"
-      - ".github/workflows/deploy.yml"
   workflow_dispatch:   # allow manual re-deploy from the Actions tab
 
 permissions:
