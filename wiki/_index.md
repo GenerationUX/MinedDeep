@@ -1,7 +1,6 @@
-# Wiki Index — MinedDeep
-
-Page catalog by type. Populated by `/wiki absorb`, `/wiki synthesise`, and `/wiki intersect`.
-Do not edit manually.
+---
+title: "MinedDeep"
+---
 
 ---
 

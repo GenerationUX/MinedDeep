@@ -28,6 +28,9 @@ const config: QuartzConfig = {
       ".obsidian",
       "_log.md",           // operation log — don't publish
       "_corpus_log.json",  // internal tracking — don't publish
+      "_frontmatter_*",    // frontmatter audit/schema/validation — don't publish
+      "_axis_index.json",  // internal index — don't publish
+      "_extraction_raw.json",
     ],
 
     defaultDateType: "modified",
