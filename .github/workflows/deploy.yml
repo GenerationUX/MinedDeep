@@ -27,10 +27,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repo + submodules
         uses: actions/checkout@v4
         with:
           fetch-depth: 0          # full history so git-date frontmatter works
+          submodules: true        # pull quartz-src submodule
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -44,6 +45,20 @@ jobs:
       - name: Install Quartz dependencies
         run: npm ci
         working-directory: ./quartz-src   # submodule path (see QUARTZ_SETUP.md)
+
+      # ── Link custom config files into submodule ────────────────────────────
+      # Quartz reads quartz.config.ts and quartz.layout.ts from its own directory.
+      # We store our custom versions in the repo root and symlink them in.
+      - name: Link custom config into submodule
+        run: |
+          rm -f quartz-src/quartz.config.ts quartz-src/quartz.layout.ts
+          ln -sf ../quartz.config.ts quartz-src/quartz.config.ts
+          ln -sf ../quartz.layout.ts  quartz-src/quartz.layout.ts
+
+      # ── Inject Fathom analytics into Head component ────────────────────────
+      - name: Patch Fathom analytics into Head.tsx
+        run: |
+          sed -i 's|</head>|<script src="https://cdn.usefathom.com/script.js" data-site="YDETFBMD" defer></script>\n      </head>|' quartz-src/quartz/components/Head.tsx
 
       # ── Rename entry point ─────────────────────────────────────────────────
       # Quartz expects index.md, not _index.md, as the home page.
